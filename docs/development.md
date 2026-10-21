@@ -70,3 +70,7 @@ node --test tests/personal/*.test.mjs
 Изменения Desktop дополнительно проверяются нативными тестами, typecheck и сборкой соответствующего компонента по его `AGENTS.md`. Две нативные кодовые базы не входят в корневую команду `npm test` целиком.
 
 Форматирование собственного кода задают `.editorconfig` и `.prettierrc.json`. `.prettierignore` исключает исходники upstream, общий импортированный каталог, рабочие данные и сгенерированные JSON. Python-байткод не хранится в Git.
+
+## First-run setup
+
+`tools/setup/` contains discovery, bundle-data reading, private profile import and ownership validation. `npm run setup -- --check` previews discovery without writing. See [migration behavior](first-run-ru.md).

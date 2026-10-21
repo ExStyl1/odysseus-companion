@@ -33,3 +33,18 @@ export function applyCliAppearance(cli, prefs, { migrate = false, changeTheme = 
   }
   return cli.ui.theme !== previous;
 }
+
+/** A GUI launcher can inherit Codex/CI's NO_COLOR; interactive Odysseus uses its chosen theme. */
+export function cliColorEnvironment(env, isTTY) {
+  if (env.ODYSSEUS_NO_COLOR === '1') {
+    const plain = { ...env, NO_COLOR: '1' };
+    delete plain.FORCE_COLOR;
+    return plain;
+  }
+  if (!isTTY) return { ...env };
+  const colored = { ...env };
+  delete colored.NO_COLOR;
+  // Apple's Terminal reliably supports the 256-color palette used for the bronze theme.
+  colored.FORCE_COLOR = env.TERM_PROGRAM === 'Apple_Terminal' ? '2' : '3';
+  return colored;
+}

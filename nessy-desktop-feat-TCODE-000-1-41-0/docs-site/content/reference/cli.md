@@ -377,3 +377,9 @@ Private data and backups live outside both applications in `~/.odysseus` (overri
 ## Local Odysseus launchers
 
 From the project folder, open `Запустить Odysseus CLI.command` or `Запустить Odysseus Desktop.command`. These macOS launchers locate an installed Node.js 22+ and resolve the component relative to the current project folder. The `tools/run-component.mjs` and `tools/odysseus.mjs` command entry points remain available.
+
+## Odysseus macOS distribution
+
+After installing and opening Odysseus.app, run `od` in a new terminal window. The application bundles the CLI and its runtime; no source checkout is required. Build from the integration root using `npm run build:mac`.
+
+The general CLI button runs `od` in Terminal. The chat-header Continue in CLI action flushes and synchronizes the selected chat, verifies its native history, then runs `od --resume` in the project directory. An empty chat starts a new CLI session. macOS may request Terminal Automation permission on first use.

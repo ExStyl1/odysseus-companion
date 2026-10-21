@@ -9,3 +9,6 @@ workspace/Obsidian/
 # Python bytecode is rebuilt locally, never source code.
 __pycache__/
 *.py[cod]
+
+# Installable release artifacts
+dist/

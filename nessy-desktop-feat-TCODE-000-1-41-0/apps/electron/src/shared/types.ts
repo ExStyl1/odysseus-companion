@@ -1919,6 +1919,7 @@ export interface ElectronAPI {
 }
 
 export interface OdysseusSyncStatus {
+  firstRun?: {completedAt:string;files:number;profiles:number;warnings:number;skipped:number}
   enabled: boolean
   running: boolean
   updatedAt?: number

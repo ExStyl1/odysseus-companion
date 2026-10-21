@@ -18,7 +18,7 @@
     },
     {
       "path": "apps/electron/src/shared/types.ts",
-      "append": "\nexport interface OdysseusSyncStatus {\n  enabled: boolean\n  running: boolean\n  updatedAt?: number\n  changedFiles?: number\n  conflicts?: string[]\n  deferred?: string[]\n  unsupported?: string[]\n  error?: string\n  language?: string\n  colorScheme?: 'light' | 'dark' | 'system'\n}\nexport interface ElectronAPI {\n  getOdysseusSkillPrompt(name: string): Promise<string>\n  getOdysseusStatus(): Promise<OdysseusSyncStatus>\n  syncOdysseus(): Promise<OdysseusSyncStatus>\n  launchOdysseusCli(sessionId?: string): Promise<{opened: boolean}>\n  setOdysseusAppearance(mode: 'light' | 'dark' | 'system'): Promise<void>\n}\n"
+      "append": "\nexport interface OdysseusSyncStatus {\n  firstRun?: {completedAt:string;files:number;profiles:number;warnings:number;skipped:number}\n  enabled: boolean\n  running: boolean\n  updatedAt?: number\n  changedFiles?: number\n  conflicts?: string[]\n  deferred?: string[]\n  unsupported?: string[]\n  error?: string\n  language?: string\n  colorScheme?: 'light' | 'dark' | 'system'\n}\nexport interface ElectronAPI {\n  getOdysseusSkillPrompt(name: string): Promise<string>\n  getOdysseusStatus(): Promise<OdysseusSyncStatus>\n  syncOdysseus(): Promise<OdysseusSyncStatus>\n  launchOdysseusCli(sessionId?: string): Promise<{opened: boolean}>\n  setOdysseusAppearance(mode: 'light' | 'dark' | 'system'): Promise<void>\n}\n"
     },
     {
       "path": "apps/electron/src/preload/bootstrap.ts",
@@ -33,12 +33,12 @@
     {
       "path": "apps/electron/src/renderer/components/app-shell/AppShell.tsx",
       "before": "  const { t } = useTranslation()",
-      "after": "  const { t, i18n } = useTranslation()\n  const [odysseusStatus, setOdysseusStatus] = useState<import('../../../shared/types').OdysseusSyncStatus | null>(null)\n  const [cliOpening, setCliOpening] = useState(false)\n  useEffect(() => {\n    let disposed = false\n    const refresh = async () => {\n      try {\n        const status = await window.electronAPI.getOdysseusStatus()\n        if (disposed) return\n        setOdysseusStatus(previous => {\n          const visible = (s: typeof status | null) => s && [s.enabled,s.error,s.language,s.conflicts?.length,s.deferred?.length]\n          return JSON.stringify(visible(previous)) === JSON.stringify(visible(status)) ? previous : status\n        })\n        if (status.language && status.language !== i18n.language) void i18n.changeLanguage(status.language)\n      } catch { /* Older standalone hosts do not provide the optional bridge. */ }\n    }\n    void refresh()\n    const timer = setInterval(() => { void refresh() }, 5000)\n    return () => { disposed = true; clearInterval(timer) }\n  }, [i18n])"
+      "after": "  const { t, i18n } = useTranslation()\n  const [odysseusStatus, setOdysseusStatus] = useState<import('../../../shared/types').OdysseusSyncStatus | null>(null)\n  const [cliOpening, setCliOpening] = useState(false)\n  useEffect(() => {\n    let disposed = false\n    const refresh = async () => {\n      try {\n        const status = await window.electronAPI.getOdysseusStatus()\n        if (disposed) return\n        setOdysseusStatus(previous => {\n          const visible = (s: typeof status | null) => s && [s.enabled,s.error,s.language,s.conflicts?.length,s.deferred?.length,s.firstRun?.completedAt]\n          return JSON.stringify(visible(previous)) === JSON.stringify(visible(status)) ? previous : status\n        })\n        if (status.language && status.language !== i18n.language) void i18n.changeLanguage(status.language)\n        if(status.firstRun){\n          try{\n            const key='odysseus-first-run-notified';\n            if(localStorage.getItem(key)!==status.firstRun.completedAt){\n              localStorage.setItem(key,status.firstRun.completedAt);\n              toast.success(t('odysseus.firstRunReady'),{description:t('odysseus.firstRunSummary',{files:status.firstRun.files,profiles:status.firstRun.profiles,skipped:status.firstRun.skipped,warnings:status.firstRun.warnings}),duration:10000});\n            }\n          }catch{/* Notification preferences must not block startup. */}\n        }\n      } catch { /* Older standalone hosts do not provide the optional bridge. */ }\n    }\n    void refresh()\n    const timer = setInterval(() => { void refresh() }, 5000)\n    return () => { disposed = true; clearInterval(timer) }\n  }, [i18n])"
     },
     {
       "path": "apps/electron/src/renderer/components/app-shell/AppShell.tsx",
       "before": "  const sidebarFooterLinks: SidebarNavItem[] = [\n",
-      "after": "  const sidebarFooterLinks: SidebarNavItem[] = [\n    ...(odysseusStatus?.enabled ? [{id:'nav:knowledge',title:t('knowledge.title'),icon:KnowledgeIcon,variant:navState.navigator === 'knowledge' ? 'default' as const : 'ghost' as const,onClick:()=>navigate(routes.view.knowledge())},{id:'nav:knowledge-chat',title:t('knowledge.chat'),icon:MessagesSquare,variant:navState.navigator === 'knowledge-chat' ? 'default' as const : 'ghost' as const,onClick:()=>navigate(routes.view.knowledgeChat())}] : []),\n    ...(odysseusStatus?.enabled ? [{\n      id: 'nav:odysseus-cli', title: cliOpening ? t('odysseus.opening') : t('odysseus.openCli'),\n      icon: Terminal, variant: 'ghost' as const,\n      onClick: () => {\n        if (cliOpening) return\n        setCliOpening(true)\n        void window.electronAPI.launchOdysseusCli(effectiveSessionId || undefined)\n          .catch(() => toast.error(t('odysseus.cliFailed')))\n          .finally(() => setCliOpening(false))\n      },\n    }, {\n      id: 'nav:odysseus-sync',\n      title: odysseusStatus.error ? t('odysseus.failed') : odysseusStatus.conflicts?.length ? t('odysseus.conflicts', {count:odysseusStatus.conflicts.length}) : t('odysseus.sync'),\n      icon: RotateCw, variant: 'ghost' as const,\n      onClick: () => {\n        void window.electronAPI.syncOdysseus().then(status => {\n          setOdysseusStatus(status)\n          if (status.error) toast.error(t('odysseus.failed'))\n          else if (status.conflicts?.length) toast.warning(t('odysseus.conflicts', {count:status.conflicts.length}), {description:t('odysseus.conflictHelp')})\n          else toast.success(t('odysseus.done'), {description:status.deferred?.length ? t('odysseus.deferred') : undefined})\n        }).catch(() => toast.error(t('odysseus.failed')))\n      },\n    }] : []),\n"
+      "after": "  const sidebarFooterLinks: SidebarNavItem[] = [\n    ...(odysseusStatus?.enabled ? [{id:'nav:knowledge',title:t('knowledge.title'),icon:KnowledgeIcon,variant:navState.navigator === 'knowledge' ? 'default' as const : 'ghost' as const,onClick:()=>navigate(routes.view.knowledge())},{id:'nav:knowledge-chat',title:t('knowledge.chat'),icon:MessagesSquare,variant:navState.navigator === 'knowledge-chat' ? 'default' as const : 'ghost' as const,onClick:()=>navigate(routes.view.knowledgeChat())}] : []),\n    ...(odysseusStatus?.enabled ? [{\n      id: 'nav:odysseus-cli', title: cliOpening ? t('odysseus.opening') : t('odysseus.openCli'),\n      icon: Terminal, variant: 'ghost' as const,\n      onClick: () => {\n        if (cliOpening) return\n        setCliOpening(true)\n        void window.electronAPI.launchOdysseusCli()\n          .catch(() => toast.error(t('odysseus.cliFailed')))\n          .finally(() => setCliOpening(false))\n      },\n    }, {\n      id: 'nav:odysseus-sync',\n      title: odysseusStatus.error ? t('odysseus.failed') : odysseusStatus.conflicts?.length ? t('odysseus.conflicts', {count:odysseusStatus.conflicts.length}) : t('odysseus.sync'),\n      icon: RotateCw, variant: 'ghost' as const,\n      onClick: () => {\n        void window.electronAPI.syncOdysseus().then(status => {\n          setOdysseusStatus(status)\n          if (status.error) toast.error(t('odysseus.failed'))\n          else if (status.conflicts?.length) toast.warning(t('odysseus.conflicts', {count:status.conflicts.length}), {description:t('odysseus.conflictHelp')})\n          else toast.success(t('odysseus.done'), {description:status.deferred?.length ? t('odysseus.deferred') : undefined})\n        }).catch(() => toast.error(t('odysseus.failed')))\n      },\n    }] : []),\n"
     },
     {
       "path": "apps/electron/src/renderer/context/ThemeContext.tsx",
@@ -293,6 +293,21 @@
     {
       "path": "apps/electron/src/shared/types.ts",
       "append": "\nexport interface ElectronAPI {\n  getKnowledgeView(options: {focus?:string;query?:string;offset?:number;view?:string;project?:string;version?:string;collection?:string}): Promise<import('./odysseus-knowledge-types').KnowledgeView>\n  editKnowledge(operation: import('./odysseus-knowledge-types').KnowledgeEdit): Promise<{revision:number}>\n  getKnowledgeAgent(options?:{collection?:string}): Promise<{sessionId:string;prompt:string}>\n  manageKnowledgeCatalog(options:{type:'create';name:string}|{type:'move-project';projectId:string;collectionId:string}):Promise<{createdId?:string}>\n  syncKnowledgeObsidian(): Promise<{catalogs:number;imported:number;exported:number;conflicts:string[];vault:string}>\n  getKnowledgeDocument(options:{nodeId:string;path:string;collection?:string}):Promise<import('./odysseus-knowledge-types').KnowledgeDocument>\n}\n"
+    },
+    {
+      "path": "apps/electron/src/renderer/components/app-shell/chat-header/ChatHeader.tsx",
+      "before": "import { Info, MoreHorizontal, Pencil } from 'lucide-react'",
+      "after": "import { Info, MoreHorizontal, Pencil, Terminal } from 'lucide-react'\nimport { toast } from 'sonner'"
+    },
+    {
+      "path": "apps/electron/src/renderer/components/app-shell/chat-header/ChatHeader.tsx",
+      "before": "  const { t } = useTranslation()",
+      "after": "  const { t } = useTranslation()\n  const [cliEnabled, setCliEnabled] = React.useState(false)\n  React.useEffect(() => {\n    let disposed = false\n    if (typeof window.electronAPI?.getOdysseusStatus !== 'function') return\n    void window.electronAPI.getOdysseusStatus().then(status => {\n      if (!disposed) setCliEnabled(status.enabled)\n    }).catch(() => {})\n    return () => { disposed = true }\n  }, [])\n  const [cliOpening, setCliOpening] = React.useState(false)\n  const continueInCli = async () => {\n    if (cliOpening) return\n    setCliOpening(true)\n    try { await window.electronAPI.launchOdysseusCli(sessionId) }\n    catch { toast.error(t('odysseus.cliFailed')) }\n    finally { setCliOpening(false) }\n  }"
+    },
+    {
+      "path": "apps/electron/src/renderer/components/app-shell/chat-header/ChatHeader.tsx",
+      "before": "    <div className=\"flex items-center gap-1\">",
+      "after": "    <div className=\"flex items-center gap-1\">\n      {cliEnabled && <PanelHeaderCenterButton\n        icon={<Terminal className=\"h-4 w-4\" />}\n        tooltip={cliOpening ? t('odysseus.opening') : t('odysseus.continueCli')}\n        aria-label={t('odysseus.continueCli')}\n        disabled={cliOpening || !!metaItem?.isProcessing}\n        onClick={() => void continueInCli()}\n      />}"
     }
   ],
   "locales": {
@@ -410,7 +425,10 @@
       "knowledge.emptyCatalog": "В этом каталоге пока нет знаний. Добавьте рабочий проект или перенесите существующий.",
       "knowledge.syncObsidian": "Синхронизировать всё с Obsidian",
       "knowledge.syncingObsidian": "Синхронизация с Obsidian…",
-      "knowledge.syncComplete": "Каталогов: {{catalogs}} · получено правок: {{imported}} · записано файлов: {{exported}} · конфликтов: {{conflicts}}"
+      "knowledge.syncComplete": "Каталогов: {{catalogs}} · получено правок: {{imported}} · записано файлов: {{exported}} · конфликтов: {{conflicts}}",
+      "odysseus.firstRunReady": "Odysseus готов к работе",
+      "odysseus.firstRunSummary": "Перенесено {{files}} файлов из {{profiles}} профилей. Пропущено: {{skipped}}; замечаний: {{warnings}}. Исходные данные сохранены.",
+      "odysseus.continueCli": "Продолжить в CLI"
     },
     "packages/shared/src/i18n/locales/en.json": {
       "odysseus.cliFailed": "Could not open CLI. Stop the current response and synchronize the chat.",
@@ -526,7 +544,10 @@
       "knowledge.emptyCatalog": "This catalog is empty. Add a working project or move an existing one.",
       "knowledge.syncObsidian": "Sync all with Obsidian",
       "knowledge.syncingObsidian": "Syncing with Obsidian…",
-      "knowledge.syncComplete": "Catalogs: {{catalogs}} · imported: {{imported}} · files written: {{exported}} · conflicts: {{conflicts}}"
+      "knowledge.syncComplete": "Catalogs: {{catalogs}} · imported: {{imported}} · files written: {{exported}} · conflicts: {{conflicts}}",
+      "odysseus.firstRunReady": "Odysseus is ready",
+      "odysseus.firstRunSummary": "Imported {{files}} files from {{profiles}} profiles. Skipped: {{skipped}}; warnings: {{warnings}}. Original application data is preserved.",
+      "odysseus.continueCli": "Continue in CLI"
     }
   },
   "files": {
@@ -546,15 +567,23 @@
     "apps/electron/src/renderer/assets/odysseus-knight.jpg": "assets/odysseus-knight.jpg",
     "apps/electron/resources/icon.png": {
       "template": "assets/odysseus-icon.png",
-      "previousSha256": "fd3155e532cdda356b31df4561aa75dbddcb60eaea988f04ef3a1eee1e86fb98"
+      "previousSha256": [
+        "fd3155e532cdda356b31df4561aa75dbddcb60eaea988f04ef3a1eee1e86fb98",
+        "424625415b361a687f619b8f8d245e6d2d146dad740db0544890dd8421587360"
+      ]
     },
     "apps/electron/resources/icon.icns": {
       "template": "assets/odysseus-icon.icns",
-      "previousSha256": "f431f470ec35483ea3f635a57a3ab3138d68ae079e5aff9ebe04ed8805da60a7"
+      "previousSha256": [
+        "f431f470ec35483ea3f635a57a3ab3138d68ae079e5aff9ebe04ed8805da60a7"
+      ]
     },
     "apps/electron/resources/icon.ico": {
       "template": "assets/odysseus-icon.ico",
-      "previousSha256": "ba61d26185400006f00db9ac2f821c184299d632ffd45fc4f3112e65d189b095"
+      "previousSha256": [
+        "ba61d26185400006f00db9ac2f821c184299d632ffd45fc4f3112e65d189b095",
+        "2a5525b8728623c6d891c4888aaa3a4d9490e70207e73f8dce56e57402def866"
+      ]
     }
   },
   "brandText": {

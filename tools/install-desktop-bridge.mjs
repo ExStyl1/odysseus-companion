@@ -68,7 +68,9 @@ export function installDesktopBridge(root, { source, check = false } = {}) {
     if (
       existing &&
       !existing.equals(next) &&
-      createHash('sha256').update(existing).digest('hex') !== template.previousSha256
+      !(
+        Array.isArray(template.previousSha256) ? template.previousSha256 : [template.previousSha256]
+      ).includes(createHash('sha256').update(existing).digest('hex'))
     )
       throw Error(`Existing integration differs: ${name}`);
     if (!existing || !existing.equals(next)) staged.set(path, next);

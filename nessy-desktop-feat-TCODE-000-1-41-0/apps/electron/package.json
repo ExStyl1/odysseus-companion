@@ -1,6 +1,6 @@
 {
   "name": "@nessy-agent/electron",
-  "version": "1.42.1-odysseus.10",
+  "version": "1.42.1-odysseus.13",
   "productName": "Odysseus",
   "description": "Electron desktop app for Nessy Desktop",
   "main": "dist/main.cjs",

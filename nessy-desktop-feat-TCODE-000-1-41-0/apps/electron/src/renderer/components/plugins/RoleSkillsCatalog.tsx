@@ -23,7 +23,12 @@ import {
 } from '@/components/ui/dialog';
 import { useAppShellContext } from '@/context/AppShellContext';
 import { skillMentionInvocationId } from '@/lib/capability-catalog';
-import { UI_SKILLS, filterUiSkills, type SkillRole, type UiSkill } from '@/lib/odysseus-skills';
+import {
+  withNativeSkills,
+  filterUiSkills,
+  type SkillRole,
+  type UiSkill,
+} from '@/lib/odysseus-skills';
 const roles = [
   { id: 'general', icon: Sparkles },
   { id: 'qa', icon: FlaskConical },
@@ -38,13 +43,17 @@ export function RoleSkillsCatalog({ onManagePlugins }: { onManagePlugins: () => 
     [limit, setLimit] = React.useState(36);
   const [selected, setSelected] = React.useState<UiSkill | null>(null),
     [starting, setStarting] = React.useState<string | null>(null);
-  const items = React.useMemo(() => filterUiSkills(role, query), [role, query]);
+  const skills = React.useMemo(
+    () => withNativeSkills(app.capabilityCatalog?.capabilities || []),
+    [app.capabilityCatalog],
+  );
+  const items = React.useMemo(() => filterUiSkills(role, query, skills), [role, query, skills]);
   const counts = React.useMemo(
     () =>
       Object.fromEntries(
-        roles.map((r) => [r.id, UI_SKILLS.filter((s) => s.roles.includes(r.id)).length]),
+        roles.map((r) => [r.id, skills.filter((s) => s.roles.includes(r.id)).length]),
       ),
-    [],
+    [skills],
   );
   const choose = (next: SkillRole) => {
     setRole(next);
@@ -89,7 +98,7 @@ export function RoleSkillsCatalog({ onManagePlugins }: { onManagePlugins: () => 
           <div className="mb-6">
             <h1 className="text-2xl font-semibold tracking-tight">{t('roleSkills.heading')}</h1>
             <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-              {t('roleSkills.intro', { count: UI_SKILLS.length })}
+              {t('roleSkills.intro', { count: skills.length })}
             </p>
             <p className="mt-3 max-w-3xl text-sm text-muted-foreground">
               {t('roleSkills.selectionHelp')}

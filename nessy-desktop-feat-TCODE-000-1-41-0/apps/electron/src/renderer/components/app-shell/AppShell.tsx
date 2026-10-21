@@ -296,10 +296,19 @@ function AppShellContent({
         const status = await window.electronAPI.getOdysseusStatus()
         if (disposed) return
         setOdysseusStatus(previous => {
-          const visible = (s: typeof status | null) => s && [s.enabled,s.error,s.language,s.conflicts?.length,s.deferred?.length]
+          const visible = (s: typeof status | null) => s && [s.enabled,s.error,s.language,s.conflicts?.length,s.deferred?.length,s.firstRun?.completedAt]
           return JSON.stringify(visible(previous)) === JSON.stringify(visible(status)) ? previous : status
         })
         if (status.language && status.language !== i18n.language) void i18n.changeLanguage(status.language)
+        if(status.firstRun){
+          try{
+            const key='odysseus-first-run-notified';
+            if(localStorage.getItem(key)!==status.firstRun.completedAt){
+              localStorage.setItem(key,status.firstRun.completedAt);
+              toast.success(t('odysseus.firstRunReady'),{description:t('odysseus.firstRunSummary',{files:status.firstRun.files,profiles:status.firstRun.profiles,skipped:status.firstRun.skipped,warnings:status.firstRun.warnings}),duration:10000});
+            }
+          }catch{/* Notification preferences must not block startup. */}
+        }
       } catch { /* Older standalone hosts do not provide the optional bridge. */ }
     }
     void refresh()
@@ -2568,7 +2577,7 @@ function AppShellContent({
       onClick: () => {
         if (cliOpening) return
         setCliOpening(true)
-        void window.electronAPI.launchOdysseusCli(effectiveSessionId || undefined)
+        void window.electronAPI.launchOdysseusCli()
           .catch(() => toast.error(t('odysseus.cliFailed')))
           .finally(() => setCliOpening(false))
       },

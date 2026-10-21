@@ -1,0 +1,37 @@
+name: Build Odysseus for macOS
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'odysseus-v*'
+permissions:
+  contents: read
+jobs:
+  dmg:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.3'
+      - name: Install CLI dependencies
+        run: npm ci --ignore-scripts
+        working-directory: nessy-cli-master
+      - name: Install Desktop dependencies
+        run: bun install --frozen-lockfile
+        working-directory: nessy-desktop-feat-TCODE-000-1-41-0
+      - name: Tests
+        run: npm test
+      - name: Build application and disk image
+        run: ODYSSEUS_BUN="$(command -v bun)" npm run build:mac
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Odysseus-macOS
+          path: |
+            dist/*.dmg
+            dist/*.sha256
+          if-no-files-found: error

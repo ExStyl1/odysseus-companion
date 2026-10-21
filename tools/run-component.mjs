@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { cliColorEnvironment } from './cli/appearance.mjs';
+import { ensureFirstRun } from './setup/first-run.mjs';
 import { dirname, join, resolve, isAbsolute } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { existsSync, readFileSync, statSync } from 'node:fs';
@@ -12,8 +14,22 @@ import { document, contained, noLinks, privateWrite } from './personal/store.mjs
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..'),
   config = document(join(root, 'odysseus.json'));
 const mode = process.argv[2],
-  args = process.argv.slice(3),
-  paths = personalPaths(root);
+  args = process.argv.slice(3);
+const helpOnly = args.some((arg) => ['--help', '-h', '--version', '-v'].includes(arg));
+let installation;
+if (!helpOnly && process.env.ODYSSEUS_SKIP_FIRST_RUN !== '1') {
+  installation = ensureFirstRun(root);
+  Object.assign(process.env, {
+    NESSY_HOME: installation.profiles.cliHome,
+    NESSY_CONFIG_DIR: installation.profiles.desktopHome,
+    NESSY_RUNTIME_DIR: installation.profiles.cliRuntime,
+  });
+  if (!installation.alreadyInstalled)
+    console.log(
+      `Odysseus: перенесено ${installation.files} файлов. Исходные профили Nessy сохранены.`,
+    );
+}
+const paths = personalPaths(root);
 const env = {
   ...process.env,
   ODYSSEUS_ROOT: root,
@@ -58,7 +74,10 @@ if (mode === 'cli') {
   const dpToken = existingDpToken(paths);
   if (dpToken && !env.NESSY_CLI_DP_AUTH_TOKEN) env.NESSY_CLI_DP_AUTH_TOKEN = dpToken;
   command = process.execPath;
-  childArgs = [join(source, 'packages/cli/dist/index.js'), ...cliArgs];
+  childArgs = [
+    join(source, component.bundled ? 'dist/cli.js' : 'packages/cli/dist/index.js'),
+    ...cliArgs,
+  ];
 } else {
   delete env.VITE_DEV_SERVER_URL;
   env.NESSY_APP_NAME ||= 'Odysseus';
@@ -77,7 +96,8 @@ if (
 }
 if (mode === 'cli' && !env.ODYSSEUS_KNOWLEDGE_COLLECTION)
   env.ODYSSEUS_KNOWLEDGE_COLLECTION = collectionForPath(knowledgePaths(root, env), cwd);
-const child = spawn(command, childArgs, { cwd, env, stdio: 'inherit' });
+const childEnv = mode === 'cli' ? cliColorEnvironment(env, Boolean(process.stdout.isTTY)) : env;
+const child = spawn(command, childArgs, { cwd, env: childEnv, stdio: 'inherit' });
 try {
   const knowledge = knowledgePaths(root, env);
   if (existsSync(knowledge.python)) {

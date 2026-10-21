@@ -3,7 +3,6 @@ import { app, ipcMain, type IpcMainInvokeEvent } from 'electron';
 import { readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { randomUUID } from 'node:crypto';
 import type { HandlerDeps } from './handlers/handler-deps';
 import { fork, execFile, type ChildProcess } from 'node:child_process';
 import { openOdysseusTerminal } from './odysseus-terminal';
@@ -38,6 +37,21 @@ export function registerOdysseusIntegration(deps: HandlerDeps): void {
         store = s;
         secrets = k;
         paths = b.personalPaths(root);
+        const installation = s.document(join(paths.privateDir, 'profiles/installation.json'));
+        if (installation.status === 'ready')
+          status = {
+            ...status,
+            firstRun: {
+              completedAt: installation.completedAt,
+              files: installation.files,
+              profiles:
+                (installation.sources?.cli?.length || 0) +
+                (installation.sources?.desktop?.length || 0) +
+                (installation.legacyRoots?.length || 0),
+              warnings: installation.warnings?.length || 0,
+              skipped: installation.skipped?.length || 0,
+            },
+          };
       })
     : Promise.resolve();
   function trusted(event: IpcMainInvokeEvent): string {
@@ -126,6 +140,7 @@ export function registerOdysseusIntegration(deps: HandlerDeps): void {
         running: false,
         updatedAt: Date.now(),
         changedFiles: result.changes.length + sharedChanges,
+        firstRun: status.firstRun,
         conflicts: [...result.conflicts, ...credentials.conflicts],
         deferred: result.deferred,
         unsupported: result.unsupported,
@@ -332,6 +347,11 @@ export function registerOdysseusIntegration(deps: HandlerDeps): void {
       (typeof sessionId !== 'string' || !/^[A-Za-z0-9_-]+$/.test(sessionId))
     )
       throw new Error('Invalid session');
+    await ready;
+    if (sessionId === undefined) {
+      await openOdysseusTerminal();
+      return { opened: true };
+    }
     const session =
       typeof sessionId === 'string'
         ? await deps.sessionManager.getSession(sessionId, workspaceId)
@@ -360,18 +380,26 @@ export function registerOdysseusIntegration(deps: HandlerDeps): void {
         'This chat has pending changes or a conflict; synchronize it before opening CLI',
       );
     }
-    const id = randomUUID(),
-      request = join(paths.privateDir, 'launch', `${id}.json`);
-    store.privateWrite(
-      request,
-      JSON.stringify({
-        cwd: pair?.cwd || session?.workingDirectory || join(root, 'workspace'),
-        cliId: pair?.cliId,
-      }),
+    const resume = Boolean(session?.messages?.length);
+    if (resume) {
+      if (!pair?.cliPath || !store.contained(join(paths.cliRuntime, 'projects'), pair.cliPath))
+        throw new Error('CLI conversation is unavailable; synchronize this chat again');
+      store.noLinks(pair.cliPath);
+      const records = (await readFile(pair.cliPath, 'utf8'))
+        .trim()
+        .split('\n')
+        .map((line) => JSON.parse(line));
+      if (
+        records[0]?.sessionId !== pair.cliId ||
+        records[0]?.cwd !== pair.cwd ||
+        !records.some((row) => row.type === 'user' || row.type === 'assistant')
+      )
+        throw new Error('CLI conversation has no resumable history');
+    }
+    await openOdysseusTerminal(
+      pair?.cwd || session?.workingDirectory,
+      resume ? pair.cliId : undefined,
     );
-    const node = process.env.ODYSSEUS_NODE;
-    if (!node) throw new Error('Restart Desktop with the Odysseus launcher');
-    await openOdysseusTerminal(root, node, request);
     return { opened: true };
   });
   if (root) {

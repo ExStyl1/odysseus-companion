@@ -21,7 +21,8 @@
 import * as React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSetAtom } from 'jotai'
-import { Info, MoreHorizontal, Pencil } from 'lucide-react'
+import { Info, MoreHorizontal, Pencil, Terminal } from 'lucide-react'
+import { toast } from 'sonner'
 import { PanelHeaderCenterButton } from '@/components/ui/PanelHeaderCenterButton'
 import { RenameDialog } from '@/components/ui/rename-dialog'
 import { DropdownMenu, DropdownMenuTrigger, StyledDropdownMenuContent } from '@/components/ui/styled-dropdown'
@@ -89,6 +90,23 @@ export const ChatHeader = React.memo(function ChatHeader({
   sharingEnabled = true,
 }: ChatHeaderProps) {
   const { t } = useTranslation()
+  const [cliEnabled, setCliEnabled] = React.useState(false)
+  React.useEffect(() => {
+    let disposed = false
+    if (typeof window.electronAPI?.getOdysseusStatus !== 'function') return
+    void window.electronAPI.getOdysseusStatus().then(status => {
+      if (!disposed) setCliEnabled(status.enabled)
+    }).catch(() => {})
+    return () => { disposed = true }
+  }, [])
+  const [cliOpening, setCliOpening] = React.useState(false)
+  const continueInCli = async () => {
+    if (cliOpening) return
+    setCliOpening(true)
+    try { await window.electronAPI.launchOdysseusCli(sessionId) }
+    catch { toast.error(t('odysseus.cliFailed')) }
+    finally { setCliOpening(false) }
+  }
   const {
     activeWorkspaceId,
     isCompactMode,
@@ -245,6 +263,13 @@ export const ChatHeader = React.memo(function ChatHeader({
   const moreLabel = t('session.actionsFor', { title })
   const actions = (
     <div className="flex items-center gap-1">
+      {cliEnabled && <PanelHeaderCenterButton
+        icon={<Terminal className="h-4 w-4" />}
+        tooltip={cliOpening ? t('odysseus.opening') : t('odysseus.continueCli')}
+        aria-label={t('odysseus.continueCli')}
+        disabled={cliOpening || !!metaItem?.isProcessing}
+        onClick={() => void continueInCli()}
+      />}
       {/* UB14.6 — ours (P6.361): the saved-action launcher; it renders nothing until the host lists an action. */}
       {workspaceId && <WorkspaceActionsMenu sessionId={sessionId} workspaceId={workspaceId} />}
       {isTaskOrchestrator && (

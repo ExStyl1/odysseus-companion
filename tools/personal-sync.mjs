@@ -24,23 +24,32 @@ import {
 import { syncModels } from './personal/models.mjs';
 import { syncChats } from './personal/chats.mjs';
 import { applyCliAppearance, cliColorMode } from './cli/appearance.mjs';
+import { managedProfiles } from './setup/paths.mjs';
 export function personalPaths(root, options = {}) {
   const home = options.home || homedir();
+  const privateDir = resolve(
+    options.privateDir || process.env.ODYSSEUS_DATA_DIR || join(home, '.odysseus'),
+  );
+  const imported = managedProfiles(privateDir);
   return {
     root: resolve(root),
-    cliHome: resolve(options.cliHome || process.env.NESSY_HOME || join(home, '.nessy')),
+    cliHome: resolve(
+      options.cliHome || process.env.NESSY_HOME || imported?.cliHome || join(home, '.nessy'),
+    ),
     desktopHome: resolve(
-      options.desktopHome || process.env.NESSY_CONFIG_DIR || join(home, '.nessy-agent'),
+      options.desktopHome ||
+        process.env.NESSY_CONFIG_DIR ||
+        imported?.desktopHome ||
+        join(home, '.nessy-agent'),
     ),
-    privateDir: resolve(
-      options.privateDir || process.env.ODYSSEUS_DATA_DIR || join(home, '.odysseus'),
-    ),
+    privateDir,
     defaultCwd: options.defaultCwd || join(resolve(root), 'workspace'),
     cliRuntime:
       options.cliRuntime ||
       process.env.NESSY_RUNTIME_DIR ||
       options.cliHome ||
       process.env.NESSY_HOME ||
+      imported?.cliRuntime ||
       join(home, '.nessy'),
   };
 }

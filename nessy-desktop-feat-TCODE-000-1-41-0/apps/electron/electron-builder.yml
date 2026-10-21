@@ -154,6 +154,7 @@ mac:
   # 127.0.0.1, LAN hosts). Declare the purpose string so the OS prompt is not
   # blank and the connection is not silently blocked.
   extendInfo:
+    NSAppleEventsUsageDescription: "Odysseus opens Terminal to run od and continue your selected chat."
     NSLocalNetworkUsageDescription: "Nessy Desktop connects to local and network services on your machine — such as a local model runtime (Ollama) or a self-hosted gateway — to run your agent sessions."
     # macOS TCC gates the four "protected" user folders behind their own
     # prompts. Without a per-folder purpose string the prompt renders blank —

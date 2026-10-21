@@ -29,3 +29,11 @@ test('role-scoped search matches Russian descriptions and stable invocation name
  expect(filterUiSkills('dev','несуществующий-особый-навык')).toHaveLength(0)
  expect(UI_SKILLS.every(s=>s.roles.length>0)).toBe(true)
 })
+
+test('imported active native skills join the role catalog without duplicating or enabling unavailable entries',async()=>{
+ const {withNativeSkills}=await import('@/lib/odysseus-skills');
+ const skills=withNativeSkills([{kind:'skill',state:'active',logicalName:'my-qa-tests',description:'Мои проверки'},{kind:'skill',state:'disabled',logicalName:'private-disabled'},{kind:'skill',state:'active',logicalName:'browser'}]);
+ expect(skills.filter(skill=>skill.name==='browser')).toHaveLength(1);
+ expect(filterUiSkills('qa','Мои проверки',skills).some(skill=>skill.name==='my-qa-tests')).toBe(true);
+ expect(skills.some(skill=>skill.name==='private-disabled')).toBe(false);
+});

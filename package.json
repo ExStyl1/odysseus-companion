@@ -18,6 +18,8 @@
     "knowledge:setup": "node tools/graphify.mjs setup",
     "knowledge:refresh": "node tools/graphify.mjs refresh",
     "knowledge:status": "node tools/graphify.mjs doctor",
-    "knowledge:sync": "node tools/knowledge-obsidian-sync.mjs"
+    "knowledge:sync": "node tools/knowledge-obsidian-sync.mjs",
+    "setup": "node tools/first-run.mjs",
+    "build:mac": "node tools/distribution/build-macos.mjs"
   }
 }

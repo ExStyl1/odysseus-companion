@@ -282,3 +282,7 @@ Quit Nessy Desktop before editing `config.json` by hand, and keep a backup.
 Invalid JSON prevents the app from starting. Never place secrets in this file —
 use the [credential store](/reference/config/credentials).
 :::
+
+## Odysseus first launch
+
+Odysseus launchers copy discovered Nessy profiles into private Odysseus profiles once, preserving originals. Run `npm run setup -- --check` from the Odysseus project to preview discovery.

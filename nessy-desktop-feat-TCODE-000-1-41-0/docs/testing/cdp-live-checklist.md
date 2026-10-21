@@ -290,3 +290,15 @@ to 2026-08-17 is archived verbatim in
 | ODYSSEUS-OBSIDIAN-SYNC | Native UI + pointer and exchange regressions | Deferred-pointer safety; all-catalog Markdown exchange, conflict preservation and native button | 2026-10-21 local .9 | 72 root / 13 native PASS; button success and 3 navigation round trips observed; idle sync writes 0 files | [Narrative](cdp-runs/2026-10-21-odysseus-obsidian-sync.md). No CDP/Obsidian-GUI pass claimed. |
 
 | ODYSSEUS-STRUCTURE | Native UI + imports/runtime compatibility + regression suites | Domain modules, mirrored Desktop templates, separate tests and portable launchers | 2026-10-21 local .10 | 77 root / 13 native PASS; typecheck/builds pass; overview→project→overview observed | [Narrative](cdp-runs/2026-10-21-odysseus-structure.md). No CDP/packaged-update pass claimed. |
+
+### ODYSSEUS-FIRST-RUN (2026-10-21)
+
+Isolated first-run fixtures cover native data preservation, Nestor, bundle/ASAR resources, MCP path relocation, idempotence and pending-sync recovery barriers. Live profile import is recorded separately in cdp-runs.
+
+### ODYSSEUS-DISTRIBUTION (2026-10-21)
+
+Verify the packaged app outside the source tree, first-run profile setup, `od` resolution ahead of the system command, CLI argv/current-directory forwarding, and preservation of user state on upgrades. See the distribution run narrative.
+
+### ODYSSEUS-CHAT-HANDOFF (2026-10-21)
+
+Verify a transparent matching app/Dock icon, general Terminal `od` action, chat-header continuation, empty-chat fallback, and rejection of missing or conflicting native CLI history. Native CLI SessionService fixture must load the transferred conversation. Terminal automation may require a user-approved macOS prompt.
