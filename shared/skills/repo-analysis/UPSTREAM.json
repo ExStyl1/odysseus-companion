@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "repo-analysis/SKILL.md",
+  "upstreamName": "repo-analysis",
+  "upstreamFrontmatter": {
+    "name": "repo-analysis",
+    "description": "Анализирует репозиторий приложения и находит его зависимости"
+  },
+  "upstreamSkillSha256": "672a400480d633b3450c792cfae266b6b95cc5fdd3e13aeabc660597608e9ac4",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

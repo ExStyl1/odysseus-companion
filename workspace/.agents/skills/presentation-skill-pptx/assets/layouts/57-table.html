@@ -1,0 +1,51 @@
+<!--
+  TABLE
+
+  When to use: Figures to read across rows and columns: 2-6 columns, 1-8 rows, on a fixed white card
+  Structure: .background-light, a .title-chart-large in a fit-box, one .table-card (white) holding a .table-grid[data-table] written as one native a:tbl: a .table-head row and body rows of .table-cell
+
+  Generated from assets/layouts/template.html by scripts/sync_layouts.py.
+  Edit the template, not this file.
+-->
+  <!-- 2.4.0, the designers' tables.pptx slide 3: one native table (a:tbl,
+       html2pptx/tables.py) on a white card over the light grey. The grid is
+       ordinary flex boxes under data-table: the engine lays it out, the
+       writer turns the boxes into one table. The filler rebuilds the rows
+       from the first header cell and the first body cell, so the prototype
+       below is the designers' slide, not a count. -->
+  <div class="slide" style="background: #FFFFFF;">
+    <div class="background-light"></div>
+    <div class="fit-box" style="position: absolute; top: 56px; left: 60px; width: 1800px; height: 150px; z-index: 10;">
+      <h1 class="title-chart-large">Заголовок слайда вашей презентации</h1>
+    </div>
+    <div class="table-card">
+      <div class="fit-box table-region">
+      <div class="table-grid" data-table>
+        <div class="table-row table-head">
+          <div class="table-cell"><p class="table-text">Заголовок 1</p></div>
+          <div class="table-cell"><p class="table-text">Заголовок 2</p></div>
+          <div class="table-cell num"><p class="table-text">Заголовок 3</p></div>
+          <div class="table-cell num last-col"><p class="table-text">Итог</p></div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell strong"><p class="table-text">Ваш текст</p></div>
+          <div class="table-cell"><p class="table-text">Текст описания</p></div>
+          <div class="table-cell num"><p class="table-text tone-positive">+1 000</p></div>
+          <div class="table-cell num strong last-col"><p class="table-text">+1 000</p></div>
+        </div>
+        <div class="table-row">
+          <div class="table-cell strong"><p class="table-text">Ваш текст</p></div>
+          <div class="table-cell"><p class="table-text">Текст описания</p></div>
+          <div class="table-cell num"><p class="table-text">25 000</p></div>
+          <div class="table-cell num strong last-col"><p class="table-text">25 000</p></div>
+        </div>
+        <div class="table-row last">
+          <div class="table-cell strong"><p class="table-text">Ваш текст</p></div>
+          <div class="table-cell"><p class="table-text">Текст описания</p></div>
+          <div class="table-cell num"><p class="table-text tone-negative">−1 600</p></div>
+          <div class="table-cell num strong last-col"><p class="table-text">−1 600</p></div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>

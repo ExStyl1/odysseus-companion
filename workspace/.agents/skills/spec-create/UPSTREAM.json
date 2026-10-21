@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "spec-create/SKILL.md",
+  "upstreamName": "spec-create",
+  "upstreamFrontmatter": {
+    "name": "spec-create",
+    "description": "Проектирование спеки (дерева докаскод-документов) наперёд из задачи эпика через интервью аналитика, а не через фантазию модели. Порождает index/scenarios/database/api по каноническому шаблону. Триггеры: «спека из эпика», «spec-create», «сделай спеку по задаче», «эпик → спека», «draft a spec from the epic»."
+  },
+  "upstreamSkillSha256": "9ef7a0e4fee880e1ce7f4185237397e6b1e79a2bcd2cd8f76b9e570d14d3d2a2",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

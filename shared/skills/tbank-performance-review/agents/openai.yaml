@@ -1,0 +1,10 @@
+{
+  "interface": {
+    "display_name": "Сбор подтверждений результатов сотрудника за период из корпоративных систем в пакет RESULTS.md.",
+    "short_description": "Сбор подтверждений результатов сотрудника за период из корпорат…",
+    "default_prompt": "Используй $tbank-performance-review. Примени $tbank-performance-review к указанным ссылкам и выбранному окружению. Цель: Сбор подтверждений результатов сотрудника за период из корпоративных систем в пакет RESULTS.md."
+  },
+  "policy": {
+    "allow_implicit_invocation": false
+  }
+}

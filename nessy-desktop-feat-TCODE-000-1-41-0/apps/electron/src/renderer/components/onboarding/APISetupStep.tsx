@@ -1,0 +1,281 @@
+import { useState } from "react"
+import { useTranslation } from "react-i18next"
+import { cn } from "@/lib/utils"
+import { Check, CreditCard, Key, Cpu } from "lucide-react"
+import { StepFormLayout, BackButton, ContinueButton } from "./primitives"
+import type { LlmAuthType, LlmProviderType } from "@nessy-agent/shared/config/llm-connections"
+
+/** Provider segment for the segmented control */
+export type ProviderSegment = 'anthropic' | 'pi'
+
+const BetaBadge = ({ label }: { label: string }) => (
+  <span className="inline-flex h-4 items-center px-1.5 text-caption font-semibold rounded-xs bg-accent-tint text-accent ml-1 align-middle">
+    {label}
+  </span>
+)
+
+/**
+ * API setup method for onboarding.
+ * Maps to specific LlmProviderType + LlmAuthType combinations.
+ *
+ * - 'claude_oauth' → anthropic + oauth
+ * - 'anthropic_api_key' → anthropic + api_key
+ * - 'pi_chatgpt_oauth' → pi + oauth
+ * - 'codex_chatgpt_oauth' → codex-runtime + oauth (F1.202 — the ChatGPT (Codex)
+ *   card; reached from `ProviderSelectStep` only, and deliberately NOT offered
+ *   by this dormant step, whose options ignore the provider flags)
+ * - 'pi_api_key' → pi + api_key
+ */
+export type ApiSetupMethod =
+  | 'anthropic_api_key'
+  | 'claude_oauth'
+  | 'pi_chatgpt_oauth'
+  | 'codex_chatgpt_oauth'
+  | 'pi_api_key'
+
+/**
+ * Map ApiSetupMethod to the underlying LLM connection types.
+ */
+export function apiSetupMethodToConnectionTypes(method: ApiSetupMethod): {
+  providerType: LlmProviderType;
+  authType: LlmAuthType;
+} {
+  switch (method) {
+    case 'claude_oauth':
+      return { providerType: 'anthropic', authType: 'oauth' };
+    case 'anthropic_api_key':
+      return { providerType: 'anthropic', authType: 'api_key' };
+    case 'pi_chatgpt_oauth':
+      return { providerType: 'pi', authType: 'oauth' };
+    case 'codex_chatgpt_oauth':
+      return { providerType: 'codex-runtime', authType: 'oauth' };
+    case 'pi_api_key':
+      return { providerType: 'pi', authType: 'api_key' };
+  }
+}
+
+interface ApiSetupOption {
+  id: ApiSetupMethod
+  name: string
+  description: string
+  icon: React.ReactNode
+  providerType: LlmProviderType
+}
+
+const API_SETUP_ICONS: Record<ApiSetupMethod, React.ReactNode> = {
+  claude_oauth: <CreditCard className="size-4" />,
+  anthropic_api_key: <Key className="size-4" />,
+  pi_chatgpt_oauth: <Cpu className="size-4" />,
+  codex_chatgpt_oauth: <Cpu className="size-4" />,
+  pi_api_key: <Key className="size-4" />,
+}
+
+interface APISetupStepProps {
+  selectedMethod: ApiSetupMethod | null
+  onSelect: (method: ApiSetupMethod) => void
+  onContinue: () => void
+  onBack: () => void
+  /** Initial segment to show (defaults to 'anthropic') */
+  initialSegment?: ProviderSegment
+}
+
+/**
+ * Individual option button component
+ */
+function OptionButton({
+  option,
+  isSelected,
+  onSelect,
+}: {
+  option: ApiSetupOption
+  isSelected: boolean
+  onSelect: (method: ApiSetupMethod) => void
+}) {
+  return (
+    <button
+      onClick={() => onSelect(option.id)}
+      className={cn(
+        // Same tile as the provider picker: hairline ring, selected = 2px accent ring on an accent tint
+        "motion-press flex w-full items-start gap-3 rounded-md px-3 py-2.5 text-left",
+        "transition-[background-color,box-shadow] duration-micro ease-out-subtle hover:duration-instant",
+        isSelected
+          ? "ring-2 ring-inset ring-accent-solid bg-accent-tint"
+          : "ring-1 ring-inset ring-border hover:bg-fill-hover"
+      )}
+    >
+      {/* Icon */}
+      <div
+        className={cn(
+          "flex size-8 shrink-0 items-center justify-center rounded-md",
+          isSelected ? "text-accent" : "text-secondary"
+        )}
+      >
+        {option.icon}
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-label">{option.name}</span>
+        </div>
+        <p className="mt-1 text-label-sm text-tertiary">
+          {option.description}
+        </p>
+      </div>
+
+      {/* Check */}
+      <div
+        className={cn(
+          "flex size-5 shrink-0 items-center justify-center rounded-full border-2 transition-colors duration-micro",
+          isSelected
+            ? "border-accent-solid bg-accent-solid text-on-accent"
+            : "border-control"
+        )}
+      >
+        {isSelected && <Check className="size-3" strokeWidth={3} />}
+      </div>
+    </button>
+  )
+}
+
+/**
+ * Segmented control for provider selection
+ */
+function ProviderSegmentedControl({
+  activeSegment,
+  onSegmentChange,
+  segmentLabels,
+}: {
+  activeSegment: ProviderSegment
+  onSegmentChange: (segment: ProviderSegment) => void
+  segmentLabels: Record<ProviderSegment, string>
+}) {
+  const segments: ProviderSegment[] = ['anthropic', 'pi']
+
+  return (
+    <div className="flex rounded-md bg-fill-hover p-0.5 mb-4">
+      {segments.map((segment) => (
+        <button
+          key={segment}
+          onClick={() => onSegmentChange(segment)}
+          className={cn(
+            "flex-1 h-control px-3 text-label font-medium rounded-sm transition-[background-color,color,box-shadow] duration-micro ease-out-subtle",
+            activeSegment === segment
+              ? "bg-floating shadow-elev-1 text-foreground"
+              : "text-secondary hover:text-foreground"
+          )}
+        >
+          {segmentLabels[segment]}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+/**
+ * APISetupStep - Choose how to connect your AI agents
+ *
+ * Features a segmented control to filter by provider:
+ * - Anthropic - Claude Pro/Max or API Key
+ * - OpenAI - ChatGPT Plus/Pro or API Key
+ */
+export function APISetupStep({
+  selectedMethod,
+  onSelect,
+  onContinue,
+  onBack,
+  initialSegment = 'anthropic',
+}: APISetupStepProps) {
+  const { t } = useTranslation()
+  const [activeSegment, setActiveSegment] = useState<ProviderSegment>(initialSegment)
+
+  const SEGMENT_LABELS: Record<ProviderSegment, string> = {
+    anthropic: t("onboarding.apiSetup.claude"),
+    pi: t("onboarding.apiSetup.nessyAgentsBackend"),
+  }
+
+  const SEGMENT_DESCRIPTIONS: Record<ProviderSegment, React.ReactNode> = {
+    anthropic: <>{t("onboarding.apiSetup.claudeDesc")}</>,
+    pi: <>{t("onboarding.apiSetup.piDesc")}<BetaBadge label={t("onboarding.apiSetup.beta")} /></>,
+  }
+
+  const API_SETUP_OPTIONS: ApiSetupOption[] = [
+    {
+      id: 'claude_oauth',
+      name: t("onboarding.apiSetup.claudeProMax"),
+      description: t("onboarding.apiSetup.claudeProMaxDesc"),
+      icon: API_SETUP_ICONS.claude_oauth,
+      providerType: 'anthropic',
+    },
+    {
+      id: 'anthropic_api_key',
+      name: t("onboarding.apiSetup.anthropicApiKey"),
+      description: t("onboarding.apiSetup.anthropicApiKeyDesc"),
+      icon: API_SETUP_ICONS.anthropic_api_key,
+      providerType: 'anthropic',
+    },
+    {
+      id: 'pi_chatgpt_oauth',
+      name: 'ChatGPT Plus',
+      description: t("onboarding.apiSetup.chatGPTPlusDesc"),
+      icon: API_SETUP_ICONS.pi_chatgpt_oauth,
+      providerType: 'pi',
+    },
+    {
+      id: 'pi_api_key',
+      name: t("onboarding.apiSetup.apiKey"),
+      description: t("onboarding.apiSetup.apiKeyDesc"),
+      icon: API_SETUP_ICONS.pi_api_key,
+      providerType: 'pi',
+    },
+  ]
+
+  // Filter options based on active segment
+  const filteredOptions = API_SETUP_OPTIONS.filter(o => o.providerType === activeSegment)
+
+  // Handle segment change - clear selection if it doesn't belong to new segment
+  const handleSegmentChange = (segment: ProviderSegment) => {
+    setActiveSegment(segment)
+    // If current selection doesn't match the new segment, don't auto-clear
+    // (user might want to keep it and switch back)
+  }
+
+  return (
+    <StepFormLayout
+      title={t("onboarding.apiSetup.title")}
+      description={t("onboarding.apiSetup.description")}
+      actions={
+        <>
+          <BackButton onClick={onBack} />
+          <ContinueButton onClick={onContinue} disabled={!selectedMethod} />
+        </>
+      }
+    >
+      {/* Provider segmented control */}
+      <ProviderSegmentedControl
+        activeSegment={activeSegment}
+        onSegmentChange={handleSegmentChange}
+        segmentLabels={SEGMENT_LABELS}
+      />
+
+      {/* Segment description */}
+      <div className="bg-sunken rounded-lg p-4 mb-3">
+        <p className="text-label text-secondary text-center">
+          {SEGMENT_DESCRIPTIONS[activeSegment]}
+        </p>
+      </div>
+
+      {/* Filtered options for selected provider - min-h keeps size consistent across tabs */}
+      <div className="space-y-3 min-h-[180px]">
+        {filteredOptions.map((option) => (
+          <OptionButton
+            key={option.id}
+            option={option}
+            isSelected={option.id === selectedMethod}
+            onSelect={onSelect}
+          />
+        ))}
+      </div>
+    </StepFormLayout>
+  )
+}

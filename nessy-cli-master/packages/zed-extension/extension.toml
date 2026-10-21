@@ -1,0 +1,32 @@
+id = "nessy-cli"
+name = "Nessy CLI"
+version = "0.1.0"
+schema_version = 1
+authors = ["Nessy Team"]
+description = "Nessy CLI Agent Server Extension for Zed"
+repository = "https://github.com/NessyLM/nessy"
+
+[agent_servers.nessy-cli]
+name = "Nessy CLI"
+icon = "nessy-cli.svg"
+
+[agent_servers.nessy-cli.targets.darwin-aarch64]
+archive = "https://registry.npmjs.org/@nestor/nessy-cli/-/nessy-0.10.0.tgz"
+cmd = "node"
+args = ["./package/cli.js", "--acp"]
+
+[agent_servers.nessy-cli.targets.darwin-x86_64]
+archive = "https://registry.npmjs.org/@nestor/nessy-cli/-/nessy-0.10.0.tgz"
+cmd = "node"
+args = ["./package/cli.js", "--acp"]
+
+[agent_servers.nessy-cli.targets.linux-x86_64]
+archive = "https://registry.npmjs.org/@nestor/nessy-cli/-/nessy-0.10.0.tgz"
+cmd = "node"
+args = ["./package/cli.js", "--acp"]
+
+[agent_servers.nessy-cli.targets.windows-x86_64]
+archive = "https://registry.npmjs.org/@nestor/nessy-cli/-/nessy-0.10.0.tgz"
+cmd = "node"
+args = ["./package/cli.js", "--acp"]
+

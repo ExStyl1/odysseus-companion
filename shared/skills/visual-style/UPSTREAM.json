@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/visual-style",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/visual-style",
+  "upstreamName": "visual-style",
+  "upstreamFrontmatter": {
+    "name": "visual-style",
+    "description": "Create, extract, and apply portable visual design systems via visual-style.md files. Use when: (1) Creating a visual-style.md design system from scratch, (2) Extracting a visual style from a website URL, video, or PDF brand guide, (3) Applying a visual style to HeyGen videos, HTML slides, Figma, or paper.design, (4) Browsing the gallery of pre-built visual styles (Swiss, Saul Bass, Game Boy, etc.), (5) User mentions \"visual style\", \"design system\", \"brand style\", or \"style guide\", (6) Styling a HeyGen video with a consistent design language."
+  },
+  "upstreamSkillSha256": "4d6b51fa9b4e6111dfabc8bfcce8e868645ddad4da30b5a4b8b258f458a32b46",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

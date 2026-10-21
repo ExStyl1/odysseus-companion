@@ -1,0 +1,50 @@
+[
+  {
+    "id": "encoded-data",
+    "pattern": "sha(?:256|384|512)-[A-Za-z0-9+/=]+|data:[a-zA-Z0-9/+.-]+;base64,[A-Za-z0-9+/=]+"
+  },
+  {
+    "id": "external-model-catalog",
+    "paths": "^packages/core/src/models/generated/model-registry\\.json$",
+    "pattern": "\\x22[^\\x22]*[qQ]wen[^\\x22]*\\x22"
+  },
+  {
+    "id": "attribution",
+    "pattern": "Copyright[^\\r\\n]*\\bQwen\\b[^\\r\\n]*|Adapted[^\\r\\n]*qwen[^\\r\\n]*"
+  },
+  {
+    "id": "external-urls",
+    "pattern": "https?://[^\\s\\x22\\x27`<>${}]*[qQ][wW][eE][nN][^\\s\\x22\\x27`<>${}]*"
+  },
+  {
+    "id": "provider-hosts",
+    "pattern": "(?<![a-zA-Z0-9_-])(?:(?:[a-zA-Z0-9-]+\\.)*qwen\\.(?:ai|com)|qwen-gw\\.alicloudapi\\.com)(?![a-zA-Z0-9_-])"
+  },
+  {
+    "id": "oauth-provider",
+    "pattern": "qwen-oauth|Qwen OAuth"
+  },
+  {
+    "id": "model-ids",
+    "pattern": "\\bQwen/|\\bqwen/(?=qwen\\d)|(?:\\b|(?<=\\\\x[\\da-fA-F]{2})|(?<=\\\\u[\\da-fA-F]{4}))(?:[qQ]wen|QWEN)\\d+(?:[.-][a-zA-Z0-9._:/-]*)?(?![a-zA-Z0-9_])|\\b[qQ]wen-(?:coder|plus|flash|turbo|max|vl|omni)[a-zA-Z0-9._:/-]*(?![a-zA-Z0-9_])"
+  },
+  {
+    "id": "model-regexes",
+    "paths": "packages/(?:core/src/core/(?:modalityDefaults|tokenLimits|reasoning-overrides|prompts|openaiContentGenerator/)|cli/src/(?:services/voice-model|ui/voice/|acp-integration/model-configuration))",
+    "pattern": "/\\^qwen(?:\\\\.|[^/\\r\\n])*/[gimsuy]*|/qwen\\[\\^-\\]\\*-(?:coder|vl)/i|[\\x22\\x27]qwen[\\x22\\x27]"
+  },
+  {
+    "id": "dashscope-client",
+    "paths": "^packages/core/src/core/openaiContentGenerator/provider/dashscope(?:\\.test)?\\.ts$",
+    "pattern": "QwenCode/"
+  },
+  {
+    "id": "upstream-repository",
+    "pattern": "QwenLM/qwen-code(?:[a-zA-Z0-9._/#@-]*)?|github\\.com[:/]QwenLM/[^\\s\\x22\\x27`<>]*|ghcr\\.io/qwenlm/[^\\s\\x22\\x27`<>]*"
+  },
+  {
+    "id": "desktop-model-matching",
+    "paths": "^packages/desktop/packages/shared/(?:src/config/models|tests/models\\.test)\\.ts$",
+    "pattern": "(?<=\\.includes\\(')qwen(?='\\))|/\\^qwen(?:\\\\.|[^/\\r\\n])*/[gimsuy]*|\\bQWEN_MAX\\b"
+  }
+]

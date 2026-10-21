@@ -1,0 +1,13 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/nessy-mobile.md",
+  "type": "DOC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Nessy Mobile — the iOS/iPadOS remote",
+  "summary": "Guide to the Nessy Mobile iOS/iPadOS thin client: what works today, and how to run a reachable server for it.",
+  "scope": ["Nessy Mobile", "iOS/iPadOS app", "NessyAgentKit", "nessy-server", "WebSocket RPC", "permission approvals", "Server Mode", "TLS bind"],
+  "cross_refs": ["apps/ios/UPSTREAM.md", "apps/ios/PROTOCOL-CONFORMANCE.md"],
+  "locked": false,
+  "precedence": null,
+  "notes": ""
+}

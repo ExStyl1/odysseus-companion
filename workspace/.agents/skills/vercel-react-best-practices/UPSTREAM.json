@@ -1,0 +1,21 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/vercel-react-best-practices",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/vercel-react-best-practices",
+  "upstreamName": "vercel-react-best-practices",
+  "upstreamFrontmatter": {
+    "name": "vercel-react-best-practices",
+    "description": "React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.",
+    "license": "MIT",
+    "metadata": {
+      "author": "vercel",
+      "version": "1.0.0"
+    }
+  },
+  "upstreamSkillSha256": "97c8b0404aa9f6674681c97ff8bc67f2f829ee415d4083ad1d15c002a1fd2c73",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

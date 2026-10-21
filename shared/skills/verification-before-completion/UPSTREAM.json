@@ -1,0 +1,16 @@
+{
+  "repository": "obra/superpowers",
+  "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "path": "skills/verification-before-completion",
+  "url": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/verification-before-completion",
+  "upstreamName": "verification-before-completion",
+  "upstreamFrontmatter": {
+    "name": "verification-before-completion",
+    "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always"
+  },
+  "upstreamSkillSha256": "2befe7fc55bcadaa3d97dd9e8efeb633d2561c0ebe74c5a8b17c4d9e7e4520b3",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "repository": "JuliusBrussee/caveman",
+  "revision": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",
+  "path": "skills/safe-refactor",
+  "url": "https://github.com/JuliusBrussee/caveman/tree/bad48a0e1df55e05e3f52249afa35ecc1909ee76/skills/safe-refactor",
+  "upstreamName": "safe-refactor",
+  "upstreamFrontmatter": {
+    "name": "safe-refactor",
+    "description": "Restructure code while preserving behavior. Use for extraction, consolidation, ownership moves, or cleanup where verification must bracket structural edits."
+  },
+  "upstreamSkillSha256": "cd52867aba26aafb53379d43068cef9b2feca3a3fff850f877a99f710ccd02c0",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "refactor",
+      "guide": "variants/refactor/GUIDE.md",
+      "resourceRoot": "variants/refactor",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "path": "packages/shared-skills/skills/refactor",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "51bfadf3b2e19d002a4571f6d654c1861d5c2ab83d86dc1d4b291592ec390938",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE.md": {
+          "sha256": "b61ac928f152d13517328263e6bee9175b928f9ab696a2d2ca2b6cfd961ddc32",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "4686ff7a869e83519497f4f4078a4e4006bbec5f53e1c84d7332e7562917158a",
+          "executable": false
+        }
+      },
+      "when": "Альтернативный порядок декомпозиции рефакторинга"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/pose-library-design",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/pose-library-design",
+  "upstreamName": "pose-library-design",
+  "upstreamFrontmatter": {
+    "name": "pose-library-design",
+    "description": "Design reusable 2D character pose libraries, action cycles, and expression states for data-driven animation.",
+    "license": "MIT"
+  },
+  "upstreamSkillSha256": "a874aaf1b43f25fa9080b89173e356eaa0608c990538336c725969f69d714a3b",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

@@ -1,0 +1,2 @@
+Write-Error 'Nessy online installation is not configured for this build. Download the npm archive from the rebrand pipeline and run: npm install --global ./nestor-nessy-cli-0.19.1.tgz'
+exit 1

@@ -1,0 +1,28 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "search-all/SKILL.md",
+  "upstreamName": "Search All",
+  "upstreamFrontmatter": {
+    "name": "Search All",
+    "description": "Оркестратор поиска по Jira, Confluence и GitLab — параллельный поиск с оптимизацией контекста",
+    "when": "- Пользователь просит найти информацию, не указывая конкретный источник\n- Пользователь хочет искать сразу по нескольким источникам (Jira + Confluence + GitLab)\n- Пользователь говорит \"найди\", \"поищи\", \"что известно про...\" без уточнения где именно\n- Пользователь спрашивает про фичу, баг или задачу и нужно собрать контекст из разных систем\n",
+    "tags": [
+      "search",
+      "orchestrator",
+      "jira",
+      "confluence",
+      "gitlab",
+      "wixie"
+    ]
+  },
+  "upstreamSkillSha256": "4110d314989b365e146e755c57e620bcd0d8455dc70f6ef508c71e28fe4addb3",
+  "adaptations": [
+    "Normalized/namespaced skill name: Search All -> search-all",
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

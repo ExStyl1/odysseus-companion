@@ -1,0 +1,55 @@
+{
+  "repository": "obra/superpowers",
+  "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "path": "skills/test-driven-development",
+  "url": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/test-driven-development",
+  "upstreamName": "test-driven-development",
+  "upstreamFrontmatter": {
+    "name": "test-driven-development",
+    "description": "Use when implementing any feature or bugfix, before writing implementation code"
+  },
+  "upstreamSkillSha256": "64b03fce4aee5a97a93160cea8111f3ba13a17b7c001db4bd5836d67fd10705d",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "tdd",
+      "guide": "variants/tdd/GUIDE.md",
+      "resourceRoot": "variants/tdd",
+      "repository": "mattpocock/skills",
+      "path": "skills/engineering/tdd",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "bd95a2e477db548eea8afae5e4f53678d35810c9d2baf69711fee5e6f051e75a",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "a3b5a0779612cdc0f56411cbe0dbab31c08ce787d6a327a0587e1a0b26bcb5f1",
+          "executable": false
+        },
+        "agents/openai.yaml": {
+          "sha256": "ea6f01cf1b8c06a4b0f5b649d74b1b8ce8685e72af1b38d70d877693e092af0b",
+          "executable": false
+        },
+        "mocking.md": {
+          "sha256": "3ceb807fdf4a47d6a93d4d9a891e5ba6d362a6247bd08adc451feebfc17361ef",
+          "executable": false
+        },
+        "tests.md": {
+          "sha256": "859f9e592c188fda4fc7277dd180e4ce9c7a2e13f6efe1f6f29eccc9d28c106a",
+          "executable": false
+        }
+      },
+      "when": "Интеграционный подход к циклу тест — реализация — рефакторинг"
+    }
+  ]
+}

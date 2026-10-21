@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 2,
+  "midstream": {
+    "defaults": [
+      {
+        "providerType": "anthropic",
+        "behavior": "steer"
+      },
+      {
+        "providerType": "pi",
+        "behavior": "steer"
+      },
+      {
+        "providerType": "pi_compat",
+        "behavior": "steer"
+      },
+      {
+        "providerType": "codex-runtime",
+        "behavior": "steer"
+      },
+      {
+        "providerType": "nestor-cloud-agent",
+        "behavior": "queue"
+      },
+      {
+        "providerType": "claude-runtime",
+        "behavior": "steer"
+      }
+    ],
+    "overrides": [
+      {
+        "providerType": "anthropic",
+        "configured": "steer",
+        "expected": "steer"
+      },
+      {
+        "providerType": "pi",
+        "configured": "queue",
+        "expected": "queue"
+      },
+      {
+        "providerType": "pi_compat",
+        "configured": "queue",
+        "expected": "queue"
+      },
+      {
+        "providerType": "codex-runtime",
+        "configured": "queue",
+        "expected": "queue"
+      },
+      {
+        "providerType": "nestor-cloud-agent",
+        "configured": "steer",
+        "expected": "steer"
+      },
+      {
+        "providerType": "claude-runtime",
+        "configured": "queue",
+        "expected": "queue"
+      }
+    ],
+    "noConnectionFallback": "steer"
+  },
+  "permissionModes": [
+    {
+      "mode": "dontAsk",
+      "canonical": "dontAsk",
+      "displayName": "Don't ask",
+      "writeOutcome": "block"
+    },
+    {
+      "mode": "plan",
+      "canonical": "plan",
+      "displayName": "Plan",
+      "writeOutcome": "block"
+    },
+    {
+      "mode": "default",
+      "canonical": "default",
+      "displayName": "Manual",
+      "writeOutcome": "prompt"
+    },
+    {
+      "mode": "acceptEdits",
+      "canonical": "acceptEdits",
+      "displayName": "Accept edits",
+      "writeOutcome": "prompt"
+    },
+    {
+      "mode": "auto",
+      "canonical": "auto",
+      "displayName": "Auto",
+      "writeOutcome": "prompt"
+    },
+    {
+      "mode": "bypassPermissions",
+      "canonical": "bypassPermissions",
+      "displayName": "Bypass permissions",
+      "writeOutcome": "allow"
+    }
+  ],
+  "backendFactory": {
+    "mappings": [
+      {
+        "providerType": "anthropic",
+        "agentProvider": "anthropic"
+      },
+      {
+        "providerType": "pi",
+        "agentProvider": "pi"
+      },
+      {
+        "providerType": "pi_compat",
+        "agentProvider": "pi"
+      },
+      {
+        "providerType": "codex-runtime",
+        "agentProvider": "codex-runtime"
+      },
+      {
+        "providerType": "nestor-cloud-agent",
+        "agentProvider": "nestor-cloud-agent"
+      }
+    ],
+    "availabilityEnvKeys": [
+      "NESSY_FEATURE_PROVIDER_CLAUDE",
+      "NESSY_FEATURE_CLAUDE_RUNTIME",
+      "NESSY_FEATURE_CODEX_RUNTIME",
+      "NESSY_FEATURE_PROVIDER_NESTOR_CLOUD"
+    ],
+    "availabilityCases": [
+      {
+        "name": "defaults",
+        "env": {
+          "NESSY_FEATURE_PROVIDER_CLAUDE": null,
+          "NESSY_FEATURE_CLAUDE_RUNTIME": null,
+          "NESSY_FEATURE_CODEX_RUNTIME": null,
+          "NESSY_FEATURE_PROVIDER_NESTOR_CLOUD": null
+        },
+        "expected": [
+          "anthropic",
+          "pi",
+          "nestor-cloud-agent",
+          "codex-runtime"
+        ]
+      },
+      {
+        "name": "all-enabled",
+        "env": {
+          "NESSY_FEATURE_PROVIDER_CLAUDE": "1",
+          "NESSY_FEATURE_CLAUDE_RUNTIME": "1",
+          "NESSY_FEATURE_CODEX_RUNTIME": "1",
+          "NESSY_FEATURE_PROVIDER_NESTOR_CLOUD": "1"
+        },
+        "expected": [
+          "anthropic",
+          "pi",
+          "nestor-cloud-agent",
+          "codex-runtime"
+        ]
+      },
+      {
+        "name": "all-optional-disabled",
+        "env": {
+          "NESSY_FEATURE_PROVIDER_CLAUDE": "0",
+          "NESSY_FEATURE_CLAUDE_RUNTIME": "0",
+          "NESSY_FEATURE_CODEX_RUNTIME": "0",
+          "NESSY_FEATURE_PROVIDER_NESTOR_CLOUD": "0"
+        },
+        "expected": [
+          "pi"
+        ]
+      }
+    ],
+    "constructions": [
+      {
+        "provider": "pi",
+        "className": "PiAgent",
+        "model": "fixture-pi",
+        "expectedBehavior": {
+          "className": "PiAgent",
+          "provider": "pi",
+          "model": "fixture-pi",
+          "processingBefore": false,
+          "idleRedirectAccepted": false,
+          "processingAfter": false
+        }
+      },
+      {
+        "provider": "anthropic",
+        "className": "ClaudeAgent",
+        "model": "claude-fixture",
+        "expectedBehavior": {
+          "className": "ClaudeAgent",
+          "provider": "anthropic",
+          "model": "claude-fixture",
+          "processingBefore": false,
+          "idleRedirectAccepted": false,
+          "processingAfter": false
+        }
+      },
+      {
+        "provider": "codex-runtime",
+        "className": "CodexAgent",
+        "model": "codex-fixture",
+        "expectedBehavior": {
+          "className": "CodexAgent",
+          "provider": "codex-runtime",
+          "model": "codex-fixture",
+          "processingBefore": false,
+          "idleRedirectAccepted": false,
+          "processingAfter": false
+        }
+      },
+      {
+        "provider": "nestor-cloud-agent",
+        "className": "NestorCloudAgent",
+        "model": "nestor-fixture",
+        "expectedBehavior": {
+          "className": "NestorCloudAgent",
+          "provider": "nestor-cloud-agent",
+          "model": "nestor-fixture",
+          "processingBefore": false,
+          "idleRedirectAccepted": false,
+          "processingAfter": false
+        }
+      }
+    ]
+  },
+  "sendMessage": {
+    "rpcMethod": "SEND_MESSAGE",
+    "workspaceError": "workspace-required",
+    "context": {
+      "clientId": "client-1",
+      "workspaceId": "workspace-1"
+    },
+    "legacyCall": {
+      "sessionId": "session-legacy",
+      "message": "legacy message",
+      "acknowledgement": {
+        "accepted": true,
+        "messageId": "message-legacy"
+      },
+      "expectedRouting": {
+        "callerClientId": "client-1",
+        "workspaceId": "workspace-1"
+      }
+    },
+    "customSlashCall": {
+      "sessionId": "session-slash",
+      "message": "command arguments",
+      "attachmentRefs": [
+        {
+          "handleId": "handle-1",
+          "type": "text",
+          "name": "note.txt",
+          "mimeType": "text/plain",
+          "size": 4
+        }
+      ],
+      "customSlashCommandId": "command-1",
+      "resolved": {
+        "label": "/fixture",
+        "body": "expanded prompt",
+        "model": "fixture-model"
+      },
+      "storedAttachments": [
+        {
+          "path": "/managed/note.txt",
+          "type": "text",
+          "name": "note.txt",
+          "mimeType": "text/plain",
+          "size": 4
+        }
+      ],
+      "acknowledgement": {
+        "accepted": true,
+        "messageId": "message-slash"
+      }
+    },
+    "midstreamDefault": {
+      "execution": "production RPC preserves undefined options; SessionManager resolves provider defaults",
+      "inputOptions": null,
+      "forwardedOptions": null,
+      "behavior": "provider-resolved; no-connection fallback steer"
+    },
+    "postPersistRouting": {
+      "error": "after persist",
+      "eventTypes": [
+        "error",
+        "complete"
+      ],
+      "target": {
+        "to": "client",
+        "clientId": "client-1"
+      }
+    }
+  },
+  "sessionKey": {
+    "workspaceId": "workspace-1",
+    "sessionId": "session-slash"
+  }
+}

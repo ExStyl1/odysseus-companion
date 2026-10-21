@@ -1,0 +1,10 @@
+{
+  "interface": {
+    "display_name": "Замена утверждений типов as в тестовых данных на @total-typescript/shoehorn.",
+    "short_description": "Замена утверждений типов as в тестовых данных на @total-typescr…",
+    "default_prompt": "Используй $migrate-to-shoehorn. Примени $migrate-to-shoehorn к задаче и текущему репозиторию. Цель: Замена утверждений типов as в тестовых данных на @total-typescript/shoehorn."
+  },
+  "policy": {
+    "allow_implicit_invocation": false
+  }
+}

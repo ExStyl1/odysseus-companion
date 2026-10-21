@@ -1,0 +1,8 @@
+{
+  "name": "sample-claude-core",
+  "version": "1.0.0",
+  "description": "Authored synthetic fixture covering the documented Claude plugin core surface: skills, commands, agents, hooks, and MCP servers.",
+  "author": {
+    "name": "Fixture Author"
+  }
+}

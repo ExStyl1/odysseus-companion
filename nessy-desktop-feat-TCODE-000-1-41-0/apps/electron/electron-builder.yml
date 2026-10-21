@@ -1,0 +1,303 @@
+appId: ru.tfinance.nessy-desktop.NessyDesktop
+productName: Nessy Desktop
+copyright: Copyright © 2026 T-Bank
+
+electronVersion: "39.2.7"
+
+directories:
+  output: ../../release
+  buildResources: resources
+
+files:
+  - dist/**/*
+  - "!dist/renderer/src/**"
+  - "!**/*.map"
+  - package.json
+  # Include the bundled session MCP server for Codex sessions. (F1.152: the
+  # bridge server entry is gone — no runtime read it, see runtime-resolver.ts.)
+  - resources/session-mcp-server/**/*
+  # Include Pi agent server subprocess for Pi SDK sessions
+  - resources/pi-agent-server/**/*
+  # Note: Bundled assets (docs, themes, permissions, tool-icons) are in resources/
+  # and copied to dist/resources/ by build:copy. They're included via dist/**/* above.
+  # Include network interceptor for API error capture and MCP schema injection.
+  # This is the interceptor's WHOLE import closure, derived by
+  # `interceptorClosure` (scripts/build/interceptor-pairing.ts) from the entry
+  # module's own imports and pinned against this list by
+  # `packages/shared/src/__tests__/interceptor-packaging-contract.test.ts`
+  # (P6.820). It named four of the eight until 2026-09-08.
+  - packages/shared/src/unified-network-interceptor.ts
+  - packages/shared/src/auth/nestor-model-snapshot.ts
+  - packages/shared/src/auth/nestor.ts
+  - packages/shared/src/config/paths.ts
+  - packages/shared/src/feature-flags.ts
+  - packages/shared/src/interceptor-common.ts
+  - packages/shared/src/interceptor-request-utils.ts
+  - packages/shared/src/telemetry/gateway-headers.ts
+  - packages/shared/src/utils/debug.ts
+  # Include CLI tool Python scripts (platform-independent)
+  - resources/scripts/**/*
+  # Include CLI tool shell wrappers (platform-independent, both Unix and Windows)
+  - resources/bin/markitdown
+  - resources/bin/markitdown.cmd
+  - resources/bin/pdf-tool
+  - resources/bin/pdf-tool.cmd
+  - resources/bin/xlsx-tool
+  - resources/bin/xlsx-tool.cmd
+  - resources/bin/doc-diff
+  - resources/bin/doc-diff.cmd
+  - resources/bin/img-tool
+  - resources/bin/img-tool.cmd
+  - resources/bin/docx-tool
+  - resources/bin/docx-tool.cmd
+  - resources/bin/pptx-tool
+  - resources/bin/pptx-tool.cmd
+  - resources/bin/ical-tool
+  - resources/bin/ical-tool.cmd
+  # Include bundled uv binary (platform-specific, only the relevant one ships per build)
+  - resources/bin/darwin-arm64/**/*
+  - resources/bin/darwin-x64/**/*
+  - resources/bin/win32-x64/**/*
+  - resources/bin/linux-x64/**/*
+  # codex-app-server binaries are included PER-PLATFORM (mac include is injected
+  # per-arch by build-dmg.sh's config generator; win/linux include theirs below).
+  # Top-level include removed: platform-level `!` negations do not reliably
+  # override top-level includes, which shipped all 5 platforms in the mac dmg.
+  # Executable runtimes are copied outside the app bundle via extraResources.
+  - "!vendor/bun/**/*"
+  # Exclude everything from node_modules (will use extraResources for SDK)
+  - "!node_modules/**/*"
+
+# Since SDK 0.2.113 the SDK ships a thin core (`@anthropic-ai/claude-agent-sdk`)
+# and a per-platform optional dependency (`-darwin-arm64`, `-darwin-x64`, etc.)
+# containing the ~210 MB native `claude` binary. We bundle both as extraResources
+# below — only the binary matching the build target is shipped per artifact, so
+# the platform `files` rules below also exclude the wrong-platform binaries.
+#
+# Why extraResources instead of `files`: since electron-builder v20.15.2,
+# `node_modules` directories are auto-excluded from `files`. extraResources
+# bypasses that. See: https://github.com/electron-userland/electron-builder/issues/3104
+#
+# Ripgrep is sourced from `@vscode/ripgrep` (was previously bundled inside the
+# SDK as `vendor/ripgrep/<platform>/rg`; removed in 0.2.113).
+#
+# The CORE is copied from `../../node_modules` — the repository root, which is
+# the only copy any manifest or lockfile governs (P3.313, 2026-09-03). The
+# nested `apps/electron/node_modules/@anthropic-ai/` tree is created by
+# build-dmg.sh / build-linux.sh / build-win.ps1 and is declared in NO
+# package.json, so `bun install` never refreshes it: a copy left there by an
+# earlier build survives an SDK bump and ships silently. Measured on this tree
+# at 0.3.223 (claudeCodeVersion 2.1.223) while the lockfile pinned 0.3.233 —
+# a different tool surface and settings schema for the model in the artefact
+# than in the dev tree. electron-builder only WARNS on a missing `from`
+# (fileMatcher.js `copyFiles`: "file source doesn't exist"), so the afterPack
+# hook below ASSERTS the shipped version against the root install rather than
+# trusting the copy.
+#
+# The BINARY alias still comes from the nested path: it is arch-specific and
+# the three build scripts stage it (including the cross-arch npm fetch). A
+# stale alias is caught by the same afterPack assertion instead of shipping.
+
+extraMetadata:
+  main: dist/main.cjs
+
+publish:
+  provider: generic
+  url: "${env.NESSY_DESKTOP_UPDATE_URL}"
+  channel: "${env.NESSY_DESKTOP_UPDATE_CHANNEL}"
+
+protocols:
+  - name: Nessy Desktop
+    schemes: [nessy]
+
+# Disable ASAR to avoid decompression overhead and click delays
+asar: false
+
+afterPack: scripts/ensure-claude-sdk-binary-dir.cjs
+
+mac:
+  category: public.app-category.productivity
+  icon: resources/icon.icns
+  target:
+    - target: dmg
+      arch:
+        - arm64
+        - x64
+    - target: zip
+      arch:
+        - arm64
+        - x64
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  # Do NOT re-sign the bundled codex-app-server (nor its codex-code-mode-host, F1.1216).
+  #
+  # It arrives from the pinned openai/codex release already signed with
+  # "Developer ID Application: OpenAI OpCo, LLC (2DC432GLL2)", hardened runtime
+  # enabled and a secure timestamp — everything notarization asks of nested
+  # code. Re-signing it rewrites the Mach-O, and the app's pre-spawn SHA gate
+  # (packages/codex-agent-server/src/manifest-verifier.ts) pins the UNSIGNED
+  # upstream hash, so a re-signed binary can never spawn. That is exactly what
+  # shipped in signed 1.25.0: "codex-app-server SHA mismatch for darwin-arm64
+  # … refusing to spawn", in every signed build and no unsigned one.
+  #
+  # There is no post-sign repair: the pin is inlined into dist/main.cjs by
+  # esbuild (no manifest.json exists at runtime to rewrite), afterPack runs
+  # before signing, and afterSign runs after notarization — any write there
+  # invalidates the seal. Keeping the vendor's own signature is also the
+  # stronger claim: the shipped bytes stay byte-identical to the release we
+  # pinned. scripts/build/codex-integrity.ts asserts that on the final artifact.
+  signIgnore:
+    - "resources/bin/codex/"
+  # macOS 15+ prompts for local-network access (localhost gateway, Ollama on
+  # 127.0.0.1, LAN hosts). Declare the purpose string so the OS prompt is not
+  # blank and the connection is not silently blocked.
+  extendInfo:
+    NSLocalNetworkUsageDescription: "Nessy Desktop connects to local and network services on your machine — such as a local model runtime (Ollama) or a self-hosted gateway — to run your agent sessions."
+    # macOS TCC gates the four "protected" user folders behind their own
+    # prompts. Without a per-folder purpose string the prompt renders blank —
+    # the same failure the local-network key above exists to prevent. An agent
+    # session reads and writes real files in the workspace the user picks, and
+    # that workspace is routinely one of these folders.
+    NSDesktopFolderUsageDescription: "Nessy Desktop reads and writes files in the workspace you open — including one on your Desktop — so your agent session can see and edit your project."
+    NSDocumentsFolderUsageDescription: "Nessy Desktop reads and writes files in the workspace you open — including one in Documents — so your agent session can see and edit your project."
+    NSDownloadsFolderUsageDescription: "Nessy Desktop reads and writes files in the workspace you open — including one in Downloads — so your agent session can see and edit your project."
+    NSAppleMusicUsageDescription: "Nessy Desktop reads files in the workspace you open. macOS routes any access to your media library through this prompt; Nessy Desktop does not play or manage your music."
+  extraResources:
+    # Spawnable host runtimes must live outside app.asar.
+    - from: vendor/bun/bun
+      to: vendor/bun/bun
+    - from: resources/bin/node
+      to: bin/node
+    # Thin core SDK (sdk.mjs + types). ~4 MB — present on every platform.
+    - from: ../../node_modules/@anthropic-ai/claude-agent-sdk
+      to: app/node_modules/@anthropic-ai/claude-agent-sdk
+    # Stable alias pointing at the target-arch native binary package.
+    # Populated by build-dmg.sh / build-linux.sh / build-win.ps1 before
+    # electron-builder runs (`apps/electron/node_modules/@anthropic-ai/claude-agent-sdk-binary/`).
+    # The runtime resolver (runtime-resolver.ts) looks here first.
+    - from: node_modules/@anthropic-ai/claude-agent-sdk-binary
+      to: app/node_modules/@anthropic-ai/claude-agent-sdk-binary
+    # ripgrep (used by packages/server-core/src/services/search.ts).
+    - from: node_modules/@vscode/ripgrep
+      to: app/node_modules/@vscode/ripgrep
+  # Exclude binaries for other platforms
+  files:
+    - "!**/resources/bin/win32-*/**"
+    - "!**/resources/bin/linux-*/**"
+    # codex: the target-arch darwin dir is appended here by build-dmg.sh's
+    # per-arch config generator (resources/bin/codex/darwin-<arch>/**/*).
+  artifactName: "NessyDesktop-${version}-${os}-${arch}.${ext}"
+  notarize: true
+
+dmg:
+  artifactName: "NessyDesktop-${version}-${os}-${arch}.${ext}"
+  # Use app icon as the mounted volume icon in Finder
+  icon: resources/icon.icns
+  iconSize: 80
+  title: "Nessy Desktop"
+  contents:
+    - x: 130
+      y: 200
+    - x: 410
+      y: 200
+      type: link
+      path: /Applications
+  window:
+    width: 540
+    height: 380
+
+win:
+  icon: resources/icon.ico
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: "NessyDesktop-${version}-${os}-${arch}.${ext}"
+  files:
+    # Exclude binaries for other platforms
+    - "!**/resources/bin/darwin-*/**"
+    - "!**/resources/bin/linux-*/**"
+    # Windows restricted-token sandbox assets are always present; the optional
+    # codex-app-server joins this directory only when its provider flag is on.
+    - resources/bin/codex/win32-x64/**/*
+    # WORKAROUND: Exclude bun and uv from regular files on Windows.
+    # electron-builder's npm node module collector causes EBUSY errors when copying
+    # .exe files because it scans/locks files while simultaneously trying to copy them.
+    # Moving them to extraResources avoids this by copying before the collector runs.
+    # See: https://github.com/electron-userland/electron-builder/issues/8250
+    - "!vendor/bun/**/*"
+    - "!**/resources/bin/win32-x64/**"
+  # Copy executables as extraResources to avoid EBUSY file locking (see comment above)
+  extraResources:
+    - from: ../../node_modules/@anthropic-ai/claude-agent-sdk
+      to: app/node_modules/@anthropic-ai/claude-agent-sdk
+    - from: node_modules/@anthropic-ai/claude-agent-sdk-binary
+      to: app/node_modules/@anthropic-ai/claude-agent-sdk-binary
+    - from: node_modules/@vscode/ripgrep
+      to: app/node_modules/@vscode/ripgrep
+    - from: vendor/bun/bun.exe
+      to: vendor/bun/bun.exe
+    - from: resources/bin/node.cmd
+      to: bin/node.cmd
+    - from: resources/bin/win32-x64
+      to: app/resources/bin/win32-x64
+
+nsis:
+  oneClick: true
+  # Per-user install to %LOCALAPPDATA%\Programs\ (not Program Files).
+  # Bun subprocess cannot read/write files in Program Files due to Windows permissions.
+  perMachine: false
+  deleteAppDataOnUninstall: true
+
+linux:
+  icon: resources/icon.png
+  category: Utility
+  maintainer: "T-Bank <opensource@tbank.ru>"
+  target:
+    - target: AppImage
+      arch:
+        - x64
+  artifactName: "NessyDesktop-${version}-${os}-${arch}.${ext}"
+  extraResources:
+    # Spawnable host runtimes must live outside app.asar.
+    - from: vendor/bun/bun
+      to: vendor/bun/bun
+    - from: resources/bin/node
+      to: bin/node
+    - from: ../../node_modules/@anthropic-ai/claude-agent-sdk
+      to: app/node_modules/@anthropic-ai/claude-agent-sdk
+    - from: node_modules/@anthropic-ai/claude-agent-sdk-binary
+      to: app/node_modules/@anthropic-ai/claude-agent-sdk-binary
+    - from: node_modules/@vscode/ripgrep
+      to: app/node_modules/@vscode/ripgrep
+  # Exclude binaries for other platforms
+  files:
+    - "!**/resources/bin/darwin-*/**"
+    - "!**/resources/bin/win32-*/**"
+    # codex: Linux support is paused — no codex binary ships in linux builds.
+    # Re-add the two linux includes together with the fetch-codex targets when
+    # Linux support lands (codex stays flag-gated and fail-soft without it).
+
+# UA12.22 — Electron fuses (https://github.com/electron/electron/blob/v39.2.7/docs/tutorial/fuses.md), flipped by
+# electron-builder's own step right before signing, on every platform (build-dmg.sh packages from a generated copy
+# of this file; build-win.ps1 and build-linux.sh from this file). An agent shell can start this app's own signed
+# binary; with these two OFF it no longer honours `NODE_OPTIONS` (e.g. `--require <file>`) or `--inspect*`, the two
+# ways into the full Electron main process. Kept ON: `runAsNode` — the plugin runtime's last rung runs this binary
+# with ELECTRON_RUN_AS_NODE=1 when the bundled Bun is missing (runtime-resolver.ts `pluginNodeRuntimeBinding`).
+# Stated residues: (1) the `nodeOptions` fuse also stops `NODE_EXTRA_CA_CERTS` being read at startup — the host's
+# fetch trust is composed from our own reads (tlsCaPath / the bundled CA / `readAmbientExtraCa`, network-proxy.ts),
+# and the packaged children run on the bundled Bun, which reads it itself; (2) `runAsNode` remains a way to run code
+# as this binary (node mode: no Electron APIs). `resetAdHocDarwinSignature`: the flip rewrites Electron Framework and
+# invalidates the signature it shipped with (an arm64 Mac kills the app at launch), so the same step re-signs the .app
+# ad-hoc (`codesign --sign - --force --deep`). It sits here, not in a build script, so EVERY mac packaging path gets
+# it: build-dmg.sh with or without a certificate, and the root `electron:dist:mac` / `electron:dist:dev:mac` scripts.
+# A signed build then re-signs over it with its identity. Measured 2026-10-09 on an unsigned arm64 app: `--deep`
+# seals the codex binaries under Contents/Resources as resources and leaves them byte-identical with OpenAI's
+# signature, so `mac.signIgnore` and the codex SHA gate are unaffected.
+electronFuses:
+  runAsNode: true
+  enableNodeOptionsEnvironmentVariable: false
+  enableNodeCliInspectArguments: false
+  resetAdHocDarwinSignature: true

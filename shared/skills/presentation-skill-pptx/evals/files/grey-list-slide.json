@@ -1,0 +1,14 @@
+{
+  "title": "Test grey list slide",
+  "slides": [
+    {"layout": "title", "text": "Test"},
+    {"layout": "cards", "title": "Grey full-width list", "cards": [
+      {"title": "Список", "icon": "список", "items": [
+        "Первый пункт",
+        "Второй пункт",
+        "Третий пункт"
+      ]}
+    ]},
+    {"layout": "final"}
+  ]
+}

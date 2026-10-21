@@ -1,0 +1,40 @@
+<!--
+  TABLE COMPARISON
+
+  When to use: Exactly two tables of label and figure set side by side, each with 2-6 rows
+  Structure: A .title-chart-large in a fit-box, a .compare-panel of two .card.compare-card (yellow, grey), each a .card-subtitle over a two-column .table-grid[data-table]
+
+  Generated from assets/layouts/template.html by scripts/sync_layouts.py.
+  Edit the template, not this file.
+-->
+  <!-- 2.4.0, the designers' tables.pptx slide 1: two small tables in a
+       yellow and a grey card, no icon - a title over label/value rows, the
+       values on the right in Medium, thin rules between the rows and none
+       under the last. -->
+  <div class="slide" style="background: #FFFFFF;">
+    <div class="fit-box" style="position: absolute; top: 56px; left: 60px; width: 1800px; height: 245px; z-index: 10;">
+      <h1 class="title-chart-large">Заголовок слайда<br>вашей презентации</h1>
+    </div>
+    <div class="compare-panel">
+      <div class="card yellow compare-card">
+        <p class="card-subtitle">Подзаголовок</p>
+        <div class="table-grid" data-table>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">1 000</p></div></div>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">25%</p></div></div>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">100</p></div></div>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">25 000</p></div></div>
+          <div class="table-row last"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">−1 600</p></div></div>
+        </div>
+      </div>
+      <div class="card gray compare-card">
+        <p class="card-subtitle">Подзаголовок</p>
+        <div class="table-grid" data-table>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">1 000</p></div></div>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">25%</p></div></div>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">100</p></div></div>
+          <div class="table-row"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">25 000</p></div></div>
+          <div class="table-row last"><div class="table-cell"><p class="table-text">Текст описания</p></div><div class="table-cell num last-col"><p class="table-text">−1 600</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>

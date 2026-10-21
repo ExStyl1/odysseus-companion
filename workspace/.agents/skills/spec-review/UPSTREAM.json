@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "spec-review/SKILL.md",
+  "upstreamName": "spec-review",
+  "upstreamFrontmatter": {
+    "name": "spec-review",
+    "description": "Ревью спеки на внутреннюю согласованность (сценарий ↔ БД ↔ API ↔ коды ошибок ↔ очереди) и трассируемость к эпику и бизнес-требованиям. Выдаёт матрицу расхождений и черновик правок, не публикует без подтверждения. Триггеры: «ревью спеки», «spec-review», «проверь спеку», «сверь спеку с БТ», «review the spec»."
+  },
+  "upstreamSkillSha256": "283b2780acce966361a8a84061ab3ea451214fb0e22eaeda16cf6f6271c137fa",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

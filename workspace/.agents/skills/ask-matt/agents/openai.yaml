@@ -1,0 +1,10 @@
+{
+  "interface": {
+    "display_name": "Выбор инженерного процесса из набора Matt Pocock по цели и состоянию задачи.",
+    "short_description": "Выбор инженерного процесса из набора Matt Pocock по цели и сост…",
+    "default_prompt": "Используй $ask-matt. Примени $ask-matt к задаче и текущему репозиторию. Цель: Выбор инженерного процесса из набора Matt Pocock по цели и состоянию задачи."
+  },
+  "policy": {
+    "allow_implicit_invocation": false
+  }
+}

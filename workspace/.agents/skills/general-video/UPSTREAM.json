@@ -1,0 +1,16 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": "skills/general-video",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/skills/general-video",
+  "upstreamName": "general-video",
+  "upstreamFrontmatter": {
+    "name": "general-video",
+    "description": "Author or edit a custom HyperFrames composition when no specialized workflow fits, or when BRIEF.md sets flow: companion. Use for longer or multi-scene pieces, brand and sizzle reels, montages, static loops, static title cards, footage remixes, and freeform builds. Use motion-graphics instead for a short unnarrated motion-first unit, including an animated title. Route fresh creation through hyperframes before using this skill."
+  },
+  "upstreamSkillSha256": "db87c1909eff755d810f83de6064bfb7c52a76e76ba388d4b00c98893dddcb1f",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

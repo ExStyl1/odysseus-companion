@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/website-to-video",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/website-to-video",
+  "upstreamName": "website-to-video",
+  "upstreamFrontmatter": {
+    "name": "website-to-video",
+    "description": "Capture a general website/URL and turn it into a HyperFrames video (site tour, showcase, or social clip from the site's own visuals). Uses headless Chrome screenshots + brand assets. Use when intent is general — portfolio/blog/landing-page showcase or social clip from the site. NOT for: product/SaaS launch or promo (→ /product-launch-video, even from a URL); topic explainer with no site (→ /faceless-explainer); GitHub PR (→ /pr-to-video); adding captions to existing video (→ /embedded-captions); short unnarrated page-highlight motion graphic (→ /motion-graphics). Unclear launch-vs-general-site? Ask one question or start at /hyperframes."
+  },
+  "upstreamSkillSha256": "034276ce1b67aa7f56652ca0304372671d568d89ba074b01b754b2ed85c6250b",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

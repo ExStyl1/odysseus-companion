@@ -1,0 +1,40 @@
+{
+ "problems": [
+  "The ledger's five-marker legend has no marker for 'refused by owner decision'; every refusal cell here is stamped ᵗ with the decision record named in the Why sentence (R50, the 2026-09-05 triage item, or the landed commit), because ᵗ is defined as 'a tracker row or a landed commit is the evidence' and ᵈ is reserved for vendor-page-only claims.",
+  "QB5's arithmetic does not reconcile: 33 cells over TWELVE rows includes B27's and B28's six, so promoting everything except those two rows moves 27 cells now, not 31. The item lists the 27 edits row by row (B9 claude 1; B11, B14, B19, B20, B21, B24, B25, B30 three each; B26 two).",
+  "B25 does NOT become covered: its landed commit `134663bf7` recorded BOTH update keys n/a with the reason on the key (the channel is a build-time property of the artifact; the downgrade floor is electron-updater's own allowDowngrade default), so the honest stamp is `n/a ᵗ` — counted as covered under the owner's refusals-count reading, but not the same word.",
+  "QB6's premise is narrower at HEAD than the question states: both production entry points already guard the non-object shape (`managed-policy-loader.ts` symbol `isPolicyObject` since `2713cafcc`; `managed-delivery.ts` symbol `salvageDeliveredPayload` classifies a non-object payload as empty), so the remaining fail-open lives only inside `managed-policy.ts` symbol `parsePolicy` and the build is defence in depth rather than a live shipped hole — the commit must say so or the next reader records a bug that is not there.",
+  "QB9's `moved:` annotation cannot be written before the scorer learns it: `scripts/plan-status.py`'s verdict-cell check accepts a verdict word plus at most one marker and warns otherwise, so `moved: D1.36` written today scores as 'not a verdict'. The edit's `to` field therefore reads \"`absent ʰ` + `moved: D1.36`\" and the plan row makes the scorer change the first step.",
+  "B24's three cells are stamped `covered ᵗ` per option A, but the DOCUMENTED key name is refused rather than honoured (the alias was measured unavailable both ways) and nothing arms a channel on the claude and codex arms yet; the Why sentence states both, and a reader wanting the stricter word would have grounds for `partial` on those two arms.",
+  "B35's three cells get no pre-written edit: the cross-scope measurement its own row specifies decides the verdict word, so only the measurement plan row is emitted (the denominator twin carries `unknown` there today).",
+  "B16 is deliberately NOT promoted (the refuter's correction inside QB5): it stays `partial` ×3 with the residue named — the origin navigation allowlist did not land, Q-den 13 decided (b), and (c) stays admissible through D9 — so its Why-cell sentence rides the QB5 editorial pass rather than a verdict edit.",
+  "B27 and B28 get no verdict edits now: the owner's named exception puts each on the next live day, so their six cells stay `absent ʰ` until the packaged run, and the two live-case plan rows say which cells they re-stamp when they land."
+ ],
+ "flip_candidates": [
+  {
+   "qid": "QB1",
+   "mechanism_en": "`managedSourcesBehavior` is the vendored binary's OWN composition switch (8 occurrences in the binary, 6 in sdk.mjs of the 2.1.247 bundle, nonsense control 0) and its documented v2.1.242 floor is now MET by that bundle, with the page's own rule — a source carrying only the control keys does not count — answering verbatim the fear P3.290 recorded.",
+   "wiring_size": "S",
+   "reason_en": "The refusal rests on R50's fleet premise (there are no third-party administrators), not on a missing mechanism, so it flips the day one machine carries two admin sources; the wiring is one key through the existing two-source composition in `packages/shared/src/config/managed-composition.ts`. Answer stays A."
+  },
+  {
+   "qid": "QB2",
+   "mechanism_en": "claude reads `managed-mcp.json` itself from the three documented system paths, and the page publishes an additive settings-key route, `managedMcpServers`, that needs no second config format (8 occurrences in the 2.1.247 binary, 0 in sdk.mjs).",
+   "wiring_size": "S–M",
+   "reason_en": "The exclusive-control and acquire halves stay refused, but the additive middle tier is one key on `ManagedPiPolicyV1` plus the pool merge; it is host-enforced only today because the page's floor is v2.1.259 against our 2.1.247, and that divergence must reach the switch report in the same commit. Carried as its own question row, not folded into the confirmed refusal. Answer stays A."
+  },
+  {
+   "qid": "QB9",
+   "mechanism_en": "Tool search kept on by policy is the managed override of `CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS`, native to claude, whose documented v2.1.227 floor our 2.1.247 bundle clears comfortably.",
+   "wiring_size": "S",
+   "reason_en": "B23 is relocated, not refused — P6.241 closed as moved and D1.36 is still open in the target plan — so if the owner ever wants the two cells inside this ledger the build is the managed key followed by its reader, in that order, because `parseManagedPiPolicyV1` drops unknown keys. Answer stays A."
+  }
+ ],
+ "counts": {
+  "restamp": 1,
+  "refuse": 4,
+  "build": 2,
+  "measure": 2,
+  "defer": 0
+ }
+}

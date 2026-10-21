@@ -1,0 +1,16 @@
+{
+  "repository": "JuliusBrussee/caveman",
+  "revision": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",
+  "path": "skills/caveman-commit",
+  "url": "https://github.com/JuliusBrussee/caveman/tree/bad48a0e1df55e05e3f52249afa35ecc1909ee76/skills/caveman-commit",
+  "upstreamName": "caveman-commit",
+  "upstreamFrontmatter": {
+    "name": "caveman-commit",
+    "description": "Write a Conventional Commits message compressed to intent only. Use for \"write a commit\", \"commit message\", /commit or /caveman-commit."
+  },
+  "upstreamSkillSha256": "c788a282fc75b981b421dfdad5d84ea7f83f946c126daa39cfc7d3f97845e193",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

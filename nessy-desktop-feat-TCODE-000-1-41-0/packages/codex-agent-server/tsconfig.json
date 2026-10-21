@@ -1,0 +1,25 @@
+{
+  // Typecheck-only config: this package has no build step (`package.json` points
+  // `main`/`exports` straight at `src/*.ts`, consumed by Bun and the electron
+  // bundler). Its purpose is to put the package — SOURCE **and** TESTS — inside
+  // `typecheck:all`, which it was outside of for its whole existence (P3.117).
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // No `rootDir`, for the same reason `codex-responses-adapter` has none:
+    // `src/__tests__/manifest-verifier.test.ts` imports
+    // `../../../../scripts/build/codex-integrity.ts`, which a rootDir of `./src`
+    // would put outside the program root (TS6059). We only run this with
+    // `--noEmit`, and rootDir exists to shape emit output.
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "types": ["bun", "node"]
+  },
+  // The include pattern deliberately has no extension: the tests are the half
+  // nothing covered, and 2026-09-01 `check-typecheck-coverage --tests` reads
+  // 10 test files on disk, 10 in program, 0 unchecked (P2.233). The compiler sees
+  // 19 files here, which is every tracked TypeScript file in the package.
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

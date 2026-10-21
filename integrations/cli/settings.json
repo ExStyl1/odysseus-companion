@@ -1,0 +1,90 @@
+{
+  "ui": {
+    "theme": "Odysseus Dark",
+    "customBannerTitle": "ODYSSEUS CLI",
+    "customBannerSubtitle": "",
+    "customAsciiArt": {
+      "small": " ███  ████  █   █  ████  ████ █████ █   █  ████\n█   █ █   █  █ █  █     █     █     █   █ █    \n█   █ █   █   █    ███   ███  ████  █   █  ███ \n█   █ █   █   █       █     █ █     █   █     █\n█   █ █   █   █       █     █ █     █   █     █\n ███  ████    █   ████  ████  █████  ███  ████ ",
+      "large": " ██████╗ ██████╗ ██╗   ██╗███████╗███████╗███████╗██╗   ██╗███████╗\n██╔═══██╗██╔══██╗╚██╗ ██╔╝██╔════╝██╔════╝██╔════╝██║   ██║██╔════╝\n██║   ██║██║  ██║ ╚████╔╝ ███████╗███████╗█████╗  ██║   ██║███████╗\n██║   ██║██║  ██║  ╚██╔╝  ╚════██║╚════██║██╔══╝  ██║   ██║╚════██║\n╚██████╔╝██████╔╝   ██║   ███████║███████║███████╗╚██████╔╝███████║\n ╚═════╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚══════╝"
+    },
+    "customThemes": {
+      "Odysseus Dark": {
+        "name": "Odysseus Dark",
+        "type": "custom",
+        "text": {
+          "primary": "#E6D8BA",
+          "secondary": "#9C9588",
+          "link": "#C7AE80",
+          "accent": "#D9B779",
+          "code": "#B8C4CA"
+        },
+        "background": {
+          "primary": "#0B1016",
+          "diff": {
+            "added": "#1E342A",
+            "removed": "#40252A"
+          }
+        },
+        "border": {
+          "default": "#615645",
+          "focused": "#D9B779"
+        },
+        "ui": {
+          "comment": "#918A7D",
+          "symbol": "#B69B68",
+          "gradient": [
+            "#8E754C",
+            "#D9B779",
+            "#E6D8BA"
+          ]
+        },
+        "status": {
+          "error": "#D88B88",
+          "success": "#9DB69A",
+          "warning": "#D9B779",
+          "errorDim": "#8C5658",
+          "warningDim": "#8E754C"
+        }
+      },
+      "Odysseus Light": {
+        "name": "Odysseus Light",
+        "type": "custom",
+        "text": {
+          "primary": "#292820",
+          "secondary": "#686052",
+          "link": "#705426",
+          "accent": "#7E5A25",
+          "code": "#425763"
+        },
+        "background": {
+          "primary": "#F6F2E9",
+          "diff": {
+            "added": "#E0ECDF",
+            "removed": "#F2DEDA"
+          }
+        },
+        "border": {
+          "default": "#A69A83",
+          "focused": "#7E5A25"
+        },
+        "ui": {
+          "comment": "#756C5D",
+          "symbol": "#8A693A",
+          "gradient": [
+            "#705426",
+            "#946C32",
+            "#7E5A25"
+          ]
+        },
+        "status": {
+          "error": "#9F4547",
+          "success": "#426744",
+          "warning": "#825D22",
+          "errorDim": "#9F6B68",
+          "warningDim": "#A38A61"
+        }
+      }
+    }
+  },
+  "$version": 4
+}

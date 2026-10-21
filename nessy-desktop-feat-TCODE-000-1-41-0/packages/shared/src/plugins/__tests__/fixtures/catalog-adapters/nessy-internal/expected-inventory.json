@@ -1,0 +1,7 @@
+{
+  "format": "nessy",
+  "state": "supported",
+  "supportedKinds": ["skill", "mcp"],
+  "deferred": [],
+  "blocked": []
+}

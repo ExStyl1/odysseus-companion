@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "learn/SKILL.md",
+  "upstreamName": "learn",
+  "upstreamFrontmatter": {
+    "name": "learn",
+    "description": "Анализ истории разговора и сохранение стратегических знаний проекта в локальный NESSY.md."
+  },
+  "upstreamSkillSha256": "aec1dc7178e21dffab3dcecb07be9f6973e4de627dda55aaabff66914a0020db",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

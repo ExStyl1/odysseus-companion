@@ -1,0 +1,742 @@
+{
+  "note": "Generated from the transcripts our own gateway runtime wrote under ~/.nessy-agent/workspaces/*/claude-config/projects/. Each pair is a `cwd` the SDK recorded inside a transcript and the project directory that transcript actually sits in.",
+  "sourceFiles": 200,
+  "records": {
+    "user": 545,
+    "assistant": 804
+  },
+  "recordKeys": {
+    "user": {
+      "parentUuid": 545,
+      "isSidechain": 545,
+      "promptId": 545,
+      "type": 545,
+      "message": 545,
+      "uuid": 545,
+      "timestamp": 545,
+      "permissionMode": 352,
+      "promptSource": 352,
+      "userType": 545,
+      "entrypoint": 545,
+      "cwd": 545,
+      "sessionId": 545,
+      "version": 545,
+      "gitBranch": 545,
+      "isMeta": 62,
+      "toolUseResult": 70,
+      "sourceToolAssistantUUID": 70,
+      "isVisibleInTranscriptOnly": 9,
+      "isCompactSummary": 9,
+      "slug": 67,
+      "origin": 2,
+      "toolDenialKind": 1
+    },
+    "assistant": {
+      "parentUuid": 804,
+      "isSidechain": 804,
+      "type": 804,
+      "uuid": 804,
+      "timestamp": 804,
+      "message": 804,
+      "error": 85,
+      "isApiErrorMessage": 126,
+      "apiErrorStatus": 84,
+      "userType": 804,
+      "entrypoint": 804,
+      "cwd": 804,
+      "sessionId": 804,
+      "version": 804,
+      "gitBranch": 804,
+      "effort": 678,
+      "isAbortedMidStream": 5,
+      "attributionMcpServer": 4,
+      "attributionMcpTool": 4,
+      "slug": 64
+    }
+  },
+  "messageKeys": {
+    "user": {
+      "role": 545,
+      "content": 545
+    },
+    "assistant": {
+      "id": 804,
+      "container": 126,
+      "model": 804,
+      "role": 804,
+      "stop_details": 794,
+      "stop_reason": 804,
+      "stop_sequence": 804,
+      "type": 804,
+      "usage": 804,
+      "content": 804,
+      "context_management": 126
+    }
+  },
+  "cwdToProjectKey": [
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/05a29e51-d59d-462e-a06f-022a4f898cfb",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-05a29e51-d59d-462e-a06f-022a4f898cfb"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/075e4f9d-2d1b-4c7e-a388-e34972966662",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-075e4f9d-2d1b-4c7e-a388-e34972966662"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/0a07202a-f5ff-4e9c-9097-dbbcb2d198a1",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-0a07202a-f5ff-4e9c-9097-dbbcb2d198a1"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/0c0e4a31-d299-4ca0-8289-dc26a7ff9b15",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-0c0e4a31-d299-4ca0-8289-dc26a7ff9b15"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/0e517316-68b1-4a78-add5-d55e64b22490",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-0e517316-68b1-4a78-add5-d55e64b22490"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/0e742c46-2780-422d-b967-0b158bdd0215",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-0e742c46-2780-422d-b967-0b158bdd0215"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/10af2cb6-ca5a-41f0-81cf-5866f075ccea",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-10af2cb6-ca5a-41f0-81cf-5866f075ccea"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/12f158bc-31c7-41ce-a153-80f91abdbb63",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-12f158bc-31c7-41ce-a153-80f91abdbb63"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/150d6fa9-be51-446b-b7e5-ef58b60ac4c1",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-150d6fa9-be51-446b-b7e5-ef58b60ac4c1"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/19afd270-0393-4788-b063-6f58cd8a1b79",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-19afd270-0393-4788-b063-6f58cd8a1b79"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/1a99ed1d-5453-4d2c-89e6-7be3429085a4",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-1a99ed1d-5453-4d2c-89e6-7be3429085a4"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/1ad67a0d-3a8f-427f-9bc9-02f72d2b989e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-1ad67a0d-3a8f-427f-9bc9-02f72d2b989e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/1be6ef2e-149d-4077-a700-bdebbf55dfda",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-1be6ef2e-149d-4077-a700-bdebbf55dfda"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/1f9c7a87-afd0-4b0c-b167-891513eb283e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-1f9c7a87-afd0-4b0c-b167-891513eb283e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/1ffede62-1c84-411e-a639-7217941c4f5c",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-1ffede62-1c84-411e-a639-7217941c4f5c"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/20d6e13c-5e2d-4a60-8345-02678225cca3",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-20d6e13c-5e2d-4a60-8345-02678225cca3"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/24adf8e2-684e-467b-964e-7477eed07b0d",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-24adf8e2-684e-467b-964e-7477eed07b0d"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/256487d4-054f-4240-8b16-99d185732cb8",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-256487d4-054f-4240-8b16-99d185732cb8"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/2580c2bf-aab3-47d2-b7cd-61018d0f6c9f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-2580c2bf-aab3-47d2-b7cd-61018d0f6c9f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/274dc53f-3764-497f-afea-c169ccdc97e1",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-274dc53f-3764-497f-afea-c169ccdc97e1"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/281bf299-190b-47bf-aba8-ca18f02483ce",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-281bf299-190b-47bf-aba8-ca18f02483ce"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/29c356b3-0713-4d49-a64a-f22212c84136",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-29c356b3-0713-4d49-a64a-f22212c84136"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/29db5a31-2373-4a54-bcd8-5c4ff29967b8",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-29db5a31-2373-4a54-bcd8-5c4ff29967b8"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/2d384410-d04d-47f5-876c-d2269ee34b03",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-2d384410-d04d-47f5-876c-d2269ee34b03"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/2d9d6d50-3b9e-418a-a6fd-93f96d3ae073",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-2d9d6d50-3b9e-418a-a6fd-93f96d3ae073"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/2f955a62-8503-4a3f-a6ae-94a47b1dc1dc",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-2f955a62-8503-4a3f-a6ae-94a47b1dc1dc"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/3264f5ee-920a-4ff2-9095-29f1b678ec20",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-3264f5ee-920a-4ff2-9095-29f1b678ec20"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/35181ba8-a2b5-4aa3-a326-fa41ecf4b277",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-35181ba8-a2b5-4aa3-a326-fa41ecf4b277"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/361f94a9-c7e1-4e1e-946e-1ef75291af0d",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-361f94a9-c7e1-4e1e-946e-1ef75291af0d"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/3683d918-a05b-487f-8f9c-e6dde7a66280",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-3683d918-a05b-487f-8f9c-e6dde7a66280"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/39ae077f-69d4-4cec-8a71-b1cf0d641f0f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-39ae077f-69d4-4cec-8a71-b1cf0d641f0f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/3a98247a-4e6e-4291-a15e-22983d7b1b7f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-3a98247a-4e6e-4291-a15e-22983d7b1b7f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/3e0af83a-f901-4425-8c0f-7422efabb77a",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-3e0af83a-f901-4425-8c0f-7422efabb77a"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/3e57bd89-4525-4b79-9f22-3132e9db50a7",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-3e57bd89-4525-4b79-9f22-3132e9db50a7"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/3f03d943-2d22-4f11-abc1-26d365909b84",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-3f03d943-2d22-4f11-abc1-26d365909b84"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/420e74a9-7763-4479-9e6d-5326250095be",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-420e74a9-7763-4479-9e6d-5326250095be"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/44282bf9-0496-47fb-a770-a500c00d1a33",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-44282bf9-0496-47fb-a770-a500c00d1a33"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/4a221967-4116-4822-b371-fc74d3760fde",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-4a221967-4116-4822-b371-fc74d3760fde"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/4dcb4dbc-e6c4-4f95-891b-16d2964a3b27",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-4dcb4dbc-e6c4-4f95-891b-16d2964a3b27"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/4f2fd0f6-a0ae-41f9-876b-8c92aa39d2a2",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-4f2fd0f6-a0ae-41f9-876b-8c92aa39d2a2"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/4f47803c-18cc-4a72-810a-579e25363966",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-4f47803c-18cc-4a72-810a-579e25363966"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/51c86882-f174-4fbc-b5d4-b36da6ece239",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-51c86882-f174-4fbc-b5d4-b36da6ece239"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/51f7f828-df8e-417d-9816-366c82364c77",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-51f7f828-df8e-417d-9816-366c82364c77"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/5230e6af-5eae-48e3-bc9e-3786d31b92f9",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-5230e6af-5eae-48e3-bc9e-3786d31b92f9"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/5345f53f-2dc2-4227-8c3d-2b5b4652df05",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-5345f53f-2dc2-4227-8c3d-2b5b4652df05"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/538f08c0-87e5-401d-b9a1-e30b01b4c7d1",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-538f08c0-87e5-401d-b9a1-e30b01b4c7d1"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/545b5f36-a8ff-46dc-a5a2-d0cc168d6dc6",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-545b5f36-a8ff-46dc-a5a2-d0cc168d6dc6"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/54612b37-f59c-4832-8150-b960723f9ac7",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-54612b37-f59c-4832-8150-b960723f9ac7"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/55e191dd-6839-4644-a954-0874a1e944c1",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-55e191dd-6839-4644-a954-0874a1e944c1"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/586b2769-d5ec-423d-8d61-cf7e94f96980",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-586b2769-d5ec-423d-8d61-cf7e94f96980"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/5e4cdead-2bf9-4f62-9121-33b29122e564",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-5e4cdead-2bf9-4f62-9121-33b29122e564"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/5e70fc5f-071f-45fb-8ad5-a00f7bdbba97",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-5e70fc5f-071f-45fb-8ad5-a00f7bdbba97"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/614cafdb-1740-4c4a-8686-3bf9157e6a0d",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-614cafdb-1740-4c4a-8686-3bf9157e6a0d"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/62865089-ea43-4488-8f0e-84cafbfc4d0e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-62865089-ea43-4488-8f0e-84cafbfc4d0e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/62c55c90-eec6-434e-9885-a19143a61f73",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-62c55c90-eec6-434e-9885-a19143a61f73"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/650fddb6-1b2c-4f7f-adbe-a36033ac6c30",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-650fddb6-1b2c-4f7f-adbe-a36033ac6c30"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/6527c176-8121-4b3c-b6bc-3dda5cf13b8d",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-6527c176-8121-4b3c-b6bc-3dda5cf13b8d"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/6749ce30-5d54-40ce-bd49-fa37b8904ceb",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-6749ce30-5d54-40ce-bd49-fa37b8904ceb"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/6884068f-e3ef-4dec-bc38-a5e5c17879c0",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-6884068f-e3ef-4dec-bc38-a5e5c17879c0"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/6abb3ebe-d084-4054-b2d9-780c27977202",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-6abb3ebe-d084-4054-b2d9-780c27977202"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/6d80f4f6-4844-4cfd-867a-5d3b19a9d71f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-6d80f4f6-4844-4cfd-867a-5d3b19a9d71f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/6f2799f2-ec4f-43dd-9634-7d25f8525ece",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-6f2799f2-ec4f-43dd-9634-7d25f8525ece"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/6fab5c90-d0b6-45fb-997f-8e1d39e25a0a",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-6fab5c90-d0b6-45fb-997f-8e1d39e25a0a"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/7067f5b5-1bc4-420b-b0ac-aef3e6989f3e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-7067f5b5-1bc4-420b-b0ac-aef3e6989f3e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/70a39d51-2ae9-4df7-8e8c-ad52d5c87746",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-70a39d51-2ae9-4df7-8e8c-ad52d5c87746"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/743e3258-aa2e-4009-ad29-1769169fefb3",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-743e3258-aa2e-4009-ad29-1769169fefb3"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/76b7d92a-d469-48f9-a801-7dd0f4d281ff",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-76b7d92a-d469-48f9-a801-7dd0f4d281ff"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/77b64069-e128-475b-b193-c77ccbe89b4a",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-77b64069-e128-475b-b193-c77ccbe89b4a"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/7813fc65-01ed-4108-9058-f45562e9859f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-7813fc65-01ed-4108-9058-f45562e9859f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/78a7f910-5b16-4e92-8b64-350d53d19352",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-78a7f910-5b16-4e92-8b64-350d53d19352"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/79590491-5f2d-4858-bc0b-1d1564fe8413",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-79590491-5f2d-4858-bc0b-1d1564fe8413"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/7f31a589-47a3-4ebe-b914-f5adf768a632",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-7f31a589-47a3-4ebe-b914-f5adf768a632"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/81ef4956-a6be-4070-97f5-23d74ae994c8",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-81ef4956-a6be-4070-97f5-23d74ae994c8"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/82bd9bd3-de06-4c7a-ae50-109185dcf483",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-82bd9bd3-de06-4c7a-ae50-109185dcf483"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8422c834-1107-47df-98de-242da03e1549",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8422c834-1107-47df-98de-242da03e1549"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/87c85182-2022-4e8b-aedd-ff965047f0cb",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-87c85182-2022-4e8b-aedd-ff965047f0cb"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/87c9cc57-2cd5-47f9-91ee-82b158821adb",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-87c9cc57-2cd5-47f9-91ee-82b158821adb"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/88792ef4-a623-4aaa-87df-0076af93093e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-88792ef4-a623-4aaa-87df-0076af93093e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8a83741d-ec86-4e20-bfce-85385008b407",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8a83741d-ec86-4e20-bfce-85385008b407"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8c5cea15-384e-43ca-bc83-bff77318282c",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8c5cea15-384e-43ca-bc83-bff77318282c"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8d16b5f7-4f20-4745-a12e-b44ecde23c51",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8d16b5f7-4f20-4745-a12e-b44ecde23c51"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8d99f091-6f6a-4368-8e0f-d3500f516914",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8d99f091-6f6a-4368-8e0f-d3500f516914"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8d9a3bf9-8874-4e87-b920-1705fd87cf27",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8d9a3bf9-8874-4e87-b920-1705fd87cf27"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8e53c5df-1efe-40cf-8900-8ad04bd8ded1",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8e53c5df-1efe-40cf-8900-8ad04bd8ded1"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8e8a1b93-08b1-4ebd-9063-8c8aa4cba9ff",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8e8a1b93-08b1-4ebd-9063-8c8aa4cba9ff"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/8f6259e6-bba6-4884-951a-f4cd1ebaf701",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-8f6259e6-bba6-4884-951a-f4cd1ebaf701"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/908c6490-a49a-428a-9330-d900268b4359",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-908c6490-a49a-428a-9330-d900268b4359"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/926242ff-41a1-4365-8dd3-04e77e2d8db4",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-926242ff-41a1-4365-8dd3-04e77e2d8db4"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/942e18c4-4916-4ad4-860e-47ade6f95a5f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-942e18c4-4916-4ad4-860e-47ade6f95a5f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/946825dd-e8af-4656-8b05-dec376f473b3",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-946825dd-e8af-4656-8b05-dec376f473b3"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/959a62db-5073-4bc7-871a-2b75b927ced0",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-959a62db-5073-4bc7-871a-2b75b927ced0"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/962daf94-11ec-4b5e-afd9-cb28cb3145ed",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-962daf94-11ec-4b5e-afd9-cb28cb3145ed"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/9a224264-3e55-4ba7-8cc7-042d1ef71954",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-9a224264-3e55-4ba7-8cc7-042d1ef71954"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/9a918b38-28bd-4ccb-a15a-118aaf84556b",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-9a918b38-28bd-4ccb-a15a-118aaf84556b"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/9cb8da15-f0f7-4029-98e0-ae9e269ce12f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-9cb8da15-f0f7-4029-98e0-ae9e269ce12f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a3567dd5-9232-4dbf-9ac7-23ddf24c8dd9",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a3567dd5-9232-4dbf-9ac7-23ddf24c8dd9"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a3764385-7c95-4db2-8b2e-20a9de10c13e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a3764385-7c95-4db2-8b2e-20a9de10c13e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a396a761-c98d-4a27-963a-880b06c9c247",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a396a761-c98d-4a27-963a-880b06c9c247"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a3aafacf-e20f-43e3-bdfe-16f4151fbaef",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a3aafacf-e20f-43e3-bdfe-16f4151fbaef"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a3c625d1-8756-420e-8ba9-30a4b267ad8e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a3c625d1-8756-420e-8ba9-30a4b267ad8e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a6ad9e32-073d-4ab7-8ec1-ebd5744f6668",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a6ad9e32-073d-4ab7-8ec1-ebd5744f6668"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a76b0670-bb76-474c-b86c-6473e2f35345",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a76b0670-bb76-474c-b86c-6473e2f35345"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a8d91dc7-00fe-4ee1-b5f9-8c4f56f79062",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a8d91dc7-00fe-4ee1-b5f9-8c4f56f79062"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/a9103a0f-37c6-44b1-a39b-d05b33a0e61c",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-a9103a0f-37c6-44b1-a39b-d05b33a0e61c"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ac5507f0-4cb8-460d-b93e-ef824b67eed0",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ac5507f0-4cb8-460d-b93e-ef824b67eed0"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/acf86805-dfa5-4f9b-a6a5-dde501e735cd",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-acf86805-dfa5-4f9b-a6a5-dde501e735cd"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ad114af5-904b-4f87-834d-a27d857f68d8",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ad114af5-904b-4f87-834d-a27d857f68d8"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ad8de039-90c1-44e2-bb3b-99ec3bffde70",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ad8de039-90c1-44e2-bb3b-99ec3bffde70"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/adf3afaa-df57-49e3-a404-ad695b4cc77a",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-adf3afaa-df57-49e3-a404-ad695b4cc77a"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/af7f854e-492d-499c-8649-e29793bc732c",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-af7f854e-492d-499c-8649-e29793bc732c"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b08cd003-2af5-437e-9a42-e662a2632b3a",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b08cd003-2af5-437e-9a42-e662a2632b3a"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b14d8bc3-57f5-4180-8f72-68f0654df6b4",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b14d8bc3-57f5-4180-8f72-68f0654df6b4"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b401518b-f436-4a9a-afdd-d440b04d8271",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b401518b-f436-4a9a-afdd-d440b04d8271"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b5864abb-1e8d-46b8-940b-47d2a99dc65b",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b5864abb-1e8d-46b8-940b-47d2a99dc65b"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b65a56a2-6272-4908-9b7e-fe911ad8823b",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b65a56a2-6272-4908-9b7e-fe911ad8823b"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b66cd4a6-36e1-44c4-804c-2fdb1ef4bb83",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b66cd4a6-36e1-44c4-804c-2fdb1ef4bb83"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b6cadba2-5691-48c7-a8d3-882dc75f6be6",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b6cadba2-5691-48c7-a8d3-882dc75f6be6"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/b85706fc-c369-4059-a559-6bce2c72ecf7",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-b85706fc-c369-4059-a559-6bce2c72ecf7"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ba40967e-510d-48d7-b9b3-4cb9f40b9469",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ba40967e-510d-48d7-b9b3-4cb9f40b9469"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/bd4f7dfe-efee-4b75-83ba-38b057da95e3",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-bd4f7dfe-efee-4b75-83ba-38b057da95e3"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/bd9b194e-4448-4ae4-a7e8-f907a0f65a13",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-bd9b194e-4448-4ae4-a7e8-f907a0f65a13"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/bdfbc100-241d-482e-a67c-36763886ce8b",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-bdfbc100-241d-482e-a67c-36763886ce8b"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c20e62eb-ba89-43ea-9c15-39bee48b5644",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c20e62eb-ba89-43ea-9c15-39bee48b5644"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c2676703-09c9-4566-9e1b-76523b625efd",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c2676703-09c9-4566-9e1b-76523b625efd"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c3d4b96f-b8d5-481a-aaf5-05da60bd960e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c3d4b96f-b8d5-481a-aaf5-05da60bd960e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c6e06c45-517c-4056-a299-5f8e7f1b3c8c",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c6e06c45-517c-4056-a299-5f8e7f1b3c8c"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c80c8a9c-00b8-4a8c-8f79-ec03ea6c93bf",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c80c8a9c-00b8-4a8c-8f79-ec03ea6c93bf"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c8372aef-e6e0-48b4-891d-0aa879618fc8",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c8372aef-e6e0-48b4-891d-0aa879618fc8"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c8a59f41-493c-4db8-a6f6-ede5a3f54105",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c8a59f41-493c-4db8-a6f6-ede5a3f54105"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/c9fb1625-3574-4065-8a2e-3f98fcb4dd1e",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-c9fb1625-3574-4065-8a2e-3f98fcb4dd1e"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ca3eb91e-15df-411c-91f2-55557f8d70c1",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ca3eb91e-15df-411c-91f2-55557f8d70c1"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/cbee63a8-71c3-4ea0-bfc7-808c2f6ddd14",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-cbee63a8-71c3-4ea0-bfc7-808c2f6ddd14"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/cd8d1656-c4c5-4655-aa91-522624bb8c7c",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-cd8d1656-c4c5-4655-aa91-522624bb8c7c"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ceba0df0-0127-44f1-ae05-f4febbcf05f6",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ceba0df0-0127-44f1-ae05-f4febbcf05f6"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/cec35e65-c0cf-47c4-9627-f6b668625cf7",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-cec35e65-c0cf-47c4-9627-f6b668625cf7"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/cf493f3c-36f2-42f3-a0c4-f2914df7e624",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-cf493f3c-36f2-42f3-a0c4-f2914df7e624"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/d03e4f4e-4f13-40fe-8239-f8eb67d03b67",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-d03e4f4e-4f13-40fe-8239-f8eb67d03b67"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/d7735ed8-1c1e-4ced-947e-e44f086ef5d6",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-d7735ed8-1c1e-4ced-947e-e44f086ef5d6"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/d831c0f6-1f26-4ae4-9a11-fc783411fd2d",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-d831c0f6-1f26-4ae4-9a11-fc783411fd2d"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/d84285ac-451e-4045-9574-abb61b6e3c43",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-d84285ac-451e-4045-9574-abb61b6e3c43"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/d88788e9-402d-49fd-aee8-248eba4ecca8",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-d88788e9-402d-49fd-aee8-248eba4ecca8"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/d8d12030-6c67-49a5-af3e-ef7b6968cbc2",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-d8d12030-6c67-49a5-af3e-ef7b6968cbc2"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ddac2419-7aed-4fa3-88fa-45929fb5a3dd",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ddac2419-7aed-4fa3-88fa-45929fb5a3dd"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/de963f26-1351-448c-9d64-983a44827a69",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-de963f26-1351-448c-9d64-983a44827a69"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/e25d0a92-e059-4ffb-a91d-942ed5f003c9",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-e25d0a92-e059-4ffb-a91d-942ed5f003c9"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/e3835542-8296-41ee-84ea-58b645b538a2",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-e3835542-8296-41ee-84ea-58b645b538a2"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/e4f1a66c-2c59-4ee1-8cb8-0ecf05b109c8",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-e4f1a66c-2c59-4ee1-8cb8-0ecf05b109c8"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/e78ec0e8-f1bb-43d3-908f-350b8cf020ed",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-e78ec0e8-f1bb-43d3-908f-350b8cf020ed"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/e8e028c4-b9ae-47e3-bcfb-8e658564ad56",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-e8e028c4-b9ae-47e3-bcfb-8e658564ad56"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/eae762b3-bc44-409f-b984-1f3eb4b849ea",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-eae762b3-bc44-409f-b984-1f3eb4b849ea"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ebaa9de7-3285-49ac-9d25-dfcf32adb8b4",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ebaa9de7-3285-49ac-9d25-dfcf32adb8b4"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ebde1d2f-eab1-4da9-b98f-a07517d36f78",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ebde1d2f-eab1-4da9-b98f-a07517d36f78"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/ed76837e-7bd2-412d-b492-5426303b353c",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-ed76837e-7bd2-412d-b492-5426303b353c"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f15571b2-e7cd-4281-af0d-3bfd1b8ffd06",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f15571b2-e7cd-4281-af0d-3bfd1b8ffd06"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f1f3e81b-566f-4f7c-9a7a-5b7ac7d36397",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f1f3e81b-566f-4f7c-9a7a-5b7ac7d36397"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f5bf3b40-1630-4b84-8047-7c023c5aa07f",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f5bf3b40-1630-4b84-8047-7c023c5aa07f"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f616e9c2-c7ab-420c-8201-7e6277b58120",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f616e9c2-c7ab-420c-8201-7e6277b58120"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f649bea0-51bc-4ae6-9c25-d256a77cdd01",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f649bea0-51bc-4ae6-9c25-d256a77cdd01"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f778b6f6-d9ff-4aef-866a-49aeb43f7ec0",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f778b6f6-d9ff-4aef-866a-49aeb43f7ec0"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f818c712-e20b-4096-8aa1-fa47d63a70e3",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f818c712-e20b-4096-8aa1-fa47d63a70e3"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f8fda1bd-c837-4a5a-b9ec-2936fb5e2d64",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f8fda1bd-c837-4a5a-b9ec-2936fb5e2d64"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/f981fd04-8ef9-4eb6-8647-c848cb6b0abb",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-f981fd04-8ef9-4eb6-8647-c848cb6b0abb"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/fa520e24-27bc-4dfe-b861-9933515287ed",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-fa520e24-27bc-4dfe-b861-9933515287ed"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/fbe6a076-0331-4010-a115-72c096ec4588",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-fbe6a076-0331-4010-a115-72c096ec4588"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/.nessy-agent/sessions/d98cc70e-5063-4f1f-bc67-a563590d65f7/fd5ec617-858b-4d9c-bd69-19b57b3adc22",
+      "projectKey": "-Users-i-i-gavrikov--nessy-agent-sessions-d98cc70e-5063-4f1f-bc67-a563590d65f7-fd5ec617-858b-4d9c-bd69-19b57b3adc22"
+    },
+    {
+      "cwd": "/Users/i.i.gavrikov/Desktop/react-ui-kit",
+      "projectKey": "-Users-i-i-gavrikov-Desktop-react-ui-kit"
+    }
+  ]
+}

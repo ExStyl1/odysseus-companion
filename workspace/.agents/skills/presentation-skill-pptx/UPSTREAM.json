@@ -1,0 +1,25 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "presentation-skill-pptx/SKILL.md",
+  "upstreamName": "presentation-skill-pptx",
+  "upstreamFrontmatter": {
+    "name": "presentation-skill-pptx",
+    "description": "Builds a finished PPTX presentation in the T-Bank corporate template from a content description. Use when the user asks for a presentation, slides, a deck, a pitch, a management report, or a project review, and when they ask to edit a presentation this skill produced. You write a JSON spec and run the build script; layout, fonts, icons and palette come from the template and cannot be overridden. Requests and slide content are usually in Russian. Output is a .pptx file.",
+    "license": "proprietary",
+    "compatibility": "Python 3.9+ with python-pptx, lxml, Pillow, numpy, matplotlib. Runs offline; no browser or network access needed.",
+    "metadata": {
+      "author": "m.lenivkin",
+      "version": "2.5.0",
+      "last-updated": "2026-10-09"
+    }
+  },
+  "upstreamSkillSha256": "265f821f83ddcd75959b5b8003a3091e7c33f631348dfabc7dd9857c17990b0f",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

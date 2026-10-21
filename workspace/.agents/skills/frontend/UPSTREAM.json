@@ -1,0 +1,16 @@
+{
+  "repository": "code-yeongyu/oh-my-openagent",
+  "revision": "657a02ef48cc6653ba845f0bb8c71b1097a64aa2",
+  "path": "packages/shared-skills/skills/frontend",
+  "url": "https://github.com/code-yeongyu/oh-my-openagent/tree/657a02ef48cc6653ba845f0bb8c71b1097a64aa2/packages/shared-skills/skills/frontend",
+  "upstreamName": "frontend",
+  "upstreamFrontmatter": {
+    "name": "frontend",
+    "description": "Builds, styles, and polishes web UI and UX. Use for any frontend, page, component, styling, layout, animation, or visual-quality task, or when asked to make an interface look or feel a certain way."
+  },
+  "upstreamSkillSha256": "a2542f14b599d2c3195fcc0633ff803add0b44d358dea7b1837c1e46d08cfbd3",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

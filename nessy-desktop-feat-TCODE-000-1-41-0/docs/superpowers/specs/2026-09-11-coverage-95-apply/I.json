@@ -1,0 +1,827 @@
+{
+ "family": "I",
+ "items": [
+  {
+   "qid": "QI1",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "I1",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.133 landed the New-Chat-in-Worktree control (`c786ffef4` + `c87c50199`): `apps/electron/src/renderer/contexts/NavigationContext.tsx` passes `worktree: true` through the RPC to `packages/server-core/src/sessions/SessionManager.ts` symbol `createSession`, which refuses rather than silently falling back and names the refusal `session-worktree-failed:`, so a launch-time isolated session exists on the Pi path."
+    },
+    {
+     "row": "I1",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed control (P6.133, `c786ffef4` + `c87c50199`) on a `createSession` worktree path that reads no provider, and `packages/server-core/src/sessions/SessionManager.ts` symbol `createClaudeWorktreePort` routes the binary's own `WorktreeCreate` hook into the host lease service, so the claude worktree is the leased, recorded, swept object a Pi one is."
+    },
+    {
+     "row": "I1",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed control (P6.133, `c786ffef4` + `c87c50199`): codex publishes no worktree flag of its own (`packages/server-core/src/sessions/SessionManager.ts` symbol `noteAbsentWorktreePort` records the tier as closed by absence) and reaches the isolated start through the same provider-free host seam, the session log carrying the lease id."
+    },
+    {
+     "row": "I8",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.324 half (a) landed `8cf2215ff` — `packages/server-core/src/pi-harness/worktree-lease-service.ts` symbol `assertWorktreeIdentity` screens the target with git's own `rev-parse --show-toplevel` and refuses `is-the-main-checkout`, `redirected-elsewhere` and `not-a-worktree` (`packages/shared/src/automations/hook-worktree-path.ts`), while a genuine linked worktree passes; the create path carries no provider term, so one screen serves all three runtimes."
+    },
+    {
+     "row": "I8",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.324 half (a) landed `8cf2215ff` — `packages/server-core/src/pi-harness/worktree-lease-service.ts` symbol `assertWorktreeIdentity` screens the target with git's own `rev-parse --show-toplevel` and refuses `is-the-main-checkout`, `redirected-elsewhere` and `not-a-worktree` (`packages/shared/src/automations/hook-worktree-path.ts`), while a genuine linked worktree passes; the create path carries no provider term, so one screen serves all three runtimes."
+    },
+    {
+     "row": "I8",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.324 half (a) landed `8cf2215ff` — `packages/server-core/src/pi-harness/worktree-lease-service.ts` symbol `assertWorktreeIdentity` screens the target with git's own `rev-parse --show-toplevel` and refuses `is-the-main-checkout`, `redirected-elsewhere` and `not-a-worktree` (`packages/shared/src/automations/hook-worktree-path.ts`), while a genuine linked worktree passes; the create path carries no provider term, so one screen serves all three runtimes."
+    },
+    {
+     "row": "I9",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.324 half (b) landed with the row (`8cf2215ff`, built by W7-l/W7-l2) — `packages/server-core/src/pi-harness/worktree-git-plan.ts` clears all THREE binding filter keys on the `worktree add` we spawn (`smudge`, `clean` and the corrected `process`, the key the first remedy missed), so a repository defining a filter driver checks out stored bytes instead of running a shell command at creation."
+    },
+    {
+     "row": "I9",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.324 half (b) landed with the row (`8cf2215ff`, built by W7-l/W7-l2) — `packages/server-core/src/pi-harness/worktree-git-plan.ts` clears all THREE binding filter keys on the `worktree add` we spawn (`smudge`, `clean` and the corrected `process`, the key the first remedy missed), so a repository defining a filter driver checks out stored bytes instead of running a shell command at creation."
+    },
+    {
+     "row": "I9",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.324 half (b) landed with the row (`8cf2215ff`, built by W7-l/W7-l2) — `packages/server-core/src/pi-harness/worktree-git-plan.ts` clears all THREE binding filter keys on the `worktree add` we spawn (`smudge`, `clean` and the corrected `process`, the key the first remedy missed), so a repository defining a filter driver checks out stored bytes instead of running a shell command at creation."
+    },
+    {
+     "row": "I21",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.333 landed the checkout-move executor `164393452` — `carryWork` is a FIELD on the two tools that already move the session (`packages/session-tools-core/src/tool-defs.ts` symbols `EnterWorktreeSchema` and `ExitWorktreeSchema`), and `SessionManager.carryCheckoutWork` runs the plan's git commands STOP-ON-FAILURE in both directions and never releases the lease, so a chat keeps its transcript and its uncommitted diff."
+    },
+    {
+     "row": "I21",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "The audit finds a real residue here rather than a stale cell: claude moves the session with its OWN `EnterWorktree`/`ExitWorktree`, which pass our floor since P6.839 `3b9c7fec5`, but `carryWork` is a field on our pair, declared `visibility: 'pi-only'` in `packages/session-tools-core/src/tool-defs.ts`, so the move happens and the uncommitted work is not carried."
+    },
+    {
+     "row": "I21",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "PLANNED → `D1.86`: P6.333's host build has no entry point on codex, which publishes no worktree surface at all (`worktree` → 0 files across `packages/codex-protocol`, positive positive control `preToolUse` → 8 files, both re-measured 2026-09-11 against the index), and `visibility` is `'pi-only' \\| 'not-pi'` with no third value."
+    },
+    {
+     "row": "I22",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.334 closed with `01383f5e1 + b9a907978 + 54c3c0976` — `spawn_session.defer` is declared in `packages/session-tools-core/src/tool-defs.ts` (*'Nothing runs until they click'*), the renderer chip is `apps/electron/src/renderer/components/app-shell/deferred-spawn-chip.tsx`, `onSpawnSession` branches on `defer` to propose with a minted id and a derived name, and the clicked session starts isolated because P6.133 made a launch-time worktree real; `spawn_session` carries no `visibility` gate, so the seam serves all three runtimes."
+    },
+    {
+     "row": "I22",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.334 closed with `01383f5e1 + b9a907978 + 54c3c0976` — `spawn_session.defer` is declared in `packages/session-tools-core/src/tool-defs.ts` (*'Nothing runs until they click'*), the renderer chip is `apps/electron/src/renderer/components/app-shell/deferred-spawn-chip.tsx`, `onSpawnSession` branches on `defer` to propose with a minted id and a derived name, and the clicked session starts isolated because P6.133 made a launch-time worktree real; `spawn_session` carries no `visibility` gate, so the seam serves all three runtimes."
+    },
+    {
+     "row": "I22",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.334 closed with `01383f5e1 + b9a907978 + 54c3c0976` — `spawn_session.defer` is declared in `packages/session-tools-core/src/tool-defs.ts` (*'Nothing runs until they click'*), the renderer chip is `apps/electron/src/renderer/components/app-shell/deferred-spawn-chip.tsx`, `onSpawnSession` branches on `defer` to propose with a minted id and a derived name, and the clicked session starts isolated because P6.133 made a launch-time worktree real; `spawn_session` carries no `visibility` gate, so the seam serves all three runtimes."
+    },
+    {
+     "row": "I23",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.335 landed `626a735b1` — `apps/cli/src/index.ts` takes `--worktree [name \\| MR url]` and the HOST decides by path segment, `packages/server-core/src/pi-harness/worktree-git-plan.ts` fetches `merge-requests/<n>/head` for the forge this repo actually uses, and `packages/server-core/src/sessions/SessionManager.ts` names the session from `mergeRequestRef.label`; the wire type is unchanged (`CreateSessionOptions.worktree` is `boolean \\| string`) and the path carries no provider term."
+    },
+    {
+     "row": "I23",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.335 landed `626a735b1` — `apps/cli/src/index.ts` takes `--worktree [name \\| MR url]` and the HOST decides by path segment, `packages/server-core/src/pi-harness/worktree-git-plan.ts` fetches `merge-requests/<n>/head` for the forge this repo actually uses, and `packages/server-core/src/sessions/SessionManager.ts` names the session from `mergeRequestRef.label`; the wire type is unchanged (`CreateSessionOptions.worktree` is `boolean \\| string`) and the path carries no provider term."
+    },
+    {
+     "row": "I23",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.335 landed `626a735b1` — `apps/cli/src/index.ts` takes `--worktree [name \\| MR url]` and the HOST decides by path segment, `packages/server-core/src/pi-harness/worktree-git-plan.ts` fetches `merge-requests/<n>/head` for the forge this repo actually uses, and `packages/server-core/src/sessions/SessionManager.ts` names the session from `mergeRequestRef.label`; the wire type is unchanged (`CreateSessionOptions.worktree` is `boolean \\| string`) and the path carries no provider term."
+    },
+    {
+     "row": "I24",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.336 landed `f362e8748` — `packages/shared/src/config/worktree-settings.ts` symbol `WORKTREE_SETTING_KEYS` now carries `root`, `retainCount` and `autoRemove` beside the four keys `settings-reference.md#worktree` publishes, and the sweep obeys all three; the page's object itself has no location or retention key, which is what the host supplied once for all three."
+    },
+    {
+     "row": "I24",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.336 landed `f362e8748` — `packages/shared/src/config/worktree-settings.ts` symbol `WORKTREE_SETTING_KEYS` now carries `root`, `retainCount` and `autoRemove` beside the four keys `settings-reference.md#worktree` publishes, and the sweep obeys all three; the page's object itself has no location or retention key, which is what the host supplied once for all three."
+    },
+    {
+     "row": "I24",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.336 landed `f362e8748` — `packages/shared/src/config/worktree-settings.ts` symbol `WORKTREE_SETTING_KEYS` now carries `root`, `retainCount` and `autoRemove` beside the four keys `settings-reference.md#worktree` publishes, and the sweep obeys all three; the page's object itself has no location or retention key, which is what the host supplied once for all three."
+    },
+    {
+     "row": "I25",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.336 `f362e8748` gave the lease a `permanent` kind the retention sweep exempts BY NAME rather than by inference, and P6.800 (`e1891fd4e + d3c0df4e8`) closed its third clause — `RecentProjectStore.recordProjectDirectory` plus the producer in `createSessionWorktreePort`'s `enter` CREATE branch make a permanent worktree its own project root, so several chats can start from it."
+    },
+    {
+     "row": "I25",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.336 `f362e8748` gave the lease a `permanent` kind the retention sweep exempts BY NAME rather than by inference, and P6.800 (`e1891fd4e + d3c0df4e8`) closed its third clause — `RecentProjectStore.recordProjectDirectory` plus the producer in `createSessionWorktreePort`'s `enter` CREATE branch make a permanent worktree its own project root, so several chats can start from it."
+    },
+    {
+     "row": "I25",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.336 `f362e8748` gave the lease a `permanent` kind the retention sweep exempts BY NAME rather than by inference, and P6.800 (`e1891fd4e + d3c0df4e8`) closed its third clause — `RecentProjectStore.recordProjectDirectory` plus the producer in `createSessionWorktreePort`'s `enter` CREATE branch make a permanent worktree its own project root, so several chats can start from it."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp the 24 worktree cells of I1, I8, I9, I21, I22, I23, I24 and I25 against the already-landed commits, marker ᵗ, in the ledger and its denominator-gaps twin.",
+     "size": "S",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Implements option A of QI1. Done means: every one of the 24 cells carries the landed commit named in its Why cell (P6.133 `c786ffef4`+`c87c50199`; P6.324 `8cf2215ff`; P6.333 `164393452`; P6.334 `01383f5e1 + b9a907978 + 54c3c0976`; P6.335 `626a735b1`; P6.336 `f362e8748`; P6.800 `e1891fd4e + d3c0df4e8`), the marker is ᵗ and not ʰ, and `python3 scripts/plan-status.py` is run afterwards with the ROW TOTAL read (not the deltas) so an unescaped pipe cannot drop a row. The audit found exactly one residue and it is written rather than assumed: I21/claude stays `partial` because `carryWork` is a field on our `pi-only` worktree pair, and I21/codex stays `absent` (PLANNED → `D1.86`); so 22 cells become covered, not 24. Twin rows I8, I9, I21, I22, I23, I24, I25 exist in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` and take `have`/`partial`/`absent` with no marker; I1 has no twin. No product code."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing to wire: all eight rows are already built and landed; this question is an arithmetic correction to the ledger, not a refusal."
+  },
+  {
+   "qid": "QI2",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "I7",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.323 landed `b75e13e42` — the isolation write block was INVERTED (it fired outside the worktree and returned early inside it) and now fires inside, so with `worktree.bgIsolation: \"worktree\"` an absolute main-checkout write from inside the worktree is refused by `packages/shared/src/agent/core/pre-tool-use.ts`."
+    },
+    {
+     "row": "I7",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "claude's shipped binary enforces all four documented checks itself (`worktrees.md#how-claude-code-enforces-isolation`, verbatim *\"Claude Code applies four checks\"*), and P6.839 landed `3b9c7fec5`: `buildClaudeWorktreeFloorContext` supplies `repoRoot`/`insideWorktree` so the native enforcement passes our host floor once, deliberately dropping `bgIsolation` because claude enforces that itself."
+    },
+    {
+     "row": "I7",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION → `D1.86`, by the owner's answer to QI2 of 2026-09-11 (option A): codex sessions carry no worktree gate context because codex has no worktree surface (`worktree` → 0 files across `packages/codex-protocol`, positive control `preToolUse` → 8 files, both re-measured 2026-09-11 against the index) and `runPreToolUseChecks` has no call site in `packages/shared/src/agent/codex-agent.ts`; the posture is deferred with its default unchanged."
+    },
+    {
+     "row": "I18",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "Stays `absent` and explicitly NOT `n/a`, by the owner's answer to QI2 of 2026-09-11 (option A) — and the sheet's own reason needs qualifying rather than copying, because both halves of it moved: claude's PowerShell TOOL is not ungated, it is PINNED to the vendor's documented off value in every claude child by P6.530 `44aee805e` (stripping the name would RE-ENABLE it, the page making the tool on-by-default on Windows with Git Bash) with the second documented door, a `settings.json` `env` block, closed by P6.688 `f7ded8bb2`; what IS real, and what keeps this row from being 'not this runtime's surface', is that PowerShell executes here on two paths outside the model's tool list — `packages/server-core/src/pi-harness/plugin-hook-command.ts` symbol `resolveWindowsPowerShell` resolves `powershell.exe` (or `pwsh` from a fixed list off PATH) for a plugin hook declaring `shell: 'powershell'`, and codex wraps Windows commands as `powershell.exe -Command …`, which our denied-path floor already reads through (`packages/shared/src/agent/pi-harness/claude-powershell-rule.ts`, `packages/shared/src/agent/mode-manager.ts`) — while the isolation scan in `packages/shared/src/agent/core/pre-tool-use.ts` is scoped to `Bash` and `Monitor`, its own comment stating the stronger claim that there is no PowerShell execution surface at all, which those two paths qualify; so the documented clause for this row — for PowerShell commands the working-directory check alone — is unbuilt, and the row is addressed to the open [claude] PowerShell question QJ11."
+    },
+    {
+     "row": "I18",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "Stays `absent` and explicitly NOT `n/a`, by the owner's answer to QI2 of 2026-09-11 (option A) — and the sheet's own reason needs qualifying rather than copying, because both halves of it moved: claude's PowerShell TOOL is not ungated, it is PINNED to the vendor's documented off value in every claude child by P6.530 `44aee805e` (stripping the name would RE-ENABLE it, the page making the tool on-by-default on Windows with Git Bash) with the second documented door, a `settings.json` `env` block, closed by P6.688 `f7ded8bb2`; what IS real, and what keeps this row from being 'not this runtime's surface', is that PowerShell executes here on two paths outside the model's tool list — `packages/server-core/src/pi-harness/plugin-hook-command.ts` symbol `resolveWindowsPowerShell` resolves `powershell.exe` (or `pwsh` from a fixed list off PATH) for a plugin hook declaring `shell: 'powershell'`, and codex wraps Windows commands as `powershell.exe -Command …`, which our denied-path floor already reads through (`packages/shared/src/agent/pi-harness/claude-powershell-rule.ts`, `packages/shared/src/agent/mode-manager.ts`) — while the isolation scan in `packages/shared/src/agent/core/pre-tool-use.ts` is scoped to `Bash` and `Monitor`, its own comment stating the stronger claim that there is no PowerShell execution surface at all, which those two paths qualify; so the documented clause for this row — for PowerShell commands the working-directory check alone — is unbuilt, and the row is addressed to the open [claude] PowerShell question QJ11."
+    },
+    {
+     "row": "I18",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "Stays `absent` and explicitly NOT `n/a`, by the owner's answer to QI2 of 2026-09-11 (option A) — and the sheet's own reason needs qualifying rather than copying, because both halves of it moved: claude's PowerShell TOOL is not ungated, it is PINNED to the vendor's documented off value in every claude child by P6.530 `44aee805e` (stripping the name would RE-ENABLE it, the page making the tool on-by-default on Windows with Git Bash) with the second documented door, a `settings.json` `env` block, closed by P6.688 `f7ded8bb2`; what IS real, and what keeps this row from being 'not this runtime's surface', is that PowerShell executes here on two paths outside the model's tool list — `packages/server-core/src/pi-harness/plugin-hook-command.ts` symbol `resolveWindowsPowerShell` resolves `powershell.exe` (or `pwsh` from a fixed list off PATH) for a plugin hook declaring `shell: 'powershell'`, and codex wraps Windows commands as `powershell.exe -Command …`, which our denied-path floor already reads through (`packages/shared/src/agent/pi-harness/claude-powershell-rule.ts`, `packages/shared/src/agent/mode-manager.ts`) — while the isolation scan in `packages/shared/src/agent/core/pre-tool-use.ts` is scoped to `Bash` and `Monitor`, its own comment stating the stronger claim that there is no PowerShell execution surface at all, which those two paths qualify; so the documented clause for this row — for PowerShell commands the working-directory check alone — is unbuilt, and the row is addressed to the open [claude] PowerShell question QJ11."
+    },
+    {
+     "row": "I20",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.509 landed `/cd` as `7d399f74a` under the owner's own B′ of 2026-09-07: the command moves the working directory over `mutateWorkingDirectory` AS IT IS and the result line states what was re-resolved (skills, the capability snapshot) and what was not (MCP, memory), so the residue is a decided posture rather than a gap; the `Cd` rules gate it (`packages/shared/src/agent/permissions-config.ts`, pinned by `packages/server-core/src/sessions/__tests__/cd-permission-gate.test.ts`). Full re-resolution is refused because moving a live session's hooks and MCP servers mid-conversation is a trust-boundary swap."
+    },
+    {
+     "row": "I20",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.509 landed `/cd` as `7d399f74a` under the owner's own B′ of 2026-09-07: the command moves the working directory over `mutateWorkingDirectory` AS IT IS and the result line states what was re-resolved (skills, the capability snapshot) and what was not (MCP, memory), so the residue is a decided posture rather than a gap; the `Cd` rules gate it (`packages/shared/src/agent/permissions-config.ts`, pinned by `packages/server-core/src/sessions/__tests__/cd-permission-gate.test.ts`). Full re-resolution is refused because moving a live session's hooks and MCP servers mid-conversation is a trust-boundary swap."
+    },
+    {
+     "row": "I20",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.509 landed `/cd` as `7d399f74a` under the owner's own B′ of 2026-09-07: the command moves the working directory over `mutateWorkingDirectory` AS IT IS and the result line states what was re-resolved (skills, the capability snapshot) and what was not (MCP, memory), so the residue is a decided posture rather than a gap; the `Cd` rules gate it (`packages/shared/src/agent/permissions-config.ts`, pinned by `packages/server-core/src/sessions/__tests__/cd-permission-gate.test.ts`). Full re-resolution is refused because moving a live session's hooks and MCP servers mid-conversation is a trust-boundary swap."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp I7 (covered on Pi and claude, `absent`+DECISION → `D1.86` on codex) and I20 (partial ×3 with the B′ residue quoted), and give I18 the address of the open [claude] PowerShell question instead of an `n/a`.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude",
+      "codex"
+     ],
+     "note_en": "Implements option A of QI2. Done means: I7's Pi and claude cells name P6.323 `b75e13e42` and P6.839 `3b9c7fec5`; the codex cell reads `absent` with DECISION and the `D1.86` address; I20's three cells name P6.509 `7d399f74a` and quote the B′ residue (MCP and memory are NOT re-resolved) so a reader does not read a decided posture as a gap; and I18's three cells keep `absent` with the refutation recorded in its QUALIFIED form — the plugin-hook runner really spawns `powershell.exe`/`pwsh` and codex wraps Windows commands in `powershell.exe -Command`, so `n/a` (*'not this runtime's surface'*) would be false, while the sheet's other half is stale: claude's PowerShell tool is pinned OFF by P6.530 `44aee805e`, not ungated, and the `settings.json` door is closed by P6.688 `f7ded8bb2`. Do not copy the pre-tool-use comment's stronger sentence (*no PowerShell execution surface at all*) into the cell without those two counter-examples beside it. Same words in the denominator-gaps twin (`have`/`partial`/`absent`, no markers). No product code."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "The documented half needs no parser and claude has it natively: the gate's own comment in `packages/shared/src/agent/core/pre-tool-use.ts` says it verbatim — *\"the documented PowerShell check is the working-directory field alone and needs no AST\"* — and that function already carries the `cwd` vector, so binding it to a PowerShell tool name is S. Listed for visibility only; the answer is unchanged, and the flip is GATED rather than cheap: the subject is refused BY NAME on claude (P6.530 `44aee805e`, the owner's Q-den 67 option 2 of 2026-09-05, reversible only if Windows becomes a supported deployment), so wiring it today would guard a tool this product cannot construct — the ledger's own ADVERTISED anti-pattern. The one arm where a subject exists and no isolation check runs is codex on Windows, whose `powershell.exe -Command` wrapper meets no gate at all because `runPreToolUseChecks` has zero call sites in `packages/shared/src/agent/codex-agent.ts`; that is I7/codex's `D1.86` posture, not an S wiring job here."
+  },
+  {
+   "qid": "QI3",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "I2",
+     "column": "Claude",
+     "from": "`absent ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.839 landed `3b9c7fec5` (W10-a) — `buildClaudeWorktreeFloorContext` supplies the repository facts so claude's NATIVE `EnterWorktree`/`ExitWorktree` pass our host floor once; the tools are declared in the vendored `sdk-tools.d.ts` `ToolInputSchemas` union (`EnterWorktreeInput` 2, `ExitWorktreeInput` 2, against `AgentInput` 2 and `TaskCreateInput` 2 as positive controls and `WorktreeBatch` 0) and `CLAUDE_SESSION_DISALLOWED_TOOLS` does not subtract them, with the runtime's own non-suppressible approval documented at `worktrees.md#ask-claude-to-create-a-worktree`; the residual — whether the SDK routes the native tool through `canUseTool` — is the packaged sitting's RS-28."
+    },
+    {
+     "row": "I2",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`absent ᵗ`",
+     "why_en": "PLANNED → `D1.86`, by the owner's answer to QI3 of 2026-09-11 (option A): codex publishes no worktree surface at all (`worktree` → 0 files across `packages/codex-protocol`, positive control `preToolUse` → 8 files, both re-measured 2026-09-11 against the index), `visibility` is declared `'pi-only' \\| 'not-pi'` with no third value in `packages/session-tools-core/src/tool-defs.ts`, and `packages/shared/src/agent/__tests__/codex-worktree-tier-absence.test.ts` pins the literal — so this is an unbuilt, deferred posture with its default unchanged, not `n/a` (which would mean the capability is meaningless on codex, and entering a worktree is not)."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp I2's claude cell to `covered ᵗ` off P6.839 `3b9c7fec5`, leave codex `absent` with PLANNED → `D1.86`, and check that `RUNTIME_SWITCH_COSTS` still names the difference correctly.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude",
+      "renderer"
+     ],
+     "note_en": "Implements option A of QI3. Done means: the claude cell names the native tool plus our floor and the RS-28 residual; the codex cell says PLANNED with the `D1.86` address and not `n/a`; and the `worktreeMove` row of `apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` is re-read against P6.839's landing so the user-facing switch cost states what is true now — claude enters a worktree with its own tool, codex has no worktree surface. I2 has no denominator-gaps twin (that document starts at I6). Read the docblock before editing: P6.841 `862c7f767` already excised one refuted worktree sentence from this file and the absence is pinned."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The claude half IS the flip and the owner's answer takes it. The codex half has no native mechanism to wire — codex ships no worktree tool, request or event — so building it would be the third, last tier of native-first (L: a host-closure floor plus a third `visibility` value), not a ≤S wiring job."
+  },
+  {
+   "qid": "QI4",
+   "answer": "C",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "I3",
+     "column": "Pi",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.136 landed `35afa7d08` — `packages/server-core/src/sessions/SessionManager.ts` symbol `foreignWorktreeLeases` widens the sweep's candidate set from one session's own ledger to the whole namespace root, so a scheduled task's per-run worktree is reachable from the next run; `packages/server-core/src/sessions/__tests__/worktree-orphan-cross-session.test.ts` states the gap in the PAST tense, the sweep path carries no provider term, and git's own `worktree lock` interlock landed with it (P3.312 `edbd4f42c`). The two remaining withholdings are deliberate and disclosed on the session log rather than silent: a MANAGED `disableAllHooks`, and a session with no project handle."
+    },
+    {
+     "row": "I3",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.136 landed `35afa7d08` — `packages/server-core/src/sessions/SessionManager.ts` symbol `foreignWorktreeLeases` widens the sweep's candidate set from one session's own ledger to the whole namespace root, so a scheduled task's per-run worktree is reachable from the next run; `packages/server-core/src/sessions/__tests__/worktree-orphan-cross-session.test.ts` states the gap in the PAST tense, the sweep path carries no provider term, and git's own `worktree lock` interlock landed with it (P3.312 `edbd4f42c`). The two remaining withholdings are deliberate and disclosed on the session log rather than silent: a MANAGED `disableAllHooks`, and a session with no project handle."
+    },
+    {
+     "row": "I3",
+     "column": "Codex",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.136 landed `35afa7d08` — `packages/server-core/src/sessions/SessionManager.ts` symbol `foreignWorktreeLeases` widens the sweep's candidate set from one session's own ledger to the whole namespace root, so a scheduled task's per-run worktree is reachable from the next run; `packages/server-core/src/sessions/__tests__/worktree-orphan-cross-session.test.ts` states the gap in the PAST tense, the sweep path carries no provider term, and git's own `worktree lock` interlock landed with it (P3.312 `edbd4f42c`). The two remaining withholdings are deliberate and disclosed on the session log rather than silent: a MANAGED `disableAllHooks`, and a session with no project handle."
+    },
+    {
+     "row": "I4",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION, by the owner's answer to QI4 of 2026-09-11 (option C): our cleanup stays age-based and takes no snapshot, and the data-loss path is mitigated instead — P6.135 (`439c8ee95` + `0db4d1f6f`) asks the USER to keep or remove a worktree that still holds changed, untracked or unpushed work, and P6.547 `5df0095f7` deletes only a branch the host created that holds nothing its base does not."
+    },
+    {
+     "row": "I4",
+     "column": "Claude",
+     "from": "`absent ˢ`",
+     "to": "`absent ᵗ`",
+     "why_en": "Same decided absence, and the propagated marker is resolved rather than carried: P6.135's notice loop filters on `skip.reason` alone and carries no provider term, and P3.87 measured the whole worktree path provider-agnostic at `b220c4467`, so this cell repeats no guess."
+    },
+    {
+     "row": "I4",
+     "column": "Codex",
+     "from": "`absent ˢ`",
+     "to": "`absent ᵗ`",
+     "why_en": "Same decided absence with the propagated marker resolved for the same measured reason (P6.135 `439c8ee95` + `0db4d1f6f`; the creation and removal seams carry no provider branch), so a codex session that holds a worktree meets exactly the Pi behaviour."
+    },
+    {
+     "row": "I5",
+     "column": "Pi",
+     "from": "`partial ᵗ`",
+     "to": "`partial ᵗ`",
+     "why_en": "`partial` with the remaining half a recorded DECISION, reaffirmed by the owner's QI4 answer of 2026-09-11: a setup script checked into the repository is refused at the site in `packages/shared/src/config/worktree-settings.ts` because a repository you clone must not be able to run a command by being opened; the platform half is BUILT (P6.60 `a5c4e225e`: `setupScript` takes a string or `{ windows, posix }`, unknown buckets refused by name) and the port is supplied on every construction (P3.36 `22d71972b`)."
+    },
+    {
+     "row": "I5",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Same `partial` for the same recorded DECISION, and the cell has a real subject: P3.87 measured at `b220c4467` that `setup:` is passed on EVERY construction of the lease service with no provider branch anywhere on the path, and `createClaudeWorktreePort` routes the binary's own `WorktreeCreate` hook into it, so a setup script runs for a claude session's worktree."
+    },
+    {
+     "row": "I5",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Same `partial` for the same recorded DECISION, and codex is `partial` rather than `n/a` because it has no worktree surface of its own yet still reaches this mechanism through the provider-free automation seam (`executePromptAutomation` → `createSessionWorktreePort(managed).enter(...)`, measured with no provider term in the call, P3.87 at `b220c4467`)."
+    },
+    {
+     "row": "I26",
+     "column": "Pi",
+     "from": "—",
+     "to": "`absent ᵗ`",
+     "why_en": "P6.337 measured it at `e3ba6baeb`: the documented reset is ABSENT in all five states of `worktrees.md#reuse-a-worktree-name` by construction, so the no-claim becomes a measured absence rather than a guess; the owner's QI4 answer of 2026-09-11 (option C) buys the build, size S confirmed by that same row. (That row's own citation to `worktree-resume.ts` is void at HEAD and must not be copied forward.)"
+    },
+    {
+     "row": "I26",
+     "column": "Claude",
+     "from": "—",
+     "to": "`absent ᵗ`",
+     "why_en": "P6.337 measured it at `e3ba6baeb`: the documented reset is ABSENT in all five states of `worktrees.md#reuse-a-worktree-name` by construction, so the no-claim becomes a measured absence rather than a guess; the owner's QI4 answer of 2026-09-11 (option C) buys the build, size S confirmed by that same row. (That row's own citation to `worktree-resume.ts` is void at HEAD and must not be copied forward.)"
+    },
+    {
+     "row": "I26",
+     "column": "Codex",
+     "from": "—",
+     "to": "`absent ᵗ`",
+     "why_en": "P6.337 measured it at `e3ba6baeb`: the documented reset is ABSENT in all five states of `worktrees.md#reuse-a-worktree-name` by construction, so the no-claim becomes a measured absence rather than a guess; the owner's QI4 answer of 2026-09-11 (option C) buys the build, size S confirmed by that same row. (That row's own citation to `worktree-resume.ts` is void at HEAD and must not be copied forward.)"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp I3 to covered off P6.136 `35afa7d08`, record I4 as `absent`+DECISION on all three with the propagated markers resolved, keep I5 `partial` with its refusal quoted, and turn I26's three no-claims into the measured absence P6.337 `e3ba6baeb` recorded.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Implements the recording half of option C of QI4. Done means: I3's three cells cite `foreignWorktreeLeases` and `35afa7d08` and name the two disclosed withholdings (managed `disableAllHooks`; no project handle); I4's three cells read `absent` with DECISION and cite P6.135 `439c8ee95`+`0db4d1f6f` and P6.547 `5df0095f7`, with the two `ˢ` markers replaced because P3.87 measured the path provider-agnostic; I5 keeps `partial` with the repo-checked-in refusal quoted from `worktree-settings.ts`; I26 reads `absent ᵗ`. Twin rows exist for I26 only (I3, I4 and I5 predate the denominator sweep) and take `absent` there."
+    },
+    {
+     "task_en": "Build the documented reopen-reset on the host worktree create path, so reusing a worktree name resets it to the default branch exactly when the page's three conditions hold.",
+     "size": "S",
+     "tags": [
+      "host",
+      "test"
+     ],
+     "note_en": "Implements the build half of option C of QI4 — the only build the owner bought in family I. Done means: `worktreeCreateCommands` plus the lease service reset a reused name to the default branch when, and only when, `worktrees.md#reuse-a-worktree-name`'s three conditions hold (no uncommitted changes or untracked files; still on the branch we created; no commits of its own, OR its merge request was merged and its remote branch deleted), read from the three git inputs `inspect` already runs — `status --porcelain`, `branch --show-current`, `merge-base --is-ancestor` — plus a `git branch -r` absence check for the deleted-remote-branch state; all five documented states are covered, with the control of a name that has no existing lease directory creating fresh. Provider-agnostic, so it lands on all three runtimes at once. When it lands it re-stamps I26 ×3 from `absent ᵗ` to `covered ᵗ` (and `absent` → `have` in the denominator-gaps twin). Size S is P6.337's own measured sizing. Deliberately NOT built with it: the namespace-wide sweep (a wrong realpath compare removes a live worktree) and the snapshot-before-removal, both recorded as decided residues by the row above."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The one native contract in the group (git state, as `#reuse-a-worktree-name` specifies it) is exactly what the owner's answer builds, so there is nothing left to flip; I4's snapshot exists on no runtime and I5's remaining half is a security refusal, not a cost refusal."
+  },
+  {
+   "qid": "QI5",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "I6",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "DECISION: the standing isolation-off decision of 2026-08-12/13, reaffirmed a third time as owner sitting §1.1 option B on 2026-09-05 — `SEATBELT_TESTING_WILDCARD = true` stays in `packages/shared/src/agent/core/bash-seatbelt.ts`, so `wrapBashCommandWithMacosSeatbelt` emits `(allow default)` and an approved Bash command is NOT contained; P3.330 `216da994a` landed what the posture does owe — a once-per-session diagnostic on the SUCCESS path naming the wildcard, plus a real tripwire replacing a guard that passed vacuously. `partial` because `session-tools-core`'s `buildDarwinSandboxProfile` has no wildcard and does contain."
+    },
+    {
+     "row": "I6",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION, same standing decision: no OS sandbox reaches the claude child at all — `sandbox:` scores 0 in `packages/shared/src/agent/claude-agent.ts` against `sandbox?: SandboxSettings` in the vendored `sdk.d.ts`, so the runtime's whole sandbox tier sits behind an option we never pass."
+    },
+    {
+     "row": "I6",
+     "column": "Codex",
+     "from": "`covered ʰ`",
+     "to": "`covered ʰ`",
+     "why_en": "Unchanged and load-bearing: codex emits `(deny default)` and CONTAINS, measured on a real darwin rig in both branches with a dead control passing both arms (owner sitting §1.1's probe table). This is the one macOS divergence the gaps document must state in words — an approved Bash command is contained on codex and is not on Pi."
+    },
+    {
+     "row": "I11",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: `sandbox.failIfUnavailable` is a NAMED entry of `DOCUMENTED_UNCARRIED_SANDBOX_KEYS` in `packages/shared/src/config/sandbox-settings.ts` (P6.233 `5d5ff1229`), so an operator who writes the documented key gets a sentence that distinguishes a decided refusal from a typo instead of a byte-identical message; carrying it is refused because the isolation layer it would gate is off by the standing decision of 2026-08-12/13, reaffirmed at sitting §1.1 and by the owner's QI5 answer of 2026-09-11 — a fail-closed switch over a boundary that is off guards nothing."
+    },
+    {
+     "row": "I11",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: `sandbox.failIfUnavailable` is a NAMED entry of `DOCUMENTED_UNCARRIED_SANDBOX_KEYS` in `packages/shared/src/config/sandbox-settings.ts` (P6.233 `5d5ff1229`), so an operator who writes the documented key gets a sentence that distinguishes a decided refusal from a typo instead of a byte-identical message; carrying it is refused because the isolation layer it would gate is off by the standing decision of 2026-08-12/13, reaffirmed at sitting §1.1 and by the owner's QI5 answer of 2026-09-11 — a fail-closed switch over a boundary that is off guards nothing."
+    },
+    {
+     "row": "I11",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: `sandbox.failIfUnavailable` is a NAMED entry of `DOCUMENTED_UNCARRIED_SANDBOX_KEYS` in `packages/shared/src/config/sandbox-settings.ts` (P6.233 `5d5ff1229`), so an operator who writes the documented key gets a sentence that distinguishes a decided refusal from a typo instead of a byte-identical message; carrying it is refused because the isolation layer it would gate is off by the standing decision of 2026-08-12/13, reaffirmed at sitting §1.1 and by the owner's QI5 answer of 2026-09-11 — a fail-closed switch over a boundary that is off guards nothing."
+    },
+    {
+     "row": "I14",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "DECISION, and ordered behind I6: P6.329 `d518bcd52` built the INPUT-side seam only, the result-side seam deliberately not built, because while the Pi seatbelt emits `(allow default)` (sitting §1.1) a filesystem write is not denied at all, so there is no violation to make legible."
+    },
+    {
+     "row": "I14",
+     "column": "Claude",
+     "from": "`n/a ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "`n/a` stands and is correct: no OS sandbox is passed on the claude path, so a denial receipt has no subject there — this is not this runtime's surface rather than a missing capability."
+    },
+    {
+     "row": "I14",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "DECISION: codex HAS a violation classifier and its verdict never leaves the codex process — `classify_filesystem_sandbox_violation` classifies filesystem denials only, `SANDBOX_DENIED_KEYWORDS` carries no network needle, and `record_network_sandbox_violation` emits a `tracing::warn!` and no protocol event (read at `rust-v0.148.0`, which PREDATES the 2026-09-11 lift — `scripts/fetch-codex.mjs` now pins `rust-v0.150.1` — so re-read it there before building on it, analysed in `packages/codex-responses-adapter/src/config-writer.ts`); P6.329 `d518bcd52` recorded the input seam and the controller decision that the result seam is not built, so no lane invents it."
+    },
+    {
+     "row": "I28",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: `allowAppleEvents` is refused permanently BY NAME under the owner's D6 of 2026-09-05 (option B), because — in the page's own words at `sandboxing.md#security-limitations` — it removes code-execution isolation; the container, proxy and Unix-socket valves are refused with it while the boundary stays off, all named in `DOCUMENTED_UNCARRIED_SANDBOX_KEYS` (`packages/shared/src/config/sandbox-settings.ts`, P6.233 `5d5ff1229`) so an operator reads a decided refusal rather than a typo. Measured beside it: the SDK's restrictive managed-settings filter copies exactly ONE of the eight network transport keys (`strictAllowlist`), so projecting the other seven would be dropped inside the SDK without a word (P6.253 `78bff1f7a`, superseded)."
+    },
+    {
+     "row": "I28",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: `allowAppleEvents` is refused permanently BY NAME under the owner's D6 of 2026-09-05 (option B), because — in the page's own words at `sandboxing.md#security-limitations` — it removes code-execution isolation; the container, proxy and Unix-socket valves are refused with it while the boundary stays off, all named in `DOCUMENTED_UNCARRIED_SANDBOX_KEYS` (`packages/shared/src/config/sandbox-settings.ts`, P6.233 `5d5ff1229`) so an operator reads a decided refusal rather than a typo. Measured beside it: the SDK's restrictive managed-settings filter copies exactly ONE of the eight network transport keys (`strictAllowlist`), so projecting the other seven would be dropped inside the SDK without a word (P6.253 `78bff1f7a`, superseded)."
+    },
+    {
+     "row": "I28",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: `allowAppleEvents` is refused permanently BY NAME under the owner's D6 of 2026-09-05 (option B), because — in the page's own words at `sandboxing.md#security-limitations` — it removes code-execution isolation; the container, proxy and Unix-socket valves are refused with it while the boundary stays off, all named in `DOCUMENTED_UNCARRIED_SANDBOX_KEYS` (`packages/shared/src/config/sandbox-settings.ts`, P6.233 `5d5ff1229`) so an operator reads a decided refusal rather than a typo. Measured beside it: the SDK's restrictive managed-settings filter copies exactly ONE of the eight network transport keys (`strictAllowlist`), so projecting the other seven would be dropped inside the SDK without a word (P6.253 `78bff1f7a`, superseded)."
+    },
+    {
+     "row": "I29",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION over a STRUCTURAL floor, and nothing to build: every Pi isolation backend is a BOOLEAN by construction (`packages/server-core/src/pi-harness/isolation.ts` symbol `denyNetworkEgress`; Seatbelt's address filter accepts no host but `*` or `localhost`, `unshare -n` and `firejail --net=none` switch the whole namespace), codex's `[features] network_proxy` is `Stage::Experimental` with a gate that is inert exactly when it would be needed, and claude's entire `sandbox.network` schema sits behind the `sandbox` option we never pass; the row's honest surface is already PRESENT on all three — `unenforceable` entries reach `IsolationNetworkPosture` by name and codex emits its own denial prefix."
+    },
+    {
+     "row": "I29",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION over a STRUCTURAL floor, and nothing to build: every Pi isolation backend is a BOOLEAN by construction (`packages/server-core/src/pi-harness/isolation.ts` symbol `denyNetworkEgress`; Seatbelt's address filter accepts no host but `*` or `localhost`, `unshare -n` and `firejail --net=none` switch the whole namespace), codex's `[features] network_proxy` is `Stage::Experimental` with a gate that is inert exactly when it would be needed, and claude's entire `sandbox.network` schema sits behind the `sandbox` option we never pass; the row's honest surface is already PRESENT on all three — `unenforceable` entries reach `IsolationNetworkPosture` by name and codex emits its own denial prefix."
+    },
+    {
+     "row": "I29",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION over a STRUCTURAL floor, and nothing to build: every Pi isolation backend is a BOOLEAN by construction (`packages/server-core/src/pi-harness/isolation.ts` symbol `denyNetworkEgress`; Seatbelt's address filter accepts no host but `*` or `localhost`, `unshare -n` and `firejail --net=none` switch the whole namespace), codex's `[features] network_proxy` is `Stage::Experimental` with a gate that is inert exactly when it would be needed, and claude's entire `sandbox.network` schema sits behind the `sandbox` option we never pass; the row's honest surface is already PRESENT on all three — `unenforceable` entries reach `IsolationNetworkPosture` by name and codex emits its own denial prefix."
+    },
+    {
+     "row": "I30",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: the vendor's own whole-process answer (`@anthropic-ai/sandbox-runtime`) is foreclosed by the standing decision of 2026-08-12/13 and coverage-map row 106, and P6.327 (`dee76327a` + `bdd223f82`) landed what remained — the disclosure half, so the isolation panel now NAMES the Bash-only scope that `sandboxing.md#scope` states (*\"The sandbox isolates Bash subprocesses. Other tools operate under different boundaries\"*) instead of leaving a user to infer it."
+    },
+    {
+     "row": "I30",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: the vendor's own whole-process answer (`@anthropic-ai/sandbox-runtime`) is foreclosed by the standing decision of 2026-08-12/13 and coverage-map row 106, and P6.327 (`dee76327a` + `bdd223f82`) landed what remained — the disclosure half, so the isolation panel now NAMES the Bash-only scope that `sandboxing.md#scope` states (*\"The sandbox isolates Bash subprocesses. Other tools operate under different boundaries\"*) instead of leaving a user to infer it."
+    },
+    {
+     "row": "I30",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION: the vendor's own whole-process answer (`@anthropic-ai/sandbox-runtime`) is foreclosed by the standing decision of 2026-08-12/13 and coverage-map row 106, and P6.327 (`dee76327a` + `bdd223f82`) landed what remained — the disclosure half, so the isolation panel now NAMES the Bash-only scope that `sandboxing.md#scope` states (*\"The sandbox isolates Bash subprocesses. Other tools operate under different boundaries\"*) instead of leaving a user to infer it."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the six sandbox rows (I6, I11, I14, I28, I29, I30) as `absent`/`partial` with the reason DECISION, and write the one macOS divergence sentence into the denominator-gaps document.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "product"
+     ],
+     "note_en": "Implements option A of QI5. Done means: every one of the sixteen non-covered cells carries a reason a reader can verify — the standing isolation-off decision of 2026-08-12/13 reaffirmed at owner sitting §1.1 (2026-09-05) and again by the owner's 2026-09-11 answer, plus D6 (2026-09-05, option B) BY NAME on I28 — and NOT the word `covered`, because the user cannot do these things; §1.1's own title is that an approved Bash command is uncontained, so a `covered` there would score the very thing the section exists to record. The non-skippable half: one honest sentence in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` saying that on macOS an approved Bash command IS contained on codex and is NOT on Pi, because the Pi Bash wrapper ships `SEATBELT_TESTING_WILDCARD = true` — today that fact exists only inside the owner-sitting page, and an unstated boundary difference is the silent-divergence shape this fork's largest defect class is made of. I6's codex cell stays `covered` and I14's claude cell stays `n/a`. No product code, no reversal of the wildcard."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "Two mechanisms exist and both are cheap, and the owner's refusal is a POSTURE refusal, not a cost one — listed for visibility, the answer is unchanged. (1) Containment itself: codex contains natively with `(deny default)`, and our own strict branch is built and measured (writes outside cwd, to the home directory and to the SSH key directory all `Operation not permitted` on the strict branch, `printf ok` 0 on both); the wiring is ONE constant in `packages/shared/src/agent/core/bash-seatbelt.ts` (XS) — but this exact flip was put to the owner as sitting §1.1 and refused, the third reaffirmation of isolation-off. (2) `sandbox.failIfUnavailable`: the vendored binary's own managed-settings filter copies `failIfUnavailable === true`, so the key works if our mapper carries it; the wiring is one key in `SANDBOX_SETTING_KEYS` plus the mapper (S) — refused because a hard gate over a boundary that is off guards nothing."
+  },
+  {
+   "qid": "QI6",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "I12",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.327 (`dee76327a` + `bdd223f82`) landed the disclosure and the Bash-only scope on the read-only Process Isolation section of `apps/electron/src/renderer/pages/settings/PermissionsSettingsPage.tsx` (per-profile availability, remediation text and network posture); Mode and Overrides stay read-only ON PURPOSE — while `sandbox.enabled` is off by the standing decision, a writable panel would be a control over nothing, the ledger's own `ADVERTISED` anti-pattern."
+    },
+    {
+     "row": "I12",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.327 (`dee76327a` + `bdd223f82`) landed the disclosure and the Bash-only scope on the read-only Process Isolation section of `apps/electron/src/renderer/pages/settings/PermissionsSettingsPage.tsx` (per-profile availability, remediation text and network posture); Mode and Overrides stay read-only ON PURPOSE — while `sandbox.enabled` is off by the standing decision, a writable panel would be a control over nothing, the ledger's own `ADVERTISED` anti-pattern."
+    },
+    {
+     "row": "I12",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.327 (`dee76327a` + `bdd223f82`) landed the disclosure and the Bash-only scope on the read-only Process Isolation section of `apps/electron/src/renderer/pages/settings/PermissionsSettingsPage.tsx` (per-profile availability, remediation text and network posture); Mode and Overrides stay read-only ON PURPOSE — while `sandbox.enabled` is off by the standing decision, a writable panel would be a control over nothing, the ledger's own `ADVERTISED` anti-pattern."
+    },
+    {
+     "row": "I15",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.326 `5f2d2d691` landed the can-never-match check for domain entries, extending the existing `unenforceable` push in `packages/shared/src/config/sandbox-settings.ts` that already names an `allowRead` set with no `denyRead` region to re-open; the row's other half, `injectHosts`, has NO subject in this tree (0 non-test files), so `partial` is the whole of what was ever real here."
+    },
+    {
+     "row": "I15",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "STRUCTURAL: our sandbox settings never reach that path at all (no `sandbox` option is passed to the claude SDK), so a reachability check over OUR entries has no subject there, and `claude doctor` — which performs both checks natively — is a CLI the desktop never runs."
+    },
+    {
+     "row": "I15",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "STRUCTURAL, for the same reason on the other side: codex's sandbox configuration is its own and our doctor reads the host's sandbox settings, so there are no entries of ours to call unenforceable on that path."
+    },
+    {
+     "row": "I17",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "STRUCTURAL: only macOS `sandbox-exec` can re-open a subtree inside a denied one, stated verbatim in `packages/server-core/src/pi-harness/isolation-remediation.ts`; P6.331 `a6fe0bf22` landed the honest surface instead of the capability — the read-allowlist refusal now carries `READ_GRANT_IS_LAUNCH_TIME`, so the refusal itself says a mid-session grant is impossible."
+    },
+    {
+     "row": "I17",
+     "column": "Claude",
+     "from": "—",
+     "to": "`absent ʰ`",
+     "why_en": "`absent` and now on better evidence than the probe it replaces: the vendored SDK at `claudeCodeVersion` 2.1.247 (package `0.3.247`) DOES publish a mid-session directory control — `SDKControlRegisterRepoRootRequest` (`subtype: 'register_repo_root'`), a member of the `SDKControlRequestInner` union in `sdk.d.ts` with its own `DirectoryAdded` hook source — and it still does not deliver this row, because its own declaration bounds it to what launch already allowed (verbatim: *\"The directory must resolve to a strict subdirectory of cwd, or of a directory passed at launch via --add-dir / the SDK additionalDirectories option\"*) and it registers a WORKING-DIRECTORY root rather than widening a sandbox read allowlist, which is exactly what `READ_GRANT_IS_LAUNCH_TIME` says; the older `add_directory`/`addDirectory` 0/0 reading (positive controls `set_permission_mode` 1 and `setModel` 1, all four re-measured 2026-09-11 against the vendored `sdk.d.ts` and unchanged) used needles this bundle does not spell, so its zeros are not evidence that no such control exists."
+    },
+    {
+     "row": "I17",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "STRUCTURAL, strong tier (shipped binaries, measured by the P6.189 denominator sweep and carried in this row's own Why cell — the codex runtime binaries are not installed in this workspace, so it is attributed rather than re-taken): `sandbox-add-read-dir` scores 2 in `win32-x64/codex.exe` and 0 in both `codex-app-server` binaries — and the app-server is what we drive — with controls `elevated` 89/52/20 and the negative control `zzz_not_real` 0; it is a TUI slash command absent from the surface we speak to."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record I12 as `partial` (disclosure landed, controls read-only while the boundary is off), I15 as `partial` on Pi and `absent`+STRUCTURAL on claude and codex, and I17 as `absent`+STRUCTURAL on Pi and codex — converting its claude no-claim to `absent ʰ` with the zero measurement quoted.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A of QI6. Done means: the nine cells state the operator's actual position — you can read the sandbox posture, you cannot change it from the app — with the three landed surfaces named (P6.327 `dee76327a`+`bdd223f82`, P6.326 `5f2d2d691`, P6.331 `a6fe0bf22`); the reasons are the vocabulary's own words, DECISION for I12's read-only controls and STRUCTURAL for I15 and I17, with no invented third verdict; and I17's claude cell moves from `—` to `absent ʰ` on the CORRECTED probe: the 2026-09-10 lift to SDK `0.3.247` publishes `SDKControlRegisterRepoRootRequest` (`subtype: 'register_repo_root'`), so the cell must name that control and the sentence that bounds it to a strict subdirectory of cwd or of a launch-passed directory — the old `add_directory`/`addDirectory` 0/0 needles are not spelled by this bundle and a reader re-running them would read the zeros as 'no such surface'. The alternative permitted by the question is to leave the no-claim alone; what is NOT permitted is a third verdict word. If QI5 is ever answered the other way, option B (a writable panel) becomes the first thing to build and its size does not change. Twin rows in the denominator-gaps document take the same words (`unknown` → `absent` for I17/claude)."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Asked on every runtime and answered no. claude's `claude doctor` performs I15's two checks natively but reads sandbox settings we never send on that path (no `sandbox` option is passed: `sandbox:` scores 0 in `packages/shared/src/agent/claude-agent.ts` against the index), so wiring it would check nothing; codex's `sandbox-add-read-dir` is measured ABSENT from the app-server binary we drive; and the one surface the 2026-09-10 lift to SDK `0.3.247` newly exposes — `register_repo_root`, a mid-session working-directory root — cannot escape the launch set by its own declaration, so it does not deliver I17 either. Nothing here is a ≤ S wiring job over a native mechanism."
+  },
+  {
+   "qid": "QI7",
+   "answer": "A",
+   "kind": "defer",
+   "ledger_edits": [
+    {
+     "row": "I10",
+     "column": "Pi",
+     "from": "—",
+     "to": "—",
+     "why_en": "No verdict and no guess — the cell stays a no-claim and gains its address: deferred 2026-09-10 (owner ruling, point 2), moved by P6.325 `802de0622` to follow-up row `D1.49`, closed there as MOVED and not as done. Blocker: a win32 rig with an NTFS junction or directory symlink inside a leased worktree. Our removal is pure `git worktree remove` and nothing of ours walks the tree, so claude's own page does not settle our case, and the stakes are ours because `symlinkDirectories` is our setting."
+    },
+    {
+     "row": "I10",
+     "column": "Claude",
+     "from": "—",
+     "to": "—",
+     "why_en": "No verdict and no guess — the cell stays a no-claim and gains its address: deferred 2026-09-10 (owner ruling, point 2), moved by P6.325 `802de0622` to follow-up row `D1.49`, closed there as MOVED and not as done. Blocker: a win32 rig with an NTFS junction or directory symlink inside a leased worktree. Our removal is pure `git worktree remove` and nothing of ours walks the tree, so claude's own page does not settle our case, and the stakes are ours because `symlinkDirectories` is our setting."
+    },
+    {
+     "row": "I10",
+     "column": "Codex",
+     "from": "—",
+     "to": "—",
+     "why_en": "No verdict and no guess — the cell stays a no-claim and gains its address: deferred 2026-09-10 (owner ruling, point 2), moved by P6.325 `802de0622` to follow-up row `D1.49`, closed there as MOVED and not as done. Blocker: a win32 rig with an NTFS junction or directory symlink inside a leased worktree. Our removal is pure `git worktree remove` and nothing of ours walks the tree, so claude's own page does not settle our case, and the stakes are ours because `symlinkDirectories` is our setting."
+    },
+    {
+     "row": "I13",
+     "column": "Claude",
+     "from": "—",
+     "to": "—",
+     "why_en": "No verdict and no guess: deferred 2026-09-10, moved by P6.328 `802de0622` to follow-up row `D1.50`. Blocker: a Linux box with `bwrap` off PATH. The claude arm is a second question inside that measurement — does the SDK warn at session start, and does `sandbox.bwrapPath`, which we never set (0 hits outside `node_modules`), change it."
+    },
+    {
+     "row": "I16",
+     "column": "Pi",
+     "from": "—",
+     "to": "—",
+     "why_en": "No verdict and no guess: deferred 2026-09-10, moved by P6.330 `802de0622` to follow-up row `D1.51`. Blocker TWICE over — it needs a live session, and it is CONFOUNDED by sitting §1.1's wildcard, since a filesystem write is not denied at all today, so the rig would measure the wildcard rather than the reload."
+    },
+    {
+     "row": "I16",
+     "column": "Codex",
+     "from": "—",
+     "to": "—",
+     "why_en": "No verdict and no guess: same deferral to `D1.51`. On codex `writeCodexConfig` runs per session start (`packages/shared/src/agent/codex-agent.ts`), so whether a mid-session edit reaches the next command is genuinely unmeasured rather than believed."
+    },
+    {
+     "row": "I19",
+     "column": "Pi",
+     "from": "`covered ʰ`",
+     "to": "`covered ʰ`",
+     "why_en": "No verdict moves and none is guessed — the three measured cells keep their words and the row gains its address: deferred 2026-09-10 (owner ruling, point 2), moved by P6.332 `802de0622` to follow-up row `D1.52` (*the worktree-isolation refusal string has a producer and has never been observed as a tool result*), and the blocker is not hardware but a live observation — one packaged-sitting transcript in which `packages/shared/src/agent/core/pre-tool-use.ts` symbol `bgIsolation` actually returns its refusal to the model, which is why this is the only rig-free row of the four and belongs to the release sitting rather than to this pass."
+    },
+    {
+     "row": "I19",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "No verdict moves and none is guessed — the three measured cells keep their words and the row gains its address: deferred 2026-09-10 (owner ruling, point 2), moved by P6.332 `802de0622` to follow-up row `D1.52` (*the worktree-isolation refusal string has a producer and has never been observed as a tool result*), and the blocker is not hardware but a live observation — one packaged-sitting transcript in which `packages/shared/src/agent/core/pre-tool-use.ts` symbol `bgIsolation` actually returns its refusal to the model, which is why this is the only rig-free row of the four and belongs to the release sitting rather than to this pass."
+    },
+    {
+     "row": "I19",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ʰ`",
+     "why_en": "No verdict moves and none is guessed — the three measured cells keep their words and the row gains its address: deferred 2026-09-10 (owner ruling, point 2), moved by P6.332 `802de0622` to follow-up row `D1.52` (*the worktree-isolation refusal string has a producer and has never been observed as a tool result*), and the blocker is not hardware but a live observation — one packaged-sitting transcript in which `packages/shared/src/agent/core/pre-tool-use.ts` symbol `bgIsolation` actually returns its refusal to the model, which is why this is the only rig-free row of the four and belongs to the release sitting rather than to this pass."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Append the follow-up address `D1.49`–`D1.52` and the named blocker to the Why notes of I10, I13, I16 and I19, changing no verdict in any of the twelve cells.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A of QI7. Done means: each of the four rows names where it went (P6.325 → `D1.49`, P6.328 → `D1.50`, P6.330 → `D1.51`, P6.332 → `D1.52`, all closed in `802de0622` as MOVED, all `⬜` in `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md`) and what blocks it (Windows rig / Linux rig / the §1.1 wildcard confound / a release-sitting transcript observation for I19). The six no-claim cells STAY `—`: a deferral is not a verdict. The four already-measured cells KEEP their verdicts — I13/Pi `partial ʰ`, I13/Codex `absent ʰ`, I19/Claude `absent ʰ`, I19/Codex `absent ʰ` — writing 'no verdict' over them would run the ledger's own error backwards and make `plan-status.py` read four measurements as 'nobody measured it'. I19 is the only rig-free one and belongs to the packaged sitting, not here."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing to wire: three of the four are blocked on hardware this rig does not have and the fourth is a live observation for the release sitting; the native mechanism question was already asked and answered inside each measure row."
+  },
+  {
+   "qid": "QI8",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "I31",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION D7 (2026-09-05, option c) — quoted, not re-asked: containerised execution is *not now*, and the uniform absence is recorded. Option (b), a claude-only `Options.spawnClaudeCodeProcess` hook, was refused under every reading because it would manufacture exactly the silent divergence native-first exists to prevent; Pi and codex are spawned by the host itself, so the seam would be ours in any case (`spawnClaudeCodeProcess` has no production caller in this tree)."
+    },
+    {
+     "row": "I31",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION D7 (2026-09-05, option c) — quoted, not re-asked: containerised execution is *not now*, and the uniform absence is recorded. Option (b), a claude-only `Options.spawnClaudeCodeProcess` hook, was refused under every reading because it would manufacture exactly the silent divergence native-first exists to prevent; Pi and codex are spawned by the host itself, so the seam would be ours in any case (`spawnClaudeCodeProcess` has no production caller in this tree)."
+    },
+    {
+     "row": "I31",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION D7 (2026-09-05, option c) — quoted, not re-asked: containerised execution is *not now*, and the uniform absence is recorded. Option (b), a claude-only `Options.spawnClaudeCodeProcess` hook, was refused under every reading because it would manufacture exactly the silent divergence native-first exists to prevent; Pi and codex are spawned by the host itself, so the seam would be ours in any case (`spawnClaudeCodeProcess` has no production caller in this tree)."
+    },
+    {
+     "row": "I32",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION D8 (2026-09-05, option A) — keep `unelevated` and record it honestly: `packages/server-core/src/pi-harness/isolation/windows.ts` emits `sandbox = \"unelevated\"` as an unconditional literal, and the stronger mode needs `codex-windows-sandbox-setup.exe`, which `packages/shared/src/agent/backend/internal/runtime-resolver.ts` locates, `existsSync`-gates and `realpathSync`-resolves onto `WindowsSandboxRuntime.setupCommand` and which NOTHING ever spawns (re-read against the index 2026-09-11: every other occurrence is a test or the type declaration — a count is a reading with a date, the zero spawn sites are the fact); provisioning creates local sandbox users and a secrets store on the user's machine and cannot be costed without the Windows rig P3.7 is parked for (`D1.96`)."
+    },
+    {
+     "row": "I32",
+     "column": "Claude",
+     "from": "`n/a ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "`n/a` stands: the Windows sandbox implementation is a property of the host's supervised-process path, which is Pi-only — `processSupervisor` scores 3 in `packages/shared/src/agent/pi-agent.ts` and 0 in both `claude-agent.ts` and `codex-agent.ts` — so this is not that runtime's surface."
+    },
+    {
+     "row": "I32",
+     "column": "Codex",
+     "from": "—",
+     "to": "—",
+     "why_en": "No claim, with an address: we emit no `[windows]` block for codex at all (1 tracked non-generated hit repo-wide and it is the Pi file), so codex's own default governs, clamped by an admin's `allowedWindowsSandboxImplementations`; the measurement is follow-up row `D1.35` — one grep of the shipped binary plus one config read, the day a Windows arm exists."
+    },
+    {
+     "row": "I33",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION, by the owner's answer to QI8 of 2026-09-11 (option A) under point 3 of the 2026-09-10 ruling (every open question answered now by the balance rule): native Windows only — no WSL 2 session mode — with the default unchanged until a Windows rig exists (`D1.96`, carried from P3.7, whose park reason is *no Windows host on any rig*), and the reason written beside the `sandbox = \"unelevated\"` literal in `packages/server-core/src/pi-harness/isolation/windows.ts` where the next reader meets it. The prior analysis is denominator slice A#1 (*until a deployment asks for B in writing*), which closes row A87 and not this one — the two must not be merged."
+    },
+    {
+     "row": "I33",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION, by the owner's answer to QI8 of 2026-09-11 (option A) under point 3 of the 2026-09-10 ruling (every open question answered now by the balance rule): native Windows only — no WSL 2 session mode — with the default unchanged until a Windows rig exists (`D1.96`, carried from P3.7, whose park reason is *no Windows host on any rig*), and the reason written beside the `sandbox = \"unelevated\"` literal in `packages/server-core/src/pi-harness/isolation/windows.ts` where the next reader meets it. The prior analysis is denominator slice A#1 (*until a deployment asks for B in writing*), which closes row A87 and not this one — the two must not be merged."
+    },
+    {
+     "row": "I33",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "DECISION, by the owner's answer to QI8 of 2026-09-11 (option A) under point 3 of the 2026-09-10 ruling (every open question answered now by the balance rule): native Windows only — no WSL 2 session mode — with the default unchanged until a Windows rig exists (`D1.96`, carried from P3.7, whose park reason is *no Windows host on any rig*), and the reason written beside the `sandbox = \"unelevated\"` literal in `packages/server-core/src/pi-harness/isolation/windows.ts` where the next reader meets it. The prior analysis is denominator slice A#1 (*until a deployment asks for B in writing*), which closes row A87 and not this one — the two must not be merged."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record I31 and I32 as `absent`+DECISION by quoting the owner's D7 and D8, and record I33 as `absent`+DECISION for the 2026-09-11 WSL2 answer, leaving I32's codex cell a no-claim addressed to `D1.35`.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "product"
+     ],
+     "note_en": "Implements the recording half of option A of QI8. Done means: I31's three cells quote D7 (option c, *not now — record the uniform absence*) including why the claude-only hook was refused; I32's Pi cell quotes D8 (option A, keep `unelevated`) and names the setup binary we ship and never run, its claude cell keeps `n/a` with the Pi-only supervisor measurement, and its codex cell stays `—` with the `D1.35` address rather than being guessed; I33's three cells carry the 2026-09-11 answer with `D1.96` as the unpark address. The product-visible consequence is stated, not discovered: on Windows we ship the weaker of the two sandbox implementations codex supports, and a user whose code lives in WSL2 gets an agent that does not live where their code does. Twin rows take `absent`/`n/a`/`unknown` in the denominator-gaps document."
+    },
+    {
+     "task_en": "Write the WSL2 and `elevated` refusal reason beside the `sandbox = \"unelevated\"` literal in the Windows isolation writer, where the next reader meets it.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "doc"
+     ],
+     "note_en": "Implements the transparency half of option A of QI8, and it is the only source change family I asks for. Done means: `packages/server-core/src/pi-harness/isolation/windows.ts`, at the `sandbox = \"unelevated\"` literal, carries a comment naming three things — that `unelevated` is D8's answer of 2026-09-05 and not an oversight, that the stronger mode needs the setup binary we resolve and never spawn, and that WSL2 was declined on 2026-09-11 (native Windows only) with both decisions unparked the day a Windows rig exists (`D1.96`). Rule from AGENTS.md §'Where the documentation is silent': an undocumented choice nobody can see is indistinguishable from a defect. Do NOT write a quoted glob or a `*/` inside the block comment — it closes the comment and the file stops parsing."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "I31's claude arm has a documented native mechanism and the wiring is one option field: `agent-sdk/typescript.md#options` publishes `spawnClaudeCodeProcess` — verbatim *'Custom function to spawn the Claude Code process. Use to run Claude Code in VMs, containers, or remote environments'* — and we pass it nowhere (`git grep -aln spawnClaudeCodeProcess` returns seven files, six of them docs plus one test, and no production caller), so a claude-only container hook is S. Listed for visibility only: D7 refused option (b) on DIVERGENCE grounds rather than cost — a container boundary on one runtime and not the other two is the silent divergence native-first exists to prevent — so the flip would have to be the host-spawner form (option a, L) to be honest. Not flipped: I32's `elevated` mode, whose native mechanism IS a binary we already ship and never run, but whose sizing is M and which cannot be measured without a Windows rig (`D1.35`, `D1.96`)."
+  }
+ ]
+}

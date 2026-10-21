@@ -1,0 +1,31 @@
+{
+  "name": "@nestor/nessy-cli-channel-telegram",
+  "version": "0.13.0-beta.5",
+  "description": "Telegram channel adapter for Nessy CLI",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "test": "vitest run",
+    "test:ci": "vitest run"
+  },
+  "dependencies": {
+    "@nestor/nessy-cli-channel-base": "file:../base",
+    "grammy": "^1.41.1",
+    "https-proxy-agent": "^7.0.6",
+    "telegram-markdown-formatter": "^0.1.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

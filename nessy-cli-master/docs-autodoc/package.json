@@ -1,0 +1,12 @@
+{
+  "name": "nessy-docs-docusaurus",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node generate-sidebars.js"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0"
+  }
+}

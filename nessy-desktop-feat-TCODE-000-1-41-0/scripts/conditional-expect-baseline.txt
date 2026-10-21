@@ -1,0 +1,74 @@
+# check-conditional-expect baseline — the ACCEPTED population, not a defect list.
+# Regenerate: bun scripts/check-conditional-expect.ts --update-baseline
+# Key: <file> :: <enclosing test title> :: <discriminator>. Line numbers are
+# deliberately absent: they drift under every sibling lane and would make the
+# gate fire on unrelated commits. See this script's header.
+apps/electron/src/renderer/lib/__tests__/icon-cache.test.ts :: null check pattern correctly handles empty string :: result
+apps/electron/src/renderer/lib/__tests__/icon-cache.test.ts :: null check pattern correctly handles null :: result
+apps/electron/src/renderer/lib/__tests__/icon-cache.test.ts :: null check prevents .includes() crash :: content
+apps/electron/src/renderer/lib/__tests__/icon-cache.test.ts :: null check prevents .startsWith() crash :: content
+apps/electron/src/renderer/lib/__tests__/icon-cache.test.ts :: should not call SVG processing on null content :: content
+packages/codex-responses-adapter/src/__tests__/conformance.test.ts :: function_call generation yields valid-JSON args (best-effort, records  :: done
+packages/codex-responses-adapter/src/__tests__/stream-integrity.test.ts :: the emitter never has two function_call items open at once (what makes :: e.event
+packages/pi-agent-server/src/__tests__/harness-contract/pi-harness-baseline.test.ts :: resolves and validates every complete effective tool-ledger row :: effective.claudeBehaviorCounterpart
+packages/pi-agent-server/src/__tests__/harness-contract/pi-harness-baseline.test.ts :: resolves and validates every complete effective tool-ledger row :: typeof effective[field]
+packages/pi-agent-server/src/__tests__/pi-session-lineage-real-server.test.ts :: uses one external prebuilt entrypoint for every fresh lineage process :: process.env.NESSY_TEMP_DIR
+packages/pi-agent-server/src/context-usage-real-server.test.ts :: carries the category breakdown and loaded files on the production wire :: usage.inputTokens
+packages/pi-agent-server/src/local-tools/runtime-backed-tools.test.ts :: match current Pi SDK builtin names and schema shape :: sdk.additionalProperties
+packages/pi-agent-server/src/orchestrator/fork-mode.test.ts :: moves exactly the documented cells across fork mode x background x dis :: cell.disableBackground
+packages/pi-agent-server/src/orchestrator/fork-mode.test.ts :: moves exactly the documented cells across fork mode x background x dis :: cell.forkMode
+packages/pi-agent-server/src/orchestrator/fork-mode.test.ts :: moves exactly the documented cells across fork mode x background x dis :: effectivelyOn
+packages/pi-agent-server/src/package-manifest.test.ts :: ships the Pi package identity next to the bundled server :: existsSync(new URL('../dist/index.js', import.meta.url)
+packages/server-core/src/pi-harness/plugin-hook-command.test.ts :: a declared powershell without pwsh installed is a stated error, never  :: pwshInstalled
+packages/server-core/src/services/vcredist.test.ts :: returns installed=true when DLL exists in System32 :: existsSync(dllPath
+packages/session-tools-core/src/handlers/script-sandbox.test.ts :: enforces network/filesystem isolation or fails with clear diagnostics :: result.isError
+packages/session-tools-core/src/handlers/script-sandbox.test.ts :: keeps its own isolation unconditionally — does not reference the sandb :: result.isError
+packages/shared/src/agent/__tests__/adjacent-backend-frozen-contract.test.ts :: drives Nestor adapter, turn handoff, terminal suppression, and A2A env :: entry.terminal
+packages/shared/src/agent/__tests__/claude-permission-mode.test.ts :: `allowDangerouslySkipPermissions` rides with bypass and with nothing e :: options.permissionMode
+packages/shared/src/agent/__tests__/claude-transcript-rebuild.test.ts :: handles a non-ASCII cwd, and NFC-normalizes it only on darwin :: process.platform
+packages/shared/src/agent/__tests__/codex-auto-compaction-thrashing.test.ts :: names the loop once and ends the turn with auto_compaction_thrashing :: seen
+packages/shared/src/agent/__tests__/codex-refork-deadline.test.ts :: a turn whose head re-forks yields the status while thread/fork is in f :: next.value.type
+packages/shared/src/agent/__tests__/permission-mode-clamp.test.ts :: never grants a child a write capability the parent lacks (36-pair cont :: ALLOWS_ANY_WRITE[parent]
+packages/shared/src/agent/__tests__/permissions-config-cache-key.test.ts :: distinct contexts are never served one entry, and equivalent ones alwa :: seen
+packages/shared/src/agent/__tests__/pi-agent-init-contract.test.ts :: publishes manifest authority only after a current-owner child acknowle :: replacement
+packages/shared/src/agent/__tests__/pi-bundle-untrusted-text-ledger.test.ts :: every built Pi bundle carries the current shipped surface :: present.length
+packages/shared/src/agent/__tests__/powershell-cmdlet-gate.test.ts :: every measured evasion reaches the parser AND yields a real target :: isPowerShellAvailable(
+packages/shared/src/agent/__tests__/powershell-validator-root.test.ts :: a registered root without the script REFUSES rather than allowing :: PS_AVAILABLE
+packages/shared/src/agent/__tests__/powershell-validator-root.test.ts :: with no root registered it falls back to the script beside this module :: PS_AVAILABLE
+packages/shared/src/agent/__tests__/session-command-resume-seam.test.ts :: ${backend.name}: /resume adopts it and re-publishes it to the host :: backend.name
+packages/shared/src/agent/backend/__tests__/read-patterns.test.ts :: detects gc alias :: looksLikePowerShell('gc guide.md'
+packages/shared/src/agent/backend/__tests__/runtime-resolver.test.ts :: does NOT fall back to system rg for packaged apps (respects isPackaged :: result.ripgrepPath
+packages/shared/src/agent/backend/nestor-cloud/__tests__/tool-executor.test.ts :: propagates turn abort to command and MCP work and cleans pending appro :: kind
+packages/shared/src/agent/core/__tests__/bash-seatbelt.test.ts :: allows configured session write paths while still blocking unrelated p :: liveSandboxAvailable(
+packages/shared/src/agent/core/__tests__/bash-seatbelt.test.ts :: applies the wildcard profile if and only if the constant says so :: SEATBELT_TESTING_WILDCARD
+packages/shared/src/agent/core/__tests__/bash-seatbelt.test.ts :: blocks writes outside cwd under the strict profile, and does not under :: liveSandboxAvailable(
+packages/shared/src/agent/core/__tests__/bash-seatbelt.test.ts :: hands the wildcard notice to onDebug on the SUCCESS path, not only on  :: SEATBELT_TESTING_WILDCARD
+packages/shared/src/agent/core/__tests__/bash-seatbelt.test.ts :: resolves DNS inside the live sandbox when the host backend is availabl :: liveSandboxAvailable(
+packages/shared/src/agent/core/__tests__/pre-tool-use-checks.isolated.ts :: leaves other tools untouched :: result.type
+packages/shared/src/agent/core/__tests__/pre-tool-use-checks.isolated.ts :: never prompts in allow-all, matching "bypass permissions: the run star :: result.type
+packages/shared/src/agent/core/__tests__/pre-tool-use-checks.isolated.ts :: stops prompting once this workflow is remembered for this project :: remembered.type
+packages/shared/src/agent/core/__tests__/pre-tool-use-checks.isolated.ts :: wraps approved Bash commands with session plans and data write paths :: typeof result.input.command
+packages/shared/src/agent/local-tools/__tests__/return-text-removed.test.ts :: the runtime does not echo a return_text payload back as a successful r :: settled.status
+packages/shared/src/auth/__tests__/nestor.test.ts :: never resolves above either source it was merged from :: snapshot
+packages/shared/src/config/__tests__/claude-vendored-sdk-contract.test.ts :: is absent from types, bundle AND binary while we ship below the versio :: atLeast(shippedVersion, REQUIRED_VERSION
+packages/shared/src/config/__tests__/claude-vendored-sdk-contract.test.ts :: ships the binary its own manifest names, verified by digest :: existsSync(binaryPath
+packages/shared/src/config/__tests__/llm-connections-auth-env.test.ts :: resetManagedAnthropicAuthEnvVars clears the routing set from process e :: originalRegion
+packages/shared/src/diagnostics/__tests__/heapdump.test.ts :: writes both files to Desktop when it exists, named from baseName, with :: process.platform
+packages/shared/src/marketplace/__tests__/external-catalog-adapters.test.ts :: never executes a shell-metacharacter string source; treats it as a tra :: result.proposals.length > 0
+packages/shared/src/plugins/__tests__/acquisition-pipeline.test.ts :: verifies the published npm digest and refuses one it cannot evaluate :: testCase.code
+packages/shared/src/plugins/__tests__/bundle-hash.test.ts :: changes when a skill, hook, asset or executable bit changes :: process.platform
+packages/shared/src/plugins/__tests__/plugin-mcp-credentials.test.ts :: discovery + DCR + exchange mint a token that lands ONLY encrypted in t :: url
+packages/shared/src/skills/__tests__/storage.test.ts :: defaults to codex\ :: process.platform
+packages/shared/src/skills/__tests__/storage.test.ts :: should override global skills with workspace skills when slug matches :: baselineGlobal.size
+packages/shared/src/utils/__tests__/binary-detection.test.ts :: passes through base64-encoded text (decoded is not binary) :: result
+packages/shared/src/workspaces/__tests__/storage-readiness.test.ts :: quarantines v1 default state and blocks unsafe or ambiguous default ro :: process.platform
+packages/shared/tests/mode-manager.test.ts :: should allow safe Get-* cmdlets :: psAvailable
+packages/shared/tests/mode-manager.test.ts :: should detect unknown subcommand and provide suggestion :: reason.mismatchAnalysis
+packages/shared/tests/mode-manager.test.ts :: should format mismatch analysis in error message :: reason.type
+packages/shared/tests/mode-manager.test.ts :: should include mismatch analysis for git command with flags :: reason.mismatchAnalysis
+packages/shared/tests/mode-manager.test.ts :: should not claim 2>/dev/null is a write attempt :: result.allowed
+packages/shared/tests/mode-manager.test.ts :: should not claim >/dev/null is a write attempt :: result.allowed
+packages/shared/tests/mode-manager.test.ts :: should return null gracefully :: psAvailable
+packages/shared/tests/mode-manager.test.ts :: should return powershell_unavailable when PowerShell is not installed :: isPowerShellAvailable(
+packages/ui/src/lib/__tests__/tool-parsers-cards.test.ts :: keeps generic markdown-ish output as generic card data :: output?.data.type
+packages/ui/src/motion/__tests__/flip.test.ts :: plays the presets as their CSS linear() curve when supported :: typeof CSS

@@ -1,0 +1,29 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "gitlab/SKILL.md",
+  "upstreamName": "GitLab CLI",
+  "upstreamFrontmatter": {
+    "name": "GitLab CLI",
+    "description": "Работа с репозиториями, merge request'ами и пайплайнами GitLab через dp gitlab CLI (Spirit CLI plugin)",
+    "when": "- Пользователь просит посмотреть репозитории, merge request'ы или пайплайны в GitLab\n- Пользователь упоминает merge request или MR в контексте GitLab\n- Пользователь хочет узнать статус пайплайна или посмотреть логи упавших задач\n- Пользователь просит показать diff изменений в merge request'е\n- Пользователь упоминает GitLab-проект или тенант\n- Пользователь спрашивает про CI/CD пайплайны\n",
+    "tags": [
+      "gitlab",
+      "cli",
+      "dp",
+      "spirit",
+      "merge-request",
+      "pipeline",
+      "repository"
+    ]
+  },
+  "upstreamSkillSha256": "8dc0bf86b24c4235d21e5b82c99c0ebae3734212c6624050c62ae7a35ef767bb",
+  "adaptations": [
+    "Normalized/namespaced skill name: GitLab CLI -> gitlab-cli",
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

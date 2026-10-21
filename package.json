@@ -1,0 +1,23 @@
+{
+  "name": "odysseus",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "odysseus": "node tools/odysseus.mjs",
+    "test": "node --test tools/*.test.mjs",
+    "status": "node tools/odysseus.mjs status",
+    "sync": "node tools/odysseus.mjs sync",
+    "catalog:build": "node tools/build-skills-catalog.mjs",
+    "sync:personal": "node tools/odysseus.mjs personal-sync",
+    "desktop:integration": "node tools/install-desktop-bridge.mjs",
+    "catalog:ui": "node tools/build-ui-skills.mjs",
+    "knowledge:setup": "node tools/graphify.mjs setup",
+    "knowledge:refresh": "node tools/graphify.mjs refresh",
+    "knowledge:status": "node tools/graphify.mjs doctor",
+    "knowledge:sync": "node tools/knowledge-obsidian-sync.mjs"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "repository": "mattpocock/skills",
+  "revision": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+  "path": "skills/productivity/grill-me",
+  "url": "https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/productivity/grill-me",
+  "upstreamName": "grill-me",
+  "upstreamFrontmatter": {
+    "name": "grill-me",
+    "description": "A relentless interview to sharpen a plan or design.",
+    "disable-model-invocation": true
+  },
+  "upstreamSkillSha256": "caaf8b8de1684f96e26b28f3c29189db5c89cce4b73e1c93d86164f66ef88637",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "grilling",
+      "guide": "variants/grilling/GUIDE.md",
+      "resourceRoot": "variants/grilling",
+      "repository": "mattpocock/skills",
+      "path": "skills/productivity/grilling",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "515e9ed2250d5054d3499cb40ca7d8d5a5fa2c049620dc3bc3a225aefd539f84",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "a2bcb23b511cdf7ceec22f1091a8c6ce05b3ebf760f62985e145417408b75a1f",
+          "executable": false
+        },
+        "agents/openai.yaml": {
+          "sha256": "1411d7df7d99b7e621a1ff8283c8133cc2464be63d064e52d8ce169c6800ee9b",
+          "executable": false
+        }
+      },
+      "when": "Вариант углублённого критического интервью"
+    }
+  ]
+}

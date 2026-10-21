@@ -1,0 +1,72 @@
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
+      when: never
+    - if: '$CI_COMMIT_BRANCH || $CI_COMMIT_TAG'
+
+stages: [build, check]
+
+default:
+  image: docker-hosted.artifactory.tcsbank.ru/cicd-images/nodejs-22
+  tags: [dp-build-k8s, medium]
+  interruptible: true
+
+variables:
+  HUSKY: '0'
+
+build:
+  stage: build
+  script:
+    # npm ci запускает prepare: сборку пакетов и CLI bundle.
+    - npm ci
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist/
+
+test:
+  stage: check
+  dependencies: []
+  script:
+    - apt-get update && apt-get install -y zip unzip
+    - npm ci
+    - |
+      root="$PWD"
+      mkdir -p reports
+      failed=0
+      for package in core cli sdk-typescript acp-bridge audio-capture webui web-shell \
+        vscode-ide-companion channels/base channels/telegram channels/weixin \
+        channels/dingtalk channels/feishu channels/qqbot scripts; do
+        name="${package//\//-}"
+        if ! (
+          set --
+          if [[ "$package" == scripts ]]; then
+            set -- --config ./scripts/tests/vitest.config.ts
+          else
+            cd "packages/$package"
+          fi
+          npx --no-install vitest run "$@" \
+            --coverage.enabled=false --maxWorkers=2 --minWorkers=1 \
+            --retry=0 --dangerouslyIgnoreUnhandledErrors=false \
+            --reporter=default --reporter=junit \
+            --outputFile.junit="$root/reports/$name-junit.xml"
+        ); then
+          failed=1
+        fi
+      done
+      exit "$failed"
+  artifacts:
+    when: always
+    expire_in: 1 week
+    paths:
+      - reports/
+    reports:
+      junit: reports/*-junit.xml
+
+lint:
+  stage: check
+  needs: []
+  script:
+    - npm ci --ignore-scripts
+    - npm run lint

@@ -1,0 +1,22 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "n8n-cli/SKILL.md",
+  "upstreamName": "n8n-cli",
+  "upstreamFrontmatter": {
+    "name": "n8n-cli",
+    "description": "Безопасно управляет n8n workflow через корпоративный n8n-cli: ищет и анализирует workflow, создаёт и обновляет JSON, проверяет executions, webhook, folders и Data Tables в prod/test. Использовать для операционных задач с n8n instance; не использовать для общих вопросов о продукте n8n без работы с instance.",
+    "metadata": {
+      "author": "e.b.kitaev",
+      "version": "1.2.2"
+    }
+  },
+  "upstreamSkillSha256": "0de57d4517c09e7cb08f044b75604bc349f836b5a0174a8d21a4c5617eb993c5",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

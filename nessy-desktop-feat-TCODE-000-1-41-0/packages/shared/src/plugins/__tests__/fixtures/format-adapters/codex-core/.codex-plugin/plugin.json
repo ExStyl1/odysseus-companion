@@ -1,0 +1,20 @@
+{
+  "$schema": "https://example.invalid/schemas/codex-plugin.json",
+  "id": "sample-codex-core",
+  "name": "sample-codex-core",
+  "displayName": "Sample Codex Core Plugin",
+  "version": "1.0.0",
+  "description": "Authored synthetic fixture covering the Codex core surface: one skill, one stdio MCP server, one command hook.",
+  "author": {
+    "name": "Fixture Author"
+  },
+  "skills": "skills",
+  "mcp_servers": {
+    "sample-tools": {
+      "command": "node",
+      "args": ["./scripts/mcp-server.js"],
+      "transport": "stdio"
+    }
+  },
+  "hooks": "hooks/hooks.json"
+}

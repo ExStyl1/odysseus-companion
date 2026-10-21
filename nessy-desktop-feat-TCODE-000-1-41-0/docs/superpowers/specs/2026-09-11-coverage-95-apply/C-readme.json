@@ -1,0 +1,40 @@
+{
+ "problems": [
+  "The ledger_edits schema has no column for the ledger's 'Why absent' REASON column, and the owner's answers for QC2/QC3/QC4/QC6 change only that reason (to `DECISION`) while every verdict stays put - so those items carry zero verdict-cell edits and the reason text rides in plan_rows note_en instead. Ten cells (C6 x3, C8 x3, C9 x3, C26 x1), three (C11 x3), six (C4 x3, C28 x3) and three (C18 x1, C19 x2) are affected.",
+  "QC4's coverage_gain says C4's Switch cell moves SILENT -> HONEST; at HEAD it reads `UNIFORM ᵗ` (P3.300 restored it from SILENT by subtraction), so the edit is recorded as `UNIFORM ᵗ` -> `HONEST ᵗ`. The from/to are the Switch cell's leading verdict token only - the cell's prose is ~1.4 KB and stays.",
+  "Every codex figure quoted in family C was probed on the 178 126 224 B rust-v0.148.0 codex-app-server; at HEAD `packages/codex-protocol/manifest.json` reads tag `rust-v0.150.1` and the staged binary is 185 773 600 B, so QC1's 'measure at 2.1.247, do not carry 2.1.233 numbers' rule must extend to codex - otherwise C2, C3, C7, C8, C9, C17, C22, C25 and C26 are re-stamped against a binary that no longer ships.",
+  "QC7's refuter statement that the codex and Pi lifts are not in the tree is stale at HEAD (2026-09-11): manifest tag is `rust-v0.150.1` and every `@earendil-works/pi-coding-agent` pin reads `0.84.3`. The C29 re-derivation must not copy that sentence into the cell.",
+  "C16/pi is the one QC1 cell I could not fully substantiate from the landed commits: P6.258 (`320dd1196`) and P6.585 (`534aadcee`) thread the per-connection credential header through the claude-runtime and codex sinks, while the cell's own reading is that `packages/pi-agent-server` has no `x-api-key` reader (control `apikey` non-zero). The plan row instructs the lane to re-derive that arm against the commit's done_means and keep the verdict with a named residue rather than promote it.",
+  "C7/codex is written `n/a ᵗ` on the strength of P6.252's own closing correction (`ToolsV2` = {web_search} only); if the re-probe on the rust-v0.150.1 binary shows a web_fetch tool has since appeared, the cell is a measurement, not a re-stamp, and must be recorded as such.",
+  "The no-claim cells in this family are written as a BARE em dash without backticks (C7/codex, C8/pi, C8/claude, C12/claude, C12/codex, C23/pi, C23/codex) while the legend spells no-claim as a backticked one - the `from` values are recorded verbatim as they read, so a lane must not 'normalise' them while editing.",
+  "C23/pi and C23/codex stay `—` by design (P6.260 records them as 'unknown, not absent'); they are the two cells QC1's own enumeration silently omits, so a lane counting 20 named cells against a headline of 22 should expect exactly this pair.",
+  "QC5 emits no ledger edits because both cells are gated on a packaged run at the release sitting; the conditional restamps (C2/claude `—` -> `covered ᵗ`, C12 x3 -> `covered ᵗ`) are written into the plan rows' done_means so a green run is what moves them, never the static read."
+ ],
+ "flip_candidates": [
+  {
+   "qid": "QC4",
+   "mechanism_en": "claude's own CLAUDE_CODE_SHELL_PREFIX (env-only, honoured by the shipped binary on its Bash command string and its stdio MCP launch) plus the processWrapper settings twin, today deleted from the child by CLAUDE_LAUNCHER_ENV_KEYS in `packages/shared/src/config/claude-provider-routing-env.ts` and `packages/shared/src/agent/options.ts` symbol `buildClaudeSubprocessEnv`.",
+   "wiring_size": "XS for the claude arm (stop scrubbing two names); L for the uniform host seam at the three Nessy-owned spawn sites",
+   "reason_en": "The runtime has it natively and re-enabling it is literally subtraction, so it meets the owner's stricter criterion - but P3.300 withdrew it deliberately to remove a one-runtime-of-three divergence and the owner refused the uniform build twice in words; flagged, answer unchanged."
+  },
+  {
+   "qid": "QC6",
+   "mechanism_en": "The vendors' own subscription sign-in - the Claude Pro/Max card and codex's ChatGPT-authenticated path - already built and working, hidden only by a default-off build flag, with `packages/shared/src/feature-flags.ts` symbol `isAnthropicBackendEnabled` as the OR that also ships the SDK native binary.",
+   "wiring_size": "S - a default flip in the five mirrored places plus fastlane/Fastfile; no new mechanism",
+   "reason_en": "C19 is the one family-C refusal where the capability exists and works and only our flag hides it, so the wiring is a flag flip - but 'only the subscription cards stay opt-in' is a standing product posture (owner 2026-08-06), which is why the refusal stands; flagged, answer unchanged."
+  },
+  {
+   "qid": "QC2",
+   "mechanism_en": "codex's own [permissions.nessy_runtime.network] table - allow_local_binding for C26, mode = \"limited\" plus domains for C8/C9 - written by `packages/codex-responses-adapter/src/config-writer-permissions.ts`, which already emits the sibling .filesystem block into the same profile.",
+   "wiring_size": "S for allow_local_binding (one line in an existing builder); M for the domain allowlist",
+   "reason_en": "codex has the network table natively and we already write its enclosing profile, so the wiring is small - but it widens the intranet boundary the credential floor exists to narrow and the 2026-09-05 decision refused taking it on the schema alone; flagged, answer unchanged, and C26 goes to the owner as still-unruled."
+  }
+ ],
+ "counts": {
+  "restamp": 2,
+  "refuse": 4,
+  "build": 0,
+  "measure": 1,
+  "defer": 0
+ }
+}

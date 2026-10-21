@@ -1,0 +1,402 @@
+default_platform(:mac)
+
+require 'base64'
+require 'digest'
+require 'fileutils'
+require 'json'
+require 'shellwords'
+require 'tmpdir'
+require 'yaml'
+
+before_all do
+  setup_ci if ENV['CI']
+end
+
+TEAM_ALIAS = ENV.fetch('TCS_APPHUB_TEAM', 'ru.tfinance')
+MATCH_TENANT = ENV.fetch('TCS_APPHUB_MATCH_TENANT', 'nessy-desktop')
+CREDENTIAL_READER_SERVICE_ACCOUNT_ENV = 'TCS_APPHUB_CREDENTIAL_READER_SERVICE_ACCOUNT'
+DISTRIBUTION_SIGNER_SERVICE_ACCOUNT_ENV = 'TCS_APPHUB_DISTRIBUTION_SIGNER_SERVICE_ACCOUNT'
+
+def setup_apple_credentials_via_apphub
+  UI.message("Obtaining Apple notarization credentials through AppHub for #{TEAM_ALIAS}")
+  apple_portal_setup_credentials(
+    team_alias: TEAM_ALIAS,
+    tenant: MATCH_TENANT,
+    service_account: credential_reader_service_account_path
+  )
+
+  missing = %w[
+    APP_STORE_CONNECT_API_KEY_KEY_ID
+    APP_STORE_CONNECT_API_KEY_ISSUER_ID
+    APP_STORE_CONNECT_API_KEY_KEY
+  ].select { |key| ENV[key].to_s.empty? }
+
+  unless missing.empty?
+    UI.user_error!("AppHub Apple credentials are incomplete: #{missing.join(', ')}")
+  end
+
+  UI.success("Apple API key loaded from AppHub for #{TEAM_ALIAS}")
+end
+
+def credential_reader_service_account_path
+  ENV[CREDENTIAL_READER_SERVICE_ACCOUNT_ENV]
+end
+
+def distribution_signer_service_account_path
+  ENV[DISTRIBUTION_SIGNER_SERVICE_ACCOUNT_ENV]
+end
+
+def credential_reader_service_account_path_provided?
+  !credential_reader_service_account_path.to_s.empty?
+end
+
+def distribution_signer_service_account_path_provided?
+  !distribution_signer_service_account_path.to_s.empty?
+end
+
+def ensure_service_account_file!(env_name:, required:)
+  path = ENV[env_name]
+
+  if path.to_s.empty?
+    UI.user_error!("#{env_name} is not set") if required
+    return false
+  end
+
+  UI.user_error!("Service account file not found: #{path}") unless File.exist?(path)
+  true
+end
+
+def setup_apple_credentials_if_needed!
+  if ENV['APPLE_API_KEY'] && ENV['APPLE_API_KEY_ID'] && ENV['APPLE_API_ISSUER']
+    UI.message('Skipping AppHub Apple credentials setup; APPLE_API_KEY, APPLE_API_KEY_ID, and APPLE_API_ISSUER are already set')
+    return
+  end
+
+  if ENV['CI']
+    ensure_service_account_file!(env_name: CREDENTIAL_READER_SERVICE_ACCOUNT_ENV, required: true)
+    setup_apple_credentials_via_apphub
+    return
+  end
+
+  if credential_reader_service_account_path_provided?
+    ensure_service_account_file!(env_name: CREDENTIAL_READER_SERVICE_ACCOUNT_ENV, required: false)
+    setup_apple_credentials_via_apphub
+    return
+  end
+
+  UI.user_error!(
+    "#{CREDENTIAL_READER_SERVICE_ACCOUNT_ENV} is not set. " \
+    'Provide an AppHub Credential Reader service account file or set APPLE_API_KEY, APPLE_API_KEY_ID, and APPLE_API_ISSUER.'
+  )
+end
+
+def ensure_notarization_api_key_file!
+  if ENV['APPLE_API_KEY'] && ENV['APPLE_API_KEY_ID'] && ENV['APPLE_API_ISSUER']
+    return nil
+  end
+
+  key_id = ENV['APP_STORE_CONNECT_API_KEY_KEY_ID']
+  issuer_id = ENV['APP_STORE_CONNECT_API_KEY_ISSUER_ID']
+  key_base64 = ENV['APP_STORE_CONNECT_API_KEY_KEY']
+
+  UI.user_error!('APP_STORE_CONNECT_API_KEY_KEY_ID is not set') if key_id.to_s.empty?
+  UI.user_error!('APP_STORE_CONNECT_API_KEY_ISSUER_ID is not set') if issuer_id.to_s.empty?
+  UI.user_error!('APP_STORE_CONNECT_API_KEY_KEY is not set') if key_base64.to_s.empty?
+
+  key_file = File.join(Dir.tmpdir, "AuthKey_#{key_id}.p8")
+  File.write(key_file, Base64.decode64(key_base64))
+  File.chmod(0o600, key_file)
+
+  ENV['APPLE_API_KEY'] = key_file
+  ENV['APPLE_API_KEY_ID'] = key_id
+  ENV['APPLE_API_ISSUER'] = issuer_id
+
+  key_file
+end
+
+def developer_id_identity
+  output = sh('security find-identity -v -p codesigning 2>/dev/null || true', log: false)
+  line = output.lines.find { |candidate| candidate.include?('Developer ID Application') }
+  identity = line&.match(/"(.+)"/)&.captures&.first
+  UI.user_error!('Developer ID Application certificate was not found') if identity.to_s.empty?
+  identity
+end
+
+def electron_builder_identity_name(identity)
+  identity.sub(/\ADeveloper ID Application:\s*/, '')
+end
+
+def boolean_option(value, default)
+  return default if value.nil?
+
+  %w[1 true yes y on].include?(value.to_s.downcase)
+end
+
+# The Claude SDK native binary ships by default: NESSY_FEATURE_CLAUDE_RUNTIME
+# defaults ON (owner decision 2026-08-06; only subscription cards stay
+# flag-gated). NESSY_FEATURE_CLAUDE_RUNTIME=0 turns it off unless an explicit
+# NESSY_FEATURE_PROVIDER_CLAUDE=1 re-enables it (the Pro/Max card cannot work
+# without the runtime). Mirrors isAnthropicBackendEnabled() in
+# packages/shared/src/feature-flags.ts. The runtime check is falsy-set based
+# (not boolean_option) so unset and unrecognized values both mean ON, matching
+# the shell/PowerShell/TS parsers.
+def claude_native_binary_enabled?
+  runtime_on = !%w[0 false no off].include?(ENV['NESSY_FEATURE_CLAUDE_RUNTIME'].to_s.downcase)
+  boolean_option(ENV['NESSY_FEATURE_PROVIDER_CLAUDE'], false) || runtime_on
+end
+
+# Mirrors the CODEX_ENABLED parse in apps/electron/scripts/build-dmg.sh: the
+# codex runtime defaults ON, and only 0/false/no/off turns the bundle off.
+# Deliberately not boolean_option — that helper also accepts 'y', which none of
+# the other four parsers do.
+def codex_app_server_enabled?
+  !%w[0 false no off].include?(ENV['NESSY_FEATURE_CODEX_RUNTIME'].to_s.downcase)
+end
+
+def should_install_match_credentials?
+  return true if ENV['CI']
+  return true if distribution_signer_service_account_path_provided?
+
+  boolean_option(ENV['NESSY_DESKTOP_MATCH_INSTALL'], false)
+end
+
+def dmg_artifact_paths
+  dmg_paths = Dir.glob(File.expand_path('../release/**/*.dmg', __dir__)).sort
+  UI.user_error!('No DMG artifacts were produced under release/') if dmg_paths.empty?
+  dmg_paths
+end
+
+def sign_dmg_artifacts
+  identity = developer_id_identity
+
+  dmg_artifact_paths.each do |dmg_path|
+    sh(['codesign', '--force', '--sign', identity, '--timestamp', dmg_path].shelljoin)
+  end
+end
+
+def app_builder_executable
+  binary_name = `uname -m`.strip == 'arm64' ? 'app-builder_arm64' : 'app-builder_amd64'
+  executable = File.expand_path("../node_modules/app-builder-bin/mac/#{binary_name}", __dir__)
+  UI.user_error!("app-builder executable was not found: #{executable}") unless File.exist?(executable)
+  File.chmod(0755, executable) unless File.executable?(executable)
+  executable
+end
+
+def sha512_base64(path)
+  Base64.strict_encode64(Digest::SHA512.file(path).digest)
+end
+
+def update_latest_mac_yml_for_artifacts(artifact_paths)
+  artifact_by_name = artifact_paths.to_h { |path| [File.basename(path), path] }
+  Dir.glob(File.expand_path('../release/*-mac.yml', __dir__)).sort.each do |latest_path|
+    latest = YAML.load_file(latest_path)
+
+    if latest['files'].is_a?(Array)
+      latest['files'].each do |entry|
+        artifact_path = artifact_by_name[File.basename(entry['url'].to_s)]
+        next unless artifact_path
+
+        entry['sha512'] = sha512_base64(artifact_path)
+        entry['size'] = File.size(artifact_path)
+      end
+    end
+
+    artifact_path = artifact_by_name[File.basename(latest['path'].to_s)]
+    if artifact_path
+      latest['sha512'] = sha512_base64(artifact_path)
+      latest['size'] = File.size(artifact_path) if latest.key?('size')
+    end
+
+    File.write(latest_path, latest.to_yaml)
+  end
+end
+
+def regenerate_dmg_blockmaps
+  executable = app_builder_executable
+  changed_paths = dmg_artifact_paths
+
+  changed_paths.each do |dmg_path|
+    sh([executable, 'blockmap', '--input', dmg_path, '--output', "#{dmg_path}.blockmap", '--compression', 'deflate'].shelljoin)
+  end
+
+  update_latest_mac_yml_for_artifacts(changed_paths)
+end
+
+def run_nessy_package(version:, arch:, targets:, skip_smoke:)
+  ENV['NESSY_DESKTOP_SIGN'] = '1'
+  ENV['CSC_IDENTITY_AUTO_DISCOVERY'] = 'true'
+  ENV['CSC_NAME'] = electron_builder_identity_name(developer_id_identity)
+
+  repo_root = File.expand_path('..', __dir__)
+  apps_electron_dir = File.join(repo_root, 'apps/electron')
+  # fastlane's sh has no chdir: option (def sh(*args, &b)); lanes run with
+  # cwd = fastlane/, so change directory explicitly.
+  Dir.chdir(repo_root) { sh(['npm', 'pkg', 'set', "version=#{version}"].shelljoin) }
+  Dir.chdir(apps_electron_dir) { sh(['npm', 'pkg', 'set', "version=#{version}"].shelljoin) }
+  Dir.chdir(apps_electron_dir) { sh(['bash', 'scripts/build-dmg.sh', arch].shelljoin) }
+end
+
+def package_json_version
+  JSON.parse(File.read(File.expand_path('../package.json', __dir__)))['version']
+end
+
+def notarize_dmg_artifacts
+  key = ENV['APPLE_API_KEY']
+  key_id = ENV['APPLE_API_KEY_ID']
+  issuer = ENV['APPLE_API_ISSUER']
+  UI.user_error!('APPLE_API_KEY is not set') if key.to_s.empty?
+  UI.user_error!('APPLE_API_KEY_ID is not set') if key_id.to_s.empty?
+  UI.user_error!('APPLE_API_ISSUER is not set') if issuer.to_s.empty?
+
+  dmg_artifact_paths.each do |dmg_path|
+    sh(['xcrun', 'notarytool', 'submit', dmg_path, '--key', key, '--key-id', key_id, '--issuer', issuer, '--wait'].shelljoin)
+    sh(['xcrun', 'stapler', 'staple', dmg_path].shelljoin)
+    sh(['xcrun', 'stapler', 'validate', dmg_path].shelljoin)
+  end
+end
+
+def verify_macos_release_artifacts(version: package_json_version, arch: ENV.fetch('NESSY_DESKTOP_RELEASE_ARCH', 'arm64'))
+  repo_root = File.expand_path('..', __dir__)
+  release_root = File.join(repo_root, 'release')
+  %w[dmg zip].each do |ext|
+    artifact = File.join(release_root, "NessyDesktop-#{version}-mac-#{arch}.#{ext}")
+    UI.user_error!("Expected macOS #{ext} artifact was not found: #{artifact}") unless File.file?(artifact)
+  end
+
+  app_paths = Dir.glob(File.expand_path('../release/*/*.app', __dir__)).sort
+  UI.user_error!('No .app bundle was produced under release/') if app_paths.empty?
+
+  app_paths.each do |app_path|
+    sh(['codesign', '--verify', '--deep', '--strict', '--verbose=2', app_path].shelljoin)
+    sh(['xcrun', 'stapler', 'validate', app_path].shelljoin)
+
+    if claude_native_binary_enabled?
+      claude_binary = File.join(app_path, 'Contents/Resources/app/node_modules/@anthropic-ai/claude-agent-sdk-binary/claude')
+      UI.user_error!("Claude binary was not bundled: #{claude_binary}") unless File.file?(claude_binary)
+      UI.user_error!("Claude binary is too small: #{claude_binary}") if File.size(claude_binary) < 50_000_000
+    else
+      UI.message('Skipping Claude native binary verification; NESSY_FEATURE_PROVIDER_CLAUDE and NESSY_FEATURE_CLAUDE_RUNTIME are both disabled')
+    end
+  end
+
+  # The codex runtime's integrity pin, re-checked on the notarized+stapled
+  # bundle. build-dmg.sh already runs this gate right after packaging; this
+  # second, independent run is the one that covers everything the release
+  # lane does AFTER the build script returns (dmg signing, notarization,
+  # stapling). Signed 1.25.0 shipped a codex-app-server whose bytes signing
+  # had rewritten, so the app refused to spawn it — an unsigned local build
+  # is byte-identical to upstream, which is why only the release artifact
+  # can prove this. Deliberately NOT conditional on the file existing: a
+  # missing binary in a codex-enabled build is itself a failure the gate
+  # reports (`missing-required`), and a skip-if-absent check would have
+  # passed on exactly the artifact that broke.
+  #
+  # Run ONCE against the whole release root, which is exactly what
+  # build-dmg.sh does (`bun scripts/build/codex-integrity.ts "$RELEASE_DIR"`).
+  # It used to run inside the `app_paths.each` loop with a single `--require`
+  # arch: with two bundles under release/ that asks every bundle for the same
+  # arch, so the non-matching one fails on `missing-required` +
+  # `unexpected-platform` while the matching one is re-hashed (207 MB) once
+  # per iteration. Scanning the root instead lets `--require` mean what it
+  # means in the shell mirror — "this arch must be present, and no other
+  # arch may have leaked in".
+  codex_gate_args = codex_app_server_enabled? ? ["--require=darwin-#{arch}"] : ['--forbid-app-server']
+  Dir.chdir(repo_root) do
+    sh(['bun', 'scripts/build/codex-integrity.ts', release_root, *codex_gate_args].shelljoin)
+  end
+end
+
+platform :mac do
+  desc 'Install Developer ID credentials, package, sign, notarize, and verify Nessy Desktop'
+  lane :package_signed_electron do |options|
+    version = options[:version] || ENV['APP_VERSION']
+    UI.user_error!('version or APP_VERSION is required') if version.to_s.empty?
+
+    arch = options[:arch] || ENV.fetch('NESSY_DESKTOP_RELEASE_ARCH', 'arm64')
+    targets = options[:targets] || ENV.fetch('NESSY_DESKTOP_RELEASE_TARGETS', 'dmg,zip')
+    skip_smoke = boolean_option(options[:skip_smoke] || ENV['NESSY_DESKTOP_RELEASE_SKIP_SMOKE'], true)
+
+    setup_apple_credentials_if_needed!
+    key_file = ensure_notarization_api_key_file!
+
+    if should_install_match_credentials?
+      if ENV['CI'] || distribution_signer_service_account_path_provided?
+        ensure_service_account_file!(env_name: DISTRIBUTION_SIGNER_SERVICE_ACCOUNT_ENV, required: !!ENV['CI'])
+      end
+
+      match_install(
+        type: 'developer_id',
+        tenant: MATCH_TENANT,
+        platform: 'macos',
+        config_path: File.expand_path('match.yml', __dir__),
+        use_vault_credentials: true
+      )
+    else
+      UI.message('Skipping match_install locally; expecting Developer ID Application certificate in keychain')
+    end
+
+    run_nessy_package(
+      version: version,
+      arch: arch,
+      targets: targets,
+      skip_smoke: skip_smoke
+    )
+    if targets.split(',').map(&:strip).include?('dmg')
+      sign_dmg_artifacts
+      notarize_dmg_artifacts
+      regenerate_dmg_blockmaps
+    end
+    verify_macos_release_artifacts(version: version, arch: arch)
+  ensure
+    FileUtils.rm_f(key_file) if defined?(key_file) && key_file
+  end
+
+  desc 'Sign, notarize, staple, and verify already produced macOS release artifacts'
+  lane :notarize_existing_macos_artifacts do |options|
+    setup_apple_credentials_if_needed!
+    key_file = ensure_notarization_api_key_file!
+
+    # Pass arch through EXPLICITLY, the way package_signed_electron does. This
+    # used to call verify_macos_release_artifacts with no arguments, so the arch
+    # fell back to the 'arm64' default inside the helper: on an x64-only release
+    # dir the codex gate then asked for a darwin-arm64 binary that was never
+    # built. Naming it here means the lane cannot verify one arch while the
+    # artifacts on disk are another.
+    arch = options[:arch] || ENV.fetch('NESSY_DESKTOP_RELEASE_ARCH', 'arm64')
+
+    sign_dmg_artifacts
+    notarize_dmg_artifacts
+    regenerate_dmg_blockmaps
+    verify_macos_release_artifacts(arch: arch)
+  ensure
+    FileUtils.rm_f(key_file) if defined?(key_file) && key_file
+  end
+end
+
+platform :ios do
+  desc 'Sign NessyMobile with the Ad Hoc profile and export the .ipa for AppHub'
+  # WIP until apple-portal-services MR !867 merges: the adhoc profile for
+  # ph.princess.frog-2.nessy-desktop.NessyMobile cannot issue before the
+  # bundle id is registered and a device exists in CodeSign under that
+  # account. Shape follows mobile-dev-platform/app-signing-example-ios
+  # (match_install + gym).
+  lane :build_adhoc do
+    ensure_service_account_file!(env_name: DISTRIBUTION_SIGNER_SERVICE_ACCOUNT_ENV, required: true) if ENV['CI']
+
+    match_install(
+      type: 'adhoc',
+      tenant: MATCH_TENANT,
+      config_path: File.expand_path('match.yml', __dir__),
+      use_vault_credentials: true
+    )
+
+    gym(
+      project: File.expand_path('../apps/ios/NessyMobile/NessyMobile.xcodeproj', __dir__),
+      scheme: 'NessyMobile',
+      configuration: 'Release',
+      export_method: 'ad-hoc',
+      output_directory: File.expand_path('../release-ios', __dir__),
+      output_name: 'NessyMobile.ipa'
+    )
+  end
+end

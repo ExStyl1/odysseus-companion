@@ -1,0 +1,19 @@
+{
+  "what": "Derived counts-only slice of the command corpus: the structural shape of its heredocs. NO command text, and none is recoverable from it. Regenerate with NESSY_COMMAND_CORPUS=<dir> bun scripts/heredoc-shape-slice.ts --write",
+  "generatedBy": "scripts/heredoc-shape-slice.ts",
+  "corpusTakenAt": "2026-09-07",
+  "corpusCommands": 19619,
+  "classes": {
+    "noHeredoc": 15242,
+    "inertBody": 4340,
+    "expandingWithoutSubstitution": 37,
+    "expandingWithSubstitution": 0
+  },
+  "totals": {
+    "bodySpans": 5157,
+    "bodyLines": 120940,
+    "expandingBodies": 46,
+    "executableBodies": 0,
+    "substitutionSpans": 0
+  }
+}

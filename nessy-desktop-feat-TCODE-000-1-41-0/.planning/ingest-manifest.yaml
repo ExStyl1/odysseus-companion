@@ -1,0 +1,75 @@
+docs:
+  - path: docs/architecture/codex-like-workspace-storage.md
+    type: ADR
+  - path: docs/architecture/extension-first-pi-agent-runtime.md
+    type: ADR
+  - path: docs/architecture/file-checkpoint-rewind.md
+    type: ADR
+  - path: docs/architecture/fork-subagents.md
+    type: ADR
+  - path: docs/architecture/guardian-command-judge.md
+    type: ADR
+  - path: docs/architecture/managed-mcp-access.md
+    type: ADR
+  - path: docs/architecture/project-local-nessy-agent-and-workspace-roots.md
+    type: ADR
+  - path: docs/architecture/runtime-capability-gaps.md
+    type: ADR
+  - path: docs/architecture/runtime-control-boundary.md
+    type: ADR
+  - path: docs/architecture/transport-locality.md
+    type: ADR
+  - path: docs/architecture/unified-plugin-adapter-runtime.md
+    type: ADR
+  - path: docs/superpowers/specs/2026-07-25-claude-sdk-typings-spike.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-25-nessy-claude-parity-audit.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-26-r-queue-doc-verification.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-b1-audit.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-deviation-audit.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-deviation-register.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-deviation-worklist.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-inert-contracts.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-inert-worklist.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-known-failing-tests.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-phase4-findings.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-unread-doc-pages.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-29-weekly-changelog-findings.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-30-parity-report.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-30-reverification.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-31-claude-coverage-map.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-31-doc-sweep-phase1.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-07-31-doc-sweep-phase2-partial.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-08-02-claude-doc-sweep-divergences.md
+    type: SPEC
+  - path: docs/superpowers/specs/2026-08-02-claude-doc-sweep-worklist.md
+    type: SPEC
+  - path: docs/testing/2026-08-08-post-wave-verification.md
+    type: DOC
+  - path: docs/testing/cdp-live-checklist.md
+    type: DOC
+  - path: docs/testing/parity-wave-verification-checklist.md
+    type: DOC
+  - path: docs/README.md
+    type: DOC
+  - path: docs/cli.md
+    type: DOC
+  - path: docs/nessy-mobile.md
+    type: DOC

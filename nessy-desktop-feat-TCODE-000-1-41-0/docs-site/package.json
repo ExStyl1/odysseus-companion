@@ -1,0 +1,13 @@
+{
+  "name": "@nessy-desktop/docs-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev content --host 127.0.0.1",
+    "docs:build": "vitepress build content"
+  },
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

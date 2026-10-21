@@ -1,0 +1,28 @@
+{
+  "name": "@nestor/nessy-cli-channel-time",
+  "version": "0.12.4-beta.0",
+  "description": "Channel Time (Mattermost-compatible) channel adapter for Nessy CLI",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "dependencies": {
+    "@nestor/nessy-cli-channel-base": "file:../base",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.0",
+    "typescript": "^5.0.0"
+  }
+}

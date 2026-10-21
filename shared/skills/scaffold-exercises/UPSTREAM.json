@@ -1,0 +1,16 @@
+{
+  "repository": "mattpocock/skills",
+  "revision": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+  "path": "skills/misc/scaffold-exercises",
+  "url": "https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/misc/scaffold-exercises",
+  "upstreamName": "scaffold-exercises",
+  "upstreamFrontmatter": {
+    "name": "scaffold-exercises",
+    "description": "Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section."
+  },
+  "upstreamSkillSha256": "75f5c9d771606fb9762f16522efc954df11c324f87148d8ff069bce166257de9",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

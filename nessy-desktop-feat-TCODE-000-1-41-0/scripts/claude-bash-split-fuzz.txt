@@ -1,0 +1,21 @@
+# claude-bash-split-fuzz — the differential fuzz result, as a dated measurement.
+#
+# NOT a golden file. `--check` asserts the invariant (zero violations), because
+# a shell-oracle census is not reproducible across bash versions and a gate that
+# fails on a different /bin/bash gets turned off. Regenerate with `--write`.
+#
+# Invariant: for any command an allow rule MATCHES, the real shell must not
+# run more simple commands than our splitter offered subcommands. A violation
+# is an approval granted over command text no rule ever examined.
+
+Snapshot: 2026-09-03
+Seed: 20260903
+Cases: 3000
+Shell: GNU bash, version 3.2.57(1)-release (arm64-apple-darwin25)
+Executed: 2627
+Shell refused (syntax error, not a divergence): 373
+Allow verdict unparseable (prompts — safe): 1066
+Allow verdict no-match (grants nothing — safe): 1200
+  of the two bands above, readings that differ from the shell: 1159
+Allow verdict match (the band the invariant governs): 361
+VIOLATIONS: 0

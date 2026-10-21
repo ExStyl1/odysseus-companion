@@ -1,0 +1,17 @@
+{
+  "repository": "JuliusBrussee/caveman",
+  "revision": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",
+  "path": "skills/megacave",
+  "url": "https://github.com/JuliusBrussee/caveman/tree/bad48a0e1df55e05e3f52249afa35ecc1909ee76/skills/megacave",
+  "upstreamName": "megacave",
+  "upstreamFrontmatter": {
+    "name": "megacave",
+    "description": "Caveman in Classical Chinese: 文言文 register, far fewer characters, technical terms verbatim. Invoke only with /megacave or /caveman wenyan. Stays on until \"stop caveman\" or \"normal mode\".\n",
+    "disable-model-invocation": true
+  },
+  "upstreamSkillSha256": "139105296c0686c1ee24610caca1db293ab84162beb0d94aa7a9ad7cbc3352bf",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

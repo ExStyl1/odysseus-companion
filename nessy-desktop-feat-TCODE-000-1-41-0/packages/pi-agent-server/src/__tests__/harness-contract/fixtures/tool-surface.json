@@ -1,0 +1,2557 @@
+{
+  "schemaVersion": 2,
+  "capturedOn": "2026-07-14",
+  "currentPiVersion": "0.87.1",
+  "selectedArtifactoryPiVersion": "0.87.1",
+  "schemaContracts": {
+    "session.submit_plan": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:6b03c72712c353a0e11036515102f347f60bdf6fe5f63d7b40327efd56457eac",
+      "modelSchemaVersion": "live-json-schema/sha256:6b03c72712c353a0e11036515102f347f60bdf6fe5f63d7b40327efd56457eac",
+      "bindingSchemaVersion": "exact-name:mcp__session__SubmitPlan/sha256:6b03c72712c353a0e11036515102f347f60bdf6fe5f63d7b40327efd56457eac",
+      "descriptionDigest": "live-tool-description:sha256:294f0cbad40f892dc94ed134b04fa7e13e10122665b7f7d5ae37ba27eede9b9c",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#SubmitPlan@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.config_validate": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:b3fa173a44ccf49c1a4a5bac11539448d8e0479a661d57a752f191d23ca706a9",
+      "modelSchemaVersion": "live-json-schema/sha256:b3fa173a44ccf49c1a4a5bac11539448d8e0479a661d57a752f191d23ca706a9",
+      "bindingSchemaVersion": "exact-name:mcp__session__config_validate/sha256:b3fa173a44ccf49c1a4a5bac11539448d8e0479a661d57a752f191d23ca706a9",
+      "descriptionDigest": "live-tool-description:sha256:309aa3111cb30e928c837f12a3deb3aa01d786b1ff45941eecb72d81d8472f7f",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#config_validate@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.skill_validate": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:6032b13756398745dcfb34f8353362106f8d07ca37eebaae900d4e6fb85807d7",
+      "modelSchemaVersion": "live-json-schema/sha256:6032b13756398745dcfb34f8353362106f8d07ca37eebaae900d4e6fb85807d7",
+      "bindingSchemaVersion": "exact-name:mcp__session__skill_validate/sha256:6032b13756398745dcfb34f8353362106f8d07ca37eebaae900d4e6fb85807d7",
+      "descriptionDigest": "live-tool-description:sha256:07a149c8fa8cc3ef777cf636bbd90e61d0a6af9328d25a64bb20d3fda6a457ea",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#skill_validate@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.mermaid_validate": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:6f574569cc02622230cf10a9a36af8e13ea68a22b4ece0f9231416eb09e768a6",
+      "modelSchemaVersion": "live-json-schema/sha256:6f574569cc02622230cf10a9a36af8e13ea68a22b4ece0f9231416eb09e768a6",
+      "bindingSchemaVersion": "exact-name:mcp__session__mermaid_validate/sha256:6f574569cc02622230cf10a9a36af8e13ea68a22b4ece0f9231416eb09e768a6",
+      "descriptionDigest": "live-tool-description:sha256:42c2f1a307fe29c3cb8dc76916a24c674a30a4b92187c943756c9472ca603258",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#mermaid_validate@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.source_test": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:6d0a780a93bd67ac0b392bbd4e4a461001d5514fe3f42dabfedf185ee764ed40",
+      "modelSchemaVersion": "live-json-schema/sha256:6d0a780a93bd67ac0b392bbd4e4a461001d5514fe3f42dabfedf185ee764ed40",
+      "bindingSchemaVersion": "exact-name:mcp__session__source_test/sha256:6d0a780a93bd67ac0b392bbd4e4a461001d5514fe3f42dabfedf185ee764ed40",
+      "descriptionDigest": "live-tool-description:sha256:c8843d7b348f9cf8f35957b5b741512ba6a4a90ea93fc05dd5c11f63d9dfb342",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#source_test@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.source_manage": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:2fbad4bd77f6b58ca8a47c1ab0df21d250f5cb87da5dbf20ed095be7a9e6ccd2",
+      "modelSchemaVersion": "live-json-schema/sha256:2fbad4bd77f6b58ca8a47c1ab0df21d250f5cb87da5dbf20ed095be7a9e6ccd2",
+      "bindingSchemaVersion": "exact-name:mcp__session__source_manage/sha256:2fbad4bd77f6b58ca8a47c1ab0df21d250f5cb87da5dbf20ed095be7a9e6ccd2",
+      "descriptionDigest": "live-tool-description:sha256:45f8014f4ce139e72884f89b0787b39882853bbef9b2f4f5e55718747f70be7f",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#source_manage@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.source_oauth_trigger": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:b2c3efba364488d25523eb902d056dfc0919dfe6de4c3c4d976ed7edeb316ddb",
+      "modelSchemaVersion": "live-json-schema/sha256:b2c3efba364488d25523eb902d056dfc0919dfe6de4c3c4d976ed7edeb316ddb",
+      "bindingSchemaVersion": "exact-name:mcp__session__source_oauth_trigger/sha256:b2c3efba364488d25523eb902d056dfc0919dfe6de4c3c4d976ed7edeb316ddb",
+      "descriptionDigest": "live-tool-description:sha256:dda110cb9737478e8ae35613d7c2acddc46bf28ffe420af0d7a670256b3c9e8e",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#source_oauth_trigger@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.source_google_oauth_trigger": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:cf64da4b290fe3de691e50ef91767d5fc552e730be0a22fc72f43aed4d1a9c9f",
+      "modelSchemaVersion": "live-json-schema/sha256:cf64da4b290fe3de691e50ef91767d5fc552e730be0a22fc72f43aed4d1a9c9f",
+      "bindingSchemaVersion": "exact-name:mcp__session__source_google_oauth_trigger/sha256:cf64da4b290fe3de691e50ef91767d5fc552e730be0a22fc72f43aed4d1a9c9f",
+      "descriptionDigest": "live-tool-description:sha256:e7c695b8b8c7cb6f251a505aa23e3a4490c804ea82dc85a91ef9afce81548a2d",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#source_google_oauth_trigger@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.source_credential_prompt": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:2fa0370b08f5dac4917f1da19a323f4c42dc01887fc27e7d1b3cefb754220939",
+      "modelSchemaVersion": "live-json-schema/sha256:2fa0370b08f5dac4917f1da19a323f4c42dc01887fc27e7d1b3cefb754220939",
+      "bindingSchemaVersion": "exact-name:mcp__session__source_credential_prompt/sha256:2fa0370b08f5dac4917f1da19a323f4c42dc01887fc27e7d1b3cefb754220939",
+      "descriptionDigest": "live-tool-description:sha256:205513a49ab177bc887c77198ca96ca6ad65ed8d2337722d2f4f18540f07170f",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#source_credential_prompt@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.update_user_preferences": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:516d4ecf050cff0536b33e7dbfdcead4afcff85795be5f0d27e46f0cc42d9db9",
+      "modelSchemaVersion": "live-json-schema/sha256:516d4ecf050cff0536b33e7dbfdcead4afcff85795be5f0d27e46f0cc42d9db9",
+      "bindingSchemaVersion": "exact-name:mcp__session__update_user_preferences/sha256:516d4ecf050cff0536b33e7dbfdcead4afcff85795be5f0d27e46f0cc42d9db9",
+      "descriptionDigest": "live-tool-description:sha256:3c0dde00bdcbd34714ee344390b60a9d875561dd6141a4e3bc835dfb0df72f1d",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#update_user_preferences@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.remember": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:21059613674006cd36ea98fc7555a7ebc583c0a7ae8fcdac998f477079d4b988",
+      "modelSchemaVersion": "live-json-schema/sha256:21059613674006cd36ea98fc7555a7ebc583c0a7ae8fcdac998f477079d4b988",
+      "bindingSchemaVersion": "exact-name:mcp__session__remember/sha256:21059613674006cd36ea98fc7555a7ebc583c0a7ae8fcdac998f477079d4b988",
+      "descriptionDigest": "live-tool-description:sha256:a1dafe8c97ecaed73203e6d5b91e62103deb199885750ead639e316c4815bf2c",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#remember@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.todo_write": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:2663047b7541495d14ea5da488daa9eb6d74f2376b1c59af4e17ff856fc908f9",
+      "modelSchemaVersion": "live-json-schema/sha256:2663047b7541495d14ea5da488daa9eb6d74f2376b1c59af4e17ff856fc908f9",
+      "bindingSchemaVersion": "exact-name:mcp__session__TodoWrite/sha256:2663047b7541495d14ea5da488daa9eb6d74f2376b1c59af4e17ff856fc908f9",
+      "descriptionDigest": "live-tool-description:sha256:79d317978f5b9a0edcca3fcce27e0a7c6fd0327d945bbb1be66bb99954a6e962",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#TodoWrite@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.task": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:682ca16669bd5ee22483bb52e9d9aad5ca79cb98e07889682daa5e28ea1791f9",
+      "modelSchemaVersion": "live-json-schema/sha256:682ca16669bd5ee22483bb52e9d9aad5ca79cb98e07889682daa5e28ea1791f9",
+      "bindingSchemaVersion": "exact-name:mcp__session__Task/sha256:682ca16669bd5ee22483bb52e9d9aad5ca79cb98e07889682daa5e28ea1791f9",
+      "descriptionDigest": "live-tool-description:sha256:82d247f6b5155e7424620949bdb6c4d8bc09ead85bf0ede388aa256ce2d8d51b",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#Task@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.task_create": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:306410c8e0967d2e1bef0c1a8eb91a4987034de3065e22446cb3dc6bf1fe5634",
+      "modelSchemaVersion": "live-json-schema/sha256:306410c8e0967d2e1bef0c1a8eb91a4987034de3065e22446cb3dc6bf1fe5634",
+      "bindingSchemaVersion": "exact-name:mcp__session__TaskCreate/sha256:306410c8e0967d2e1bef0c1a8eb91a4987034de3065e22446cb3dc6bf1fe5634",
+      "descriptionDigest": "live-tool-description:sha256:c1bef6f157ef668c5b04d634c368f39de8dc696104d4b2b72b3e01a39a4eb01b",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#TaskCreate@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.task_update": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:87730fd52859177a1cac57427b3630b111ec9719f991cdce2a4bdb2d0d2e4a52",
+      "modelSchemaVersion": "live-json-schema/sha256:87730fd52859177a1cac57427b3630b111ec9719f991cdce2a4bdb2d0d2e4a52",
+      "bindingSchemaVersion": "exact-name:mcp__session__TaskUpdate/sha256:87730fd52859177a1cac57427b3630b111ec9719f991cdce2a4bdb2d0d2e4a52",
+      "descriptionDigest": "live-tool-description:sha256:83c4ad0cab7654973af862935ca44052cd2c66c32612eeee080fb7cd40230177",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#TaskUpdate@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.task_get": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:b436632a1127ba723559f6b4f7411c75d5ebd877409f2a623bf5674a969f9e77",
+      "modelSchemaVersion": "live-json-schema/sha256:b436632a1127ba723559f6b4f7411c75d5ebd877409f2a623bf5674a969f9e77",
+      "bindingSchemaVersion": "exact-name:mcp__session__TaskGet/sha256:b436632a1127ba723559f6b4f7411c75d5ebd877409f2a623bf5674a969f9e77",
+      "descriptionDigest": "live-tool-description:sha256:4b79d9802222a477bef59473cc430710b9afb216e6b7647365337245971a02af",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#TaskGet@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.task_list": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "modelSchemaVersion": "live-json-schema/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "bindingSchemaVersion": "exact-name:mcp__session__TaskList/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "descriptionDigest": "live-tool-description:sha256:947f1823599bea038ebdcd84df3ebe526a615247c3079e361cae81d80c9b6025",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#TaskList@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.goal_get": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "modelSchemaVersion": "live-json-schema/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "bindingSchemaVersion": "exact-name:mcp__session__GoalGet/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "descriptionDigest": "live-tool-description:sha256:c4e2fdd1d340e73595e591ed96823f2a29bd63d7e88a7033ea179e809a78a294",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#GoalGet@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.goal": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:9b1dc328384d223a9d6e3b1c0bb2756564c5181a1a16df72e9bf7976bf0c1f25",
+      "modelSchemaVersion": "live-json-schema/sha256:9b1dc328384d223a9d6e3b1c0bb2756564c5181a1a16df72e9bf7976bf0c1f25",
+      "bindingSchemaVersion": "exact-name:mcp__session__Goal/sha256:9b1dc328384d223a9d6e3b1c0bb2756564c5181a1a16df72e9bf7976bf0c1f25",
+      "descriptionDigest": "live-tool-description:sha256:0200b493c07589b918613136128a522c6b8ab091a5647197016800d123055f10",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#Goal@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.web_search": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:42096867a2d25db34990b6407de994f5d020f9a03cc55f65f57b026aa32b3923",
+      "modelSchemaVersion": "live-json-schema/sha256:42096867a2d25db34990b6407de994f5d020f9a03cc55f65f57b026aa32b3923",
+      "bindingSchemaVersion": "exact-name:mcp__session__web_search/sha256:42096867a2d25db34990b6407de994f5d020f9a03cc55f65f57b026aa32b3923",
+      "descriptionDigest": "live-tool-description:sha256:428d6f3a658b34f6f4c07a02f784d1460d671a897e32c5cdfb5014af63655047",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#web_search@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.transform_data": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:8ee9957e1a405b9e856a320bfd3f791c61d8a3ce38e5f41f67dd582c7ff6cfd4",
+      "modelSchemaVersion": "live-json-schema/sha256:8ee9957e1a405b9e856a320bfd3f791c61d8a3ce38e5f41f67dd582c7ff6cfd4",
+      "bindingSchemaVersion": "exact-name:mcp__session__transform_data/sha256:8ee9957e1a405b9e856a320bfd3f791c61d8a3ce38e5f41f67dd582c7ff6cfd4",
+      "descriptionDigest": "live-tool-description:sha256:bc5e9b9606d26fd76fb4476f761cf31748447a1aea1a4de8502443819d5201da",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#transform_data@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.script_sandbox": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:2a500150e8a7cb96f4b1640f8ad51009dbd0e44e3afadf63a42b0a7beeaca2a2",
+      "modelSchemaVersion": "live-json-schema/sha256:2a500150e8a7cb96f4b1640f8ad51009dbd0e44e3afadf63a42b0a7beeaca2a2",
+      "bindingSchemaVersion": "exact-name:mcp__session__script_sandbox/sha256:2a500150e8a7cb96f4b1640f8ad51009dbd0e44e3afadf63a42b0a7beeaca2a2",
+      "descriptionDigest": "live-tool-description:sha256:84bdd51e44dd74ee66d991044b8d0b2d0ecf25bd1e98f8784fa41ab365cc7852",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#script_sandbox@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.render_template": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:9e9a1d7a72b54786f9c24c2b89d28bd876c63b320c7f0ac6340327b7f5244e0d",
+      "modelSchemaVersion": "live-json-schema/sha256:9e9a1d7a72b54786f9c24c2b89d28bd876c63b320c7f0ac6340327b7f5244e0d",
+      "bindingSchemaVersion": "exact-name:mcp__session__render_template/sha256:9e9a1d7a72b54786f9c24c2b89d28bd876c63b320c7f0ac6340327b7f5244e0d",
+      "descriptionDigest": "live-tool-description:sha256:2b1cb4eb1b8e692af70f1a8ed6153d0b0110505965a27034490f839cc1b9609e",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#render_template@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.send_developer_feedback": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:29be945a3f9c3a9c7f60b81f5ef3fe0e7303ed9cd3096e98f1d1a016960655dd",
+      "modelSchemaVersion": "live-json-schema/sha256:29be945a3f9c3a9c7f60b81f5ef3fe0e7303ed9cd3096e98f1d1a016960655dd",
+      "bindingSchemaVersion": "exact-name:mcp__session__send_developer_feedback/sha256:29be945a3f9c3a9c7f60b81f5ef3fe0e7303ed9cd3096e98f1d1a016960655dd",
+      "descriptionDigest": "live-tool-description:sha256:46e86e51374867b926c0118038092cf114b6cb6c01386c41f0c4d23518a5635b",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#send_developer_feedback@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.call_llm": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:bf00cd64e875f2a8615c8080bf1edd9267979dd0c5e49feee1cc88542cf9623f",
+      "modelSchemaVersion": "live-json-schema/sha256:bf00cd64e875f2a8615c8080bf1edd9267979dd0c5e49feee1cc88542cf9623f",
+      "bindingSchemaVersion": "exact-name:mcp__session__call_llm/sha256:bf00cd64e875f2a8615c8080bf1edd9267979dd0c5e49feee1cc88542cf9623f",
+      "descriptionDigest": "live-tool-description:sha256:5d334d3ef165169c389e3a6315eb15a669f22ed48cd5f499b912ce044391a25f",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#call_llm@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.decide": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:12ed6e214b0619ae21b3cdc7eaef3042f8a6ccaf3177bdd7acb9b96fec8cd8d7",
+      "modelSchemaVersion": "live-json-schema/sha256:12ed6e214b0619ae21b3cdc7eaef3042f8a6ccaf3177bdd7acb9b96fec8cd8d7",
+      "bindingSchemaVersion": "exact-name:mcp__session__decide/sha256:12ed6e214b0619ae21b3cdc7eaef3042f8a6ccaf3177bdd7acb9b96fec8cd8d7",
+      "descriptionDigest": "live-tool-description:sha256:a0ae5acde621b3f75bf4b9a3e39dd204ec227181b9437c1c325b7db16fb91e29",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#decide@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.advisor_consult": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:1f67eada3c0f851f797bcbce4110916301ab933468e332b1a2df4f22567e754e",
+      "modelSchemaVersion": "live-json-schema/sha256:1f67eada3c0f851f797bcbce4110916301ab933468e332b1a2df4f22567e754e",
+      "bindingSchemaVersion": "exact-name:mcp__session__advisor_consult/sha256:1f67eada3c0f851f797bcbce4110916301ab933468e332b1a2df4f22567e754e",
+      "descriptionDigest": "live-tool-description:sha256:0ae686cc72f84f754f569798e075b05311aa9babd3be83b7020ba69f19509dfa",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#advisor_consult@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.spawn_session": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:a4a345ed19382c230e4783a1b61495d1c37afcdb1383258558aa5dc62ba5c1ea",
+      "modelSchemaVersion": "live-json-schema/sha256:a4a345ed19382c230e4783a1b61495d1c37afcdb1383258558aa5dc62ba5c1ea",
+      "bindingSchemaVersion": "exact-name:mcp__session__spawn_session/sha256:a4a345ed19382c230e4783a1b61495d1c37afcdb1383258558aa5dc62ba5c1ea",
+      "descriptionDigest": "live-tool-description:sha256:a8f8ef6f3151658fca319e409d4b7fb22b0dc5b6a66d22b40a1ae94315f6fb0c",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#spawn_session@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.browser_tool": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:ce2b0d4697d9ba8bf7516d0ab53ad18071cea8872e6a7065d6a6340ecf936870",
+      "modelSchemaVersion": "live-json-schema/sha256:ce2b0d4697d9ba8bf7516d0ab53ad18071cea8872e6a7065d6a6340ecf936870",
+      "bindingSchemaVersion": "exact-name:mcp__session__browser_tool/sha256:ce2b0d4697d9ba8bf7516d0ab53ad18071cea8872e6a7065d6a6340ecf936870",
+      "descriptionDigest": "live-tool-description:sha256:46b69e343c871904b9195b5ff7ac326fc40d3ded64714ce1b438e482cbbda11e",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#browser_tool@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.review_diff": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:6cdde68733dce2fed2af46446669889d9cd8767f2b42b47b0e97e0aa9ee81a7b",
+      "modelSchemaVersion": "live-json-schema/sha256:6cdde68733dce2fed2af46446669889d9cd8767f2b42b47b0e97e0aa9ee81a7b",
+      "bindingSchemaVersion": "exact-name:mcp__session__ReviewDiff/sha256:6cdde68733dce2fed2af46446669889d9cd8767f2b42b47b0e97e0aa9ee81a7b",
+      "descriptionDigest": "live-tool-description:sha256:0178c4fe1c0222ab1b6c9ab6da7bcf6670f3c4352ff2880e15e117f0947fbce8",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#ReviewDiff@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.slash_command": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:2d57f61360e6fcf7ae87779c70a6be5d4752e0d315ce760361d7e0d666de61cd",
+      "modelSchemaVersion": "live-json-schema/sha256:2d57f61360e6fcf7ae87779c70a6be5d4752e0d315ce760361d7e0d666de61cd",
+      "bindingSchemaVersion": "exact-name:mcp__session__SlashCommand/sha256:2d57f61360e6fcf7ae87779c70a6be5d4752e0d315ce760361d7e0d666de61cd",
+      "descriptionDigest": "live-tool-description:sha256:61a7bc62a3f7a405c3a65d8c49a065cda72cc94bdea82f1b08da85f7dac7cb41",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#SlashCommand@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.bash_output": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:5417514ad8aeef9437098f46dda2b8788eac8caf2c480fe0fb7a7334346d21ad",
+      "modelSchemaVersion": "live-json-schema/sha256:5417514ad8aeef9437098f46dda2b8788eac8caf2c480fe0fb7a7334346d21ad",
+      "bindingSchemaVersion": "exact-name:mcp__session__BashOutput/sha256:5417514ad8aeef9437098f46dda2b8788eac8caf2c480fe0fb7a7334346d21ad",
+      "descriptionDigest": "live-tool-description:sha256:5b3514707568f781f4c645b66416b43a24ae49168e6a8b4b3a41d3a14dc90332",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#BashOutput@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.process_stop": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:c40bc78656f480cd22a19201c9d4e563415f595f72b9e5e65adb2dfac4c1a373",
+      "modelSchemaVersion": "live-json-schema/sha256:c40bc78656f480cd22a19201c9d4e563415f595f72b9e5e65adb2dfac4c1a373",
+      "bindingSchemaVersion": "exact-name:mcp__session__ProcessStop/sha256:c40bc78656f480cd22a19201c9d4e563415f595f72b9e5e65adb2dfac4c1a373",
+      "descriptionDigest": "live-tool-description:sha256:41f34315d2fd8f08d41a88453c74f1e37db2abdf764a07cfe82a17aacb213ada",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#ProcessStop@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.monitor": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:cd5ba9c8c896c482307416bbdb79a491a04233e66d0d0607e7effe3d6875c6ed",
+      "modelSchemaVersion": "live-json-schema/sha256:cd5ba9c8c896c482307416bbdb79a491a04233e66d0d0607e7effe3d6875c6ed",
+      "bindingSchemaVersion": "exact-name:mcp__session__Monitor/sha256:cd5ba9c8c896c482307416bbdb79a491a04233e66d0d0607e7effe3d6875c6ed",
+      "descriptionDigest": "live-tool-description:sha256:5ec53b904b7abe533b3c53c21dbb43673ead4ab2882d84c44cf4d85b0b1e4484",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#Monitor@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.enter_worktree": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:bae31a03966baa8de6db4923d956994f227589f74e68b8a958b167c6be567c5e",
+      "modelSchemaVersion": "live-json-schema/sha256:bae31a03966baa8de6db4923d956994f227589f74e68b8a958b167c6be567c5e",
+      "bindingSchemaVersion": "exact-name:mcp__session__EnterWorktree/sha256:bae31a03966baa8de6db4923d956994f227589f74e68b8a958b167c6be567c5e",
+      "descriptionDigest": "live-tool-description:sha256:9e594ff1ba821bceb887a0e5c7188ad375e2f78585d1401190487a39ba91917f",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#EnterWorktree@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.exit_worktree": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:16e5a70f43f7f729d57fe1bea0edd998c8ed961d1a7b4f5620ec1bdf67778f85",
+      "modelSchemaVersion": "live-json-schema/sha256:16e5a70f43f7f729d57fe1bea0edd998c8ed961d1a7b4f5620ec1bdf67778f85",
+      "bindingSchemaVersion": "exact-name:mcp__session__ExitWorktree/sha256:16e5a70f43f7f729d57fe1bea0edd998c8ed961d1a7b4f5620ec1bdf67778f85",
+      "descriptionDigest": "live-tool-description:sha256:1f1995e24751b96693c6b96a32aab3af2829cd65f45e54bf10f3791eabcabffb",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#ExitWorktree@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.worktree_batch": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:19b750d5e08d716314b34da01a20a3ce27615b775c77938ec1775b33d84c125c",
+      "modelSchemaVersion": "live-json-schema/sha256:19b750d5e08d716314b34da01a20a3ce27615b775c77938ec1775b33d84c125c",
+      "bindingSchemaVersion": "exact-name:mcp__session__WorktreeBatch/sha256:19b750d5e08d716314b34da01a20a3ce27615b775c77938ec1775b33d84c125c",
+      "descriptionDigest": "live-tool-description:sha256:56823592b24c6cbd0cb1a706dd0ac0166764f30a5ee43be233579471756dbedd",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#WorktreeBatch@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.set_labels": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:851066ea3c6f24c8eea68c395c0ea689452e76d988f0c48f5200dfb114f59464",
+      "modelSchemaVersion": "live-json-schema/sha256:851066ea3c6f24c8eea68c395c0ea689452e76d988f0c48f5200dfb114f59464",
+      "bindingSchemaVersion": "exact-name:mcp__session__set_session_labels/sha256:851066ea3c6f24c8eea68c395c0ea689452e76d988f0c48f5200dfb114f59464",
+      "descriptionDigest": "live-tool-description:sha256:032a327b83196febc8fc430192b375d7371d5663b262604f92237176a4b946db",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#set_session_labels@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.set_status": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:5234d4cb2935f95431e8926752d527fe514c9af5257e71dbadcb91da9266b1e7",
+      "modelSchemaVersion": "live-json-schema/sha256:5234d4cb2935f95431e8926752d527fe514c9af5257e71dbadcb91da9266b1e7",
+      "bindingSchemaVersion": "exact-name:mcp__session__set_session_status/sha256:5234d4cb2935f95431e8926752d527fe514c9af5257e71dbadcb91da9266b1e7",
+      "descriptionDigest": "live-tool-description:sha256:bd068331f4c743d477e588c9d366981120b4a746c71ae29809fb4afe7b51ec70",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#set_session_status@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.archive": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:a9bb0f69b11e93a695b89da37ac3541ef319681cb69f37e31a6bb575cd4fc934",
+      "modelSchemaVersion": "live-json-schema/sha256:a9bb0f69b11e93a695b89da37ac3541ef319681cb69f37e31a6bb575cd4fc934",
+      "bindingSchemaVersion": "exact-name:mcp__session__archive_session/sha256:a9bb0f69b11e93a695b89da37ac3541ef319681cb69f37e31a6bb575cd4fc934",
+      "descriptionDigest": "live-tool-description:sha256:b95c0546bf99dbd7b8ce32874fdf11a16f51fd21a1855f795ee301828a98b332",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#archive_session@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.get_info": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:47ee38bf5a31064d1f6b75b696e61377638415255608484e3b58d07aa054aa33",
+      "modelSchemaVersion": "live-json-schema/sha256:47ee38bf5a31064d1f6b75b696e61377638415255608484e3b58d07aa054aa33",
+      "bindingSchemaVersion": "exact-name:mcp__session__get_session_info/sha256:47ee38bf5a31064d1f6b75b696e61377638415255608484e3b58d07aa054aa33",
+      "descriptionDigest": "live-tool-description:sha256:993e67d48865bcf4e7b3aa6e148cda5ed641c59abd508ff13062e4fde9a51d2a",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#get_session_info@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.list": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:e5741d5fb237802d373006c3337de4c9de587353992bd278905238bc67700984",
+      "modelSchemaVersion": "live-json-schema/sha256:e5741d5fb237802d373006c3337de4c9de587353992bd278905238bc67700984",
+      "bindingSchemaVersion": "exact-name:mcp__session__list_sessions/sha256:e5741d5fb237802d373006c3337de4c9de587353992bd278905238bc67700984",
+      "descriptionDigest": "live-tool-description:sha256:e3e774024b30e5baf3a42450577fd03d7aa84502c95828c0b9395ab0fed5eed6",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#list_sessions@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.list_mcp_resources": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:8d3e462767770ac1286dc68e9312a032bc08f3fb5982c82deca93226a77f0e93",
+      "modelSchemaVersion": "live-json-schema/sha256:8d3e462767770ac1286dc68e9312a032bc08f3fb5982c82deca93226a77f0e93",
+      "bindingSchemaVersion": "exact-name:mcp__session__list_mcp_resources/sha256:8d3e462767770ac1286dc68e9312a032bc08f3fb5982c82deca93226a77f0e93",
+      "descriptionDigest": "live-tool-description:sha256:894ac4966b4540c05d3b60c422437df42741bcd9a5f2ebd4dca758eceb1cffdf",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#list_mcp_resources@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.read_mcp_resource": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:6b73728f6936d4157556cc4f154c12e5aebe95751e460dc9b19d5e631601313c",
+      "modelSchemaVersion": "live-json-schema/sha256:6b73728f6936d4157556cc4f154c12e5aebe95751e460dc9b19d5e631601313c",
+      "bindingSchemaVersion": "exact-name:mcp__session__read_mcp_resource/sha256:6b73728f6936d4157556cc4f154c12e5aebe95751e460dc9b19d5e631601313c",
+      "descriptionDigest": "live-tool-description:sha256:e1e222fcd5cbd9fae1071c604f233e6dda9fb29257f24818841a4b87d6d60ee7",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#read_mcp_resource@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.source_list_prompts": {
+  "evidenceKind": "live-json-schema",
+  "schemaIdentity": "live-json-schema:sha256:576fd02ce58eb4146208159bc7b697b13d982237b4e2adf621127a7f8db95e32",
+  "modelSchemaVersion": "live-json-schema/sha256:576fd02ce58eb4146208159bc7b697b13d982237b4e2adf621127a7f8db95e32",
+  "bindingSchemaVersion": "exact-name:mcp__session__source_list_prompts/sha256:576fd02ce58eb4146208159bc7b697b13d982237b4e2adf621127a7f8db95e32",
+  "descriptionDigest": "live-tool-description:sha256:55f1a6c193f76207424d2b855f6a50fb9d3c037a9b09f6951da35055a9cbcb02",
+  "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#source_list_prompts@e3357945a45ad6dd45019cc53944a9a071788503",
+  "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+  "resultCodec": "ProxyExecutionResult->AgentToolResult"
+},
+    "session.source_get_prompt": {
+  "evidenceKind": "live-json-schema",
+  "schemaIdentity": "live-json-schema:sha256:47aba4628c2665feeaa491817f8d3f1f552b7f2503e99a4a38dc293a23989e5b",
+  "modelSchemaVersion": "live-json-schema/sha256:47aba4628c2665feeaa491817f8d3f1f552b7f2503e99a4a38dc293a23989e5b",
+  "bindingSchemaVersion": "exact-name:mcp__session__source_get_prompt/sha256:47aba4628c2665feeaa491817f8d3f1f552b7f2503e99a4a38dc293a23989e5b",
+  "descriptionDigest": "live-tool-description:sha256:049d1bf2aaba45bbc295bdba9078d5ff960d19b31c216f52ad4b9689e3508a7f",
+  "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#source_get_prompt@e3357945a45ad6dd45019cc53944a9a071788503",
+  "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+  "resultCodec": "ProxyExecutionResult->AgentToolResult"
+},
+    "session.read_skill_resource": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:78b7fd78d392d74f71f16e3534f6ce793c869d6a1d944e9e275958bbbe384b1a",
+      "modelSchemaVersion": "live-json-schema/sha256:78b7fd78d392d74f71f16e3534f6ce793c869d6a1d944e9e275958bbbe384b1a",
+      "bindingSchemaVersion": "exact-name:mcp__session__read_skill_resource/sha256:78b7fd78d392d74f71f16e3534f6ce793c869d6a1d944e9e275958bbbe384b1a",
+      "descriptionDigest": "live-tool-description:sha256:0450b40db6678f6f5e93a4dc504b72d43926516c89e955b1da3c333c9fda5b50",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#read_skill_resource@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "automation.list": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:a1a2cdb1c8560b5c448fb57906da6939d2bbd7566d6b078aed0cc4ea85e4a37a",
+      "modelSchemaVersion": "live-json-schema/sha256:a1a2cdb1c8560b5c448fb57906da6939d2bbd7566d6b078aed0cc4ea85e4a37a",
+      "bindingSchemaVersion": "exact-name:mcp__session__automation_list/sha256:a1a2cdb1c8560b5c448fb57906da6939d2bbd7566d6b078aed0cc4ea85e4a37a",
+      "descriptionDigest": "live-tool-description:sha256:baa8cfa950720254958489678dad3ed6320a96faa8e63f9d84433a864aa1c7a8",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#automation_list@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "automation.validate": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "modelSchemaVersion": "live-json-schema/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "bindingSchemaVersion": "exact-name:mcp__session__automation_validate/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "descriptionDigest": "live-tool-description:sha256:1cc20f03340ad5e5c873ad3be41cd6395a80841c303b8fe354f10cf6d6cace97",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#automation_validate@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "automation.create": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:8dd0a11e0ea55a3d3a1cb37be8d02092a7edba33d0e6f31aec057e930c512b80",
+      "modelSchemaVersion": "live-json-schema/sha256:8dd0a11e0ea55a3d3a1cb37be8d02092a7edba33d0e6f31aec057e930c512b80",
+      "bindingSchemaVersion": "exact-name:mcp__session__automation_create/sha256:8dd0a11e0ea55a3d3a1cb37be8d02092a7edba33d0e6f31aec057e930c512b80",
+      "descriptionDigest": "live-tool-description:sha256:48f92f5c177a22674432643a2248764acdba56706a0b0798699a653b4babb5c0",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#automation_create@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "automation.update": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:ab47db12d9547c5ad895c4c9a4c6fc9b07d154f2ee4218644d6f4366f4fbe4b0",
+      "modelSchemaVersion": "live-json-schema/sha256:ab47db12d9547c5ad895c4c9a4c6fc9b07d154f2ee4218644d6f4366f4fbe4b0",
+      "bindingSchemaVersion": "exact-name:mcp__session__automation_update/sha256:ab47db12d9547c5ad895c4c9a4c6fc9b07d154f2ee4218644d6f4366f4fbe4b0",
+      "descriptionDigest": "live-tool-description:sha256:6721b169adb8b9de795ff8ef1a96fa0bbec3e63b11f9957b1835a9bbb3dcf09f",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#automation_update@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.send_agent_message": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:71892e2417f548522bf4beb3e30a57dfe0fecf1a4f9d85774a51f79f1451a0c3",
+      "modelSchemaVersion": "live-json-schema/sha256:71892e2417f548522bf4beb3e30a57dfe0fecf1a4f9d85774a51f79f1451a0c3",
+      "bindingSchemaVersion": "exact-name:mcp__session__send_agent_message/sha256:71892e2417f548522bf4beb3e30a57dfe0fecf1a4f9d85774a51f79f1451a0c3",
+      "descriptionDigest": "live-tool-description:sha256:5e05882752a2895ea8d4063fadfeebb43561f9fb40cf6d149f775acbf038b1ed",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#send_agent_message@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "plugin.plan_install": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:3370cfcd722df63a9fca6328302a747cb61a4236ff4f3934ec0d96ddfb45f153",
+      "modelSchemaVersion": "live-json-schema/sha256:3370cfcd722df63a9fca6328302a747cb61a4236ff4f3934ec0d96ddfb45f153",
+      "bindingSchemaVersion": "exact-name:mcp__session__plugin_plan_install/sha256:3370cfcd722df63a9fca6328302a747cb61a4236ff4f3934ec0d96ddfb45f153",
+      "descriptionDigest": "live-tool-description:sha256:cdf7f22727157edff6e31f3f44d12652203a16c0bc927b4a48b8b95ed9802613",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#plugin_plan_install@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "plugin.install": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:19c910ad21508f26991cf77188ce8e2513d00477e9d823c6798da28b98cc28df",
+      "modelSchemaVersion": "live-json-schema/sha256:19c910ad21508f26991cf77188ce8e2513d00477e9d823c6798da28b98cc28df",
+      "bindingSchemaVersion": "exact-name:mcp__session__plugin_install/sha256:19c910ad21508f26991cf77188ce8e2513d00477e9d823c6798da28b98cc28df",
+      "descriptionDigest": "live-tool-description:sha256:e63622c5cbc540c2d7814872a13c092eb9c1236b83ed6773954146d95b36f026",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#plugin_install@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "plugin.status": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:77306fca0518a652243032ddec0b539f418bb50c036c3f75f68b4eff9ae7109a",
+      "modelSchemaVersion": "live-json-schema/sha256:77306fca0518a652243032ddec0b539f418bb50c036c3f75f68b4eff9ae7109a",
+      "bindingSchemaVersion": "exact-name:mcp__session__plugin_status/sha256:77306fca0518a652243032ddec0b539f418bb50c036c3f75f68b4eff9ae7109a",
+      "descriptionDigest": "live-tool-description:sha256:edef416f7c32e11d2e1603b5558095f7979c267f3b995b9bf3b686ad43123b5c",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#plugin_status@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "plugin.manage": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:443afb22d789cf6ebbe89ec40be5decacf3f0d2dbd7912438334878e97751de3",
+      "modelSchemaVersion": "live-json-schema/sha256:443afb22d789cf6ebbe89ec40be5decacf3f0d2dbd7912438334878e97751de3",
+      "bindingSchemaVersion": "exact-name:mcp__session__plugin_manage/sha256:443afb22d789cf6ebbe89ec40be5decacf3f0d2dbd7912438334878e97751de3",
+      "descriptionDigest": "live-tool-description:sha256:15f47bf0f795bfe85faaa41ae6dad71f0431256737070cd2ea2342f5e8a4296f",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#plugin_manage@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.report_findings": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:0c2104dcbde5e8917914ef09e224bc3f3ef91a6d6733bac26b0fc94ea32a4e49",
+      "modelSchemaVersion": "live-json-schema/sha256:0c2104dcbde5e8917914ef09e224bc3f3ef91a6d6733bac26b0fc94ea32a4e49",
+      "bindingSchemaVersion": "exact-name:mcp__session__ReportFindings/sha256:0c2104dcbde5e8917914ef09e224bc3f3ef91a6d6733bac26b0fc94ea32a4e49",
+      "descriptionDigest": "live-tool-description:sha256:27308900e41ad651e3230b072e015b531691246ca04e27984112c578a834d28b",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#ReportFindings@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.push_notification": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:ba49b63a7c7dfd635046e572adf6dd2422bc0a84d22f882a731540fc4a5b38d1",
+      "modelSchemaVersion": "live-json-schema/sha256:ba49b63a7c7dfd635046e572adf6dd2422bc0a84d22f882a731540fc4a5b38d1",
+      "bindingSchemaVersion": "exact-name:mcp__session__PushNotification/sha256:ba49b63a7c7dfd635046e572adf6dd2422bc0a84d22f882a731540fc4a5b38d1",
+      "descriptionDigest": "live-tool-description:sha256:d7b11899269cefd089f35c2f29c16f214d2d160300780c9c1a9278402b5e5df2",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#PushNotification@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.send_user_file": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:02dad4965d1fc175627aca0647bb796271ed0b090186006486be1486cca538a2",
+      "modelSchemaVersion": "live-json-schema/sha256:02dad4965d1fc175627aca0647bb796271ed0b090186006486be1486cca538a2",
+      "bindingSchemaVersion": "exact-name:mcp__session__SendUserFile/sha256:02dad4965d1fc175627aca0647bb796271ed0b090186006486be1486cca538a2",
+      "descriptionDigest": "live-tool-description:sha256:7a5ce43f001cb3ffa20e657c5685eed427d6b2098979a34d90148f69729c5135",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#SendUserFile@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.cron_create": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:242f1a3b2991a53c590d7ec1aec729dca391bb02ca8909a3a38e53079766acaa",
+      "modelSchemaVersion": "live-json-schema/sha256:242f1a3b2991a53c590d7ec1aec729dca391bb02ca8909a3a38e53079766acaa",
+      "bindingSchemaVersion": "exact-name:mcp__session__CronCreate/sha256:242f1a3b2991a53c590d7ec1aec729dca391bb02ca8909a3a38e53079766acaa",
+      "descriptionDigest": "live-tool-description:sha256:90e1ca4874a540d7d9f216db4e01f810975146ea2c68c1412bd0da3e645c649d",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#CronCreate@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.cron_list": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "modelSchemaVersion": "live-json-schema/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "bindingSchemaVersion": "exact-name:mcp__session__CronList/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "descriptionDigest": "live-tool-description:sha256:6f843b7b2b1cdb3fbaa47e352b965b67ac59c74eb96aa9fc2a8aac7a4f63f18d",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#CronList@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.cron_delete": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:b987ed73cb03f7c7df8bf3e5e444134483ab936f15be050e08996c2d051ec4cd",
+      "modelSchemaVersion": "live-json-schema/sha256:b987ed73cb03f7c7df8bf3e5e444134483ab936f15be050e08996c2d051ec4cd",
+      "bindingSchemaVersion": "exact-name:mcp__session__CronDelete/sha256:b987ed73cb03f7c7df8bf3e5e444134483ab936f15be050e08996c2d051ec4cd",
+      "descriptionDigest": "live-tool-description:sha256:b702e81f50e87d9f0ec3f07ed1f9537624a2526aff213fc9c7a87f07e9ba14a9",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#CronDelete@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.cron_control": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:3b73864940d54e6a829458974aee72dd1a8567d242c4b9238d9a6231e5a647a9",
+      "modelSchemaVersion": "live-json-schema/sha256:3b73864940d54e6a829458974aee72dd1a8567d242c4b9238d9a6231e5a647a9",
+      "bindingSchemaVersion": "exact-name:mcp__session__CronControl/sha256:3b73864940d54e6a829458974aee72dd1a8567d242c4b9238d9a6231e5a647a9",
+      "descriptionDigest": "live-tool-description:sha256:8dcc16f4bca588bc75c29f2e27ea6fc2fd2cb8e7f9ad1ec22035406ac775b2e3",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#CronControl@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.schedule_wakeup": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:f2ac83b5cc7faf34067aa6e1e87af758729fe822420fcf28ed779148e6e2acea",
+      "modelSchemaVersion": "live-json-schema/sha256:f2ac83b5cc7faf34067aa6e1e87af758729fe822420fcf28ed779148e6e2acea",
+      "bindingSchemaVersion": "exact-name:mcp__session__ScheduleWakeup/sha256:f2ac83b5cc7faf34067aa6e1e87af758729fe822420fcf28ed779148e6e2acea",
+      "descriptionDigest": "live-tool-description:sha256:8fffe46b067ac78aa7f8c65d939275adc6e1d535b91fabc81f918050c8ebde19",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#ScheduleWakeup@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.publish_artifact": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:bea87654e18c864f319d60f2070ce495fac32bb9182ef4016b4949e471e14016",
+      "modelSchemaVersion": "live-json-schema/sha256:bea87654e18c864f319d60f2070ce495fac32bb9182ef4016b4949e471e14016",
+      "bindingSchemaVersion": "exact-name:mcp__session__publish_artifact/sha256:bea87654e18c864f319d60f2070ce495fac32bb9182ef4016b4949e471e14016",
+      "descriptionDigest": "live-tool-description:sha256:b384f0a12d281fdd0ea601160ba518ed014f3f2b5e060f5928b8547779604ad0",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#publish_artifact@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.list_artifacts": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "modelSchemaVersion": "live-json-schema/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "bindingSchemaVersion": "exact-name:mcp__session__list_artifacts/sha256:efddc7bd8bbcef73a14eb1ace1ffdaec81e518ef1e13c1e9271d0b8acb694a49",
+      "descriptionDigest": "live-tool-description:sha256:e1b97cae436d727d8e9990250fa560c9e4675fd02c1007f08137ce6e97d2a542",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#list_artifacts@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.create_board_task": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:13ad8fa71672902c16b4b81640e23245f6e47c00deca4dcd454b23ac44922ab2",
+      "modelSchemaVersion": "live-json-schema/sha256:13ad8fa71672902c16b4b81640e23245f6e47c00deca4dcd454b23ac44922ab2",
+      "bindingSchemaVersion": "exact-name:mcp__session__create_board_task/sha256:13ad8fa71672902c16b4b81640e23245f6e47c00deca4dcd454b23ac44922ab2",
+      "descriptionDigest": "live-tool-description:sha256:72d27d2f3343d1641b38297cc224af6437ca3f5e5bc47aa8820aba0a5ec044da",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#create_board_task@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.list_pages": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:1282834721277dcf6527569050a73458e31f50da3629a49f424bdb581f501613",
+      "modelSchemaVersion": "live-json-schema/sha256:1282834721277dcf6527569050a73458e31f50da3629a49f424bdb581f501613",
+      "bindingSchemaVersion": "exact-name:mcp__session__list_pages/sha256:1282834721277dcf6527569050a73458e31f50da3629a49f424bdb581f501613",
+      "descriptionDigest": "live-tool-description:sha256:13720ce5f8eea427842c984e1db314166aa95925c526de42ce81589cbd4a11fc",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#list_pages@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.get_page": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:500cdce2d0734804dab9a8e4f027a3e659278c4e7ae82cdd520ea763f8111133",
+      "modelSchemaVersion": "live-json-schema/sha256:500cdce2d0734804dab9a8e4f027a3e659278c4e7ae82cdd520ea763f8111133",
+      "bindingSchemaVersion": "exact-name:mcp__session__get_page/sha256:500cdce2d0734804dab9a8e4f027a3e659278c4e7ae82cdd520ea763f8111133",
+      "descriptionDigest": "live-tool-description:sha256:7825252f3e4aabdc3b9e0a0a1b6c04100f145cc73c3d7513f6e490bd47d3e545",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#get_page@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.create_page": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:8a32ca379aa4a8416f11006c8688c9353d28b999bc361f3eeefe63d112abf43d",
+      "modelSchemaVersion": "live-json-schema/sha256:8a32ca379aa4a8416f11006c8688c9353d28b999bc361f3eeefe63d112abf43d",
+      "bindingSchemaVersion": "exact-name:mcp__session__create_page/sha256:8a32ca379aa4a8416f11006c8688c9353d28b999bc361f3eeefe63d112abf43d",
+      "descriptionDigest": "live-tool-description:sha256:8f35cafdedee44476a4a6bb23c1edc4f6195a002d4cf7e3e81fe586d6eb2ddff",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#create_page@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.update_page": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:09dd221f763931d4514f270a23aef4640cc490cbe08ba5f5c9248cdfbe54e039",
+      "modelSchemaVersion": "live-json-schema/sha256:09dd221f763931d4514f270a23aef4640cc490cbe08ba5f5c9248cdfbe54e039",
+      "bindingSchemaVersion": "exact-name:mcp__session__update_page/sha256:09dd221f763931d4514f270a23aef4640cc490cbe08ba5f5c9248cdfbe54e039",
+      "descriptionDigest": "live-tool-description:sha256:e3efec7b37de386d1f48444fe4840f21f0ed285420fe027935293b9e6f79bdbe",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#update_page@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.write_page_data": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:aead4c17534b64364e91e270c0c19aa79a0eafd13355a48cde6926b275c2d9f0",
+      "modelSchemaVersion": "live-json-schema/sha256:aead4c17534b64364e91e270c0c19aa79a0eafd13355a48cde6926b275c2d9f0",
+      "bindingSchemaVersion": "exact-name:mcp__session__write_page_data/sha256:aead4c17534b64364e91e270c0c19aa79a0eafd13355a48cde6926b275c2d9f0",
+      "descriptionDigest": "live-tool-description:sha256:b256af4c83ed42dd352539a3237b227a43fbb89fef6a7ef368fcecb6ce910719",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#write_page_data@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.delete_page": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:4f5f2b7e567aa9d5dd0d467bc8a04e84375c11ce16ff0a2adfccdec58133909b",
+      "modelSchemaVersion": "live-json-schema/sha256:4f5f2b7e567aa9d5dd0d467bc8a04e84375c11ce16ff0a2adfccdec58133909b",
+      "bindingSchemaVersion": "exact-name:mcp__session__delete_page/sha256:4f5f2b7e567aa9d5dd0d467bc8a04e84375c11ce16ff0a2adfccdec58133909b",
+      "descriptionDigest": "live-tool-description:sha256:ba0f3c27db7e7fb0f864100c1aa1ec09a2c8b0a70277a7da73a56405a36b3145",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#delete_page@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "session.project_memory_append": {
+      "evidenceKind": "live-json-schema",
+      "schemaIdentity": "live-json-schema:sha256:255fda33dc7edbd054ca403a5003524bab06142cd5f7ab36b9b5c9fcfd6e9bfb",
+      "modelSchemaVersion": "live-json-schema/sha256:255fda33dc7edbd054ca403a5003524bab06142cd5f7ab36b9b5c9fcfd6e9bfb",
+      "bindingSchemaVersion": "exact-name:mcp__session__project_memory_append/sha256:255fda33dc7edbd054ca403a5003524bab06142cd5f7ab36b9b5c9fcfd6e9bfb",
+      "descriptionDigest": "live-tool-description:sha256:6c297420c1018b2b354c6b23035920dda97e99dc4e2f9f4a4c3a389140eb375b",
+      "handlerSchemaVersion": "packages/session-tools-core/src/tool-defs.ts#project_memory_append@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "getToolDefsAsJsonSchema:zodToJsonSchema($refStrategy=none)",
+      "resultCodec": "ProxyExecutionResult->AgentToolResult"
+    },
+    "file.read": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:5fad0fa7493528bc4284f5c447781325f67099f5fc018206efdc461d33962e85",
+      "modelSchemaVersion": "live-tool-parameters/sha256:5fad0fa7493528bc4284f5c447781325f67099f5fc018206efdc461d33962e85",
+      "bindingSchemaVersion": "exact-name:read/sha256:5fad0fa7493528bc4284f5c447781325f67099f5fc018206efdc461d33962e85",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions.read.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "process.shell": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:cd5abcf8ae72d017238c2cd1de84b121eb389c2699261a16ede062a0730be484",
+      "modelSchemaVersion": "live-tool-parameters/sha256:cd5abcf8ae72d017238c2cd1de84b121eb389c2699261a16ede062a0730be484",
+      "bindingSchemaVersion": "exact-name:bash/sha256:cd5abcf8ae72d017238c2cd1de84b121eb389c2699261a16ede062a0730be484",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions.bash.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "file.edit": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:35f838a1c312a5795b1fc1f7b36fba400cc87229a0025c42c248f12f43ff6d6f",
+      "modelSchemaVersion": "live-tool-parameters/sha256:35f838a1c312a5795b1fc1f7b36fba400cc87229a0025c42c248f12f43ff6d6f",
+      "bindingSchemaVersion": "exact-name:edit/sha256:35f838a1c312a5795b1fc1f7b36fba400cc87229a0025c42c248f12f43ff6d6f",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions.edit.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "file.write": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:7e51d1de0f2ccb5fe8de82d51ee3a1d9065e3c4f7c53497ce12f283d6f2f5aa0",
+      "modelSchemaVersion": "live-tool-parameters/sha256:7e51d1de0f2ccb5fe8de82d51ee3a1d9065e3c4f7c53497ce12f283d6f2f5aa0",
+      "bindingSchemaVersion": "exact-name:write/sha256:7e51d1de0f2ccb5fe8de82d51ee3a1d9065e3c4f7c53497ce12f283d6f2f5aa0",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions.write.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "file.grep": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:1719e16b7adf706f60c917518c56a1aff9dfd765ed2041895287f0eee07dfa47",
+      "modelSchemaVersion": "live-tool-parameters/sha256:1719e16b7adf706f60c917518c56a1aff9dfd765ed2041895287f0eee07dfa47",
+      "bindingSchemaVersion": "exact-name:grep/sha256:1719e16b7adf706f60c917518c56a1aff9dfd765ed2041895287f0eee07dfa47",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions.grep.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "file.find": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:de399f2b4b2fc8a8b3ab87c0f9dba39d882b9c2085153c23ee32fef53c48efba",
+      "modelSchemaVersion": "live-tool-parameters/sha256:de399f2b4b2fc8a8b3ab87c0f9dba39d882b9c2085153c23ee32fef53c48efba",
+      "bindingSchemaVersion": "exact-name:find/sha256:de399f2b4b2fc8a8b3ab87c0f9dba39d882b9c2085153c23ee32fef53c48efba",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions.find.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "file.list": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:e51884a69b5d7a6a7fe09eda2fe922a38dea8f315af2cc91120d52697f6ab035",
+      "modelSchemaVersion": "live-tool-parameters/sha256:e51884a69b5d7a6a7fe09eda2fe922a38dea8f315af2cc91120d52697f6ab035",
+      "bindingSchemaVersion": "exact-name:ls/sha256:e51884a69b5d7a6a7fe09eda2fe922a38dea8f315af2cc91120d52697f6ab035",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions.ls.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "notebook.edit": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:9a1d4695f30d05934271e960f6934d38b8b387c87e2ada4367a7547651191f5d",
+      "modelSchemaVersion": "live-tool-parameters/sha256:9a1d4695f30d05934271e960f6934d38b8b387c87e2ada4367a7547651191f5d",
+      "bindingSchemaVersion": "exact-name:NotebookEdit/sha256:9a1d4695f30d05934271e960f6934d38b8b387c87e2ada4367a7547651191f5d",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#createNotebookEditTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "web.search": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:42096867a2d25db34990b6407de994f5d020f9a03cc55f65f57b026aa32b3923",
+      "modelSchemaVersion": "live-tool-parameters/sha256:42096867a2d25db34990b6407de994f5d020f9a03cc55f65f57b026aa32b3923",
+      "bindingSchemaVersion": "exact-name:web_search/sha256:42096867a2d25db34990b6407de994f5d020f9a03cc55f65f57b026aa32b3923",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/tools/search/create-search-tool.ts#createSearchTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "web.fetch": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:2d508aa54a6a1f186d1b327bbaf84c19fbd62c17af86570f3c1b1d4c83ad2972",
+      "modelSchemaVersion": "live-tool-parameters/sha256:2d508aa54a6a1f186d1b327bbaf84c19fbd62c17af86570f3c1b1d4c83ad2972",
+      "bindingSchemaVersion": "exact-name:web_fetch/sha256:2d508aa54a6a1f186d1b327bbaf84c19fbd62c17af86570f3c1b1d4c83ad2972",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/tools/web-fetch.ts#createWebFetchTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "process.background_shell": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:03814c964f83fc64d8c05451633431b18719ebab797c17cbe2f8cf3d08b1bd9d",
+      "modelSchemaVersion": "live-tool-parameters/sha256:03814c964f83fc64d8c05451633431b18719ebab797c17cbe2f8cf3d08b1bd9d",
+      "bindingSchemaVersion": "exact-name:bash_background/sha256:03814c964f83fc64d8c05451633431b18719ebab797c17cbe2f8cf3d08b1bd9d",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/tools/background-bash.ts#createBackgroundBashTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "agent.subagent": {
+      "evidenceKind": "source-state-schema",
+      "schemaIdentity": "source-state-schema:sha256:51654b9dbf0cc274795d8b1acddc7f1ebf5acf04ae38b9a8b6d3e630980efe26",
+      "modelSchemaVersion": "source-state-schema/sha256:51654b9dbf0cc274795d8b1acddc7f1ebf5acf04ae38b9a8b6d3e630980efe26",
+      "bindingSchemaVersion": "exact-name:subagent/sha256:51654b9dbf0cc274795d8b1acddc7f1ebf5acf04ae38b9a8b6d3e630980efe26",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/orchestrator/subagent-tool.ts#createSubagentTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "source-state parameters declaration; live import excluded because spawner eager runtime graph retains handles",
+      "resultCodec": "AgentToolResult"
+    },
+    "agent.review": {
+      "evidenceKind": "source-state-schema",
+      "schemaIdentity": "source-state-schema:sha256:67a38b973bc238f3b2b41aa392424c367e2da5ebda86c6a77d7a3d9924214013",
+      "modelSchemaVersion": "source-state-schema/sha256:67a38b973bc238f3b2b41aa392424c367e2da5ebda86c6a77d7a3d9924214013",
+      "bindingSchemaVersion": "exact-name:review/sha256:67a38b973bc238f3b2b41aa392424c367e2da5ebda86c6a77d7a3d9924214013",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/orchestrator/review-tool.ts#createReviewTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "source-state parameters declaration; live import excluded because spawner eager runtime graph retains handles",
+      "resultCodec": "AgentToolResult"
+    },
+    "agent.get_subagent_result": {
+      "evidenceKind": "source-state-schema",
+      "schemaIdentity": "source-state-schema:sha256:18fdcc0c323bd0fbf7005718cd56774e943542700f1a1f5c1a0252244b0e1e91",
+      "modelSchemaVersion": "source-state-schema/sha256:18fdcc0c323bd0fbf7005718cd56774e943542700f1a1f5c1a0252244b0e1e91",
+      "bindingSchemaVersion": "exact-name:get_subagent_result/sha256:18fdcc0c323bd0fbf7005718cd56774e943542700f1a1f5c1a0252244b0e1e91",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/orchestrator/subagent-tool.ts#createGetSubagentResultTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "source-state parameters declaration; live import excluded because spawner eager runtime graph retains handles",
+      "resultCodec": "AgentToolResult"
+    },
+    "agent.steer_subagent": {
+      "evidenceKind": "source-state-schema",
+      "schemaIdentity": "source-state-schema:sha256:91e6358454ae3a1dc1a208949aa9511e0978f986c17b8ad593c4a03e04cc4e05",
+      "modelSchemaVersion": "source-state-schema/sha256:91e6358454ae3a1dc1a208949aa9511e0978f986c17b8ad593c4a03e04cc4e05",
+      "bindingSchemaVersion": "exact-name:steer_subagent/sha256:91e6358454ae3a1dc1a208949aa9511e0978f986c17b8ad593c4a03e04cc4e05",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/orchestrator/subagent-tool.ts#createSteerSubagentTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "source-state parameters declaration; live import excluded because spawner eager runtime graph retains handles",
+      "resultCodec": "AgentToolResult"
+    },
+    "agent.stop_task": {
+      "evidenceKind": "source-state-schema",
+      "schemaIdentity": "source-state-schema:sha256:30c2ca6d2bfc42c89f42944e7c9bd926af7b6d699079602c5c5f5982450896a0",
+      "modelSchemaVersion": "source-state-schema/sha256:30c2ca6d2bfc42c89f42944e7c9bd926af7b6d699079602c5c5f5982450896a0",
+      "bindingSchemaVersion": "exact-name:stopTask/sha256:30c2ca6d2bfc42c89f42944e7c9bd926af7b6d699079602c5c5f5982450896a0",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/orchestrator/subagent-tool.ts#createStopTaskTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "source-state parameters declaration; live import excluded because spawner eager runtime graph retains handles",
+      "resultCodec": "AgentToolResult"
+    },
+    "workflow.execute": {
+      "evidenceKind": "source-state-schema",
+      "schemaIdentity": "source-state-schema:sha256:740a75963c74586d04f8546f9933c9809567d3ea976acfaf1934141e52ad2c27",
+      "modelSchemaVersion": "source-state-schema/sha256:740a75963c74586d04f8546f9933c9809567d3ea976acfaf1934141e52ad2c27",
+      "bindingSchemaVersion": "exact-name:workflow/sha256:740a75963c74586d04f8546f9933c9809567d3ea976acfaf1934141e52ad2c27",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/orchestrator/workflow-tool.ts#createWorkflowTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "source-state parameters declaration; live import excluded because spawner eager runtime graph retains handles",
+      "resultCodec": "AgentToolResult"
+    },
+    "user.ask": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:e1a16c9ca45be049afb3b2a525d644625f60220e901ef9b470601a2009071194",
+      "modelSchemaVersion": "live-tool-parameters/sha256:e1a16c9ca45be049afb3b2a525d644625f60220e901ef9b470601a2009071194",
+      "bindingSchemaVersion": "exact-name:ask_user/sha256:e1a16c9ca45be049afb3b2a525d644625f60220e901ef9b470601a2009071194",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/orchestrator/ask-user-tool.ts#createAskUserTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "Pi ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "mcp.discovery.search": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:41a3700a8099dcfab38d92c1907af46f3aa49a2fdc78a3167a0ad72cd27f9273",
+      "modelSchemaVersion": "live-tool-parameters/sha256:41a3700a8099dcfab38d92c1907af46f3aa49a2fdc78a3167a0ad72cd27f9273",
+      "bindingSchemaVersion": "exact-name:mcp__tool_search/sha256:41a3700a8099dcfab38d92c1907af46f3aa49a2fdc78a3167a0ad72cd27f9273",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/deferred-mcp-tools.ts#createDeferredMcpSearchTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "TypeBox ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "mcp.discovery.load": {
+      "evidenceKind": "live-tool-parameters",
+      "schemaIdentity": "live-tool-parameters:sha256:2701e7b3230836043b0c56e33174b0ef66b97d455784c99358e57cfb8626dc5b",
+      "modelSchemaVersion": "live-tool-parameters/sha256:2701e7b3230836043b0c56e33174b0ef66b97d455784c99358e57cfb8626dc5b",
+      "bindingSchemaVersion": "exact-name:mcp__tool_load/sha256:2701e7b3230836043b0c56e33174b0ef66b97d455784c99358e57cfb8626dc5b",
+      "handlerSchemaVersion": "packages/pi-agent-server/src/deferred-mcp-tools.ts#createDeferredMcpLoadTool.execute@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "TypeBox ToolDefinition.parameters:canonical-json",
+      "resultCodec": "AgentToolResult"
+    },
+    "mcp.dynamic": {
+      "evidenceKind": "dynamic-wire-source",
+      "schemaIdentity": "dynamic-wire-source:sha256:cbca72fc8381cfcde9fa47a605c4a7f1736da349069ce31b2a8b846ec2ff904e",
+      "modelSchemaVersion": "dynamic-wire-source/sha256:cbca72fc8381cfcde9fa47a605c4a7f1736da349069ce31b2a8b846ec2ff904e",
+      "bindingSchemaVersion": "exact-name:mcp__<sanitized-server>__<exact-sanitized-tool>/sha256:cbca72fc8381cfcde9fa47a605c4a7f1736da349069ce31b2a8b846ec2ff904e",
+      "handlerSchemaVersion": "packages/shared/src/mcp/mcp-pool.ts#McpClientPool.callTool@e3357945a45ad6dd45019cc53944a9a071788503",
+      "inputCodec": "McpToolDefinition.inputSchema->ProxyToolDef.inputSchema->ToolDefinition.parameters",
+      "resultCodec": "MCP CallToolResult->McpToolResult->ProxyExecutionResult->AgentToolResult"
+    }
+  },
+  "sessionBindingPrefix": "mcp__session__",
+  "commonSessionContract": {
+    "modelSchemaVersion": "nessy-session-zod@HEAD",
+    "bindingSchemaVersion": "pi-proxy-json-schema@1",
+    "handlerSchemaVersion": "session-tools-core@HEAD",
+    "inputCodec": "zod-to-json-schema/$refStrategy=none",
+    "resultCodec": "ProxyExecutionResult->AgentToolResult",
+    "callSites": [
+      "PiAgent.spawnSubprocess/register_tools",
+      "pi-agent-server.buildProxyTools",
+      "SESSION_TOOL_DEFS",
+      "permission/hooks/transcript via Pi proxy name"
+    ]
+  },
+  "toolLedgerSchema": {
+    "schemaVersion": "effective-tool-row@4",
+    "requiredEffectiveFields": [
+      "semanticId",
+      "evidenceKind",
+      "currentName",
+      "finalPiName",
+      "modelName",
+      "modelSchemaVersion",
+      "bindingName",
+      "bindingSchemaVersion",
+      "handlerName",
+      "handlerSchemaVersion",
+      "inputCodec",
+      "resultCodec",
+      "schemaIdentity",
+      "availabilityCondition",
+      "permissionName",
+      "claudeBehaviorCounterpart",
+      "claudeCounterpartReason",
+      "promptCallSites",
+      "hookCallSites",
+      "permissionCallSites",
+      "transcriptCallSites",
+      "a2aCallSites"
+    ],
+    "effectiveFieldResolvers": {
+      "schemaContractFields": "schemaContracts[semanticId], compared byte-for-byte with canonical JSON digests from live production builders or the exact dynamic/source-state wire block",
+      "availabilityCondition": "row override, otherwise collection profile",
+      "claudeCounterpartReason": "row override, otherwise collection profile"
+    },
+    "collectionProfiles": {
+      "sessionTools": {
+        "modelName": "SESSION_TOOL_DEFS projected as Pi proxy ToolDefinition",
+        "modelSchemaVersion": "SESSION_TOOL_DEFS/e3357945",
+        "bindingSchemaVersion": "pi-register_tools-jsonl@2",
+        "handlerSchemaVersion": "session-tools-core/e3357945",
+        "inputCodec": "Zod inputSchema -> zodToJsonSchema($refStrategy=none)",
+        "resultCodec": "ProxyExecutionResult -> AgentToolResult",
+        "availabilityCondition": "getSessionToolDefs default includes the row; externalStandaloneOnly retains only registry tools in neither SESSION_TOOLS_REQUIRING_HOST_CALLBACK nor SESSION_TOOLS_WITHHELD_FOR_NATIVE_EQUIVALENT (P6.303: TodoWrite is withheld from codex, which ships update_plan)",
+        "claudeCounterpartReason": "No direct Claude Code tool counterpart; Nessy-owned session capability.",
+        "promptCallSites": [
+          "descriptor prompt metadata",
+          "buildProxyTools"
+        ],
+        "hookCallSites": [
+          "createPiSdkToolAdapter",
+          "requestPiPermissionReceipt"
+        ],
+        "permissionCallSites": [
+          "requestPiPermissionReceipt",
+          "PiAgent.handlePreToolUse"
+        ],
+        "transcriptCallSites": [
+          "handleSessionEvent(tool_start/tool_result)"
+        ],
+        "a2aCallSites": []
+      },
+      "piStaticTools": {
+        "modelName": "Pi ToolDefinition",
+        "modelSchemaVersion": "@earendil-works/pi-coding-agent@0.87.1",
+        "bindingSchemaVersion": "Pi exact tool-name dispatch@0.87.1",
+        "handlerSchemaVersion": "runtime-backed/web/orchestrator tool execute/e3357945",
+        "inputCodec": "Pi ToolDefinition.parameters (runtime JSON Schema or TypeBox)",
+        "resultCodec": "AgentToolResult",
+        "availabilityCondition": "always advertised after ensureSession constructs builtin/web/orchestrator customTools and exact tools allowlist",
+        "claudeCounterpartReason": "Behavioral counterpart only; never a Pi dispatch alias.",
+        "promptCallSites": [
+          "ensureSession builtinDefs/webTools/orchestratorTools"
+        ],
+        "hookCallSites": [
+          "createPiSdkToolAdapter"
+        ],
+        "permissionCallSites": [
+          "requestPiPermissionReceipt"
+        ],
+        "transcriptCallSites": [
+          "handleSessionEvent(tool_start/tool_result)"
+        ],
+        "a2aCallSites": []
+      },
+      "conditionalTools": {
+        "modelName": "Pi ToolDefinition",
+        "modelSchemaVersion": "deferred-mcp-tools.ts/e3357945",
+        "bindingSchemaVersion": "Pi exact tool-name dispatch@0.87.1",
+        "handlerSchemaVersion": "deferred-mcp-tools.ts/e3357945",
+        "inputCodec": "TypeBox parameters",
+        "resultCodec": "AgentToolResult",
+        "availabilityCondition": "deferral on: deferredMcpToolLoading=true (the shipped default) and at least one deferrable candidate, no count consulted (resolveDeferredMcpToolLoading, default mode)",
+        "claudeCounterpartReason": "Deferred discovery has a Claude behavior analogue; these exact Nessy names are Pi-only bindings.",
+        "promptCallSites": [
+          "buildDeferredMcpToolSurface promptSnippet"
+        ],
+        "hookCallSites": [
+          "createPiSdkToolAdapter"
+        ],
+        "permissionCallSites": [
+          "requestPiPermissionReceipt"
+        ],
+        "transcriptCallSites": [
+          "handleSessionEvent(tool_start/tool_result)"
+        ],
+        "a2aCallSites": []
+      },
+      "dynamicMcp": {
+        "modelName": "Pi dynamic MCP proxy ToolDefinition",
+        "modelSchemaVersion": "McpClientPool projection/e3357945",
+        "bindingSchemaVersion": "mcp__<server>__<tool>@HEAD",
+        "handlerSchemaVersion": "McpClientPool.callTool/e3357945",
+        "inputCodec": "MCP JSON Schema passthrough",
+        "resultCodec": "MCP CallToolResult -> AgentToolResult",
+        "availabilityCondition": "leased EffectiveCapabilitySnapshot owns descriptors; advertised directly unless deferred loading hides the binding, then registered immediately after exact load",
+        "claudeCounterpartReason": "Behavioral MCP counterpart only; exact Nessy binding remains snapshot-owned.",
+        "promptCallSites": [
+          "buildProxyTools/deferred MCP prompt snippets"
+        ],
+        "hookCallSites": [
+          "createPiSdkToolAdapter"
+        ],
+        "permissionCallSites": [
+          "requestPiPermissionReceipt",
+          "McpClientPool.callTool"
+        ],
+        "transcriptCallSites": [
+          "handleSessionEvent(tool_start/tool_result)"
+        ],
+        "a2aCallSites": [
+          "Nestor normalizeNestorToolCall/buildA2AToolResultData"
+        ]
+      }
+    },
+    "collectionRequiredFields": {
+      "sessionTools": [
+        "executionMode",
+        "safeMode",
+        "readOnly"
+      ],
+      "piStaticTools": [
+        "owner"
+      ],
+      "conditionalTools": [
+        "owner",
+        "activationCondition"
+      ],
+      "dynamicMcp": [
+        "availabilityOwner",
+        "caseRule"
+      ]
+    }
+  },
+  "availabilityAudit": {
+    "developerFeedback": "send_developer_feedback is removed when includeDeveloperFeedback=false",
+    "externalStandaloneOnly": "retains only registry handlers, excluding every backend tool, every name in SESSION_TOOLS_REQUIRING_HOST_CALLBACK, and every name in SESSION_TOOLS_WITHHELD_FOR_NATIVE_EQUIVALENT",
+    "hostCallbackExcludedNames": [
+      "SubmitPlan",
+      "source_manage",
+      "source_oauth_trigger",
+      "source_google_oauth_trigger",
+      "source_credential_prompt",
+      "update_user_preferences",
+      "set_session_labels",
+      "set_session_status",
+      "decide",
+      "archive_session",
+      "publish_artifact",
+      "list_artifacts",
+      "create_board_task",
+      "project_memory_append",
+      "source_list_prompts",
+      "source_get_prompt",
+      "list_pages",
+      "get_page",
+      "create_page",
+      "update_page",
+      "write_page_data",
+      "delete_page",
+      "send_agent_message",
+      "ReviewDiff",
+      "list_sessions",
+      "get_session_info",
+      "call_llm",
+      "advisor_consult",
+      "spawn_session",
+      "browser_tool",
+      "SlashCommand",
+      "BashOutput",
+      "ProcessStop",
+      "Monitor",
+      "CronCreate",
+      "CronList",
+      "CronDelete",
+      "CronControl",
+      "ScheduleWakeup",
+      "EnterWorktree",
+      "ExitWorktree",
+      "WorktreeBatch",
+      "GoalGet",
+      "Goal",
+      "read_skill_resource",
+      "plugin_plan_install",
+      "plugin_install",
+      "plugin_status",
+      "plugin_manage",
+      "PushNotification"
+    ],
+    "browserProjection": "PiAgent registers mcp__session__browser_tool only when getBrowserToolEnabled(); disabled projection filters it before register_tools",
+    "webTools": "web_search and web_fetch are always constructed by ensureSession; search provider choice is dynamic per call",
+    "orchestratorTools": "subagent, review, get_subagent_result, steer_subagent, stopTask, workflow and ask_user are always constructed by ensureSession; all but subagent, ask_user and review are PI_DEFERRABLE_BUILTIN_BINDINGS, so with deferral on those are reached through mcp__tool_search — review is upfront so /code-review runs in its own turn (F1.728)",
+    "deferredMcp": "enabled when deferredMcpToolLoading=true (the shipped default) and any candidate exists: MCP tools not alwaysLoad, the eight PI_DEFERRABLE_BUILTIN_BINDINGS and the session tools outside PI_UPFRONT_SESSION_BINDINGS (which keeps ReportFindings upfront for the same reason, F1.728); NESSY_ENABLE_TOOL_SEARCH never/always/auto[:N] overrides it and an uncached MCP source forces it on (resolveDeferredMcpToolLoading); search/load remain callable and exact accepted hidden tools register into the live session, callable from the next model call of the same request (F1.803)",
+    "dynamicMcp": "descriptor set is owned by the leased EffectiveCapabilitySnapshot/AgentRuntimeView"
+  },
+  "legacyBrowserAliases": {
+    "names": [
+      "browser_open",
+      "browser_navigate",
+      "browser_snapshot",
+      "browser_click",
+      "browser_click_at",
+      "browser_fill",
+      "browser_select",
+      "browser_screenshot",
+      "browser_screenshot_region",
+      "browser_console",
+      "browser_window_resize",
+      "browser_network",
+      "browser_wait",
+      "browser_key",
+      "browser_downloads",
+      "browser_scroll",
+      "browser_back",
+      "browser_forward",
+      "browser_evaluate"
+    ],
+    "scope": "normalizeBrowserToolName compatibility for mode policy/display and historical correlation; server overlay accepts only canonical browser_tool; none are Pi exact-dispatch aliases"
+  },
+  "permissionModes": {
+    "internal": [
+      "dontAsk",
+      "plan",
+      "default",
+      "acceptEdits",
+      "auto",
+      "bypassPermissions"
+    ],
+    "canonical": [
+      "dontAsk",
+      "plan",
+      "default",
+      "acceptEdits",
+      "auto",
+      "bypassPermissions"
+    ],
+    "mapping": {
+      "dontAsk": "dontAsk",
+      "plan": "plan",
+      "default": "default",
+      "acceptEdits": "acceptEdits",
+      "auto": "auto",
+      "bypassPermissions": "bypassPermissions"
+    }
+  },
+  "sessionTools": [
+    {
+      "semanticId": "session.submit_plan",
+      "currentName": "mcp__session__SubmitPlan",
+      "finalPiName": "mcp__session__SubmitPlan",
+      "bindingName": "mcp__session__SubmitPlan",
+      "handlerName": "SubmitPlan",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "SubmitPlan",
+      "claudeBehaviorCounterpart": "ExitPlanMode"
+    },
+    {
+      "semanticId": "session.config_validate",
+      "currentName": "mcp__session__config_validate",
+      "finalPiName": "mcp__session__config_validate",
+      "bindingName": "mcp__session__config_validate",
+      "handlerName": "config_validate",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "config_validate",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.skill_validate",
+      "currentName": "mcp__session__skill_validate",
+      "finalPiName": "mcp__session__skill_validate",
+      "bindingName": "mcp__session__skill_validate",
+      "handlerName": "skill_validate",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "skill_validate",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.mermaid_validate",
+      "currentName": "mcp__session__mermaid_validate",
+      "finalPiName": "mcp__session__mermaid_validate",
+      "bindingName": "mcp__session__mermaid_validate",
+      "handlerName": "mermaid_validate",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "mermaid_validate",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.source_test",
+      "currentName": "mcp__session__source_test",
+      "finalPiName": "mcp__session__source_test",
+      "bindingName": "mcp__session__source_test",
+      "handlerName": "source_test",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "source_test",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.source_manage",
+      "currentName": "mcp__session__source_manage",
+      "finalPiName": "mcp__session__source_manage",
+      "bindingName": "mcp__session__source_manage",
+      "handlerName": "source_manage",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "source_manage",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.source_oauth_trigger",
+      "currentName": "mcp__session__source_oauth_trigger",
+      "finalPiName": "mcp__session__source_oauth_trigger",
+      "bindingName": "mcp__session__source_oauth_trigger",
+      "handlerName": "source_oauth_trigger",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "source_oauth_trigger",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.source_google_oauth_trigger",
+      "currentName": "mcp__session__source_google_oauth_trigger",
+      "finalPiName": "mcp__session__source_google_oauth_trigger",
+      "bindingName": "mcp__session__source_google_oauth_trigger",
+      "handlerName": "source_google_oauth_trigger",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "source_google_oauth_trigger",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.source_credential_prompt",
+      "currentName": "mcp__session__source_credential_prompt",
+      "finalPiName": "mcp__session__source_credential_prompt",
+      "bindingName": "mcp__session__source_credential_prompt",
+      "handlerName": "source_credential_prompt",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "source_credential_prompt",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.update_user_preferences",
+      "currentName": "mcp__session__update_user_preferences",
+      "finalPiName": "mcp__session__update_user_preferences",
+      "bindingName": "mcp__session__update_user_preferences",
+      "handlerName": "update_user_preferences",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "update_user_preferences",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.remember",
+      "currentName": "mcp__session__remember",
+      "finalPiName": "mcp__session__remember",
+      "bindingName": "mcp__session__remember",
+      "handlerName": "remember",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "remember",
+      "claudeBehaviorCounterpart": "memory"
+    },
+    {
+      "semanticId": "session.todo_write",
+      "currentName": "mcp__session__TodoWrite",
+      "finalPiName": "mcp__session__TodoWrite",
+      "bindingName": "mcp__session__TodoWrite",
+      "handlerName": "TodoWrite",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "TodoWrite",
+      "claudeBehaviorCounterpart": "TodoWrite"
+    },
+    {
+      "semanticId": "session.task",
+      "currentName": "mcp__session__Task",
+      "finalPiName": "mcp__session__Task",
+      "bindingName": "mcp__session__Task",
+      "handlerName": "Task",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "Task",
+      "claudeBehaviorCounterpart": "TaskCreate/TaskUpdate"
+    },
+    {
+      "semanticId": "session.task_create",
+      "currentName": "mcp__session__TaskCreate",
+      "finalPiName": "mcp__session__TaskCreate",
+      "bindingName": "mcp__session__TaskCreate",
+      "handlerName": "TaskCreate",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "TaskCreate",
+      "claudeBehaviorCounterpart": "TaskCreate"
+    },
+    {
+      "semanticId": "session.task_update",
+      "currentName": "mcp__session__TaskUpdate",
+      "finalPiName": "mcp__session__TaskUpdate",
+      "bindingName": "mcp__session__TaskUpdate",
+      "handlerName": "TaskUpdate",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "TaskUpdate",
+      "claudeBehaviorCounterpart": "TaskUpdate"
+    },
+    {
+      "semanticId": "session.task_get",
+      "currentName": "mcp__session__TaskGet",
+      "finalPiName": "mcp__session__TaskGet",
+      "bindingName": "mcp__session__TaskGet",
+      "handlerName": "TaskGet",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "TaskGet",
+      "claudeBehaviorCounterpart": "TaskGet"
+    },
+    {
+      "semanticId": "session.task_list",
+      "currentName": "mcp__session__TaskList",
+      "finalPiName": "mcp__session__TaskList",
+      "bindingName": "mcp__session__TaskList",
+      "handlerName": "TaskList",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "TaskList",
+      "claudeBehaviorCounterpart": "TaskList"
+    },
+    {
+      "semanticId": "session.goal_get",
+      "currentName": "mcp__session__GoalGet",
+      "finalPiName": "mcp__session__GoalGet",
+      "bindingName": "mcp__session__GoalGet",
+      "handlerName": "GoalGet",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "GoalGet",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.goal",
+      "currentName": "mcp__session__Goal",
+      "finalPiName": "mcp__session__Goal",
+      "bindingName": "mcp__session__Goal",
+      "handlerName": "Goal",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "Goal",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.web_search",
+      "currentName": "mcp__session__web_search",
+      "finalPiName": "mcp__session__web_search",
+      "bindingName": "mcp__session__web_search",
+      "handlerName": "web_search",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "availabilityCondition": "requires SessionToolFilterOptions.hostWebSearch (a claude session whose native WebSearch is withheld) OR externalStandaloneOnly (every codex session, whose own web_search is written disabled); visibility 'not-pi' keeps it off the Pi surface, where Pi registers its own web_search over the same engine",
+      "permissionName": "web_search",
+      "claudeBehaviorCounterpart": "WebSearch",
+      "projectionDisposition": "offered on a claude-runtime session whose hosted WebSearch is withheld and on every codex subprocess; never on Pi"
+    },
+    {
+      "semanticId": "session.transform_data",
+      "currentName": "mcp__session__transform_data",
+      "finalPiName": "mcp__session__transform_data",
+      "bindingName": "mcp__session__transform_data",
+      "handlerName": "transform_data",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "transform_data",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.script_sandbox",
+      "currentName": "mcp__session__script_sandbox",
+      "finalPiName": "mcp__session__script_sandbox",
+      "bindingName": "mcp__session__script_sandbox",
+      "handlerName": "script_sandbox",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "script_sandbox",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.render_template",
+      "currentName": "mcp__session__render_template",
+      "finalPiName": "mcp__session__render_template",
+      "bindingName": "mcp__session__render_template",
+      "handlerName": "render_template",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "render_template",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.send_developer_feedback",
+      "currentName": "mcp__session__send_developer_feedback",
+      "finalPiName": "mcp__session__send_developer_feedback",
+      "bindingName": "mcp__session__send_developer_feedback",
+      "handlerName": "send_developer_feedback",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "availabilityCondition": "included only when includeDeveloperFeedback=true; externalStandaloneOnly still allows it because it is a registry handler without a host callback",
+      "permissionName": "send_developer_feedback",
+      "claudeBehaviorCounterpart": null,
+      "claudeCounterpartReason": "Nessy product-feedback capability has no Claude Code tool counterpart."
+    },
+    {
+      "semanticId": "session.call_llm",
+      "currentName": "mcp__session__call_llm",
+      "finalPiName": "mcp__session__call_llm",
+      "bindingName": "mcp__session__call_llm",
+      "handlerName": "call_llm",
+      "executionMode": "backend",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "call_llm",
+      "claudeBehaviorCounterpart": "sub-model query"
+    },
+    {
+      "semanticId": "session.decide",
+      "currentName": "mcp__session__decide",
+      "finalPiName": "mcp__session__decide",
+      "bindingName": "mcp__session__decide",
+      "handlerName": "decide",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "availabilityCondition": "requires SessionToolFilterOptions.decidePort (the host has bound ctx.decide: a decision provider is configured); externalStandaloneOnly excludes it as host-callback dependent unless the bridge carries HOST_CALLBACK_BRIDGE_ROUTES.decide",
+      "permissionName": "decide",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.advisor_consult",
+      "currentName": "mcp__session__advisor_consult",
+      "finalPiName": "mcp__session__advisor_consult",
+      "bindingName": "mcp__session__advisor_consult",
+      "handlerName": "advisor_consult",
+      "executionMode": "backend",
+      "safeMode": "allow",
+      "readOnly": true,
+      "availabilityCondition": "requires getAdvisorEnabled(); PiAgent filters it before register_tools when disabled and the Claude adapter does not build it; externalStandaloneOnly excludes it as backend",
+      "permissionName": "advisor_consult",
+      "claudeBehaviorCounterpart": "advisor consult",
+      "projectionDisposition": "registered as a Pi main-process proxy only when getAdvisorEnabled(); filtered before register_tools when disabled; never a Pi subprocess builtin"
+    },
+    {
+      "semanticId": "session.spawn_session",
+      "currentName": "mcp__session__spawn_session",
+      "finalPiName": "mcp__session__spawn_session",
+      "bindingName": "mcp__session__spawn_session",
+      "handlerName": "spawn_session",
+      "executionMode": "backend",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "spawn_session",
+      "claudeBehaviorCounterpart": "Task"
+    },
+    {
+      "semanticId": "session.browser_tool",
+      "currentName": "mcp__session__browser_tool",
+      "finalPiName": "mcp__session__browser_tool",
+      "bindingName": "mcp__session__browser_tool",
+      "handlerName": "browser_tool",
+      "executionMode": "backend",
+      "safeMode": "allow",
+      "readOnly": false,
+      "availabilityCondition": "requires getBrowserToolEnabled(); PiAgent filters it before register_tools when disabled; externalStandaloneOnly excludes it as backend and host-callback dependent",
+      "permissionName": "browser_tool",
+      "claudeBehaviorCounterpart": "browser/computer-use behavior",
+      "claudeCounterpartReason": "Behavioral counterpart only; legacy browser aliases are policy/display/history compatibility, not Pi dispatch aliases.",
+      "projectionDisposition": "registered as a Pi main-process proxy only when getBrowserToolEnabled(); filtered before register_tools when disabled; never a Pi subprocess builtin"
+    },
+    {
+      "semanticId": "session.review_diff",
+      "currentName": "mcp__session__ReviewDiff",
+      "finalPiName": "mcp__session__ReviewDiff",
+      "bindingName": "mcp__session__ReviewDiff",
+      "handlerName": "ReviewDiff",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "availabilityCondition": "requires SessionToolFilterOptions.reviewDiffPort (the host has bound ctx.reviewDiff); visibility 'not-pi' keeps it off the Pi surface, where the review orchestrator tool does strictly more; externalStandaloneOnly excludes it as host-callback dependent unless the bridge carries HOST_CALLBACK_BRIDGE_ROUTES.reviewDiff",
+      "permissionName": "ReviewDiff",
+      "claudeBehaviorCounterpart": null,
+      "projectionDisposition": "offered on claude-runtime and on a bridged codex subprocess once the host binds the port; never on Pi"
+    },
+    {
+      "semanticId": "session.slash_command",
+      "currentName": "mcp__session__SlashCommand",
+      "finalPiName": "mcp__session__SlashCommand",
+      "bindingName": "mcp__session__SlashCommand",
+      "handlerName": "SlashCommand",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": false,
+      "permissionName": "SlashCommand",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.bash_output",
+      "currentName": "mcp__session__BashOutput",
+      "finalPiName": "mcp__session__BashOutput",
+      "bindingName": "mcp__session__BashOutput",
+      "handlerName": "BashOutput",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "BashOutput",
+      "claudeBehaviorCounterpart": "TaskOutput"
+    },
+    {
+      "semanticId": "session.process_stop",
+      "currentName": "mcp__session__ProcessStop",
+      "finalPiName": "mcp__session__ProcessStop",
+      "bindingName": "mcp__session__ProcessStop",
+      "handlerName": "ProcessStop",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "ProcessStop",
+      "claudeBehaviorCounterpart": "KillShell"
+    },
+    {
+      "semanticId": "session.monitor",
+      "currentName": "mcp__session__Monitor",
+      "finalPiName": "mcp__session__Monitor",
+      "bindingName": "mcp__session__Monitor",
+      "handlerName": "Monitor",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "Monitor",
+      "claudeBehaviorCounterpart": "Monitor"
+    },
+    {
+      "semanticId": "session.enter_worktree",
+      "currentName": "mcp__session__EnterWorktree",
+      "finalPiName": "mcp__session__EnterWorktree",
+      "bindingName": "mcp__session__EnterWorktree",
+      "handlerName": "EnterWorktree",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "EnterWorktree",
+      "claudeBehaviorCounterpart": "EnterWorktree"
+    },
+    {
+      "semanticId": "session.exit_worktree",
+      "currentName": "mcp__session__ExitWorktree",
+      "finalPiName": "mcp__session__ExitWorktree",
+      "bindingName": "mcp__session__ExitWorktree",
+      "handlerName": "ExitWorktree",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "ExitWorktree",
+      "claudeBehaviorCounterpart": "ExitWorktree"
+    },
+    {
+      "semanticId": "session.worktree_batch",
+      "currentName": "mcp__session__WorktreeBatch",
+      "finalPiName": "mcp__session__WorktreeBatch",
+      "bindingName": "mcp__session__WorktreeBatch",
+      "handlerName": "WorktreeBatch",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "WorktreeBatch",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.set_labels",
+      "currentName": "mcp__session__set_session_labels",
+      "finalPiName": "mcp__session__set_session_labels",
+      "bindingName": "mcp__session__set_session_labels",
+      "handlerName": "set_session_labels",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "set_session_labels",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.set_status",
+      "currentName": "mcp__session__set_session_status",
+      "finalPiName": "mcp__session__set_session_status",
+      "bindingName": "mcp__session__set_session_status",
+      "handlerName": "set_session_status",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "set_session_status",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.archive",
+      "currentName": "mcp__session__archive_session",
+      "finalPiName": "mcp__session__archive_session",
+      "bindingName": "mcp__session__archive_session",
+      "handlerName": "archive_session",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "archive_session",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.get_info",
+      "currentName": "mcp__session__get_session_info",
+      "finalPiName": "mcp__session__get_session_info",
+      "bindingName": "mcp__session__get_session_info",
+      "handlerName": "get_session_info",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "get_session_info",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.list",
+      "currentName": "mcp__session__list_sessions",
+      "finalPiName": "mcp__session__list_sessions",
+      "bindingName": "mcp__session__list_sessions",
+      "handlerName": "list_sessions",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "list_sessions",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.list_mcp_resources",
+      "currentName": "mcp__session__list_mcp_resources",
+      "finalPiName": "mcp__session__list_mcp_resources",
+      "bindingName": "mcp__session__list_mcp_resources",
+      "handlerName": "list_mcp_resources",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "availabilityCondition": "requires a connected source advertising the resources capability; PiAgent filters it before register_tools via McpClientPool.hasResourceCapability when none do",
+      "permissionName": "list_mcp_resources",
+      "claudeBehaviorCounterpart": "ListMcpResourcesTool",
+      "projectionDisposition": "registered as a Pi main-process proxy only when a connected source advertises resources; filtered before register_tools otherwise; never a Pi subprocess builtin"
+    },
+    {
+      "semanticId": "session.read_mcp_resource",
+      "currentName": "mcp__session__read_mcp_resource",
+      "finalPiName": "mcp__session__read_mcp_resource",
+      "bindingName": "mcp__session__read_mcp_resource",
+      "handlerName": "read_mcp_resource",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "availabilityCondition": "requires a connected source advertising the resources capability; PiAgent filters it before register_tools via McpClientPool.hasResourceCapability when none do",
+      "permissionName": "read_mcp_resource",
+      "claudeBehaviorCounterpart": "ReadMcpResourceTool",
+      "projectionDisposition": "registered as a Pi main-process proxy only when a connected source advertises resources; filtered before register_tools otherwise; never a Pi subprocess builtin"
+    },
+    {
+      "semanticId": "session.source_list_prompts",
+      "currentName": "mcp__session__source_list_prompts",
+      "finalPiName": "mcp__session__source_list_prompts",
+      "bindingName": "mcp__session__source_list_prompts",
+      "handlerName": "source_list_prompts",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "source_list_prompts",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.source_get_prompt",
+      "currentName": "mcp__session__source_get_prompt",
+      "finalPiName": "mcp__session__source_get_prompt",
+      "bindingName": "mcp__session__source_get_prompt",
+      "handlerName": "source_get_prompt",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "source_get_prompt",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.read_skill_resource",
+      "currentName": "mcp__session__read_skill_resource",
+      "finalPiName": "mcp__session__read_skill_resource",
+      "bindingName": "mcp__session__read_skill_resource",
+      "handlerName": "read_skill_resource",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "read_skill_resource",
+      "claudeBehaviorCounterpart": null,
+      "projectionDisposition": "registered as a Pi main-process proxy on every session and projected onto the Claude session tool set too; unconditional because the handles it dereferences are minted DURING a turn, so a capability gate would withhold it from the very turn that needs it; never a Pi subprocess builtin"
+    },
+    {
+      "semanticId": "automation.list",
+      "currentName": "mcp__session__automation_list",
+      "finalPiName": "mcp__session__automation_list",
+      "bindingName": "mcp__session__automation_list",
+      "handlerName": "automation_list",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "automation_list",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "automation.validate",
+      "currentName": "mcp__session__automation_validate",
+      "finalPiName": "mcp__session__automation_validate",
+      "bindingName": "mcp__session__automation_validate",
+      "handlerName": "automation_validate",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "automation_validate",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "automation.create",
+      "currentName": "mcp__session__automation_create",
+      "finalPiName": "mcp__session__automation_create",
+      "bindingName": "mcp__session__automation_create",
+      "handlerName": "automation_create",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "automation_create",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "automation.update",
+      "currentName": "mcp__session__automation_update",
+      "finalPiName": "mcp__session__automation_update",
+      "bindingName": "mcp__session__automation_update",
+      "handlerName": "automation_update",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "automation_update",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.send_agent_message",
+      "currentName": "mcp__session__send_agent_message",
+      "finalPiName": "mcp__session__send_agent_message",
+      "bindingName": "mcp__session__send_agent_message",
+      "handlerName": "send_agent_message",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "send_agent_message",
+      "claudeBehaviorCounterpart": "agent mailbox"
+    },
+    {
+      "semanticId": "plugin.plan_install",
+      "currentName": "mcp__session__plugin_plan_install",
+      "finalPiName": "mcp__session__plugin_plan_install",
+      "bindingName": "mcp__session__plugin_plan_install",
+      "handlerName": "plugin_plan_install",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "plugin_plan_install",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "plugin.install",
+      "currentName": "mcp__session__plugin_install",
+      "finalPiName": "mcp__session__plugin_install",
+      "bindingName": "mcp__session__plugin_install",
+      "handlerName": "plugin_install",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "plugin_install",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "plugin.status",
+      "currentName": "mcp__session__plugin_status",
+      "finalPiName": "mcp__session__plugin_status",
+      "bindingName": "mcp__session__plugin_status",
+      "handlerName": "plugin_status",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "plugin_status",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "plugin.manage",
+      "currentName": "mcp__session__plugin_manage",
+      "finalPiName": "mcp__session__plugin_manage",
+      "bindingName": "mcp__session__plugin_manage",
+      "handlerName": "plugin_manage",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "plugin_manage",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.report_findings",
+      "currentName": "mcp__session__ReportFindings",
+      "finalPiName": "mcp__session__ReportFindings",
+      "bindingName": "mcp__session__ReportFindings",
+      "handlerName": "ReportFindings",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "ReportFindings",
+      "claudeBehaviorCounterpart": "ReportFindings"
+    },
+    {
+      "semanticId": "session.push_notification",
+      "currentName": "mcp__session__PushNotification",
+      "finalPiName": "mcp__session__PushNotification",
+      "bindingName": "mcp__session__PushNotification",
+      "handlerName": "PushNotification",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "PushNotification",
+      "claudeBehaviorCounterpart": "PushNotification"
+    },
+    {
+      "semanticId": "session.send_user_file",
+      "currentName": "mcp__session__SendUserFile",
+      "finalPiName": "mcp__session__SendUserFile",
+      "bindingName": "mcp__session__SendUserFile",
+      "handlerName": "SendUserFile",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "SendUserFile",
+      "claudeBehaviorCounterpart": "SendUserFile"
+    },
+    {
+      "semanticId": "session.cron_create",
+      "currentName": "mcp__session__CronCreate",
+      "finalPiName": "mcp__session__CronCreate",
+      "bindingName": "mcp__session__CronCreate",
+      "handlerName": "CronCreate",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "CronCreate",
+      "claudeBehaviorCounterpart": "CronCreate"
+    },
+    {
+      "semanticId": "session.cron_list",
+      "currentName": "mcp__session__CronList",
+      "finalPiName": "mcp__session__CronList",
+      "bindingName": "mcp__session__CronList",
+      "handlerName": "CronList",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "CronList",
+      "claudeBehaviorCounterpart": "CronList"
+    },
+    {
+      "semanticId": "session.cron_delete",
+      "currentName": "mcp__session__CronDelete",
+      "finalPiName": "mcp__session__CronDelete",
+      "bindingName": "mcp__session__CronDelete",
+      "handlerName": "CronDelete",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "CronDelete",
+      "claudeBehaviorCounterpart": "CronDelete"
+    },
+    {
+      "semanticId": "session.cron_control",
+      "currentName": "mcp__session__CronControl",
+      "finalPiName": "mcp__session__CronControl",
+      "bindingName": "mcp__session__CronControl",
+      "handlerName": "CronControl",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "CronControl",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.schedule_wakeup",
+      "currentName": "mcp__session__ScheduleWakeup",
+      "finalPiName": "mcp__session__ScheduleWakeup",
+      "bindingName": "mcp__session__ScheduleWakeup",
+      "handlerName": "ScheduleWakeup",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "ScheduleWakeup",
+      "claudeBehaviorCounterpart": "ScheduleWakeup"
+    },
+    {
+      "semanticId": "session.publish_artifact",
+      "currentName": "mcp__session__publish_artifact",
+      "finalPiName": "mcp__session__publish_artifact",
+      "bindingName": "mcp__session__publish_artifact",
+      "handlerName": "publish_artifact",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "publish_artifact",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.list_artifacts",
+      "currentName": "mcp__session__list_artifacts",
+      "finalPiName": "mcp__session__list_artifacts",
+      "bindingName": "mcp__session__list_artifacts",
+      "handlerName": "list_artifacts",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "list_artifacts",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.create_board_task",
+      "currentName": "mcp__session__create_board_task",
+      "finalPiName": "mcp__session__create_board_task",
+      "bindingName": "mcp__session__create_board_task",
+      "handlerName": "create_board_task",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "create_board_task",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.list_pages",
+      "currentName": "mcp__session__list_pages",
+      "finalPiName": "mcp__session__list_pages",
+      "bindingName": "mcp__session__list_pages",
+      "handlerName": "list_pages",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "list_pages",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.get_page",
+      "currentName": "mcp__session__get_page",
+      "finalPiName": "mcp__session__get_page",
+      "bindingName": "mcp__session__get_page",
+      "handlerName": "get_page",
+      "executionMode": "registry",
+      "safeMode": "allow",
+      "readOnly": true,
+      "permissionName": "get_page",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.create_page",
+      "currentName": "mcp__session__create_page",
+      "finalPiName": "mcp__session__create_page",
+      "bindingName": "mcp__session__create_page",
+      "handlerName": "create_page",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "create_page",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.update_page",
+      "currentName": "mcp__session__update_page",
+      "finalPiName": "mcp__session__update_page",
+      "bindingName": "mcp__session__update_page",
+      "handlerName": "update_page",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "update_page",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.write_page_data",
+      "currentName": "mcp__session__write_page_data",
+      "finalPiName": "mcp__session__write_page_data",
+      "bindingName": "mcp__session__write_page_data",
+      "handlerName": "write_page_data",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "write_page_data",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.delete_page",
+      "currentName": "mcp__session__delete_page",
+      "finalPiName": "mcp__session__delete_page",
+      "bindingName": "mcp__session__delete_page",
+      "handlerName": "delete_page",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "delete_page",
+      "claudeBehaviorCounterpart": null
+    },
+    {
+      "semanticId": "session.project_memory_append",
+      "currentName": "mcp__session__project_memory_append",
+      "finalPiName": "mcp__session__project_memory_append",
+      "bindingName": "mcp__session__project_memory_append",
+      "handlerName": "project_memory_append",
+      "executionMode": "registry",
+      "safeMode": "block",
+      "readOnly": false,
+      "permissionName": "project_memory_append",
+      "claudeBehaviorCounterpart": null
+    }
+  ],
+  "piStaticTools": [
+    {
+      "semanticId": "file.read",
+      "currentName": "read",
+      "finalPiName": "read",
+      "bindingName": "read",
+      "modelContractHash": "25728b85748e6840cda2ea75edf07926fb7b30e32b8026e1ddf08dd6ace37fa8",
+      "handlerName": "buildRuntimeBackedBuiltinToolDefinitions.read.execute",
+      "permissionName": "Read",
+      "claudeBehaviorCounterpart": "Read",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "process.shell",
+      "currentName": "bash",
+      "finalPiName": "bash",
+      "bindingName": "bash",
+      "modelContractHash": "b37b294a7f49ce4206a95df1e9e2c21348817edec51f17e9e5b3bc3f22082008",
+      "handlerName": "buildRuntimeBackedBuiltinToolDefinitions.bash.execute",
+      "permissionName": "Bash",
+      "claudeBehaviorCounterpart": "Bash",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "file.edit",
+      "currentName": "edit",
+      "finalPiName": "edit",
+      "bindingName": "edit",
+      "modelContractHash": "9ae3c184285bb1ba9f3bb9ec380f0d524d5f2ee6c0ee6d2101094ee645a03647",
+      "handlerName": "buildRuntimeBackedBuiltinToolDefinitions.edit.execute",
+      "permissionName": "Edit",
+      "claudeBehaviorCounterpart": "Edit",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "file.write",
+      "currentName": "write",
+      "finalPiName": "write",
+      "bindingName": "write",
+      "modelContractHash": "ccab55f016e216ec1a90df800815991f953344a1d3113b467bd064080fc90350",
+      "handlerName": "buildRuntimeBackedBuiltinToolDefinitions.write.execute",
+      "permissionName": "Write",
+      "claudeBehaviorCounterpart": "Write",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "file.grep",
+      "currentName": "grep",
+      "finalPiName": "grep",
+      "bindingName": "grep",
+      "modelContractHash": "f9a700237bfbdcffe45db5b755139c8c22a02f9a8ab9c0f22de0eb5fb57fd6fe",
+      "handlerName": "buildRuntimeBackedBuiltinToolDefinitions.grep.execute",
+      "permissionName": "Grep",
+      "claudeBehaviorCounterpart": "Grep",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "file.find",
+      "currentName": "find",
+      "finalPiName": "find",
+      "bindingName": "find",
+      "modelContractHash": "9d72f93c00f09ba0ac55bd611927317710ff0746b4e9d655fb5d7ec9f00ce4e0",
+      "handlerName": "buildRuntimeBackedBuiltinToolDefinitions.find.execute",
+      "permissionName": "Find",
+      "claudeBehaviorCounterpart": "Glob",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "file.list",
+      "currentName": "ls",
+      "finalPiName": "ls",
+      "bindingName": "ls",
+      "modelContractHash": "0ee55cdf68d8509a36bc205c060ba58b0245751083607fe5df00b2f344b7ade5",
+      "handlerName": "buildRuntimeBackedBuiltinToolDefinitions.ls.execute",
+      "permissionName": "Ls",
+      "claudeBehaviorCounterpart": "LS",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "notebook.edit",
+      "currentName": "NotebookEdit",
+      "finalPiName": "notebook_edit",
+      "bindingName": "NotebookEdit",
+      "modelContractHash": "7d989795962d937049625bf616d04c73b26201b8b004d11812dd1587610503aa",
+      "handlerName": "createNotebookEditTool.execute",
+      "permissionName": "NotebookEdit",
+      "claudeBehaviorCounterpart": "NotebookEdit",
+      "owner": "runtime-backed builtin"
+    },
+    {
+      "semanticId": "web.search",
+      "currentName": "web_search",
+      "finalPiName": "web_search",
+      "bindingName": "web_search",
+      "modelContractHash": "6c8c15fd82d91b5f4e1159b0f54624fcee8b36742ea7fdf5d3d68fdac419213d",
+      "handlerName": "createSearchTool.execute",
+      "permissionName": "WebSearch",
+      "claudeBehaviorCounterpart": "WebSearch",
+      "owner": "Pi web tool"
+    },
+    {
+      "semanticId": "web.fetch",
+      "currentName": "web_fetch",
+      "finalPiName": "web_fetch",
+      "bindingName": "web_fetch",
+      "modelContractHash": "951c17281f2f732be3daece6516fbf5cf67d4f3ee00b0499c1a55be89008b815",
+      "handlerName": "createWebFetchTool.execute",
+      "permissionName": "WebFetch",
+      "claudeBehaviorCounterpart": "WebFetch",
+      "owner": "Pi web tool"
+    },
+    {
+      "semanticId": "process.background_shell",
+      "currentName": "bash_background",
+      "finalPiName": "bash_background",
+      "bindingName": "bash_background",
+      "modelContractHash": "b26ebe640efea6c6b9d356359b5487d7835b1d789580643d8d01a618dbd369c9",
+      "handlerName": "createBackgroundBashTool.execute",
+      "permissionName": "Bash",
+      "claudeBehaviorCounterpart": "Bash(run_in_background)",
+      "owner": "background-bash.ts"
+    },
+    {
+      "semanticId": "agent.subagent",
+      "currentName": "subagent",
+      "finalPiName": "subagent",
+      "bindingName": "subagent",
+      "modelContractHash": "fdc18e4d328b090f92f930ce2ca259bcf3cf7c3bf9bbf07d01683d9543ba5a43",
+      "handlerName": "createSubagentTool.execute",
+      "permissionName": "subagent",
+      "claudeBehaviorCounterpart": "Task",
+      "owner": "orchestrator/subagent-tool.ts"
+    },
+    {
+      "semanticId": "agent.review",
+      "currentName": "review",
+      "finalPiName": "review",
+      "bindingName": "review",
+      "modelContractHash": "2b8a03965276ce39040f65b7d0eca152e45a1e32e1e385d44d200b6309550a48",
+      "handlerName": "createReviewTool.execute",
+      "permissionName": "review",
+      "claudeBehaviorCounterpart": null,
+      "claudeCounterpartReason": "No single Claude Code callable tool owns Nessy's adversarial review-with-rubric child.",
+      "owner": "orchestrator/review-tool.ts"
+    },
+    {
+      "semanticId": "agent.get_subagent_result",
+      "currentName": "get_subagent_result",
+      "finalPiName": "get_subagent_result",
+      "bindingName": "get_subagent_result",
+      "modelContractHash": "20d48076c69bf2f5ca51627a8e0a93a353fe8b4227c0e7c9661c87e7a7254562",
+      "handlerName": "createGetSubagentResultTool.execute",
+      "permissionName": "get_subagent_result",
+      "claudeBehaviorCounterpart": "TaskOutput",
+      "owner": "orchestrator/subagent-tool.ts"
+    },
+    {
+      "semanticId": "agent.steer_subagent",
+      "currentName": "steer_subagent",
+      "finalPiName": "steer_subagent",
+      "bindingName": "steer_subagent",
+      "modelContractHash": "a475f0427319df8bb5f5bbd16118ce93b5d4a1f1734e1a35b3b170c5fdf45a51",
+      "handlerName": "createSteerSubagentTool.execute",
+      "permissionName": "steer_subagent",
+      "claudeBehaviorCounterpart": "TaskUpdate",
+      "owner": "orchestrator/subagent-tool.ts"
+    },
+    {
+      "semanticId": "agent.stop_task",
+      "currentName": "stopTask",
+      "finalPiName": "stop_task",
+      "bindingName": "stopTask",
+      "modelContractHash": "b64fc1e32a352311067963b780830ed679f7483a78aeb713ee74cf57db03b1d4",
+      "handlerName": "createStopTaskTool.execute",
+      "permissionName": "TaskStop",
+      "claudeBehaviorCounterpart": "TaskStop",
+      "owner": "orchestrator/subagent-tool.ts"
+    },
+    {
+      "semanticId": "workflow.execute",
+      "currentName": "workflow",
+      "finalPiName": "workflow",
+      "bindingName": "workflow",
+      "modelContractHash": "ec8102d8017841992635718de4b10bad794cd86533a3b24f493a853ca2049f46",
+      "handlerName": "createWorkflowTool.execute",
+      "permissionName": "workflow",
+      "claudeBehaviorCounterpart": null,
+      "claudeCounterpartReason": "No single Claude Code callable tool owns Nessy's workflow evaluator.",
+      "owner": "orchestrator/workflow-tool.ts"
+    },
+    {
+      "semanticId": "user.ask",
+      "currentName": "ask_user",
+      "finalPiName": "ask_user",
+      "bindingName": "ask_user",
+      "modelContractHash": "feaab99af81a34bc139a44eac222047b14668ebf9b913419290688c4fcf141a3",
+      "handlerName": "createAskUserTool.execute",
+      "permissionName": "ask_user",
+      "claudeBehaviorCounterpart": "AskUserQuestion",
+      "owner": "orchestrator/ask-user-tool.ts"
+    }
+  ],
+  "conditionalTools": [
+    {
+      "semanticId": "mcp.discovery.search",
+      "currentName": "mcp__tool_search",
+      "finalPiName": "mcp__tool_search",
+      "bindingName": "mcp__tool_search",
+      "modelContractHash": "5cc4f298da736e22a69112b3124dcfead3fa89629433ccc6ba4b83c8097a4cd1",
+      "handlerName": "createDeferredMcpSearchTool.execute",
+      "activationCondition": "deferral on: deferredMcpToolLoading=true (the shipped default) and at least one deferrable candidate, no count consulted (resolveDeferredMcpToolLoading, default mode)",
+      "permissionName": "mcp__tool_search",
+      "claudeBehaviorCounterpart": "ToolSearch",
+      "owner": "deferred-mcp-tools.ts"
+    },
+    {
+      "semanticId": "mcp.discovery.load",
+      "currentName": "mcp__tool_load",
+      "finalPiName": "mcp__tool_load",
+      "bindingName": "mcp__tool_load",
+      "modelContractHash": "d3b734fce654803b60018f7fcc17c0ab828b76fcd0a98ee8f24b85a776cd3da6",
+      "handlerName": "createDeferredMcpLoadTool.execute",
+      "activationCondition": "deferral on: deferredMcpToolLoading=true (the shipped default) and at least one deferrable candidate, no count consulted (resolveDeferredMcpToolLoading, default mode); exact accepted tools register into the live session and are callable from the next model call of the same request (F1.803), and remain selected for later requests",
+      "permissionName": "mcp__tool_load",
+      "claudeBehaviorCounterpart": "ToolSearch/load behavior",
+      "owner": "deferred-mcp-tools.ts"
+    }
+  ],
+  "dispatchContract": {
+    "selectedPiVersion": "0.87.1",
+    "selectedSource": {
+      "commit": "a23abe4a695df8b69b613f73e9fdda2a8af894d4",
+      "path": "packages/agent/src/agent-loop.ts",
+      "blobSha": "d93458d0784950798853cb1d182a46f0248f68c1",
+      "url": "https://github.com/earendil-works/pi/blob/a23abe4a695df8b69b613f73e9fdda2a8af894d4/packages/agent/src/agent-loop.ts",
+      "executionDisposition": "Selected 0.87.1 is installed through the configured Artifactory and guarded by the fail-closed PiRuntimeAdapter VERSION/shape contract. The cited agent-loop blob is deliberately left at the 0.80.3 revision the ordered steps below were read from: U2 (2026-08-20) re-verified the public API surface against the installed 0.84.0 dist, not this upstream file, so promoting the reference would claim a reading that was not performed."
+    },
+    "orderedSteps": [
+      "exact lookup: currentContext.tools?.find(t => t.name === toolCall.name)",
+      "unknown name: return createErrorToolResult('Tool <name> not found') with isError=true immediately",
+      "prepareArguments(toolCall, tool)",
+      "validateToolArguments(tool, preparedArgs)",
+      "Pi beforeToolCall hook",
+      "blocked or aborted hook result returns an immediate error result",
+      "matched tool.execute(toolCall.id, validatedArgs, signal, onUpdate)",
+      "stream tool updates",
+      "Pi afterToolCall hook and final result rewrite"
+    ],
+    "unknownNameReachability": {
+      "beforeToolCall": false,
+      "matchedExecute": false,
+      "nessyWrappedExecute": false,
+      "result": "immediate isError tool result"
+    },
+    "ordinaryToolCallHookLimitation": "Exact lookup and the unknown-name error result occur before Pi beforeToolCall and before any matched execute function. Nessy hooks wrap only an already matched execute function, so an ordinary tool_call hook cannot create or rename an unknown tool.",
+    "requiredAliasPlacement": "Known historical tool names — the pre-unification snake_case session piNames, and the two native host spellings — normalize only in bounded persisted Pi SDK transcript ingress; live V2 registration and dispatch accept current exact piName only.",
+    "historicalNameMappings": [
+      {
+        "semanticId": "session.submit_plan",
+        "persistedName": "mcp__session__submit_plan",
+        "normalizedName": "mcp__session__SubmitPlan",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.todo_write",
+        "persistedName": "mcp__session__todo_write",
+        "normalizedName": "mcp__session__TodoWrite",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.task",
+        "persistedName": "mcp__session__task",
+        "normalizedName": "mcp__session__Task",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.task_create",
+        "persistedName": "mcp__session__task_create",
+        "normalizedName": "mcp__session__TaskCreate",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.task_update",
+        "persistedName": "mcp__session__task_update",
+        "normalizedName": "mcp__session__TaskUpdate",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.task_get",
+        "persistedName": "mcp__session__task_get",
+        "normalizedName": "mcp__session__TaskGet",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.task_list",
+        "persistedName": "mcp__session__task_list",
+        "normalizedName": "mcp__session__TaskList",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.goal_get",
+        "persistedName": "mcp__session__goal_get",
+        "normalizedName": "mcp__session__GoalGet",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.goal",
+        "persistedName": "mcp__session__goal",
+        "normalizedName": "mcp__session__Goal",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.slash_command",
+        "persistedName": "mcp__session__slash_command",
+        "normalizedName": "mcp__session__SlashCommand",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.bash_output",
+        "persistedName": "mcp__session__bash_output",
+        "normalizedName": "mcp__session__BashOutput",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.process_stop",
+        "persistedName": "mcp__session__process_stop",
+        "normalizedName": "mcp__session__ProcessStop",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.monitor",
+        "persistedName": "mcp__session__monitor",
+        "normalizedName": "mcp__session__Monitor",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.enter_worktree",
+        "persistedName": "mcp__session__enter_worktree",
+        "normalizedName": "mcp__session__EnterWorktree",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.exit_worktree",
+        "persistedName": "mcp__session__exit_worktree",
+        "normalizedName": "mcp__session__ExitWorktree",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.worktree_batch",
+        "persistedName": "mcp__session__worktree_batch",
+        "normalizedName": "mcp__session__WorktreeBatch",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.report_findings",
+        "persistedName": "mcp__session__report_findings",
+        "normalizedName": "mcp__session__ReportFindings",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.push_notification",
+        "persistedName": "mcp__session__push_notification",
+        "normalizedName": "mcp__session__PushNotification",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.send_user_file",
+        "persistedName": "mcp__session__send_user_file",
+        "normalizedName": "mcp__session__SendUserFile",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.cron_create",
+        "persistedName": "mcp__session__cron_create",
+        "normalizedName": "mcp__session__CronCreate",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.cron_list",
+        "persistedName": "mcp__session__cron_list",
+        "normalizedName": "mcp__session__CronList",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.cron_delete",
+        "persistedName": "mcp__session__cron_delete",
+        "normalizedName": "mcp__session__CronDelete",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.cron_control",
+        "persistedName": "mcp__session__cron_control",
+        "normalizedName": "mcp__session__CronControl",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "session.schedule_wakeup",
+        "persistedName": "mcp__session__schedule_wakeup",
+        "normalizedName": "mcp__session__ScheduleWakeup",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "notebook.edit",
+        "persistedName": "NotebookEdit",
+        "normalizedName": "notebook_edit",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      },
+      {
+        "semanticId": "agent.stop_task",
+        "persistedName": "stopTask",
+        "normalizedName": "stop_task",
+        "collisionRule": "distinct under exact equality; never register both as independent semantics"
+      }
+    ],
+    "sharedPolicyMappingsThatAreNotAliases": [
+      {
+        "policyName": "Bash",
+        "dispatchNames": [
+          "bash",
+          "bash_background"
+        ],
+        "reason": "shared policy/display classification only; the exact dispatch names and handlers remain distinct"
+      }
+    ]
+  },
+  "dynamicMcp": {
+    "semanticId": "mcp.dynamic",
+    "currentName": "mcp__<sanitized-server>__<exact-sanitized-tool>",
+    "finalPiName": "mcp__<sanitized-server>__<exact-sanitized-tool>",
+    "bindingName": "mcp__<sanitized-server>__<exact-sanitized-tool>",
+    "handlerName": "McpClientPool.callTool",
+    "bindingPattern": "mcp__<sanitized-server>__<exact-sanitized-tool>",
+    "caseRule": "preserve existing exact sanitized server/tool form",
+    "permissionName": "exact bindingName",
+    "claudeBehaviorCounterpart": "MCP tool call",
+    "permissionSubject": "exact bindingName",
+    "availabilityOwner": "leased EffectiveCapabilitySnapshot/AgentRuntimeView"
+  }
+}

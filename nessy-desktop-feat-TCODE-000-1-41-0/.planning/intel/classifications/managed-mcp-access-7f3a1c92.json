@@ -1,0 +1,33 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/architecture/managed-mcp-access.md",
+  "type": "ADR",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Organization control over MCP servers",
+  "summary": "Records how Nessy implements, deliberately deviates from, and declines Claude's managed-MCP contract for admin control of MCP servers and plugins.",
+  "scope": [
+    "managed Pi policy",
+    "allowedMcpServers",
+    "deniedMcpServers",
+    "MCP servers",
+    "plugin marketplace",
+    "strictPluginOnlyCustomization",
+    "capability-input filter",
+    "workspace MCP browse pool"
+  ],
+  "cross_refs": [
+    "managed-mcp.md",
+    "settings.md",
+    "packages/shared/src/agent/pi-harness/managed-policy.ts",
+    "packages/shared/src/agent/pi-harness/managed-mcp-entries.ts",
+    "packages/shared/src/agent/pi-harness/managed-marketplace-entries.ts",
+    "packages/server-core/src/bootstrap/storage-runtime.ts",
+    "packages/server-core/src/handlers/rpc/sources.ts",
+    "packages/server-core/src/pi-harness/otlp-telemetry.ts",
+    "mcp/server-config-values.ts",
+    "managed-composition.ts"
+  ],
+  "locked": false,
+  "precedence": null,
+  "notes": "Type taken from MANIFEST_TYPE (authoritative). Document has no Status field; no 'Accepted' marker, so locked=false despite decision-record content ('the deliberate decision this unit exists to make')."
+}

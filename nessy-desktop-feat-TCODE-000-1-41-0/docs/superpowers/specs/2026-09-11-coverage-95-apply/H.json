@@ -1,0 +1,866 @@
+{
+ "family": "H",
+ "items": [
+  {
+   "qid": "QH1",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "H1",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.123 (`7e4e41b36`) made the shipped `code-review` SKILL.md name the host-computed `ReviewDiff` as step 1, on top of P3.204 (`52a20a087`) delegating the review to the runtime's own subagent and P3.276 (`f96ce11cc` + `f406b73df` + `e21e4a46b`) binding the host diff port, so a claude review runs in a context-isolated reviewer over a host-computed diff."
+    },
+    {
+     "row": "H14",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.306 (`dc18d6fa1 + e48364548`) built the line-anchored diff-comment affordance host-side — `packages/ui/src/lib/diff-comments.ts` with `UnifiedDiffViewer`, `ShikiDiffViewer`, `MultiDiffPreviewOverlay` and `ChatDisplay` as its consumers — and the seam is runtime-blind."
+    },
+    {
+     "row": "H14",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host seam as the Pi cell: P6.306 (`dc18d6fa1 + e48364548`), `packages/ui/src/lib/diff-comments.ts`, with the agent-facing half already projected as `ReviewDiff` (`packages/session-tools-core/src/tool-defs.ts` symbol `ReviewDiff`, `visibility: 'not-pi'`)."
+    },
+    {
+     "row": "H14",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host seam as the Pi cell: P6.306 (`dc18d6fa1 + e48364548`), `packages/ui/src/lib/diff-comments.ts`; codex reaches the diff through the `/review/diff` bridge route bound by P3.276 (`36839ff94`)."
+    },
+    {
+     "row": "H15",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.307 (`102a933cb + 677ca89c1`) shipped `apps/electron/resources/skills/simplify/SKILL.md` and P6.1024 (`debf920e6`) gave it its own direction paragraph (it applies its fixes in this conversation), over the same review machinery on every runtime."
+    },
+    {
+     "row": "H15",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same bundled-skill artefact as the Pi cell — P6.307 (`102a933cb + 677ca89c1`) plus P6.1024 (`debf920e6`) — projected to every backend by `ensureBundledSkills`."
+    },
+    {
+     "row": "H15",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same bundled-skill artefact as the Pi cell — P6.307 (`102a933cb + 677ca89c1`) plus P6.1024 (`debf920e6`) — projected to every backend by `ensureBundledSkills`."
+    },
+    {
+     "row": "H16",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.308's Pi arm (`ace4a5821`) frees the composer at the review tool and P6.798 (`d0e61e7ff`) made `/code-review` background by DEFAULT on Pi, with `background: false` kept as the page's own escape."
+    },
+    {
+     "row": "H16",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.793 (`4a54ae24e`) reads `Query.backgroundTasks` for the first time (surface `chat.backgroundInFlightTask`) and P6.1016 (`cb11c166e`) put the direction in the review skill after measuring that the SDK backgrounds its own subagents by default (`AgentInput.run_in_background` in the vendored `sdk-tools.d.ts`)."
+    },
+    {
+     "row": "H16",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "The verdict does not move but its provenance does: P6.793 (`4a54ae24e`) made codex REFUSE by name rather than block silently, and the native route is unconfigured rather than missing — `packages/codex-protocol/generated/ClientRequest.ts` declares `review/start` with `packages/codex-protocol/generated/v2/ReviewDelivery.ts` offering `inline` and `detached`, and zero product callers."
+    },
+    {
+     "row": "H17",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.307 (`102a933cb + 677ca89c1`) put the cross-session store in the host (`packages/shared/src/config/storage.ts` symbols `getLastReviewEffortLevel` / `setLastReviewEffortLevel`) and `packages/shared/src/agent/pi-agent.ts` injects the carried-over level with the instruction to say so in the first line."
+    },
+    {
+     "row": "H17",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.307 (`102a933cb + 677ca89c1`) landed the store and the skill's direction, but the only production caller of `getLastReviewEffortLevel` / `setLastReviewEffortLevel` is `packages/shared/src/agent/pi-agent.ts`, so a claude session is never told which level was carried over."
+    },
+    {
+     "row": "H17",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.307 (`102a933cb + 677ca89c1`) landed the store and the skill's direction, but the only production caller of `getLastReviewEffortLevel` / `setLastReviewEffortLevel` is `packages/shared/src/agent/pi-agent.ts`, so a codex session is never told which level was carried over."
+    },
+    {
+     "row": "H18",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.307 (`102a933cb + 677ca89c1`) shipped `apps/electron/resources/skills/security-review/SKILL.md` as a preset over the existing reviewer, and P6.1024 (`debf920e6`) gave it its own sentence (it reports and stops)."
+    },
+    {
+     "row": "H18",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same bundled preset as the Pi cell — P6.307 (`102a933cb + 677ca89c1`) plus P6.1024 (`debf920e6`) — built over H1's isolated reviewer rather than as a fourth review path."
+    },
+    {
+     "row": "H18",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same bundled preset as the Pi cell — P6.307 (`102a933cb + 677ca89c1`) plus P6.1024 (`debf920e6`) — built over H1's isolated reviewer rather than as a fourth review path."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp the /code-review family in the ledger and its denominator twin against the landed commits: H1/claude, H14, H15, H16, H17 and H18.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A's first half. Done when the sixteen cells listed in this item's ledger_edits carry the verdicts and commits named there in BOTH `docs/superpowers/specs/2026-08-28-capability-ledger.md` and `docs/superpowers/specs/2026-09-05-denominator-gaps.md` (H14-H18 have twins; H1 has none), and the Why cells lose the pre-P6.306/P6.307/P6.308 absence probes. Measured while writing this row: H17 is NOT uniform — `getLastReviewEffortLevel`/`setLastReviewEffortLevel` have exactly one production caller (`packages/shared/src/agent/pi-agent.ts`), so claude and codex take `partial ᵗ`, not `covered`."
+    },
+    {
+     "task_en": "Call codex's own `review/start` with `delivery: \"detached\"` and a host-computed `ReviewTarget` so a codex /code-review runs off-thread instead of being refused by name.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "host"
+     ],
+     "note_en": "Implements option A's second half — native-first step 1, configuration rather than construction: `packages/codex-protocol/generated/ClientRequest.ts` declares the `review/start` method, `packages/codex-protocol/generated/v2/ReviewStartParams.ts` takes `{threadId, target, delivery}` and `ReviewTarget.ts` offers `uncommittedChanges | baseBranch | commit | custom`, and product callers score ZERO today. Done when a codex session's /code-review returns the composer immediately, the findings arrive from the detached review thread, and the host chooses the `ReviewTarget` from the same `packages/shared/src/prompts/review-diff.ts` scope the other two runtimes review, with a test pinning that `delivery: \"detached\"` is what is sent. Re-stamps H16/codex `absent ᵗ` → `covered ᵗ` and the codex half of H1 when it lands. NOTE the tag: the codex-protocol package's `manifest.json` now reads `rust-v0.150.1` while its `package.json` description still says `rust-v0.148.0` — cite the manifest."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "The answer is not a refusal, but it contains the flip the owner's stricter criterion asks for and it should be scheduled as one: codex has the mechanism natively (`review/start` + `ReviewDelivery` `\"detached\"` in the pinned protocol at `rust-v0.150.1`), product callers are zero, and the host wiring is S because the `ReviewTarget` can be computed from the review-diff scope the host already owns."
+  },
+  {
+   "qid": "QH2",
+   "answer": "B",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "H19",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH2 = B (2026-09-11): every forge entry stays with the Dev-4 forge/git-UI plan, which DR-2 routed it to (plan `:1145`) — worktrees and branches are in scope here, a human opens the merge request — so hunk staging/reverting and the forge actions of this row have no subject in this ledger."
+    },
+    {
+     "row": "H19",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — owner answer QH2 = B (2026-09-11), forge work routed to Dev-4 by DR-2 (plan `:1145`); the inline-comment clause of this page row is delivered separately as H14 (P6.306)."
+    },
+    {
+     "row": "H19",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — owner answer QH2 = B (2026-09-11), forge work routed to Dev-4 by DR-2 (plan `:1145`); the seam is host-side, so the three cells are one decision."
+    },
+    {
+     "row": "H20",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Triage §27 DECIDED A (2026-09-05) refuses Auto-fix and Auto-merge outright and the decision is encoded structurally at `packages/shared/src/sessions/merge-request-watch.ts` symbol `MergeRequestReadRequest` (no method can express a write); the surviving status/notification transport is the Dev-4 forge plan's, confirmed by owner answer QH2 = B (2026-09-11)."
+    },
+    {
+     "row": "H20",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — triage §27 A (2026-09-05) plus owner answer QH2 = B (2026-09-11); `packages/shared/src/sessions/merge-request-watch.ts` is host-side and provider-blind, so the three cells are one decision."
+    },
+    {
+     "row": "H20",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — triage §27 A (2026-09-05) plus owner answer QH2 = B (2026-09-11); `packages/shared/src/sessions/merge-request-watch.ts` is host-side and provider-blind, so the three cells are one decision."
+    },
+    {
+     "row": "H52",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Agent teams were declined by the owner on 2026-08-22 (Dev-1) and again as R23 on 2026-07-29, and the cell's own text already says 'No new question'; owner answer QH2 = B (2026-09-11) keeps the team/forge surface out of this plan."
+    },
+    {
+     "row": "H52",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same declined decision as the Pi cell — owner 2026-08-22 (Dev-1), R23 2026-07-29, reconfirmed by owner answer QH2 = B (2026-09-11)."
+    },
+    {
+     "row": "H52",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same declined decision as the Pi cell — owner 2026-08-22 (Dev-1), R23 2026-07-29, reconfirmed by owner answer QH2 = B (2026-09-11)."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the three already-decided forge rows as refusals in the ledger and its twin: H19 and H20 routed to the Dev-4 forge/git-UI plan, H52 declined.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option B literally — the owner refused option A (a batch step calling the built-in `dpGitlab` MCP). Done when the nine cells carry `n/a ᵈ` with the decision id and date in the Why cell (triage §27 and §31, 2026-09-05; Dev-1 2026-08-22 / R23 2026-07-29 for H52; owner QH2 = B, 2026-09-11) in BOTH the ledger and `docs/superpowers/specs/2026-09-05-denominator-gaps.md`, and H19/H20's Why cells name `packages/shared/src/sessions/merge-request-watch.ts` as where the refusal is encoded rather than merely stated."
+    },
+    {
+     "task_en": "Build the MR-less /batch: split one change into 5-30 worktree-isolated subagents that each land on their own branch, and stop there — no merge request is opened by the product.",
+     "size": "L",
+     "tags": [
+      "host",
+      "product"
+     ],
+     "note_en": "Triage §31 DECIDED A (2026-09-05) named this a row; owner answer QH2 = B (2026-09-11) fixes its boundary — worktrees and branches here, a human opens the merge requests, and the last step must NOT call the built-in `dpGitlab` MCP. Done when one request fans out over the existing `WorktreeLeaseService` machinery, each child's branch is named and reported, and the absence of any forge write is a property of the code (as `packages/shared/src/sessions/merge-request-watch.ts` made it for H20) rather than a promise in prose. Re-stamps H51 when it lands."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "The mechanism is already SHIPPED and merely disabled: `packages/shared/src/mcp/builtin-dp-servers.ts` declares `dpGitlab` (subcommand `gitlab`, `defaultEnabled: false`) whose tool set covers merge requests, and it is reachable by the model on all three runtimes, so wiring the batch's last step to it behind a per-MR confirmation is S. It is a host/product MCP rather than a runtime-native mechanism, and the refusal is a posture (an agent that opens or merges a request) the owner has now taken twice — recorded, answer unchanged."
+  },
+  {
+   "qid": "QH3",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "H7",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH3 = A (2026-09-11): codex's `[agents.<role>]` table has no `isolation` counterpart — the field is dropped before the writer sees it (`packages/codex-responses-adapter/src/config-writer.ts` symbol `sanitizeCodexRoleName`) and the loss is spoken by `packages/shared/src/agent/codex-agent.ts` symbol `reportUnexpressibleCodexAgentFields`, so there is nothing to configure and nothing the host can supply uniformly."
+    },
+    {
+     "row": "H23",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH3 = A (2026-09-11): per-role memory has no codex counterpart (`MemoriesToml` is a session-wide subsystem, not a per-child store) and `memory=` is named per definition by `packages/shared/src/agent/codex-agent.ts` symbol `reportUnexpressibleCodexAgentFields`."
+    },
+    {
+     "row": "H26",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH3 = A (2026-09-11): `background` has no counterpart in codex's role table — `packages/shared/src/agent/codex-agent.ts` symbol `reportUnexpressibleCodexAgentFields` pushes `background=` for every definition declaring it, and `buildCodexAgentRoles` refuses a tool-declaring descriptor outright, so there is no subagent to background."
+    },
+    {
+     "row": "H27",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH3 = A (2026-09-11): the same missing `background` key means there is no foreground/background switch to force on codex, and the drop is spoken by `packages/shared/src/agent/codex-agent.ts` symbol `reportUnexpressibleCodexAgentFields` plus the aggregated operator notice."
+    },
+    {
+     "row": "H31",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH3 = A (2026-09-11): codex has no per-agent deny — a role is declared in `[agents]` or it is not — which `packages/shared/src/agent/claude-runtime-builtin-agent-env.ts` already records as absent BY CONSTRUCTION beside its pointer to `runtime-switch-costs.ts` symbol `codexBuiltinAgents`."
+    },
+    {
+     "row": "H34",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH3 = A (2026-09-11), with the refuter's correction recorded: `multi_agent_v2.subagent_developer_instructions` is NOT this capability's equivalent — it OVERRIDES, applies only to roles carrying no instructions of their own, and lives on the `features.multi_agent_v2` surface this build leaves off (measured V1 in force on the shipped `codex-app-server`), so P6.314's codex arm stays an honest null."
+    },
+    {
+     "row": "H21",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "REFUTES this question's premise that `skills` is one of the seven refusals: P6.309 arm (1) landed `192b700fc`, which prepends each declared skill's materialized body to the codex role descriptor's `systemPrompt` before `writeCodexConfig` sees it (`applyRuntimeAgentSkillsToDescriptors` in `packages/shared/src/agent/claude-runtime-agents.ts`), so a codex role naming a skill does start with that skill's body — only the `skills` KEY is unexpressible, and the capability is not."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the six unexpressible codex role fields as refusals in the ledger and its twin, and re-stamp H21/codex as covered by the landed skill-body inlining.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "codex"
+     ],
+     "note_en": "Implements option A's refusal half. Done when H7, H23, H26, H27, H31 and H34 carry `n/a ᵈ` on codex with `packages/shared/src/agent/codex-agent.ts` symbol `reportUnexpressibleCodexAgentFields` named as the surface that already speaks each loss, H21/codex reads `covered ᵗ` against `192b700fc`, and H34's Why carries the refuter's correction that `subagent_developer_instructions` overrides rather than appends and sits on the disabled V2 surface. H25/codex already reads `n/a ʰ` (maxTurns) and needs no edit."
+    },
+    {
+     "task_en": "Give the operator codex's own delegation off-switch: a host setting that drives `subagentsEnabled` into `[agents] enabled = false`, with a test pinning that the switch binds only while `features.multi_agent_v2` is off.",
+     "size": "XS",
+     "tags": [
+      "codex",
+      "host",
+      "test"
+     ],
+     "note_en": "Native-first step 1 and the mechanism is already proven inert: `packages/codex-responses-adapter/src/config-writer.ts` symbol `buildCodexConfigToml` writes `enabled = false` first among the bare `[agents]` keys and its tests exist, but the docblock says 'its caller does not exist yet' — nothing mints a host setting. Done when an operator can turn delegation off for a codex session from the app, and a test quotes the schema's own precedence sentence (`packages/codex-protocol/schema/config-schema.json`: 'Whether multi-agent tools are enabled. Defaults to true. An enabled `features.multi_agent_v2` setting takes precedence.') so the conditionality is pinned rather than assumed. Re-stamps H33/codex `absent ʰ` → `covered ᵗ` when it lands."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Checked against the stricter criterion and it does not apply: five of the six refusals have no key in codex's role table at all (`packages/codex-responses-adapter/src/config-writer.ts` symbol `sanitizeCodexRoleName` drops them before the writer), so there is no native mechanism to enable. The one that looks native — H34's `multi_agent_v2.subagent_developer_instructions` — is not a flip either: it overrides instead of appending, applies only to roles with no instructions of their own, and reaching it means enabling `features.multi_agent_v2`, which changes the multi-agent backend in force (measured V1 on the shipped codex-app-server) and is therefore not ≤ S."
+  },
+  {
+   "qid": "QH5",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "H10",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.303 (`c324a0b8e`) withholds the host `TodoWrite` on codex where the runtime brings its own `update_plan`, so a codex session is advertised exactly one checklist — the counts moved in the same commit."
+    },
+    {
+     "row": "H24",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.724 (`3a39d0800`) writes `CLAUDE_CODE_ENABLE_TODO_TOOLS=1` into the claude child (`packages/shared/src/agent/options.ts` symbol `CLAUDE_TODO_TOOLS_OPT_IN_ENV_VAR`), the route the page names, so `TaskCreate`/`TaskGet`/`TaskUpdate`/`TaskList` return on the default Opus model without the auto-approval price the allow-list route would have paid — the owner took that route on 2026-09-07, so the claude half no longer waits on owner-sitting §2.1."
+    },
+    {
+     "row": "H24",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH5 = A (2026-09-11): codex's only plan mechanism is `update_plan`, a whole-list replace with no ids and no read-back, so there is no per-task subject to address — and P6.303 (`c324a0b8e`) replaced the silent `pi-only` withholding with the single-checklist decision a user can read."
+    },
+    {
+     "row": "H40",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.303 (`14ac2260d`) taught `areTaskToolsEnabled` (`packages/session-tools-core/src/handlers/task-tools.ts`) to honour the Claude spelling `CLAUDE_CODE_ENABLE_TASKS` as an alias of `NESSY_ENABLE_TASKS`, with a test for each spelling and for the precedence between them."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp H10/codex, H24 (claude covered, codex refused) and H40/claude in the ledger and its denominator twin against P6.303 and P6.724.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A. Done when the four cells carry the verdicts and commits in this item's ledger_edits in both files, H24's Why stops pointing the claude half at `docs/superpowers/specs/2026-09-04-owner-sitting.md` §2.1 (the owner answered it on 2026-09-07 and P6.724 landed `3a39d0800`), and H40's Why names the alias rather than the withdrawn `CLAUDE_CODE_ENABLE_TASKS`-as-model-gate reading — the model gate is `CLAUDE_CODE_ENABLE_TODO_TOOLS`, per `tools-reference.md#task-tool-availability`."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The one refusal here is H24/codex and codex has no native mechanism to enable: `update_plan` replaces a whole list, carries no ids and offers no read-back, and codex's hook-event enum holds nothing else; projecting the host's four task tools would re-create the double checklist H10 exists to prevent."
+  },
+  {
+   "qid": "QH6",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "H12",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.305 (`2fb395016`) renders the one-line activity summary on the subagent card — `apps/electron/src/renderer/components/app-shell/SubagentCard.tsx` now reads `agent.lastActivity` through `orchestrationActivityLabel`, which the cell's own evidence recorded as never rendered."
+    },
+    {
+     "row": "H12",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.305's codex arm landed in the same commit (`2fb395016`) and P6.642 (`8379e5df4 + 104d3b535`) built the per-runtime child-state producer, so a running codex subagent reaches the same card with the same summary instead of a spinner."
+    },
+    {
+     "row": "H13",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH6 = A (2026-09-11), with the wording the refuter narrowed: the SDK stream we read does not carry a subagent's model or effort — re-measured at the lifted bundle 0.3.247, `SDKTaskProgressMessage.usage` is `{ total_tokens, tool_uses, duration_ms }` and neither it nor `SDKTaskStartedMessage` carries a model field — while Claude Code shows them in its own `/tasks` from 2.1.242; synthesizing the value from the spawn descriptor would show what was CONFIGURED rather than what was applied, and is refused."
+    },
+    {
+     "row": "H13",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH6 = A (2026-09-11): codex publishes no per-subagent model or effort either, and the carrier `packages/core/src/types/pi-harness-runtime.ts` symbol `PiHarnessChildSummaryV1` is a Pi-harness wire type whose header already states APPLIED-not-CONFIGURED, so the same refusal applies with the same reason."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp H12 (Pi and codex) as covered by P6.305/P6.642 and record H13's claude and codex cells as refusals with the exact stream-level wording.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A. Done when H12's Pi and codex cells read `covered ᵗ` against `2fb395016` (and `104d3b535` for the codex producer) in the ledger and in `docs/superpowers/specs/2026-09-05-denominator-gaps.md`, and H13's two cells read `n/a ᵈ` with a sentence that says the SDK STREAM does not carry model and effort (not that the runtime does not publish them, which `sub-agents.md` contradicts) — re-verified for this pass against the lifted `node_modules/@anthropic-ai/claude-agent-sdk/sdk.d.ts` at 0.3.247."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Probed the lifted bundle rather than assuming: at agent-sdk 0.3.247 (claudeCodeVersion 2.1.247) `SDKTaskProgressMessage` carries `task_id`, `description`, `subagent_type`, `usage {total_tokens, tool_uses, duration_ms}`, `last_tool_name`, `summary` and no model or effort, and `SDKTaskStartedMessage` adds `is_backgrounded`/`spawn_depth`/`task_type` and no model either — so there is no native field to wire at any size, and the refusal is the honest verdict."
+  },
+  {
+   "qid": "QH7",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "H32",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.527 (`38a963b31 + d41cfa7a8`) sets the SDK's own `CLAUDE_AGENT_SDK_DISABLE_BUILTIN_AGENTS` exactly when we supply definitions — the predicate `packages/shared/src/agent/claude-runtime-agents.ts` already computed — so a claude session shipping our roster no longer carries the unvetted `general-purpose` agent."
+    },
+    {
+     "row": "H4",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH7 = A (2026-09-11) records the deliberate non-projection rather than a defect: the operator's explicit ceiling DOES bind on claude since P6.16 (`0fd9d888a`, `NESSY_MAX_CONCURRENT_SUBAGENTS` in the SDK's own spelling), and the RAM narrowing is withheld on purpose because `packages/shared/src/agent/options.ts` symbol `maxConcurrentSubagents` narrows per Pi SUBPROCESS while a claude subagent is another context window inside one process — projecting it would refuse work for memory nobody allocates."
+    },
+    {
+     "row": "H4",
+     "column": "Codex",
+     "from": "`—`",
+     "to": "`partial ᵗ`",
+     "why_en": "Stale cell: the Why already records the move and the cell never followed it — P3.347 (W5-b) emits `[agents] max_threads` and `max_depth` from `packages/codex-responses-adapter/src/config-writer.ts` symbol `writeCodexConfig`, so both host ceilings bind on codex; `partial` because codex's own defaults (6 threads, depth 1) differ from the host's 20/3 on an unconfigured session."
+    },
+    {
+     "row": "H53",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH7 = A (2026-09-11) keeps the cell's own recorded refusal: the runtime narrows a subagent's tool pool AFTER we forward `tools` and nothing this fork does can widen it back (P6.836, measured on the vendored child — the pool additionally loses the cron and task tools and `ReportFindings`, which appears in no list on `sub-agents.md#available-tools`), so the capability cannot be had rather than being unbuilt; the Switch column stays `SILENT` on the cell's own tested-and-refused `HONEST` note."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Add the delegation-guidance paragraph the page prescribes for Opus-5 sessions to Pi's composed prompt and to the claude `mini` branch that takes a plain string instead of the `claude_code` preset.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "claude",
+      "host"
+     ],
+     "note_en": "Implements the H35 half of option A's package. Native-first: on claude the regular arm gets the line free from `{ type: 'preset', preset: 'claude_code' }` (`packages/shared/src/agent/claude-agent.ts` symbol `systemPrompt`) and only the `mini` arm misses it; Pi has no such text at all (control: 'Delegate focused work' resolves in `packages/pi-agent-server/src/orchestrator/subagent-tool.ts`, while no delegation guidance does). Done when the same guidance is present on Pi and on both claude arms, or the remaining difference is named in the switch-cost report; page `agent-sdk/subagents.md#run-opus-5-with-subagents`. Re-stamps H35 pi `absent ʰ` and claude `partial ʰ` when it lands."
+    },
+    {
+     "task_en": "Re-stamp H32/claude, both H4 cells and H53/claude in the ledger and its twin, and rewrite H53's Why so its verdict word matches the refusal it already argues.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements the rest of option A's package. Done when H32/claude reads `covered ᵗ` against `38a963b31 + d41cfa7a8`, H4/claude reads `n/a ᵈ` with P6.16's counter-example in the Why, H4/codex stops reading `—` (its own Why has said `partial ʰ` since P3.347 on 2026-09-04), and H53/claude reads `n/a ᵈ` while the Switch column keeps `SILENT` with a pointer to the cell's own tested-and-refused `HONEST` note. H31 is in this question's row list but its claude cell already reads `covered ᵗ` (P6.313, `e1122ff5b`) and its codex cell is edited under QH3."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Neither refusal in the package is a native mechanism left unwired. H53 is the runtime's OWN filter applied after our forward against a closed binary, so there is nothing to enable at any size (option C in this question is named impossible for that reason). H4's claude refusal is the opposite of an unwired mechanism: the native counter already enforces the operator's explicit ceiling since P6.16, and what is withheld is a host FORMULA whose unit does not apply to that runtime."
+  },
+  {
+   "qid": "QH8",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "H29",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.311 built the `@`-mention typeahead over materialized agent definitions (`ced4a8342`, keys `b6cf62e36`); the named residue is the background subagent's STATUS in the same typeahead, which waits on the running-work feed and moved to `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` row `D1.46`."
+    },
+    {
+     "row": "H29",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same host composer surface as the Pi cell — P6.311 (`ced4a8342`) — with the same named residue carried to `D1.46`; a plugin subagent additionally cannot be scoped in the typeahead because `SafeCapabilitySummary['mention'].type` is source-or-skill (P6.694)."
+    },
+    {
+     "row": "H29",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same host composer surface as the Pi cell — P6.311 (`ced4a8342`) — with the same named residue carried to `D1.46`."
+    },
+    {
+     "row": "H30",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.940 clause (2) (`fb011ffcb`) composes the session-agent projection on Pi from the roster the host already materializes — `systemPrompt` into the cacheable prefix, `tools` intersected with the P6.217 universe, `initialPrompt` submitted once ahead of the user's text — with the model deliberately withheld under K7 and nine other declared fields announced in one diagnostic."
+    },
+    {
+     "row": "H30",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.312 (`c3eb37ba5 + 5270ac3ef`) landed the claude arm and the `sessionAgent` key per the owner's 2026-09-07 answer (b) — `Options.agent` supplies three of the four clauses itself — and P6.940 clause (1) (`71911b4ab`, locales `8d0d21006`) shows `@<name>` beside the mode with a tooltip saying the model is unchanged."
+    },
+    {
+     "row": "H39",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.317 (`492bd901d + 296de50a9 + b0b4ed0b0`) added the headless `--agents '<json>'` flag — `parseAgentsArg` in `apps/cli/src/index.ts`, with named refusals for invalid JSON, a non-object and an empty object — and it is one host CLI surface, so the three cells are one thing."
+    },
+    {
+     "row": "H39",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host CLI surface as the Pi cell — P6.317 (`492bd901d + 296de50a9 + b0b4ed0b0`), `parseAgentsArg` in `apps/cli/src/index.ts` — registering the agents for that session and writing nothing to disk."
+    },
+    {
+     "row": "H39",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host CLI surface as the Pi cell — P6.317 (`492bd901d + 296de50a9 + b0b4ed0b0`), `parseAgentsArg` in `apps/cli/src/index.ts`."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp H30 (Pi and claude) and H39 as covered by P6.312/P6.940/P6.317, and H29 as partial with its residue named, in the ledger and its denominator twin.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A — no code is owed, the work was done. Done when the eight cells carry the verdicts and commits in this item's ledger_edits and H29's Why points at `D1.46` for the background-status half rather than repeating the pre-P6.311 absence probe. TWO residues to state rather than hide: H30's codex cell is NOT covered — P6.940 clause (3) (apply the instructions half through `developer_instructions` and SAY that the tool restriction and the auto-prompt are not applied) is still the owner's and unbuilt, so that cell keeps `absent ʰ`; and the Pi session-agent pin has no composer badge where claude's does (P6.961)."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing here is a refusal — the answer re-reads landed work. The one open arm, H30/codex, has a native carrier ready (`developer_instructions`, already written by the config writer) and would be S, but it is an unanswered owner clause (P6.940 clause 3) rather than a refusal this round took, so it is reported as a residue instead of a flip."
+  },
+  {
+   "qid": "QH9",
+   "answer": "B",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "H41",
+     "column": "Pi",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.318 closed with the UI clause the cell held `partial` for: the keep-this-run affordance landed `88c0dc958 + 8d8feda2e` on top of `7bac0f5c4`, so a run's script is saved from the UI into the personal or project location and `/<name>` dispatches it later (`packages/shared/src/workflows/workflow-loader.ts` symbol `saveWorkflowRecipe`, production caller `packages/server-core/src/sessions/SessionManager.ts` symbol `saveSessionWorkflowRecipe`)."
+    },
+    {
+     "row": "H41",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH9 = B (2026-09-11) turns on the SDK's own workflow ENGINE on claude but supplies no save API: the vendored SDK exposes none (the `s` key is a CLI TUI affordance), so saving a run's script as a reusable command has no claude subject."
+    },
+    {
+     "row": "H41",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH9 = B (2026-09-11), recorded as a dated null: `packages/codex-protocol/generated/ClientRequest.ts` matches zero `*workflow*` method names at the pinned tag (`packages/codex-protocol/manifest.json` reads `rust-v0.150.1`), so there is no save surface to call."
+    },
+    {
+     "row": "H42",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Triage §29 DECIDED A (2026-09-05): the product ships no bundled workflow command — workflows stay user-authored — consistent with the owner's 2026-09-01 rulings against shipping content the user did not ask for; the owner's QH9 answer explicitly does not reopen it."
+    },
+    {
+     "row": "H42",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — triage §29 A (2026-09-05), not reopened by owner answer QH9 = B (2026-09-11); the page's own example workflow additionally needs WebSearch, recorded absent on claude at ledger J10."
+    },
+    {
+     "row": "H42",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — triage §29 A (2026-09-05), not reopened by owner answer QH9 = B (2026-09-11)."
+    },
+    {
+     "row": "H43",
+     "column": "Claude",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.319 (`7f5af44ac + 37788c219`) built the settings row with its readback (`apps/electron/src/renderer/pages/settings/AppSettingsPage.tsx` renders `settings.workflows.sizeGuideline` and binds the value in force) and projects the key onto the runtime's own switch (`packages/shared/src/agent/claude-auto-mode-policy.ts` symbol `buildClaudeWorkflowSettings`), sending it only when the host actually decided so the vendor's `/config` row is not seized."
+    },
+    {
+     "row": "H2",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH9 = B (2026-09-11) enables the engine on claude and records codex as an honest DATED null: no workflow method exists in the app-server protocol at the pinned tag `rust-v0.150.1` (`packages/codex-protocol/manifest.json`), so there is nothing to enable and nothing for the host to supply."
+    },
+    {
+     "row": "H45",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH9 = B (2026-09-11): the three documented opt-ins are the claude SDK's own settings keys and codex's protocol carries no workflow surface at the pinned tag `rust-v0.150.1`, so the codex cell is a dated null rather than an unbuilt control."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Measure first, on claude: whether the SDK's own dynamic-workflow engine is reachable in a packaged gateway session or entitlement-gated.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "test"
+     ],
+     "note_en": "Owner override QH9 = B (2026-09-11) taken literally — 'enable the SDK's own workflow engine on claude (`enableWorkflows: true`), WITH P6.125's measurement'. The rig is written in P6.125 and carried as `D1.18` in `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md`: write `enableWorkflows: true` through the settings the host already feeds (`settingSources: ['user','project','local']` from `packages/shared/src/agent/claude-agent.ts` symbol `buildClaudeTurnShapeOptions`), read the init tool roster for a `Workflow` entry and send one prompt containing the keyword. Controls: (1) `Task`/`TodoWrite` present in the same roster, proving the read works; (2) the same probe with `disableWorkflows: true`, which must remove it. A negative result means ENTITLEMENT (`tengu_workflows_enabled`), not absence — record which. Decides whether H2/claude becomes `covered`, `partial` by entitlement or a measured absence; do not fill the cell before it runs."
+    },
+    {
+     "task_en": "Pass the permissive direction on claude — `enableWorkflows: true` — so the SDK's own workflow engine runs, keeping the restrictive off-switch and the org-wide disable exactly as they are.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "product"
+     ],
+     "note_en": "Owner override QH9 = B. Today `packages/shared/src/agent/claude-auto-mode-policy.ts` symbol `buildClaudeWorkflowSettings` sends `enableWorkflows: false` and nothing else — the OFF direction only — so the engine is never asked for. Done when a claude session runs a dynamic workflow of the runtime's own, `disableWorkflows` still turns it off for a user and for the organisation, the `unrestricted`-vs-`medium` default divergence recorded at that symbol stays stated, and a test pins both directions. Depends on the measurement row above; re-stamps H2/claude and the `enableWorkflows` clause of H45/claude when it lands."
+    },
+    {
+     "task_en": "Leave Pi's workflow engine exactly as it is and record that it stays the product's authored-workflow path.",
+     "size": "XS",
+     "tags": [
+      "pi",
+      "doc"
+     ],
+     "note_en": "Owner override QH9 = B says 'Pi stays as is'. Done when H2/pi, H41/pi, H43/pi, H44/pi and H45/pi carry no change from this round and the Why cells say so, so that a later reader does not mistake the claude enablement for a decision to move the engine."
+    },
+    {
+     "task_en": "Write codex's workflow cells as an honest null carrying the protocol tag it was measured at.",
+     "size": "XS",
+     "tags": [
+      "codex",
+      "doc"
+     ],
+     "note_en": "Owner override QH9 = B says 'codex — an honest null with the tag'. Done when H2, H41, H42 and H45's codex cells name `packages/codex-protocol/manifest.json`'s tag in the Why. CORRECTION to the question's own text: that tag is now `rust-v0.150.1`, not `rust-v0.148.0` — the lift landed; the `rust-v0.148.0` spelling survives only in the package's `package.json` description, which is stale prose."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "This IS the owner's flip and it is recorded as such: the runtime has the engine natively (`enableWorkflows`, `workflowSizeGuideline`, `workflowKeywordTriggerEnabled` and `disableWorkflows` are declared on `Settings` in the vendored `sdk.d.ts`, and the host already reaches that tier), and the wiring is S because `buildClaudeWorkflowSettings` exists and today sends only the restrictive direction — the recommendation A would have left an org-wide `disableWorkflows` governing nothing on claude, which is the silent divergence the owner's criterion targets."
+  },
+  {
+   "qid": "QH10",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "H36",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.315 (`2b6c002e4` `c0b6d6ce7`) built the over-budget producer in the one uniform materializer (`packages/shared/src/agent/pi-harness/runtime-agent-definition.ts`) and W6-k wired `onDescriptionsOverBudget` at all four production call sites, so the producer is no longer inert."
+    },
+    {
+     "row": "H36",
+     "column": "Claude",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host producer as the Pi cell — P6.315 (`2b6c002e4` `c0b6d6ce7`) — and the claude arm was measured rather than assumed: the binary's own `large-agent-descriptions` notice is TUI-only and unreachable through the SDK, so the host warning is the only one a user can get."
+    },
+    {
+     "row": "H36",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host producer as the Pi cell — P6.315 (`2b6c002e4` `c0b6d6ce7`) — reaching codex through the same four call sites; no runtime-native warning exists on codex."
+    },
+    {
+     "row": "H47",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.645 (`8f6979257 + 3e25c07b2 + 409ca7a91 + 0aa97d701`) built the host token budget owner decision 30 asked for — the setting (`MAX_BUDGET_TOKENS_DEFAULTS_FIELD`), the turn-boundary comparison, a per-runtime stop reason and the hydration twin (`getSessionOutputTokens`) — with the existing USD cap untouched."
+    },
+    {
+     "row": "H47",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host budget as the Pi cell — P6.645 (`8f6979257 + 3e25c07b2 + 409ca7a91 + 0aa97d701`) — all three runtimes already report token usage, so the comparison and the legible stop reason are one seam with one test per runtime."
+    },
+    {
+     "row": "H47",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host budget as the Pi cell — P6.645 (`8f6979257 + 3e25c07b2 + 409ca7a91 + 0aa97d701`); the USD half stays a held explicit null on codex (owner decision 19, 2026-09-05), which the docblock at `packages/codex-responses-adapter/src/config-writer.ts` symbol `resolveToolOutputTokenLimit` already states."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp H36 against P6.315 and H47 against P6.645 — not P6.507, which handed the build on — in the ledger and its denominator twin, and leave H48 as an unrun measurement.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A, which is the owner's own 2026-09-05 decision (triage §30: keep the USD cap where a price exists, add a token budget every runtime can honour) rather than a new one. Done when the six cells carry the verdicts and commits in this item's ledger_edits in both files, H47's Why cites P6.645's four commits instead of P6.507 (`607dc93bf`, which passed the build on), the codex USD null keeps decision 19's citation, and H48 keeps its three `—` cells with a pointer to `D1.48` in `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` — P6.321 closed as MOVED, not done, so scoring H48 now would be scoring an unrun measurement."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "No refusal was recommended or taken here — the denomination question was already answered by the owner on 2026-09-05 and the build has landed. The one native mechanism worth naming is already in the verdict's favour: codex denominates in tokens and `ThreadGoal` publishes `tokenBudget`/`tokensUsed`, which is why the token budget could be honoured on all three rather than emulated."
+  },
+  {
+   "qid": "QH11",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "H9",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.476 (`97be89497` `34e46322b`) mounted the session-goal chip above the composer at `valueMode: progress` on every runtime — the entry-point half the cell held `partial` for — under the owner's 2026-09-05 Q3 decision (option A: read-only; B's composer command and cancel popover declined), with P6.132 (`82658c955`) striking the refuted RPC-only claim."
+    },
+    {
+     "row": "H9",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host surface as the Pi cell — P6.476 (`97be89497` `34e46322b`), provider-blind since P2.488 (`f3ddcedda`) — with control available on every runtime as the model-visible `Goal`/`GoalGet` pair (`packages/session-tools-core/src/tool-defs.ts`, no `visibility`)."
+    },
+    {
+     "row": "H9",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host surface as the Pi cell plus the codex-specific hazard closed: P6.487 (`19a33235e`) probed the feature stage and wrote `[features] goals = false`, so one thread can no longer hold a host goal and a codex goal at once."
+    },
+    {
+     "row": "H50",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner answer QH11 = A (2026-09-11): the mechanism already exists on all three runtimes — `packages/server-core/src/pi-harness/goal-service.ts` symbol `create` takes a `condition` — so what is missing is authored prose, declined on the same rule that declined the bundled workflow H42 (triage §29, 2026-09-05); the cited page `long-running-work` 404s and is in no corpus page list."
+    },
+    {
+     "row": "H50",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — owner answer QH11 = A (2026-09-11); the interview is content over the existing `condition` field, and shipped prose needs maintenance against a page that is not even in the corpus."
+    },
+    {
+     "row": "H50",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Same decision as the Pi cell — owner answer QH11 = A (2026-09-11); codex's own `/plan` is a TUI slash command and we drive the app-server, so its native route is unreachable by construction."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp H9 as covered by P6.132/P6.476/P6.487 and record H50 as a refusal, in the ledger and its denominator twin.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A. Done when H9's three cells read `covered ᵗ` naming the chip (P6.476), the codex goal-engine key (P6.487) and the struck claim (P6.132), and say in one clause that direct control was DECLINED by the owner on 2026-09-05 (Q3 option A: read-only chip) so a later reader does not re-open it as a gap; and when H50's three cells read `n/a ᵈ` with the 404 of the cited `long-running-work` page recorded rather than left as a live citation."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "H50's refusal is not a runtime mechanism left unwired: every runtime already accepts a goal with a success `condition` through the host's own `GoalService`, and codex's only native `/plan` is a TUI command on a surface this product does not drive. What is refused is authored interview prose, which no runtime supplies at any wiring size."
+  },
+  {
+   "qid": "QH12",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "H38",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Half of this cell's stated residue is CLOSED: P6.317 (`296de50a9`) pointed `plugin validate <path>` at a bare agents directory — `apps/cli/src/index.ts` now documents 'Agent frontmatter is checked in the path and in an `agents` folder under it, manifest or not' — so the one remaining residue is the line-based frontmatter reader, recorded and deliberately not fixed by P6.648 (`735be504a`)."
+    },
+    {
+     "row": "H38",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same host CLI surface as the Pi cell — P6.317 (`296de50a9`) closed the bare-directory half and P6.648 (`735be504a`) recorded the reader residue, which is a contract decision: `plugin validate` and the session are ONE reader, so a real YAML parser would change what sessions load."
+    },
+    {
+     "row": "H38",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same host CLI surface as the Pi cell — P6.317 (`296de50a9`) plus P6.648 (`735be504a`); one CLI surface, hence three identical cells."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Add an `agents` arm to the global config dispatcher so a user-scope agent file added or edited mid-session is picked up without a restart.",
+     "size": "XS",
+     "tags": [
+      "host"
+     ],
+     "note_en": "Implements option A's build half. Measured at HEAD: `packages/shared/src/config/watcher.ts` symbol `handleGlobalConfigFileChange` dispatches on `config.json`, `preferences.json`, `theme.json` and the hooks file and has NO arm for `agents`, while user agents load from `<CONFIG_DIR>/agents` (`packages/shared/src/agents/definitions.ts` symbol `readMarkdownAgentDefinitionsFromDir`); the project half is already covered by `packages/server-core/src/projects/project-capability-watcher.ts` symbol `WATCHED_PROJECT_DIRS`. Done when a definition dropped into a user `agents/` directory created AFTER the session started is loaded, with the two controls the cell names (a directory existing at start, and an edit under project `.nessy-agent/agents`). Re-stamps H37's three `—` cells with a verdict per scope when it lands."
+    },
+    {
+     "task_en": "Rewrite H38's Why to the single remaining residue and re-stamp its three cells with the landed commits, in the ledger and its denominator twin.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A's ledger half. Done when the cells read `partial ᵗ` and the Why no longer says the offline checker over a bare `agents` directory is untouched — it landed in P6.317 (`296de50a9`) and the CLI help text says so — leaving one residue: the line-based frontmatter reader that accepts YAML a real parser rejects, refused as a contract change by P6.648 (`735be504a`) and counted as a decided refusal. Option B (a real YAML parser) stays a separate question, not a side effect."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Neither half is a runtime mechanism left unwired — discovery and offline validation are host-side on all three runtimes (the pages document the behaviour, not an API), so there is nothing native to enable; the only refusal, the line-based frontmatter reader, is refused because replacing it would CHANGE what sessions load, not because it is expensive."
+  },
+  {
+   "qid": "QH13",
+   "answer": "A",
+   "kind": "measure",
+   "ledger_edits": [
+    {
+     "row": "H28",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner decision triage §28 A (2026-09-05), reconfirmed by owner answer QH13 = A (2026-09-11): the page states two defaults for two shapes and claude's is OFF for the Agent SDK, so our `false` is doc-correct and there is no claude subject — the residual difference is DECLARED at the switch as the `forkSubagent` row (`apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts`, body `chat.runtimeSwitch.costForkSubagent`)."
+    },
+    {
+     "row": "H28",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵈ`",
+     "why_en": "Owner decision triage §28 A (2026-09-05), reconfirmed by owner answer QH13 = A (2026-09-11): codex's `thread/fork` forks a THREAD, not a subagent inheriting the parent's conversation and prompt cache, so the capability has no codex subject; the Pi half was taken and landed (`packages/shared/src/config/background-task-settings.ts` defaults `NESSY_FORK_SUBAGENT` to true, pinned by `packages/pi-agent-server/src/orchestrator/fork-mode.test.ts`)."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Run one rig lane — a packaged session per runtime that spawns children — and set the measured verdicts for the three forwarded subagent fields plus codex's inherited session tools.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "claude",
+      "codex",
+      "test"
+     ],
+     "note_en": "Implements option A: the rows were deferred as `D1.19`(P6.310) and `D1.20`(P6.131) in `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md`, and one rig serves every field. Three arms with their controls: (a) capture an `agentId` and continue it a turn later — controls: a fabricated id, a user-stopped agent and a re-taken name must each be refused rather than misdelivered (H22); (b) run a child at `maxTurns: 1` and read the Agent result for a partial marker, control the cap unset (H25) — and the subject is REACHABILITY THROUGH OUR ADAPTER, because `isPartial` scores 16 in the vendored binary and ZERO in `node_modules/@anthropic-ai/claude-agent-sdk/sdk.d.ts`, re-verified for this pass at the lifted 0.3.247, which is past the 2.1.246 floor the page pins the marking to; (c) declare `background: true` and see whether the turn returns before the child, control the same definition without it (H26), and decide whether Pi's DEPTH proxy in `packages/pi-agent-server/src/orchestrator/spawner.ts` is replaced or named in a switch-cost row; (d) from a codex spawned agent call `list_sessions` then `send_agent_message`, positive control the same two calls from the parent turn, negative control `list_mcp_resources` which must be absent (H8/codex, whose `absent ˢ` marker may be flatly wrong). Done when H22, H25, H26, H8/codex and the claude arms of H7 (is the forwarded `isolation` acted on) and H23 (does the SDK use its own memory directory) carry a measured verdict with its control and a CDP narrative; option C — scoring them off the forwarding code — is the forbidden code-probe mode and must not be used."
+    },
+    {
+     "task_en": "Record H28's claude and codex cells as refusals under the already-taken fork-mode decision, in the ledger and its denominator twin.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements the H28 half of option A, which triage §28 decided on 2026-09-05 (A: Pi defaults ON in interactive sessions, claude stays OFF, with the switch-cost row in the same commit) and which is already landed. Done when both cells read `n/a ᵈ` with that decision id and date, the Pi cell keeps `covered ᵗ`, and H6/codex is left alone — it already carries the explicit null the question asks for (`absent ᵗ`, P2.258 `8bfb12497`, where `CodexAgent.reportsCostUsd() === false` outranks a per-turn verdict), and re-writing it as `n/a` would lose the measured-absence-with-a-refusal shape that cell deliberately holds."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is to measure, not to refuse, so rule (1) does not bite; the two refusals recorded beside it (H28 claude and codex) are the documented default on one runtime and a different primitive on the other (`thread/fork` forks a thread, not a subagent), neither of which is a native mechanism the host could wire at any size."
+  }
+ ]
+}

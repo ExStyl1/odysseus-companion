@@ -1,0 +1,10 @@
+{
+  "title": "Test missing icon",
+  "slides": [
+    {"layout": "title", "text": "Test"},
+    {"layout": "cards", "title": "Missing icon", "cards": [
+      {"title": "No icon here", "text": "This should fail"}
+    ]},
+    {"layout": "final"}
+  ]
+}

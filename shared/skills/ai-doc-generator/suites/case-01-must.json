@@ -1,0 +1,25 @@
+{
+  "name": "ai-doc-generator: срабатывание и выполнение",
+  "skill": "kotlin:ai-doc-generator",
+  "plugin_dir": "plugins/t-skills-kotlin",
+  "prompt": "Сгенерируй техническую документацию по коду микросервиса: контроллер OrdersController с эндпоинтом POST /orders.",
+  "fixture": "ai-doc-generator",
+  "activation": "must",
+  "runs": 3,
+  "why": "Прямой запрос обязан запустить скилл ai-doc-generator и выдать ожидаемый результат.",
+  "checks": [
+    {
+      "type": "answer_contains",
+      "pattern": "(?i)OrdersController|POST /orders|документац"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "no_write_outside_fixture"
+    },
+    {
+      "type": "no_tool",
+      "tool": "WebFetch"
+    }
+  ]
+}

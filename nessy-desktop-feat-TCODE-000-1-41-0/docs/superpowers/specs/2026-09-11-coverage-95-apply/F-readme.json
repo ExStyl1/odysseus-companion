@@ -1,0 +1,27 @@
+{
+ "problems": [
+  "The twin file is NOT id-for-id or word-for-word: `docs/superpowers/specs/2026-09-05-denominator-gaps.md` uses `have`/`unknown`/`partial`/`absent` (not the ledger's covered/partial/n/a plus marker), and its row id `F9` IS the ledger's `F49` (the ledger row says the sweep id F9 was taken) — so the three F9 refusal edits have NO twin while the three F49 edits must land on the twin's `F9` row. Rows F1, F3, F4, F5, F7 have no twin row at all (original ledger rows, not sweep admissions), i.e. 7 of the 62 edits are ledger-only.",
+  "QF3's projected 'six cells to covered' does not survive measurement: four move to covered (F23/pi, F23/claude, F24/codex and F7/claude by decision) and three move absent to partial (F22/pi, F22/codex, F23/codex), because the unattended capacity watchdog has no Pi or codex counterpart and codex publishes no wait to count down. I recorded the honest split, not the projected count.",
+  "F35/claude and F35/codex recorded `partial ᵗ` (the headless rewind verb exists on every runtime and NAMES a runtime with no producer instead of reporting a rewind that restored nothing, `f5b053499`), which departs from the derivative-`absent` convention F12 and F42 use for the same two arms; normalize to `absent` if the applier prefers that convention.",
+  "F1/claude recorded `partial ᵗ`, not `covered`: `b63b4f6ba` (P6.851) enables the SDK's producer but its own message says `Query.rewindFiles` still has zero call sites and the restore is a sitting case, so `covered` would overstate what a user gets.",
+  "F34 recorded `partial ᵗ` ×3, not `covered`: P6.106 `786754cc2` built the `/clear` anchor and `/resume` seam on all three runtimes but deliberately no permanent rewind-menu row, and the capability text names the menu.",
+  "The follow-up plan's D1.37 row is stale against HEAD — it still reads open ('no one gesture stops every background subagent'), while P6.275 landed the aggregate in `5c046abd7` and only the slash-command entry is owed through D1.14; update that note in the same commit as the F25 re-stamp.",
+  "F30 gets no cell edit: the owner answered it on 2026-09-05 (sitting §1.7 = B, adopt the documented grant shape) and the build lives in the DR-2 row, so the cells stay `absent` with an owner pointer rather than being re-stamped by this round.",
+  "F3/codex gets no ledger edit — the cell's Why already carries the 2026-09-10 HEAD re-read (a second `thread/fork` passing `lastTurnId`) and the verdict is unchanged at `partial`; its re-stamp is folded into the QF7 rig row instead."
+ ],
+ "flip_candidates": [
+  {
+   "qid": "QF3",
+   "mechanism_en": "The host's own shared primitive `readWithIdleTimeout` (`packages/shared/src/llm/stream-idle.ts`), a re-armed per-chunk silence timer already wrapping Pi's reasoning proxy and the nestor-cloud relay, wrapped around the claude loopback SSE in `packages/codex-responses-adapter/src/server.ts` symbol `pipeAnthropicPassthrough`.",
+   "wiring_size": "S",
+   "reason_en": "The owner confirmed the recorded decision (B), and the decision is honestly sited and measured, but claude is the one arm where nothing ends a stalled stream for about nine minutes (544907 ms, P6.114 `1e9f78425`) and the runtime's own byte watchdog is measured unreachable on this route because it arms only for an api.anthropic.com base URL; the wrap is option A's own S. The answer is unchanged."
+  }
+ ],
+ "counts": {
+  "restamp": 1,
+  "refuse": 4,
+  "build": 4,
+  "measure": 1,
+  "defer": 1
+ }
+}

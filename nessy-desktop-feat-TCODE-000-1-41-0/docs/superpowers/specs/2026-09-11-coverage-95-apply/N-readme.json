@@ -1,0 +1,19 @@
+{
+ "problems": [
+  "QN1 stamps N2/N6/N7/N8 `covered` on all three runtimes, but P6.182's done_means asked for the identical observable DRIVEN on a claude-runtime session and on a codex session (the latter only after asserting the bridge is active) and no lane report I could find names those two runs — the stamp rests on the host-uniform argument (`SessionManager` symbol `admitAgentMessage` takes no runtime argument), not on three driven runs.",
+  "QN1's question text says N9 'remains partial' while at HEAD its three cells read `absent`+hand-marker — the applier must CHANGE them to `partial`+tracker-marker, not leave them as they are.",
+  "QN3 and QN5 move no verdict word, so their three ledger_edits carry from == to: they are Why-cell-only edits (the edit schema has no Why column), and the applier must read why_en as the Why-cell text rather than as a verdict move.",
+  "QN3's build already exists as row D1.80 (open) in docs/superpowers/plans/2026-09-10-integrations-and-authorization.md, carried there from P6.464 with verdicts intact; the owner's answer did not say which plan executes it, so the new coverage-95 row is written as a pointer at D1.80 rather than a duplicate.",
+  "N2 and N3 have NO twin row in docs/superpowers/specs/2026-09-05-denominator-gaps.md (that file carries only the P6.189-admitted rows N4-N11), so QN1's three N2 edits and QN5's N3 edit apply to the capability ledger alone; the N4/N5/N10/N11 twins keep their verdict word and take only the rewritten reason.",
+  "The Switch cell for N11 is written `HONEST` with no provenance marker (matching N3's existing `REPORTED`) because the question spelled none, while N6/N7/N8/N10 take `UNIFORM`+tracker-marker exactly as their questions spell it — an inconsistency inherited from the question text, not introduced here.",
+  "Family N yields zero flip candidates: QN2's native mechanism is real and measured (the 2.1.247 UDS inbox) but its wiring is M-L, claude-only, and version-gated at 2.1.248+ against our 2.1.247, so it fails the owner's size half of the test; QN4 and QN5 have no native mechanism available to us at all."
+ ],
+ "flip_candidates": [],
+ "counts": {
+  "restamp": 2,
+  "refuse": 2,
+  "build": 1,
+  "measure": 0,
+  "defer": 0
+ }
+}

@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/manim-composer",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/manim-composer",
+  "upstreamName": "manim-composer",
+  "upstreamFrontmatter": {
+    "name": "manim-composer",
+    "description": "Trigger when: (1) User wants to create an educational/explainer video, (2) User has a vague concept they want visualized, (3) User mentions \"3b1b style\" or \"explain like 3Blue1Brown\", (4) User wants to plan a Manim video or animation sequence, (5) User asks to \"compose\" or \"plan\" a math/science visualization.\n\nTransforms vague video ideas into detailed scene-by-scene plans (scenes.md). Conducts research, asks clarifying questions about audience/scope/focus, and outputs comprehensive scene specifications ready for implementation with ManimCE or ManimGL.\n\nUse this BEFORE writing any Manim code. This skill plans the video; use manimce-best-practices or manimgl-best-practices for implementation."
+  },
+  "upstreamSkillSha256": "79e7c224fa8912f3e26897aa91252ab30996eddd1208c1128238057a7b89b176",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

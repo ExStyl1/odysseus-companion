@@ -1,0 +1,307 @@
+{
+  "_comment": "Type scale for card layouts. Derived from the designers' Figma export (25 frames, 193 text nodes). Read by scripts/deckkit/typography.py; the chosen step is written onto the markup by scripts/deckkit/autofit.py. Nothing here may be duplicated in Python - this file is the only place the numbers live.",
+
+  "_how_it_works": "A slide gets ONE title size and ONE body size, shared by all its cards, exactly as every Figma frame does. The build enumerates the legal (title, body) pairs for the layout's tier, largest first, lays the slide out with the real layout engine and keeps the first pair whose text fits. Size is never chosen from a character count.",
+
+  "ladders": {
+    "_comment": "`classes` names the CSS classes autofit.py rewrites for this role. It is data, not code: the v1.4 column components use different classes from the cards, and hardcoding the list in Python is what made the two drift the last time.",
+
+    "card-title": {
+      "sizes": [48, 44, 40, 36, 32],
+      "line_height": "110%",
+      "classes": ["card-subtitle"],
+      "_source": "Figma: 48/52.8, 44/48.4, 40/44, 36/39.6, 32/35.2. Six nodes at 36/100% were normalised to 110%."
+    },
+    "card-body": {
+      "sizes": [34, 30, 28, 26, 24, 20],
+      "line_height": "140%",
+      "classes": ["card-description", "bullet-text"],
+      "_source": "Figma: 34/47.6, 30/42, 26/36.4, 24/33.6, 20/28. Ten nodes at 28/130% and six at 20/150% were normalised to 140% - 36.4px is exactly 26x1.4, so 28/130% looks like a size edited without updating the leading."
+    },
+    "point-title": {
+      "sizes": [44, 40, 36, 32],
+      "line_height": "120%",
+      "classes": ["point-title"],
+      "_source": "v1.4 export: 44/52.8 on the timeline and the flow summary, 40/48 on the dark columns. The steps below 40 continue the card-title rhythm; the export has no smaller sample."
+    },
+    "point-body": {
+      "sizes": [36, 32, 28, 24, 20],
+      "line_height": "120%",
+      "classes": ["point-text"],
+      "_source": "v1.4 export: 36/43.2 on the timeline and the flow captions, 24/28.8 on the dark columns. 36 is ABOVE the card-body ceiling of 34, which is why this is a second ladder and not two more steps on the first one - adding 36 and 32 to card-body would silently re-step all seventeen v1.3 layouts."
+    },
+    "intro-body": {
+      "sizes": [36, 32], "line_height": "110%", "classes": ["intro-bullet-text"],
+      "_source": "Self-intro designer list normalized from 28pt to 34.48px; reuse the whole-point 36/32px rhythm with source 110% leading, scoped to this list."
+    },
+    "prose-body": {
+      "sizes": [44, 40, 36, 32],
+      "line_height": "120%",
+      "classes": ["text-body"],
+      "_source": "Text-slide gate revision: reuse the 44/40/36/32 rhythm of point titles with point-body leading; keep dense prose at least 32px. Other layouts keep their own body floors."
+    }
+  },
+
+  "pairs": {
+    "_comment": "Which two ladders a layout rides, and how far apart they may drift. A layout entry names a pair; `card` is the default so nothing from v1.3 had to be touched.",
+
+    "card": {
+      "title": "card-title",
+      "body": "card-body",
+      "min_gap": 10,
+      "max_gap": 18,
+      "figure": {"classes": ["chart-card-value"], "per_title": 2.0,
+                 "_source": "Reuse chart-cards large values across the card family: twice the shared title step, with the existing ceiling and fit bounds."},
+      "_source": "Every one of the twelve (title, body) pairs in the v1.3 export has 10 <= title - body <= 18. Large titles never sit above tiny bodies, so the two ladders may not drift apart."
+    },
+    "intro": {
+      "title": "intro-body", "body": "intro-body", "min_gap": 0, "max_gap": 0,
+      "_source": "Reuse the prose pair search for one list role on both axes; the name has its own headline ladder."
+    },
+    "prose": {
+      "title": "prose-body",
+      "body": "prose-body",
+      "min_gap": 0,
+      "max_gap": 0,
+      "_source": "Reuse the existing pair search for one prose role by naming it on both axes with zero gap. The slide headline has its own ladder."
+    },
+    "point": {
+      "title": "point-title",
+      "body": "point-body",
+      "min_gap": 8,
+      "max_gap": 16,
+      "_source": "The two observed v1.4 pairs are 44/36 (gap 8) and 40/24 (gap 16). The window is exactly their span; it is wider at the bottom and narrower at the top than the card window because these components carry more text per column."
+    }
+  },
+
+  "tiers": {
+    "_comment": "A tier is the card BOX: padding, the title-to-body gap, the icon and the space kept clear for it. It is a step function of card height in the export, not a continuous scale. The ceiling is NOT here - it tracks card width, so it lives per layout below.",
+    "tall": {
+      "_box": "full-height cards, 746px: one to four in a row",
+      "padding": "64px 56px",
+      "item_gap": 25,
+      "icon": 58,
+      "icon_gap": 32,
+      "icon_offset": {"bottom": 64, "right": 56}
+    },
+    "half": {
+      "_box": "half-height cards, 361px: the 2x2 and 2x3 grids, complex and pyramid",
+      "padding": "48px",
+      "item_gap": 25,
+      "icon": 58,
+      "icon_gap": 32,
+      "icon_offset": {"bottom": 48, "right": 48}
+    },
+    "dense": {
+      "_box": "the 2x4 grid only: 439x361 cells",
+      "padding": "40px",
+      "item_gap": 16,
+      "icon": 48,
+      "icon_gap": 16,
+      "icon_offset": {"bottom": 40, "right": 40}
+    },
+
+    "_v14_comment": "The three tiers below are v1.4 column components, not cards. They have no padding and no icon inside the measured box - on `flow` the icon sits ABOVE the text, outside it, which is why it must not carry the class `icon-container`: autofit._limit would then reserve a band above the text and nothing would ever fit. Only `item_gap` carries information here, and it is the title-to-body gap the export shows.",
+
+    "point": {
+      "_box": "a timeline column: circle above, then text. Width follows the point count",
+      "padding": "0px",
+      "item_gap": 20,
+      "icon": 0,
+      "icon_gap": 0,
+      "icon_offset": {}
+    },
+    "flow": {
+      "_box": "a flow caption and the flow summary block, inside the white panel",
+      "padding": "0px",
+      "item_gap": 25,
+      "icon": 0,
+      "icon_gap": 0,
+      "icon_offset": {}
+    },
+    "column": {
+      "_box": "a dark-slide column: subtitle, connector dot, body",
+      "padding": "0px",
+      "item_gap": 29,
+      "icon": 0,
+      "icon_gap": 0,
+      "icon_offset": {}
+    }
+  },
+
+  "bullet_marker": {
+    "_comment": "The list marker of the `bullets` layout, in em of the line it belongs to. Both numbers are ratios and not pixels on purpose: the marker rides the card-body ladder with the text, and a fixed pixel size that is right at 28px is half again too big at the 20px floor. autofit.py writes width, height and margin-top onto .bullet at the chosen step.",
+    "size_em": 0.30,
+    "centre_above_baseline_em": 0.354,
+    "_source": "Measured off the designers' render: a 24x24px marker at y 41..64, cap top (the T) at y=29 and baseline (the bottom of the Cyrillic letters) at y=81. Cap height 52px is 0.648 em, so the em is 80.2px; the marker is 24/80.2 = 0.299 em and its centre sits 81 - 52.5 = 28.5px = 0.355 em above the baseline - within 3px of the cap-height midline, so 'centred on the caps' says the same thing. Take the baseline from the whole text bbox instead and the g of 'regular' drags it to y=96 and every ratio here comes out wrong. This replaces a fitted constant, 5px at 28px, that assumed a 120% leading .bullet-text has never had and left the marker 11px too high at 34px."
+  },
+
+  "grid_gap": {
+    "column": 20,
+    "row": 24,
+    "_source": "Figma: 4x439 + 3x20 = 1816 across, 2x361 + 24 = 746 down. The template used 16 for both, which made every card a few px wider than the design."
+  },
+
+  "layouts": {
+    "circle-3": {"tier": "point", "ceiling": {"card-title": 44, "card-body": 30}},
+    "circle-4": {"tier": "point", "ceiling": {"card-title": 44, "card-body": 30}},
+    "circle-5": {"tier": "point", "ceiling": {"card-title": 44, "card-body": 30}},
+    "circle-6": {"tier": "point", "ceiling": {"card-title": 44, "card-body": 30}},
+
+    "illustration-points": {"tier": "point", "ceiling": {"card-title": 44, "card-body": 30}},
+    "self-intro": {"tier": "point", "pair": "intro", "ceiling": {"intro-body": 36}},
+    "_comment": "The ceiling is the largest step the design ever uses for that card width - it stops a 48px title landing in a 439px cell just because the text happens to be short. Values marked (Figma) are the maximum observed for that card box in the export; the rest are the nearest wider box, because the export has no sample.",
+
+    "cards-1":  {"tier": "tall",  "card": "1816x746", "ceiling": {"card-title": 48, "card-body": 34}},
+    "cards-2":  {"tier": "tall",  "card": "898x746",  "ceiling": {"card-title": 48, "card-body": 34}, "_source": "Figma"},
+    "cards-3":  {"tier": "tall",  "card": "592x746",  "ceiling": {"card-title": 44, "card-body": 30}, "_source": "Figma"},
+    "cards-4":  {"tier": "tall",  "card": "439x746",  "ceiling": {"card-title": 44, "card-body": 30}, "_source": "Figma"},
+    "bullets":  {"tier": "tall",  "card": "1816x746", "ceiling": {"card-title": 48, "card-body": 34}},
+    "grid-2x2": {"tier": "half",  "card": "898x361",  "ceiling": {"card-title": 44, "card-body": 28}},
+    "grid-2x3": {"tier": "half",  "card": "592x361",  "ceiling": {"card-title": 40, "card-body": 28}, "_source": "Figma"},
+    "grid-2x4": {"tier": "dense", "card": "439x361",  "ceiling": {"card-title": 36, "card-body": 24}, "_source": "Figma"},
+    "complex":  {"tier": "half",  "card": "592x361 and 592x746", "ceiling": {"card-title": 44, "card-body": 28}},
+    "pyramid":  {"tier": "half",  "card": "592x361 and 898x361", "ceiling": {"card-title": 44, "card-body": 28}, "_source": "Figma, union of the five-up frames"},
+
+    "_v14_comment": "v1.4 column layouts. They name `pair: point` because they ride the second ladder pair; everything above omits `pair` and gets `card` by default. The `card` key here is the measured text box, not a card - the name is kept so the shape of an entry does not change.",
+
+    "timeline-3": {"tier": "point", "pair": "point", "card": "371x315", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "Figma"},
+    "timeline-4": {"tier": "point", "pair": "point", "card": "367x315", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "Figma"},
+    "timeline-5": {"tier": "point", "pair": "point", "card": "281x315", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "Figma - the five-point frame uses the same pair as the three- and four-point ones"},
+
+    "flow-4":          {"tier": "flow", "pair": "point", "card": "368x258", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "Figma, the variant without a summary"},
+    "flow-4-summary":  {"tier": "flow", "pair": "point", "card": "368x130", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "Figma"},
+    "flow-5":          {"tier": "flow", "pair": "point", "card": "282x258", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "Derived - the export has no five-column flow frame. Same ceiling as flow-4; the narrower column is handled by the measured fit, not by a lower ceiling."},
+    "timeline-4-yellow": {"tier": "point", "pair": "point", "card": "367x315", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "timeline-4"},
+    "timeline-5-yellow": {"tier": "point", "pair": "point", "card": "281x315", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "timeline-5"},
+    "flow-4-zigzag":   {"tier": "flow", "pair": "point", "card": "368x210", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "2.4.0: half the panel less the icon, above or below it"},
+    "flow-5-zigzag":   {"tier": "flow", "pair": "point", "card": "282x210", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "as flow-4-zigzag"},
+    "flow-5-summary":  {"tier": "flow", "pair": "point", "card": "282x130", "ceiling": {"point-title": 44, "point-body": 36}, "_source": "Derived, as flow-5"},
+
+    "columns-3": {"tier": "column", "pair": "point", "card": "542x622", "ceiling": {"point-title": 44, "point-body": 32}, "_source": "DERIVED, no Figma frame"},
+    "columns-4": {"tier": "column", "pair": "point", "card": "398x622", "ceiling": {"point-title": 44, "point-body": 28}, "_source": "DERIVED, no Figma frame"},
+    "columns-5": {"tier": "column", "pair": "point", "card": "311x622", "ceiling": {"point-title": 40, "point-body": 28}, "_source": "DERIVED, no Figma frame"},
+    "columns-6": {"tier": "column", "pair": "point", "card": "254x622", "ceiling": {"point-title": 40, "point-body": 24}, "_source": "Figma"},
+
+    "chart-cards": {"tier": "half", "card": "583x303", "ceiling": {"card-title": 40, "card-body": 28},
+                    "figure": {"classes": ["chart-card-value"], "per_title": 2.0, "_source": "Figma slide 64: an 80px figure over 40px subtitles. The figure rides the title step at that ratio (80/72/64...) instead of staying fixed, so a card whose figure or description is long gives room back by the same step as the others."},
+                    "_source": "Figma slide 64 (v2.0): subtitle 40 Medium, body 24 Regular at 160 %, normalised to the card ladder's 140 %; padding 48 is the half tier's. The body ceiling is 28, not the 24 of that sample: the card is the width of a grid-2x3 cell (592x361, ceiling 40/28), and short commentary should grow as it does there. The Figma pair 40/24 is a step of the chain."},
+
+    "text-slide": {"tier": "point", "pair": "prose", "ceiling": {"prose-body": 44},
+                   "_source": "Dense prose: the measured heading and arrow bound its upward growth before the shared fit search tries 44/40/36/32px."},
+
+    "_columns_ceilings": "Only columns-6 is measured. The 3/4/5 staircase is the one set of numbers in this file with no design evidence behind it: it exists because fewer columns are supposed to read as larger text, and it follows the shape of the card ceilings, which rise with box width. Treat it as the first thing to re-cut if a dark-column slide looks wrong.",
+    "image-gallery-2": {"tier": "point", "ceiling": {"card-title": 44, "card-body": 30}},
+    "image-gallery-3": {"tier": "point", "ceiling": {"card-title": 40, "card-body": 28}}
+  },
+
+  "_unfitted_comment": "Physical layouts that no ladder drives, each with the reason. Every physical layout in assets/layouts/layouts.json must be in exactly one of `layouts`, `slide_layouts` or `unfitted`, and every key of the three must name one: `typography.load` refuses the file otherwise (2.1). Before, a layout missing from all three was built without a size search and nothing said so; the only guard was a set kept by hand in selftest.py. title, the statements, final and the chart titles are headline layouts - see `slide_layouts` below.",
+  "unfitted": {
+    "agenda": "keeps its hand-tuned pixel leadings; the items are a fixed list, not cards",
+    "metrics-3col": "the 112px metric value and its header are fixed type with no ladder under them",
+    "metrics-6cards": "the 112px metric value and its header are fixed type with no ladder under them",
+    "versus": "fixed type, the designers' 96/44/30px; how much a side holds is the VERSUS_* line checks in validate.py, not a ladder",
+    "image": "fixes its title and note/caption sizes outright (144px/28px in the template) - the design has no ladder for a 600px-wide title column"
+  },
+
+  "slide_ladders": {
+    "slide-title": {"sizes": [88, 80, 72, 64], "line_height": "90%",
+      "preferred_min_size": 80, "preferred_max_lines": 2,
+      "_source": "Dark columns start with the shared 88px slide title. Legal whole-point steps let a third line clear the fixed white panel; the 64px floor leaves a visible gap without moving the panel or shrinking its columns."},
+    "title-person": {"sizes": [128, 112, 96], "line_height": "90%",
+      "_source": "Designer name normalizes to 123.16px; reuse title-large 128/112/96 whole-point steps, with a two-line cap and fixed top."},
+    "title-screenshot": {"sizes": [96, 88, 80, 72], "line_height": "100%", "_source": "Screenshot designer headline approximately 98.5px after normalization; reuse chart-large ladder."},
+    "title-large": {
+      "sizes": [144, 128, 112, 96],
+      "line_height": "90%",
+      "_source": "Not from Figma - the export has no title slide. The ladder exists so a long headline stops overprinting the T-Bank logo, which occupies y 146-262 while the text block is centred on the slide and grows in both directions."
+    },
+    "title-xlarge": {
+      "sizes": [168, 148, 128, 112],
+      "line_height": "90%",
+      "_source": "Not from Figma. Same mechanism for the closing slide, whose block is pinned at y 634 and grows down past the bottom edge."
+    },
+    "title-chart-large": {"sizes": [96, 88, 80, 72], "line_height": "100%", "_source": "2.3.0, chart-two and chart-wide: the designers' long slide (tmp_files/long_slide): 80 pt at 80 % line spacing on a 1559 pt slide - 98.5 px, lines 101 px apart on our 1920 canvas. 96 is the nearest step of the title ladders; the steps below let a long title keep two lines in its 1082 px box."},
+    "title-chart": {
+      "sizes": [72, 64, 56, 48],
+      "line_height": "110%",
+      "_source": "v2.0 chart slides: 72/79.2 Bold on all seven example slides. The steps below are not from Figma - they let a long title fit the fit-box the template gives it (three lines on chart, two on chart-cards) and stay clear of the points or the plates."
+    }
+  },
+
+  "slide_layouts": {
+    "circle-3": {"role": "title-chart-large", "scope": "title-chart-large", "clear": [], "max_lines": 3},
+    "circle-4": {"role": "title-chart-large", "scope": "title-chart-large", "clear": [], "max_lines": 3},
+    "circle-5": {"role": "title-chart-large", "scope": "title-chart-large", "clear": [], "max_lines": 3},
+    "circle-6": {"role": "title-chart-large", "scope": "title-chart-large", "clear": [], "max_lines": 3},
+
+    "illustration-points": {"role": "title-chart-large", "scope": "title-chart-large", "clear": ["illustration-hero-image"], "max_lines": 2},
+    "self-intro": {"role": "title-person", "scope": "title-person", "clear": [], "max_lines": 2},
+    "screenshot-phone-1": {"role": "title-screenshot", "scope": "title-screenshot", "clear": [], "max_lines": 3},
+    "screenshot-phone-2": {"role": "title-screenshot", "scope": "title-screenshot", "clear": [], "max_lines": 3},
+    "screenshot-phone-3": {"role": "title-screenshot", "scope": "title-screenshot", "clear": [], "max_lines": 3},
+    "screenshot-monitor": {"role": "title-screenshot", "scope": "title-screenshot", "clear": [], "max_lines": 3},
+
+    "_comment": "Layouts whose headline rides a ladder against obstacles instead of against a card. `clear` names the classes the text may not come near. Optional `scope` names a class the fit check is restricted to; without it every text box on the slide is checked, which is right for a slide that is only a headline and wrong for one that also carries columns.",
+
+    "title":      {"role": "title-large",  "clear": ["logo", "text-author"], "max_lines": 2,
+                   "max_lines_scope": "title-large",
+                   "short_title": {"max_chars": 15, "size": 200,
+                                   "subtitle_class": "subtitle-large", "subtitle_size": 50},
+                   "_source": "P14: existing composition, at most two measured headline lines; subtitle geometry participates. P15 B: a single-line input of <=15 Unicode characters (spaces/NBSP included) first tries Figma 200 Bold / 50 Regular. If this pair does not fit, restore the template subtitle and use the unchanged headline ladder."},
+    "statement-glass": {"role": "title-large", "clear": []},
+    "statement-cards": {"role": "title-large", "clear": []},
+    "text-slide": {"role": "title-large", "clear": [], "scope": "title-large", "max_lines": 2,
+                   "arrow": {"gap_x": 104, "gap_y": 24, "overlap_y": 44},
+                   "body_region": {"heading_gap": 48, "arrow_gap": 32, "side_gap": 40},
+                   "_source": "Measure the heading and arrow first, then expand the bounded body region upward from its fixed bottom before trying body sizes."},
+    "final":      {"role": "title-xlarge", "clear": ["logo"], "max_lines": 3},
+
+    "_v23_comment": "`max_lines` (2.3.0, the closing slide): more lines than this count as not fitting, so the ladder steps down until the text takes that many; at the smallest step it is an OVERFLOW. Four lines and more on the closing slide read as a text slide, not a farewell (the author, 2026-10-03).",
+
+    "_v14_comment": "The timeline is the first layout on BOTH paths: its 144px headline rides the title-large ladder while its columns ride the point pair. `scope` is mandatory here - without it the check would measure the point text and the numerals against the row they live inside, find them overlapping, and reject every step down to the floor.",
+
+    "timeline-3": {"role": "title-large", "clear": ["timeline-row"], "scope": "title-large"},
+    "timeline-4": {"role": "title-large", "clear": ["timeline-row"], "scope": "title-large"},
+    "timeline-5": {"role": "title-large", "clear": ["timeline-row"], "scope": "title-large"},
+    "timeline-4-yellow": {"role": "title-large", "clear": ["timeline-row"], "scope": "title-large"},
+    "timeline-5-yellow": {"role": "title-large", "clear": ["timeline-row"], "scope": "title-large"},
+
+    "columns-3": {"role": "slide-title", "scope": "slide-title", "clear": ["columns-panel"], "clearance": 24, "max_lines": 3},
+    "columns-4": {"role": "slide-title", "scope": "slide-title", "clear": ["columns-panel"], "clearance": 24, "max_lines": 3},
+    "columns-5": {"role": "slide-title", "scope": "slide-title", "clear": ["columns-panel"], "clearance": 24, "max_lines": 3},
+    "columns-6": {"role": "slide-title", "scope": "slide-title", "clear": ["columns-panel"], "clearance": 24, "max_lines": 3},
+
+    "_v20_comment": "v2.0 chart layouts. The title rides title-chart against what sits under or beside it; scope keeps the check on the title itself - axis labels, legends and card text are not headline text. `remedy` says which text the OVERFLOW message tells the author to cut when even the smallest step fails: \"title\" (default) or \"points\" - on chart-points the points grow upwards and are usually the ones to shorten.",
+
+    "chart-points": {"role": "title-chart", "clear": ["chart-side"],  "scope": "title-chart", "remedy": "points"},
+    "chart-points-plates": {"role": "title-chart", "clear": ["chart-side"],  "scope": "title-chart", "remedy": "points"},
+    "chart-cards":  {"role": "title-chart", "clear": [],              "scope": "title-chart"},
+    "chart-two":    {"role": "title-chart-large", "clear": ["chart-plate", "chart-note-row"], "scope": "title-chart-large"},
+    "chart-wide":   {"role": "title-chart-large", "clear": ["chart-plate", "chart-note-row"], "scope": "title-chart-large"},
+    "image-points-plates": {"role": "title-chart", "scope": "title-chart", "clear": ["chart-side"], "max_lines": 3, "remedy": "points"},
+    "image-points-plate": {"role": "title-chart", "scope": "title-chart", "clear": ["chart-side"], "max_lines": 3, "remedy": "points"},
+    "image-wide-plate": {"role": "title-chart-large", "scope": "title-chart-large", "clear": ["chart-plate", "chart-note-row", "gallery-picture"], "max_lines": 2},
+    "image-wide-plates": {"role": "title-chart-large", "scope": "title-chart-large", "clear": ["chart-plate", "chart-note-row", "gallery-picture"], "max_lines": 2},
+    "image-gallery-2": {"role": "title-chart-large", "scope": "title-chart-large", "clear": ["chart-plate", "chart-note-row", "gallery-picture"], "max_lines": 2},
+    "image-gallery-3": {"role": "title-chart-large", "scope": "title-chart-large", "clear": ["chart-plate", "chart-note-row", "gallery-picture"], "max_lines": 2},
+
+    "_tables_comment": "2.4.0 tables (draft). White tables use table_fit with the existing body ladder; compare keeps fixed type (values40px). TABLE_* checks retain cell constraints. The table card starts at y216, so its title holds one line; the compare cards start at y331 and leave room for two, as the designers' slide 1.",
+    "table":         {"role": "title-chart-large", "scope": "title-chart-large", "clear": ["table-card"], "max_lines": 1},
+    "table-compare": {"role": "title-chart-large", "scope": "title-chart-large", "clear": ["compare-panel"], "max_lines": 2}
+  },
+
+  "table_fit": {
+    "body_role": "card-body",
+    "body_ceiling": 30,
+    "header_size": 36,
+    "row_paddings": [24, 18, 12],
+    "_comment": "White table only: try each existing body step with decreasing vertical row padding before lowering the font. Header remains Medium36; card and inner viewport stay fixed. Compare is unchanged."
+  },
+
+  "slide_fit": {
+    "edge_margin": 24,
+    "clearance": 40,
+    "_comment": "How close the headline may come to the slide edge and to an obstacle. Not from Figma: the export has no such slide, and these are the smallest values at which the reproduced bug (a four-line 144px title over the logo) is comfortably gone."
+  }
+}

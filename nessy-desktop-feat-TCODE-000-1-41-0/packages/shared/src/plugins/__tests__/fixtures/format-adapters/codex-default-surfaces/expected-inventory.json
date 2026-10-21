@@ -1,0 +1,14 @@
+{
+  "format": "codex",
+  "state": "supported",
+  "supportedKinds": [
+    "skill",
+    "hook",
+    "prompt-command",
+    "agent",
+    "app",
+    "connector"
+  ],
+  "deferred": [],
+  "blocked": []
+}

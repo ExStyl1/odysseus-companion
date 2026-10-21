@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "agent-browser/SKILL.md",
+  "upstreamName": "agent-browser",
+  "upstreamFrontmatter": {
+    "name": "agent-browser",
+    "description": "Browser automation CLI (Chrome via CDP). Use for navigating sites, filling forms, clicking, screenshots, scraping, web-app testing, login flows. Triggers (EN): \"open a website\", \"fill out a form\", \"click\", \"take a screenshot\", \"scrape a page\", \"test this web app\", \"login to a site\", \"automate browser\". Триггеры (RU): \"открой сайт\", \"зайди на\", \"заполни форму\", \"кликни\", \"нажми кнопку\", \"скриншот страницы\", \"залогинься на сайте\", \"спарси\", \"парсинг\", \"скрапинг\", \"протестируй UI\", \"проверь как выглядит\". Skip when: the same task is doable via a dedicated CLI (jira/confluence/glab/time) — prefer those. Only fall back to browser when UI interaction is unavoidable.\n",
+    "allowed-tools": "Bash(npx agent-browser:*), Bash(agent-browser:*)"
+  },
+  "upstreamSkillSha256": "09a19f933266accb84bc7cf2d125281da97f1e961e7512ad8d86380583aa3243",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile."
+  ],
+  "packageDependencies": []
+}

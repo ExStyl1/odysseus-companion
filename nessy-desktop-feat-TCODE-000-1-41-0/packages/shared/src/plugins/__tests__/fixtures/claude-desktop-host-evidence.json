@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "snapshotDate": "2026-07-22",
+  "targets": [
+    {
+      "id": "claude-code-on-desktop-docs-2026-07-22",
+      "source": "https://code.claude.com/docs/en/desktop"
+    },
+    {
+      "id": "claude-desktop-mcpb-docs-2026-07-22",
+      "source": "https://support.claude.com/en/articles/10949351-getting-started-with-local-mcp-servers-on-claude-desktop"
+    }
+  ],
+  "cases": [
+    {
+      "id": "desktop-plugin-lifecycle",
+      "targetId": "claude-code-on-desktop-docs-2026-07-22",
+      "outcomeId": "desktop-plugin-host",
+      "status": "implemented",
+      "evidenceRefs": [
+        "repo://packages/shared/src/plugins/__tests__/core-adapter-lifecycle.test.ts",
+        "repo://packages/shared/src/plugins/__tests__/management-service-v2.test.ts",
+        "repo://apps/electron/src/renderer/pages/PluginInfoPage.tsx"
+      ],
+      "liveSmoke": {
+        "status": "passed",
+        "scenario": "Install and uninstall agent-example, disable and re-enable Honey and dpGitlab, then execute a project skill and a normalized custom agent.",
+        "evidenceRefs": [
+          "historical://cdp-live-checklist P13 desktop-plugin-lifecycle narrative, retired 2026-08-20 when the checklist became one case table (owner rule); not carried into docs/testing/cdp-runs/"
+        ]
+      }
+    },
+    {
+      "id": "desktop-remote-connectors",
+      "targetId": "claude-code-on-desktop-docs-2026-07-22",
+      "outcomeId": "remote-mcp-connectors",
+      "status": "implemented",
+      "evidenceRefs": [
+        "repo://packages/shared/src/plugins/__tests__/auth-shape-conformance.test.ts",
+        "repo://packages/shared/src/plugins/__tests__/plugin-mcp-credentials.test.ts",
+        "repo://packages/shared/src/mcp"
+      ],
+      "liveSmoke": {
+        "status": "passed",
+        "scenario": "Disable and re-enable dpGitlab, confirm connected runtime health, and call its read-only repository listing without a mutation.",
+        "evidenceRefs": [
+          "historical://cdp-live-checklist P13 desktop-remote-connectors narrative, retired 2026-08-20 when the checklist became one case table (owner rule); not carried into docs/testing/cdp-runs/"
+        ]
+      }
+    },
+    {
+      "id": "desktop-mcpb-import",
+      "targetId": "claude-desktop-mcpb-docs-2026-07-22",
+      "outcomeId": "mcpb-import",
+      "status": "implemented",
+      "evidenceRefs": [
+        "repo://packages/shared/src/plugins/__tests__/mcpb.test.ts",
+        "repo://packages/shared/src/plugins/format-adapters/mcpb.ts",
+        "repo://packages/shared/src/plugins/mcpb-configuration.ts"
+      ],
+      "liveSmoke": {
+        "status": "passed",
+        "scenario": "Qualify the native-picker-to-install MCPB contract through focused production-boundary tests and record the locked-desktop click-through limitation without adding a path backdoor.",
+        "evidenceRefs": [
+          "historical://cdp-live-checklist P13 desktop-mcpb-import narrative, retired 2026-08-20 when the checklist became one case table (owner rule); not carried into docs/testing/cdp-runs/"
+        ]
+      }
+    },
+    {
+      "id": "desktop-session-durability",
+      "targetId": "claude-code-on-desktop-docs-2026-07-22",
+      "outcomeId": "durable-session-owner",
+      "status": "implemented",
+      "evidenceRefs": [
+        "repo://packages/shared/src/sessions/__tests__/store-v2.test.ts",
+        "repo://packages/server-core/src/sessions/SessionManager.pi-runtime-snapshot.test.ts",
+        "repo://packages/server-core/src/pi-harness/session-settlement.test.ts"
+      ],
+      "liveSmoke": {
+        "status": "passed",
+        "scenario": "Restart the Desktop host, restore the exercised GitLab, skill, Honey and custom-agent sessions, and confirm transcript markers without replaying work.",
+        "evidenceRefs": [
+          "historical://cdp-live-checklist P13 desktop-session-durability narrative, retired 2026-08-20 when the checklist became one case table (owner rule); not carried into docs/testing/cdp-runs/"
+        ]
+      }
+    },
+    {
+      "id": "desktop-session-control",
+      "targetId": "claude-code-on-desktop-docs-2026-07-22",
+      "outcomeId": "per-session-runtime-control",
+      "status": "implemented",
+      "evidenceRefs": [
+        "repo://apps/electron/src/renderer/hooks/useAgentPanel.ts",
+        "repo://packages/core/src/types/pi-harness-runtime.ts"
+      ],
+      "liveSmoke": {
+        "status": "passed",
+        "scenario": "Inspect and refresh a completed session's Runtime Control snapshot, settlement and redacted receipt projection, then open it through Agent View.",
+        "evidenceRefs": [
+          "historical://cdp-live-checklist P13 desktop-session-control narrative, retired 2026-08-20 when the checklist became one case table (owner rule); not carried into docs/testing/cdp-runs/"
+        ]
+      }
+    },
+    {
+      "id": "desktop-global-agent-view",
+      "targetId": "claude-code-on-desktop-docs-2026-07-22",
+      "outcomeId": "global-agent-view",
+      "status": "implemented",
+      "evidenceRefs": [
+        "repo://packages/server-core/src/sessions/SessionManager.agent-view.test.ts",
+        "repo://packages/shared/src/protocol/pi-agent-view.test.ts",
+        "repo://apps/electron/src/renderer/components/app-shell/__tests__/AgentPanel.test.tsx"
+      ],
+      "liveSmoke": {
+        "status": "passed",
+        "scenario": "Open Agent View across multiple restored sessions and navigate to a selected cold/completed session without duplicating prompts.",
+        "evidenceRefs": [
+          "historical://cdp-live-checklist P13 desktop-global-agent-view narrative, retired 2026-08-20 when the checklist became one case table (owner rule); not carried into docs/testing/cdp-runs/"
+        ]
+      }
+    }
+  ]
+}

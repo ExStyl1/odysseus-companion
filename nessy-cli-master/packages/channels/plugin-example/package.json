@@ -1,0 +1,33 @@
+{
+  "name": "@nestor/nessy-cli-channel-plugin-example",
+  "version": "0.13.0-beta.5",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "nessy-extension.json"
+  ],
+  "bin": {
+    "nessy-channel-plugin-example-server": "dist/start-server.js"
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@nestor/nessy-cli-channel-base": "file:../base",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.0"
+  }
+}

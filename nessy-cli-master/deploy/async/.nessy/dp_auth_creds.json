@@ -1,0 +1,14 @@
+{
+  "jwt": "",
+  "expiresAt": 0,
+  "username": "",
+  "userId": "",
+  "cachedModels": [
+    {
+      "id": "tgpt/qwen3-next-80b-a3b-instruct",
+      "name": "tgpt/qwen3-next-80b-a3b-instruct",
+      "description": "qwen3 80B — быстрая внутренняя модель для генерации кода",
+      "internal": true
+    }
+  ]
+}

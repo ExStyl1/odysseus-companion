@@ -1,0 +1,43 @@
+[
+  {
+    "task": {
+      "id": "task-fixture-text",
+      "contextId": "ctx-fixture-text",
+      "status": {
+        "state": "TASK_STATE_SUBMITTED"
+      }
+    }
+  },
+  {
+    "statusUpdate": {
+      "taskId": "task-fixture-text",
+      "contextId": "ctx-fixture-text",
+      "status": {
+        "state": "TASK_STATE_WORKING",
+        "message": {
+          "messageId": "msg-fixture-text",
+          "role": "ROLE_AGENT",
+          "parts": [
+            {
+              "text": "PONG"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "statusUpdate": {
+      "taskId": "task-fixture-text",
+      "contextId": "ctx-fixture-text",
+      "status": {
+        "state": "TASK_STATE_COMPLETED",
+        "message": {
+          "messageId": "msg-fixture-text-final",
+          "role": "ROLE_AGENT",
+          "parts": []
+        }
+      }
+    }
+  }
+]

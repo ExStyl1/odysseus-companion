@@ -1,0 +1,43 @@
+# check-minified-citations baseline — cited names that do NOT resolve in the vendored
+# sdk.mjs today. Each one is a citation to REWRITE so it locates its subject by CONTENT
+# (a verbatim string the symbol contains) rather than by a name the minifier reassigns.
+# This list may only shrink. Regenerate: bun scripts/check-minified-citations.ts --update-baseline
+#
+# A regeneration PRESERVES this header, every other comment and blank line, and each
+# surviving entry with its inline reason VERBATIM. Entries that no longer read stale are
+# dropped; new ones are appended under a dated heading with the files that cite them.
+# The file list beside an entry is therefore a SNAPSHOT of when it was recorded — the
+# live one is printed by the report form of this script (no flag).
+
+# recorded 2026-09-08 (P6.892) — all three are MISFIRES of the deliberately unfiltered
+# name rule, not stale bundle citations, and each names a TOOL or a MATCHER in prose.
+# The gate was already RED at HEAD over them: measured exit 1 with an empty baseline on
+# 2026-09-08. Recorded here with a reason rather than by narrowing the matcher, because a
+# guess about what "looks minified" inside a guard is the thing this guard exists to catch.
+toBe  # claude-webfetch-preflight-markers.test.ts:95 quotes the bun:test matcher
+      # `toBe(false)` in a comment about an inverted guard; arrived with `9af3a92c4`.
+
+# recorded 2026-09-11 (P7.1) — the SDK lift to `0.3.247` dropped `Write` from this list
+# (it resolves in the new bundle) and the writer left its second reason line behind as an
+# orphan; that fragment is removed here by hand. The entry below is the SAME MISFIRE class
+# as the two above: a name in prose that is not a bundle symbol at all.
+exact  # otlp-telemetry.ts cites its OWN local helper `exact(input, EVENT_KEYS)` (declared
+       # in that file) in a docblock about the OTLP event filter; not a bundle symbol.
+
+# recorded 2026-09-12
+Host  # apps/electron/src/renderer/components/app-shell/input/__tests__/runtime-capability-drift.test.ts apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts
+
+# recorded 2026-09-24
+steer  # claude-agent.ts cites Pi's `steer()` in F1.485's framing docblock (arrived with
+       # `d7a698921`) — prose about the Pi SDK, not a claude-SDK bundle symbol.
+
+# recorded 2026-10-10
+Some  # packages/codex-responses-adapter/src/__tests__/config-writer-auto-compaction.test.ts packages/codex-responses-adapter/src/config-writer.ts packages/shared/src/mcp/third-party-text.ts
+      # the SAME MISFIRE class as `toBe`/`exact`/`steer` above: every `Some(…)`
+      # citation in those three files is Rust `Option::Some` quoting the CODEX
+      # binary's own semantics (`Some(244_800)`, `analytics_enabled != Some(false)`,
+      # `parse_agent_plugin_mcp_tool` passing `Some(MAX_MCP_TOOL_DESCRIPTION_BYTES)`),
+      # never a claude-bundle symbol — measured at the 0.3.280 lift, where neither
+      # artifact resolves it (resolvesInBundle false on BOTH the 0.3.274 and 0.3.280
+      # sdk.mjs, so the name entered the stale list only because the 0.3.274 native
+      # binary resolved it and the 0.3.280 one does not).

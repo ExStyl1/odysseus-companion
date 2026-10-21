@@ -1,0 +1,26 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "sql-postgres-optimization/SKILL.md",
+  "upstreamName": "sql-postgres-optimization",
+  "upstreamFrontmatter": {
+    "name": "sql-postgres-optimization",
+    "description": "Используй этот скилл когда нужно написать или оптимизировать SQL для PostgreSQL: создание индексов, Liquibase миграции, оптимизация запросов. Триггеры: \"создать индекс\", \"Liquibase миграция\", \"postgres\", \"индекс\", \"CREATE INDEX\", \"EXPLAIN ANALYZE\", \"медленный запрос\", \"оптимизация postgres\", \"changeSet\", \"партиционирование\".\n",
+    "tags": [
+      "sql",
+      "postgres",
+      "liquibase",
+      "index",
+      "migrations",
+      "optimization"
+    ]
+  },
+  "upstreamSkillSha256": "d17481ddfe25f34af98b5fd648a47813445b15b7d46d2c690449529c05edd9c7",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

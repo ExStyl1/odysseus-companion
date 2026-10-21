@@ -1,0 +1,437 @@
+{
+  "schemaVersion": 3,
+  "capturedOn": "2026-07-14",
+  "p0Rows": [
+    {
+      "id": "pi-version-compatibility",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "pi-version-compatibility",
+      "historical": {
+        "area": "Pi version/compatibility",
+        "owner": "Pi adapter",
+        "phases": [
+          "R0",
+          "H1"
+        ],
+        "reason": "Nessy pins Pi `0.79.9` and touches private prompt fields",
+        "evidence": "package.json/package metadata",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "system-prompt",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "system-prompt",
+      "historical": {
+        "area": "System prompt",
+        "owner": "Prompt adapter",
+        "phases": [
+          "H1",
+          "H13"
+        ],
+        "reason": "Strong Nessy prompt; private Pi monkey-patch is version-fragile",
+        "evidence": "applySystemPromptOverride",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "tool-registry",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "tool-registry",
+      "historical": {
+        "area": "Tool registry",
+        "owner": "Harness",
+        "phases": [
+          "H2"
+        ],
+        "reason": "Pi tools, Nessy tools and proxies are assembled in several places",
+        "evidence": "ensureSession/buildProxyTools/SESSION_TOOL_DEFS",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "scheduling",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "scheduling",
+      "historical": {
+        "area": "Scheduling",
+        "owner": "Scheduler",
+        "phases": [
+          "H3"
+        ],
+        "reason": "Pi defaults to parallel; custom mutations are not consistently sequential",
+        "evidence": "current Pi tool loop and wrappers",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "file-edits",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "file-edits",
+      "historical": {
+        "area": "File edits",
+        "owner": "Scheduler",
+        "phases": [
+          "H3",
+          "H12"
+        ],
+        "reason": "Edit/write/checkpoints exist",
+        "evidence": "runtime-backed edit/write paths",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "foreground-shell",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "foreground-shell",
+      "historical": {
+        "area": "Foreground shell",
+        "owner": "Process supervisor",
+        "phases": [
+          "H3",
+          "H4",
+          "H5"
+        ],
+        "reason": "Foreground Bash exists; progress/cancel plumbing is inconsistent",
+        "evidence": "current bash wrapper",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "background-shell",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "background-shell",
+      "historical": {
+        "area": "Background shell",
+        "owner": "Process supervisor",
+        "phases": [
+          "H4"
+        ],
+        "reason": "Memory-only shell map/output; prompt mentions missing/partial kill semantics",
+        "evidence": "background-bash.ts",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "tool-cancellation",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "tool-cancellation",
+      "historical": {
+        "area": "Tool cancellation",
+        "owner": "Harness",
+        "phases": [
+          "H3",
+          "H4"
+        ],
+        "reason": "Pi turn abort exists; proxy calls lack one common signal/deadline",
+        "evidence": "JSONL proxy handshakes",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "permission-policy",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "permission-policy",
+      "historical": {
+        "area": "Permission policy",
+        "owner": "Policy",
+        "phases": [
+          "H6"
+        ],
+        "reason": "Rich modes and pre-tool checks exist",
+        "evidence": "mode/pre-tool paths",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "approval-count",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "approval-count",
+      "historical": {
+        "area": "Approval count",
+        "owner": "Policy/server",
+        "phases": [
+          "H6"
+        ],
+        "reason": "Runtime proxy can be approved in wrapper and again in executor",
+        "evidence": "proxy wrapper plus host executor",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "headless-approval",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "headless-approval",
+      "historical": {
+        "area": "Headless approval",
+        "owner": "Pi policy/server",
+        "phases": [
+          "H6"
+        ],
+        "reason": "Shared local-tool permission gate already denies without UI, but the older Pi callback route still has a missing-callback auto-allow edge",
+        "evidence": "Pi permission callback path",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "auto-accept-edits",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "auto-accept-edits",
+      "historical": {
+        "area": "Auto/accept-edits",
+        "owner": "Policy",
+        "phases": [
+          "H6"
+        ],
+        "reason": "Nessy has plan/acceptEdits/auto and hard blocks",
+        "evidence": "six current modes",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "shell-sandbox",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "shell-sandbox",
+      "historical": {
+        "area": "Shell sandbox",
+        "owner": "Sandbox",
+        "phases": [
+          "H5"
+        ],
+        "reason": "macOS Seatbelt is opt-in and fail-open; no equivalent Linux contract",
+        "evidence": "current sandbox option",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "arbitrary-code-tools",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "arbitrary-code-tools",
+      "historical": {
+        "area": "Arbitrary code tools",
+        "owner": "Sandbox",
+        "phases": [
+          "H5"
+        ],
+        "reason": "Transform safe-mode still invokes Python/Node/Bun without full OS/network/FS isolation",
+        "evidence": "transform_data/script_sandbox handlers",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "workflow-evaluator",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "workflow-evaluator",
+      "historical": {
+        "area": "Workflow evaluator",
+        "owner": "Sandbox/workflow",
+        "phases": [
+          "H5"
+        ],
+        "reason": "Acorn denylist + same-process `new Function`; infinite loop can hang subprocess",
+        "evidence": "workflow evaluator",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "hooks-semantics",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "hooks-semantics",
+      "historical": {
+        "area": "Hooks: semantics",
+        "owner": "Hook bus",
+        "phases": [
+          "H7"
+        ],
+        "reason": "Some post/lifecycle hooks fire-and-forget; prompt actions may skip agent events",
+        "evidence": "current automation hook paths",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "child-execution",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "child-execution",
+      "historical": {
+        "area": "Child execution",
+        "owner": "Supervisor",
+        "phases": [
+          "H9"
+        ],
+        "reason": "One-shot child sessions are disposed; parallel/chain/background exist",
+        "evidence": "orchestrator/subagent-tool.ts",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "extension-runtime",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "extension-runtime",
+      "historical": {
+        "area": "Extension runtime",
+        "owner": "Resolver",
+        "phases": [
+          "R0",
+          "H2"
+        ],
+        "reason": "Pi supports extensions; Nessy intentionally controls capabilities itself",
+        "evidence": "agentDir isolation and resolver boundary",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "trust-injection",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "trust-injection",
+      "historical": {
+        "area": "Trust/injection",
+        "owner": "Resolver/policy",
+        "phases": [
+          "H2",
+          "H6",
+          "Q1"
+        ],
+        "reason": "Trust layers exist but classification is fragmented",
+        "evidence": "capability snapshot plus current policy paths",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "headless-sdk-parity",
+      "matrix": "agent",
+      "priority": "P0",
+      "corpusCaseId": "headless-sdk-parity",
+      "historical": {
+        "area": "Headless/SDK parity",
+        "owner": "Server",
+        "phases": [
+          "H6",
+          "Q1"
+        ],
+        "reason": "Headless server uses same core but has unsafe callback edge cases",
+        "evidence": "shared core plus callback edges",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "desktop-runtime-supervision",
+      "matrix": "desktop",
+      "priority": "P0",
+      "corpusCaseId": "desktop-runtime-supervision",
+      "historical": {
+        "area": "Runtime supervision",
+        "owner": "Desktop host",
+        "phases": [
+          "D1A",
+          "D1B"
+        ],
+        "reason": "Pi subprocess/session lifecycle exists; background ownership is fragmented",
+        "evidence": "Desktop gap matrix",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "desktop-permission-prompt",
+      "matrix": "desktop",
+      "priority": "P0",
+      "corpusCaseId": "desktop-permission-prompt",
+      "historical": {
+        "area": "Permission prompt",
+        "owner": "Desktop host",
+        "phases": [
+          "D1A",
+          "D1B",
+          "D3"
+        ],
+        "reason": "Permission selector/prompts exist",
+        "evidence": "Desktop gap matrix",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "desktop-sandbox-status",
+      "matrix": "desktop",
+      "priority": "P0",
+      "corpusCaseId": "desktop-sandbox-status",
+      "historical": {
+        "area": "Sandbox status",
+        "owner": "Desktop host",
+        "phases": [
+          "D3"
+        ],
+        "reason": "Seatbelt setting is insufficient and may be off",
+        "evidence": "Desktop gap matrix",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "desktop-background-processes",
+      "matrix": "desktop",
+      "priority": "P0",
+      "corpusCaseId": "desktop-background-processes",
+      "historical": {
+        "area": "Background processes",
+        "owner": "Desktop host",
+        "phases": [
+          "D2"
+        ],
+        "reason": "Some background shell UI exists",
+        "evidence": "Desktop gap matrix",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "desktop-subagent-cards",
+      "matrix": "desktop",
+      "priority": "P0",
+      "corpusCaseId": "desktop-subagent-cards",
+      "historical": {
+        "area": "Subagent cards",
+        "owner": "Desktop host",
+        "phases": [
+          "D2"
+        ],
+        "reason": "`SubagentCard` and `WorkflowPanel` show transient work",
+        "evidence": "Desktop gap matrix",
+        "disposition": "baseline-defect"
+      }
+    },
+    {
+      "id": "desktop-crash-reload-recovery",
+      "matrix": "desktop",
+      "priority": "P0",
+      "corpusCaseId": "desktop-crash-reload-recovery",
+      "historical": {
+        "area": "Crash/reload recovery",
+        "owner": "Desktop host",
+        "phases": [
+          "D1A",
+          "D1B"
+        ],
+        "reason": "Session recovery exists; transient maps/cards can disappear",
+        "evidence": "Desktop gap matrix",
+        "disposition": "baseline-defect"
+      }
+    }
+  ],
+  "knownDefects": []
+}

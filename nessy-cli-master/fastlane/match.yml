@@ -1,0 +1,10 @@
+---
+# Настройка fastlane match в проекте: https://wiki.tcsbank.ru/pages/viewpage.action?pageId=577573102
+apple_developer_portal_teams:
+  # Основная программа разработки, авторизация через AppStore Connect API key
+  - team: ru.tfinance
+    match_configs:
+      - type: developer_id
+        git_branch: 'ru.tfinance/distribution'
+        app_identifiers:
+          - ru.tfinance.nessy-cli.desktop

@@ -1,0 +1,43 @@
+{
+  "repository": "blader/humanizer",
+  "revision": "8c307f367c91bd974002f10f2be2965d642c13df",
+  "path": ".",
+  "url": "https://github.com/blader/humanizer/tree/8c307f367c91bd974002f10f2be2965d642c13df/.",
+  "upstreamName": "humanizer",
+  "upstreamFrontmatter": {
+    "name": "humanizer",
+    "description": "Rewrite AI-sounding text so it reads like the writer without changing what it says.\nUse when editing or reviewing prose for AI tells: not-X-but-Y contrasts, one-line\nclosers, staged openers, forced triads, dashes everywhere, inflated claims, sales\nlanguage, stock AI words, bold labels, or filler. Based on Wikipedia's \"Signs of AI writing.\"\n",
+    "license": "MIT",
+    "metadata": {
+      "version": "3.1.0"
+    }
+  },
+  "upstreamSkillSha256": "0612f1dfb1672b0ea9b97e139bf1f06cabe98d8b27424fe8ff01e1fb4cc99cad",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "humanizer-ru",
+      "guide": "variants/humanizer-ru/GUIDE.md",
+      "resourceRoot": "variants/humanizer-ru",
+      "repository": "user-supplied/skills",
+      "path": "humanizer-ru-1/SKILL.md",
+      "executionProfile": "user-approved-exception",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "files": {
+        "SKILL.md": {
+          "sha256": "273539641271fc715c3fd8df345564887e8ccbd5ef1618fb22a19b6562e668f7",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "d5e5bb8cc3e496eb1409d2a4d264d1935fb31e3733f7538f2631e037bbcd2f08",
+          "executable": false
+        }
+      },
+      "when": "Правила и примеры редактирования русского текста"
+    }
+  ]
+}

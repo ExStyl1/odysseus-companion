@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/hyperframes-core",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/hyperframes-core",
+  "upstreamName": "hyperframes-core",
+  "upstreamFrontmatter": {
+    "name": "hyperframes-core",
+    "description": "The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class=\"clip\"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Read before writing composition HTML."
+  },
+  "upstreamSkillSha256": "689de1f94e682ee31d1f22cf196040e8f24fdaee5fbf75a832fd890f1a27a2b7",
+  "adaptations": [
+    "Namespaced colliding or host-specific skill: hyperframes-core -> openmontage-hyperframes-core",
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled."
+  ]
+}

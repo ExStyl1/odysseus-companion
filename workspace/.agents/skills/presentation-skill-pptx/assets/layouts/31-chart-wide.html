@@ -1,0 +1,46 @@
+<!--
+  WIDE CHART
+
+  When to use: One chart of a long series - 6 categories or more, twelve months - across the slide. 2.3.0, the designers' review; the title row of slide 65
+  Structure: .background-chart, a large .title-chart-large and an optional .chart-note-row (icon and two lines) across the top, one .chart-plate (1844x737, the designers' long slide) the width of the slide below
+
+  Generated from assets/layouts/template.html by scripts/sync_layouts.py.
+  Edit the template, not this file.
+-->
+  <!-- 2.3.0, the designers' long slide (tmp_files/long_slide, layout
+       «Слайд с гориз. плашкой»): one chart across the slide for a long
+       series. A large title (80 pt of their 1559 pt slide = 98.5 px; 96 on
+       our ladder), the note of chart-two beside it - text at 1284 as theirs,
+       its icon before it - over the template's plate, 38..1882 x 307..1044,
+       radius 6 % of its height. -->
+  <div class="slide">
+    <div class="background-chart"></div>
+    <!-- The head of the designers' long slide, the same on chart-two and
+         chart-wide (2.3.0): two lines at 96px/100 %, clear of the note at
+         1182 and the plates. The note's text at 1284 and 74 as theirs; the
+         row is its height, two 42 px lines, the icon centred on it. -->
+    <div class="fit-box" style="position: absolute; top: 56px; left: 60px; width: 1082px; height: 200px; z-index: 10;">
+      <h1 class="title-chart-large">Заголовок слайда вашей презентации</h1>
+    </div>
+    <div class="chart-note-row" style="top: 74px; left: 1182px; width: 678px;">
+      <div class="chart-note-icon"><img class="icon" src="../icons/info-circle.png" alt="Иконка" /></div>
+      <p class="chart-note-text" style="width: 576px;">Помогаем бизнесу решать задачи в плоскости дизайна качественно и быстро</p>
+    </div>
+
+    <div class="chart-plate" style="top: 307px; left: 38px; width: 1844px; height: 737px; border-radius: 44px;">
+      <div class="chart-head">
+        <p class="chart-title">Название графика</p>
+        <div class="legend-row">
+          <div class="legend-item"><div class="legend-swatch" style="background: #FFDD2D;"></div><p class="legend-label">Ряд 1</p></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-area">
+          <div class="chart-canvas" data-chart='{"type": "bar", "categories": ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"], "series": [{"name": "Ряд 1", "values": [12, 14, 13, 16, 18, 17, 19, 21, 20, 22, 24, 26]}, {"name": "Ряд 2", "values": [9, 10, 12, 11, 13, 15, 14, 16, 18, 17, 19, 20]}]}'></div>
+        </div>
+        <div class="legend-column">
+          <div class="legend-item"><div class="legend-swatch" style="background: #FFDD2D;"></div><p class="legend-label">Ряд 1</p></div>
+        </div>
+      </div>
+    </div>
+  </div>

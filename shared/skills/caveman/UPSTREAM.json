@@ -1,0 +1,39 @@
+{
+  "repository": "JuliusBrussee/caveman",
+  "revision": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",
+  "path": "skills/caveman",
+  "url": "https://github.com/JuliusBrussee/caveman/tree/bad48a0e1df55e05e3f52249afa35ecc1909ee76/skills/caveman",
+  "upstreamName": "caveman",
+  "upstreamFrontmatter": {
+    "name": "caveman",
+    "description": "Terse caveman voice: answer first, fluff gone, every technical fact kept. Use for /caveman, \"caveman mode\", \"talk like caveman\", \"be brief\", \"less tokens\". Stays on until \"stop caveman\" or \"normal mode\"."
+  },
+  "upstreamSkillSha256": "415d43518f2b1a9498c15a445d4657117b129ee5e81b19454ce348439cc6672b",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "user-caveman",
+      "guide": "variants/user-caveman/GUIDE.md",
+      "resourceRoot": "variants/user-caveman",
+      "repository": "user-supplied/skills",
+      "path": "caveman/SKILL.md",
+      "executionProfile": "user-approved-exception",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "files": {
+        "SKILL.md": {
+          "sha256": "6ab776f9d5e598bdcd4c9dfead98389aeb637d5bd61dc30f7aa9ea53913839a0",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "092cac7044df5ee12540a94a1867b4a612bb7aa5376097b46f92f5132cf822ac",
+          "executable": false
+        }
+      },
+      "when": "Расширенные уровни краткости и режимы wenyan из пользовательской подборки"
+    }
+  ]
+}

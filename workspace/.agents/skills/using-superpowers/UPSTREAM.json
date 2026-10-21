@@ -1,0 +1,51 @@
+{
+  "repository": "obra/superpowers",
+  "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "path": "skills/using-superpowers",
+  "url": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/using-superpowers",
+  "upstreamName": "using-superpowers",
+  "upstreamFrontmatter": {
+    "name": "using-superpowers",
+    "description": "Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions"
+  },
+  "upstreamSkillSha256": "82c5c8866ad7f5dd4440ce66bd7806ba48a2f13771beae5cf112e53f08fe36ba",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "user-using-superpowers",
+      "guide": "variants/user-using-superpowers/GUIDE.md",
+      "resourceRoot": "variants/user-using-superpowers",
+      "repository": "user-supplied/skills",
+      "path": "using-superpowers/SKILL.md",
+      "executionProfile": "user-approved-exception",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "files": {
+        "SKILL.md": {
+          "sha256": "f4ad1f7e2da43e6c148e92d71c4514b521ad1f8477e602514ffd77f0e8053a3c",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "c52f8f7244191613472cc27e1e712e0bae48f6029d1a359ee71a606b891cb08c",
+          "executable": false
+        },
+        "references/codex-tools.md": {
+          "sha256": "9014e6746c9a6d3af9eeb9608f1ad637ee334e5a12d178747e3042937fc3da2b",
+          "executable": false
+        },
+        "references/copilot-tools.md": {
+          "sha256": "5e0e9248e8bd965a28c8721bed24ddfa44a1ee66a89ee275da4a8260fe636e02",
+          "executable": false
+        },
+        "references/gemini-tools.md": {
+          "sha256": "477239fd7b4868f016662831e0fe840557ce91217f057f742a41af57a53554de",
+          "executable": false
+        }
+      },
+      "when": "Альтернативное руководство по поиску и загрузке навыков"
+    }
+  ]
+}

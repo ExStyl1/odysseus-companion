@@ -1,0 +1,36 @@
+UB13.19 guardrail recount — the count re-read with UB13.14's instrument, recorded beside the HEAD reading
+=========================================================================================================
+Row: UB13.19 (docs/superpowers/plans/2026-10-14-upstream-adoption-0-15-1.md). Instrument: unchanged
+from the baseline — `bun run lint:ui` / `bun run lint:ui`-equivalent per-package `lint-package`
+runs plus a per-rule `-f json` tally over apps/electron/src and packages/ui/src, shipped config
+(both rules `warn`; the palette rule `off` for `src/renderer/playground/**`). Positive control,
+re-run for this recount: a planted `bg-red-500 transition-all` reports 2 (1 palette + 1 motion) —
+the same instrument, still able to fail.
+
+Measured 2026-10-16 (this lane's Phase 13 lands complete: the theme switch, primitives, the
+playground shell and registries):
+
+GUARDRAIL COUNT (the two design rules — the row's subject):
+
+  apps/electron/src   no-raw-palette-colors 113   no-motion-antipatterns 57   → 170
+  packages/ui/src     no-raw-palette-colors 13    no-motion-antipatterns 23   → 36
+  TOTAL                                                                                      206
+
+  Baseline (2026-10-15, at the UB13.14 landing): 222 (apps/electron 183; packages/ui 39).
+  Δ = −16 (−13 apps/electron, −3 packages/ui). The count only goes down: the drop is this lane's
+  Phase 13 takes replacing palette/motion classes with roles (tooltip/drawer/dropdowns/dialog/
+  sonner/menu/command/button/input/switch/tabs/kbd + the playground shell), each file's whole-file
+  upstream take replacing more than its row's named hunks. Top remaining files:
+  apps/electron palette — kanban/TaskEditor.tsx 14, settings/AiSettingsPage.tsx 11,
+  app-shell/LeftSidebar.tsx 9 (the Phase 14/15 surface rows' files, expected to fall further);
+  apps/electron motion — LeftSidebar.tsx 9, TaskActionMenu.tsx 8;
+  packages/ui — chat/TurnCard.tsx 8, terminal/TerminalOutput.tsx 6.
+
+Full `lint-package` totals as printed (pre-existing warn rules included, not the row's subject):
+  apps/electron — 1269 files, 0 errors, 284 warnings
+  packages/ui   — 222 files, 0 errors, 36 warnings
+
+One instrument note: the recount run flagged 1 ERROR in packages/ui — materials.test.ts's own
+docblock contained the literal `shadow-elev-*` (the no-nonstandard-shadows rule reads comments
+too; the asterisk glob is not in its allow-list). Fixed in the UB13.19 commit by naming the four
+classes out; the recount above is the clean post-fix reading.

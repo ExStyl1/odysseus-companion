@@ -1,0 +1,16 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": "skills/hyperframes-keyframes",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/skills/hyperframes-keyframes",
+  "upstreamName": "hyperframes-keyframes",
+  "upstreamFrontmatter": {
+    "name": "hyperframes-keyframes",
+    "description": "Use when a HyperFrames composition needs a punch-in, punch-out, zoom, reframe, Ken Burns treatment, camera move, visual match/whip handoff, or other seek-safe 2D/3D keyframes; also for GSAP, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning."
+  },
+  "upstreamSkillSha256": "d6484e8367ed522f2a89af9ec30ae3cd86ae243b5a23c5ab00a7a682e3d1a791",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "skill_name": "sql-postgres-optimization",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Нужно создать Liquibase миграцию: добавить индекс на колонку partner_id в таблице offer. Таблица уже содержит данные в production.",
+      "expected_output": "XML changeSet с CREATE INDEX CONCURRENTLY IF NOT EXISTS + runInTransaction='false'. Имя индекса по конвенции offer_partner_id_idx.",
+      "files": [],
+      "trigger_type": "positive",
+      "assertions": [
+        "CREATE INDEX CONCURRENTLY IF NOT EXISTS в SQL",
+        "runInTransaction=\"false\" на changeSet — обязательно для CONCURRENTLY",
+        "Имя индекса по конвенции: {table}_{column}_idx",
+        "dbms=\"postgresql\" в sql тэге",
+        "changeSet id соответствует формату YYYY-MM-DD-TICKET-description"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Создай миграцию для новой таблицы offer_essence с полями offer_id, essence_id, essence_type. Первичный ключ — составной из всех трёх полей. offer_id — внешний ключ на таблицу offer.",
+      "expected_output": "Liquibase XML с createTable, addPrimaryKey (columnNames через запятую), addForeignKeyConstraint. Remarks на каждой колонке. changeSet id = имя файла.",
+      "files": [],
+      "trigger_type": "positive",
+      "assertions": [
+        "createTable с remarks на каждой колонке",
+        "addPrimaryKey с columnNames=\"offer_id,essence_id,essence_type\"",
+        "addForeignKeyConstraint с baseTableName, referencedTableName, constraintName",
+        "Имя FK по конвенции: {child_table}_{column}_fk",
+        "Полный XML заголовок с databaseChangeLog и xsi:schemaLocation"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "В таблице offer есть колонка s3_key типа text, большинство значений NULL. Нужен индекс для быстрого поиска по ненулевым значениям.",
+      "expected_output": "Partial index: CREATE INDEX CONCURRENTLY offer_s3_key_idx ON offer (s3_key) WHERE s3_key IS NOT NULL. runInTransaction=false.",
+      "files": [],
+      "trigger_type": "positive",
+      "assertions": [
+        "WHERE s3_key IS NOT NULL — partial index",
+        "CREATE INDEX CONCURRENTLY для production таблицы",
+        "runInTransaction=\"false\"",
+        "Имя индекса: offer_s3_key_idx"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Запрос к таблице offer работает медленно: SELECT * FROM offer WHERE status = 'ACTIVE' AND partner_id = 123. Как диагностировать и оптимизировать?",
+      "expected_output": "EXPLAIN (ANALYZE, BUFFERS) для диагностики. Составной индекс ON offer(partner_id, status) или ON offer(status, partner_id). Объяснение что смотреть: Seq Scan, rows estimate, shared hit vs read.",
+      "files": [],
+      "trigger_type": "positive",
+      "assertions": [
+        "EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT) в ответе",
+        "Предложен составной индекс на (partner_id, status) или (status, partner_id)",
+        "Упомянут Seq Scan как признак отсутствия индекса",
+        "Liquibase changeSet для добавления индекса с CONCURRENTLY"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "trigger-negative-clickhouse",
+      "prompt": "Создай таблицу в ClickHouse для хранения транзакций с группировкой по mcc-коду.",
+      "expected_output": "Скилл НЕ срабатывает — это ClickHouse, не Postgres. Используется sql-clickhouse-optimization скилл с MergeTree engine.",
+      "files": [],
+      "trigger_type": "negative",
+      "assertions": [
+        "Нет Liquibase XML в ответе — это не Postgres миграция",
+        "Используется MergeTree engine — ClickHouse синтаксис",
+        "Нет CREATE INDEX CONCURRENTLY — неприменимо к ClickHouse"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "trigger-negative-kotlin-code",
+      "prompt": "Напиши Spring Data JDBC репозиторий для таблицы offer с методами поиска по status и partner_id.",
+      "expected_output": "Скилл НЕ срабатывает — это написание Kotlin-кода, не SQL оптимизация. Генерируется Kotlin interface с @Query.",
+      "files": [],
+      "trigger_type": "negative",
+      "assertions": [
+        "Нет Liquibase XML changeSet",
+        "Генерируется Kotlin interface с CrudRepository или @Query аннотациями",
+        "Нет CREATE INDEX — это не задача оптимизации индексов"
+      ]
+    }
+  ]
+}

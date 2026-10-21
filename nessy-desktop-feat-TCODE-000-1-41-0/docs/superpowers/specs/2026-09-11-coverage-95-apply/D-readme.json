@@ -1,0 +1,21 @@
+{
+ "problems": [
+  "No flip candidates in family D: the only refusal (QD3, the image carry) was re-read against the stricter native-plus-wiring criterion and survives it — no runtime carries an image across a handoff natively (claude's replay format shows zero image blocks in 217 vendor transcripts, P3.54; codex's default upstream 400s an image part, P2.125), so there is no ≤ S wiring to flip to.",
+  "The kind counts must not be read as five free re-stamps: FOUR of the five re-stamps (QD1, QD2, QD4, QD5) carry an XS plan row of real work beside the zero-code cell move, and QD3's refusal carries one too.",
+  "QD4's stale-quote census at HEAD is EIGHT sites in SIX files, not the five the question names — `packages/shared/src/agent/claude-agent.ts` carries the clause twice (the verbatim page quote and the prose derived from it) and `docs/architecture/runtime-capability-gaps.md` twice; both extra files are reachable only with a SHORT needle, because the phrase wraps across a line break in `claude-agent.ts` and in `runtime-switch-costs.ts`.",
+  "The denominator-gaps twin table has twin rows for D5, D6 and D7 only (D1, D3 and D4 are original ledger rows with no twin), it uses its own words (`have` / `absent` / `n/a`, no markers), and it has no Switch column — so the twin edits are D5 Claude `absent` → `have` and D6 Pi and Claude `absent` → `have`, and the three Host-column verdicts have no twin at all.",
+  "The D7 twin row in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` still reads `absent` on all three while the ledger has read `covered ᵗ` since P6.263 (`cd1047a06`) — the twin is already stale by one landed commit and should be re-synced in the same pass.",
+  "QD4's unmeasured condition (whether `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` really takes Remote Control with it on the gateway path) is recorded in the ledger cell ONLY, per the owner's answer, so it stays an unpaid condition of the 2026-09-02 §E3 decision with no measurement row; the nearby measured non-consequence in `packages/shared/src/config/claude-provider-routing-env.ts` is about a DIFFERENT variable and does not settle it.",
+  "Closing D1's codex cell would need the cost table to express a claim per ordered PAIR rather than per runtime (about S); the owner's answer D keeps the cell `partial` with the residue named, so only the XS docblock correction is proposed and the build is not.",
+  "QD3's kind is recorded as `refuse` although the owner's answer explicitly FORBIDS the `n/a` cell the taxonomy's refuse entry describes — the refusal is of the rename and of the build, and the cells stay `absent ᵗ` with reason `DECISION`; the three ledger_edits for it therefore have from == to and carry only the Why-cell reason.",
+  "Both `from` and `to` cell values are written WITH their backticks, matching the file verbatim, so an applier can substitute them literally; the task's example for `to` showed the word without backticks."
+ ],
+ "flip_candidates": [],
+ "counts": {
+  "restamp": 5,
+  "refuse": 1,
+  "build": 0,
+  "measure": 0,
+  "defer": 0
+ }
+}

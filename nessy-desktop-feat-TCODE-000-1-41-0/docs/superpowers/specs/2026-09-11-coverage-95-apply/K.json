@@ -1,0 +1,583 @@
+{
+ "family": "K",
+ "items": [
+  {
+   "qid": "QK1",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "K3",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.152 (`b98010d03`) sends the vendor's own `CLAUDE_CODE_DISABLE_1M_CONTEXT=1` on the direct-Anthropic path where native-1M ids live, beside `chatImpl`'s `use1M` gate on the `[1m]` suffix, and P6.153 (`f61796584`) made the setting's own description name the runtimes it governs and the one it does not, so the claude arm of the off-switch is built and pinned by `packages/shared/src/i18n/__tests__/extended-context-copy.test.ts`."
+    },
+    {
+     "row": "K8",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.362 (`67c708702` + `2870c07ff`) landed the unrecognised-model diagnostic on all three runtimes — the id is named once with the catalogue it was checked against — and then the gateway-alias half, closed 2026-09-08 by W9-n."
+    },
+    {
+     "row": "K8",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.362 (`67c708702` + `2870c07ff`): the host stderr seam names the unrecognised id on claude too, which is the only seam available because `model-config.md#setting-your-model` exempts LLM gateways and a custom `ANTHROPIC_BASE_URL` from the vendored binary's own check."
+    },
+    {
+     "row": "K8",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.362 (`67c708702` + `2870c07ff`) gives codex the same named diagnostic and the same alias mapping, which matters most there because P6.164 measured codex forwarding an unservable id verbatim with no legible refusal."
+    },
+    {
+     "row": "K8",
+     "column": "Host",
+     "from": "`—`",
+     "to": "`UNIFORM ᵗ`",
+     "why_en": "P6.362 built ONE host seam that names the id and the catalogue identically on all three runtimes, so a switch changes nothing about this capability — the Switch column's `UNIFORM`, recorded rather than left as no-claim."
+    },
+    {
+     "row": "K10",
+     "column": "Pi",
+     "from": "`covered ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.364 (`86b7f3b8e`) is the landed evidence: `packages/pi-agent-server/src/orchestrator/spawner.ts` resolves `resolveSubagentModelOverride` at TIER 3 of the page's own order, through the managed allowlist, so the operator's default binds on Pi."
+    },
+    {
+     "row": "K10",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.364 (`9d1ea0a6e`) landed the claude arm as `packages/shared/src/agent/options.ts` symbol `applySubagentModelOverride`, which projects the Nessy spelling onto `CLAUDE_CODE_SUBAGENT_MODEL` only under FORCE and SAYS SO on the debug channel; `partial` therefore stands for a measured reason — the vendored bundle is 2.1.247, below the v2.1.251 that reorders the variable and the v2.1.257 that adds the FORCE knob (`CLAUDE_CODE_SUBAGENT_MODEL_FORCE` scores 0 in the 2.1.247 binary against `ANTHROPIC_DEFAULT_MODEL` 13 as the positive control)."
+    },
+    {
+     "row": "K11",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.364 (`86b7f3b8e`) replaced the superseded precedence with the documented one in `packages/pi-agent-server/src/orchestrator/spawner.ts` and gated the FORCE branch on `!isForkAgentDefinition`, so FORCE applies one model to every subagent while the page's fork carve-out is honoured; only the skill-origin carve-out is left, and P6.627 (`4d5e910ef`) records that it is unexpressible on every runtime because `AgentDefinition` carries no skill-origin marker."
+    },
+    {
+     "row": "K11",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.364 (`9d1ea0a6e`): under `CLAUDE_CODE_SUBAGENT_MODEL_FORCE=1` the host projects the value and the vendored binary's pre-v2.1.251 order coincides with FORCE semantics, so the capability is obtainable deliberately; `partial` because neither documented carve-out is honoured on claude until the bundle reaches v2.1.257, stated at `packages/shared/src/agent/options.ts` symbol `applySubagentModelOverride`."
+    },
+    {
+     "row": "K11",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "P6.364 (`86b7f3b8e`) measured codex's own vocabulary while writing K10's arm: `AgentsToml.default_subagent_model` is a DEFAULT for spawned children and there is no key that overrides a role's own `model`, so FORCE semantics are absent on codex with a landed measurement behind the word."
+    },
+    {
+     "row": "K13",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.366 (`a10da8339` + `16b691036`) first disclosed the inert chain and then built the ladder on codex's own `TurnStartParams.model` — the next id of `packages/shared/src/config/fallback-model-chain.ts` symbol `resolveFallbackModelChain` on the page's two codes, one info event per hop — and deleted the disclosure when the real thing landed; the residue is P6.734 (Pi's retry set includes `network_error`, which the page says never triggers a switch)."
+    },
+    {
+     "row": "K14",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.367 (`f0f82dae2` + `520b7dc4c`) lets an operator declare that a custom-endpoint model reasons (`packages/pi-agent-server/src/custom-endpoint-models.ts`) and fixed the two `connection.models` whitelists that dropped the declaration, so the declaration survives a live catalogue refresh."
+    },
+    {
+     "row": "K14",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "P6.367 (`520b7dc4c`) REFUTED the claude half as dead code and pinned the refutation in `packages/shared/src/agent/__tests__/claude-supported-capabilities-inert.test.ts`: the vendored capability resolver returns early unless the connection is first-party, Bedrock/Vertex or a declared gateway, and this fork strips every provider toggle, so an `_SUPPORTED_CAPABILITIES` projection could never be read — `absent` with a landed measurement rather than an unexamined zero."
+    },
+    {
+     "row": "K21",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.372 (`218a57a45`) landed the effort half on the phone (`apps/ios/NessyAgentKit/Sources/NessyAgentKit/Models/ThinkingLevel.swift` plus the session RPCs) after W7-e confirmed by measurement that the permission-mode half already had both ends; the surface is host state, so one landing covers all three runtimes."
+    },
+    {
+     "row": "K21",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.372 (`218a57a45`) — same host surface, no runtime mechanism is involved: effort and permission mode are host state read and written over the existing session RPCs."
+    },
+    {
+     "row": "K21",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.372 (`218a57a45`) — same host surface; the phone sets the level on the machine's session and the next turn uses it whichever runtime the session is on."
+    },
+    {
+     "row": "K21",
+     "column": "Host",
+     "from": "`—`",
+     "to": "`HOST ᵗ`",
+     "why_en": "The capability is host-level and runtime-independent (the row's own words, 'no runtime mechanism is involved'), so a switch changes nothing — the Switch column's `HOST`, recorded by P6.372 (`218a57a45`) rather than left as no-claim."
+    },
+    {
+     "row": "K23",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.374 (`14e40bdb5`, with the persistence recurrence fixed in `8bdf9d061`) exposes the SDK's own `CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING` per connection as `disableAdaptiveThinking` (`packages/shared/src/config/llm-connections.ts`, consumed in `packages/shared/src/agent/claude-agent.ts`), which is the documented escape for this 400 class and is taken instead of widening the removal list the negotiator refuses to widen."
+    },
+    {
+     "row": "K29",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.376 (`164393452`) put a model and an effort on the cron record and made the scheduled run dispatch on them (`packages/server-core/src/sessions/session-cron-service.ts`, pinned by `__tests__/cron-dispatch-model-effort.test.ts`); a record with neither behaves exactly as before."
+    },
+    {
+     "row": "K29",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.376 (`164393452`) — the same host record and dispatch path; the row's own residue is honoured, a model ID and an effort LEVEL travel rather than a tier, which K7 shows cannot cross to claude."
+    },
+    {
+     "row": "K29",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.376 (`164393452`) — the same host record and dispatch path reaches codex, whose per-role effort vocabulary (`packages/codex-responses-adapter/src/config-writer.ts` symbol `buildCodexAgentRoles`) already existed."
+    },
+    {
+     "row": "K29",
+     "column": "Host",
+     "from": "`—`",
+     "to": "`HOST ᵗ`",
+     "why_en": "A cron record is host state and the dispatch path is the host's, so a runtime switch changes nothing about which model an unattended run uses — `HOST`, recorded by P6.376 (`164393452`)."
+    },
+    {
+     "row": "K35",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.561 (`a8377a7fb`) set the SDK's own `forwardSubagentText` and renders the `parent_tool_use_id` messages under the parent tool row (pinned by `packages/shared/src/agent/__tests__/claude-forward-subagent-text.test.ts`); `partial` and not `covered` because `agent-sdk/streaming-output.md#streamevent-reference` gives complete attributed MESSAGES rather than live deltas, so the text arrives per message and not token by token."
+    },
+    {
+     "row": "K35",
+     "column": "Host",
+     "from": "`—`",
+     "to": "`REPORTED ᵗ`",
+     "why_en": "P6.382 (`0349ba73e` + `f50644765`) landed the switch-cost row and its locale keys, and `apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` now states that claude forwards a subagent's text since `a8377a7fb` while Pi forwards only a heartbeat — the difference is told at switch time, which is the Switch column's `REPORTED`."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp the family-K ledger cells whose work already landed, each against its own commit, in both `docs/superpowers/specs/2026-08-28-capability-ledger.md` and its twin `docs/superpowers/specs/2026-09-05-denominator-gaps.md`, writing no code.",
+     "size": "S",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements option A of QK1 (owner 2026-09-11): the sweep is verified commit by commit, not against the 2026-09-08 sweep prose three other clusters quoted as current. Done means the twenty-three cells listed in this item's ledger_edits carry the new verdict and a Why naming its commit — K3-claude (P6.152 `b98010d03`, P6.153 `f61796584`), K8 x3 + Switch (P6.362 `67c708702` + `2870c07ff`), K10-pi/claude and K11 x3 (P6.364 `86b7f3b8e` `9d1ea0a6e` `f3247cc15`, carve-out P6.627 `4d5e910ef`), K13-codex (P6.366 `a10da8339` + `16b691036`), K14-pi/claude (P6.367 `f0f82dae2` + `520b7dc4c`), K21 x3 + Switch (P6.372 `218a57a45`), K23-claude (P6.374 `14e40bdb5`), K29 x3 + Switch (P6.376 `164393452`), K35-claude + Switch (P6.561 `a8377a7fb`, P6.382 `0349ba73e` + `f50644765`). Option B was refused by the owner, so K35's Pi and codex cells stay explicit no-claims, as does K14-codex — three named zeros, not guesses. The twin file uses its own word set (`have`/`partial`/`absent`/`unknown`), so `covered` maps to `have` and `—` to `unknown` there; K3, K5, K6 and K7 predate the P6.189 admission and have NO twin row, so those edits land in the ledger only."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Not a refusal: option A is a pure verdict refresh over work this fork has already committed, so there is no mechanism left to wire."
+  },
+  {
+   "qid": "QK2",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "K22",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P7.13 (`c89e96f52`) handed resume-vs-stop to the runtime's own `autoContinueAtUsageLimit`, native at 0.3.247 (18 occurrences in the vendored 2.1.247 binary against a fabricated control at 0), and retired the host's claude-side wait, so the residue that held this cell at `partial` — `awaitUsageLimitReset` having no in-tree caller while the sentence promised a wait — is gone and the sentence now promises what the runtime keeps."
+    },
+    {
+     "row": "K9",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.363 (`0a55e2bd2`) refuted the premise by measurement: `createSession` already resolves explicit > project > workspace > connection above `resolveBackendContext`, so a configured default model for new sessions binds runtime-agnostically and the two missing pins (workspace tier, survival across a reload) landed; `partial` because the documented env spelling `ANTHROPIC_DEFAULT_MODEL` is honoured by nobody on this arm."
+    },
+    {
+     "row": "K9",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.363 (`0a55e2bd2`) — same host tiers; `partial` because `ANTHROPIC_DEFAULT_MODEL` reaches the child by the `...process.env` spread in `packages/shared/src/agent/options.ts` symbol `buildClaudeSubprocessEnv` and, at the 0.3.233 bundle, was read by nobody. At 0.3.247 that has changed — 13 occurrences in the binary and the name is in the bundle's own env registry beside `ANTHROPIC_MODEL` — which is exactly what this question's build takes."
+    },
+    {
+     "row": "K9",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.363 (`0a55e2bd2`) — same host tiers reach codex; `partial` because codex publishes no native default-model key for new sessions, so the host seam stays the whole answer there."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "On the claude runtime, resolve the new-session default model through the SDK's own `ANTHROPIC_DEFAULT_MODEL` at bundle 2.1.247 instead of leaving the host tiers as the only reader, and keep a `/model` pick outranking it.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements option A of QK2 (owner 2026-09-11), native-first step 1. Measured at HEAD: `\"claudeCodeVersion\": \"2.1.247\"`, `ANTHROPIC_DEFAULT_MODEL` 13 occurrences in the vendored `claude` binary and 3 in `sdk.mjs` — where it sits inside the bundle's own env-name registry beside `ANTHROPIC_MODEL` — against `ZZZ_FAKE_CONTROL_NAME` 0 as the negative control; the name reaches the child already through `packages/shared/src/agent/options.ts` symbol `buildClaudeSubprocessEnv` and its `...process.env` spread. Done means the host writes the resolved default into that name for the claude child, an explicit `/model` pick still wins and survives a restart (the two pins P6.363 `0a55e2bd2` already landed keep asserting that), the precedence between the host tier and the vendor key is stated once at the writing site, and Pi and codex keep the host seam because neither runtime publishes such a key. Re-stamps K9-claude to `covered ᵗ` when it lands."
+    },
+    {
+     "task_en": "Hand the claude arm's prompt-cache TTL to the runtime's own `CLAUDE_CODE_PROMPT_CACHE_TTL` / `CLAUDE_CODE_SUBAGENT_PROMPT_CACHE_TTL` and make the host's own precedence in `interceptor-common.ts` stand down on claude, so one variable stops having two readers in one process.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements option A of QK2 (owner 2026-09-11) for K31. Measured at HEAD: both env names score 6 in the vendored 2.1.247 binary and 3 in `sdk.mjs`, and `sdk.d.ts` declares `promptCacheTtl` and `subagentPromptCacheTtl` as optional settings keys taking `5m` or `1h`, whose own docblocks say verbatim that the environment variable takes precedence — so the runtime we ship now implements the page's chain itself, which the bundle did not do at 0.3.233 when `packages/shared/src/interceptor-common.ts` symbol `resolvePromptCacheTtl` was written. Done means: on claude the host forwards its resolved answer once and does not also rewrite `cache_control` for it, the `extendedPromptCache=false` strip in `packages/shared/src/unified-network-interceptor.ts` symbol `stripPromptCacheTtl` keeps its stated intent (a user who chose the cheaper write rate is not overridden) and says where it binds, Pi keeps the host rewrite because Pi has no env control, and codex stays `n/a` because it speaks Responses and sends no `cache_control`. The named residue stays named: a subagent's `experimental.cacheTtl` frontmatter is the CHILD's to read and requires v2.1.248, one version past the bundle. Re-stamps K31-claude's Why and keeps its `covered ᵗ`."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is the build (native-first configuration), not a refusal."
+  },
+  {
+   "qid": "QK3",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "K6",
+     "column": "Claude",
+     "from": "`absent ᵗ`",
+     "to": "`absent ᵗ`",
+     "why_en": "Verdict unchanged and now carrying reason `DECISION` from the owner's 2026-09-11 answer QK3=A: on a gateway or BYO connection an alias has nothing to resolve against, so the host will not invent a map — P6.160 (`ccea8e186`) admits the alias family onto the session model (and `haiku` onto the mini model) with the seeded `ANTHROPIC_DEFAULT_*_MODEL`, and P6.161 (`10e793b87` + `a34500c3f`) reports at switch time which alias-pinned agents change meaning; `absent` is kept deliberately rather than converted to `n/a` because the ledger's own K6 note records that the proposition is meaningful here — a user or an agent role CAN pin an alias — and `n/a` would subtract the row from the denominator."
+    },
+    {
+     "row": "K6",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`absent ᵗ`",
+     "why_en": "Verdict unchanged, reason `DECISION` (owner 2026-09-11, QK3=A). The measurement behind it is P6.164 (`437a9b7f4`): on the shipped `codex-app-server` a thread pinned to `model = \"opus\"` starts, completes, and the stub upstream receives `\"model\": \"opus\"` verbatim — neither substitution nor refusal — and the one warning naming the id fires identically for the gateway's own default, so it carries no information about servability. Option C (a host alias resolver) is refused as the invent-a-value step the read-don't-invent rule puts last."
+    },
+    {
+     "row": "K7",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Verdict unchanged, and the cell's stated reason is REFUTED at HEAD: P6.154 (`b90d3bcd8`) maps a bundled agent's tier onto the SDK's own `AgentDefinition.model` — the `small` tier resolves through `resolveGatewayFastModelId`, checked against the managed allowlist, and a tier with no served id registers with no model AND a degradation line naming the drop (`packages/shared/src/agent/claude-runtime-agents.ts` symbols `buildClaudeRuntimeBuiltinAgents` and `claudeBuiltinAgentTierDiagnostics`, pinned by `__tests__/claude-builtin-agent-tier.test.ts`). So it is not that a tier cannot travel; it is that only the tier the gateway publishes an alias for has an id to travel as, which is what keeps the cell at `partial` with reason `DECISION` under the owner's 2026-09-11 QK3=A."
+    },
+    {
+     "row": "K7",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.155 (`b31799460`) writes `[agents] default_subagent_model` with the connection's served mini model, so spawned children DO run on a model of their own; `partial` and not `covered` because a role's own `model` is deliberately dropped by `packages/codex-responses-adapter/src/config-writer.ts` symbol `buildCodexAgentRoles` — its docblock quotes codex's own `spawn_agent` text, *\"Spawned agents inherit your current model by default\"* — and `CodexAgentRoleDescriptor` carries no tier to thread, which is the open per-role half P6.550 holds."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record reason `DECISION` on K6's claude and codex cells and on K7's claude cell, and re-measure the version numbers the subagent-override docblock quotes, which were taken at bundle 2.1.233 and now read against 2.1.247.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude"
+     ],
+     "note_en": "Implements option A of QK3 (owner 2026-09-11): K6 and K7 are refusals by runtime design with measured reasons, and K10/K11 are re-stamps carried by QK1, not refusals. Done means each named cell keeps its verdict — `n/a` is refused here for the reason the C family recorded, it subtracts the row from `plan-status.py`'s denominator and would raise the percentage with no capability changing — and its Why names the reason plus the user-visible surface that already exists (the `REPORTED ᵗ` switch line for the alias change, the tier-drop degradation line, the debug sentence naming `CLAUDE_CODE_SUBAGENT_MODEL_FORCE`). Second half: `packages/shared/src/agent/options.ts` symbol `applySubagentModelOverride` states `claudeCodeVersion 2.1.233` and probe counts taken against it; re-measured at HEAD the bundle is 2.1.247, `CLAUDE_CODE_SUBAGENT_MODEL_FORCE` still scores 0 and 2.1.247 is still below the v2.1.251 that reorders the variable, so the CONCLUSION is unchanged and only the numbers are stale — rewrite them with the new reading and the date, and re-check at v2.1.251 for the order and v2.1.257 for the knob."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Neither refusal has a native mechanism waiting to be enabled: on a gateway there is no catalogue entry for an alias to resolve to (measured on the shipped codex binary by P6.164, forwarded verbatim), and claude's own `AgentDefinition.model` is already taken for the one tier the gateway publishes an alias for (P6.154). Codex's per-role `model` key IS native and unwritten, but threading a tier onto `CodexAgentRoleDescriptor` is the M-sized half P6.550 already holds, so it does not meet the ≤ S bar."
+  },
+  {
+   "qid": "QK4",
+   "answer": "A",
+   "kind": "measure",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Decide the six ambient prompt-caching off switches on the claude arm now, without a build: declare them as an operator control that says where they bind, or add them to the child's stripped-env set.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "doc",
+      "test"
+     ],
+     "note_en": "Implements step 1 of option A of QK4 (owner 2026-09-11), which is a decision rather than a measurement because the fact is already established. Measured and re-confirmed at HEAD: the bundle's env-accessor table carries SIX names — `DISABLE_PROMPT_CACHING` plus `_HAIKU`, `_SONNET`, `_OPUS`, `_FABLE`, `_MYTHOS`, one more than the page's five and `_MYTHOS` in no corpus page — `DISABLE_PROMPT_CACHING` scores 49 in the vendored native binary, and NONE of the six is in `packages/shared/src/config/claude-provider-routing-env.ts` symbol `CLAUDE_SDK_STRIPPED_ENV_KEYS`, which is the seven provider toggles plus four endpoint/credential names plus `_CLAUDE_CODE_ASSUME_FIRST_PARTY_BASE_URL` — twelve names, no caching name — so an exported value is forwarded by the `...process.env` spread and takes effect on one runtime of three with nothing declaring it. The recommended direction, to be stated in the row when it lands: DECLARE, because native-first step 1 is to enable what the runtime already has rather than delete it (the P2.306 lesson is that a fix written without reading the source removed a working credential control), with a host setting that says the control binds on claude only and that Pi and codex have no such mechanism — an adopted native mechanism with no switch verdict is a new silent divergence. The owner's answer fixed the ORDER and did not name the direction, so the row states the choice and its reason. Re-stamps K32-claude when it lands."
+    },
+    {
+     "task_en": "Run one live measurement session on a PACKAGED build covering the five remaining arms — K12-Pi, K16-claude, K33-claude, K34, K36-Pi and K36-codex — each with its own negative control, and record the verdicts.",
+     "size": "M",
+     "tags": [
+      "test",
+      "host",
+      "doc"
+     ],
+     "note_en": "Implements step 3 of option A of QK4 (owner 2026-09-11), after the K32 decision and after QK1's K3-claude re-stamp, neither of which needs a build. The five rigs, each already written in its source row: K12-Pi, whether a mid-session model/effort change takes effect in-process without re-forking; K16-claude, one turn containing `ultrathink` against the identical turn without it, reading the thinking budget actually sent off the loopback adapter (the binary carries the word 22 times, which proves nothing about the composition path); K33-claude, whether the mini-model fall-through picks a small-class id at all, since `packages/shared/src/agent/claude-agent.ts` admits `isAnthropicProvider` is false for `claude-runtime` and no gateway id matches a small-class keyword; K34, whether any picker entry carries the page's `From gateway` provenance label, control a BYO card that must NOT; K36 on Pi and codex, whether the usage overlay's token figure advances mid-turn, control a short turn where it must jump exactly once. A dev build runs from stale bundles and is not the shipped artifact, so the session runs on a packaged build and each arm is added to `docs/testing/cdp-live-checklist.md` as a case row with its narrative under `docs/testing/cdp-runs/`. These five sit in the follow-up plan as D1.58 and D1.60-D1.63 plus K12's Pi arm; done means each cell carries a verdict with both arms recorded, and any arm that measures as delivered also gets its switch verdict, because a capability present on one runtime and absent on another owes one either way."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is an ordering plus a live session, not a refusal; the one thing that could be enabled without a build — the six caching switches the vendored binary already reads — is the subject of the decision row above rather than something the owner declined."
+  },
+  {
+   "qid": "QK5",
+   "answer": "B+C",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "K18",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Verdict unchanged with reason `DECISION`: the owner's 2026-09-11 answer confirms the 2026-09-05 recommendation (A) that the model chooses the fan-out, so the missing half is a selector we deliberately do not build — a ceiling is a permission, not an instruction, and a control whose label promises a fan-out would promise more than any runtime delivers."
+    },
+    {
+     "row": "K18",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Verdict unchanged, reason `DECISION` (owner 2026-09-11, K18 keeps option A): fan-out stays the model's call; H4 and H6 hold the concurrency ceiling and the budget, which are the controls a user actually needs."
+    },
+    {
+     "row": "K18",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Verdict unchanged, reason `DECISION` (owner 2026-09-11): `[features] multi_agent = true` is already written by `packages/codex-responses-adapter/src/config-writer.ts` symbol `buildCodexConfigToml`, on the owner's 2026-08-22 default-take list, so the runtime may fan out; only the selector is refused."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "On claude, set the vendored SDK's own `ultracode` settings key through `Options.settings` from the new per-session toggle.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements the owner's 2026-09-11 override of QK5 — 'support it as far as the SDK ships it' — literally, for the claude runtime. Measured at HEAD: `sdk.d.ts` declares `ultracode?: boolean` with the docblock *\"Enable ultracode for the session: xhigh effort plus standing dynamic-workflow orchestration. Session-scoped — typically provided via --settings or the apply_flag_settings control request\"*, and the binary carries the word 156 times; the seam already exists, because `packages/shared/src/agent/claude-auto-mode-policy.ts` writes `workflowKeywordTriggerEnabled: false` into that same settings object from our own keyword setting. Done means the toggle's ON position writes `ultracode: true` on a session whose model is xhigh-capable and whose workflows are enabled, OFF writes nothing new (an unset install spawns byte-identically), and the declared divergence is stated once: this is a claude-native posture that Pi reaches by keyword and codex does not have. Re-stamps K17-claude to `covered ᵗ` when it lands."
+    },
+    {
+     "task_en": "Add a per-session ultracode toggle beside the effort control in the composer, gated off when workflows are disabled.",
+     "size": "M",
+     "tags": [
+      "host",
+      "renderer",
+      "product",
+      "test"
+     ],
+     "note_en": "Implements the owner's 2026-09-11 override of QK5 (option C, and the owner's own words: 'this is a TOGGLE — the user must be able to turn ultracode mode on and off'). The control sits with the effort picker in `apps/electron/src/renderer/components/app-shell/input/CompactModelSelector.tsx`, is per session rather than persisted globally (matching the SDK's own session scope), and is hidden or disabled with a reason when the workflows-off setting is in force. Done means the toggle's state reaches all three runtime arms through one host resolver, so the three per-runtime rows below have a single source; one positive and one negative test per arm; the copy states plainly what the toggle does on the runtime in front of the user. Re-stamps K17 on all three when the four rows land together."
+    },
+    {
+     "task_en": "On Pi, bind the new toggle to the workflow keyword path that already exists, rather than adding a second mechanism beside it.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements the owner's 2026-09-11 instruction 'on Pi the plugin/keyword route already exists — keep it'. `packages/shared/src/workflows/workflow-keyword.ts` symbol `WORKFLOW_TRIGGER_KEYWORD` is `'ultracode'` and `detectWorkflowKeywordTrigger` plus `WORKFLOW_KEYWORD_DISPATCH_RUNTIMES` decide where it dispatches; done means the toggle ON makes the turn take that path without the user typing the word, the typed keyword keeps working unchanged, and the three recorded max-effort decisions stay true — `packages/shared/src/automations/types.ts`, `packages/pi-agent-server/src/orchestrator/spawner.ts` and `packages/shared/src/agent/thinking-levels.ts` all state that Nessy has no `ultracode` EFFORT level and the loud rejection `environmentThinkingOverrideRejection` stays pinned by `thinking-env-tier.test.ts`. Re-stamps K17-pi to `covered ᵗ`."
+    },
+    {
+     "task_en": "On codex, have the toggle say honestly that the runtime has no ultracode mode instead of accepting a setting nothing applies, and give K17 a switch verdict.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "renderer",
+      "doc",
+      "test"
+     ],
+     "note_en": "Implements the owner's 2026-09-11 instruction 'codex — record honestly that the runtime has no such mode; the toggle on codex shows this', and the refusal the owner forbade is not taken anywhere. Done means: on a codex session the control is visibly unavailable with the reason, no config key is written that the runtime would ignore, and K17's Switch cell moves from no-claim to `HONEST` — the capability degrades visibly rather than silently, which is the pattern the ledger names as the one to copy. Silent acceptance would be the `SILENT-LOOSER` shape P6.214 measured elsewhere."
+    },
+    {
+     "task_en": "Record reason `DECISION` on K18's three cells: the Ultra fan-out stays the model's choice.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements the K18 half of QK5 (owner 2026-09-11 confirming the 2026-09-05 recommendation A). Verdicts stay `partial ʰ` — `n/a` would subtract the row from the denominator while nothing about the capability changed — and each Why names the decision plus what is already written (`multi_agent = true` on codex, H4/H6 for ceilings and budget)."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The owner overrode the recommended refusal into a build (B plus C), so there is nothing left to flip; the native surface the flip rule looks for is precisely what the first row takes — `sdk.d.ts` `ultracode?: boolean` through the `Options.settings` seam that already carries `workflowKeywordTriggerEnabled`."
+  },
+  {
+   "qid": "QK6",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "K15",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.368 (`1419cddd3`) writes codex's own `plan_mode_reasoning_effort` from the configured level through `packages/codex-responses-adapter/src/config-writer.ts`, and omits it when unset, so a codex session entering plan mode reasons at the level chosen for it — the schema key that made the cell `absent` now has a writer."
+    },
+    {
+     "row": "K19",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Reason `STRUCTURAL`, recorded by the owner's 2026-09-11 answer QK6=A. What is built is complete on its own terms — P6.370 (`d7764c372` + `e9dfbc1dd` + `2e5392f75`) configures the vendor's own `switchModelsOnFlag`, only an explicit `false` travels, it rides `Options.settings` because the SDK's restrictive managed filter does not copy the key, and `chat.claudeModelSwitch.inertOnThisConnection` tells a user who sets it where it cannot bind. The second half is a vendor carve-out no host work can move: `model-config.md#ask-before-switching`, verbatim, *\"In non-interactive mode and SDK integrations that can't show the prompt, a flagged request ends the turn with a refusal instead\"* — and our claude path IS an SDK integration. `partial` is kept rather than converted to `n/a`, which would subtract the row from the denominator while the built half really is delivered."
+    },
+    {
+     "row": "K24",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Reason `DECISION`, recorded by the owner's 2026-09-11 answer QK6=A. P6.374 (`14e40bdb5`, persistence recurrence fixed in `8bdf9d061`) exposes the SDK's documented escape per connection, so the 400 class has an answer; widening `packages/codex-responses-adapter/src/anthropic/passthrough-negotiation.ts` symbol `REMOVABLE_BETA_FIELDS` beyond its one entry is refused because the same module names messages, system, tools and thinking as permanent non-candidates on purpose — silently rewriting a request body is the defect that rule exists to prevent — and option B's second upstream per session runs against the one-upstream-per-session shape of the loopback adapter."
+    },
+    {
+     "row": "K30",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Reason `DECISION`, recorded by the owner's 2026-09-11 answer QK6=A. P6.377 (`62e6843bf`) fills `context_tokens` and `prompt_cache_warm` from the session's own usage and emits the user-facing warning once per session from both the model switch and the thinking-level change (`packages/server-core/src/sessions/SessionManager.ts` symbols `modelSwitchCostFields` and `warnWarmCacheDiscarded`, copy key `chat.modelSwitch.cacheDiscarded`); the three fields that need vendor rates stay unfilled deliberately, because a `0` would be a false cost report, and the absence is pinned by `SessionManager.model-switch-hooks.test.ts`."
+    },
+    {
+     "row": "K30",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Reason `DECISION`, same landing (P6.377 `62e6843bf`): the warning and the two fillable fields are host-side and reach every runtime, and `cache_ttl`, `estimated_cache_write_usd` and `pricing` stay absent by the decision above rather than by omission."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Build the effort half of plan mode on Pi: a plan-phase turn reasons at the configured plan-mode level and execution returns to the session's level.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements the only build in option A of QK6 (owner 2026-09-11). The MODEL half is structural and stays named rather than attempted: the loopback adapter pins ONE upstream per session, so a plan-phase model switch cannot land, and `opusplan` appears in this tree only inside docblocks quoting the page. Done means a Pi session in plan mode sends the plan-mode effort on the plan-phase request and the session's own level afterwards, with one positive and one negative test, reusing `resolveEffortLevel` rather than adding a second resolver — codex already has the same capability from P6.368 (`1419cddd3`), so the host answer must match it. Re-stamps K15-pi when it lands; K15-claude stays `absent ʰ` with the structural model half named, which this question does not fund."
+    },
+    {
+     "task_en": "Record reason `STRUCTURAL` on K19-claude and `DECISION` on K24-claude and on K30's Pi and claude cells, keeping every verdict as it stands.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements the refusal half of option A of QK6 (owner 2026-09-11): a measured and declared structural limit is dispositioned rather than left open. `n/a` is deliberately not used — the ledger defines it as 'not this runtime's surface' and `scripts/plan-status.py` subtracts it from the denominator, so converting three rows whose built halves are shipped would raise the family's percentage with no capability changing. Each Why names the delivered half, the refused clause and the verbatim evidence: the page's SDK-integration sentence for K19, the negotiator's permanent non-candidate list for K24, and the two fields that need vendor rates for K30. The twin rows in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` take the same reason with their own word set."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "Two of K30's three refused cost fields have gained a source since the refusal was measured: `costBasis` is native at 0.3.247 — `sdk.d.ts` declares it per model entry as the price table the last request was priced at, and P7.16 (`31f88bd67`) already carries it into `packages/core/src/types/message.ts` and the renderer's usage line — which is exactly the `pricing` field the page defines, while `cache_ttl` is answerable from the host's own `packages/shared/src/interceptor-common.ts` symbol `resolvePromptCacheTtl`. Wiring both into `SessionManager.modelSwitchCostFields` is XS-to-S and leaves only `estimated_cache_write_usd` unfillable, so the refusal is worth revisiting even though the answer stands."
+  },
+  {
+   "qid": "QK7",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "K25",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the owner's standing rule of 2026-08-29, quoted in this row's own cell — *do not build, delete or clean up* the fallback ordering constant — and re-affirmed by the 2026-09-11 answer QK7=A; P2.318 is PARKED as GATED (no decision needed), and the surface in question is the FALLBACK ordering at `packages/shared/src/config/llm-connections.ts`, reached only when the live catalogue fetch returns nothing, so no session's model depends on it today."
+    },
+    {
+     "row": "K26",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused with a reason by the owner's 2026-09-11 answer QK7=A: no Pi card carries a service tier and the receiving side does not exist — the Nestor gateway's catalogue publishes six fields and no tier — so the proposition has no subject on this runtime rather than being an unbuilt feature."
+    },
+    {
+     "row": "K26",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused with a reason by the owner's 2026-09-11 answer QK7=A: the vendor's only tier control is `ANTHROPIC_BEDROCK_SERVICE_TIER`, Bedrock-only, and this build strips every provider toggle, so the name is unreachable here; the claude path's upstream is our loopback adapter, which has no tier to honour."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Extend the codex managed-requirement application to `serviceTier`: carry it in the applied verdict and send it on `thread/start`, exactly as the requirement's model is applied today.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "test"
+     ],
+     "note_en": "Implements option A of QK7 (owner 2026-09-11), which is the owner's own 2026-09-05 Q15 answer (b) extended one field. At HEAD `packages/shared/src/agent/codex-config-requirements.ts` symbol `resolveCodexManagedNewThreadModel` returns `model` and `effort`, `packages/shared/src/agent/codex-agent.ts` applies only the model through `setModel`, and the comment beside it records that `serviceTier` gets the same read-don't-invent judgement — that comment is part of the diff, because this row changes the judgement for tier and states why: the posture is 'fill only what the invocation did not choose', and this build offers the user NO service-tier control at all, so an administrator's tier can never override a user choice that cannot be made. `packages/codex-protocol/generated/v2/ThreadStartParams.ts` declares `serviceTier` as an optional nullable string, so the field exists on the wire we already send. Done means a fresh codex thread on a connection whose model was inherited starts with the administrator's `serviceTier`, the honest surface keeps reporting what was applied versus preserved, and the reasoning-effort clause stays reported-not-applied until an explicit-versus-inherited bit exists for it. Re-stamps K26-codex to `covered ᵗ` when it lands."
+    },
+    {
+     "task_en": "Record the two refusals of this cluster in both ledger files: K25-Pi as `n/a` under the owner's 2026-08-29 rule, and K26's Pi and claude cells as `n/a` for the missing receiving side.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements the recording half of option A of QK7 (owner 2026-09-11). Done means each cell names the ruling by date and the verifiable fact behind it — P2.318 parked as gated for K25, the gateway catalogue's six tier-less fields for K26-pi, and the Bedrock-only `ANTHROPIC_BEDROCK_SERVICE_TIER` against a build that strips the provider toggles for K26-claude — and the twin rows take the same words. Note for the applier: these three are the only `n/a` conversions this family makes, and they are made because the owner named `n/a` for K25 and 'n/a with a reason' for K26's two cells; every other refusal in family K keeps its verdict to avoid shrinking the denominator."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is a build on the one runtime whose wire carries the field; the refused cells have no native mechanism to enable — Pi's cards have no tier and claude's only tier name is Bedrock-only in a build that strips Bedrock — and K25's constant is data the owner has ruled untouchable, not a runtime mechanism."
+  },
+  {
+   "qid": "QK8",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "K28",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.375 (`b44349b2d`) built the operator override this cell said was absent: `ANTHROPIC_BEDROCK_REGION_PREFIX` now lives in four tracked files — `packages/shared/src/config/bedrock-model-ids.ts`, `packages/shared/src/config/llm-connections.ts`, `packages/server-core/src/handlers/rpc/llm-connections.ts` and `packages/shared/src/config/__tests__/bedrock-region-prefix-override.test.ts` — so `global`, `jp` and `au`, which the derived table deliberately omits, are reachable by an explicit choice; the per-version application-inference-profile ARN map is REFUSED with a reason by the owner's 2026-09-11 answer QK8=A, because this build strips every Bedrock toggle and no shipped card routes through Bedrock today."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Give the model-candidate resolver an honest notice when it skips a model id it cannot resolve, instead of silently degrading the pick.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "host",
+      "renderer",
+      "test"
+     ],
+     "note_en": "Implements the build half of option A of QK8 (owner 2026-09-11) and the only half of K27 the owner funded. The rule being surfaced is written down at `packages/shared/src/config/llm-connections.ts`, verbatim *\"a candidate that does not resolve is skipped, so an invented id silently degrades the pick rather than failing loudly\"*, with two measured instances (github-copilot dotted ids, amazon-bedrock bare ids); `amazon-bedrock.md` names the BILLING consequence of a silent fallback, which is why the notice is worth its size. Done means a connection whose selected model cannot be resolved shows one notice naming the id requested and the id actually used, riding B6's existing notice queue rather than a new channel, with one positive and one negative test; the account-side invokability PROBE (`bedrock:ListInferenceProfiles` / `GetInferenceProfile`, 0 occurrences in this tree) stays refused for the same reason as the ARN map. Re-stamps K27-pi when it lands."
+    },
+    {
+     "task_en": "Record the per-version ARN-map refusal as reason `DECISION` on K28 and re-stamp K28-Pi against the landed prefix override.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements the recording half of option A of QK8 (owner 2026-09-11). Done means K28-Pi reads `covered ᵗ` with both halves named — the operator prefix override delivered by P6.375 (`b44349b2d`), the per-version ARN map refused because building a provider surface whose toggles this build strips is construction ahead of demand — and the twin row in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` takes the same words. The cell's old sentence that the override is absent is retired in WORDS rather than respelled, so no citation guard re-reports it."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The refused half has no reachable native mechanism: claude's own `modelOverrides` and the Bedrock discovery calls are unreachable in a build that strips every provider toggle, and a per-version ARN map on Pi is host construction the plan itself sized M, not ≤ S wiring."
+  },
+  {
+   "qid": "QK9",
+   "answer": "A",
+   "kind": "measure",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Measure, on a packaged build, whether `thinking_delta` frames reach the claude adapter and whether `toolcall_delta` frames reach the Pi adapter, then write a branch only for the frames that actually arrive.",
+     "size": "M",
+     "tags": [
+      "claude",
+      "pi",
+      "test",
+      "host"
+     ],
+     "note_en": "Implements option A of QK9 (owner 2026-09-11): measure first, write branches only for what arrived, and leave codex a declared refusal at the protocol level. ONE correction to the question's own evidence, measured at HEAD before this row was written: `thinking_delta` is NOT absent from the 2.1.247 bundle — it scores 18 in the vendored `claude` binary, 4 in `sdk.mjs` and 1 in `sdk.d.ts`, against the same controls the question quotes (`content_block_delta` 23, `input_json_delta` 13) and `ZZZ_FAKE_CONTROL_NAME` 0 as the negative — so the claude branch is plausibly attachable and the run decides it; a string count in a binary is still not proof of emission, which is why this stays a measurement. The Pi arm is the residue P6.158 (`bd05ae134`) handed on: `packages/shared/src/agent/backend/pi/event-adapter.ts` already reads the frame type and a hermetic test is not a live arrival, so the question is whether the SDK emits `toolcall_delta` for the providers this fork runs. Done means K5's Pi and claude cells carry a verdict with both arms recorded, any branch written re-uses the re-emission path and the two load-bearing rules at `packages/shared/src/agent/backend/partial-tool-input.ts` (never register a partial in `ToolIndex`; doubling schedule from a 64-char floor), and the codex arm stays `partial` with the already-shipped statement that live tool-input streaming is not delivered there — P6.159 (`d7b3177e5`) measured that `ServerNotification.ts` declares ten delta families and none is a tool-call-argument delta, and the unbuilt `onToolArgsDelta` sink is recorded with its open risk, that nothing proves `acc.id` correlates with the tool id `item/started` later reports."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Codex's refusal is at the protocol level and measured: the binary declares ten delta families and none carries tool-call arguments, so there is no native mechanism to enable; option B's host-side sink rests on an unproven id correlation, which is the invent-a-mechanism step the read-don't-invent rule puts last."
+  }
+ ]
+}

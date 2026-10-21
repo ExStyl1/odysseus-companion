@@ -1,0 +1,18 @@
+variables:
+  PIPELINE_MODE:
+    value: 'normal'
+    options: ['normal', 'rebrand']
+    description: 'normal: existing CI; rebrand: generate and verify a Nessy branch from upstream.'
+  REBRAND_UPSTREAM_REF:
+    value: 'upstream/0.19.1'
+    description: 'For rebrand mode: source upstream/* branch.'
+
+include:
+  - local: '.ci/rebrand-upstream.yml'
+    rules:
+      - if: '$PIPELINE_MODE == "rebrand"'
+  - local: '.ci/main.yml'
+    rules:
+      - if: '$PIPELINE_MODE == "rebrand"'
+        when: never
+      - when: always

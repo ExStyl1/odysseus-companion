@@ -1,0 +1,13 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/superpowers/specs/2026-07-29-inert-contracts.md",
+  "type": "SPEC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Inert-Contract Report — nessy-desktop",
+  "summary": "Report of 38 inert code contracts; rows 1-22 superseded by the inert-worklist, rows 23-38 untriaged, plus a systemic diagnosis.",
+  "scope": ["inert contracts", "SEATBELT_TESTING_WILDCARD", "macOS bash seatbelt sandbox", "SendUserFile tool", "structuredContent", "thinkingBudget", "getValidationErrorMessage"],
+  "cross_refs": ["2026-07-29-inert-worklist.md", "bash-seatbelt.ts", "claude-agent.ts", "pi-agent.ts", "handlers/send-user-file.ts"],
+  "locked": false,
+  "precedence": null,
+  "notes": "Type taken from MANIFEST_TYPE (authoritative). Document self-declares rows 1-22 SUPERSEDED and rows 23-38 UNTRIAGED; section 1's 'all 38 confirmed inert' claim is marked false in-document."
+}

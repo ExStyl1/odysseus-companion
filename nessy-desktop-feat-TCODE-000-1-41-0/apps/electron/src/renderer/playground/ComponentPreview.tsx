@@ -1,0 +1,279 @@
+/**
+ * Source: OUR file at HEAD (playgroundEntryProps + PlaygroundEntryFrame over PlaygroundChatProviders,
+ * F1.216/F1.281) + upstream v0.15.1's PreviewErrorBoundary and onCrash (UB13.15), merged INTO the
+ * Frame path as the row's Method states. The boundary is exported for its test (the row's recorded
+ * one-word deviation).
+ */
+
+import * as React from 'react'
+import { cn } from '@/lib/utils'
+import type { ComponentEntry } from './registry'
+import { TooltipProvider } from '@nessy-agent/ui/ui/tooltip'  // the subpath: the barrel pulls pdfjs-dist and cannot load under bun (R6-01)
+import { Button } from '@/components/ui/button'
+import { PlaygroundChatProviders } from './registry/playground-chat-providers'
+
+interface ComponentPreviewProps {
+  /** Called when the preview throws, so the playground can stop persisting a crashing selection. */
+  onCrash?: (componentId: string, error: Error) => void
+  /** The Frame's arm: the boundary's componentDidCatch, wired by ComponentPreview from onCrash. */
+  onError?: (error: Error) => void
+  component: ComponentEntry
+  props: Record<string, unknown>
+}
+
+interface PreviewErrorBoundaryProps {
+  /** The preview's inputs: a change (other variant, edited prop) retries the render. */
+  previewProps: Record<string, unknown>
+  onError: (error: Error) => void
+  children: React.ReactNode
+}
+
+/**
+ * Keeps a crashing entry inside its preview box (upstream v0.15.1, UB13.15): without it, one broken
+ * component unmounts the whole playground (sidebar included), and the persisted selection reopens
+ * it on every reload. Exported for its test — the row's recorded one-word deviation.
+ */
+export class PreviewErrorBoundary extends React.Component<PreviewErrorBoundaryProps, { error: Error | null }> {
+  state: { error: Error | null } = { error: null }
+
+  static getDerivedStateFromError(error: Error) {
+    return { error }
+  }
+
+  componentDidCatch(error: Error) {
+    this.props.onError(error)
+  }
+
+  componentDidUpdate(prevProps: PreviewErrorBoundaryProps) {
+    if (this.state.error && prevProps.previewProps !== this.props.previewProps) {
+      this.setState({ error: null })
+    }
+  }
+
+  render() {
+    const { error } = this.state
+    if (!error) return this.props.children
+    return (
+      <div role="alert" className="m-4 flex max-w-[560px] flex-col gap-2 rounded-lg bg-destructive-tint p-4 text-label">
+        <p className="font-semibold text-destructive">This preview crashed</p>
+        <pre className="max-h-40 overflow-auto whitespace-pre-wrap font-mono text-mono-ui text-foreground">
+          {error.message}
+        </pre>
+        <div>
+          <Button variant="secondary" size="sm" onClick={() => this.setState({ error: null })}>
+            Retry
+          </Button>
+        </div>
+      </div>
+    )
+  }
+}
+
+const MIN_WIDTH = 100
+const MIN_HEIGHT = 100
+const DEFAULT_WIDTH = 800
+const DEFAULT_HEIGHT = 600
+const STORAGE_KEY = 'playground-preview-size'
+
+/**
+ * The props an entry is rendered with: its defaults, then its mock data, then
+ * the page's current props. Exported, with {@link PlaygroundEntryFrame}, so the
+ * F1.216 render test (`__tests__/registry-render.test.ts`) renders an entry
+ * through THIS merge and THIS frame rather than a copy of them.
+ */
+export function playgroundEntryProps(component: ComponentEntry, props: Record<string, unknown>): Record<string, unknown> {
+  const defaults: Record<string, unknown> = {}
+  for (const prop of component.props) {
+    defaults[prop.name] = prop.defaultValue
+  }
+  const mockData = component.mockData?.() ?? {}
+  return { ...defaults, ...mockData, ...props }
+}
+
+/**
+ * What every entry renders inside: the tooltip provider, the chat providers and
+ * the entry's own wrapper.
+ *
+ * F1.281 — `PlaygroundChatProviders` (navigation, action registry, modal and
+ * dismissible layers) is mounted HERE, once, rather than by each entry that
+ * needs it: nine entries wrapped their own, each one added after it was found
+ * rendering blank. Keyed by the entry so every entry mounts them fresh, as a
+ * per-entry wrapper did. Measured before the move on the dev playground: the
+ * navigation provider rewrites the query string with `replaceState` and never
+ * navigates the page, and the playground keeps its selection in `localStorage`
+ * (`__tests__/chat-display-providers-registry.test.ts` carries the reading).
+ */
+export function PlaygroundEntryFrame({ component, props, onError }: ComponentPreviewProps) {
+  const Component = component.component
+  const Wrapper = component.wrapper ?? React.Fragment
+  return (
+    <TooltipProvider>
+      <PreviewErrorBoundary key={component.id} previewProps={props} onError={onError ?? (() => {})}>
+        <PlaygroundChatProviders key={component.id}>
+          <Wrapper>
+            <Component {...props} />
+          </Wrapper>
+        </PlaygroundChatProviders>
+      </PreviewErrorBoundary>
+    </TooltipProvider>
+  )
+}
+
+function loadSavedSize(): { width: number; height: number } {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY)
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      if (typeof parsed.width === 'number' && typeof parsed.height === 'number') {
+        return {
+          width: Math.max(MIN_WIDTH, parsed.width),
+          height: Math.max(MIN_HEIGHT, parsed.height),
+        }
+      }
+    }
+  } catch {
+    // Ignore parse errors
+  }
+  return { width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT }
+}
+
+export function ComponentPreview({ component, props, onCrash }: ComponentPreviewProps) {
+  const [size, setSize] = React.useState(loadSavedSize)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+  const isDraggingRef = React.useRef<'right' | 'bottom' | 'corner' | null>(null)
+  const startPosRef = React.useRef({ x: 0, y: 0 })
+  const startSizeRef = React.useRef({ width: 0, height: 0 })
+
+  // Merge default props, mock data, and current props
+  const mergedProps = React.useMemo(() => playgroundEntryProps(component, props), [component, props])
+
+  const handleMouseDown = React.useCallback((e: React.MouseEvent, direction: 'right' | 'bottom' | 'corner') => {
+    e.preventDefault()
+    isDraggingRef.current = direction
+    startPosRef.current = { x: e.clientX, y: e.clientY }
+    startSizeRef.current = { ...size }
+  }, [size])
+
+  React.useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDraggingRef.current) return
+
+      const deltaX = e.clientX - startPosRef.current.x
+      const deltaY = e.clientY - startPosRef.current.y
+
+      setSize(prev => {
+        let newWidth = prev.width
+        let newHeight = prev.height
+
+        if (isDraggingRef.current === 'right' || isDraggingRef.current === 'corner') {
+          newWidth = Math.max(MIN_WIDTH, startSizeRef.current.width + deltaX)
+        }
+        if (isDraggingRef.current === 'bottom' || isDraggingRef.current === 'corner') {
+          newHeight = Math.max(MIN_HEIGHT, startSizeRef.current.height + deltaY)
+        }
+
+        return { width: newWidth, height: newHeight }
+      })
+    }
+
+    const handleMouseUp = () => {
+      if (isDraggingRef.current) {
+        // Save size to localStorage when drag ends
+        setSize(currentSize => {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(currentSize))
+          return currentSize
+        })
+      }
+      isDraggingRef.current = null
+    }
+
+    document.addEventListener('mousemove', handleMouseMove)
+    document.addEventListener('mouseup', handleMouseUp)
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.removeEventListener('mouseup', handleMouseUp)
+    }
+  }, [])
+
+  const previewOverflowClass = component.previewOverflow
+    ? (component.previewOverflow === 'visible' ? 'overflow-visible' : component.previewOverflow === 'hidden' ? 'overflow-hidden' : 'overflow-auto')
+    : (component.layout === 'full' ? 'overflow-hidden' : 'overflow-auto')
+
+  return (
+    <div className="flex-1 flex flex-col overflow-hidden">
+      {/* Header */}
+      <div className="border-b border-border px-4 pt-3 pb-3">
+        <h2 className="text-lg font-semibold text-foreground font-sans">
+          {component.name}
+        </h2>
+        <div className="mt-1 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+          <p>{component.description}</p>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-mono">
+              {Math.round(size.width)} × {Math.round(size.height)}
+            </span>
+            <button
+              onClick={() => {
+                setSize({ width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT })
+                localStorage.removeItem(STORAGE_KEY)
+              }}
+              className="px-2 py-1 rounded text-xs text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-colors"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Preview area */}
+      <div
+        className={cn(
+          'flex-1 overflow-auto p-4 flex',
+          component.layout === 'top' ? 'items-start justify-center' : 'items-center justify-center'
+        )}
+      >
+        {/* Resizable container */}
+        <div
+          ref={containerRef}
+          className="relative"
+          style={{ width: size.width, height: size.height }}
+        >
+          {/* Component preview box */}
+          <div
+            className={cn(
+              'w-full h-full rounded-lg border border-border',
+              previewOverflowClass,
+              component.layout === 'centered' || !component.layout ? 'flex items-center justify-center' : '',
+              'bg-background'
+            )}
+          >
+            <PlaygroundEntryFrame
+        component={component}
+        props={mergedProps}
+        onError={onCrash ? (error) => onCrash(component.id, error) : undefined}
+      />
+          </div>
+
+          {/* Right resize handle */}
+          <div
+            onMouseDown={(e) => handleMouseDown(e, 'right')}
+            className="absolute top-0 -right-1 w-2 h-full cursor-ew-resize hover:bg-foreground/20 active:bg-foreground/30 transition-colors"
+          />
+
+          {/* Bottom resize handle */}
+          <div
+            onMouseDown={(e) => handleMouseDown(e, 'bottom')}
+            className="absolute -bottom-1 left-0 h-2 w-full cursor-ns-resize hover:bg-foreground/20 active:bg-foreground/30 transition-colors"
+          />
+
+          {/* Corner resize handle */}
+          <div
+            onMouseDown={(e) => handleMouseDown(e, 'corner')}
+            className="absolute -bottom-1 -right-1 w-3 h-3 cursor-nwse-resize hover:bg-foreground/30 active:bg-foreground/40 transition-colors rounded-br"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,21 @@
+{
+  "_source": "Designers, screenshot of the PowerPoint colour gallery, 2026-09-22. Ten colours, given left to right as the first row of «Цвета темы» must read.",
+  "_gallery_order": "PowerPoint lays that row out as lt1, dk1, lt2, dk2, accent1…accent6 (the master's clrMap: bg1=lt1, tx1=dk1, bg2=lt2, tx2=dk2). The designers' order is mapped onto the slots here; the file below is in the order the OOXML schema requires, which is a different one.",
+  "_not_the_slide_palette": "Nothing on a slide reads these. Shapes are painted with direct srgbClr from assets/base.css and no schemeClr reference exists in the code, so changing this file changes the colour gallery in PowerPoint and the objects a reader adds by hand — not the deck. The brand yellow here is FFDD2D, matching the slides. The earlier FFDD2C in this slot was a typo in the designers' list (2026-09-22); they confirmed it was an error and it has been corrected.",
+  "_hlink": "hlink and folHlink were not supplied. Office defaults are kept: a link colour is not a brand decision anyone has made, and a scheme has to carry all twelve slots.",
+  "name": "T-Bank",
+  "scheme": {
+    "dk1": "333333",
+    "lt1": "333333",
+    "dk2": "898989",
+    "lt2": "585858",
+    "accent1": "FFDD2D",
+    "accent2": "333333",
+    "accent3": "C3C3C3",
+    "accent4": "E1E1E1",
+    "accent5": "EDEDED",
+    "accent6": "FFFFFF",
+    "hlink": "0000FF",
+    "folHlink": "800080"
+  }
+}

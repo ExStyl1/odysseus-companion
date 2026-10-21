@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "spec-import/SKILL.md",
+  "upstreamName": "spec-import",
+  "upstreamFrontmatter": {
+    "name": "spec-import",
+    "description": "Перенос спеки из вики (Confluence) в докаскод по каноническому шаблону: разложить контент по дереву index/scenarios/database/api/queues, переписать ссылки, вынести API-схемы, пробелы оформить явными TODO. Разовый онбординг сервиса, не звено конвейера. Триггеры: «перенеси спеку из вики», «spec-import», «мигрируй документацию в докаскод», «import spec from Confluence»."
+  },
+  "upstreamSkillSha256": "cbe13ff34f80dc1bee534a0d265a2ce71217677f9e276442a8d9c7fa9f3203b4",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

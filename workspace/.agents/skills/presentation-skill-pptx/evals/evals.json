@@ -1,0 +1,86 @@
+[
+  {
+    "name": "large-technical-deck-acceptance",
+    "prompt": "Проверь большую учебную презентацию по согласованному плану: 248 слайдов, девять причинных схем с подписями возле краёв, математические выражения в тексте, длинные заголовки и короткий цикл две страницы columns / одна cards. Исходные JSON, PPTX и схемы приложены; не переписывай всю колоду и не заменяй математический смысл. Подготовь проверяемый список исправлений и границ проверки.",
+    "expected": "The agent records the exact source version/commit and input identities. It inventories intended equations by slide and field, distinguishes ordinary prose from missing native math, and reconciles operands/order/structures with OMML rather than checking only a nonzero total. It diagnoses cropped diagram labels/arrows and recommends contain for substantive image-points; it never enables contain in galleries. It reviews contact sheets of every slide and readable individual diagrams/formulas, reporting actual coverage. Geometry, PNG and native PowerPoint results are separate; availability is checked and lack of native verification is explicit. Issues are grouped by code, original slide and disposition, including advisory concentration, dense titles and known formula-face differences. It preserves raw evidence and does not suppress warnings, randomly rotate layouts, silently shrink headings, replace mathematics with ASCII, or claim universal correctness from a few representative images. A supplied corpus is a runtime input, not an implicit dependency on private tmp_files.",
+    "files": []
+  },
+  {
+    "name": "layout-short-cycle-review",
+    "prompt": "Собери учебную презентацию о запуске пилота: двенадцать содержательных слайдов, план согласовывать не нужно. Структура повторяется четыре раза: две страницы с колонками и одна с карточками. Первый блок: проблема, последовательность исследования, выводы. Второй: ограничения, этапы подготовки, решения. Третий: критерии, этапы запуска, результаты. Четвертый: риски, этапы масштабирования, следующие действия. Для однородности сохраняй этот цикл.",
+    "expected": "The deck builds without layout-concentration errors, but reports LAYOUT_DOMINANCE for columns (8/12 content slides) and LAYOUT_CONCENTRATION for over six columns in a ten-content-slide window, although REPEATED_LAYOUT does not fire. Counts and looks cannot disguise the family. The agent names the original slide ranges, explains that the warnings are advisory, and proposes timelines for genuinely temporal slides while preserving content, sources, formulas and notes. It does not randomly shuffle layouts, enforce a quota, or silently override the requested homogeneous format. A specialized format can be retained with an explicit rationale. The title, agenda and final are not part of the concentration denominator.",
+    "files": []
+  },
+  {
+    "name": "quarter-results-deck",
+    "prompt": "Сделай презентацию по итогам квартала для руководства: конверсия в заявку выросла с 41 до 57 процентов, время оформления упало с 14 до 6 минут, обращений в поддержку стало вдвое меньше. Причина - сократили анкету с двенадцати шагов до шести и добавили автозаполнение.",
+    "expected": "Before writing anything the agent asks once whether to agree the plan first or build straight away, and stops there — no spec and no plan file until that is answered. It does not ask this as several questions or re-ask it later. Once the answer says build straight away: a short plan is written and shown, every figure in it comes from the prompt, and the spec follows in the same turn. PPTX file created. Contains title slide, agenda, changes slide, metrics slide with three numbers, final slide. Build completed without errors, no slide numbers, no emoji.",
+    "files": []
+  },
+  {
+    "name": "workflow-plan-agreed",
+    "prompt": "Собери презентацию для правления про запуск нового скоринга. Сначала давай согласуем план, потом собирай.",
+    "expected": "No question about agreeing the plan is asked — the user has already answered it. The agent writes the detailed plan: the one message, the figures with a source each, and a slide list where every slide carries the wording it will show — the title as it will read and the text of each card, bullet and metric. It then stops and waits. No JSON spec is written and no build is run before the user answers on the plan.",
+    "files": []
+  },
+  {
+    "name": "workflow-plan-declined",
+    "prompt": "Нужна презентация по итогам пилота на пять слайдов, план согласовывать не надо - просто собери.",
+    "expected": "No question is asked: the user declined agreeing the plan in the prompt. The agent writes the short plan - one line per slide, its layout and what it carries, no drafted slide text - shows it, and goes on to the spec and the build in the same turn without waiting. The deck is delivered in that turn.",
+    "files": []
+  },
+  {
+    "name": "edit-existing-deck",
+    "prompt": "В презентации, которую ты собрал, поменяй третий слайд: вместо трёх изменений в анкете нужно четыре, добавь пункт про проверку данных без запроса документов.",
+    "expected": "Spec file changed, not .pptx. No planning step is re-run and any sibling plan document is left untouched — the spec is the deck by now. Layout remains cards, card count becomes four, presentation rebuilt entirely, other slides unchanged.",
+    "files": ["evals/files/quarter.json"]
+  },
+  {
+    "name": "workflow-user-supplied-plan",
+    "prompt": "Вот план презентации, собери по нему колоду: evals/files/supplied-plan.md",
+    "expected": "The agent does not ask whether to agree a plan — there is one already. It works from the supplied file and does not re-derive a plan of its own or rewrite it into another shape. It names once what the plan lacks for a deck — there is no closing slide — proposes adding one, and goes on to the spec rather than negotiating. The spec's slides follow the supplied plan's order, and its figures are the plan's F1-F3 and nothing else.",
+    "files": ["evals/files/supplied-plan.md"]
+  },
+  {
+    "name": "workflow-figure-not-in-material",
+    "prompt": "Сделай презентацию: рост выручки составил 23 процента. В материалах: «выручка за квартал +11%, отток снизился на 4 пункта».",
+    "expected": "23% appears nowhere in the plan, the spec or the deck. The agent states plainly that the figure is not in the supplied material, and either asks which is right or proposes +11% with its source named. The plan's facts section lists only figures traceable to the material.",
+    "files": []
+  },
+  {
+    "name": "overflow-is-caught",
+    "prompt": "Собери презентацию, где на слайде четыре карточки, и в каждой подробное описание на несколько абзацев.",
+    "expected": "Agent does not deliver broken file. Either shortens text, or uses layout with fewer cards, or splits content across two slides. If build was attempted, OVERFLOW error shown to user.",
+    "files": []
+  },
+  {
+    "name": "icon-by-meaning",
+    "prompt": "Добавь слайд про безопасность данных и скорость обработки, подбери подходящие иконки.",
+    "expected": "Spec icon fields use words, not filenames. Build succeeded: icons found in index. Icons on slide are different.",
+    "files": []
+  },
+  {
+    "name": "no-invented-layout",
+    "prompt": "Сделай слайд-таблицу со сравнением трёх тарифов по пяти параметрам.",
+    "expected": "Agent uses the existing table layout and does not invent a layout or write HTML. It asks for the missing tariff names, five parameter labels and comparison values before building; it does not invent tariff conditions. With supplied data, it writes a table spec with four header cells (parameter and three tariffs) and five body rows, then builds a native editable PowerPoint table. It does not claim the template has no tables or replace this comparison with cards/grid by default. table-compare is for exactly two alternatives, so it is not used for three tariffs.",
+    "files": []
+  },
+  {
+    "name": "formula-only-when-needed",
+    "prompt": "Сделай слайд про итоги теста: конверсия +38%, средний чек вырос в 2 раза, стоимость привлечения 1 200 рублей. Оформи показатели формулами, чтобы выглядело научно.",
+    "expected": "Agent does NOT wrap plain arithmetic in \\(...\\). Percentages, multipliers and currency stay ordinary text; the request for formulas is declined in one sentence with the reason, and the figures land in a metrics or cards layout. Build succeeds.",
+    "files": []
+  },
+  {
+    "name": "formula-rejected-in-title",
+    "prompt": "Слайд с заголовком «ATE = E[Y(1)] - E[Y(0)]» и пояснением под ним, формулу в заголовке набери математикой.",
+    "expected": "Agent does not put \\(...\\) in the title. Either the title is plain prose and the formula moves into the card text or a bullet, or the agent says the build rejects formulas in titles. A spec with a formula in title.text is not delivered as final.",
+    "files": []
+  },
+  {
+    "name": "formula-too-wide-is-split",
+    "prompt": "Добавь буллет с оценкой AIPW целиком: \\\\(\\\\hat\\\\tau = \\\\frac{1}{n}\\\\sum_{i=1}^{n}\\\\left( \\\\frac{A_i(Y_i - \\\\hat m_1(X_i))}{\\\\hat e(X_i)} - \\\\frac{(1-A_i)(Y_i - \\\\hat m_0(X_i))}{1 - \\\\hat e(X_i)} + \\\\hat m_1(X_i) - \\\\hat m_0(X_i) \\\\right)\\\\)",
+    "expected": "If the build reports FORMULA_TOO_WIDE or OVERFLOW, the agent splits the expression into two \\(...\\) formulas or across two bullets, or shortens it. It does NOT move the slide to a roomier layout to make it fit, and does not deliver a file that still carries the error.",
+    "files": []
+  }
+]

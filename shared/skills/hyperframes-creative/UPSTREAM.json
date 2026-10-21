@@ -1,0 +1,307 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": "skills/hyperframes-creative",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/skills/hyperframes-creative",
+  "upstreamName": "hyperframes-creative",
+  "upstreamFrontmatter": {
+    "name": "hyperframes-creative",
+    "description": "Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`."
+  },
+  "upstreamSkillSha256": "9da7b7ac84c8d884b54125887ecca1a645a38337013082b96af2fdc0259c945a",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "openmontage-hyperframes-creative",
+      "guide": "variants/openmontage-hyperframes-creative/GUIDE.md",
+      "resourceRoot": "variants/openmontage-hyperframes-creative",
+      "repository": "calesthio/OpenMontage",
+      "path": ".agents/skills/hyperframes-creative",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "cb245b99596e0275f76dea90352e90660c3b5f544b180b48b81075a0a08be6ee",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "9069e9439687bc686d53780cf79c2e25de9245f40d74e5324c44d44914deea60",
+          "executable": false
+        },
+        "frame-presets/biennale-yellow/FRAME.md": {
+          "sha256": "76d22cced9c152b0edb520543cf34c4ce772a312caa7211c40d4315b53c053cf",
+          "executable": false
+        },
+        "frame-presets/biennale-yellow/caption-skin.html": {
+          "sha256": "e6e24155d587ab0fe1beca7c62e6fbfcce9d069cfb9cf02dfcecffe95194554b",
+          "executable": false
+        },
+        "frame-presets/biennale-yellow/frame-showcase.html": {
+          "sha256": "5ba04e47cf9897e023dcfa49e1ec26fe26bac0c5061097dc6e7cb1d9ed46d7d0",
+          "executable": false
+        },
+        "frame-presets/blockframe/FRAME.md": {
+          "sha256": "ef8d9d47a209bed4ccc2d928c14a81cdaecb5129f5dc0cdc0dc40afc7ef92931",
+          "executable": false
+        },
+        "frame-presets/blockframe/caption-skin.html": {
+          "sha256": "85ef2bf1579587b97e26b617ea0c957329879e8413c2875605a278ad947c7d26",
+          "executable": false
+        },
+        "frame-presets/blockframe/frame-showcase.html": {
+          "sha256": "8d2e4963713928b353d0aa28c2c83fce415df81b66a500c192b602c0aaf4ddf2",
+          "executable": false
+        },
+        "frame-presets/blue-professional/FRAME.md": {
+          "sha256": "62e9a445885f6057084493de385a8ce20c3b4a299ae36a553ef54884f06bad68",
+          "executable": false
+        },
+        "frame-presets/blue-professional/caption-skin.html": {
+          "sha256": "a4cec56e723db7fc6b6f0c71a52314f80fc3f3f6c43747ae46af8a0761aa0c8b",
+          "executable": false
+        },
+        "frame-presets/blue-professional/frame-showcase.html": {
+          "sha256": "715b130d086977a48925a3c79bb079fbc7270274c9c9a7761bf275df3020b0ba",
+          "executable": false
+        },
+        "frame-presets/bold-poster/FRAME.md": {
+          "sha256": "af756ef993099f9ac78328f676eb79a6572ff0e9c2aacf12787471cd4525b171",
+          "executable": false
+        },
+        "frame-presets/bold-poster/caption-skin.html": {
+          "sha256": "c5408b8d2b36028d85455003a5f0bbcde863f33474799477bab6afa261ec0214",
+          "executable": false
+        },
+        "frame-presets/bold-poster/frame-showcase.html": {
+          "sha256": "57bbc3374b6a8b37ce59e36ed784c22bbb88fd44d039955221913b3e1bacf159",
+          "executable": false
+        },
+        "frame-presets/broadside/FRAME.md": {
+          "sha256": "3af0a1e5e61bece19841671672d7732082f03d5699b713475e90323a21dbcc89",
+          "executable": false
+        },
+        "frame-presets/broadside/caption-skin.html": {
+          "sha256": "d09b3e09bf497c0f2ed8db9dee181f376f75c65a25246181dc9d8f82cc938d6a",
+          "executable": false
+        },
+        "frame-presets/broadside/frame-showcase.html": {
+          "sha256": "8d23a2cbeb898568a5626b38ffc864236fb4a09930d59b17c34c45f34c8e4161",
+          "executable": false
+        },
+        "frame-presets/capsule/FRAME.md": {
+          "sha256": "f06dba67a3859f7c732b5177f7bcc58c94592caa5d6bbbcc6730a7876f5baa7a",
+          "executable": false
+        },
+        "frame-presets/capsule/caption-skin.html": {
+          "sha256": "a66a37a0b2060ebe635f4d2309b3cf0f78c31203de19c12fc477a23009ec0e89",
+          "executable": false
+        },
+        "frame-presets/capsule/frame-showcase.html": {
+          "sha256": "b3a642b5df3bbfb1ff227f1b82ee3ea02b51f20a0d7c5c46c97d72b180cddb4f",
+          "executable": false
+        },
+        "frame-presets/cartesian/FRAME.md": {
+          "sha256": "3dc6a31813a333b2a7a1509ddbd3b4dabbbd7e12e6479b6cff10d69c185fec95",
+          "executable": false
+        },
+        "frame-presets/cartesian/caption-skin.html": {
+          "sha256": "48f7b844d2936e0e0fc142605ec627adadc12120691bacb50dba7390d8706137",
+          "executable": false
+        },
+        "frame-presets/cartesian/frame-showcase.html": {
+          "sha256": "d7867cee5e07c4f22345c566071f2ce0261b3fccca111a94dfbec5fde64f3e55",
+          "executable": false
+        },
+        "frame-presets/claude/FRAME.md": {
+          "sha256": "7e270ddd24b6d00996e5917521598656da301eae371546af8aba0ee828afe06a",
+          "executable": false
+        },
+        "frame-presets/claude/caption-skin.html": {
+          "sha256": "6c1a1579e0c222c591c72f56f653edee2bca18590248621f025bb79489c5bc4f",
+          "executable": false
+        },
+        "frame-presets/claude/frame-showcase.html": {
+          "sha256": "5f41087fc8f8c476412455c511010aea218b54f134c8513d47fe4b65bdf32930",
+          "executable": false
+        },
+        "frame-presets/cobalt-grid/FRAME.md": {
+          "sha256": "62a6c9e6e5188cc29b9c0098e9bb8e72c23f152d9a99dd92c58139d26b69b19f",
+          "executable": false
+        },
+        "frame-presets/cobalt-grid/caption-skin.html": {
+          "sha256": "506c0abc064ee4450afc7d34ff71a6fd04fa0dda69d57608ab310569d7651c03",
+          "executable": false
+        },
+        "frame-presets/cobalt-grid/frame-showcase.html": {
+          "sha256": "b135214cd2e310273a01e3f72b2828149f022803954a22a13cbf27aa1c2f518a",
+          "executable": false
+        },
+        "frame-presets/coral/FRAME.md": {
+          "sha256": "8530ecb36d1bb2d53392d88d972df35beeba19a5bcb3260fc9b18a58de7cdfe8",
+          "executable": false
+        },
+        "frame-presets/coral/caption-skin.html": {
+          "sha256": "9af79dabd44f5d6ac934a5c371aad5316a4e2db76542a1ec3c969245b33892fa",
+          "executable": false
+        },
+        "frame-presets/coral/frame-showcase.html": {
+          "sha256": "8ddf31ae13a4e57fe9730892fbbcb171cae67a204b5cb00b00374984f49b8f76",
+          "executable": false
+        },
+        "frame-presets/creative-mode/FRAME.md": {
+          "sha256": "c1a1359502d9fc79ef267305291fe0f651219c72d88088cee32327dd933dead8",
+          "executable": false
+        },
+        "frame-presets/creative-mode/caption-skin.html": {
+          "sha256": "ef4a13de5757453294db153607891e60ab3f408603ed222e53b908359dcbd296",
+          "executable": false
+        },
+        "frame-presets/creative-mode/frame-showcase.html": {
+          "sha256": "32c1371fcd526c56edb515e5b255ad736a3e330ba3ff2631c61576064b384ef0",
+          "executable": false
+        },
+        "frame-presets/daisy-days/FRAME.md": {
+          "sha256": "42d827dbd279990052e171d04380b5e6bbc111ae391dc283deb7a452e70b9b97",
+          "executable": false
+        },
+        "frame-presets/daisy-days/caption-skin.html": {
+          "sha256": "6090e702f09c1df11e7289269a5b1ebc126981107c3ed5d9f951f69d471d1494",
+          "executable": false
+        },
+        "frame-presets/daisy-days/frame-showcase.html": {
+          "sha256": "4fb93e5fa3ba12367f303996b6ca8b62f8e18c721d02e8032274df12d49d96f3",
+          "executable": false
+        },
+        "frame-presets/editorial-forest/FRAME.md": {
+          "sha256": "ceeb2ab768367da1e1f3e1eca36ab9feeb3de3e4d15493319b0044c3d869329c",
+          "executable": false
+        },
+        "frame-presets/editorial-forest/caption-skin.html": {
+          "sha256": "31999378b8fed9a4511432e38017f287127ce25a534ee57bfe4cc0f3b74c7d48",
+          "executable": false
+        },
+        "frame-presets/editorial-forest/frame-showcase.html": {
+          "sha256": "bb87b88b91184f4fee7f02eea63ed35d9d378fa89fad8988326e31e82a43dbb1",
+          "executable": false
+        },
+        "palettes/bold-energetic.md": {
+          "sha256": "17bc6b7889302151b4e5c84c0c6a33df676647078011d9decb2b68810e3baa7f",
+          "executable": false
+        },
+        "palettes/clean-corporate.md": {
+          "sha256": "d0c8c86838abb77985609629afe600d0ca365eccd835820f309959e8a85cba9d",
+          "executable": false
+        },
+        "palettes/dark-premium.md": {
+          "sha256": "abfecbf7e8dca3b674376590a0467aac3e13b2135022ae4ec519c4b27c2303b1",
+          "executable": false
+        },
+        "palettes/jewel-rich.md": {
+          "sha256": "17c8f7506469f66bca4e27ef78c19f0bcbf250f88fe840e3043816b7041c4fc5",
+          "executable": false
+        },
+        "palettes/monochrome.md": {
+          "sha256": "fe8586f6d70707098859063bdef34d68084f02cf7d5aaa436d4c9915a7ae3748",
+          "executable": false
+        },
+        "palettes/nature-earth.md": {
+          "sha256": "9710549b17487787fef3c7cb459cfd6e4ac28c1593bf471fcf55a3b4e546beed",
+          "executable": false
+        },
+        "palettes/neon-electric.md": {
+          "sha256": "35225bf8d2cd37223e88e0bc59b0a96bc8adeda7225389b3df97b675cfd33dfb",
+          "executable": false
+        },
+        "palettes/pastel-soft.md": {
+          "sha256": "ed4e25bb5f4953c002e55a53320249621437e03b5a11d43e3c1bd32c869b6d95",
+          "executable": false
+        },
+        "palettes/warm-editorial.md": {
+          "sha256": "c467ee3cc0bbf4b2bedccc8106e18293b8a06dbac8f092b10300492da0e0559a",
+          "executable": false
+        },
+        "references/audio-reactive.md": {
+          "sha256": "ad93a0c588a702203a08ed909842570f010f041500aa33512d2b06f66d450c1c",
+          "executable": false
+        },
+        "references/beat-direction.md": {
+          "sha256": "312560b513e689aeda44956c9a883cf465a982b8efce9730722bfb8d147f94f9",
+          "executable": false
+        },
+        "references/composition-patterns.md": {
+          "sha256": "bb287bdaa4779698d8cb6541488335aacabef781ebca1fa661b3fd8f3462d034",
+          "executable": false
+        },
+        "references/data-in-motion.md": {
+          "sha256": "6066c79717156c4a41ef86f28e07c6bd35f18d6830b12893c58523063c788d7d",
+          "executable": false
+        },
+        "references/design-adherence.md": {
+          "sha256": "ff21deb80143c8e09092958a6f40bc712173a43d23c5ea88742566573a2a7241",
+          "executable": false
+        },
+        "references/design-picker.md": {
+          "sha256": "3b37cd0e9366b8f9c30b5e31a909193b23b58ada7f73675eab0fe7d2a74bbdf8",
+          "executable": false
+        },
+        "references/design-spec.md": {
+          "sha256": "2287b88dab08bbbab4314e52f2770f34f6937e6eb69d37249c6b6fa8e1339d13",
+          "executable": false
+        },
+        "references/house-style.md": {
+          "sha256": "61e260aebcab552dcd42fd2dcaf4431349b51f043fe155c8f670f156d09b69dd",
+          "executable": false
+        },
+        "references/motion-principles.md": {
+          "sha256": "4e4aba01bfdb9eba6d5101825f610ca82829976aa7117d610de74ce3d33689ea",
+          "executable": false
+        },
+        "references/narration.md": {
+          "sha256": "6002bb2a2270149a8955068d5952fc57cd22594649f576b3e8c38057846610b6",
+          "executable": false
+        },
+        "references/prompt-expansion.md": {
+          "sha256": "efc78b016f0f02a9e634922fc8c0c2ea8e880bb86d84809b36e7d375725772e2",
+          "executable": false
+        },
+        "references/typography.md": {
+          "sha256": "3a844a2b3ed0f24e2892907ff68e9dfc3418833cd52e97dc7907892c2f558218",
+          "executable": false
+        },
+        "references/video-composition.md": {
+          "sha256": "6aae0bc1e79e9e8c1451ced986b5bbb4d59680c94276a299b6ecf67e3f440b09",
+          "executable": false
+        },
+        "references/visual-styles.md": {
+          "sha256": "c22d2c3f0732398ff52cbb469cf17567706b4d6555ad4149cae950a7cb3867c6",
+          "executable": false
+        },
+        "scripts/contrast-report.mjs": {
+          "sha256": "44e403be89c03b0c00847e10828554a2f3282cf0a69b19f08b56f71f3d45e011",
+          "executable": false
+        },
+        "scripts/extract-audio-data.py": {
+          "sha256": "7709b60d42730fc93a348c205ab565158d240b70051d109fcc844b215d56fa4f",
+          "executable": false
+        },
+        "scripts/package-loader.mjs": {
+          "sha256": "278067c09711a20c014f5e8d2e5a358c42a5d49b054503516a693a37b9829ad6",
+          "executable": false
+        },
+        "templates/design-picker.html": {
+          "sha256": "c417139fef8e21b34d56a85cedda8b9597c9574e0727ce603a4743c4ee592c1a",
+          "executable": false
+        }
+      },
+      "when": "Вариант OpenMontage для того же процесса; применять к проекту из этого набора"
+    }
+  ]
+}

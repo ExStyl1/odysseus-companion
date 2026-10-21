@@ -1,0 +1,141 @@
+/**
+ * @license
+ * Copyright 2025 Nessy CLI Team
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import * as vscode from 'vscode';
+import type { DiffManager } from '../diff-manager.js';
+import type { WebViewProvider } from '../webview/providers/WebViewProvider.js';
+import { getErrorMessage } from '../utils/errorMessage.js';
+import { shouldResolveAgainstWorkspace } from '../utils/file-path.js';
+import { CHAT_VIEW_ID_SIDEBAR } from '../constants/viewIds.js';
+
+type Logger = (message: string) => void;
+
+export const runNessyCLICommand = 'nessy-cli.runNessyCLI';
+export const showDiffCommand = 'nessyCode.showDiff';
+export const openChatCommand = 'nessy-cli.openChat';
+export const openNewChatTabCommand = 'nessyCode.openNewChatTab';
+export const authCommand = 'nessy-cli.auth';
+export const focusChatCommand = 'nessy-cli.focusChat';
+export const newConversationCommand = 'nessy-cli.newConversation';
+export const showLogsCommand = 'nessy-cli.showLogs';
+
+/**
+ * Register all Nessy CLI chat-related commands.
+ *
+ * `openChat` and `newConversation` always open an editor tab, while
+ * `focusChat` focuses the Activity Bar chat view.
+ *
+ * @param context - VS Code extension context for subscription management
+ * @param log - Logger function for debug output
+ * @param diffManager - Diff manager for showing file diffs
+ * @param getWebViewProviders - Returns all active editor-tab WebView providers
+ * @param createWebViewProvider - Factory to create a new editor-tab WebView provider
+ * @param outputChannel - Optional output channel for the showLogs command
+ */
+export function registerNewCommands(
+  context: vscode.ExtensionContext,
+  log: Logger,
+  diffManager: DiffManager,
+  getWebViewProviders: () => WebViewProvider[],
+  createWebViewProvider: () => WebViewProvider,
+  outputChannel?: vscode.OutputChannel,
+): void {
+  const disposables: vscode.Disposable[] = [];
+
+  // Open Chat: show the most recent editor tab or create a new one
+  disposables.push(
+    vscode.commands.registerCommand(openChatCommand, async () => {
+      const providers = getWebViewProviders();
+      if (providers.length > 0) {
+        await providers[providers.length - 1].show();
+      } else {
+        const provider = createWebViewProvider();
+        await provider.show();
+      }
+    }),
+  );
+
+  disposables.push(
+    vscode.commands.registerCommand(
+      showDiffCommand,
+      async (args: { path: string; oldText: string; newText: string }) => {
+        try {
+          let absolutePath = args.path;
+          if (shouldResolveAgainstWorkspace(args.path)) {
+            const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+            if (workspaceFolder) {
+              absolutePath = vscode.Uri.joinPath(
+                workspaceFolder.uri,
+                args.path,
+              ).fsPath;
+            }
+          }
+          log(`[Command] Showing diff for ${absolutePath}`);
+          await diffManager.showDiff(absolutePath, args.oldText, args.newText);
+        } catch (error) {
+          const errorMsg = getErrorMessage(error);
+          log(`[Command] Error showing diff: ${errorMsg}`);
+          vscode.window.showErrorMessage(`Failed to show diff: ${errorMsg}`);
+        }
+      },
+    ),
+  );
+
+  // Open New Chat Tab: always create a new editor tab
+  disposables.push(
+    vscode.commands.registerCommand(
+      openNewChatTabCommand,
+      async (args?: { initialModelId?: string }) => {
+        const provider = createWebViewProvider();
+        provider.setInitialModelId(args?.initialModelId);
+        await provider.show();
+      },
+    ),
+  );
+
+  disposables.push(
+    vscode.commands.registerCommand(authCommand, async () => {
+      const providers = getWebViewProviders();
+      const provider =
+        providers.length > 0
+          ? providers[providers.length - 1]
+          : createWebViewProvider();
+
+      await provider.show();
+      await provider.startInteractiveAuth();
+    }),
+  );
+
+  // Focus Chat: bring the Activity Bar chat view to front.
+  disposables.push(
+    vscode.commands.registerCommand(focusChatCommand, async () => {
+      await vscode.commands.executeCommand(`${CHAT_VIEW_ID_SIDEBAR}.focus`);
+    }),
+  );
+
+  // New Conversation: open a new editor tab for a fresh conversation
+  disposables.push(
+    vscode.commands.registerCommand(newConversationCommand, async () => {
+      const provider = createWebViewProvider();
+      await provider.show();
+    }),
+  );
+
+  // Show Logs: reveal the output channel
+  disposables.push(
+    vscode.commands.registerCommand(showLogsCommand, async () => {
+      if (outputChannel) {
+        outputChannel.show(true);
+      } else {
+        vscode.window.showWarningMessage(
+          'Nessy CLI Companion log channel is not available.',
+        );
+      }
+    }),
+  );
+
+  context.subscriptions.push(...disposables);
+}

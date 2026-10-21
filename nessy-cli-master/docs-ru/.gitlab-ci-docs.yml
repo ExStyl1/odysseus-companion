@@ -1,0 +1,17 @@
+# CI конфигурация для импорта документации из nestor/nessy-cli
+
+nessy-cli-copy-docs-ru:
+  stage: build
+  image: docker-hosted.artifactory.tcsbank.ru/cicd-images/golang-1.22:latest
+  script:
+    - git clone --depth=1 -b master https://gitlab-ci-token:$CI_JOB_TOKEN@gitlab.tcsbank.ru/nestor/nessy-cli.git /tmp/nessy-cli
+    - mkdir -p docs/nessy-cli
+    - cp -r /tmp/nessy-cli/docs-ru/* docs/nessy-cli/
+  artifacts:
+    paths:
+      - docs/nessy-cli/
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: always
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: always

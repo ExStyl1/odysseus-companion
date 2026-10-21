@@ -1,0 +1,19 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": ".agents/skills/seam-craft",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/.agents/skills/seam-craft",
+  "upstreamName": "seam-craft",
+  "upstreamFrontmatter": {
+    "name": "seam-craft",
+    "description": "Render-correctness doctrine for scene-to-scene seams in HyperFrames launch videos — the prerequisites that make transitions composite correctly on the master timeline. Load when assembling the master timeline / index.html, when a white flash appears at a cut or crossfade seam (especially on dark films), when reasoning about why a transition opacity dip shows through, or when verifying the render-side mechanics of how overlapping scene wrappers blend. Covers the opaque stage-ground (#root background) white-flash guard and how the injector overlaps wrappers, holds final frames, ping-pongs tracks, and stamps lint-clean template code onto the master timeline. Does NOT contain the per-transition catalog — see the transition registry for individual transition entries.",
+    "metadata": {
+      "internal": true
+    }
+  },
+  "upstreamSkillSha256": "c5aa27c6d6c088fa0bec2941692927975dcd382bc568f6f0ba8518e049e092fe",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

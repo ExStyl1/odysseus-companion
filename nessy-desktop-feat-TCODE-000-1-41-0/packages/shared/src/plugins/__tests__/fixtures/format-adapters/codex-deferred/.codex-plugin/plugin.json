@@ -1,0 +1,37 @@
+{
+  "$schema": "https://example.invalid/schemas/codex-plugin.json",
+  "id": "sample-codex-deferred",
+  "name": "sample-codex-deferred",
+  "displayName": "Sample Codex Connector Plugin",
+  "version": "1.0.0",
+  "description": "Authored synthetic fixture proving a Codex app/connector is imported and materialized as an MCP-backed source (K1), never dropped.",
+  "author": {
+    "name": "Fixture Author"
+  },
+  "skills": "skills",
+  "apps": [
+    {
+      "id": "sample-connector-app",
+      "displayName": "Sample Connector App",
+      "connectorId": "sample-connector"
+    }
+  ],
+  "connectors": [
+    {
+      "id": "sample-connector",
+      "displayName": "Sample Connector",
+      "description": "A declarative MCP-backed connector.",
+      "mcpServers": [
+        {
+          "serverName": "sample-mcp",
+          "transport": "http",
+          "url": "https://example.invalid/mcp"
+        }
+      ],
+      "auth": {
+        "type": "oauth",
+        "timing": "ON_FIRST_USE"
+      }
+    }
+  ]
+}

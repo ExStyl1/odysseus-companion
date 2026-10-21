@@ -1,0 +1,704 @@
+/*
+ * Source: v0.15.1:apps/electron/src/renderer/index.css (+170/−998 over ours; UB13.3, the switch).
+ * = upstream + exactly three Keep hunks: (1) the @source renderer/lib line with its 2026-08-01
+ * docblock; (2) the Codex-parity composer tokens (:root block after the imports); (3)
+ * .mask-fade-right. (The squircle glass surface + corner-shape left with UB14.27's raised card,
+ * and the Codex grid footer's container rule with UB14.32's v0.15.0 toolbar.) Rebrand: @nessy-agent.
+ */
+@import "tailwindcss" source(none);
+@plugin "@tailwindcss/typography";
+
+/* Tell Tailwind where to scan for utility classes */
+@source "../renderer/App.tsx";
+@source "../renderer/main.tsx";
+@source "../renderer/components/**/*.{ts,tsx,jsx}";
+@source "../renderer/contexts/**/*.{ts,tsx,jsx}";
+@source "../renderer/hooks/**/*.{ts,tsx,jsx}";
+/* `lib/` holds the class TABLES the components read — `SOURCE_CATEGORY_BADGE`
+   in `lib/source-card.ts` is the Sources card's whole palette. `source(none)`
+   means an unlisted directory is never scanned, so a colour that lives only in
+   a table here is silently dropped from the stylesheet: measured 2026-08-01 on
+   the running app, `text-violet-600` (the skill badge, added 2026-08-01) was
+   absent from the served CSS while `.text-info` and `.text-sky-600` — the same
+   kind of class, used from `components/` — were present. Upstream still does
+   not scan `renderer/lib` (UB13.3 Keep). */
+@source "../renderer/lib/**/*.{ts,tsx,jsx}";
+@source "../renderer/pages/**/*.{ts,tsx,jsx}";
+@source "../renderer/tabs/**/*.{ts,tsx,jsx}";
+@source "../renderer/playground/**/*.{ts,tsx,jsx}";
+@source "../renderer/utils/**/*.{ts,tsx,jsx}";
+@source "../renderer/config/**/*.{ts,tsx,jsx}";
+@source "../../../../packages/ui/src/components/**/*.{ts,tsx,jsx}";
+@source "../../../../packages/ui/src/lib/**/*.{ts,tsx,jsx}";
+
+/* Design tokens + shared base (packages/ui): the single source for colors, type, radii,
+   elevation, motion and z-index. Also consumed by the viewer and marketing via @nessy-agent/ui/styles. */
+@import "../../../../packages/ui/src/styles/tokens.css";
+@import "../../../../packages/ui/src/styles/base.css";
+
+/* CSS Custom Highlight API styles are injected at runtime via ChatDisplay.tsx
+   to avoid LightningCSS warnings (::highlight is not yet recognized by the optimizer) */
+
+/* ── Codex-parity composer tokens (UB13.3 Keep). UB14.27 retired the glass composer's radius,
+   attachment inset and prominent elevation with their last readers (InputContainer, FreeFormInput's
+   standalone surface, AttachmentPreview, registry/background-finished-chip now wear v0.15.1's
+   raised card / sunken tiles; the caret menus left with UB14.21). The stroke stays: RS-129
+   (UB13.3's sitting) reads it computed. ── */
+:root {
+  --elevation-stroke: 0 0 0 0.5px color-mix(in srgb, var(--fg-base) 14%, transparent);
+}
+
+/* =============================================================================
+   SCENIC THEME MODE
+
+   Full-window background images with glassmorphism UI panels.
+   - Background image covers entire window (fixed, centered, cover)
+   - In dark mode, a semi-transparent overlay darkens the image
+   - Panels use backdrop-blur for glass effect
+
+   Activated when theme has mode='scenic' and backgroundImage set.
+   Sets data-scenic="true" on <html> element.
+============================================================================= */
+
+/* Scenic mode: Background image layer */
+html[data-scenic]::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -2;
+  pointer-events: none;
+}
+
+/* Scenic mode dark: Dark overlay gradient to fade the background image
+   Stronger on left (sidebar area) for readability, lighter on right to show more image */
+html.dark[data-scenic]::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Scenic mode: Make background color semi-transparent for glass effect
+   Panels with bg-background will become translucent glass */
+html[data-scenic] {
+  --background: oklch(0.2 0.005 270 / 0.55);
+  /* Glass cards keep a 0.72 opacity floor so solved text stays within one AA step over any image */
+  --card: color-mix(in srgb, var(--surface-raised) 72%, transparent);
+}
+html[data-scenic] .field-surface {
+  background: color-mix(in srgb, var(--surface-sunken) 72%, transparent);
+}
+
+/* Electron-only layout tokens (the shared ones live in tokens.css) */
+@theme inline {
+  /* Container query breakpoints: @panel-compact:, @panel-medium:, @mobile: */
+  --container-3xs: 16rem;           /* 256px */
+  --container-panel-compact: 28rem; /* 448px — PANEL_MIN_WIDTH */
+  --container-panel-medium: 40rem;  /* 640px */
+  --container-mobile: 48rem;        /* 768px — mobile breakpoint */
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+/* Onboarding step styling */
+:root {
+  --step-icon-size: 4rem;
+  --step-icon-inner-size: 2rem;
+  --step-icon-radius: 1rem;
+  --step-title-size: 1.5rem;
+  --step-description-max-width: 24rem;
+  --step-actions-gap: 0.75rem;
+  --step-content-gap: 1.5rem;
+  --step-actions-margin: 2rem;
+}
+
+/* Draggable title bar region for transparent window */
+.titlebar-drag-region {
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+
+.titlebar-no-drag {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+@layer utilities {
+  /* Horizontal twin of base.css's mask-fade-y/-bottom: hints that a single-row strip scrolls
+     sideways. Trailing edge only — the leading edge is where the DEFAULT chip sits and it must
+     never look faded. (UB13.3 Keep; upstream has no mask-fade-right.) */
+  .mask-fade-right {
+    mask-image: linear-gradient(to right, black 0%, black calc(100% - 24px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, black 0%, black calc(100% - 24px), transparent 100%);
+  }
+}
+
+/* =============================================================================
+   SCENIC MODE - GLASS PANEL EFFECTS
+
+   In scenic mode, panels become translucent with backdrop blur (glassmorphism).
+   The glass effect provides visual depth while showing the background image through.
+   Target panels by their shadow classes (shadow-middle, shadow-strong).
+============================================================================= */
+
+html[data-scenic] .shell-card {
+  /* Shell cards (list + content) are paper on solid themes and glass in scenic mode */
+  background: var(--background);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Sticky list group headers are paper on solid themes. On glass an opaque band would show, so they
+   stay clear and frost whatever scrolls beneath them instead. */
+html[data-scenic] [data-slot="list-group-header"] {
+  background: transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+html[data-scenic] .shadow-middle,
+html[data-scenic] .shadow-strong,
+html[data-scenic] .input-container {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  position: relative;
+  /* Ensure panels are above the titlebar drag region (z-titlebar: 40) so header buttons are clickable.
+     Without this, the position:relative creates a stacking context at z-index:auto which is below the fixed titlebar. */
+  z-index: var(--z-panel);
+}
+
+/* Scenic mode: Input field gets more transparency to show background through
+   Uses a much lighter overlay to let the blurred background image show through */
+html[data-scenic] .input-container {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* Scenic mode: Gradient border effect for glass panels
+   Uses a pseudo-element with a white linear gradient (40% at top, 5% at bottom).
+   The mask-composite technique creates a border-only effect from a filled gradient. */
+html[data-scenic] .shell-card::before,
+html[data-scenic] .shadow-middle::before,
+html[data-scenic] .shadow-strong::before,
+html[data-scenic] .input-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.1)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: soft-light;
+}
+
+/* Scenic mode: Ensure panel content is above the gradient border pseudo-element.
+   Without this, interactive elements (buttons, dropdowns) in the header area
+   can be visually obscured or have click issues due to stacking context with backdrop-filter.
+   Creates explicit stacking for direct children so they sit above ::before (z-index: 1). */
+html[data-scenic] .shell-card > *,
+html[data-scenic] .shadow-middle > *,
+html[data-scenic] .shadow-strong > *,
+html[data-scenic] .input-container > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* Scenic mode: Fullscreen overlay background gets glass effect
+   Applied to the AI response fullscreen view background so it blends
+   with the scenic background image when viewing expanded content. */
+html[data-scenic] .fullscreen-overlay-background {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+html[data-scenic]:not(.dark) .fullscreen-overlay-background {
+  background: color-mix(in srgb, var(--foreground-3) 70%, transparent);
+}
+
+html.dark[data-scenic] .fullscreen-overlay-background {
+  background: color-mix(in srgb, var(--foreground-3) 60%, transparent);
+}
+
+/* Fix ScrollArea internal div preventing content shrink
+   Radix injects a div with min-width: 100%; display: table; which prevents shrinking */
+[data-radix-scroll-area-viewport] > div {
+  min-width: 0 !important;
+  display: block !important;
+}
+
+/* =============================================================================
+   ONBOARDING STEP STYLES
+
+   Global styles for onboarding components using CSS custom properties.
+   Change the variables in :root to update all steps at once.
+============================================================================= */
+
+@layer components {
+  .step-icon {
+    width: var(--step-icon-size);
+    height: var(--step-icon-size);
+    border-radius: var(--step-icon-radius);
+  }
+
+  .step-icon > div {
+    width: var(--step-icon-inner-size);
+    height: var(--step-icon-inner-size);
+  }
+
+  .step-title {
+    font-size: var(--step-title-size);
+  }
+
+  .step-description {
+    max-width: var(--step-description-max-width);
+  }
+
+  .step-actions {
+    margin-top: var(--step-actions-margin);
+    gap: var(--step-actions-gap);
+  }
+
+  .feature-bullet {
+    background-color: var(--foreground);
+  }
+}
+
+
+/* =============================================================================
+   SONNER TOASTS
+   Floating material with a leading status icon (spec §7.10), transform/opacity-only motion.
+   Placement and stack policy live in components/ui/sonner.tsx.
+============================================================================= */
+
+/* Width comes from sonner's --width (desktop) or its mobile rule (compact), never a fixed
+   override: a fixed width overflows the zoomed WebUI viewport in compact. */
+[data-sonner-toast] {
+  -webkit-app-region: no-drag !important;
+  background: var(--surface-floating) !important;
+  color: var(--text) !important;
+  border: none !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--elev-2) !important;
+  font-size: var(--fs-label) !important;
+  line-height: var(--lh-label) !important;
+  gap: 10px !important;
+  min-height: 44px;
+  /* Right padding keeps text clear of the inline close button */
+  padding: 10px 44px 10px 12px !important;
+}
+
+/* Enter on the base spring, fades for opacity; never height (transform/opacity only). */
+:root [data-sonner-toast] {
+  transition:
+    transform var(--spring-base-dur) var(--spring-base),
+    opacity var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-micro) var(--ease-out-subtle) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) [data-sonner-toast] {
+    transition: opacity var(--dur-fast) var(--ease-out) !important;
+  }
+}
+:root[data-motion="reduced"] [data-sonner-toast] {
+  transition: opacity var(--dur-fast) var(--ease-out) !important;
+}
+/* While swiping, the toast follows the pointer 1:1 (sonner's own reset loses to the rules above) */
+:root [data-sonner-toast][data-swiping="true"] {
+  transition: none !important;
+}
+
+/* Leading status icon: the only status color on the toast (title stays in the text color) */
+[data-sonner-toast] [data-icon] {
+  width: 16px !important;
+  height: 16px !important;
+  margin: 0 !important;
+  align-self: flex-start;
+  /* Optically centre on the title's first line */
+  margin-top: calc((var(--lh-label) - 16px) / 2) !important;
+  color: var(--text-secondary);
+}
+[data-sonner-toast] [data-icon] svg {
+  width: 16px;
+  height: 16px;
+  margin: 0 !important;
+}
+[data-sonner-toast][data-type="success"] [data-icon] {
+  color: var(--success-text);
+}
+[data-sonner-toast][data-type="error"] [data-icon] {
+  color: var(--destructive-text);
+}
+[data-sonner-toast][data-type="warning"] [data-icon] {
+  color: var(--info-text);
+}
+
+/* Single-line title with ellipsis */
+[data-sonner-toast] [data-title] {
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  min-width: 0 !important;
+  line-height: var(--lh-label) !important;
+}
+
+/* Description wraps up to 2 lines, then truncates */
+[data-sonner-toast] [data-description] {
+  color: var(--text-secondary) !important;
+  line-height: var(--lh-label) !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 2 !important;
+  overflow: hidden !important;
+  min-width: 0 !important;
+}
+
+/* Keep content inside the toast bounds */
+[data-sonner-toast] [data-content] {
+  flex: 1 1 auto;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  gap: 0 !important;
+}
+
+/* Action / cancel: the secondary button (raised, elev-1) */
+[data-sonner-toast] [data-button],
+[data-sonner-toast] [data-cancel] {
+  height: var(--h-control-sm) !important;
+  padding: 0 8px !important;
+  border-radius: var(--radius-sm) !important;
+  background: var(--surface-raised) !important;
+  box-shadow: var(--elev-1) !important;
+  color: var(--text) !important;
+  font-size: var(--fs-label-sm) !important;
+  font-weight: 500 !important;
+}
+[data-sonner-toast] [data-button]:hover,
+[data-sonner-toast] [data-cancel]:hover {
+  background: color-mix(in srgb, var(--surface-raised), var(--fg-base) 4%) !important;
+}
+
+/* Close button: an inline ghost icon button at the right edge, always visible */
+[data-sonner-toast] [data-close-button] {
+  left: unset !important;
+  right: 8px !important;
+  top: 50% !important;
+  width: var(--h-control) !important;
+  height: var(--h-control) !important;
+  transform: translateY(-50%) !important;
+  border: none !important;
+  border-radius: var(--radius-md) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--text-tertiary) !important;
+  transition: background-color var(--dur-micro) var(--ease-out-subtle), color var(--dur-micro) var(--ease-out-subtle) !important;
+}
+[data-sonner-toast] [data-close-button] svg {
+  width: 14px;
+  height: 14px;
+}
+[data-sonner-toast] [data-close-button]:hover {
+  background: var(--fill-hover) !important;
+  color: var(--text) !important;
+}
+
+[data-sonner-toast]:focus-visible,
+[data-sonner-toast] [data-close-button]:focus-visible,
+[data-sonner-toast] [data-button]:focus-visible,
+[data-sonner-toast] [data-cancel]:focus-visible {
+  outline: 2px solid var(--focus-ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* ============================================================================
+   PDF Viewer (react-pdf)
+   ============================================================================ */
+
+/* PDF document container */
+.react-pdf__Document {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Individual PDF page */
+.react-pdf__Page {
+  max-width: 100%;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+}
+
+/* PDF canvas rendering */
+.react-pdf__Page__canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* PDF text layer (for text selection) */
+.react-pdf__Page__textContent {
+  border: none !important;
+}
+
+/* PDF annotation layer (for links and form fields) */
+.react-pdf__Page__annotations {
+  border: none !important;
+}
+
+/* ============================================================================
+ * CONTAINER QUERY RESPONSIVE RULES
+ *
+ * These rules adapt component layout based on container width, replacing
+ * the fragile !important overrides previously in webui/src/index.css.
+ * Works in both webui (narrow viewport) and desktop (narrow panels).
+ * ============================================================================ */
+
+/* Constrain floating elements (dropdowns, selects) in narrow panel containers */
+@container panel (max-width: 448px) {
+  [data-slot="dropdown-menu-content"],
+  [data-slot="dropdown-menu-sub-content"],
+  [data-slot="select-content"] {
+    max-width: calc(100cqw - 24px);
+  }
+
+  [data-slot="dropdown-menu-item"],
+  [data-slot="dropdown-menu-sub-trigger"],
+  [data-slot="select-item"] {
+    min-width: 0;
+  }
+
+  [data-slot="dropdown-menu-item"] > span,
+  [data-slot="dropdown-menu-sub-trigger"] > span,
+  [data-slot="dropdown-menu-shortcut"],
+  [data-slot="select-item"] {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Settings rows: stack vertically in narrow panels.
+   Toggle rows (anything containing a Switch) stay horizontal — iOS-style:
+   label on the left, switch on the right. Stretching the switch to 100% width
+   produced a long black pill bar that looked broken. */
+@container panel (max-width: 448px) {
+  [data-layout="settings-row"]:not(:has([data-slot="switch"])) {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  [data-layout="settings-row"]:not(:has([data-slot="switch"])) > [data-layout="settings-control"] {
+    width: 100%;
+    min-width: 0;
+    margin-left: 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  /* Full-width form controls (selects, inputs) in stacked layout */
+  [data-layout="settings-row"]:not(:has([data-slot="switch"])) [data-slot="select-trigger"],
+  [data-layout="settings-row"]:not(:has([data-slot="switch"])) [data-layout="settings-control"] > .w-\[180px\],
+  [data-layout="settings-row"]:not(:has([data-slot="switch"])) [data-layout="settings-control"] > .w-\[200px\] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+/* ==========================================================================
+   1.3× touch target scaling on mobile (shell ≤ 768px)
+   Formula: round(desktop_value × 1.3)
+   ========================================================================== */
+@container shell (max-width: 768px) {
+  /* Panel header buttons: X, share, back chevron.
+     Apple HIG minimum tap target is 44pt; min-width/height enforces the floor
+     even if internal padding alone wouldn't reach it. */
+  .panel-header-btn {
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* The back button starts at the panel edge (PanelHeader pl-0) and pads its 24px chevron 8px, so the
+     chevron's INK (x 8–16 of the glyph) lands on the 16px gutter with the page content below. */
+  .panel-header-btn.panel-header-back {
+    padding-left: 8px;
+    padding-right: 12px;
+  }
+
+  /* The chat header's status glyph groups with the title: a 36×44 target (8px around its 20px
+     glyph) instead of a 44px square that pushed the title 30px away from the glyph. */
+  .panel-header-btn.panel-header-status {
+    min-width: 36px;
+    padding-inline: 8px;
+  }
+
+  /* Compact panel header icons: keep desktop icons at their caller-provided
+     size, but make compact-mode icons read clearly inside the 44px target. */
+  [data-compact] .panel-header-btn > svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Session/source/skill list rows: touch height (desktop 36/54px → ≥ 60px), larger type */
+  .entity-row-btn {
+    min-height: 60px;
+    padding-top: 11px;
+    padding-bottom: 11px;
+  }
+  .entity-row-btn [data-slot="entity-row-title"] {
+    font-size: var(--fs-copy);
+    line-height: var(--lh-label-lg);
+  }
+  .entity-row-btn [data-slot="entity-row-subtitle"],
+  .entity-row-btn [data-slot="entity-row-meta"] {
+    font-size: var(--fs-label);
+    line-height: var(--lh-label);
+  }
+
+  /* TopBar icon buttons: +, ?, nav arrows (desktop: 28×28 → 36×36) */
+  .header-icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* IconButton primitive: 28px → 36px touch target */
+  [data-slot="icon-button"] {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Input toolbar items: attach, task, workspace pill, model picker (desktop: h-7 = 28px → 36px) */
+  .input-toolbar-btn {
+    height: 36px;
+    min-width: 36px;
+  }
+
+  /* Send button (desktop: 28×28 → 36×36) */
+  .send-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Settings form controls: 44px minimum height + 16px font.
+     The 16px font-size prevents iOS Safari from auto-zooming into the field
+     on focus (it triggers below 16px). Compact-only override so desktop stays
+     at the original tighter sizing. */
+  [data-layout="settings-row"] [data-slot="select-trigger"],
+  [data-layout="settings-row"] [data-slot="input"],
+  [data-layout="settings-row"] [data-slot="textarea"] {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  /* Hover-reveal opt-in for touch.
+     Components that use `opacity-0 group-hover:opacity-100` (more menus,
+     row deletes, etc.) become invisible on touch — hover never fires.
+     Adding `data-touch-reveal="true"` opts the element into always-visible
+     in compact. Desktop keeps the hover-reveal behavior unchanged.
+     `!important` is necessary to beat Tailwind's `opacity-0` utility. */
+  [data-touch-reveal="true"] {
+    opacity: 1 !important;
+  }
+
+  /* Bottom safe area for iOS home indicator + FAB clearance.
+     Sessions list keeps a 72px buffer (FAB is ~56px + bottom inset 16px)
+     so the last row never sits underneath the floating action button.
+     Other list roles (sources/skills/automations) only need the iOS
+     safe-area inset since they don't have a FAB. */
+  [data-list-role] {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  [data-list-role="sessions"] {
+    padding-bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+  }
+
+  /* Top safe area: keep the navigator's first row clear of the iOS notch
+     when the app runs as a PWA / mobile webui. Desktop builds report 0px
+     for the inset so this is a no-op there. */
+  [data-panel-role="navigator"] {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  /* Workspace pill chevron: 12px is hard to read at narrow widths,
+     bump to 16px so the dropdown affordance is clearly tappable. */
+  [data-workspace-switcher="topbar"] [data-slot="chevron"] {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* TopBar lives outside the shell container, so the workspace pill chevron
+   needs a viewport-media equivalent for the topbar variant specifically. */
+@media (max-width: 768px) {
+  /* TopBar lives outside the shell container, so mirror the compact 36px
+     button target here instead of relying only on @container shell rules. */
+  .header-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  [data-workspace-switcher="topbar"] [data-slot="chevron"] {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+/* ==========================================================================
+   TopBar height — bumps to 56px on narrow viewports so it matches the larger
+   touch targets and feels less cramped on mobile. The TopBar uses position:
+   fixed so the App content area reads the same variable for its padding-top.
+   ========================================================================== */
+:root {
+  --topbar-height: 44px;
+}
+@media (max-width: 768px) {
+  :root {
+    --topbar-height: 56px;
+  }
+
+  /* Bump TopBar icons from 18px → 20px in compact mode. Kept tight inside the
+     36×36 button so it doesn't dominate the bar. */
+  .header-icon-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* TurnCard action buttons (Copy, Markdown) — outside @container/shell,
+   scaled via data-compact attribute passed from the renderer */
+[data-compact] .turn-action-btn {
+  min-height: 31px;
+  padding: 6px 8px;
+}
+
+/* Odysseus identity: restrained bronze, original knight portrait, no animated background. */
+.odysseus-portrait { position:relative; width:min(360px,70vw); height:220px; margin-bottom:20px; overflow:hidden; border-radius:20px; background:#080909; border:1px solid #a9936a55; box-shadow:0 18px 60px #0002; }
+.odysseus-portrait img { width:100%; height:100%; object-fit:cover; object-position:48% 32%; opacity:.9; }
+.odysseus-portrait::after { content:''; position:absolute; inset:0; background:linear-gradient(0deg,#080909 0%,transparent 58%); pointer-events:none; }
+.odysseus-wordmark { position:absolute; bottom:18px; left:0; right:0; z-index:1; color:#e4d6ba; letter-spacing:.32em; font-size:14px; font-weight:600; }
+.odysseus-portrait-compact { width:250px; height:155px; margin-bottom:12px; }
+@media(max-height:650px) { .odysseus-portrait { height:135px; width:240px; margin-bottom:8px; } }

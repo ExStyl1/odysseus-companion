@@ -1,0 +1,363 @@
+{
+ "family": "C",
+ "items": [
+  {
+   "qid": "QC1",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "C3",
+     "column": "Pi",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.483 (`b44af523f`) landed the owner's 2026-09-05 Q13 option-3 override and its comment in `packages/shared/src/agent/options.ts` states the sitting question is answered, while P6.84's pin shows `node_modules/@earendil-works` ships no exporter at all (`DO_NOT_TRACK`/`DISABLE_TELEMETRY`/`OTEL_EXPORTER_OTLP_ENDPOINT` 0 files, control `telemetry` non-zero), so the `partial` reason - vendor telemetry unprobed - no longer holds on Pi."
+    },
+    {
+     "row": "C3",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.483 (`b44af523f`) makes `DO_NOT_TRACK=1` and `DISABLE_TELEMETRY` silence the claude child (its own comment: the sitting question this comment used to record is answered), which is exactly the clause C3 cited as unprobed on a closed binary."
+    },
+    {
+     "row": "C3",
+     "column": "Codex",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "The host predicate covers the standard names on codex and its own sink is closed by the EMITTED `[analytics] enabled = false` written by `packages/codex-responses-adapter/src/config-writer.ts` symbol `buildCodexAnalyticsToml`; the supporting binary probe is re-run on the staged rust-v0.150.1 app-server before the cell is written, because every figure in the cell was taken on the 178 126 224 B rust-v0.148.0 binary."
+    },
+    {
+     "row": "C7",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.252 (`a0e5038b3`) landed the three clauses this cell named as missing - http->https upgrade, cross-host redirect reported and not followed, and the 15-minute cache keyed by `CLAUDE_CODE_WEBFETCH_CACHE_TTL_MS` - in `packages/pi-agent-server/src/tools/web-fetch.ts`."
+    },
+    {
+     "row": "C7",
+     "column": "Codex",
+     "from": "—",
+     "to": "`n/a ᵗ`",
+     "why_en": "P6.252's own closing correction reads codex cell corrected `unknown` -> `n/a`, `ToolsV2` = `{web_search}` only, so codex ships no URL-fetch tool for the capability to have a subject; re-probe `web_fetch` against the staged rust-v0.150.1 app-server with `web_search` as the positive control before writing it."
+    },
+    {
+     "row": "C10",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.498 (`7cd1ffb59 + 9668d9626`) built option A of the delegated 2026-09-05 decision host-side in `packages/shared/src/config/llm-connections.ts` - every non-gateway connection card is refused at write - so the restriction holds on Pi without any runtime-native login gate."
+    },
+    {
+     "row": "C10",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.498 (`7cd1ffb59 + 9668d9626`) refuses every non-gateway card at write for the claude runtime too, which is the enforcement the vendor's own `forceLoginMethod` would give on one runtime of three."
+    },
+    {
+     "row": "C10",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.498 (`7cd1ffb59 + 9668d9626`) is host-side and runtime-independent, so the codex arm is enforced by the same refuse-at-write path; the hide half stays refused by the recorded posture in `apps/electron/src/renderer/pages/settings/managed-model-refusal.ts` and is named as the residue."
+    },
+    {
+     "row": "C13",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.256 (`9ffaa14c9 + 55b9be1a5`) computes, carries and renders the advance expiry notice for every connection whose stored `expiresAt` is inside the threshold, which is this row's whole `done_means`."
+    },
+    {
+     "row": "C13",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.256 (`9ffaa14c9 + 55b9be1a5`) is the host capability the row called for, so the unreachable terminal-CLI warning in the claude binary is no longer what the user depends on."
+    },
+    {
+     "row": "C13",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.256 (`9ffaa14c9 + 55b9be1a5`) raises the same notice on codex connections, where the runtime itself reports nothing ahead of an `auth.json` refresh."
+    },
+    {
+     "row": "C16",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.258 (`320dd1196`) added the per-connection credential-header kind defaulting to bearer; re-derive the Pi arm against that commit's `done_means` before writing `covered`, because the cell's own reading is that `packages/pi-agent-server` has no `x-api-key` reader - if the commit does not reach the Pi path the cell keeps its verdict with the residue named."
+    },
+    {
+     "row": "C16",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.258 (`320dd1196`) threads a per-connection `x-api-key` credential header to `packages/codex-responses-adapter/src/nestor-client.ts`, so a BYO `claude-runtime` connection to an x-api-key-only endpoint completes a turn."
+    },
+    {
+     "row": "C16",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.585 (`534aadcee`) widened `recordUpstreamAuthScheme` to `UpstreamAuthScheme`, dropped `SinkUpstreamAuthScheme` and threaded `credentialHeader` through `buildCodexRuntimeUpstream`, flipping the two boundary assertions that had asserted the codex gap."
+    },
+    {
+     "row": "C20",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.255 (`d791820c5 + e7db36f02 + c7d5e13dc + f8084f2af + 6981d9950`) fixed the inverted intra-pair order in `unified-network-interceptor.ts`, so the documented https_proxy/HTTPS_PROXY/http_proxy/HTTP_PROXY precedence is honoured on the Pi path."
+    },
+    {
+     "row": "C20",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.255 (`d791820c5 + e7db36f02 + c7d5e13dc + f8084f2af + 6981d9950`) fixed the same constant for the codex path, which reads the same interceptor."
+    },
+    {
+     "row": "C21",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.255 (`d791820c5 + e7db36f02 + c7d5e13dc + f8084f2af + 6981d9950`) routed the proxy/CA/mTLS load verdicts into the operator-visible doctor section this cell said `config-doctor.ts` lacked."
+    },
+    {
+     "row": "C21",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.255 (`d791820c5 + e7db36f02 + c7d5e13dc + f8084f2af + 6981d9950`) makes the resolved-value rows host-side, so the claude arm no longer depends on the binary's own `mTLS: Loaded ` lines that the host discards outside debug mode."
+    },
+    {
+     "row": "C21",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.255 (`d791820c5 + e7db36f02 + c7d5e13dc + f8084f2af + 6981d9950`) is host-side and covers the codex arm, which has no channel of its own."
+    },
+    {
+     "row": "C22",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.259 (`d623d1439 + 28a048d1c`) classifies `CLAUDE_CODE_DISABLE_MTLS_RELOAD_ON_STALE_CONNECTION` instead of letting it fall through to `immediate`, and the same commit fixed the vacuous half of its pin by asserting on the managed-origin record."
+    },
+    {
+     "row": "C23",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.260 (`122d9c4fb`) announces every dropped credential and base-URL name - names only, never a value - on the same announced-scrub channel as the launcher drop; C23/pi and C23/codex stay `—` because that row records them as unknown, not absent, the only credential-delete site being claude's."
+    },
+    {
+     "row": "C24",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.261 (`1d9023884`) measured the premise away - `feedback-bundles` scores 0 everywhere installed and the writer is `feedbackDraft` - and P6.583 (`fb6beb2b0`) set the vendor's own `feedbackDrafts: \"off\"`, so no unswept archive is known while the residue stays that the vendor walker is still an allowlist over `projects/` only."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-derive family C's ledger cells against the thirteen landed plan rows, writing each verdict against the named commit and its done_means and re-running every artefact probe at the current pins.",
+     "size": "M",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC1 option A (owner 2026-09-11). Done means: the 22 cells listed in this item carry their new verdict with marker ᵗ and a Why sentence naming the landed commit (P6.252 `a0e5038b3`, P6.253 `78bff1f7a`, P6.254 `72c8154c6`, P6.255 `d791820c5 + e7db36f02 + c7d5e13dc + f8084f2af + 6981d9950`, P6.256 `9ffaa14c9 + 55b9be1a5`, P6.257 `bf87c879f`, P6.258 `320dd1196`, P6.259 `d623d1439 + 28a048d1c`, P6.260 `122d9c4fb`, P6.261 `1d9023884`, P6.483 `b44af523f`, P6.498 `7cd1ffb59 + 9668d9626`, P6.583 `fb6beb2b0`, P6.585 `534aadcee`); the same verdict word is written into the twin rows of `docs/superpowers/specs/2026-09-05-denominator-gaps.md`, whose vocabulary spells covered as `have`. C14 is NOT touched - its cell already carries VERDICT RE-DERIVED 2026-09-08 (P6.890) with the residue that nothing records when an STS token expires. No code is written. Every bundle figure quoted in these cells was taken at 2.1.233 and must be re-measured at the tree's pin (`\"claudeCodeVersion\": \"2.1.247\"`, binary self-report `2.1.247 (Claude Code)`), and every codex figure was taken on the 178 126 224 B rust-v0.148.0 app-server while the staged binary is now 185 773 600 B at `rust-v0.150.1` per `packages/codex-protocol/manifest.json` - re-probe both, never carry a number. Where a commit does not reach an arm (C16/pi is the one to read twice), the cell keeps its verdict and the residue is named rather than promoted."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Not a refusal - a re-stamp of cells against work that already landed, so there is no mechanism left to wire."
+  },
+  {
+   "qid": "QC2",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Record the OS-level network-containment refusal as reason `DECISION` on the ten cells of C6, C8 and C9, keeping every verdict exactly as it stands.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC2 option A (owner 2026-09-11). Done means: C6, C8, C9 keep `absent`/`partial` - `n/a` is refused because the ledger defines it as 'Not this runtime's surface' and `plan-status.py` subtracts it from the denominator, which would raise the family's percentage with no capability changing - and each Why cell names the reason `DECISION` citing two rulings: `docs/superpowers/specs/2026-09-04-owner-sitting.md` section DECIDED 2026-09-05, verbatim 'the standing 2026-08-12/13 sandbox-off decision is reaffirmed', and `docs/superpowers/specs/2026-09-05-ledger-closure-owner-questions.md` section '[codex] Shell network egress on codex', verbatim 'A now - egress stays denied and the denial is made LEGIBLE'. The four honest surfaces already exist and are named, not rebuilt: `IsolationNetworkPosture.tsx`, `apps/cli/src/doctor.ts` (sandboxEgress + source), `packages/codex-responses-adapter/src/config-writer.ts` symbol `formatCodexSandboxEgressDiagnostics`, and the parser that throws by name on each of the eight transport keys. The twin rows in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` take the same reason and keep their verdict words."
+    },
+    {
+     "task_en": "Carry C26 to the owner as an open question - its own cell says 'No prior ruling found' and the 2026-09-05 decision covers mode/domains, not `allow_local_binding`.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "product"
+     ],
+     "note_en": "Implements QC2 option A's second half (owner 2026-09-11). Done means: C26/codex stays `absent ʰ` and the row records that the enclosing 2026-09-05 answer does not reach this key, with the question stated for the owner in one line - allow an approved target that resolves to a private address, or keep it blocked; the cell's own warning that this is a deliberate widening toward the corporate intranet, the class our credential floor exists to narrow, rides with it. Mechanism if it is ever taken: one line in `packages/codex-responses-adapter/src/config-writer-permissions.ts`, which already writes the enclosing `[permissions.nessy_runtime]` table."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "codex has the mechanism natively and we already write the enclosing table, so the wiring is small - but it widens the intranet boundary, which is exactly why the owner's refusal stands; flagged, not changed.",
+   "flip_mechanism_en": "codex's own `[permissions.nessy_runtime.network]` table - `allow_local_binding` (C26) and `mode = \"limited\"` plus `domains` (C8/C9) - written by `packages/codex-responses-adapter/src/config-writer-permissions.ts`, which already emits the sibling `.filesystem` block.",
+   "flip_wiring_size": "S for `allow_local_binding` (one line in an existing builder), M for the domain allowlist"
+  },
+  {
+   "qid": "QC3",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Extend the R50 credential-helper refusal to user scope - the already-built operator line stops distinguishing scopes.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "test"
+     ],
+     "note_en": "Implements QC3 option A (owner 2026-09-11). Done means: the diagnostic P6.254 (`72c8154c6`) built in `packages/shared/src/config/managed-env.ts` names the ruling for a helper configured in ANY scope, not only the admin one, with one test pinning the user-scope path and the existing admin-scope test untouched; the line names the key and never a value. The reason is the one already written at the site - this product does not accept an admin-supplied executable as a settings source - now closing the single scope the 2026-08-08 ruling left open."
+    },
+    {
+     "task_en": "Record reason `DECISION` on C11's three cells, which keep `absent` on all three runtimes.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC3 option A's ledger half (owner 2026-09-11). Done means: C11 stays `absent ʰ` x3 - `n/a` is refused because claude's surface is exactly where `apiKeyHelper` lives - and the Why cell carries reason `DECISION`, citing R50 (owner 2026-08-08, 'out of scope for this product') as extended in `packages/shared/src/config/managed-env.ts` and the owner's 2026-09-11 answer A extending it to user scope, with the measured unreachability kept: we always write a tier-3 `ANTHROPIC_API_KEY` into the child, so a tier-4 helper is read and can never be consulted. The cell's 2.1.233 figures are replaced by a reading at the tree's pin 2.1.247 or dropped; the twin row takes the same reason."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "claude has `apiKeyHelper` natively but it is measurably unreachable through our loopback adapter - the tier-3 `ANTHROPIC_API_KEY` the adapter needs always outranks it - so the wiring is not small and the alternative is a host-run executable, the class R50 refuses."
+  },
+  {
+   "qid": "QC4",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "C4",
+     "column": "Host",
+     "from": "`UNIFORM ᵗ`",
+     "to": "`HONEST ᵗ`",
+     "why_en": "The Switch column: P3.300 (`e858e1437`), extended by P6.587 (`238a4ef25`) and moved onto the latched operator-notice queue by P6.79 (`d82df5e52`), makes the claude arm degrade visibly - the scrub of both launcher names is announced with the variable and the reason - which is the ledger's definition of HONEST rather than a UNIFORM bought by silent subtraction. The `from`/`to` values are the Switch cell's LEADING verdict token only - the cell's prose after the em dash stays in place and gains the HONEST reasoning, so the record that a UNIFORM won by subtraction was a real product loss is not deleted."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the corporate-launcher refusal as reason `DECISION` on the six cells of C4 and C28, keeping `absent` on all three runtimes.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC4 option A (owner 2026-09-11). Done means: C4 and C28 keep `absent` x3 - `n/a` is refused because the claude column IS the surface (the binary honours the shell prefix on its own Bash and stdio MCP launch) and Pi/codex are the definition of `absent` - and each Why cell carries reason `DECISION` citing the owner's 2026-08-28 ruling recorded verbatim in P6.9 ('deferred to the very end of the queue; do not spend on it, do not close it as done') plus the three landed rows that stand in its place: P3.300 (`e858e1437`), P6.587 (`238a4ef25`) and P6.79 (`d82df5e52`). The residue is named: Pi and codex have no launcher mechanism to honour (`shell_prefix`/`process_wrapper` score zero on the shipped app-server against a live `CODEX_HOME` control, and `SHELL_PREFIX`/`shellPrefix` score zero over `node_modules/@earendil-works`), and the claude-arm notice is the only surface that says so. The twin rows take the same reason."
+    },
+    {
+     "task_en": "Raise C4's Switch cell to `HONEST ᵗ`, replacing the `UNIFORM ᵗ` bought by withdrawing a native mechanism.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC4's separate Switch half (owner 2026-09-11, option A's question text). Done means: the Switch cell reads `HONEST ᵗ` with its own sentence naming the announced scrub and the latched notice; the question's phrasing 'SILENT -> HONEST' describes the pre-P3.300 state, and at HEAD the cell reads `UNIFORM ᵗ` - the edit is `UNIFORM ᵗ` -> `HONEST ᵗ` and the cell keeps the record that a UNIFORM won by subtraction was a real product loss. C28's Switch cell stays `—` unless the same pass measures it."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "Re-enabling the claude half is literally subtraction - delete the two names from `CLAUDE_LAUNCHER_ENV_KEYS` and the binary wraps its own Bash and stdio MCP servers again - but it was withdrawn deliberately to remove a one-runtime-of-three divergence and the owner refused the uniform build twice; flagged, not changed.",
+   "flip_mechanism_en": "claude's own `CLAUDE_CODE_SHELL_PREFIX` (env-only, honoured by the shipped binary on its Bash command string and its stdio MCP launch) and the `processWrapper` settings twin, today deleted from the child by `CLAUDE_LAUNCHER_ENV_KEYS` in `packages/shared/src/config/claude-provider-routing-env.ts` and `packages/shared/src/agent/options.ts` symbol `buildClaudeSubprocessEnv`.",
+   "flip_wiring_size": "XS for the claude arm (stop scrubbing two names), L for the uniform host seam at the three Nessy-owned spawn sites"
+  },
+  {
+   "qid": "QC5",
+   "answer": "A",
+   "kind": "measure",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Drive C2 on the packaged build at the release sitting - a gateway session with WebFetch in the tool set, proving no hostname leaves for `api.anthropic.com`.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "test"
+     ],
+     "note_en": "Implements QC5 option A (owner 2026-09-11) for the C2 arm; no code. The mechanism landed - `packages/shared/src/agent/claude-agent.ts` symbol `buildClaudeWebFetchPreflightSettings` writes `skipWebFetchPreflight: true` paired with the host domain control, the owner's 2026-09-05 option C - and what is owed is the packaged run, which is live case CRU-7 = plan row P3.352 (`b46e7f755`, refreshed `de42f4e21`, marked Release sitting 2026-09-10 and 'Drive at P7.5'). Done means: the refreshed rig runs on a PACKAGED artefact on a claude card, `api.anthropic.com` is ABSENT with its positive control load-bearing the other way, a fresh hostname SUCCEEDS, and the empty-pairing notice `claude-webfetch-preflight-disabled` is asserted only where the operator declares no domain control. On green, C2/claude moves `—` -> `covered ᵗ` (and the twin row to `have`); a red run records the measured verdict instead, never a promotion on the static read."
+    },
+    {
+     "task_en": "Drive P6.255's open item (b) at the release sitting - the fail-closed proxy rig across all three runtimes on the packaged build.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "claude",
+      "codex",
+      "test"
+     ],
+     "note_en": "Implements QC5 option A (owner 2026-09-11) for the C12 arm; no code. The mechanism landed on all three children - `NODE_USE_ENV_PROXY` written proxy-conditionally by `c7d5e13dc` (codex), `f8084f2af` (Pi) and `6981d9950` (claude) - and P6.255's row note reads verbatim 'Open: (b) the fail-closed rig row -> packaged sitting'. Done means: each runtime is driven against a proxy that refuses everything, with the SAME proxy blocking `curl` from the same environment as the positive control, and all three fail closed. On green, C12 x3 moves (`partial ʰ`/`—`/`—`) -> `covered ᵗ` with the twin row following; anything else is recorded as measured."
+    },
+    {
+     "task_en": "Record C25's one owed condition in the follow-up plan P7.7 with its residue written, and point C5/codex at the deferral that already carries it.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC5 option A's deferral half (owner 2026-09-11). Done means: C25/claude keeps `partial ʰ` and its Why names the single owed condition beside the standing ruling (owner decision 6, P3.52 `ab9a5ebdb`) - does `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1` also disable Remote Control on the gateway path - with the address of the row that will answer it; C5/codex keeps `—` and its Why cites the already-landed move, `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` row `D1.10` (carried from P6.81, closed `802de0622` as moved, not as done), and the C3 measurement's twin `D1.11` (from P6.82). No new row is opened for either - they exist."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing is refused here - both mechanisms are built and native-first was already answered; what is owed is a packaged run, which no wiring can substitute for."
+  },
+  {
+   "qid": "QC6",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Record reason `DECISION` on C18/codex, citing the build-time Linux guard by its sentences rather than by line numbers.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC6 option A (owner 2026-09-11). Done means: C18/codex keeps `absent ʰ` - a shipped-platform gap on our own build is textbook `absent`, and `n/a` would subtract it from the denominator - and its Why carries reason `DECISION` quoting `apps/electron/scripts/build-linux.sh`, verbatim 'Linux ships no codex binary today (electron-builder.yml's linux includes are commented out while Linux support is paused)', beside `apps/electron/electron-builder.yml`, verbatim 'codex: Linux support is paused - no codex binary ships in linux builds.' Both anchors the cell carries today are dead at the line level and must be retired in WORDS, never respelled as path-colon-line, which would re-create the finding in `lint:ledger-citations`. The twin row takes the same reason."
+    },
+    {
+     "task_en": "Record reason `DECISION` on C19's claude and codex cells - the subscription cards are a GATED, default-off product flag, not a defect.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC6 option A (owner 2026-09-11). Done means: C19 keeps `partial ʰ` on claude and codex (Pi stays `n/a ʰ`) and the Why carries reason `DECISION`: the card exists and works and is gated by `NESSY_FEATURE_PROVIDER_CLAUDE`, default-off, with `packages/shared/src/feature-flags.ts` symbol `isAnthropicBackendEnabled` as the OR that also ships the SDK native binary and is mirrored in five build scripts; the owner's standing wording is keep it working, do not delete. The twin row takes the same reason."
+    },
+    {
+     "task_en": "Give C17 the standing 'projects are local-only' statement P6.499 asked for, instead of a per-switch warning.",
+     "size": "XS",
+     "tags": [
+      "renderer",
+      "product"
+     ],
+     "note_en": "Implements QC6 option A's C17 half (owner 2026-09-11). C17 itself is a citation, not a question: its cell already records PROBED 2026-09-07 (P6.499, `7b244e212`), option (A) taken by the delegated decision, and keeps `absent ʰ` x3. Done means: the one honest surface that row corrected itself to ask for exists - a standing statement that projects are local-only - and NO runtime-switch notice is added, because the absence is identical on all three runtimes and a switch line would be noise. If the statement is already present, the row closes as a citation with the surface named."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "C19 is the one arm where the runtime's own mechanism is shipped and working and only our default-off flag hides it, so the wiring is a flag flip - but it is a standing product posture (runtime flags default ON since 2026-08-06, only the subscription cards stay opt-in), which is why the answer stands; flagged, not changed.",
+   "flip_mechanism_en": "The vendors' own subscription sign-in - the Pro/Max card and codex's ChatGPT-authenticated path - already built and working behind `NESSY_FEATURE_PROVIDER_CLAUDE` / `NESSY_FEATURE_PROVIDER_CHATGPT`, with `packages/shared/src/feature-flags.ts` symbol `isAnthropicBackendEnabled` as the OR.",
+   "flip_wiring_size": "S - a default flip in the five mirrored places (`feature-flags.ts`, `build-dmg.sh`, `build-win.ps1`, `build-linux.sh`, `ensure-claude-sdk-binary-dir.cjs` plus `fastlane/Fastfile`), but it is a product posture rather than wiring"
+  },
+  {
+   "qid": "QC7",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Re-derive C29 against the pin actually in the tree, cite the live installation anchor, and write the residue as a probe command instead of a number.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QC7 option A (owner 2026-09-11). The cell keeps `partial ʰ` on claude (Pi and codex `n/a ʰ`) and becomes dispositioned. Done means: the pin is quoted from both self-reports - `\"claudeCodeVersion\": \"2.1.247\"` / `\"version\": \"0.3.247\"` in `node_modules/@anthropic-ai/claude-agent-sdk/package.json` and the vendored binary's own `2.1.247 (Claude Code)` - and dated; the `agent-sdk/migration-guide` reference is retired IN WORDS (that page publishes no installation section at all), never respelled as an anchor; the live citation is `agent-sdk/typescript.md#installation` with its verbatim sentence 'The SDK version tracks the bundled Claude Code version. SDK v0.3.191 bundles Claude Code v2.1.191, so a feature on this page that requires a Claude Code version needs the SDK release with the same patch number or later.'; and the residue is written as the re-derivable probe `grep -o \"v0\\\\.3\\\\.2[0-9][0-9]\\\\|v2\\\\.1\\\\.2[0-9][0-9]\" <page> | sort -u` beside the dated pin, because a count of gates above the pin decays in days (the cell's own four are now two satisfied and two open, and the page has since added more). The cell states that a vendored pin trailing a weekly page is the permanent posture, not a defect. No separate finding is opened for the codex and Pi lifts - they are rows `I2.15`-`I2.32` of `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` - and the cell must NOT repeat the question's 'not lifted at HEAD' reading, which is already stale: `packages/codex-protocol/manifest.json` reads tag `rust-v0.150.1` and `@earendil-works/pi-coding-agent` reads `0.84.3` in the tree today."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Not a refusal - the pin is the mechanism and chasing the newest patch was refused as unachievable by the 2026-09-10 lift ruling, which defines latest as what the Artifactory registry and the CI channel both carry."
+  }
+ ]
+}

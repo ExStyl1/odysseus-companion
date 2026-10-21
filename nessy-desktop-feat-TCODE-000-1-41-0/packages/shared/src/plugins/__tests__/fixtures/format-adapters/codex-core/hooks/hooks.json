@@ -1,0 +1,9 @@
+{
+  "PreToolUse": [
+    {
+      "type": "command",
+      "command": "node ./scripts/hook.js",
+      "matcher": "*"
+    }
+  ]
+}

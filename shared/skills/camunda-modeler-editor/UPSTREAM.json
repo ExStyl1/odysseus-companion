@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "camunda-modeler-editor/SKILL.md",
+  "upstreamName": "camunda-modeler-editor",
+  "upstreamFrontmatter": {
+    "name": "camunda-modeler-editor",
+    "description": "Данный навык позволяет работать с BPMN схемами (расширение .bpmn)"
+  },
+  "upstreamSkillSha256": "6c25c6a85b8c434eddbff9a1a1c579ee8c6b893b41f97621b405cf0d0ebdd49b",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

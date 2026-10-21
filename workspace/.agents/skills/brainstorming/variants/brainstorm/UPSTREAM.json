@@ -1,0 +1,17 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "brainstorm/SKILL.md",
+  "upstreamName": "brainstorm",
+  "upstreamFrontmatter": {
+    "name": "brainstorm",
+    "description": "Превращение идей в дизайны через совместный диалог перед реализацией."
+  },
+  "upstreamSkillSha256": "5c7cefd76880a132466154ae8e36ef2e677c985391c095f333db265cc193cf0f",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile."
+  ],
+  "packageDependencies": []
+}

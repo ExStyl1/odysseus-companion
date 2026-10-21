@@ -1,0 +1,324 @@
+import * as React from "react"
+import { useTranslation } from "react-i18next"
+import { useState, useCallback } from "react"
+import { Check, FolderPlus, ExternalLink, ChevronDown, Cloud, CloudOff, Trash2 } from "lucide-react"
+import { AnimatePresence } from "motion/react"
+import { useSetAtom } from "jotai"
+import { toast } from "sonner"
+
+import { cn } from "@/lib/utils"
+import { fullscreenOverlayOpenAtom } from "@/atoms/overlay"
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  StyledDropdownMenuContent,
+  StyledDropdownMenuItem,
+  StyledDropdownMenuSeparator,
+} from "@/components/ui/styled-dropdown"
+import { WorkspaceAvatar } from "@/components/ui/workspace-avatar"
+import { FadingText } from "@/components/ui/fading-text"
+import { WorkspaceCreationScreen } from "@/components/workspace"
+import { waitForTransportConnected } from '@/lib/transport-wait'
+import { useWorkspaceIcons } from "@/hooks/useWorkspaceIcon"
+import { useTransportConnectionState } from "@/hooks/useTransportConnectionState"
+import type { UpdateRemoteWorkspaceInput, WorkspaceInfo } from "../../../shared/types"
+
+interface WorkspaceSwitcherProps {
+  variant?: 'sidebar' | 'topbar'
+  isCollapsed?: boolean
+  workspaces: WorkspaceInfo[]
+  activeWorkspaceId: string | null
+  onSelect: (workspaceId: string, openInNewWindow?: boolean) => void | Promise<void>
+  onWorkspaceCreated?: (workspace: WorkspaceInfo) => void
+  onWorkspaceRemoved?: () => void
+  /** workspaceId -> has unread */
+  workspaceUnreadMap?: Record<string, boolean>
+}
+
+/**
+ * WorkspaceSwitcher - Dropdown to select active workspace.
+ *
+ * Supports two trigger variants:
+ * - sidebar: bottom-left selector trigger
+ * - topbar: center top-bar selector trigger
+ */
+export function WorkspaceSwitcher({
+  variant = 'sidebar',
+  isCollapsed = false,
+  workspaces,
+  activeWorkspaceId,
+  onSelect,
+  onWorkspaceCreated,
+  onWorkspaceRemoved,
+  workspaceUnreadMap,
+}: WorkspaceSwitcherProps) {
+  const { t } = useTranslation()
+  const [showCreationScreen, setShowCreationScreen] = useState(false)
+  const [reconnectTarget, setReconnectTarget] = useState<WorkspaceInfo | null>(null)
+  const setFullscreenOverlayOpen = useSetAtom(fullscreenOverlayOpenAtom)
+  const selectedWorkspace = workspaces.find(w => w.id === activeWorkspaceId)
+  const workspaceIconMap = useWorkspaceIcons(workspaces)
+  const connectionState = useTransportConnectionState()
+  const isRemote = connectionState?.mode === 'remote'
+
+  /** Tooltip for disconnected remote workspaces — shows error kind. */
+  const getDisconnectTooltip = (workspaceId: string): string => {
+    if (workspaceId === activeWorkspaceId && connectionState?.lastError) {
+      const { kind } = connectionState.lastError
+      if (kind === 'auth') return t('toast.authenticationFailed')
+      if (kind === 'timeout') return t('toast.serverUnreachable')
+      if (kind === 'network') return t('toast.serverUnreachable')
+    }
+    return t('toast.disconnected')
+  }
+
+  /** True when we know a remote workspace is unreachable. */
+  const isRemoteDisconnected = (workspaceId: string) => {
+    // Active workspace: use live transport state
+    if (workspaceId === activeWorkspaceId) {
+      if (!isRemote || !connectionState) return false
+      const { status } = connectionState
+      return status !== 'connected' && status !== 'connecting' && status !== 'idle'
+    }
+    const workspace = workspaces.find(candidate => candidate.id === workspaceId)
+    return Boolean(workspace?.remoteServer && !workspace.hasCredential)
+  }
+
+  const hasUnreadInOtherWorkspaces = React.useMemo(() => {
+    if (!activeWorkspaceId || !workspaceUnreadMap) return false
+    return workspaces.some((workspace) => workspace.id !== activeWorkspaceId && workspaceUnreadMap[workspace.id])
+  }, [workspaces, activeWorkspaceId, workspaceUnreadMap])
+
+  const handleNewWorkspace = () => {
+    setShowCreationScreen(true)
+    setFullscreenOverlayOpen(true)
+  }
+
+  const handleWorkspaceCreated = (workspace: WorkspaceInfo) => {
+    setShowCreationScreen(false)
+    setFullscreenOverlayOpen(false)
+    toast.success(t('toast.createdWorkspace', { name: workspace.name }))
+    onWorkspaceCreated?.(workspace)
+    onSelect(workspace.id)
+  }
+
+  const handleRemoveWorkspace = useCallback(async (workspace: WorkspaceInfo) => {
+    if (workspace.id === activeWorkspaceId) {
+      toast.error(t('toast.cannotRemoveActiveWorkspace'))
+      return
+    }
+    // P6.501 — the purge is complete and transactional (`WorkspaceService.delete`
+    // plus four cleanup participants, credentials and a delete journal), so what
+    // was owed here is not more deleting but two sentences.
+    //
+    // The residue line is the delegated decision itself (Q-den 18, option A):
+    // purge our own state and SAY that the Codex CLI's `~/.codex` history is
+    // untouched. Deleting a sibling tool's data from a command whose name says
+    // "project" was refused as irreversible and not ours to bound — so the user
+    // is told where to look next instead of being left to guess.
+    //
+    // The partial line exists because `cleanupFailures` had nowhere to arrive
+    // until `workspace:remove` stopped collapsing the result: a removal whose
+    // credential or plugin-data cleanup failed used to report plain success.
+    const result = await window.electronAPI.removeWorkspace(workspace.id)
+    if (result.deleted) {
+      if (result.cleanupFailures.length > 0) {
+        toast.warning(t('toast.removedWorkspacePartial', {
+          name: workspace.name,
+          resources: [...new Set(result.cleanupFailures.map(failure => failure.resource))].join(', '),
+        }))
+      } else {
+        toast.success(t('toast.removedWorkspace', { name: workspace.name }))
+      }
+      toast.info(t('toast.removedWorkspaceResidue'))
+      onWorkspaceRemoved?.()
+    }
+  }, [activeWorkspaceId, onWorkspaceRemoved])
+
+  const handleCloseCreationScreen = useCallback(() => {
+    setShowCreationScreen(false)
+    setReconnectTarget(null)
+    setFullscreenOverlayOpen(false)
+  }, [setFullscreenOverlayOpen])
+
+  const handleReconnectWorkspace = useCallback(async (input: UpdateRemoteWorkspaceInput) => {
+    await window.electronAPI.updateRemoteWorkspace(input)
+
+    if (input.workspaceId === activeWorkspaceId) {
+      await window.electronAPI.reconnectTransport()
+      await waitForTransportConnected(window.electronAPI)
+    } else {
+      await Promise.resolve(onSelect(input.workspaceId))
+      await waitForTransportConnected(window.electronAPI)
+    }
+
+    handleCloseCreationScreen()
+    toast.success(t('toast.workspaceReconnected'))
+  }, [activeWorkspaceId, handleCloseCreationScreen, onSelect])
+
+  return (
+    <>
+      {/* Full-screen workspace creation overlay */}
+      <AnimatePresence>
+        {showCreationScreen && (
+          <WorkspaceCreationScreen
+            onWorkspaceCreated={handleWorkspaceCreated}
+            onClose={handleCloseCreationScreen}
+            reconnectWorkspace={reconnectTarget ?? undefined}
+            onReconnectWorkspace={handleReconnectWorkspace}
+          />
+        )}
+      </AnimatePresence>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          {variant === 'topbar' ? (
+            <button
+              type="button"
+              data-workspace-switcher="topbar"
+              className="titlebar-no-drag ml-1 min-w-0 max-w-full flex items-center justify-start gap-2 h-control pl-1 pr-1.5 rounded-md text-label font-medium text-foreground hover:bg-fill-hover data-[state=open]:bg-fill-hover transition-[background-color] duration-micro ease-out-subtle hover:duration-instant cursor-pointer"
+              aria-label={t('workspace.selectWorkspace')}
+            >
+              <WorkspaceAvatar
+                workspaceId={selectedWorkspace?.id}
+                workspaceName={selectedWorkspace?.name}
+                src={selectedWorkspace ? workspaceIconMap.get(selectedWorkspace.id) : undefined}
+                className="size-5 rounded-sm shadow-elev-0"
+                fallbackClassName="rounded-sm"
+              />
+              <span className="truncate min-w-0 text-left">{selectedWorkspace?.name || t('workspace.workspaceLabel')}</span>
+              {selectedWorkspace?.remoteServer && (
+                isRemoteDisconnected(selectedWorkspace.id)
+                  ? <CloudOff className="size-3.5 text-destructive shrink-0" />
+                  : <Cloud className="size-3.5 text-tertiary shrink-0" />
+              )}
+              <ChevronDown data-slot="chevron" className="size-3.5 text-tertiary shrink-0" />
+              {hasUnreadInOtherWorkspaces && <span className="size-1.5 rounded-full bg-accent-solid shrink-0" />}
+            </button>
+          ) : (
+            <button
+              className={cn(
+                "flex items-center gap-1 w-full min-w-0 justify-start px-2 py-1.5 rounded-md",
+                "text-foreground hover:bg-foreground/5 data-[state=open]:bg-foreground/5 transition-colors duration-150",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                isCollapsed && "h-9 w-9 shrink-0 justify-center p-0"
+              )}
+              aria-label={t('workspace.selectWorkspace')}
+            >
+              <WorkspaceAvatar
+                workspaceId={selectedWorkspace?.id}
+                workspaceName={selectedWorkspace?.name}
+                src={selectedWorkspace ? workspaceIconMap.get(selectedWorkspace.id) : undefined}
+                className="h-4 w-4 rounded-full ring-1 ring-border/50"
+                fallbackClassName="rounded-full"
+              />
+              {!isCollapsed && (
+                <>
+                  <FadingText className="ml-1 font-sans min-w-0 text-sm" fadeWidth={36}>
+                    {selectedWorkspace?.name || t('workspace.selectWorkspace')}
+                  </FadingText>
+                  {selectedWorkspace?.remoteServer && (
+                    isRemoteDisconnected(selectedWorkspace.id)
+                      ? <CloudOff className="h-3 w-3 text-destructive shrink-0" />
+                      : <Cloud className="h-3 w-3 text-muted-foreground shrink-0" />
+                  )}
+                  <ChevronDown className="h-3 w-3 opacity-50 shrink-0" />
+                </>
+              )}
+            </button>
+          )}
+        </DropdownMenuTrigger>
+
+        <StyledDropdownMenuContent
+          align={variant === 'topbar' ? 'center' : 'start'}
+          sideOffset={variant === 'topbar' ? 6 : 4}
+          minWidth={variant === 'topbar' ? 'min-w-64' : undefined}
+        >
+          {workspaces.map((workspace) => {
+            const disconnected = isRemoteDisconnected(workspace.id)
+            return (
+              <StyledDropdownMenuItem
+                key={workspace.id}
+                onClick={(e) => {
+                  if (disconnected && workspace.remoteServer) {
+                    setReconnectTarget(workspace)
+                    setShowCreationScreen(true)
+                    setFullscreenOverlayOpen(true)
+                    return
+                  }
+                  if (disconnected) return
+                  const openInNewWindow = e.metaKey || e.ctrlKey
+                  onSelect(workspace.id, openInNewWindow)
+                }}
+                className={cn(
+                  "justify-between group",
+                  activeWorkspaceId === workspace.id && "bg-foreground/10",
+                  disconnected && "opacity-60",
+                )}
+              >
+                <div className="flex items-center gap-3 font-sans min-w-0 flex-1">
+                  <WorkspaceAvatar
+                    workspaceId={workspace.id}
+                    workspaceName={workspace.name}
+                    src={workspaceIconMap.get(workspace.id)}
+                    className="h-5 w-5 rounded-full ring-1 ring-border/50"
+                    fallbackClassName="rounded-full text-xs"
+                  />
+                  <span className="truncate">{workspace.name}</span>
+                  {workspace.remoteServer && (
+                    disconnected
+                      ? <span title={getDisconnectTooltip(workspace.id)} className="shrink-0"><CloudOff className="h-3.5 w-3.5 text-destructive" /></span>
+                      : <Cloud className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                  )}
+                  {workspaceUnreadMap?.[workspace.id] && <span className="h-2 w-2 rounded-full bg-accent shrink-0" />}
+                </div>
+                <div className="flex items-center gap-1">
+                  {/* Action buttons - only visible on hover for non-active workspaces */}
+                  {activeWorkspaceId !== workspace.id && (
+                    <button
+                      data-touch-reveal="true"
+                      className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-destructive/20 hover:text-destructive transition-opacity"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handleRemoveWorkspace(workspace)
+                      }}
+                      title={t("workspace.removeWorkspace")}
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  )}
+                  {activeWorkspaceId !== workspace.id && !disconnected && (
+                    <button
+                      data-touch-reveal="true"
+                      className="opacity-0 group-hover:opacity-100 p-0.5 rounded hover:bg-foreground/10 transition-opacity"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        onSelect(workspace.id, true)
+                      }}
+                      title={t("sidebarMenu.openInNewWindow")}
+                    >
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </button>
+                  )}
+                  {activeWorkspaceId === workspace.id && (
+                    <Check className="h-3.5 w-3.5" />
+                  )}
+                </div>
+              </StyledDropdownMenuItem>
+            )
+          })}
+
+          {/* Separator and New Workspace option */}
+          <StyledDropdownMenuSeparator />
+          <StyledDropdownMenuItem
+            onClick={handleNewWorkspace}
+            className="font-sans"
+          >
+            <FolderPlus className="h-4 w-4" />
+            {t("workspace.addWorkspace")}
+          </StyledDropdownMenuItem>
+        </StyledDropdownMenuContent>
+      </DropdownMenu>
+    </>
+  )
+}

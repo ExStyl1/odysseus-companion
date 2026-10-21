@@ -1,0 +1,211 @@
+{
+  "date": "2026-10-20",
+  "before": 300,
+  "after": 272,
+  "mergedEntries": 28,
+  "groups": [
+    {
+      "name": "brainstorming",
+      "merged": [
+        "user-brainstorming",
+        "brainstorm"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "using-superpowers",
+      "merged": [
+        "user-using-superpowers"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "caveman",
+      "merged": [
+        "user-caveman"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "grill-me",
+      "merged": [
+        "grilling"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "systematic-debugging",
+      "merged": [
+        "diagnosing-bugs",
+        "debugging",
+        "investigate-first"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "test-driven-development",
+      "merged": [
+        "tdd"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "safe-refactor",
+      "merged": [
+        "refactor"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "pdf",
+      "merged": [
+        "pdf-processing"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "humanizer",
+      "merged": [
+        "humanizer-ru"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "skill-creator",
+      "merged": [
+        "create-skill"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "mermaid",
+      "merged": [
+        "mermaid-diagrams",
+        "beautiful-mermaid"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "browser",
+      "merged": [
+        "agent-browser"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "jira",
+      "merged": [
+        "jira-cli"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "time-messenger",
+      "merged": [
+        "time-cli"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "hyperframes",
+      "merged": [
+        "openmontage-hyperframes"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "hyperframes-animation",
+      "merged": [
+        "openmontage-hyperframes-animation"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "hyperframes-cli",
+      "merged": [
+        "openmontage-hyperframes-cli"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "hyperframes-core",
+      "merged": [
+        "openmontage-hyperframes-core"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "hyperframes-creative",
+      "merged": [
+        "openmontage-hyperframes-creative"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "hyperframes-registry",
+      "merged": [
+        "openmontage-hyperframes-registry"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "media-use",
+      "merged": [
+        "openmontage-media-use"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "motion-graphics",
+      "merged": [
+        "openmontage-motion-graphics"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "music-to-video",
+      "merged": [
+        "openmontage-music-to-video"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    },
+    {
+      "name": "remotion-to-hyperframes",
+      "merged": [
+        "openmontage-remotion-to-hyperframes"
+      ],
+      "reason": "Одинаковый процесс или реализация одной возможности; различия сохранены как выбираемые режимы."
+    }
+  ],
+  "aliases": {
+    "user-brainstorming": "brainstorming",
+    "brainstorm": "brainstorming",
+    "user-using-superpowers": "using-superpowers",
+    "user-caveman": "caveman",
+    "grilling": "grill-me",
+    "diagnosing-bugs": "systematic-debugging",
+    "debugging": "systematic-debugging",
+    "investigate-first": "systematic-debugging",
+    "tdd": "test-driven-development",
+    "refactor": "safe-refactor",
+    "pdf-processing": "pdf",
+    "humanizer-ru": "humanizer",
+    "create-skill": "skill-creator",
+    "mermaid-diagrams": "mermaid",
+    "beautiful-mermaid": "mermaid",
+    "agent-browser": "browser",
+    "jira-cli": "jira",
+    "time-cli": "time-messenger",
+    "openmontage-hyperframes": "hyperframes",
+    "openmontage-hyperframes-animation": "hyperframes-animation",
+    "openmontage-hyperframes-cli": "hyperframes-cli",
+    "openmontage-hyperframes-core": "hyperframes-core",
+    "openmontage-hyperframes-creative": "hyperframes-creative",
+    "openmontage-hyperframes-registry": "hyperframes-registry",
+    "openmontage-media-use": "media-use",
+    "openmontage-motion-graphics": "motion-graphics",
+    "openmontage-music-to-video": "music-to-video",
+    "openmontage-remotion-to-hyperframes": "remotion-to-hyperframes"
+  },
+  "backup": ".odysseus/before-consolidation-20261020-143332"
+}

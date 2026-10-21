@@ -1,0 +1,10 @@
+{
+  "interface": {
+    "display_name": "Анимация камеры и кадрирования HyperFrames",
+    "short_description": "Анимация камеры и кадрирования HyperFrames: приближение, панора…",
+    "default_prompt": "Используй $hyperframes-keyframes. Примени $hyperframes-keyframes к брифу и локальным медиаресурсам. Цель: Анимация камеры и кадрирования HyperFrames: приближение, панорамирование и ключевые кадры."
+  },
+  "policy": {
+    "allow_implicit_invocation": true
+  }
+}

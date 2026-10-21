@@ -1,0 +1,499 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": "skills/hyperframes-animation",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/skills/hyperframes-animation",
+  "upstreamName": "hyperframes-animation",
+  "upstreamFrontmatter": {
+    "name": "hyperframes-animation",
+    "description": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic."
+  },
+  "upstreamSkillSha256": "dfbbc2dc7907fa11fa3ae5bdb4f4c1fe7970c09f7c6e75248faf449bc67eb735",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "openmontage-hyperframes-animation",
+      "guide": "variants/openmontage-hyperframes-animation/GUIDE.md",
+      "resourceRoot": "variants/openmontage-hyperframes-animation",
+      "repository": "calesthio/OpenMontage",
+      "path": ".agents/skills/hyperframes-animation",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "d944d7678e663a620040e1bbdd60d2c2c5c6f1909c0ae7f079768a93af5295db",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "b7af1468c3be3f0d86c7f59afa2d77835e612f2931e67513188ad320ff6e6b18",
+          "executable": false
+        },
+        "adapters/animate-text.md": {
+          "sha256": "82f0e94d031480d186df792f0e2f8535276d805d699e5c84b9a7b736d107b10a",
+          "executable": false
+        },
+        "adapters/animejs.md": {
+          "sha256": "31ebe3dacacfa75a0d85cb38a2672e397fa90e892cfc7c290a2bd2b72935836c",
+          "executable": false
+        },
+        "adapters/css-animations.md": {
+          "sha256": "010444ecbe4baca82ca92a8aafc99d1ed887c8dd90806c37ee2076a210522646",
+          "executable": false
+        },
+        "adapters/gsap-easing-and-stagger.md": {
+          "sha256": "b7a02ab56d049e204d37a95087580181020cb777c84ced62b310e489885b2b93",
+          "executable": false
+        },
+        "adapters/gsap-timeline-and-labels.md": {
+          "sha256": "bfd2e2bc0684455704ee3cea454641f6794ec868f7d8cbd0ecfae84def061d50",
+          "executable": false
+        },
+        "adapters/gsap-transforms-and-perf.md": {
+          "sha256": "c65a274948b163c1e865a7d43d3ff18d614e189bb56380f93a53b47374068983",
+          "executable": false
+        },
+        "adapters/gsap.md": {
+          "sha256": "378c5990fdb5b7d58f5710560a7a87f29662041b1336207a800ad110a5f067c7",
+          "executable": false
+        },
+        "adapters/html-in-canvas-patterns.md": {
+          "sha256": "5e7c801c65d8f34f38c535bc9ed6808ebb6f475f166347bf71a453eb87614e9a",
+          "executable": false
+        },
+        "adapters/lottie.md": {
+          "sha256": "4764d10220e2c5d903fd74ed86757f6821b8d0cbe8bb22bab64dabe856a46f7b",
+          "executable": false
+        },
+        "adapters/three.md": {
+          "sha256": "9076096e1ed636bb78b428f3adf38a45651b27df603e0da08f9212be6d1ced28",
+          "executable": false
+        },
+        "adapters/typegpu.md": {
+          "sha256": "13489ca7637177710d000e328326ffc0aea89453dbec72172dab4ba34fc682b1",
+          "executable": false
+        },
+        "adapters/waapi.md": {
+          "sha256": "db4253f4c99509757fa2c04894435485d038882f46e7bdf5148c069fbdb7db9c",
+          "executable": false
+        },
+        "blueprints/comparison-split.md": {
+          "sha256": "af2af2ddf86aba21ed8b2016b7b1bd4b1ced52b4ac98f17eff487dca1097599a",
+          "executable": false
+        },
+        "blueprints/constellation-hub.md": {
+          "sha256": "d8b9bbbe87d2d28b93cc23c15d97c09cf4bf5b9a442a1ea449042e23bfc6804f",
+          "executable": false
+        },
+        "blueprints/cta-morph-press.md": {
+          "sha256": "8be90f5d34a24500fa14ca2e1b813974c645bbadccf113fb8f93faa60496e01e",
+          "executable": false
+        },
+        "blueprints/cursor-ui-demo.md": {
+          "sha256": "472c56010e39a06825c361c3f42b89cb1eaf09be0b711addb02b27102e8700aa",
+          "executable": false
+        },
+        "blueprints/dataviz-countup.md": {
+          "sha256": "8688c3d3e32ada860d53bf3ff7f5ad8dc1a56016db12369caa2331534d59ab74",
+          "executable": false
+        },
+        "blueprints/device-surface-showcase.md": {
+          "sha256": "4976bbac08adad9cbc8cef08bcf12ccaeb57c0a2d5f50bb0df72649f0b17bb72",
+          "executable": false
+        },
+        "blueprints/grid-card-assemble.md": {
+          "sha256": "2302ad889acfe9fe10e5ed66f3a022ffa5c8378c6a05be5b5585b7f795aff56e",
+          "executable": false
+        },
+        "blueprints/kinetic-type-beats.md": {
+          "sha256": "23aa55a4a16faaefcb80ae238654a8916100cdb8141c9b611f9f905c99cb0506",
+          "executable": false
+        },
+        "blueprints/logo-assemble-lockup.md": {
+          "sha256": "b53493fd2eabf23e666d013acd9d00130cfeb735b475835f803a052ce883115b",
+          "executable": false
+        },
+        "blueprints/overwhelm-surround.md": {
+          "sha256": "ecb37bd185d7951db5bfa755dc79cab1e43bb2fc204618b7b1d25317838ef847",
+          "executable": false
+        },
+        "blueprints/spatial-pan-stations.md": {
+          "sha256": "25f6d0512bc63ae332e9c4ed8b530052f429441f37664456a88712abd4c1606f",
+          "executable": false
+        },
+        "blueprints/ticker-takeover.md": {
+          "sha256": "58e7a19b1aca8f3a85affbc24005d1b26ffd9b953053166783afa428f524b5d8",
+          "executable": false
+        },
+        "blueprints/titlecard-reveal.md": {
+          "sha256": "ba1bbb2bb1f43f7ae85c2d67a1e0b5d7d8b6396e758f432d458e0286ba074b64",
+          "executable": false
+        },
+        "blueprints/typewriter-reveal.md": {
+          "sha256": "be324c142dc5bf89649df3c59aa8a7e218ca99d8afe1222f4028a314a237245c",
+          "executable": false
+        },
+        "blueprints/video-text-pivot.md": {
+          "sha256": "6472224469cfb1801989510bec88a997819fa51cd4a5260bc23eee0fd7f086ed",
+          "executable": false
+        },
+        "blueprints-index.md": {
+          "sha256": "a99e44d572f7536ce31831a14a380864a93e5d5c1ed7ae9f1682dff96c28e526",
+          "executable": false
+        },
+        "examples/assets/avatars/01.png": {
+          "sha256": "0cd55ec712f6fd88eda3f1972b979cf2a7a312f15c99db94579fb3f99b9cb8a1",
+          "executable": false
+        },
+        "examples/assets/avatars/02.avif": {
+          "sha256": "11c77a8a62a97ecf8f36e8ab8b8bab16f8ec7e7aff96d157a29f54dcc22ab72a",
+          "executable": false
+        },
+        "examples/assets/avatars/03.png": {
+          "sha256": "1a101f8e4feee6ba42c7b063d2986b63ab9c3bb4ca33c4f675deb8c362965f32",
+          "executable": false
+        },
+        "examples/assets/avatars/04.webp": {
+          "sha256": "f7487adb6f94d75d7911b327b0cb0600e9e829ca56a54c37cf27c8e09968e885",
+          "executable": false
+        },
+        "examples/assets/avatars/05.webp": {
+          "sha256": "c8a0293c0b5c101fe08f6ea82c6406fe1b693a91cf51778d60c5bdcd547db834",
+          "executable": false
+        },
+        "examples/assets/avatars/06.webp": {
+          "sha256": "79f3620cec250c0915181a661c350034b0f44ca85ab670d715c8ae25f41ab473",
+          "executable": false
+        },
+        "examples/assets/avatars/07.webp": {
+          "sha256": "f97362045a3ac188d88f033ad21b4600be646b08438870acf1e1f854894ca124",
+          "executable": false
+        },
+        "examples/assets/avatars/08.webp": {
+          "sha256": "96605613b69ced167ed1e452de62b403001a9415892b24e3004ddeed2649c6f6",
+          "executable": false
+        },
+        "examples/assets/avatars/09.jpg": {
+          "sha256": "1bdf6958b2bc5a205a4a2d5bd54bc328fae725fbf5f3c7202b28fc230fc0c7ce",
+          "executable": false
+        },
+        "examples/assets/avatars/10.webp": {
+          "sha256": "a5054a23f2199977dbba1b994f7d5aa507432529d4cee7e0533d4369b8cdf1bc",
+          "executable": false
+        },
+        "examples/assets/background-tech-data-flow.mp4": {
+          "sha256": "f5d7c64dffda80b3b15bd116e4f2fda2231ae5d7997f2753ba01051aa243ce79",
+          "executable": false
+        },
+        "examples/assets/brands/github.avif": {
+          "sha256": "d6711618492e8f240df0898ee79d5cc277d883e8d612b0619c9aa82dbcd10d99",
+          "executable": false
+        },
+        "examples/assets/brands/nvidia.avif": {
+          "sha256": "e66ae041f22e4af7b672813ec0e60d26964e547a58f8b6e01e259c01ac11185a",
+          "executable": false
+        },
+        "examples/assets/brands/visa.avif": {
+          "sha256": "01ddb8924519d17d11dc5e94e2b87967c0919dc70952a1e07668603fcae67dff",
+          "executable": false
+        },
+        "examples/assets/brands/zoominfo.avif": {
+          "sha256": "35eb77247c08c15b0b84aaa882c85397be3a4d5c2ed9da98137a7545a90da3e7",
+          "executable": false
+        },
+        "examples/assets/hyperframes-showcase-hypecard.mp4": {
+          "sha256": "59894d108c5634cce855f4b9593d48ee0884955b1607e0f1c1c4e973e2eb101e",
+          "executable": false
+        },
+        "examples/assets/logo-hyperframes.png": {
+          "sha256": "2eba7073c4d8016e7b74013e7a12cb3142c5c73d71768fc02cab70ae9202aedd",
+          "executable": false
+        },
+        "examples/brand-reveal-assemble-zoom.html": {
+          "sha256": "6ef0274922bf33c9362c638476d97c475931941263f03934ce06f677c8301e5f",
+          "executable": false
+        },
+        "examples/comparison-split-cards.html": {
+          "sha256": "6fbf71a6620971f67d984d08346758a088d45297b68f2098d05a516001daa2b8",
+          "executable": false
+        },
+        "examples/concept-demo-decode-pan.html": {
+          "sha256": "003f8bbde732f9c982493ba3a531c8d861bdb3119fe772dc3bad135924b355ac",
+          "executable": false
+        },
+        "examples/cta-morph-press.html": {
+          "sha256": "4d423157e55cc7c46d112d3471bac207a2072f5f7d190f506809bc6c7ac68644",
+          "executable": false
+        },
+        "examples/cta-orbit-collapse.html": {
+          "sha256": "d41514f8bb0a4808a66f719bdc3b2118f16a476d47ac71b7db14a73e723f7aee",
+          "executable": false
+        },
+        "examples/demo-page-scroll-spotlight.html": {
+          "sha256": "aa1252821669b2f81d7925bac2869ee9a06650abec152c9ab0c978df1f9b2808",
+          "executable": false
+        },
+        "examples/hook-counter-burst.html": {
+          "sha256": "4766950cad912becd81d293ee23475caf4eac8c02dbde31c4c4f7ed015cb127b",
+          "executable": false
+        },
+        "examples/messaging-multi-phrase.html": {
+          "sha256": "dbfa5e74f09b0e2b45cb28cd100915143aab7f59ad3a2dffb46f5f88c3cccd77",
+          "executable": false
+        },
+        "examples/metric-video-text-pivot.html": {
+          "sha256": "5d0ede336552e9ac402bd7bf7dc84d95c9f76699d0e8ebb78f2dfeac3c7ebc36",
+          "executable": false
+        },
+        "examples/problem-mockup-overwhelm.html": {
+          "sha256": "127d94b53a48d36bf1a5eb5a9fd4e44b0c4cb3a5478c19783aff940f6683106d",
+          "executable": false
+        },
+        "examples/proof-logo-chain.html": {
+          "sha256": "b607d15d84d7666cb519626f1292fa42902f1c58e38766c2c8b5dc75825e7cc2",
+          "executable": false
+        },
+        "examples/takeover-ticker-displace.html": {
+          "sha256": "8d39a9028d8302ccd185d6fa2c5a6da1f097b4e9af083d18a1f0063a96989d22",
+          "executable": false
+        },
+        "examples/workflow-approve-press.html": {
+          "sha256": "2b04b61cc30113195f3a8173aec2a3abcaf13ddd5b7d577baea44aacae65990d",
+          "executable": false
+        },
+        "rules/3d-page-scroll.md": {
+          "sha256": "b7ad271fb9e36b5e78743fe049be108422315bc4fab90806a0e85aed4984d059",
+          "executable": false
+        },
+        "rules/3d-text-depth-layers.md": {
+          "sha256": "d6c8f1f2e04cff2d4f017bf103f1066e4668528b47f8793cd637ac1e079fceff",
+          "executable": false
+        },
+        "rules/ai-tracking-box.md": {
+          "sha256": "c814464ad391c89d89c01bf10c8bd70e330a18ef7fe12a68c957e4eedab158cd",
+          "executable": false
+        },
+        "rules/ambient-glow-bloom.md": {
+          "sha256": "20ca897cb1057afdc1274f6a64dbdc8c3e97e45974fbe3d56708f6c65aa9c185",
+          "executable": false
+        },
+        "rules/asr-keyword-glow.md": {
+          "sha256": "93f97f2f01285089b89577d03bea44b9fba0d24e31beca0e3b1c3f5dea7c4e4b",
+          "executable": false
+        },
+        "rules/avatar-cloud-network.md": {
+          "sha256": "782fc4d80e4f37f8e053cf345af4cc9d50fd2397da7d5b0de825f8ea6b63a31d",
+          "executable": false
+        },
+        "rules/camera-cursor-tracking.md": {
+          "sha256": "784da7c1bb4b9e5f58916fe7109c95ebab9e9cc8144a629caada20a1a0219157",
+          "executable": false
+        },
+        "rules/card-morph-anchor.md": {
+          "sha256": "1b93357a85d73205140baefe30de278e02aec0a20bcf8b9181541a8d5b842833",
+          "executable": false
+        },
+        "rules/center-outward-expansion.md": {
+          "sha256": "5fa1047e16e626f1c9b397cec80418d1befffbd447771436fd00af562190743e",
+          "executable": false
+        },
+        "rules/context-sensitive-cursor.md": {
+          "sha256": "6677c7bf802fb46774b8d67497983fe8ef22429f9e1c48e03563f6069e42bb2e",
+          "executable": false
+        },
+        "rules/coordinate-target-zoom.md": {
+          "sha256": "e76d8b06c3d15da584b4d1c1bc2690bbb4ecb97595baba8673d4c34af7a067b1",
+          "executable": false
+        },
+        "rules/counting-dynamic-scale.md": {
+          "sha256": "5b468962a12318be22721a7760f3ad7f7e516502a17e8b34a551f8e8723acfde",
+          "executable": false
+        },
+        "rules/css-marker-patterns.md": {
+          "sha256": "9705c6fd30c03974172a57d79a1825cfbdf9d0c9b8d5bb94eb61732c18184d54",
+          "executable": false
+        },
+        "rules/cursor-click-ripple.md": {
+          "sha256": "e095aada6dce26112d5afd98abaf96531c9eacca5d9ac321cb670956862e2fb7",
+          "executable": false
+        },
+        "rules/depth-of-field-blur.md": {
+          "sha256": "3acd9b77efeeb4e5604d0c22009ee8b3f89d0e1b55e828f336afd10638fc81b4",
+          "executable": false
+        },
+        "rules/depth-scatter-assemble.md": {
+          "sha256": "f8feddc4a23255ba25e936da8ef0a82deab7c5cd66976afbd28c1bd906dabedf",
+          "executable": false
+        },
+        "rules/discrete-text-sequence.md": {
+          "sha256": "b3b2874bba225567991fbae5f7977840a1c49814301dbad047df3ff44a54f1cc",
+          "executable": false
+        },
+        "rules/dynamic-content-sequencing.md": {
+          "sha256": "42b1b3e4840032686b3021028663caddd869647ef60bda7fd5e4ad6c32800199",
+          "executable": false
+        },
+        "rules/gsap-effects.md": {
+          "sha256": "6c2386767af9c31ab7e511095e641499956ae47822f81a5cafc7ff9dfbb63292",
+          "executable": false
+        },
+        "rules/hacker-flip-3d.md": {
+          "sha256": "33da181de8b7d8b4eeacfb8bcad4f4e7c714f15b56f3886ce170764ecbfe488c",
+          "executable": false
+        },
+        "rules/kinetic-beat-slam.md": {
+          "sha256": "e264f1d3d8b022841857197d4f8e6247cf7d9a869ca293d9b86bf5b90fd26646",
+          "executable": false
+        },
+        "rules/motion-blur-streak.md": {
+          "sha256": "d88fdd2902c441aa946a7052af465abc1bcb6f7ad95b3ebe890f20d9458e1a4a",
+          "executable": false
+        },
+        "rules/multi-phase-camera.md": {
+          "sha256": "f1314f53bd3047a074e301be4fcf6ee1801032f10d53e91b8d7a093c65b183f9",
+          "executable": false
+        },
+        "rules/orbit-3d-entry.md": {
+          "sha256": "dc6016a01ed764618294aca2eb3e0c473ee899f2fddde1defb37ebbf7a08c7aa",
+          "executable": false
+        },
+        "rules/physics-press-reaction.md": {
+          "sha256": "ebd7e692105c5e1aa9f9377b1f20398e121311e1d8f9963926bd150f5b8d7b5f",
+          "executable": false
+        },
+        "rules/press-release-spring.md": {
+          "sha256": "480d827c5dfc4e5d913a0f9e420efa5e8099ea278f83cfb6c6ac04dde4a1b595",
+          "executable": false
+        },
+        "rules/reactive-displacement.md": {
+          "sha256": "9538c030a4381cb7256dcb3534c2a9f780c3fe3d64792261de6e99928a1a42f5",
+          "executable": false
+        },
+        "rules/scale-swap-transition.md": {
+          "sha256": "76075cf82b9cb2d15269f14261d255dcbf3d46fd2e8443936559b0799eaeb6cf",
+          "executable": false
+        },
+        "rules/sine-wave-loop.md": {
+          "sha256": "25fafafa16a7afed9bb0aa1d2f011486f39bda439b742eef00f320b894618a85",
+          "executable": false
+        },
+        "rules/split-tilt-cards.md": {
+          "sha256": "e25313fbee84ef8597a17729fd9daded3364ced2bc185909debade67c95cf921",
+          "executable": false
+        },
+        "rules/spring-pop-entrance.md": {
+          "sha256": "5e2ae4a07e4c3794b89e51624a667e7c05c5c0a771e49c909a589c835a4f4a23",
+          "executable": false
+        },
+        "rules/stat-bars-and-fills.md": {
+          "sha256": "9ba06916fe29e05d6b0b2aaccd1f571513153cf4b10170975bfa66fca22a3bcb",
+          "executable": false
+        },
+        "rules/svg-icon-enrichment.md": {
+          "sha256": "95399e2393e155af85b8822e8f4b752e59c77de6f5b0080118065161fd12cbcc",
+          "executable": false
+        },
+        "rules/svg-path-draw.md": {
+          "sha256": "708afa7eb0843a60a62a8ca4282bb1f20e9f5058bd86b08876fa2ae90eb027ab",
+          "executable": false
+        },
+        "rules/vertical-spring-ticker.md": {
+          "sha256": "f356d0e38e92d2106317d74d351951cbe7017fea36e9f0cf40583f5c0db137cd",
+          "executable": false
+        },
+        "rules/viewport-change.md": {
+          "sha256": "86600df8e88e3814fe6fad360cfe524abc65d6689b11a49d8038a7fd368914fa",
+          "executable": false
+        },
+        "rules-index.md": {
+          "sha256": "942bf8bc7bc4706936b77e27c7257c1cfe778bea3b644a1b3e089ee4f310367b",
+          "executable": false
+        },
+        "scripts/animation-map.mjs": {
+          "sha256": "9bc3ff7dbe299c6697bf88a5d813bf38d0f7c2a11cd343f0ae37d19d9862e523",
+          "executable": false
+        },
+        "scripts/package-loader.mjs": {
+          "sha256": "278067c09711a20c014f5e8d2e5a358c42a5d49b054503516a693a37b9829ad6",
+          "executable": false
+        },
+        "techniques.md": {
+          "sha256": "59eca990aad2beade34e47b3c5ea7f03df894574bf9264dd2bd42188542420e7",
+          "executable": false
+        },
+        "transitions/TRANSITION-REGISTRY.md": {
+          "sha256": "fb9358d5d4219d2df9d81b02bd8c8e06fd62ed29557bd0c798d8223354c103ef",
+          "executable": false
+        },
+        "transitions/catalog.md": {
+          "sha256": "3914ec091c1f16bfee5c53d38ed6af1dfab74caedf561788dc39e67c6d7ca239",
+          "executable": false
+        },
+        "transitions/css-3d.md": {
+          "sha256": "e1c3888dd0a2d4b36d25200c1e5ef9038649ae63953865e4b2c4c40fb028d7dd",
+          "executable": false
+        },
+        "transitions/css-blur.md": {
+          "sha256": "fd3eef889a517e1dd985ca816f36f1abfb43420a4b664d4fcc453554cdf561f9",
+          "executable": false
+        },
+        "transitions/css-cover.md": {
+          "sha256": "ba4e5926791c9e6a0a069e20afc91324acb018903f43b4b3f2866d9654f5b7eb",
+          "executable": false
+        },
+        "transitions/css-destruction.md": {
+          "sha256": "7cce7bbd9ebc64176c9ff4fe40ec97273c9c171524d89f853c0651e713949361",
+          "executable": false
+        },
+        "transitions/css-dissolve.md": {
+          "sha256": "47c11ca0a715675c2788aa4a162a652b5dc5f1773b058ea93e9907af56a4eb7c",
+          "executable": false
+        },
+        "transitions/css-distortion.md": {
+          "sha256": "7140650692926959bd5459ca5c478a9b4f137cc76fb92b9138e3b0d353677c06",
+          "executable": false
+        },
+        "transitions/css-grid.md": {
+          "sha256": "c62b17058aa7ba42d34df29436b6b4233e47ff2b72f2c7ce0963c75bdec45144",
+          "executable": false
+        },
+        "transitions/css-light.md": {
+          "sha256": "53f0422d3f6dd2584a30501f84e4f09c9b515f605d51ed264a2061567dda15db",
+          "executable": false
+        },
+        "transitions/css-mechanical.md": {
+          "sha256": "4fed48fa659a4b215a996beeea619d244e6c893700178b1f969c17f2ee0a8612",
+          "executable": false
+        },
+        "transitions/css-other.md": {
+          "sha256": "2156e4fcc3b42cba9e0d9e268944269057fb48ff15fc1983e3ff9386fa2a8cf8",
+          "executable": false
+        },
+        "transitions/css-push.md": {
+          "sha256": "d526a9612483472de4d865ae27061c98842a5155973dd0cec37fac4998dc1b97",
+          "executable": false
+        },
+        "transitions/css-radial.md": {
+          "sha256": "5d8f20de439e3f2c8d45df11c8acbe31dc1b9342e2d54bbe66b451cf81ca0a1b",
+          "executable": false
+        },
+        "transitions/css-scale.md": {
+          "sha256": "3c0cb33d6c844a7265379225f3241d8964afcc908ee757a1ebfb1700a5320ea7",
+          "executable": false
+        },
+        "transitions/overview.md": {
+          "sha256": "ec878d479d16addcd88c770b39fc88fa5219086478aee39e9f96a1096a58b084",
+          "executable": false
+        }
+      },
+      "when": "Вариант OpenMontage для того же процесса; применять к проекту из этого набора"
+    }
+  ]
+}

@@ -1,0 +1,331 @@
+# Every page in Claude Code's documentation index, as of the snapshot date.
+#
+# WHY THIS FILE EXISTS. `build-parity-report.py` used to treat any cited
+# `<name>.md` as a Claude page. It is not: this repo also cites Codex's plugin
+# docs (`plugins.md`, `submission-errors.md`, `plugin-json-spec.md`,
+# `build-plugins.md`), the MCP spec (`elicitation.md`), and assorted names that
+# are neither (`cmd.md`, `react.md`, `style.md`). All of them landed in a table
+# headed "By Claude's documentation", which made that axis unusable as a
+# coverage map — a reviewer could not tell a Claude contract from a Codex one.
+#
+# This file is the allowlist that separates them, and it is also the DENOMINATOR:
+# a coverage map needs the pages we never cited, and only a full page list has
+# them.
+#
+# NOTE: refresh-claude-doc-pages.py emits DATA ONLY — it strips this header.
+# Re-add it after regenerating (measured 2026-08-09: the documented command
+# silently deleted all 24 comment lines, including this warning).
+# REGENERATE when Claude's docs change (new pages are the recurring failure mode
+# — see AGENTS.md, "Renames and new component types"):
+#
+#   curl -sL https://code.claude.com/docs/llms.txt \
+#     | python3 scripts/refresh-claude-doc-pages.py > scripts/claude-doc-pages.tsv
+#
+# CHECKS A REFRESH RE-RUNS. A refreshed corpus can change a page's CONTENT
+# without changing this file's data rows at all, so the page tables this repo
+# transcribes have to be re-read by hand. The ones with a test that names the
+# page sentence it pins, run them after every refresh:
+#
+#   bun test packages/server-core/src/pi-harness/managed-policy-page-contracts.test.ts
+#     managed-settings.md#split-a-file-based-policy-across-teams — the per-kind
+#     combination rules (three bullets when first quoted here, six now), and
+#     managed-settings.md#keys-that-fail-closed — the ten enforcement keys plus
+#     the two the closing sentence exempts, one case each (P6.251).
+#
+# A PAGE SPLIT is the failure mode a page count cannot show. Measured 2026-08-25:
+# `settings` is no longer the key-by-key reference this repo quotes as
+# `settings.md:<line>`. It is now scope/precedence/how-to-edit (804 lines, and its
+# first ~460 lines are a React component), and the material split three ways:
+#
+#   settings             — precedence, scope, editing, "Lists merge instead of
+#                          overriding", "Exceptions to managed settings precedence"
+#   settings-reference   — every key, one section per key (5 474 lines)
+#   managed-settings     — deploying a policy, and the invalid-value behaviour
+#                          table ("Keys that fail closed") this repo enforces
+#
+# THE COUNT IS A READING WITH A DATE — run the census, never quote a number from
+# this header. The command is the one AGENTS.md carries (its "A page can SPLIT"
+# bullet), byte-honest because `git grep` reads bytes and `-a` does not skip the
+# NUL-carrying files a plain `grep` drops silently; a wrapped `grep -r` walks
+# `node_modules` and times out here:
+#
+#   R='[A-Za-z0-9_-]*settings\.md:[0-9]+(-[0-9]+)?'
+#   git grep -ahoI -E "$R" | wc -l && git grep -ahoI -E "$R" | sort -u | wc -l
+#
+# MEASURE AT A REF, NOT THE WORKING TREE (measured 2026-09-07, `P6.657`). The same
+# command over the dirty tree printed 840, 841 and 843 in three runs minutes apart,
+# because sibling lanes were committing docs that carry these citations. Pass the
+# sha — `git grep -ahoI -E "$R" <sha>` — and record it beside the number, or the
+# census measures the wave instead of the tree.
+#
+# THE READING, 2026-09-07 at `d83c87dd0` (`P6.657`): **771** plain
+# `settings.md:<line>` occurrences, **836** once `server-managed-settings.md:<line>`
+# is included, **840** counting the four `managed-settings.md:<line>` as well, over
+# **140** distinct anchor strings. This header said 767/835 on 2026-08-29, the plan
+# said 772, another pass said 828, and a 2026-09-07 pass over a different tree state
+# said 754/822 — every one correct when written, which is the whole point. Where the
+# 771 sit, because the bucket decides whether a conversion is worth doing at all:
+#
+#     265  packages/  source comments        <- a reader follows these
+#     222  docs/superpowers/specs/data/      <- generated sweep artifacts, dated
+#     173  docs/superpowers/specs/           <- dated historical records
+#      89  docs/superpowers/plans/           <- dated historical records
+#      16  apps/      source comments        <- a reader follows these
+#       6  docs/ live                        <- a reader follows these
+#
+# So 287 of the 771 are followable and 484 are frozen evidence, where rewriting an
+# anchor would falsify the record of what a dated pass actually cited. Convert the
+# followable ones to `page.md#<section>` plus the verbatim sentence; leave the frozen
+# ones and say why, rather than reporting the whole 771 as a backlog. WHICH of them
+# are worth converting, which are deliberately frozen, and the rendered-verified
+# successor anchor plus today's verbatim sentence for the most-cited ones:
+# `docs/superpowers/specs/2026-09-07-settings-anchor-rot-disposition.md` — read it
+# before converting one.
+#
+# All three were absent or wrong somewhere when that was measured: two of them
+# were missing from THIS file entirely, so `check-coverage-map.ts` was validating
+# a corpus with a hole in it, and AGENTS.md pointed the plugin-format contract
+# list at the page that had stopped holding the contract. A count going 186 → 191
+# looks like five additions; it was also one page becoming three.
+#
+# Format: <slug>\t<page title>.  Snapshot: 2026-10-17, 228 pages (was 210 on 2026-10-01).
+# Re-verified 2026-08-28 against a fresh `llms.txt`: the page SET is identical, 191 = 191,
+# nothing entered or left. Recorded because the coverage map and the parity report both read
+# this file as their denominator, and a denominator nobody re-checks is the one number a
+# staleness gate cannot catch — `--check` on either generator compares outputs, not corpora.
+# 2026-10-17 (UB12.95): 210 → 228, nothing left. Joined: the ten `plugins/mods/*` pages (a
+# mod is a plugin whose `hooks/hooks.json` names a `modules` path), six `code-review-*` pages,
+# `auto-mode-classifier-billing` and `hipaa-setup`. The six are a SPLIT, the failure a count
+# cannot show: `code-review` is now the cloud service, and two of the sections this repo cites
+# on it (14 citations of `run-in-the-foreground` and `tune-effort-and-arguments`, 2026-10-17)
+# moved to `code-review-local`, the local `/code-review` page. The index also began listing
+# 36 pages twice (264 links over 228 slugs, same titles), so the refresh script now writes
+# one row per slug.
+accessibility	Use Claude Code with a screen reader
+admin-setup	Set up Claude Code for your organization
+advisor	Escalate hard decisions with the advisor tool
+agent-sdk/agent-loop	How the agent loop works
+agent-sdk/claude-code-features	Use Claude Code features in the SDK
+agent-sdk/configuration	Configure your agent
+agent-sdk/cost-tracking	Track cost and usage
+agent-sdk/custom-tools	Give Claude custom tools
+agent-sdk/examples	Examples
+agent-sdk/file-checkpointing	Rewind file changes with checkpointing
+agent-sdk/hooks	Intercept and control agent behavior with hooks
+agent-sdk/hosting	Hosting the Agent SDK
+agent-sdk/mcp	Connect to external tools with MCP
+agent-sdk/migration-guide	Migrate to Claude Agent SDK
+agent-sdk/modifying-system-prompts	Modifying system prompts
+agent-sdk/observability	Observability with OpenTelemetry
+agent-sdk/overview	Agent SDK overview
+agent-sdk/permissions	Configure permissions
+agent-sdk/plugins	Plugins in the SDK
+agent-sdk/python	Agent SDK reference - Python
+agent-sdk/quickstart	Quickstart
+agent-sdk/secure-deployment	Securely deploying AI agents
+agent-sdk/session-storage	Persist sessions to external storage
+agent-sdk/sessions	Work with sessions
+agent-sdk/skills	Extend agents with skills
+agent-sdk/streaming-output	Stream responses in real-time
+agent-sdk/streaming-vs-single-mode	Streaming Input
+agent-sdk/structured-outputs	Get structured output from agents
+agent-sdk/subagents	Subagents in the SDK
+agent-sdk/todo-tracking	Track todos
+agent-sdk/tool-search	Scale to many tools with tool search
+agent-sdk/troubleshooting	Troubleshoot the Agent SDK
+agent-sdk/typescript	Agent SDK reference - TypeScript
+agent-sdk/typescript-v2-preview	TypeScript SDK V2 session API (removed)
+agent-sdk/user-input	Handle approvals and user input
+agent-teams	Orchestrate teams of Claude Code sessions
+agent-view	Manage multiple agents with agent view
+agents	Run agents in parallel
+amazon-bedrock	Claude Code on Amazon Bedrock
+analytics	Track team usage with analytics
+artifacts	Share session output as artifacts
+authentication	Authentication
+auto-mode-classifier-billing	Auto mode classifier request charges
+auto-mode-config	Configure auto mode
+best-practices	Best practices for Claude Code
+champion-kit	Champion kit
+changelog	Claude Code changelog
+channels	Push events into a running session with channels
+channels-reference	Channels reference
+checkpointing	Checkpointing
+chrome	Use Claude Code with Chrome
+claude-apps-gateway	Claude apps gateway for Amazon Bedrock, Claude Platform on AWS, Google Cloud, and Microsoft Foundry
+claude-apps-gateway-config	Claude apps gateway configuration
+claude-apps-gateway-deploy	Claude apps gateway deployment and operations
+claude-apps-gateway-on-aws	Deploy Claude apps gateway on AWS
+claude-apps-gateway-on-gcp	Deploy Claude apps gateway on Google Cloud
+claude-apps-gateway-spend-limits	Claude apps gateway spend limits
+claude-code-on-the-web	Use Claude Code in the cloud
+claude-directory	Explore the .claude directory
+claude-platform-on-aws	Claude Code on Claude Platform on AWS
+claude-projects	Let Claude coordinate ongoing work with Projects
+claude-security	Scan your codebase for vulnerabilities
+claude-tag	Claude Tag
+cli-reference	CLI reference
+cloud-environments	Configure cloud environments
+code-review	Code Review
+code-review-costs	Code Review costs and usage
+code-review-customize	Customize Code Review
+code-review-local	Review locally with /code-review
+code-review-pull-requests	Read and request reviews on a pull request
+code-review-setup	Set up Code Review
+code-review-troubleshooting	Troubleshoot Code Review
+commands	Commands
+common-workflows	Common workflows
+communications-kit	Communications kit
+computer-use	Let Claude use your computer from the CLI
+context-window	Explore the context window
+corporate-launcher	Run Claude Code behind a corporate launcher
+costs	Manage costs effectively
+cross-session-messaging	Message your other Claude Code sessions
+data-usage	Data usage
+debug-your-config	Debug your configuration
+deep-links	Launch sessions from links
+desktop	Desktop application
+desktop-ios-simulator	Test iOS apps in the simulator
+desktop-linux	Claude Desktop on Linux (beta)
+desktop-quickstart	Get started with the desktop app
+desktop-scheduled-tasks	Schedule recurring tasks in Claude Code Desktop
+desktop-wsl	Claude Code Desktop in WSL
+devcontainer	Development containers
+env-vars	Environment variables
+errors	Error reference
+fast-mode	Speed up responses with fast mode
+feature-availability	Feature availability
+features-overview	Extend Claude Code
+fullscreen	Fullscreen rendering
+gateways	Run Claude Code through a gateway
+github-actions	Claude Code GitHub Actions
+github-actions-cloud-providers	Use Claude Code GitHub Actions with cloud providers
+github-enterprise-server	Claude Code with GitHub Enterprise Server
+gitlab-ci-cd	Claude Code GitLab CI/CD
+glossary	Glossary
+goal	Keep Claude working toward a goal
+google-vertex-ai	Claude Code on Google Cloud's Agent Platform
+headless	Run Claude Code programmatically
+hipaa-setup	Set up Claude Code (local mode) for a HIPAA-ready organization
+hooks	Hooks reference
+hooks-guide	Automate actions with hooks
+how-claude-code-works	How Claude Code works
+interactive-mode	Interactive mode
+jetbrains	JetBrains IDEs
+keybindings	Customize keyboard shortcuts
+large-codebases	Set up Claude Code in a monorepo or large codebase
+legal-and-compliance	Legal and compliance
+llm-gateway	Other LLM gateways
+llm-gateway-connect	Connect Claude Code to an LLM gateway
+llm-gateway-protocol	Claude Code gateway compatibility guide
+llm-gateway-rollout	Roll out an LLM gateway for your organization
+managed-mcp	Control MCP server access for your organization
+managed-settings	Deploy managed settings
+mcp	Connect Claude Code to tools via MCP
+mcp-quickstart	Connect to MCP servers
+memory	How Claude remembers your project
+microsoft-foundry	Claude Code on Microsoft Foundry
+mobile	Claude Code on mobile
+model-config	Model configuration
+monitoring-usage	Monitoring
+network-config	Enterprise network configuration
+output-styles	Output styles
+overview	Overview
+permission-modes	Choose a permission mode
+permissions	Configure permissions
+platforms	Platforms and integrations
+plugin-evals	Test plugins with evals
+plugins/anthropic-marketplaces	Anthropic's marketplaces
+plugins/cli-hints	Recommend your plugin from your CLI
+plugins/cli-reference	Plugin commands reference
+plugins/code-intelligence	Code intelligence plugins
+plugins/components	Add components to a plugin
+plugins/create	Create a Claude Code plugin
+plugins/create-marketplace	Create a marketplace
+plugins/dependencies	Plugin dependencies
+plugins/host-marketplace	Host and maintain a marketplace
+plugins/install	Install and manage plugins
+plugins/loading	Plugin loading reference
+plugins/manifest-reference	Plugin manifest reference
+plugins/marketplace-reference	Marketplace reference
+plugins/measure	Measure plugin cost and usage
+plugins/mods/admin	Manage mods for your organization
+plugins/mods/api	Use the mods API
+plugins/mods/create	Create a mod
+plugins/mods/events	React to events with a mod
+plugins/mods/gallery	Interface gallery for mods
+plugins/mods/interface	Draw in the interface with a mod
+plugins/mods/overview	Mods overview
+plugins/mods/reference	Mods reference
+plugins/mods/test	Test a mod
+plugins/mods/troubleshoot	Troubleshoot a mod
+plugins/org	Manage Claude Code plugins for your organization
+plugins/overview	Plugins overview
+plugins/publish	Publish and distribute a plugin
+plugins/relevance	Recommend plugins for your org
+plugins/security	Plugin security and trust
+plugins/troubleshooting	Troubleshoot plugins
+prompt-caching	How Claude Code uses prompt caching
+prompt-library	Prompt library
+quickstart	Quickstart
+remote-control	Continue local sessions from any device with Remote Control
+routines	Automate work with routines
+sandbox-environments	Choose a sandbox environment
+sandboxing	Configure the sandboxed Bash tool
+scheduled-tasks	Run prompts on a schedule
+security	Security
+security-guidance	Catch security issues as Claude writes code
+self-hosted-environments	Self-hosted environments
+self-hosted-environments-configuration	Customize sessions in self-hosted environments
+self-hosted-environments-deploy	Deploy self-hosted environments to production
+self-hosted-environments-identity	Verify session identity in self-hosted environments
+self-hosted-environments-quickstart	Self-hosted environments quickstart
+self-hosted-environments-reference	Self-hosted environments reference
+self-hosted-environments-testing	Test self-hosted environments end to end
+server-managed-settings	Configure server-managed settings
+sessions	Manage sessions
+settings	Settings files and precedence
+settings-example	Example settings files
+settings-reference	All settings
+setup	Advanced setup
+skills	Extend Claude with skills
+slack	Claude Code in Slack
+statusline	Customize your status line
+sub-agents	Create custom subagents
+terminal-config	Configure your terminal for Claude Code
+third-party-integrations	Enterprise deployment overview
+tools-reference	Tools reference
+troubleshoot-install	Troubleshoot installation and login
+troubleshooting	Troubleshooting
+ultrareview	Find bugs with ultrareview
+voice-dictation	Voice dictation
+vs-code	Use Claude Code in VS Code
+web-quickstart	Get started with Claude Code in the cloud
+whats-new/2026-w13	Week 13 · March 23–27, 2026
+whats-new/2026-w14	Week 14 · March 30 – April 3, 2026
+whats-new/2026-w15	Week 15 · April 6–10, 2026
+whats-new/2026-w16	Week 16 · April 13–17, 2026
+whats-new/2026-w17	Week 17 · April 20–24, 2026
+whats-new/2026-w18	Week 18 · April 27 – May 1, 2026
+whats-new/2026-w19	Week 19 · May 4–8, 2026
+whats-new/2026-w20	Week 20 · May 11–15, 2026
+whats-new/2026-w21	Week 21 · May 18–22, 2026
+whats-new/2026-w22	Week 22 · May 25–29, 2026
+whats-new/2026-w23	Week 23 · June 1–5, 2026
+whats-new/2026-w24	Week 24 · June 8–12, 2026
+whats-new/2026-w25	Week 25 · June 15–19, 2026
+whats-new/2026-w26	Week 26 · June 22–26, 2026
+whats-new/2026-w27	Week 27 · June 29 – July 3, 2026
+whats-new/2026-w28	Week 28 · July 6–10, 2026
+whats-new/2026-w29	Week 29 · July 13–17, 2026
+whats-new/2026-w30	Week 30 · July 20–24, 2026
+whats-new/2026-w32	Week 32 · August 3–7, 2026
+whats-new/2026-w33	Week 33 · August 10–14, 2026
+whats-new/2026-w34	Week 34 · August 17–21, 2026
+whats-new/2026-w35	Week 35 · August 24–28, 2026
+whats-new/2026-w36	Week 36 · August 31 – September 4, 2026
+whats-new/2026-w37	Week 37 · September 7–11, 2026
+whats-new/index	What's new
+workflows	Orchestrate subagents at scale with dynamic workflows
+worktrees	Run parallel sessions with worktrees
+zero-data-retention	Zero data retention

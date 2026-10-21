@@ -1,0 +1,10 @@
+{
+  "interface": {
+    "display_name": "Реализация спецификации и зависимых задач, подготовленных процессом to-spec/to-tickets.",
+    "short_description": "Реализация спецификации и зависимых задач, подготовленных проце…",
+    "default_prompt": "Используй $implement-spec. Примени $implement-spec к задаче и текущему репозиторию. Цель: Реализация спецификации и зависимых задач, подготовленных процессом to-spec/to-tickets."
+  },
+  "policy": {
+    "allow_implicit_invocation": false
+  }
+}

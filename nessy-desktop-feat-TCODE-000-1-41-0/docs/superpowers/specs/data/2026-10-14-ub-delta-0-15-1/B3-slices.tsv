@@ -1,0 +1,391 @@
+A tokens/themes/motion/guardrails	apps/electron/eslint.config.mjs	22	0	51	243
+A tokens/themes/motion/guardrails	apps/electron/resources/themes/craft.json	25	0	-2	0
+A tokens/themes/motion/guardrails	apps/electron/resources/themes/default.json	14	14	-2	0
+A tokens/themes/motion/guardrails	apps/electron/resources/themes/paper.json	25	0	-2	0
+A tokens/themes/motion/guardrails	apps/electron/resources/themes/solarized.json	2	2	-2	0
+A tokens/themes/motion/guardrails	apps/electron/src/main/window-manager.ts	15	13	183	918
+A tokens/themes/motion/guardrails	apps/electron/src/preload/bootstrap.ts	8	0	257	510
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/App.tsx	32	18	727	2412
+E chat header	apps/electron/src/renderer/atoms/label-value-edit.ts	24	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/atoms/sessions.ts	4	0	356	908
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/KeyboardShortcutsDialog.tsx	14	21	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ResetConfirmationDialog.tsx	9	9	1	121
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/RtkUpdateDialog.tsx	6	6	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ServerDirectoryBrowser.tsx	20	19	62	347
+I onboarding/apisetup	apps/electron/src/renderer/components/apisetup/ApiKeyInput.tsx	56	49	340	1117
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-menu/DesktopAppMenu.tsx	2	2	3	307
+G composer (ours)	apps/electron/src/renderer/components/app-shell/ActiveOptionBadges.tsx	41	507	250	703
+D transcript	apps/electron/src/renderer/components/app-shell/ActiveTasksBar.tsx	65	42	191	237
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/AppShell.tsx	360	1412	1203	4282
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/AttachmentPreview.tsx	44	24	33	154
+D transcript	apps/electron/src/renderer/components/app-shell/BackgroundFinishedChip.tsx	17	19	17	155
+D transcript	apps/electron/src/renderer/components/app-shell/BackgroundTaskChip.tsx	445	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/ChatDisplay.tsx	146	588	1939	3900
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/CompactPanelTransition.tsx	5	10	5	77
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/CompactSessionListFilter.tsx	24	37	21	512
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/CompactSessionMenu.tsx	49	83	34	644
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/CompactWorkspaceSwitcher.tsx	21	21	83	293
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/DetailEmptyState.tsx	42	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/FabNewChat.tsx	3	8	3	47
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/LeftSidebar.tsx	179	195	7	597
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/MainContentPanel.tsx	9	17	176	541
+E chat header	apps/electron/src/renderer/components/app-shell/PanelHeader.tsx	44	111	0	286
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/PanelSlot.tsx	62	18	2	152
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/PanelStackContainer.tsx	189	88	0	274
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/ProjectMultiSelectFilter.tsx	12	11	2	123
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/ProjectsListPanel.tsx	1	1	11	174
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SendResourceToWorkspaceDialog.tsx	17	59	67	289
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SendToWorkspaceDialog.tsx	18	62	55	277
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionBadges.tsx	143	26	0	42
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionFilterMenu.tsx	1112	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/SessionInfoPopover.tsx	38	30	13	161
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionItem.tsx	93	66	153	329
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionList.tsx	27	13	109	808
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionMenu.tsx	2	3	70	293
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionMenuParts.tsx	1	1	0	197
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionProjectColorWrapper.tsx	16	8	2	46
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionSearchHeader.tsx	12	10	0	107
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SessionStatusIcon.tsx	6	3	27	92
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/ShellResizeHandle.tsx	64	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SidebarPane.tsx	112	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SkillsListPanel.tsx	5	12	112	127
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/SourcesListPanel.tsx	32	25	230	234
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/TaskActionMenu.tsx	0	273	238	314
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/TopBar.tsx	22	18	15	293
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/WorkspaceSwitcher.tsx	8	8	94	324
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/WorkspaceTargetList.tsx	79	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/__tests__/fit-labels.test.ts	19	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/background-task-chip-state.ts	5	2	106	155
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/ErrorMessage.tsx	100	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/MessageBubble.tsx	204	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/NewChatSuggestions.tsx	46	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/ProcessingIndicator.tsx	147	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/ScrollOnMount.tsx	22	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/TranscriptStates.tsx	122	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/TurnFrame.tsx	41	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/__tests__/new-chat-suggestions.test.ts	71	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/__tests__/strip-repeated-title.test.ts	24	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/new-chat-suggestions.ts	130	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/chat-display/strip-repeated-title.ts	14	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/chat-header/ChatHeader.tsx	334	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/chat-header/ChatHeaderLabels.tsx	249	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/chat-header/ChatHeaderStatusButton.tsx	97	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/chat-header/ChatShareMenu.tsx	76	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/chat-header/__tests__/label-strip-layout.test.ts	44	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/chat-header/label-strip-layout.ts	43	0	-2	0
+E chat header	apps/electron/src/renderer/components/app-shell/fit-labels.ts	14	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ChatInputZone.tsx	101	33	199	277
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/CompactModelSelector.tsx	63	50	311	584
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/CompactPermissionModeSelector.tsx	23	63	123	209
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ComposerHintLine.tsx	62	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ComposerModeChip.tsx	114	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ComposerModelMenu.tsx	396	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ComposerSourcesChip.tsx	140	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ContextUsageChip.tsx	81	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/FollowUpChips.tsx	100	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/FreeFormInput.tsx	190	766	1935	3275
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/FreeFormInputContextBadge.tsx	22	24	0	133
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ImageSupportWarningBanner.tsx	3	3	46	75
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/InputContainer.tsx	26	15	75	338
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/InputErrorBoundary.tsx	8	8	9	104
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/SendButton.tsx	55	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/ToolbarStatusSlot.tsx	25	27	0	206
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/WorkingDirectorySelector.tsx	19	18	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/action-hotkey.ts	32	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/app-shell/input/composer-styles.ts	53	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/input/structured/AdminApprovalRequest.tsx	33	37	67	164
+D transcript	apps/electron/src/renderer/components/app-shell/input/structured/CredentialRequest.tsx	60	54	9	312
+D transcript	apps/electron/src/renderer/components/app-shell/input/structured/DecisionCard.tsx	140	0	-2	0
+D transcript	apps/electron/src/renderer/components/app-shell/input/structured/PermissionRequest.tsx	55	57	801	897
+D transcript	apps/electron/src/renderer/components/app-shell/input/structured/decision-tone.ts	26	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/BoardListToggle.tsx	24	13	6	68
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/KanbanBoard.tsx	180	19	66	274
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/KanbanBoardContainer.tsx	25	15	375	639
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/KanbanColumn.tsx	205	119	45	378
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/ModelChip.tsx	4	5	49	74
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/NewTaskComposer.tsx	15	31	2	84
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/StatusBadge.tsx	8	28	2	50
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/SubtaskProgress.tsx	18	25	3	71
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/SubtaskRow.tsx	12	26	35	122
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/TaskChatPreview.tsx	18	18	16	125
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/TaskEditor.tsx	183	174	703	1650
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/TaskTile.tsx	109	90	139	641
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/__tests__/board-collision.test.ts	61	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/__tests__/node-state-pill.test.ts	7	6	2	54
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/board-collision.ts	26	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/kanban/node-state-pill.ts	7	4	2	39
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/app-shell/panel-constants.ts	2	2	0	38
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/ActionTypeIcon.tsx	1	1	3	7
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationActionPreview.tsx	3	3	3	38
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationActionRow.tsx	26	26	93	223
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationAvatar.tsx	14	12	0	84
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationCard.tsx	15	17	0	116
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationEventTimeline.tsx	39	40	27	207
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationInfoPage.tsx	34	33	51	252
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationTestPanel.tsx	8	7	0	64
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/AutomationsListPanel.tsx	18	34	20	365
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/BatchAutomationMenu.tsx	1	1	7	115
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/CronBuilder.tsx	20	27	27	293
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/__tests__/types.test.ts	24	0	43	255
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/types.ts	1	1	88	557
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/automations/utils.ts	5	2	76	131
+D transcript	apps/electron/src/renderer/components/chat/AuthRequestCard.tsx	190	255	483	1096
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/AutoRulesDataTable.tsx	25	32	33	249
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_Alert.tsx	24	12	0	68
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_Badge.tsx	17	48	0	87
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_DataTable.tsx	11	4	0	160
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_FullscreenButton.tsx	30	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_GroupedList.tsx	11	11	5	138
+E chat header	apps/electron/src/renderer/components/info/Info_HeaderMenu.tsx	39	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_Markdown.tsx	6	16	24	108
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_Page.tsx	34	31	0	165
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_Section.tsx	16	8	0	48
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_StatePill.tsx	42	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_StatusBadge.tsx	3	2	0	47
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_Table.tsx	9	12	0	68
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/Info_TechnicalDetails.tsx	36	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/LabelsDataTable.tsx	15	23	0	197
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/PermissionsDataTable.tsx	15	27	115	309
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/ToolsDataTable.tsx	21	18	0	95
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/info/index.ts	9	0	54	100
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/messaging/LarkConnectDialog.tsx	34	30	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/messaging/PairingCodeDialog.tsx	19	19	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/messaging/TelegramConnectDialog.tsx	9	10	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/messaging/TelegramSupergroupPairingDialog.tsx	17	17	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/messaging/WhatsAppConnectDialog.tsx	8	6	-2	0
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/APISetupStep.tsx	19	19	16	281
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/CompletionStep.tsx	1	1	2	56
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/CredentialsStep.tsx	11	11	112	211
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/GitBashWarning.tsx	12	12	0	149
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/LocalModelStep.tsx	7	7	1	150
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/OnboardingWizard.tsx	2	1	72	251
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/ProviderMark.tsx	36	0	-2	0
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/ProviderSelectStep.tsx	25	28	128	232
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/ReauthScreen.tsx	9	8	1	102
+I onboarding/apisetup	apps/electron/src/renderer/components/onboarding/primitives.tsx	39	33	0	282
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/DeletePageDialog.tsx	4	3	3	49
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/PageFrame.tsx	9	1	256	504
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/PageGrantRequestDialog.tsx	10	14	106	119
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/PageGrantsDialog.tsx	8	18	45	113
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/PageSourceAuthBanner.tsx	16	10	316	224
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/PageTile.tsx	44	74	18	188
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/PageView.tsx	113	67	85	520
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/PagesHome.tsx	33	24	13	207
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/SharePageDialog.tsx	51	44	337	350
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/pages/page-visuals.tsx	43	14	4	78
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/projects/CreateProjectDialog.tsx	18	17	5	90
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/right-sidebar/SessionFilesSection.tsx	2	2	629	248
+C settings pages	apps/electron/src/renderer/components/settings/SearchableModelInput.tsx	16	19	1	170
+C settings pages	apps/electron/src/renderer/components/settings/SettingsCard.tsx	14	7	0	86
+C settings pages	apps/electron/src/renderer/components/settings/SettingsEditRow.tsx	4	2	-2	0
+C settings pages	apps/electron/src/renderer/components/settings/SettingsInput.tsx	38	50	0	304
+C settings pages	apps/electron/src/renderer/components/settings/SettingsMenuSelect.tsx	30	27	1	272
+C settings pages	apps/electron/src/renderer/components/settings/SettingsPage.tsx	85	0	-2	0
+C settings pages	apps/electron/src/renderer/components/settings/SettingsRadioGroup.tsx	36	53	0	300
+C settings pages	apps/electron/src/renderer/components/settings/SettingsRow.tsx	5	4	146	197
+C settings pages	apps/electron/src/renderer/components/settings/SettingsSection.tsx	13	10	0	117
+C settings pages	apps/electron/src/renderer/components/settings/SettingsSegmentedControl.tsx	30	32	0	181
+C settings pages	apps/electron/src/renderer/components/settings/SettingsSelect.tsx	5	5	0	179
+C settings pages	apps/electron/src/renderer/components/settings/SettingsTextarea.tsx	7	10	10	127
+C settings pages	apps/electron/src/renderer/components/settings/SettingsToggle.tsx	3	4	31	80
+C settings pages	apps/electron/src/renderer/components/settings/SettingsUIConstants.ts	24	8	0	22
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/components/settings/ThemeGrid.tsx	157	0	-2	0
+C settings pages	apps/electron/src/renderer/components/settings/index.ts	9	0	7	99
+G composer (ours)	apps/electron/src/renderer/components/ui/CompactWorkingDirectorySelector.tsx	4	4	25	236
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/EditPopover.tsx	7	3	370	1218
+E chat header	apps/electron/src/renderer/components/ui/HeaderIconButton.tsx	9	7	0	53
+E chat header	apps/electron/src/renderer/components/ui/HeaderMenu.tsx	1	1	3	73
+E chat header	apps/electron/src/renderer/components/ui/PanelHeaderCenterButton.tsx	10	6	10	40
+E chat header	apps/electron/src/renderer/components/ui/TopBarButton.tsx	11	8	0	42
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/__tests__/source-connection-status.test.ts	36	0	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/__tests__/workspace-avatar-color.test.ts	21	0	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/avatar.tsx	3	3	0	183
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/button.tsx	103	18	0	57
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/collapsible.tsx	4	51	0	58
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/color-picker.tsx	1	1	2	139
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/command.tsx	37	19	0	155
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/context-menu.tsx	10	10	0	331
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/dialog.tsx	18	20	0	143
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/dropdown-menu.tsx	10	10	0	311
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/empty.tsx	4	4	0	104
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/ui/entity-list-empty.tsx	3	5	5	62
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/ui/entity-list-label-badge.tsx	55	21	0	83
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/ui/entity-list.tsx	25	10	19	241
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/ui/entity-panel.tsx	10	2	0	105
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/components/ui/entity-row.tsx	131	154	27	528
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/hotkey-keycaps.tsx	32	0	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/inline-color-picker-row.tsx	2	2	6	108
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/inline-menu-styles.ts	27	0	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/input.tsx	2	1	0	22
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/kbd.tsx	3	3	0	28
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/label-menu.tsx	29	19	2	460
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/label-value-popover.tsx	37	29	3	329
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/mention-badge.tsx	4	4	5	136
+G composer (ours)	apps/electron/src/renderer/components/ui/mention-menu.tsx	23	14	618	1172
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/metadata-badge.tsx	6	5	0	102
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/popover.tsx	1	1	0	48
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/rename-dialog.tsx	16	15	0	86
+G composer (ours)	apps/electron/src/renderer/components/ui/rich-text-input.tsx	22	22	93	811
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/scroll-area.tsx	3	2	13	70
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/select.tsx	6	6	6	173
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/session-status-menu.tsx	25	17	3	169
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/skeleton.tsx	19	0	-2	0
+G composer (ours)	apps/electron/src/renderer/components/ui/skill-mention-menu.tsx	12	5	19	279
+G composer (ours)	apps/electron/src/renderer/components/ui/slash-command-menu.tsx	67	28	615	1255
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/sonner.tsx	61	14	0	40
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/source-avatar.tsx	13	1	197	101
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/source-connection-status.ts	55	0	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/source-status-indicator.tsx	1	49	239	322
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/styled-context-menu.tsx	6	15	0	131
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/switch.tsx	3	10	0	31
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/tabs.tsx	4	6	0	55
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/textarea.tsx	2	1	0	18
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/workspace-avatar-color.ts	40	0	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/components/ui/workspace-avatar.tsx	2	1	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/context/AppShellContext.tsx	3	0	91	343
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/context/ThemeContext.tsx	71	44	1	535
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/contexts/NavigationContext.tsx	16	6	323	1499
+D transcript	apps/electron/src/renderer/event-processor/processor.ts	3	2	157	366
+D transcript	apps/electron/src/renderer/event-processor/types.ts	16	0	270	759
+D transcript	apps/electron/src/renderer/hooks/useBackgroundTasks.ts	43	22	183	250
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/hooks/useContainerWidth.ts	12	3	0	27
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/hooks/useDelayedLoading.ts	42	0	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/hooks/useDynamicStack.ts	0	185	0	185
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/hooks/useListReorderFlip.ts	53	0	-2	0
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/hooks/useResizeGradient.ts	2	2	0	120
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/hooks/useTheme.ts	5	37	0	76
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/index.css	170	998	49	1535
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/index.html	9	0	2	36
+D transcript	apps/electron/src/renderer/lib/__tests__/run-command-message.test.ts	15	0	-2	0
+B primitives/dialogs/toasts	apps/electron/src/renderer/lib/provider-icons.ts	1	0	56	223
+D transcript	apps/electron/src/renderer/lib/run-command-message.ts	16	0	-2	0
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/lib/utils.ts	2	6	0	6
+E chat header	apps/electron/src/renderer/pages/ChatPage.tsx	112	444	399	1124
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/pages/ProjectInfoPage.tsx	52	56	128	540
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/pages/ShortcutsPage.tsx	8	11	-2	0
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/pages/SkillInfoPage.tsx	38	33	285	98
+F shell/rows/sidebar/lists/kanban/pages	apps/electron/src/renderer/pages/SourceInfoPage.tsx	71	29	534	154
+C settings pages	apps/electron/src/renderer/pages/settings/AiSettingsPage.tsx	524	527	1223	2037
+C settings pages	apps/electron/src/renderer/pages/settings/AppSettingsPage.tsx	142	159	730	1075
+A tokens/themes/motion/guardrails	apps/electron/src/renderer/pages/settings/AppearanceSettingsPage.tsx	280	260	127	535
+C settings pages	apps/electron/src/renderer/pages/settings/InputSettingsPage.tsx	39	45	0	131
+C settings pages	apps/electron/src/renderer/pages/settings/LabelsSettingsPage.tsx	102	107	31	148
+C settings pages	apps/electron/src/renderer/pages/settings/MessagingSettingsPage.tsx	89	116	-2	0
+C settings pages	apps/electron/src/renderer/pages/settings/PermissionsSettingsPage.tsx	117	122	376	631
+C settings pages	apps/electron/src/renderer/pages/settings/PreferencesPage.tsx	84	88	14	269
+C settings pages	apps/electron/src/renderer/pages/settings/ServerSettingsPage.tsx	120	118	23	315
+C settings pages	apps/electron/src/renderer/pages/settings/SettingsNavigator.tsx	42	58	1	184
+C settings pages	apps/electron/src/renderer/pages/settings/ShortcutsPage.tsx	32	45	337	479
+C settings pages	apps/electron/src/renderer/pages/settings/WorkspaceSettingsPage.tsx	195	218	236	691
+C settings pages	apps/electron/src/renderer/pages/settings/__tests__/ai-settings-loader.test.ts	44	0	-2	0
+C settings pages	apps/electron/src/renderer/pages/settings/ai-settings-loader.ts	21	0	-2	0
+K playground	apps/electron/src/renderer/playground.html	9	0	1	24
+K playground	apps/electron/src/renderer/playground/ComponentPreview.tsx	63	4	60	213
+K playground	apps/electron/src/renderer/playground/PlaygroundApp.tsx	17	1	11	258
+K playground	apps/electron/src/renderer/playground/PlaygroundAppShellProvider.tsx	4	3	30	95
+K playground	apps/electron/src/renderer/playground/PlaygroundPreviewProviders.tsx	30	0	-2	0
+K playground	apps/electron/src/renderer/playground/Sidebar.tsx	5	5	0	100
+K playground	apps/electron/src/renderer/playground/demos/mobile-webui/ChatDisplayMobilePreview.tsx	0	3	1	132
+K playground	apps/electron/src/renderer/playground/mock-utils.ts	43	8	813	613
+K playground	apps/electron/src/renderer/playground/registry/chat-header.tsx	125	0	-2	0
+K playground	apps/electron/src/renderer/playground/registry/chat.tsx	121	14	431	1897
+K playground	apps/electron/src/renderer/playground/registry/custom-shadows.tsx	1	1	0	298
+K playground	apps/electron/src/renderer/playground/registry/edit-popover.tsx	1	0	43	506
+K playground	apps/electron/src/renderer/playground/registry/entity-lists.tsx	24	4	124	1060
+K playground	apps/electron/src/renderer/playground/registry/index.ts	5	1	114	189
+K playground	apps/electron/src/renderer/playground/registry/label-badges.tsx	1	1	0	148
+K playground	apps/electron/src/renderer/playground/registry/markdown.tsx	46	1	63	746
+K playground	apps/electron/src/renderer/playground/registry/primitives.tsx	476	0	-2	0
+K playground	apps/electron/src/renderer/playground/registry/toasts.tsx	37	32	0	143
+K playground	apps/electron/src/renderer/playground/registry/turn-card.tsx	7	2	323	2686
+K playground	apps/electron/src/renderer/playground/registry/types.ts	1	1	2	46
+J webui/viewer	apps/viewer/package.json	1	1	1	38
+J webui/viewer	apps/viewer/src/App.tsx	4	2	2	331
+J webui/viewer	apps/viewer/src/index.css	7	7	1	39
+J webui/viewer	apps/viewer/src/main.tsx	4	1	0	18
+J webui/viewer	apps/webui/package.json	1	1	1	24
+J webui/viewer	apps/webui/src/App.tsx	6	2	0	149
+J webui/viewer	apps/webui/src/adapter/web-api.ts	1	0	107	345
+J webui/viewer	apps/webui/src/index.css	21	4	28	52
+J webui/viewer	apps/webui/src/index.html	9	0	1	30
+J webui/viewer	apps/webui/src/login.css	162	0	-2	0
+J webui/viewer	apps/webui/src/login.html	15	214	1	286
+J webui/viewer	apps/webui/vite.config.ts	22	0	6	107
+A tokens/themes/motion/guardrails	packages/shared/src/config/__tests__/theme-roles.test.ts	209	0	-2	0
+A tokens/themes/motion/guardrails	packages/shared/src/config/theme-roles.ts	558	0	-2	0
+A tokens/themes/motion/guardrails	packages/shared/src/config/theme.ts	69	95	1	317
+A tokens/themes/motion/guardrails	packages/ui/eslint-rules/__tests__/design-guardrails.test.ts	64	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/eslint-rules/no-motion-antipatterns.cjs	89	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/eslint-rules/no-raw-palette-colors.cjs	84	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/eslint.config.mjs	13	0	19	114
+Z other	packages/ui/package.json	3	1	10	85
+D transcript	packages/ui/src/components/annotations/annotation-style-tokens.ts	2	2	0	58
+D transcript	packages/ui/src/components/chat/AcceptPlanDropdown.tsx	9	10	0	92
+D transcript	packages/ui/src/components/chat/CompactAcceptPlanDrawer.tsx	11	12	0	110
+D transcript	packages/ui/src/components/chat/InlineExecution.tsx	17	17	36	208
+D transcript	packages/ui/src/components/chat/SessionViewer.tsx	1	1	9	244
+D transcript	packages/ui/src/components/chat/SystemMessage.tsx	23	37	0	84
+D transcript	packages/ui/src/components/chat/TurnCard.tsx	196	1595	422	3222
+D transcript	packages/ui/src/components/chat/TurnCardActionsMenu.tsx	10	21	0	84
+D transcript	packages/ui/src/components/chat/UserMessageBubble.tsx	43	38	10	521
+D transcript	packages/ui/src/components/chat/__tests__/turn-utils-grouping.test.ts	25	17	0	679
+D transcript	packages/ui/src/components/chat/turn-utils.ts	77	57	139	1268
+D transcript	packages/ui/src/components/chat/turn/ActivityGroupRow.tsx	174	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/ActivityIcons.tsx	161	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/ActivityRow.tsx	232	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/ResponseFooter.tsx	124	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/ThinkingRow.tsx	27	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/TodoList.tsx	54	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/TurnIconButton.tsx	48	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/WorkLog.tsx	200	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/tool-display.ts	315	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/turn-classes.ts	100	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/use-row-reveal.ts	32	0	-2	0
+D transcript	packages/ui/src/components/chat/turn/work-log-summary.ts	80	0	-2	0
+D transcript	packages/ui/src/components/markdown/CodeBlock.tsx	40	24	0	236
+D transcript	packages/ui/src/components/markdown/CollapsibleSection.tsx	8	27	0	103
+D transcript	packages/ui/src/components/markdown/ImageCardStack.tsx	11	18	0	219
+D transcript	packages/ui/src/components/markdown/Markdown.tsx	21	21	0	664
+D transcript	packages/ui/src/components/markdown/MarkdownDatatableBlock.tsx	77	87	0	720
+D transcript	packages/ui/src/components/markdown/MarkdownDiffBlock.tsx	58	12	1	128
+D transcript	packages/ui/src/components/markdown/MarkdownDocBlock.tsx	55	57	23	210
+D transcript	packages/ui/src/components/markdown/MarkdownHtmlBlock.tsx	30	46	23	286
+D transcript	packages/ui/src/components/markdown/MarkdownImageBlock.tsx	26	20	0	283
+D transcript	packages/ui/src/components/markdown/MarkdownJsonBlock.tsx	14	18	4	207
+D transcript	packages/ui/src/components/markdown/MarkdownMermaidBlock.tsx	19	25	1	263
+D transcript	packages/ui/src/components/markdown/MarkdownPdfBlock.tsx	31	46	0	252
+D transcript	packages/ui/src/components/markdown/MarkdownSpreadsheetBlock.tsx	45	49	0	319
+D transcript	packages/ui/src/components/markdown/PreviewBlockChrome.tsx	200	0	-2	0
+D transcript	packages/ui/src/components/markdown/RunCommandContext.tsx	16	0	-2	0
+D transcript	packages/ui/src/components/markdown/TableExportDropdown.tsx	8	6	0	77
+D transcript	packages/ui/src/components/markdown/__tests__/diff-summary.test.ts	64	0	-2	0
+D transcript	packages/ui/src/components/markdown/__tests__/shell-command.test.ts	44	0	-2	0
+D transcript	packages/ui/src/components/markdown/diff-summary.ts	64	0	-2	0
+D transcript	packages/ui/src/components/markdown/index.ts	2	0	0	21
+D transcript	packages/ui/src/components/markdown/shell-command.ts	54	0	-2	0
+D transcript	packages/ui/src/components/overlay/FullscreenOverlayBaseHeader.tsx	5	7	0	256
+D transcript	packages/ui/src/components/overlay/MultiDiffPreviewOverlay.tsx	1	1	189	577
+D transcript	packages/ui/src/components/overlay/OverlayErrorBanner.tsx	2	2	0	33
+D transcript	packages/ui/src/components/overlay/ZoomControls.tsx	1	3	0	180
+B primitives/dialogs/toasts	packages/ui/src/components/tooltip.tsx	12	5	0	44
+A tokens/themes/motion/guardrails	packages/ui/src/components/ui/AnimatedCollapsibleContent.tsx	32	0	-2	0
+B primitives/dialogs/toasts	packages/ui/src/components/ui/BrowserControls.tsx	4	3	0	354
+B primitives/dialogs/toasts	packages/ui/src/components/ui/BrowserShader.tsx	6	8	0	96
+B primitives/dialogs/toasts	packages/ui/src/components/ui/SimpleDropdown.tsx	1	3	0	334
+B primitives/dialogs/toasts	packages/ui/src/components/ui/StyledDropdown.tsx	18	32	0	243
+B primitives/dialogs/toasts	packages/ui/src/components/ui/drawer.tsx	27	23	0	136
+B primitives/dialogs/toasts	packages/ui/src/components/ui/index.ts	1	0	0	63
+B primitives/dialogs/toasts	packages/ui/src/index.ts	9	0	27	311
+A tokens/themes/motion/guardrails	packages/ui/src/lib/__tests__/utils.test.ts	38	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/lib/layout.ts	19	13	12	109
+A tokens/themes/motion/guardrails	packages/ui/src/lib/utils.ts	29	2	0	13
+A tokens/themes/motion/guardrails	packages/ui/src/motion/FlipOnChange.tsx	68	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/motion/MotionPreference.tsx	39	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/motion/__tests__/flip.test.ts	51	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/motion/__tests__/presets.test.ts	58	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/motion/flip.ts	182	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/motion/index.ts	35	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/motion/presets.ts	106	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/styles/base.css	530	0	-2	0
+A tokens/themes/motion/guardrails	packages/ui/src/styles/index.css	7	540	2	549
+A tokens/themes/motion/guardrails	packages/ui/src/styles/tokens.css	491	0	-2	0

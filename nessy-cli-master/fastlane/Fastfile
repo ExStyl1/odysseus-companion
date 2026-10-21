@@ -1,0 +1,87 @@
+default_platform(:mac)
+require "fileutils"
+require "json"
+require "tmpdir"
+
+before_all do
+  ENV["SPACESHIP_SKIP_2FA_UPGRADE"] = "1"
+  # Setup the keychain and match to work with CI
+  setup_ci
+end
+
+platform :mac do
+  lane :setup_codesign do
+    match_install(type: "developer_id", use_vault_credentials: true)
+  end
+
+  lane :notarize_app do
+    apple_portal_setup_credentials(team_alias: "ru.tfinance")
+
+    release_dir = File.expand_path("../packages/desktop/apps/electron/release", __dir__)
+    dmg_paths = Dir[File.join(release_dir, "*.dmg")]
+    zip_paths = Dir[File.join(release_dir, "*.zip")]
+
+    if dmg_paths.empty? || zip_paths.empty?
+      UI.user_error!("Expected macOS DMG and ZIP release artifacts")
+    end
+
+    dmg_paths.each do |dmg_path|
+      notarize(
+        package: dmg_path,
+        bundle_id: "ru.tfinance.nessy-cli.desktop",
+        api_key: {
+          "key_id" => ENV["APP_STORE_CONNECT_API_KEY_KEY_ID"],
+          "issuer_id" => ENV["APP_STORE_CONNECT_API_KEY_ISSUER_ID"],
+          "key" => Base64.decode64(ENV["APP_STORE_CONNECT_API_KEY_KEY"]),
+        },
+        skip_stapling: false,
+        verbose: false,
+        print_log: true
+      )
+    end
+
+    zip_paths.each do |zip_path|
+      Dir.mktmpdir("nessy-notarized-zip") do |extract_dir|
+        sh("/usr/bin/ditto", "-x", "-k", zip_path, extract_dir)
+        app_paths = Dir[File.join(extract_dir, "*.app")]
+        if app_paths.length != 1
+          UI.user_error!("Expected one app bundle in #{zip_path}")
+        end
+
+        app_path = app_paths.first
+        sh("xcrun", "stapler", "staple", app_path)
+        sh("xcrun", "stapler", "validate", app_path)
+
+        rebuilt_zip = File.join(extract_dir, File.basename(zip_path))
+        sh(
+          "/usr/bin/ditto",
+          "-c",
+          "-k",
+          "--sequesterRsrc",
+          "--keepParent",
+          app_path,
+          rebuilt_zip
+        )
+        FileUtils.mv(rebuilt_zip, zip_path, force: true)
+
+        desktop_dir = File.expand_path("../packages/desktop", __dir__)
+        app_builder = Dir.chdir(desktop_dir) do
+          sh(
+            "node",
+            "-p",
+            "require('app-builder-bin').appBuilderPath",
+            log: false
+          ).strip
+        end
+        sh(
+          app_builder,
+          "blockmap",
+          "--input",
+          zip_path,
+          "--output",
+          "#{zip_path}.blockmap"
+        )
+      end
+    end
+  end
+end

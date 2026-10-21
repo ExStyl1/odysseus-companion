@@ -1,0 +1,6 @@
+/* English is the development language: these match Info.plist and exist so the
+   variant group has a base child, mirroring Localizable.strings. */
+"CFBundleDisplayName" = "Nessy";
+"CFBundleName" = "NessyMobile";
+"NSCameraUsageDescription" = "Nessy scans the pairing QR code shown by the desktop app or printed by the server.";
+"NSLocalNetworkUsageDescription" = "Nessy connects to the agent server running on your computer over the local network.";

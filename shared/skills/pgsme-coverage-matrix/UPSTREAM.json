@@ -1,0 +1,20 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "auto-skill-pgsme-coverage-matrix/SKILL.md",
+  "upstreamName": "pgsme-coverage-matrix",
+  "upstreamFrontmatter": {
+    "name": "pgsme-coverage-matrix",
+    "description": "Полный цикл подготовки тест-кейсов и матриц покрытия для задач PGSME — анализ Jira/Wiki, тест-кейсы в чате, классы эквивалентности, матрица по шаблону команды (Confluence), чтение .doc-экспортов",
+    "source": "auto-skill",
+    "extracted_at": "2026-10-06T07:14:26.599Z"
+  },
+  "upstreamSkillSha256": "06a4e6118b9f8ce02b8e39d1afb5e401cedcc0f257f0d3b42b1deebf5f0d87c3",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

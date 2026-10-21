@@ -1,0 +1,548 @@
+{
+  "family": "G",
+  "items": [
+    {
+      "qid": "QG1",
+      "answer": "B",
+      "kind": "refuse",
+      "ledger_edits": [
+        {
+          "row": "G5",
+          "column": "Codex",
+          "from": "`partial ᵏ`",
+          "to": "`absent ʰ`",
+          "why_en": "REFUSED by the owner's 2026-09-11 answer QG1=B, which keeps the P2.414 authorship boundary: `packages/shared/src/agent/codex-agent.ts` symbol `hostAuthoredHookProjection` returns `{}` and the writer accepts only host-minted plans through `mintHostAuthoredCodexHooks` (`8d7b4f399`), so no user- or plugin-authored hook ever reaches codex's own inline `[hooks]` table."
+        },
+        {
+          "row": "G1",
+          "column": "Codex",
+          "from": "`partial ᵗ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Verdict unchanged; the row note gains the measured residue the owner's QG1=B records — `packages/shared/src/automations/runtime-hook-events.ts` constant `CODEX_HOOK_EVENT_EMISSION` marks `subagentStart` and `subagentStop` `unreachable` because our codex sessions spawn no subagent (`/subtask` withheld, `thread/fork` re-forks the thread), so the two missing events are an absent subagent lifecycle rather than our configuration."
+        },
+        {
+          "row": "G4",
+          "column": "Codex",
+          "from": "`partial ᵗ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Verdict unchanged; the row note gains the same recorded reason as G1-codex from `packages/shared/src/automations/runtime-hook-events.ts` constant `CODEX_HOOK_EVENT_EMISSION`, so the plugin's dead layers on codex are read against the projection boundary (P2.414, `8d7b4f399` + `e2707e0c2` + `325b1dff8`) and not against a configuration knob."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Stamp codex's hook-projection boundary into the ledger — G5-codex to `absent ʰ` with Why=DECISION, and the `unreachable` subagent residue into the G1-codex and G4-codex row notes.",
+          "size": "XS",
+          "tags": ["doc", "codex"],
+          "note_en": "Implements option B of the owner's QG1 answer (2026-09-11). Done means: G5-codex reads `absent ʰ` citing `hostAuthoredHookProjection` returning `{}` and `mintHostAuthoredCodexHooks` (`8d7b4f399`), G1-codex and G4-codex keep `partial ᵗ` with `CODEX_HOOK_EVENT_EMISSION`'s verbatim `unreachable` reason in the note, and the twin rows in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` carry the same words. Measured at HEAD: `hostAuthoredHookProjection` returns `{}` in `packages/shared/src/agent/codex-agent.ts`; `mintHostAuthoredCodexHooks` is the only writer door (its tests live in `packages/codex-responses-adapter/src/__tests__/config-writer-hooks.test.ts`). Re-stamps G5-codex; annotates G1-codex, G4-codex."
+        },
+        {
+          "task_en": "After the codex lift to rust-v0.150.1 lands (P7.2), re-read codex's own `HookEventName` and confirm `subagentStart`/`subagentStop` are still `unreachable` for the recorded reason rather than newly reachable.",
+          "size": "XS",
+          "tags": ["codex", "doc"],
+          "note_en": "The enum moved from eleven to twelve members at the lift (`interrupt` arrived, upstream #40511), so the list this refusal rests on must be read at the tag we ship, not carried forward. Done means: `packages/codex-protocol/generated/v2/HookEventName.ts` re-read at the shipped tag and either the `unreachable` kind in `CODEX_HOOK_EVENT_EMISSION` stands with its note intact, or a finding row is born naming the subagent lifecycle that appeared. Zero code if the reading holds. Touches G1-codex, G4-codex."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "codex does declare `subagentStart`/`subagentStop` natively in `packages/codex-protocol/generated/v2/HookEventName.ts`, but our own measured table records both as `unreachable` — asking for them would fire nothing because our codex sessions have no subagent lifecycle — and the projection half is not ≤ S: `mintHostAuthoredCodexHooks` needs a two-pass write→boot→read→write trust handshake plus a true `CodexHostHookRevocation`, which is construction, not configuration."
+    },
+    {
+      "qid": "QG2",
+      "answer": "A",
+      "kind": "measure",
+      "ledger_edits": [
+        {
+          "row": "G1",
+          "column": "Claude",
+          "from": "`partial ᵗ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Verdict unchanged and the row note's stated reason is corrected: `packages/shared/src/automations/runtime-hook-events.ts` constant `MEASURED_HOOK_EVENT_COLUMNS` reads `anthropic: true` since P6.89 (`b3d569a06`, 2026-09-05), so the claude switch report is empty because it was measured and nothing is lost, not because nobody asked — the surviving residue is that the column is measured in ONE direction only, every `emitted` citing the SDK's declared `HookEvent` union rather than an observed firing."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Correct the refuted premise in the follow-up plan's D1.16 row title and note — claude's hook-event column is no longer `false` by construction — and re-scope the row to the single residue.",
+          "size": "XS",
+          "tags": ["doc", "claude"],
+          "note_en": "Implements the first half of the owner's QG2=A answer (2026-09-11). Measured at HEAD: `packages/shared/src/automations/runtime-hook-events.ts` constant `MEASURED_HOOK_EVENT_COLUMNS` carries `anthropic: true` (`b3d569a06`, P6.89, 2026-09-05), while D1.16 in `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` still says the column is `false` by construction and its done_means is already half-satisfied — the plan was drafted five days after the commit and nobody re-read the file. Done means: the row title and done_means name the real residue (declaration-backed `emitted` cells replaced by observed firings) and the G1-claude row note stops citing 'twelve documented events have no Nessy-side emitter on claude'. Annotates G1-claude."
+        },
+        {
+          "task_en": "Drive the re-scoped D1.16 rig on a packaged claude session — one command hook per SDK `HookEvent` through our own tiers plus one per event in the loaded settings scopes — and replace every declaration-backed `emitted` verdict with an observed firing or non-firing.",
+          "size": "M",
+          "tags": ["claude", "test"],
+          "note_en": "Implements option A of the owner's QG2 answer for the claude arm. Controls: the same hook set on Pi, and the same file with `settingSources` narrowed. Done means: each cell of the `anthropic` column in `CODEX_HOOK_EVENT_EMISSION`'s claude sibling cites an observed firing, and G1-claude plus G5-claude fill on a behaviour reading rather than a declaration. Sitting work — needs the packaged build and the owner's credentials. Re-stamps G1-claude, G5-claude when it lands."
+        },
+        {
+          "task_en": "Drive D1.17 on codex — one skill declaring both a `PostToolUse` and a `PreToolUse` frontmatter hook — and record which of them the dispatcher actually fires.",
+          "size": "S",
+          "tags": ["codex", "test"],
+          "note_en": "Untouched by the D1.16 correction and carried as written. Expectation to falsify: `PostToolUse` fires and `PreToolUse` does not; control = the same skill on Pi. The component layer is provider-neutral at HEAD (`packages/shared/src/agent/base-agent.ts` symbol `getComponentHookLayer`; the `provider !== 'anthropic'` gate went with `f32ff0672`), so a skill's frontmatter hooks reach the dispatcher and nobody has watched them. Done means: G3-codex moves `—` → `partial`/`covered` on a behaviour reading rather than a propagation — and G9-codex, whose `once` field has no subject until this reports, fills in the same pass. Re-stamps G3-codex, G9-codex."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "The answer is a measurement, not a refusal: the mechanism is already enabled natively on claude (the SDK's 31-member `HookEvent` union merged through `mergeClaudeSdkHooks` with `settingSources` passed), so there is nothing to wire — what is missing is the reading."
+    },
+    {
+      "qid": "QG3",
+      "answer": "A",
+      "kind": "measure",
+      "ledger_edits": [
+        {
+          "row": "G8",
+          "column": "Pi",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Verdict unchanged with Why=DECISION per the owner's 2026-09-11 QG3=A answer: `packages/shared/src/agent/pi-agent.ts` symbol `applyPermissionRequestUpdates` applies session-scope updates and REFUSES the rest by name — a `setMode` at any destination other than `session` ('permissions.defaultMode has no reader, so the write would change nothing'), `bypassPermissions` unless already present, `removeDirectories` for configured roots, each emitted as `updated_permissions_refused`, with an unrecognised entry type dropped as `updated_permissions_deferred`."
+        },
+        {
+          "row": "G7",
+          "column": "Codex",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Verdict unchanged; the recorded null ('the codex hook source file was not located') is replaced by a strong-tier source reading at the tag we ship — codex's `codex-rs/hooks/src/engine/output_parser.rs` contains zero occurrences of `exit_code` and the generated `pre-tool-use.command.output.schema.json` declares only `PreToolUseDecisionWire` = approve|block and `PreToolUsePermissionDecisionWire` = allow|deny|ask, so codex decides from parsed stdout JSON where our contract in `packages/shared/src/automations/hook-decision-contract.ts` also honours exit 2."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Read codex's hook crate at the tag we ship — `codex-rs/hooks/src/engine/output_parser.rs`, `command_runner.rs` and the five generated `*.command.output.schema.json` — and replace the recorded null in G7-codex with what the source says about exit codes.",
+          "size": "XS",
+          "tags": ["codex", "doc"],
+          "note_en": "Implements the first half of the owner's QG3=A answer under AGENTS.md's ordering (for codex the SOURCE outranks the page, and reading comes before building or scheduling). The refuter's reading at rust-v0.148.0: the unauthenticated git-tree API lists the crate in one call, `output_parser.rs` (the decision layer) has ZERO `exit_code` occurrences and `command_runner.rs` carries it only as telemetry on the completion record. Re-take the read at rust-v0.150.1 after P7.2, because I2.28 already records that row's `rust-v0.148.0` verdicts as stale by construction. Done means: G7-codex's Why carries the source reading with its tag and date, and the residue is named. Annotates G7-codex."
+        },
+        {
+          "task_en": "Drive the D1.41 residue on the pinned codex binary — whether a non-zero-exit hook that prints no stdout blocks anything — with the identical four hooks on Pi as the control.",
+          "size": "S",
+          "tags": ["codex", "test"],
+          "note_en": "What the source read above cannot settle. Four arms per runtime: exit 2, exit 1, exit 0 with a decision JSON on stdout, and a command that cannot start. Any divergence between codex's binary and `packages/shared/src/automations/hook-decision-contract.ts` is a PERMISSION divergence and earns its own switch-cost sentence. Done means: G7-codex moves to `covered`/`partial` on a behaviour reading with the binary's tag quoted. Re-stamps G7-codex."
+        },
+        {
+          "task_en": "Drive D1.42 on claude — the six `PermissionRequest` update kinds at each destination — and record per destination who wrote what.",
+          "size": "S",
+          "tags": ["claude", "test"],
+          "note_en": "The claude arm the SDK writes rather than our host manager. Done means: one line per destination saying who performed the write, and any host/SDK disagreement gets a `__PERMISSION_UPDATE__` record like Pi's. Re-stamps G8-claude and G8-codex."
+        },
+        {
+          "task_en": "Record Pi's named `PermissionRequest` refusals in the G8-pi Why as a decision rather than a gap.",
+          "size": "XS",
+          "tags": ["doc", "pi"],
+          "note_en": "Implements the second half of the owner's QG3=A answer, with the refuter's constraint honoured: the cell stays `partial`, NOT `n/a` — session-scope updates in fact apply, so 'the capability is meaningless here' is false. Measured at HEAD: `packages/shared/src/agent/pi-agent.ts` symbol `applyPermissionRequestUpdates` emits `updated_permissions_refused` at nine sites and `updated_permissions_deferred` at one. Re-stamps G8-pi (Why only); the twin row in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` keeps the word `partial`."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "Both halves are readings, not refusals: codex already runs its own hook processes (the native mechanism is present and is precisely what must be compared), and Pi's refusals are a deliberate containment posture whose native alternative would be to let a hook widen permissions silently."
+    },
+    {
+      "qid": "QG4",
+      "answer": "B",
+      "kind": "refuse",
+      "ledger_edits": [
+        {
+          "row": "G19",
+          "column": "Codex",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Verdict kept at `partial` per the owner's 2026-09-11 QG4=B answer, with the residue written by name: codex has the async half natively (`HookExecutionMode` = \"sync\" | \"async\" and `ConfiguredHookHandler`'s command variant carries `async` in `packages/codex-protocol/generated/v2/`) and NO rewake vocabulary anywhere in its 23 hook types, so `asyncRewake` — normalised host-side by `packages/shared/src/plugins/format-adapters/claude.ts` as 'asyncRewake implies async' — has nothing to reach there."
+        },
+        {
+          "row": "G21",
+          "column": "Codex",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Verdict kept at `partial` per the owner's QG4=B answer with the split written by name: codex DOES receive the `effort.level` input field from the shared host path (`packages/shared/src/automations/hook-command.ts` sets `CLAUDE_EFFORT` from `input.effort?.level`), and only the Bash-CHILD export is Pi-only (`packages/shared/src/agent/pi-agent.ts` spreads `{ NESSY_EFFORT, CLAUDE_EFFORT }` into the tool child, where codex's tool children are spawned inside its own binary)."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Write the two codex residues into the G19 and G21 row notes by name — no rewake vocabulary in codex's hook types, and the Pi-only Bash-child export of `$CLAUDE_EFFORT`.",
+          "size": "XS",
+          "tags": ["doc", "codex"],
+          "note_en": "Implements option B of the owner's QG4 answer (2026-09-11), with the refuter's constraint: neither cell moves to `n/a` — the ledger's own table defines `partial` as 'Some documented clauses hold, others do not. The row says which', which is exactly these two, and `n/a` ('the capability is meaningless here') is false for both. Measured at HEAD (vendored 0.3.247 / claudeCodeVersion 2.1.247): `asyncRewake` 12, `terminalSequence` 17, `CLAUDE_EFFORT` 8 in the shipped darwin-arm64 binary against controls `zzzNotAField` 0 and `nessyWatchPathsControl` 0; `rewake` scores 0 files across `packages/codex-protocol`. Re-stamps G19-codex, G21-codex (Why only); the denominator-gaps twins keep `partial`."
+        },
+        {
+          "task_en": "Add one switch-cost line for the rewake half, in both locales, so a session switching onto codex is told it keeps background hooks and loses the mid-idle rewake.",
+          "size": "S",
+          "tags": ["host", "codex", "product"],
+          "note_en": "The transparency half the refusal owes — the same shape as `51379148c`'s `preToolDefer` cost entry. Done means: a cost key beside the existing runtime-switch cost entries with copy in both locales and its pin, naming `asyncRewake` and stating that `async` itself survives the switch. Makes the G19-codex residue visible where the user meets it rather than only in the ledger."
+        },
+        {
+          "task_en": "Re-scope D1.43 to its single unreadable clause and drive terminalSequence delivery on claude and codex — a hook returning the field, observed at the surface that would show it.",
+          "size": "M",
+          "tags": ["claude", "codex", "test"],
+          "note_en": "The other two fields of the original merged rig are settled by reading (the codex bindings) and by the refusal above, so only delivery is left. The page's own limits are part of the expected answer and must be recorded rather than treated as a failure: interactive sessions only, and a `WorktreeCreate` command hook cannot return JSON. Host side is already built and uniform — `packages/shared/src/automations/hook-command.ts` symbol `allowlistedTerminalSequence` gates the field against `ALLOWED_OSC_CODES`. Re-stamps G18-claude and G18-codex."
+        }
+      ],
+      "flip_candidate": true,
+      "flip_reason_en": "G21-codex: codex HAS a native mechanism for the half we call Pi-only — `shell_environment_policy.set` in its own config.toml — and the host already writes it (`packages/codex-responses-adapter/src/config-writer.ts` symbol `buildCodexRuntimeConfigOverride` emits `{ shell_environment_policy: { set: policy.environment } }`, fed today from `packages/shared/src/agent/codex-agent.ts`'s `shellEnvironment: pluginRuntime.environment`), so adding the resolved `CLAUDE_EFFORT`/`NESSY_EFFORT` pair to that map would give codex's Bash children the same variable Pi's get, at XS-to-S wiring on an existing seam; the answer stays B, and the rewake half of QG4 is a genuine absence with no native mechanism to wire."
+    },
+    {
+      "qid": "QG5",
+      "answer": "A",
+      "kind": "build",
+      "ledger_edits": [
+        {
+          "row": "G23",
+          "column": "Pi",
+          "from": "—",
+          "to": "`partial ᵗ`",
+          "why_en": "Measured by P6.299 (`d337ef8ce`) and dispositioned by the owner's 2026-09-11 QG5=A answer: `packages/shared/src/automations/utils.ts` sends a matcher carrying `matchMode: 'claude'` to `matchesClaudeMatcher`, where the comma and the pipe agree, while every matcher a person writes in this app is native and falls to `new RegExp(matcher).test(...)` in a try/catch — so `\"Edit,Write\"` matches only the literal and `*` throws and is caught — and the registration warning makes the divergence visible without closing it."
+        },
+        {
+          "row": "G23",
+          "column": "Claude",
+          "from": "—",
+          "to": "`partial ᵗ`",
+          "why_en": "Same per-matcher divergence as the Pi cell and for the same reason — it is keyed on `matchMode` inside one host function, not on the runtime — with claude's own settings-tier hooks getting comma equivalence from the vendored binary (2.1.247, well past upstream v2.1.191) while our native automations keep the unanchored-regex behaviour (`packages/shared/src/automations/utils.ts` symbol `matchesClaudeMatcher`, P6.299 `d337ef8ce`)."
+        },
+        {
+          "row": "G23",
+          "column": "Codex",
+          "from": "—",
+          "to": "`partial ᵗ`",
+          "why_en": "Same per-matcher divergence as the Pi and claude cells, measured once in the shared host function rather than per runtime (`packages/shared/src/automations/utils.ts` symbol `matchesClaudeMatcher` against the default regex path, P6.299 `d337ef8ce`), with the registration warning from the owner's QG5=A answer as the honest surface."
+        },
+        {
+          "row": "G20",
+          "column": "Codex",
+          "from": "—",
+          "to": "`absent ʰ`",
+          "why_en": "STRUCTURAL, read from the shipped bindings: `packages/codex-protocol/generated/v2/ConfiguredHookMatcherGroup.ts` is `{ matcher: string | null, hooks: Array<ConfiguredHookHandler> }` with no `if` equivalent, and none of `ConfiguredHookHandler`'s variants carries one — so filtering a hook by its arguments is meaningful on codex and unavailable, which is `absent`, not `n/a`."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Warn at registration when a NATIVE automation matcher contains a comma or is exactly `*`, naming the documented spelling and what it will actually match here.",
+          "size": "S",
+          "tags": ["host", "product"],
+          "note_en": "Implements option A of the owner's QG5 answer (2026-09-11). One enforcement point, a warning and never an error, and nothing on disk changes — option B (flipping `matchMode`'s default to 'claude') was refused because it would silently re-scope every stored automation, which the field's own docblock in `packages/shared/src/automations/types.ts` already records as the reason it was not flipped. Done means: registering a native matcher containing `,` or equal to `*` produces a user-visible warning quoting `hooks.md#matcher-patterns`'s spelling and saying the native path evaluates an unanchored regex, with a positive test per case and a control that an imported `matchMode: 'claude'` matcher warns for neither. Makes the G23 residue visible at the moment it is authored."
+        },
+        {
+          "task_en": "Stamp the matcher divergence into the ledger — G23 to `partial ᵗ` on all three runtimes with the warning named as the honest surface, and G20-codex to `absent ʰ` with Why=STRUCTURAL.",
+          "size": "XS",
+          "tags": ["doc", "codex"],
+          "note_en": "Both moves are the refuter's corrections to the recommendation and were taken with the owner's A: G23 cannot read `covered` because after the warning the two separators still do not match the same tools on a native matcher, and G20-codex is `absent` rather than `n/a` because the capability is meaningful on codex and unavailable. Done means: four cells stamped, each Why naming `packages/shared/src/automations/utils.ts` symbol `matchesClaudeMatcher` or `packages/codex-protocol/generated/v2/ConfiguredHookMatcherGroup.ts`, and the twin rows in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` carrying the same words. Re-stamps G23 x3 and G20-codex."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "The owner took the BUILD option, not a refusal; the native half (comma equivalence from the vendored binary at 2.1.247) already serves claude's own settings-tier hooks, and the residue is our stored-automation semantics, which no runtime mechanism can supply."
+    },
+    {
+      "qid": "QG6",
+      "answer": "B",
+      "kind": "refuse",
+      "ledger_edits": [
+        {
+          "row": "G10",
+          "column": "Pi",
+          "from": "`partial ʰ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Why=DECISION per the owner's 2026-09-11 QG6=B answer, and the marker rises to tracker-backed because the transparency landed as code: P6.293 (`769bd19bf`) widened `HOOK_NOTIFICATION_TYPES` to the page's twelve and added `HOOK_NOTIFICATION_TYPES_WITHOUT_EMITTER` in `packages/shared/src/automations/types.ts`, which carries a REASON per name for the eleven that never fire and is consumed by `packages/shared/src/automations/hooks-config.ts` to warn at registration — Nessy emits exactly one type, `permission_prompt`."
+        },
+        {
+          "row": "G10",
+          "column": "Codex",
+          "from": "`absent ʰ`",
+          "to": "`absent ʰ`",
+          "why_en": "Verdict unchanged with Why=STRUCTURAL: `packages/codex-protocol/generated/v2/HookEventName.ts` carries no notification event of any kind, so there is no codex-side producer to enable and the host has nothing to project — recorded rather than built, per the owner's QG6=B answer."
+        },
+        {
+          "row": "G17",
+          "column": "Pi",
+          "from": "`partial ʰ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Why=DECISION per the owner's QG6=B answer, tracker-backed by P6.297 (`3710bde55` + `e4bf7dbd8`): `packages/shared/src/agent/base-agent.ts` symbol `noteInertHookDirective` emits a debug line and one user-visible warning per field per session for the two carried-and-unhonoured directives, so `initialUserMessage` and `watchPaths` are declared inert out loud while `sessionTitle`, `reloadSkills` and `CLAUDE_ENV_FILE` are honoured."
+        },
+        {
+          "row": "G17",
+          "column": "Codex",
+          "from": "`partial ʰ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Same recorded decision as the Pi cell and reached through the same host path — `packages/shared/src/agent/codex-agent.ts` calls `applyHookSessionDirectives` on both its `sessionStart` sites, so codex inherits `noteInertHookDirective`'s per-field notice from P6.297 (`3710bde55` + `e4bf7dbd8`)."
+        },
+        {
+          "row": "G17",
+          "column": "Claude",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Verdict unchanged and the row note is INVERTED by a HEAD reading: `packages/shared/src/agent/claude-agent.ts` calls `applyHookSessionDirectives` ZERO times (the callers are `pi-agent.ts` x3, `codex-agent.ts` x2 and `nestor-cloud-agent.ts` x2), so on claude the host neither honours nor notices the SessionStart directive band — a MISSING CONSUMER rather than a blanket inert note, with the binary probe (`initialUserMessage` 21, `watchPaths` 35 against zero controls at 2.1.247) unable to say whether the SDK honours them for its own settings-tier hooks."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Record the eleven emitter-less `Notification` types and the two carried-and-unhonoured SessionStart directives into the Pi and codex cells of G10 and G17 as Why=DECISION.",
+          "size": "XS",
+          "tags": ["doc", "pi", "codex"],
+          "note_en": "Implements the first half of option B of the owner's QG6 answer (2026-09-11), with the refuter's constraint that the verdicts stay `partial`/`absent` and never become 'covered-by-decision', which is not in the ledger's vocabulary. Measured at HEAD: `HOOK_NOTIFICATION_TYPES_WITHOUT_EMITTER` in `packages/shared/src/automations/types.ts` carries a per-name reason consumed by `packages/shared/src/automations/hooks-config.ts`; `packages/codex-protocol/generated/v2/HookEventName.ts` has no notification event. Re-stamps G10-pi, G10-codex, G17-pi, G17-codex."
+        },
+        {
+          "task_en": "Correct the stale docblock in `packages/shared/src/agent/base-agent.ts` that says `applyHookSessionDirectives` has 'four callers on the four backends' — at HEAD it has seven call sites on three backends and claude calls it not at all.",
+          "size": "XS",
+          "tags": ["host", "doc", "claude"],
+          "note_en": "The refuter's inversion, taken as part of the owner's QG6=B answer. Measured at HEAD: `pi-agent.ts` x3, `codex-agent.ts` x2, `nestor-cloud-agent.ts` x2, `claude-agent.ts` ZERO — a grep for `HookSessionDirectives|initialUserMessage|watchPaths|sessionTitle|reloadSkills` over `packages/shared/src/agent/claude-agent.ts` returns nothing at all. Done means: the docblock names the real call sites and states that the claude backend has no consumer, so the next reader is not told a false uniformity. Prerequisite for reading G17-claude honestly."
+        },
+        {
+          "task_en": "Measure whether the vendored 2.1.247 binary honours `initialUserMessage` and `watchPaths` for hooks declared in its OWN settings tiers, before deciding whether claude needs a host directive consumer at all.",
+          "size": "S",
+          "tags": ["claude", "test"],
+          "note_en": "The second half of option B, re-scoped by the refuter from 'stop declaring inert' (there is no such story on claude) to 'find out what the runtime already does'. A grep count with controls is `ᵏ` — presence, not behaviour — so the reading must be a driven session: a settings-tier SessionStart hook returning each field, observed for a seeded first turn and for a FileChanged registration. Done means: G17-claude either fills on the binary's own behaviour or the row records that claude needs the same consumer the other three backends have, with the wiring size named. Re-stamps G17-claude, and decides G10-claude's producer question in the same sitting."
+        }
+      ],
+      "flip_candidate": true,
+      "flip_reason_en": "claude has BOTH mechanisms natively and the host is what is missing: the SDK declares `Notification` in its `HookEvent` union with `NotificationHookInput.notification_type`, and `initialUserMessage` (21) and `watchPaths` (35) score against zero controls in the shipped 2.1.247 binary, while `packages/shared/src/agent/claude-agent.ts` calls `applyHookSessionDirectives` zero times — the method already exists on `BaseAgent` and three other backends call it, so wiring the claude backend into the same directive path (and merging the SDK's `Notification` event into our hook bus through the existing `buildSdkHooks`/`mergeClaudeSdkHooks` seam) is S, not construction; the answer stays B with the S measurement first."
+    },
+    {
+      "qid": "QG7",
+      "answer": "B",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "G12",
+          "column": "Pi",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "The 'gap' record is STALE and the verdict is re-founded on landed work with Why=DECISION for the single missing clause: P6.294 landed the data half (`0eda1a71a`, `describeHookBindings` in `packages/shared/src/automations/types.ts`, a projection of the merged automation system) and the rendering half (`b47d57e50`, the `/hooks` command through `packages/shared/src/slash-commands/hooks-command.ts` symbol `formatHookBindingsReport`), and the command string alone is withheld on purpose by the Safe-projection rule in `HookBindingView`'s own docblock."
+        },
+        {
+          "row": "G12",
+          "column": "Claude",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Same host surface and same single refused clause as the Pi cell (`0eda1a71a` + `b47d57e50`), and the row's stale control is corrected in the same pass — re-probed at HEAD on the vendored 2.1.247 darwin-arm64 binary, `listHooks` scores 0 with `disableAllHooks` 49 as the positive control and `zzzNotAField` 0 as the negative, where the row records the control as 2."
+        },
+        {
+          "row": "G12",
+          "column": "Codex",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Same host surface and same refused clause (`0eda1a71a` + `b47d57e50`), with codex's own `hooks/list` publishing `source`/`enabled`/`trustStatus`/`currentHash` per hook as the native listing this host surface does not need to replace."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Re-stamp G12 on all three runtimes to `partial ʰ` with Why=DECISION citing `0eda1a71a` and `b47d57e50`, and correct the row's wrong positive control for the claude probe.",
+          "size": "XS",
+          "tags": ["doc"],
+          "note_en": "Implements option B of the owner's QG7 answer (2026-09-11). The ledger records a gap for work that landed two waves ago: `describeHookBindings` is declared in `packages/shared/src/automations/types.ts` and rendered by `packages/shared/src/agent/base-agent.ts` through `formatHookBindingsReport`, and the withheld command string is stated verbatim in `HookBindingView`'s docblock ('a hook command is the most execution-shaped string in the config'). Control re-measured at HEAD on the vendored binary: `listHooks` 0, `disableAllHooks` 49, `zzzNotAField` 0 — the row's '2' is refuted. Re-stamps G12 x3."
+        },
+        {
+          "task_en": "Strike the 'and command' clause from G12's capability wording as the permanent product posture the owner recorded, and promote the three cells to `covered ʰ` in the same commit.",
+          "size": "XS",
+          "tags": ["doc", "product"],
+          "note_en": "The product half of the owner's QG7=B answer — the refusal to display a hook's command string is permanent, so the row must stop asking for it rather than counting it forever as unbuilt work. Done means: G12's capability text asks for matcher, type and source file (and says in one clause that the command string is withheld by the Safe-projection rule, citing `HookBindingView`'s docblock), the three cells read `covered ʰ`, and the twin row in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` carries the same word. Re-stamps G12 x3 a second and final time; this row is the one that actually moves the coverage number."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "The refused clause is a safety posture, not a missing mechanism: codex's native `hooks/list` and claude's in-binary `/hooks` would not change what this product is willing to put on screen, and the Safe-projection rule is applied to every capability view in this codebase."
+    },
+    {
+      "qid": "QG8",
+      "answer": "A",
+      "kind": "refuse",
+      "ledger_edits": [
+        {
+          "row": "G15",
+          "column": "Pi",
+          "from": "`absent ʰ`",
+          "to": "`absent ʰ`",
+          "why_en": "Why=DECISION, carrying the owner's ALREADY-GIVEN answer D5 of 2026-09-05 (runtime-parity-closure plan, §'Owner decisions 2026-09-05, part 3', Option A — 'the six-name whitelist stays, and the divergence is disclosed', consequence: ledger), re-affirmed by the 2026-09-11 QG8=A answer: `packages/shared/src/automations/hook-command.ts` constant `SAFE_INHERITED_ENV_KEYS` inherits exactly HOME, PATH, SHELL, TMPDIR, TEMP and TMP from `process.env`, so the security plugin's environment variables cannot reach a host-run command hook — a hook's own `actionEnv` can still override per hook."
+        },
+        {
+          "row": "G15",
+          "column": "Codex",
+          "from": "`absent ʰ`",
+          "to": "`absent ʰ`",
+          "why_en": "Same decision and same mechanism as the Pi cell — codex's hooks in this product are host-run command hooks and inherit the same six names from `packages/shared/src/automations/hook-command.ts` constant `SAFE_INHERITED_ENV_KEYS` — recorded under owner decision D5 (2026-09-05) and re-affirmed by QG8=A (2026-09-11)."
+        },
+        {
+          "row": "G15",
+          "column": "Claude",
+          "from": "`partial ʰ`",
+          "to": "`partial ʰ`",
+          "why_en": "Verdict unchanged with Why=DECISION: on claude the plugin's hooks run inside the SDK child (`packages/shared/src/agent/claude-agent.ts` symbol `chatImpl` builds the options and calls `query`), which inherits the whole ambient environment, so all five page variables govern there and on neither other runtime — the disclosed divergence D5 accepts."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Carry owner decision D5 (2026-09-05) into G15's three cells as Why=DECISION, keeping Pi and codex `absent` and claude `partial`.",
+          "size": "XS",
+          "tags": ["doc"],
+          "note_en": "Implements option A of the owner's QG8 answer (2026-09-11), which is the owner's own prior answer — reopening to option B would contradict sitting §1.2 = A, decided on the same containment argument. The refuter's two corrections are honoured: the verdicts stay `absent`/`partial` and never become `n/a` (the plugin's layers exist on Pi and codex, they just cannot be turned off), and the Why cites the decision's location in `docs/superpowers/plans/2026-08-22-runtime-parity-closure.md` §'Owner decisions 2026-09-05, part 3', entry D5. Re-stamps G15 x3 (Why only)."
+        },
+        {
+          "task_en": "Ship the switch-cost disclosure D5 promised, naming ALL FIVE variables from the page's table that govern only on claude.",
+          "size": "S",
+          "tags": ["host", "product", "claude"],
+          "note_en": "The disclosure is the whole content of D5's Option A, and it never landed. The five names, read from `security-guidance.md#disable-or-uninstall`'s table and already all present in G15's own capability text: ENABLE_PATTERN_RULES, ENABLE_STOP_REVIEW, ENABLE_COMMIT_REVIEW, ENABLE_CODE_SECURITY_REVIEW and SECURITY_GUIDANCE_* — the fourth is the master switch that disables every model-backed review at once, and the first draft of this answer listed only three, which is the enumeration trap AGENTS.md records. Done means: a runtime-switch cost line in both locales saying these variables govern the security plugin on claude and govern nothing on Pi or codex, with its pin, and the list derived from the page's table rather than from prose."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "No runtime supplies this natively — claude's inheritance is an accident of running the hook inside the SDK child rather than a mechanism — and the only alternative (an operator-configurable passthrough allowlist) is host construction the owner refused twice on the containment argument, with the sandbox route closed by the 2026-08-12/13 standing decision."
+    },
+    {
+      "qid": "QG9",
+      "answer": "B",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "G16",
+          "column": "Codex",
+          "from": "`absent ʰ`",
+          "to": "`absent ʰ`",
+          "why_en": "Verdict already correct and confirmed editorially by the owner's 2026-09-11 QG9=B answer; the Why gains its classification: STRUCTURAL — codex's generated `pre-tool-use.command.output.schema.json` declares only `PreToolUseDecisionWire` = approve|block and `PreToolUsePermissionDecisionWire` = allow|deny|ask with no fourth member, `Defer` scores zero files across `packages/codex-protocol/generated/v2/` against 33 for `Approval`, and `51379148c` already reports the loss at a runtime switch through the `preToolDefer` cost entry in both locales."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Add the STRUCTURAL classification and both citations to G16-codex's Why, leaving the `absent ʰ` verdict untouched.",
+          "size": "XS",
+          "tags": ["doc", "codex"],
+          "note_en": "Implements option B of the owner's QG9 answer (2026-09-11), which the refuter reduced to an editorial act: the cell is already the ledger's correct word ('the user cannot do it, and we know that'), and the proposed move to `n/a` would have asserted the capability is meaningless on codex — false for a capability the page names for exactly this app shape and the other two runtimes deliver. Done means: the Why names codex's pre-tool-use output schema at the tag we ship and cites `51379148c` as the surface that already tells the user, and no build is scheduled — the host-side alternative (holding the call open ourselves) was measured and refused once already on claude in `5249afe2f` for a reason that applies verbatim here. Re-stamps G16-codex (Why only)."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "There is no native mechanism to wire — `Defer` scores 0 files across codex's generated protocol against 33 for `Approval`, and codex answers an approval in-band rather than by process exit, so the only route is an M host-side hold whose failure mode is a stranded turn."
+    },
+    {
+      "qid": "QG10",
+      "answer": "A",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "G6",
+          "column": "Pi",
+          "from": "`partial ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "LANDED and the record was stale: P6.289 (`12871d97d` + `44ccef647`) — `packages/shared/src/config/watcher.ts` symbol `onSettingsSourceChange` is a GATE that runs inside the debounce and applies the reload only on a truthy outcome, so a blocking `ConfigChange` hook leaves the setting unapplied for the four non-policy sources, and the `policy_settings` carve-out the page forbids honouring is now pinned by a test rather than a comment."
+        },
+        {
+          "row": "G6",
+          "column": "Claude",
+          "from": "`partial ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "Same landed host mechanism as the Pi cell and uniform by construction — the config watcher is the single `ConfigChange` producer for all three runtimes and the gate lives in `packages/shared/src/config/watcher.ts`, not in any backend (P6.289, `12871d97d` + `44ccef647`)."
+        },
+        {
+          "row": "G6",
+          "column": "Codex",
+          "from": "`partial ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "Same landed host mechanism as the Pi and claude cells, reached through the same producer (`packages/shared/src/config/watcher.ts` symbol `onSettingsSourceChange`, dispatched by `packages/server-core/src/sessions/SessionManager.ts`), so no codex-side capability is required (P6.289, `12871d97d` + `44ccef647`)."
+        },
+        {
+          "row": "G9",
+          "column": "Pi",
+          "from": "`partial ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "LANDED: P6.292 (`9d4a627d9`) closed the loosening divergence the row records — `packages/shared/src/plugins/hooks-automation.ts` now consumes a `once` tier only when the run also succeeded (`if (onceResult.matchedCount > 0 && !onceResult.hookRunFailed) layer.consumeOnce(event)`), so a hook that failed, blocked with exit 2 or timed out stays armed exactly as `hooks.md`'s common-fields clause requires."
+        },
+        {
+          "row": "G9",
+          "column": "Claude",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "The `absent` premise is REFUTED — it said skill-frontmatter hooks do not dispatch on claude, which `f32ff0672` fixed and this file's own G3-claude cell now records as `covered ᵗ` — so `once` has a subject there and is served by the same provider-neutral host consumer (`packages/shared/src/agent/base-agent.ts` symbol `getComponentHookLayer` into `packages/shared/src/plugins/hooks-automation.ts`, P6.292 `9d4a627d9`)."
+        },
+        {
+          "row": "G13",
+          "column": "Pi",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "LANDED: P6.295 (`164393452`) added the fifth cron tool — `packages/session-tools-core/src/tool-defs.ts` symbol `CronControl`, 'Pause, resume, run now, or mark read one scheduled task, by its 8-character ID' — with `paused` and `unreadRuns` now carried in `packages/server-core/src/sessions/session-cron-service.ts`, where the row's evidence measured zero."
+        },
+        {
+          "row": "G13",
+          "column": "Claude",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "Same landed host surface as the Pi cell — the cron store and its tool surface are the host's for all three runtimes because no runtime ships an embeddable scheduler (`packages/session-tools-core/src/tool-defs.ts` symbol `CronControl`, P6.295 `164393452`)."
+        },
+        {
+          "row": "G13",
+          "column": "Codex",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "Same landed host surface as the Pi and claude cells, reached identically through the session tool surface (`packages/session-tools-core/src/tool-defs.ts` symbol `CronControl`, P6.295 `164393452`)."
+        },
+        {
+          "row": "G22",
+          "column": "Pi",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "LANDED: P6.300 (`5dcc08249`) fills `transcript_path` from `getSessionFilePath` in `packages/shared/src/agent/base-agent.ts` symbol `emitAutomationEvent` — the single funnel every backend's automation events pass through — so every hook event now carries the session's own transcript path, a site that set it deliberately wins, and an agent with no session carries no field rather than a path that opens nothing."
+        },
+        {
+          "row": "G22",
+          "column": "Claude",
+          "from": "—",
+          "to": "`covered ᵗ`",
+          "why_en": "Filled by the same landed host funnel as the Pi cell — `packages/shared/src/agent/base-agent.ts` symbol `emitAutomationEvent` supplies `transcript_path` once for all three runtimes so they cannot answer differently (P6.300, `5dcc08249`)."
+        },
+        {
+          "row": "G22",
+          "column": "Codex",
+          "from": "—",
+          "to": "`covered ᵗ`",
+          "why_en": "Filled by the same landed host funnel (`packages/shared/src/agent/base-agent.ts` symbol `emitAutomationEvent`, P6.300 `5dcc08249`), and the codex measurement the row asked for first is recorded with it: codex's binary declares `transcript_path` on its own `<event>.command.input` schemas, but those are the hooks CODEX runs while ours are dispatched by this host, so the host stays the seam."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Re-verdict the eleven stale cells of G6, G9, G13 and G22 from the index, each checked against its own row clauses, citing the landed shas.",
+          "size": "XS",
+          "tags": ["doc"],
+          "note_en": "Implements option A of the owner's QG10 answer (2026-09-11) — the largest coverage move in family G at zero build cost. Verified at HEAD before stamping: `12871d97d` + `44ccef647` (the ConfigChange gate in `packages/shared/src/config/watcher.ts` and the pinned policy_settings carve-out), `9d4a627d9` (`hooks-automation.ts` burns `once` on SUCCESS), `164393452` (`CronControl` in `packages/session-tools-core/src/tool-defs.ts`, `paused`/`unreadRuns` present in `session-cron-service.ts`), `5dcc08249` (`transcript_path` in `base-agent.ts` symbol `emitAutomationEvent`) — all five subjects match. TWO cells named in the question do NOT need an edit and must not be re-stamped: G25-claude already reads `covered ᵗ` citing `9ecf0be1f`, and P7.14's tracker glyph is already ✅ in the parity plan. ONE stays open: G9-codex remains `—` because `once` is honoured only for skill-frontmatter hooks and whether those dispatch on codex is exactly what D1.17 (QG2) measures — it fills in that pass, not this one. Residues to write into the notes rather than hide: `local_settings` is a documented `ConfigChange` source that is deliberately never produced (there is no `.local` settings file in this tree), and G22's status-line arm was not separately observed. The twin rows in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` take the same words. Derive every anchor from `git show HEAD:<path>` immediately before committing."
+        },
+        {
+          "task_en": "Correct the stale `policy_settings — NOT PRODUCED` claim in the `HOOK_CONFIG_CHANGE_SOURCES` docblock, which a sibling commit falsified.",
+          "size": "XS",
+          "tags": ["host", "doc"],
+          "note_en": "Found while checking G6's clauses. `packages/shared/src/automations/types.ts` constant `HOOK_CONFIG_CHANGE_SOURCES` still documents `policy_settings` as 'NOT PRODUCED … no emitter rides that refresh yet', but `packages/server-core/src/sessions/SessionManager.ts` symbol `emitManagedPolicyConfigChange` (P6.463) dispatches on every adopted managed policy — which is precisely why `44ccef647` had to pin the unblockable carve-out. Same family as the trap AGENTS.md records about a comment asserting what a different module does not do. Done means: the docblock names the producer, and `local_settings` stays documented as the one source deliberately not invented. No behaviour change."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "Nothing to build or wire — four of the five rows are landed host mechanisms uniform across runtimes by construction, and the fifth (`classifierContext`) is the vendor's own and already arrived with the 0.3.247 lift."
+    },
+    {
+      "qid": "QG11",
+      "answer": "A",
+      "kind": "measure",
+      "ledger_edits": [
+        {
+          "row": "G24",
+          "column": "Pi",
+          "from": "—",
+          "to": "`partial ᵗ`",
+          "why_en": "One documented clause holds and is pinned — `apps/cli/src/index.ts` symbol `signalExitCode` is `signal === 'SIGTERM' ? 143 : 130` with the page quoted whole in its docblock and a test pinning it — and a second is BUILT-and-unobserved rather than unmeasured, the `onSignal` ordering being `sessions:cancel` → `cleanup()` → exit precisely because stopping the spawned server is what runs SessionEnd, leaving process-tree termination and resumability to D1.44."
+        },
+        {
+          "row": "G24",
+          "column": "Claude",
+          "from": "—",
+          "to": "`partial ᵗ`",
+          "why_en": "Same built-and-pinned exit-code clause as the Pi cell, reached through the same host CLI (`apps/cli/src/index.ts` symbol `signalExitCode`), with the process-tree, SessionEnd-receipt and resumability clauses unobserved on this runtime pending D1.44."
+        },
+        {
+          "row": "G24",
+          "column": "Codex",
+          "from": "—",
+          "to": "`partial ᵗ`",
+          "why_en": "Same built-and-pinned exit-code clause as the Pi and claude cells (`apps/cli/src/index.ts` symbol `signalExitCode`), with codex's own child covered by `runtime-manager.test.ts`'s SIGTERM match and the three remaining clauses unobserved pending D1.44."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Read the SIGTERM path that is already built — `apps/cli/src/index.ts`'s `signalExitCode` and `onSignal` ordering plus `packages/server-core/src/pi-harness/process-supervisor.ts` — and convert the decayed line-numbered headless.md citation in that comment to a section anchor plus its verbatim sentence.",
+          "size": "XS",
+          "tags": ["doc", "host"],
+          "note_en": "The first half of the owner's QG11=A answer as the refuter re-specified it: 'unmeasured on all three' overstates the null, because the SessionEnd clause is built and says so in the comment above `onSignal` ('`cleanup()` must stay BEFORE the exit: stopping the spawned server is what runs SessionEnd'), and the process-tree half has a named owner in the supervisor. The citation in that comment points at a headless.md line that has moved eight lines down; cite `headless.md#stop-a-run-with-sigterm` and the sentence instead — and write the retired anchor in words, never in the path-plus-line form the citation guards match, because a correction that spells it re-creates the finding it repairs. Done means: G24's three Why cells state which clause is built and which is unobserved, and no line-numbered headless.md anchor remains in the signal-handling comment."
+        },
+        {
+          "task_en": "Drive the re-specified D1.44 on Pi, claude and codex — one headless run per runtime with a backgrounded Bash call actually in flight, naming the signalled PID for both branches (the CLI and the spawned server), with SIGINT as the control.",
+          "size": "M",
+          "tags": ["pi", "claude", "codex", "test"],
+          "note_en": "Implements option A of the owner's QG11 answer, priced honestly: each arm must reach the model to get a backgrounded Bash call into flight, so this needs credentials — the original 'needs no credentials' claim is refuted. Which process receives the signal decides the whole result: the SIGTERM handler is the CLI's, the CLI spawns the server (`apps/cli/src/server-spawner.ts`), and the Bash children hang off the server's `ProcessSupervisor`, so `kill` on the CLI and `kill` on the server are different measurements and 'check pgrep for the orphan' is ambiguous between them. Done means: three clauses (process-tree termination, SessionEnd receipt, resumability of the unfinished turn) x three runtimes recorded as behaviour readings with the signalled PID named, and any runtime that leaks a Bash process tree or skips SessionEnd gets a row of its own — a leaked tree is a containment failure, not a cosmetic gap. Re-stamps G24 x3."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "The answer is a measurement of behaviour our own CLI already implements to the page; there is no per-runtime native mechanism to enable, because the signal handler, the spawned server and the process supervisor are all ours."
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+ "problems": [
+  "Family O's refusals deliberately do NOT become `n/a`: QO3/QO4/QO5/QO6 keep `absent` plus a DECISION or PLANNED reason, because the owner-approved refuter correction says `n/a` is subtracted from the denominator by `scripts/plan-status.py` while the capability is meaningful on all three runtimes - so the task's rule (2) n/a shape is replaced by absent + a verifiable reason (owner answer id, date, and the reason the question gave).",
+  "QO7's four edits change no verdict word (from equals to): option B asks only that the Why cell gain the PLANNED reason naming D1.29, D1.81 and D1.82, so those entries are Why-cell edits, not verdict moves.",
+  "O2, O5 and O6 have NO twin row in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` (they are original ledger rows), so edits to those three rows touch the ledger only; every other row I edit has a twin.",
+  "The twin file's verdict vocabulary differs from the ledger's - marker-less, and it spells a covered cell `have` 143 times against `covered` 23 - so a re-stamp to `covered ᵗ` must be written into the twin in that row's own convention rather than copied verbatim.",
+  "O10's `ᵗ` rests on a tracker row with an EMPTY sha cell (P6.470 closed as REFUTED 2026-09-06, no commit), not on a commit; named here rather than guessed at.",
+  "O17's landed `[switch: none]` verdict lives in the event-adapter comment while the ledger's Switch cell for O17 still reads `—`; the edit schema has no Switch column, so that correction is carried in QO5's plan row instead of as a ledger_edit.",
+  "QO1's coverage line says 19 cells while its option A says 18 re-stamps: the nineteenth is O11 codex, whose verdict stays `absent` and whose marker/reason change I emitted as the 19th edit - that is the reconciliation, not an extra cell."
+ ],
+ "flip_candidates": [
+  {
+   "qid": "QO5",
+   "mechanism_en": "Claude's own prompt suggestions: the vendored SDK declares `Options.promptSuggestions` and `SDKPromptSuggestionMessage` and actually EMITS the event, which `packages/shared/src/agent/backend/claude/event-adapter.ts` drops to a debug line carrying the landed `[switch: none]` verdict (P6.475, `667c48303`).",
+   "wiring_size": "S",
+   "reason_en": "The runtime has both halves natively and unread, and the host wiring is one composer chip on the claude arm - priced S as the question's own option C - so by the owner's stricter criterion this is a flip candidate; the refusal stands as answered because it is a switch-honesty decision (Pi and codex have no producer, so the feature would vanish on a runtime switch), not an absence of mechanism."
+  }
+ ],
+ "counts": {
+  "restamp": 2,
+  "refuse": 4,
+  "build": 1,
+  "measure": 0,
+  "defer": 1
+ }
+}

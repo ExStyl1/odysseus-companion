@@ -1,0 +1,17 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/character-animation-qa",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/character-animation-qa",
+  "upstreamName": "character-animation-qa",
+  "upstreamFrontmatter": {
+    "name": "character-animation-qa",
+    "description": "Review local character animation with schema checks, Playwright browser previews, frame sampling, and FFmpeg/ffprobe final output checks.",
+    "license": "MIT"
+  },
+  "upstreamSkillSha256": "5f53eb7125349c7fb62d30eb450cb887d0c0e0cc4ebdb47cccbca51146c76371",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

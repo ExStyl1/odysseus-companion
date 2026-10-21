@@ -1,0 +1,984 @@
+{
+  "version": "2026-10-09.2",
+  "allowedBashPatterns": [
+    {
+      "pattern": "^ls\\b",
+      "comment": "List directory contents"
+    },
+    {
+      "pattern": "^ll\\b",
+      "comment": "Long listing (ls -l alias)"
+    },
+    {
+      "pattern": "^la\\b",
+      "comment": "List all including hidden (ls -la alias)"
+    },
+    {
+      "pattern": "^tree\\b",
+      "comment": "Display directory tree structure"
+    },
+    {
+      "pattern": "^file\\b",
+      "comment": "Determine file type"
+    },
+    {
+      "pattern": "^stat\\b",
+      "comment": "Display file status and metadata"
+    },
+    {
+      "pattern": "^du\\b",
+      "comment": "Estimate file/directory disk usage"
+    },
+    {
+      "pattern": "^df\\b",
+      "comment": "Report filesystem disk space usage"
+    },
+    {
+      "pattern": "^wc\\b",
+      "comment": "Count lines, words, bytes in files"
+    },
+    {
+      "pattern": "^nl\\b",
+      "comment": "Add line numbers to text output"
+    },
+    {
+      "pattern": "^head\\b",
+      "comment": "Output first part of files"
+    },
+    {
+      "pattern": "^tail\\b",
+      "comment": "Output last part of files"
+    },
+    {
+      "pattern": "^cat\\b",
+      "comment": "Concatenate and display file contents"
+    },
+    {
+      "pattern": "^less\\b",
+      "comment": "View file contents with paging"
+    },
+    {
+      "pattern": "^more\\b",
+      "comment": "View file contents with paging"
+    },
+    {
+      "pattern": "^bat\\b",
+      "comment": "Cat clone with syntax highlighting"
+    },
+    {
+      "pattern": "^markitdown\\b",
+      "comment": "Convert documents to Markdown (read-only)"
+    },
+    {
+      "pattern": "^pdf-tool\\s+(extract|info)\\b",
+      "comment": "PDF read operations: extract text/pages, view info"
+    },
+    {
+      "pattern": "^xlsx-tool\\s+(read|info|export)\\b",
+      "comment": "Excel read operations: read cells, view info, export"
+    },
+    {
+      "pattern": "^doc-diff\\b",
+      "comment": "Document comparison (read-only)"
+    },
+    {
+      "pattern": "^img-tool\\s+info\\b",
+      "comment": "Image read operations: view metadata/info"
+    },
+    {
+      "pattern": "^docx-tool\\s+(info|extract)\\b",
+      "comment": "Word read operations: view info, extract text"
+    },
+    {
+      "pattern": "^pptx-tool\\s+(info|extract)\\b",
+      "comment": "PowerPoint read operations: view info, extract text"
+    },
+    {
+      "pattern": "^ical-tool\\s+(read|filter)\\b",
+      "comment": "Calendar read operations: read events, filter by date"
+    },
+    {
+      "pattern": "^(pdf-tool|xlsx-tool|img-tool|docx-tool|pptx-tool|ical-tool)\\s*$",
+      "comment": "CLI tools: bare invocation (prints help)"
+    },
+    {
+      "pattern": "^find\\b",
+      "comment": "Search for files in directory hierarchy"
+    },
+    {
+      "pattern": "^locate\\b",
+      "comment": "Find files by name using database"
+    },
+    {
+      "pattern": "^which\\b",
+      "comment": "Locate a command"
+    },
+    {
+      "pattern": "^whereis\\b",
+      "comment": "Locate binary, source, manual for command"
+    },
+    {
+      "pattern": "^type\\b",
+      "comment": "Display information about command type"
+    },
+    {
+      "pattern": "^grep\\b",
+      "comment": "Search file contents with patterns"
+    },
+    {
+      "pattern": "^rg\\b",
+      "comment": "Ripgrep - fast recursive search"
+    },
+    {
+      "pattern": "^ag\\b",
+      "comment": "The Silver Searcher - fast code search"
+    },
+    {
+      "pattern": "^ack\\b",
+      "comment": "Ack - grep-like tool for programmers"
+    },
+    {
+      "pattern": "^fd\\b(?!.*\\s(?:-x|-X|--exec|--exec-batch)\\b)",
+      "comment": "Fast find alternative (-x/-X/--exec run arbitrary commands: refused)"
+    },
+    {
+      "pattern": "^fzf\\b",
+      "comment": "Fuzzy finder for files and commands"
+    },
+    {
+      "pattern": "^git(?!.*\\s--output\\b)(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+(?:status|log|diff|show|describe|rev-parse|ls-files|ls-tree|shortlog|blame|annotate|cherry|whatchanged|ls-remote)\\b",
+      "comment": "Git read-only subcommands. The pre-subcommand flags are ENUMERATED, not `-[A-Za-z]`: `git -c core.pager=<cmd>` and `--config-env` inject config that executes, so only the navigation/pager flags are accepted. `--output` is refused because `git diff --output=FILE` writes it."
+    },
+    {
+      "pattern": "^git(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+stash\\s+list\\b",
+      "comment": "Git stash listing (read-only)"
+    },
+    {
+      "pattern": "^git(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+config\\s+(?:--get|--get-all|--get-regexp|--list|-l)\\b",
+      "comment": "Git config READ forms only"
+    },
+    {
+      "pattern": "^git(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+branch(?:\\s+(?:--list|--all|--remotes|--verbose|-[arvli]+|--show-current|--merged|--no-merged|--contains|--no-contains|--points-at|--ignore-case|-i|--column|--no-column|--color|--no-color|--abbrev|--no-abbrev|(?:--sort|--format|--color|--abbrev)=\\S*))*$",
+      "comment": "Git branch LISTING only: the flag set is enumerated and the pattern is end-anchored, so `-d/-D/-m/-M/-c/-C/-f/-u` and a bare NAME operand (which CREATES a branch) are refused. `-a` is a listing flag HERE and is deliberately absent from the tag entry, where it means --annotate (P2.112)."
+    },
+    {
+      "pattern": "^git(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+tag(?:\\s+(?:--list|-[lin]+|-n[0-9]*|--merged|--no-merged|--contains|--no-contains|--points-at|--ignore-case|-i|--color|--no-color|--omit-empty|(?:--sort|--format|--color)=\\S*))*$",
+      "comment": "Git tag LISTING only: end-anchored with an enumerated flag set, so `-a/-s/-d/-f/-m` and a bare NAME operand (which CREATES a tag) are refused. `-a` is NOT accepted here even though the branch entry accepts it: same letter, opposite action (P2.112)."
+    },
+    {
+      "pattern": "^git(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+remote(?:\\s+(?:-v|--verbose))*$",
+      "comment": "Git remote listing (bare/-v only; `add`/`remove`/`set-url` write .git/config)"
+    },
+    {
+      "pattern": "^git(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+remote(?:\\s+(?:-v|--verbose))*\\s+(?:show|get-url)(?:\\s+(?:-n|--push|--all|[^\\s-]\\S*))*$",
+      "comment": "Git remote READ verbs: show, get-url"
+    },
+    {
+      "pattern": "^git(?:\\s+(?:-C\\s+[^\\s-]\\S*|--no-pager|--paginate|-p|--no-replace-objects|--literal-pathspecs|--no-optional-locks))*\\s+reflog(?:\\s+show)?(?:\\s+(?:-[0-9]+|--all|--no-abbrev|--abbrev(?:=\\S*)?|--date=\\S+|--oneline|--pretty(?:=\\S*)?))*$",
+      "comment": "Git reflog READ only: end-anchored, so `expire`/`delete`/`drop` — which destroy reflog entries — are refused. `git history` is NOT accepted at all: it is not a git builtin, so it dispatches to a user ALIAS, and a git alias may be `!<shell command>`."
+    },
+    {
+      "pattern": "^gh\\s+(pr|issue|repo|release|run|workflow|gist|project)\\s+(view|list|status|diff|checks|comments)\\b",
+      "comment": "GitHub CLI read operations: view PRs, issues, releases"
+    },
+    {
+      "pattern": "^gh\\s+api\\b(?!.*\\s-[XfF](?:[\\s=]|$))(?!.*\\s--(?:field|raw-field|input)(?:[\\s=]|$))(?!.*\\s--method(?:[\\s=])(?!GET\\b))",
+      "comment": "GitHub API, GET only. Replaces the earlier `--method GET` / no-`--method` pair, which both read only the LONG flag: `-X` is gh's short form of `--method`, and `-f`/`-F`/`--field`/`--raw-field`/`--input` make gh switch to POST with no method flag at all. All of those are refused here, and `--method` is accepted only with the value GET. Restored in bundle 2026-10-09.2 (UA12.184): upstream v0.14.0's two entries, shipped in 2026-10-09, re-opened gh api writes and uploads on the PowerShell route, which reads a smart-quoted span as ONE word where bash splits it."
+    },
+    {
+      "pattern": "^gh\\s+auth\\s+status\\b(?!.*\\s(?:--show-token\\b|-[A-Za-z]*t))",
+      "comment": "Check GitHub authentication status (`-t`/`--show-token` prints the token `~/.config/gh/` holds, which the credential floor denies to a read: refused; F1.292)"
+    },
+    {
+      "pattern": "^gh\\s+config\\s+(get|list)\\b(?!.*token)",
+      "comment": "Read GitHub CLI configuration (a key naming a token can print the stored OAuth token: refused; F1.292)"
+    },
+    {
+      "pattern": "^npm\\s+(?:ls|list|view|info|show|outdated|audit(?!\\s+fix)(?!.*\\s--fix\\b)|search|explain|why|config\\s+get(?!.*(?:_auth|_password))|config\\s+list)\\b",
+      "comment": "npm read operations. `audit` no longer accepts a bare tail: `npm audit fix` rewrites the lockfile and node_modules. `config get` of an `_auth`/`_password` key prints the registry credential `.npmrc` holds, which the credential floor denies to a read: refused (F1.292)."
+    },
+    {
+      "pattern": "^yarn\\s+(list|info|why|outdated|audit)\\b",
+      "comment": "Yarn read operations: list packages, check outdated"
+    },
+    {
+      "pattern": "^pnpm\\s+(?:list|ls|why|outdated|audit(?!\\s+fix\\b)(?!.*\\s--fix\\b))\\b",
+      "comment": "pnpm read operations (`pnpm audit --fix` rewrites the lockfile: refused)"
+    },
+    {
+      "pattern": "^bun\\s+(pm\\s+ls)\\b",
+      "comment": "Bun package manager list"
+    },
+    {
+      "pattern": "^bun\\s+run\\s+browser-tool\\b",
+      "comment": "Browser-tool helper CLI (templates/help)"
+    },
+    {
+      "pattern": "^bun\\s+run\\s+typecheck\\b$",
+      "comment": "Project typecheck script (read-only quality gate)"
+    },
+    {
+      "pattern": "^bun\\s+run\\s+typecheck:all\\b$",
+      "comment": "Monorepo typecheck script (read-only quality gate)"
+    },
+    {
+      "pattern": "^bunx\\s+tsc\\b.*--noEmit\\b",
+      "comment": "TypeScript compiler check without emitting artifacts"
+    },
+    {
+      "pattern": "^tsc\\b.*--noEmit\\b",
+      "comment": "TypeScript compiler check without emitting artifacts"
+    },
+    {
+      "pattern": "^npm\\s+run\\s+typecheck\\b$",
+      "comment": "npm typecheck script (read-only quality gate)"
+    },
+    {
+      "pattern": "^yarn\\s+typecheck\\b$",
+      "comment": "yarn typecheck script (read-only quality gate)"
+    },
+    {
+      "pattern": "^pnpm\\s+typecheck\\b$",
+      "comment": "pnpm typecheck script (read-only quality gate)"
+    },
+    {
+      "pattern": "^pip\\s+(list|show|freeze|check)\\b",
+      "comment": "pip read operations: list packages, show info"
+    },
+    {
+      "pattern": "^pip3\\s+(list|show|freeze|check)\\b",
+      "comment": "pip3 read operations: list packages, show info"
+    },
+    {
+      "pattern": "^cargo\\s+(tree|metadata|pkgid|verify-project)\\b",
+      "comment": "Cargo read operations: dependency tree, metadata"
+    },
+    {
+      "pattern": "^go\\s+(list|mod\\s+graph|mod\\s+why|version)\\b",
+      "comment": "Go read operations: list modules, dependency graph"
+    },
+    {
+      "pattern": "^composer\\s+(show|info|outdated|licenses)\\b",
+      "comment": "Composer read operations: show packages, licenses"
+    },
+    {
+      "pattern": "^gem\\s+(list|info|dependency|environment)\\b",
+      "comment": "RubyGems read operations: list gems, show info"
+    },
+    {
+      "pattern": "^bundle\\s+(list|info|outdated)\\b",
+      "comment": "Bundler read operations: list gems, check outdated"
+    },
+    {
+      "pattern": "^cd\\b",
+      "comment": "Change directory (affects shell session only)"
+    },
+    {
+      "pattern": "^pwd\\b",
+      "comment": "Print current working directory"
+    },
+    {
+      "pattern": "^whoami\\b",
+      "comment": "Print current username"
+    },
+    {
+      "pattern": "^id\\b",
+      "comment": "Print user and group IDs"
+    },
+    {
+      "pattern": "^groups\\b",
+      "comment": "Print group memberships"
+    },
+    {
+      "pattern": "^uname\\b",
+      "comment": "Print system information"
+    },
+    {
+      "pattern": "^hostname\\b",
+      "comment": "Print system hostname"
+    },
+    {
+      "pattern": "^date\\b",
+      "comment": "Print current date and time"
+    },
+    {
+      "pattern": "^uptime\\b",
+      "comment": "Print system uptime and load"
+    },
+    {
+      "pattern": "^env$",
+      "comment": "Print all environment variables (bare command only, not env <cmd>)"
+    },
+    {
+      "pattern": "^printenv\\b",
+      "comment": "Print environment variables"
+    },
+    {
+      "pattern": "^echo\\b",
+      "comment": "Print text to stdout (read-only; redirects/substitution still blocked)"
+    },
+    {
+      "pattern": "^ps\\b",
+      "comment": "List running processes"
+    },
+    {
+      "pattern": "^top\\s+-[lb]",
+      "comment": "Process viewer in batch/list mode only"
+    },
+    {
+      "pattern": "^htop\\b",
+      "comment": "Interactive process viewer"
+    },
+    {
+      "pattern": "^free\\b",
+      "comment": "Display memory usage"
+    },
+    {
+      "pattern": "^vmstat\\b",
+      "comment": "Virtual memory statistics"
+    },
+    {
+      "pattern": "^iostat\\b",
+      "comment": "I/O statistics"
+    },
+    {
+      "pattern": "^lscpu\\b",
+      "comment": "Display CPU architecture information"
+    },
+    {
+      "pattern": "^lsmem\\b",
+      "comment": "Display memory information"
+    },
+    {
+      "pattern": "^lsblk\\b",
+      "comment": "List block devices"
+    },
+    {
+      "pattern": "^lsusb\\b",
+      "comment": "List USB devices"
+    },
+    {
+      "pattern": "^lspci\\b",
+      "comment": "List PCI devices"
+    },
+    {
+      "pattern": "^docker\\s+(ps|images|logs|inspect|stats|top|port|diff|history|version|info|system\\s+info|system\\s+df|network\\s+ls|network\\s+inspect|volume\\s+ls|volume\\s+inspect|container\\s+ls|image\\s+ls)\\b",
+      "comment": "Docker read operations: list containers, images, logs, inspect"
+    },
+    {
+      "pattern": "^docker-compose\\s+(ps|logs|config|images|top|version)\\b",
+      "comment": "Docker Compose read operations: list services, view logs"
+    },
+    {
+      "pattern": "^docker\\s+compose\\s+(ps|logs|config|images|top|version)\\b",
+      "comment": "Docker Compose (v2) read operations"
+    },
+    {
+      "pattern": "^kubectl\\s+(?:get|describe|logs|top|explain|api-resources|api-versions|cluster-info(?!\\s+dump)|config\\s+view(?!.*\\s--(?:raw|flatten)(?:[\\s=]|$))|config\\s+get-contexts|version)\\b",
+      "comment": "Kubernetes read operations (`kubectl cluster-info dump --output-directory` writes a tree of files: refused; `config view --raw`/`--flatten` print the kubeconfig credentials `~/.kube/` holds, which the credential floor denies to a read: refused, F1.292)"
+    },
+    {
+      "pattern": "^sed\\s+-n\\b(?!.*\\s-i)(?!.*\\s--in-place\\b)",
+      "comment": "sed in print-only mode. `-n` does not make sed read-only on its own: `sed -n -i …` still edits in place."
+    },
+    {
+      "pattern": "^sort\\b(?!.*\\s-o\\b)(?!.*\\s--output\\b)",
+      "comment": "Sort lines (`sort -o FILE` truncates FILE: refused)"
+    },
+    {
+      "pattern": "^uniq(?:\\s+(?:-[A-Za-z]\\S*|--[a-z][a-z-]*(?:=\\S*)?|[0-9]+))*(?:\\s+[^\\s-]\\S*)?$",
+      "comment": "Report or filter repeated lines. At most ONE operand: `uniq INPUT OUTPUT` truncates its second operand (POSIX)."
+    },
+    {
+      "pattern": "^cut\\b",
+      "comment": "Remove sections from lines"
+    },
+    {
+      "pattern": "^tr\\b",
+      "comment": "Translate or delete characters"
+    },
+    {
+      "pattern": "^column\\b",
+      "comment": "Columnate lists"
+    },
+    {
+      "pattern": "^(?:gawk|mawk|nawk|awk)\\b",
+      "comment": "Awk text processing (dangerous execution forms are blocked by validator)"
+    },
+    {
+      "pattern": "^jq\\b",
+      "comment": "JSON processor"
+    },
+    {
+      "pattern": "^yq\\b(?!.*\\s-i\\b)(?!.*\\s--inplace\\b)(?!.*\\s--in-place\\b)",
+      "comment": "YAML processor (`yq -i` edits in place: refused)"
+    },
+    {
+      "pattern": "^xq\\b(?!.*\\s-i\\b)(?!.*\\s--inplace\\b)(?!.*\\s--in-place\\b)",
+      "comment": "XML processor via yq (`xq -i` edits in place: refused)"
+    },
+    {
+      "pattern": "^xmllint\\b(?!.*\\s-o\\b)(?!.*\\s--output\\b)",
+      "comment": "XML linter (`xmllint --output FILE` writes FILE: refused)"
+    },
+    {
+      "pattern": "^json_pp\\b",
+      "comment": "JSON pretty printer"
+    },
+    {
+      "pattern": "^python\\s+-m\\s+json\\.tool(?:\\s+(?:-[\\w-]+(?:=\\S*)?))*(?:\\s+[^\\s-]\\S*)?$",
+      "comment": "Python JSON formatter. At most ONE operand: json.tool's signature is `[infile [outfile]]` and the second operand is WRITTEN."
+    },
+    {
+      "pattern": "^ping\\b",
+      "comment": "Send ICMP echo requests"
+    },
+    {
+      "pattern": "^traceroute\\b",
+      "comment": "Trace packet route to host"
+    },
+    {
+      "pattern": "^tracepath\\b",
+      "comment": "Trace path to host"
+    },
+    {
+      "pattern": "^mtr\\b",
+      "comment": "Network diagnostic tool"
+    },
+    {
+      "pattern": "^dig\\b",
+      "comment": "DNS lookup utility"
+    },
+    {
+      "pattern": "^nslookup\\b",
+      "comment": "Query DNS servers"
+    },
+    {
+      "pattern": "^host\\b",
+      "comment": "DNS lookup utility"
+    },
+    {
+      "pattern": "^netstat\\b",
+      "comment": "Network statistics"
+    },
+    {
+      "pattern": "^ss\\b(?!.*\\s-K\\b)(?!.*\\s--kill\\b)",
+      "comment": "Socket statistics (`ss -K` destroys sockets: refused)"
+    },
+    {
+      "pattern": "^ip\\s+(?:addr|link|route|neigh)(?:\\s+(?:show|list|get)\\b.*)?$",
+      "comment": "IP address/link/route READ. The `(show)?` group used to be optional with nothing after it anchored, so `ip addr add …`, `ip link set …` and `ip route add …` all matched. The read verb is now required whenever an argument follows the object."
+    },
+    {
+      "pattern": "^ifconfig(?:\\s+-[A-Za-z]+)*(?:\\s+[A-Za-z][A-Za-z0-9._:-]*)?$",
+      "comment": "Network interface READ. At most one interface operand: a second operand is a configuration verb (`ifconfig eth0 down`)."
+    },
+    {
+      "pattern": "^node\\s+(--version|-v)\\b",
+      "comment": "Node.js version"
+    },
+    {
+      "pattern": "^npm\\s+(--version|-v)\\b",
+      "comment": "npm version"
+    },
+    {
+      "pattern": "^yarn\\s+(--version|-v)\\b",
+      "comment": "Yarn version"
+    },
+    {
+      "pattern": "^pnpm\\s+(--version|-v)\\b",
+      "comment": "pnpm version"
+    },
+    {
+      "pattern": "^bun\\s+(--version|-v)\\b",
+      "comment": "Bun version"
+    },
+    {
+      "pattern": "^python\\s+(--version|-V)\\b",
+      "comment": "Python version"
+    },
+    {
+      "pattern": "^python3\\s+(--version|-V)\\b",
+      "comment": "Python 3 version"
+    },
+    {
+      "pattern": "^ruby\\s+(--version|-v)\\b",
+      "comment": "Ruby version"
+    },
+    {
+      "pattern": "^go\\s+version\\b",
+      "comment": "Go version"
+    },
+    {
+      "pattern": "^rustc\\s+(--version|-V)\\b",
+      "comment": "Rust compiler version"
+    },
+    {
+      "pattern": "^cargo\\s+(--version|-V)\\b",
+      "comment": "Cargo version"
+    },
+    {
+      "pattern": "^java\\s+(-version|--version)\\b",
+      "comment": "Java version"
+    },
+    {
+      "pattern": "^dotnet\\s+--version\\b",
+      "comment": ".NET version"
+    },
+    {
+      "pattern": "^php\\s+(--version|-v)\\b",
+      "comment": "PHP version"
+    },
+    {
+      "pattern": "^perl\\s+(--version|-v)\\b",
+      "comment": "Perl version"
+    },
+    {
+      "pattern": "^man\\b",
+      "comment": "Display manual pages"
+    },
+    {
+      "pattern": "^[A-Za-z][A-Za-z0-9_+-]*\\s+--help$",
+      "comment": "Display command help. ANCHORED to a single PATH-resolvable command word plus the flag and nothing else. Unanchored, this entry allowed any command containing the characters `--help` anywhere: `python -c import os --help` was ALLOW, i.e. arbitrary code execution through a help flag. The head may carry no `/` and no `.`, so it cannot name a repo script (`sh deploy.sh --help`). Subcommand help (`git log --help`, `docker ps --help`) is already reached through the per-tool entries."
+    },
+    {
+      "pattern": "^[A-Za-z][A-Za-z0-9_+-]*\\s+-h$",
+      "comment": "Display command help, short flag. Same anchoring as `--help`: unanchored it allowed `rm -rf ./build -h` and `git push origin main -h`. `ls -h` / `du -h` / `df -h` keep working through their own entries."
+    },
+    {
+      "pattern": "^Get-ChildItem\\b",
+      "comment": "PowerShell: List directory contents (dir/ls equivalent)"
+    },
+    {
+      "pattern": "^Get-Content\\b",
+      "comment": "PowerShell: Read file contents (cat equivalent)"
+    },
+    {
+      "pattern": "^Get-Item\\b",
+      "comment": "PowerShell: Get file/directory item properties"
+    },
+    {
+      "pattern": "^Get-ItemProperty\\b",
+      "comment": "PowerShell: Get item properties"
+    },
+    {
+      "pattern": "^Get-Location\\b",
+      "comment": "PowerShell: Print current directory (pwd equivalent)"
+    },
+    {
+      "pattern": "^Get-Process\\b",
+      "comment": "PowerShell: List running processes"
+    },
+    {
+      "pattern": "^Get-Service\\b",
+      "comment": "PowerShell: List services"
+    },
+    {
+      "pattern": "^Get-Command\\b",
+      "comment": "PowerShell: List available commands"
+    },
+    {
+      "pattern": "^Get-Help\\b",
+      "comment": "PowerShell: Display command help"
+    },
+    {
+      "pattern": "^Get-Module\\b",
+      "comment": "PowerShell: List loaded modules"
+    },
+    {
+      "pattern": "^Get-Variable\\b",
+      "comment": "PowerShell: List variables"
+    },
+    {
+      "pattern": "^Get-Alias\\b",
+      "comment": "PowerShell: List command aliases"
+    },
+    {
+      "pattern": "^Get-Host\\b",
+      "comment": "PowerShell: Get host information"
+    },
+    {
+      "pattern": "^Get-Date\\b",
+      "comment": "PowerShell: Get current date/time"
+    },
+    {
+      "pattern": "^Get-Culture\\b",
+      "comment": "PowerShell: Get culture settings"
+    },
+    {
+      "pattern": "^Get-ComputerInfo\\b",
+      "comment": "PowerShell: Get system information"
+    },
+    {
+      "pattern": "^Get-PSDrive\\b",
+      "comment": "PowerShell: List drives"
+    },
+    {
+      "pattern": "^Get-History\\b",
+      "comment": "PowerShell: Get command history"
+    },
+    {
+      "pattern": "^Get-EventLog\\b",
+      "comment": "PowerShell: Read event logs"
+    },
+    {
+      "pattern": "^Get-WinEvent\\b",
+      "comment": "PowerShell: Read Windows events"
+    },
+    {
+      "pattern": "^Get-Acl\\b",
+      "comment": "PowerShell: Get access control list"
+    },
+    {
+      "pattern": "^Get-NetAdapter\\b",
+      "comment": "PowerShell: List network adapters"
+    },
+    {
+      "pattern": "^Get-NetIPAddress\\b",
+      "comment": "PowerShell: Get IP addresses"
+    },
+    {
+      "pattern": "^Get-NetRoute\\b",
+      "comment": "PowerShell: Get routing table"
+    },
+    {
+      "pattern": "^Get-DnsClientServerAddress\\b",
+      "comment": "PowerShell: Get DNS server addresses"
+    },
+    {
+      "pattern": "^Get-Disk\\b",
+      "comment": "PowerShell: List disks"
+    },
+    {
+      "pattern": "^Get-Volume\\b",
+      "comment": "PowerShell: List volumes"
+    },
+    {
+      "pattern": "^Get-Partition\\b",
+      "comment": "PowerShell: List disk partitions"
+    },
+    {
+      "pattern": "^Get-Package\\b",
+      "comment": "PowerShell: List installed packages"
+    },
+    {
+      "pattern": "^Get-InstalledModule\\b",
+      "comment": "PowerShell: List installed PowerShell modules"
+    },
+    {
+      "pattern": "^Test-Path\\b",
+      "comment": "PowerShell: Test if path exists"
+    },
+    {
+      "pattern": "^Test-Connection\\b",
+      "comment": "PowerShell: Ping equivalent"
+    },
+    {
+      "pattern": "^Test-NetConnection\\b",
+      "comment": "PowerShell: Test network connectivity"
+    },
+    {
+      "pattern": "^Resolve-Path\\b",
+      "comment": "PowerShell: Resolve path to full path"
+    },
+    {
+      "pattern": "^Split-Path\\b",
+      "comment": "PowerShell: Split path into components"
+    },
+    {
+      "pattern": "^Join-Path\\b",
+      "comment": "PowerShell: Join path components"
+    },
+    {
+      "pattern": "^Measure-Object\\b",
+      "comment": "PowerShell: Measure/count objects"
+    },
+    {
+      "pattern": "^Measure-Command\\b",
+      "comment": "PowerShell: Measure execution time"
+    },
+    {
+      "pattern": "^Compare-Object\\b",
+      "comment": "PowerShell: Compare two objects"
+    },
+    {
+      "pattern": "^Select-Object\\b",
+      "comment": "PowerShell: Select object properties"
+    },
+    {
+      "pattern": "^Sort-Object\\b",
+      "comment": "PowerShell: Sort objects"
+    },
+    {
+      "pattern": "^Group-Object\\b",
+      "comment": "PowerShell: Group objects by property"
+    },
+    {
+      "pattern": "^Where-Object\\b",
+      "comment": "PowerShell: Filter objects"
+    },
+    {
+      "pattern": "^ForEach-Object\\b",
+      "comment": "PowerShell: Iterate over objects"
+    },
+    {
+      "pattern": "^Format-List\\b",
+      "comment": "PowerShell: Format output as list"
+    },
+    {
+      "pattern": "^Format-Table\\b",
+      "comment": "PowerShell: Format output as table"
+    },
+    {
+      "pattern": "^Format-Wide\\b",
+      "comment": "PowerShell: Format output as wide table"
+    },
+    {
+      "pattern": "^ConvertTo-Json\\b",
+      "comment": "PowerShell: Convert to JSON"
+    },
+    {
+      "pattern": "^ConvertFrom-Json\\b",
+      "comment": "PowerShell: Parse JSON"
+    },
+    {
+      "pattern": "^ConvertTo-Csv\\b",
+      "comment": "PowerShell: Convert to CSV"
+    },
+    {
+      "pattern": "^ConvertFrom-Csv\\b",
+      "comment": "PowerShell: Parse CSV"
+    },
+    {
+      "pattern": "^ConvertTo-Xml\\b",
+      "comment": "PowerShell: Convert to XML"
+    },
+    {
+      "pattern": "^Select-String\\b",
+      "comment": "PowerShell: Search strings in files (grep equivalent)"
+    },
+    {
+      "pattern": "^Find-Module\\b",
+      "comment": "PowerShell: Search for modules in gallery"
+    },
+    {
+      "pattern": "^Find-Package\\b",
+      "comment": "PowerShell: Search for packages"
+    },
+    {
+      "pattern": "^\\$PSVersionTable\\b",
+      "comment": "PowerShell: Version information variable"
+    },
+    {
+      "pattern": "^\\$env:",
+      "comment": "PowerShell: Environment variable access"
+    },
+    {
+      "pattern": "^\\$PWD\\b",
+      "comment": "PowerShell: Current directory variable"
+    },
+    {
+      "pattern": "^\\$HOME\\b",
+      "comment": "PowerShell: Home directory variable"
+    },
+    {
+      "pattern": "^\\$Host\\b",
+      "comment": "PowerShell: Host information variable"
+    },
+    {
+      "pattern": "^dir\\b",
+      "comment": "PowerShell/CMD: List directory (Get-ChildItem alias)"
+    },
+    {
+      "pattern": "^gci\\b",
+      "comment": "PowerShell: Get-ChildItem alias"
+    },
+    {
+      "pattern": "^gc\\b",
+      "comment": "PowerShell: Get-Content alias"
+    },
+    {
+      "pattern": "^gps\\b",
+      "comment": "PowerShell: Get-Process alias"
+    },
+    {
+      "pattern": "^gsv\\b",
+      "comment": "PowerShell: Get-Service alias"
+    },
+    {
+      "pattern": "^gcm\\b",
+      "comment": "PowerShell: Get-Command alias"
+    }
+  ],
+  "blockedCommandHints": [
+    {
+      "command": "printf",
+      "reason": "printf is not in the default read-only allowlist, the commands Plan and Don't ask modes run without approval.",
+      "context": "Plan and Don't ask modes keep a narrow command surface so harmless-looking shell forms do not accidentally expand capability.",
+      "tryInstead": [
+        "Use `echo` for simple separators and labels.",
+        "Allowlist printf in permissions.json if your workspace wants it to run without approval in Plan and Don't ask modes."
+      ],
+      "example": "echo '--- files ---'"
+    },
+    {
+      "command": "sed",
+      "reason": "Only print-only sed is in the default read-only allowlist of Plan and Don't ask modes.",
+      "context": "Default safe pattern is `^sed\\s+-n\\b` (inspection, not in-place transformation).",
+      "whenNotMatching": "^sed\\s+-n\\b",
+      "tryInstead": [
+        "Use `sed -n ...` for read-only inspection."
+      ],
+      "example": "sed -n '1,80p' file.txt"
+    },
+    {
+      "command": "awk",
+      "reason": "awk is blocked when the command appears to execute external commands.",
+      "context": "Forms like `system(...)`, command-pipe `getline`, or `print | \"cmd\"` can run arbitrary processes.",
+      "tryInstead": [
+        "Use awk without execution primitives for read-only text extraction."
+      ]
+    },
+    {
+      "command": "gawk",
+      "reason": "gawk is blocked when the command appears to execute external commands.",
+      "context": "Forms like `system(...)`, command-pipe `getline`, or `print | \"cmd\"` can run arbitrary processes."
+    },
+    {
+      "command": "mawk",
+      "reason": "mawk is blocked when the command appears to execute external commands.",
+      "context": "Forms like `system(...)`, command-pipe `getline`, or `print | \"cmd\"` can run arbitrary processes."
+    },
+    {
+      "command": "nawk",
+      "reason": "nawk is blocked when the command appears to execute external commands.",
+      "context": "Forms like `system(...)`, command-pipe `getline`, or `print | \"cmd\"` can run arbitrary processes."
+    },
+    {
+      "command": "xargs",
+      "reason": "xargs is not in the read-only allowlist of Plan and Don't ask modes because it can execute arbitrary commands from input.",
+      "tryInstead": [
+        "Use dedicated read-only commands directly."
+      ]
+    }
+  ],
+  "allowedMcpPatterns": [
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__search(?:_[^_]+)*$",
+      "comment": "Search operations across MCP sources — a tool named search or search_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__list(?:_[^_]+)*$",
+      "comment": "Generic list operations — a tool named list or list_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__get(?:_[^_]+)*$",
+      "comment": "Generic get/read operations — a tool named get or get_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__read(?:_[^_]+)*$",
+      "comment": "Generic read operations — a tool named read or read_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__info(?:_[^_]+)*$",
+      "comment": "Information/metadata retrieval — a tool named info or info_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__describe(?:_[^_]+)*$",
+      "comment": "Describe resources — a tool named describe or describe_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__show(?:_[^_]+)*$",
+      "comment": "Show resource details — a tool named show or show_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__view(?:_[^_]+)*$",
+      "comment": "View resource contents — a tool named view or view_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__find(?:_[^_]+)*$",
+      "comment": "Find/locate resources — a tool named find or find_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__query(?:_[^_]+)*$",
+      "comment": "Query operations — a tool named query or query_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__count(?:_[^_]+)*$",
+      "comment": "Count resources — a tool named count or count_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__exists(?:_[^_]+)*$",
+      "comment": "Check existence — a tool named exists or exists_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__status(?:_[^_]+)*$",
+      "comment": "Status checks — a tool named status or status_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__inspect(?:_[^_]+)*$",
+      "comment": "Inspect resource details — a tool named inspect or inspect_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__[^_]+(?:_[^_]+)*__fetch(?:_[^_]+)*$",
+      "comment": "Fetch/retrieve data — a tool named fetch or fetch_… (the verb leads the tool name; F1.258)"
+    },
+    {
+      "pattern": "^mcp__codeSearch__(?:dp_code-search_commits|dp_code-search_exact|dp_code-search_groups|dp_code-search_search)$",
+      "comment": "Built-in dp server codeSearch: exactly the 4 tools its own tools/list marks readOnlyHint:true (the pool's stored catalogue, 2026-09-22; F1.288). Exact names, host-owned: no annotation is read at runtime (owner decision D1)."
+    },
+    {
+      "pattern": "^mcp__dpAllure__(?:dp_allure_get_attachment|dp_allure_get_customfield|dp_allure_get_customfield-values|dp_allure_get_integrations|dp_allure_get_issue-keys|dp_allure_get_launch|dp_allure_get_launch-results|dp_allure_get_launch-statistic|dp_allure_get_launches|dp_allure_get_projects|dp_allure_get_scenario|dp_allure_get_search-testcases|dp_allure_get_tenant|dp_allure_get_testcase-overview|dp_allure_get_testlayer|dp_allure_get_testresult|dp_allure_get_testresult-execution|dp_allure_get_workflow)$",
+      "comment": "Built-in dp server dpAllure: exactly the 18 tools its own tools/list marks readOnlyHint:true (the pool's stored catalogue, 2026-09-22; F1.288). Exact names, host-owned: no annotation is read at runtime (owner decision D1)."
+    },
+    {
+      "pattern": "^mcp__dpFinedog__(?:dp_finedog_get_group-incident|dp_finedog_get_incident|dp_finedog_get_incident-summary|dp_finedog_get_post-analysis|dp_finedog_get_suspicion|dp_finedog_get_team|dp_finedog_get_team-members|dp_finedog_get_unit|dp_finedog_get_units-state|dp_finedog_list_incidents|dp_finedog_list_schedules|dp_finedog_list_suspicions|dp_finedog_list_teams|dp_finedog_list_units|dp_finedog_search_freezes|dp_finedog_search_pages|dp_finedog_search_post-analyses|dp_finedog_search_releases)$",
+      "comment": "Built-in dp server dpFinedog: exactly the 18 tools its own tools/list marks readOnlyHint:true (the pool's stored catalogue, 2026-09-22; F1.288). Exact names, host-owned: no annotation is read at runtime (owner decision D1)."
+    },
+    {
+      "pattern": "^mcp__dpGitlab__(?:dp_gitlab_whoami)$",
+      "comment": "Built-in dp server dpGitlab: exactly the 1 tool its own tools/list marks readOnlyHint:true (the pool's stored catalogue, 2026-09-22; F1.288). Exact names, host-owned: no annotation is read at runtime (owner decision D1)."
+    },
+    {
+      "pattern": "^mcp__dpJira__(?:dp_jira_editmeta|dp_jira_field|dp_jira_issue|dp_jira_jql_search|dp_jira_link-types|dp_jira_links|dp_jira_sprint_current|dp_jira_transitions|dp_jira_version_list|dp_jira_workflow_available|dp_jira_workflow_history)$",
+      "comment": "Built-in dp server dpJira: exactly the 11 tools its own tools/list marks readOnlyHint:true (the pool's stored catalogue, 2026-09-22; F1.288). Exact names, host-owned: no annotation is read at runtime (owner decision D1)."
+    },
+    {
+      "pattern": "^mcp__dpMail__(?:dp_mail_get-attachment-content|dp_mail_get-message-details|dp_mail_list-attachments|dp_mail_list-messages|dp_mail_search-messages)$",
+      "comment": "Built-in dp server dpMail: exactly the 5 tools its own tools/list marks readOnlyHint:true (the pool's stored catalogue, 2026-09-22; F1.288). Exact names, host-owned: no annotation is read at runtime (owner decision D1)."
+    },
+    {
+      "pattern": "^mcp__dpSage__(?:dp_sage_completion|dp_sage_groups|dp_sage_logs|dp_sage_systems)$",
+      "comment": "Built-in dp server dpSage: exactly the 4 tools its own tools/list marks readOnlyHint:true (the pool's stored catalogue, 2026-09-22; F1.288). Exact names, host-owned: no annotation is read at runtime (owner decision D1)."
+    }
+  ],
+  "allowedApiEndpoints": [],
+  "allowedWritePaths": [],
+  "deniedPaths": [
+    "**/.env",
+    "**/.env.*",
+    "~/.ssh/**",
+    "~/.gnupg/**",
+    "~/.aws/**",
+    "~/.config/gcloud/**",
+    "~/.azure/**",
+    "~/.kube/**",
+    "~/.docker/config.json",
+    "~/.git-credentials",
+    "~/.config/git/credentials",
+    "~/.config/gh/**",
+    "~/.config/glab-cli/**",
+    "**/.git/glab-cli/**",
+    "~/.nessy/**",
+    "**/credentials.enc",
+    "**/.npmrc",
+    "**/.pypirc",
+    "~/.netrc",
+    "**/*-service-account.json",
+    "**/*.pem",
+    "**/*.key",
+    "**/id_rsa",
+    "**/id_ed25519",
+    "**/workspaces/*/artifacts/registry.json"
+  ]
+}

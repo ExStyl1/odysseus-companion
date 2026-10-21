@@ -1,0 +1,13 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/superpowers/specs/2026-07-29-phase4-findings.md",
+  "type": "SPEC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Phase 4, section A — what eight unread contract pages contained",
+  "summary": "Findings from eight Claude contract pages compared against our code, listing conformance gaps including a missing removal circuit breaker and a fail-open managed-MCP denylist.",
+  "scope": ["permission modes", "removal circuit breaker", "managed MCP allow/deny policy", "isManagedMcpServerAllowed", "mode-manager.ts"],
+  "cross_refs": ["2026-07-29-unread-doc-pages.md", "2026-07-29-removal-circuit-breaker.md", "permissions.md", "permission-modes.md", "managed-mcp.md"],
+  "locked": false,
+  "precedence": null,
+  "notes": ""
+}

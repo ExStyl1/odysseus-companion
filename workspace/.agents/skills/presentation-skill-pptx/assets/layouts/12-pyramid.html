@@ -1,0 +1,50 @@
+<!--
+  PYRAMID
+
+  When to use: Hierarchy or funnel: three specifics top, two conclusions bottom
+  Structure: grid repeat(6, 1fr) for two rows: three cards span 2 top, two cards span 3 bottom
+
+  Generated from assets/layouts/template.html by scripts/sync_layouts.py.
+  Edit the template, not this file.
+-->
+<div class="slide" style="background: #FFFFFF;">
+  <h1 class="slide-title">Длинный или короткий заголовок, расположение не меняется</h1>
+
+  <div class="panel" style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: repeat(2, 1fr); gap: 24px 20px;">
+    <div class="card gray" style="grid-column: span 2; padding: 48px; gap: 25px;">
+      <p class="card-subtitle" style="font-size: 44px;">Блок 1</p>
+      <p class="card-description" style="font-size: 28px;">Краткое описание</p>
+      <div class="icon-container" style="bottom: 48px; right: 48px;">
+        <img class="icon" src="../icons/diamond.png" alt="Иконка" />
+      </div>
+    </div>
+    <div class="card gray" style="grid-column: span 2; padding: 48px; gap: 25px;">
+      <p class="card-subtitle" style="font-size: 44px;">Блок 2</p>
+      <p class="card-description" style="font-size: 28px;">Краткое описание</p>
+      <div class="icon-container" style="bottom: 48px; right: 48px;">
+        <img class="icon" src="../icons/cup.png" alt="Иконка" />
+      </div>
+    </div>
+    <div class="card gray" style="grid-column: span 2; padding: 48px; gap: 25px;">
+      <p class="card-subtitle" style="font-size: 44px;">Блок 3</p>
+      <p class="card-description" style="font-size: 28px;">Краткое описание</p>
+      <div class="icon-container" style="bottom: 48px; right: 48px;">
+        <img class="icon" src="../icons/ribbon.png" alt="Иконка" />
+      </div>
+    </div>
+    <div class="card gray" style="grid-column: span 3; padding: 48px; gap: 25px;">
+      <p class="card-subtitle" style="font-size: 44px;">Блок 4</p>
+      <p class="card-description" style="font-size: 28px;">Краткое описание</p>
+      <div class="icon-container" style="bottom: 48px; right: 48px;">
+        <img class="icon" src="../icons/medal.png" alt="Иконка" />
+      </div>
+    </div>
+    <div class="card yellow" style="grid-column: span 3; padding: 48px; gap: 25px;">
+      <p class="card-subtitle" style="font-size: 44px;">Блок 5</p>
+      <p class="card-description" style="font-size: 28px;">Краткое описание</p>
+      <div class="icon-container" style="bottom: 48px; right: 48px;">
+        <img class="icon" src="../icons/magnifier.png" alt="Иконка" />
+      </div>
+    </div>
+  </div>
+</div>

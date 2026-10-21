@@ -1,0 +1,47 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": "skills/hyperframes",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/skills/hyperframes",
+  "upstreamName": "hyperframes",
+  "upstreamFrontmatter": {
+    "name": "hyperframes",
+    "description": "Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session."
+  },
+  "upstreamSkillSha256": "f9e4e952b6f6352e38d29dfa46849f86c4e1f134a7cd99d8b44bb9da6939e29f",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "openmontage-hyperframes",
+      "guide": "variants/openmontage-hyperframes/GUIDE.md",
+      "resourceRoot": "variants/openmontage-hyperframes",
+      "repository": "calesthio/OpenMontage",
+      "path": ".agents/skills/hyperframes",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "PROVENANCE.md": {
+          "sha256": "c5e74c452116f073692e2ba336a70e6ace31b27ca06ca3e8f2c8cb9857234301",
+          "executable": false
+        },
+        "SKILL.md": {
+          "sha256": "9ecf43313a01eda8eaa70d73413c26b8f422839c5a18dcd7a6b5bc38d307e6a2",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "31f0102df4bdcd495d74c7e7abec717ab41b3b4bb4270925c131a755f9ff9e2e",
+          "executable": false
+        }
+      },
+      "when": "Вариант OpenMontage для того же процесса; применять к проекту из этого набора"
+    }
+  ]
+}

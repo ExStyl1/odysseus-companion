@@ -1,0 +1,11 @@
+{
+  "name": "sample-claude-catalog",
+  "description": "Authored synthetic Claude marketplace catalog snapshot pinned for fixture parsing tests.",
+  "plugins": [
+    {
+      "name": "sample-plugin",
+      "description": "Authored synthetic plugin entry referenced by a remote source URL.",
+      "source": "https://example.invalid/plugins/sample-plugin"
+    }
+  ]
+}

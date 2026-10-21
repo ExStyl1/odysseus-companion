@@ -1,0 +1,6 @@
+# check-conditional-expect selector 2 baseline — ACCEPTED `toMatchObject` sites
+# whose received object is hollowed by an asymmetric matcher and read again.
+# Regenerate: bun scripts/check-conditional-expect.ts --update-matcher-baseline
+# Key: <file> :: <test title> :: <received expression> :: <matched key paths>.
+# No line numbers — they drift under every concurrent lane. See the script header.
+# Reading at last record: 35 matcher site(s), 0 defect(s).

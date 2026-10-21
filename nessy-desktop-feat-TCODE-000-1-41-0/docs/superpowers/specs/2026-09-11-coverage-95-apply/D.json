@@ -1,0 +1,205 @@
+{
+  "family": "D",
+  "items": [
+    {
+      "qid": "QD1",
+      "answer": "D",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "D1",
+          "column": "Pi",
+          "from": "`partial ᵗ`",
+          "to": "`covered ᵗ`",
+          "why_en": "Every residue this cell held Pi at is closed at HEAD by landed work: a per-runtime hook-event table now exists and Pi's column is measured (P6.90 `dc9b224a8`, `packages/shared/src/automations/runtime-hook-events.ts` symbol `MEASURED_HOOK_EVENT_COLUMNS`, with each runtime's table a total `Record<AgentEvent, HookEventEmission>`), the over-warning scheduled-run copy was re-cut (P2.485 `5afd7772a`), the bridged-tool claim became `'conditional'` so a failed bridge is no longer under-warned (P2.484 `eca15b012`), and the provider-type lookup is a total record with its fallback named (P2.216 `ca630040e`, `apps/electron/src/renderer/components/app-shell/input/runtime-switch-copy.ts` symbol `RUNTIME_BY_PROVIDER_TYPE`)."
+        },
+        {
+          "row": "D1",
+          "column": "Claude",
+          "from": "`partial ᵗ`",
+          "to": "`covered ᵗ`",
+          "why_en": "Same four closures as the Pi cell with claude's own hook column measured by P6.89 (`b3d569a06`, `packages/shared/src/automations/runtime-hook-events.ts` symbol `ANTHROPIC_HOOK_EVENT_EMISSION`, a total `Record<AgentEvent, HookEventEmission>`), so nothing this cell named as missing is missing today and the remaining defect is codex-side."
+        },
+        {
+          "row": "D1",
+          "column": "Codex",
+          "from": "`partial ᵗ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Held at `partial` by a sixth, live residue rather than by the five that closed: the allow-list cost row's own docblock records that a `'conditional'` SOURCE never fires, so Pi → Codex loses a session tool restriction silently (P6.596 `ed0f8d20a + da7be2180`), and the justification for that rule in `apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` symbol `switchCostCertainty` — that codex is the only conditional runtime today — is false at HEAD, where five rows carry `'conditional'` and one of them is Pi's."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Correct the host's `switchCostCertainty` docblock so its reason for ignoring a `'conditional'` source no longer claims codex is the only conditional runtime, and state the Pi → Codex allow-list silence where that rule lives.",
+          "size": "XS",
+          "tags": ["host", "doc", "renderer"],
+          "note_en": "Done means `apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` symbol `switchCostCertainty` names what is measurable at HEAD — five rows carry `'conditional'` and the one on a SOURCE is the tool-restriction row's Pi cell — and the under-warn direction is stated at the rule as well as at the row above it; zero behaviour change, no cost row moves, no locale key moves. It implements the residue QD1 option D asks to be named, and it is the prerequisite the question states for D1's codex cell ever leaving `partial`; the coverage gain of QD1 (Pi and Claude to `covered ᵗ`) does not depend on it."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "Not a flip: no runtime-native mechanism is in play — the silence is a shape choice in the host's own cost table, a claim per runtime where the honest answer is per ordered pair — so the stricter native-plus-wiring test does not apply, and closing it is host work of about S that no answer in this round authorised."
+    },
+    {
+      "qid": "QD2",
+      "answer": "D",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "D3",
+          "column": "Pi",
+          "from": "`absent ᵗ`",
+          "to": "`partial ᵗ`",
+          "why_en": "The replay arms landed (P6.481 `2a9731131`, with the persist-and-carry pair in `e99c31040`) and Pi's own format has a native slot, so reasoning survives a handoff onto Pi; what holds the cell short of `covered` is the origin gate in `packages/server-core/src/sessions/runtime-handoff.ts` symbol `buildRuntimeHandoffHistory`, which emits a reasoning entry only when the row's origin equals the runtime taking over (owner Q10 and Q16 = (b), 2026-09-05), and the live arm is P7.5's packaged sitting."
+        },
+        {
+          "row": "D3",
+          "column": "Claude",
+          "from": "`absent ᵗ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Claude replays a signed thinking block and strips an unsigned one because the signature is required by the block's own shape (P6.481 `2a9731131` + `e99c31040`), so the capability exists on this runtime; the residue is the same same-runtime-only gate, which our own copy states outright in `packages/shared/src/i18n/locales/en.json` symbol `chat.runtimeSwitch.costReasoningCarry` — reasoning never crosses between runtimes in any case — and the live arm stays on P7.5."
+        },
+        {
+          "row": "D3",
+          "column": "Codex",
+          "from": "`absent ᵗ`",
+          "to": "`partial ᵗ`",
+          "why_en": "Codex takes a reasoning item on its Responses leg with nothing to enable, which is why the switch row's codex claim is `'conditional'` rather than a boolean (P6.481 `84badb3e3 + 73e40b639`), so this cell carries TWO residues: the same same-runtime-only origin gate, and a gateway connection speaking chat-completions with nowhere to put reasoning at all."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Decide what the claude runtime does with the SDK's `resumed_from_incomplete_thinking` flag, which nothing in this tree reads, and either consume it on resume or record the null with its reason at the resume site.",
+          "size": "XS",
+          "tags": ["claude", "host", "doc"],
+          "note_en": "Measured at HEAD: `node_modules/@anthropic-ai/claude-agent-sdk/sdk.d.ts` symbol `resumed_from_incomplete_thinking` has zero readers across tracked sources in `packages` and `apps`. Done means either a reader that changes a resume decision, or a comment at the claude resume path naming the flag and why it is deliberately ignored, so the next reader does not re-derive it; it moves no ledger cell by itself. It implements QD2 option D's XS row. The LIVE arm of ledger D3 gets no new row here: P7.5 already carries it as part of the packaged release sitting, and D3's three cells re-stamp to `partial ᵗ` on the landed commits above regardless of it."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "Not a flip: the remaining loss — reasoning not crossing BETWEEN runtimes — is a standing owner decision (Q10 and Q16 = (b), 2026-09-05) with its reason recorded at the gate, not a missing wire; codex's reasoning item would natively accept a foreign-origin summary as plaintext, so the wiring would be XS, but flagging it would re-open a decision this round did not ask about."
+    },
+    {
+      "qid": "QD3",
+      "answer": "D",
+      "kind": "refuse",
+      "ledger_edits": [
+        {
+          "row": "D4",
+          "column": "Pi",
+          "from": "`absent ᵗ`",
+          "to": "`absent ᵗ`",
+          "why_en": "Owner answer QD3 = D (2026-09-11) keeps the 2026-08-28 refusal recorded as `absent` with reason `DECISION` and refuses the rename to `n/a`, because this ledger reserves `n/a` for a capability that is meaningless on the runtime while here it is meaningful and was rejected, and `scripts/plan-status.py` subtracts `n/a` from the denominator, so the rename would raise the percentage with no gap closed; the shipped route is on-demand recovery in position through Pi's own read tool."
+        },
+        {
+          "row": "D4",
+          "column": "Claude",
+          "from": "`absent ᵗ`",
+          "to": "`absent ᵗ`",
+          "why_en": "Same decision and the same refusal of the rename (owner answer QD3 = D, 2026-09-11): an image crosses as a named path and claude's own read tool returns it as visual content when the model accepts image input, which is the condition the handoff note now states rather than promising the read-back unconditionally."
+        },
+        {
+          "row": "D4",
+          "column": "Codex",
+          "from": "`absent ᵗ`",
+          "to": "`absent ᵗ`",
+          "why_en": "Same decision and the same refusal of the rename (owner answer QD3 = D, 2026-09-11), with codex's one open residue unchanged: the on-demand read-back has never been exercised live there, which is P6.93's measurement at the packaged sitting and not a second gap."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Ask the owner whether the coverage scorer should carry a decided refusal as its own class, distinct both from a defect and from `n/a`, and record the answer where the ledger defines its vocabulary.",
+          "size": "XS",
+          "tags": ["doc", "product", "host"],
+          "note_en": "The measurement that makes the question real: `scripts/plan-status.py` symbol `HOST_CLASS` and the denominator line subtract `n/a` and nothing else, so today a decided refusal either inflates the percentage when written `n/a` or reads as a defect when written `absent` — there is no third word. Done means one question put to the owner with those two consequences, and the answer written into the ledger's Cell vocabulary section (and, if the owner wants the class, a scorer row of its own). Implements the second half of QD3 option D; it moves no cell and it must not be used to re-open the 2026-08-28 image decision."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "Re-read against the stricter native-plus-wiring criterion and the refusal survives it: no runtime carries an image across a handoff natively — the claude replay format shows zero image blocks across 217 vendor transcripts (P3.54) and codex's default upstream refuses an image part with a 400 where a text-part array answers 200 (P2.125) — so there is no ≤ S wiring to flip to, and the owner's objection is a product posture about chronology and about the surface disagreeing with the model, not a cost."
+    },
+    {
+      "qid": "QD4",
+      "answer": "D",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "D5",
+          "column": "Claude",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "P6.262 (`fead83583`) landed the gateway-feature-flag cost row and both locale strings (`apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` symbol `gatewayFeatureFlags`), so a switch onto a Nessy Gateway claude connection now names the blackout and says the subscription path keeps it; the cell carries the owner decision's one unpaid condition — nothing in this tree has measured whether the flag actually takes Remote Control with it on the gateway path — and the clause about gateway model discovery must be struck, since the page gives that its own opt-in this fork never sets."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Re-quote the nonessential-traffic effect list at every site in this tree that still carries the stale version, striking the gateway-model-discovery clause the page now refutes, in one commit.",
+          "size": "XS",
+          "tags": ["claude", "doc", "test"],
+          "note_en": "The census at HEAD is EIGHT sites in SIX files, not the five the question names: `packages/shared/src/i18n/locales/en.json` and `packages/shared/src/i18n/locales/ru.json` symbol `chat.runtimeSwitch.costGatewayFeatureFlags`, the `gatewayFeatureFlags` docblock in `apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts`, the docblock of `packages/shared/src/agent/__tests__/claude-telemetry-coverage-marker.test.ts`, TWO places in `docs/architecture/runtime-capability-gaps.md`, and TWO more in `packages/shared/src/agent/claude-agent.ts` (the verbatim quote and the prose derived from it) — the two extra files are reachable only with a SHORT needle, because the phrase wraps across a line break at both. Done means the page is re-curled and re-quoted at its current text at all eight, i18n parity and sorted green, and `packages/shared/src/config/claude-provider-routing-env.ts` symbol `CLAUDE_FIRST_PARTY_ASSUMPTION_ENV_KEYS` left untouched, because its Remote-Control sentence is about a different variable and already records the opt-in gate correctly. Implements QD4 option D; it re-stamps ledger D5's claude cell to `covered ᵗ` on `fead83583` and writes the unmeasured Remote Control condition into that cell."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "Not a refusal and not a flip: the surface is already merged on the runtime that owns it, and the only open item is a measurement the owner's answer asks to be recorded in the cell rather than built."
+    },
+    {
+      "qid": "QD5",
+      "answer": "A",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "D6",
+          "column": "Pi",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "P6.262 (`fead83583`) landed the builtin-agents cost row (`apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` symbol `codexBuiltinAgents`), measured on the shipped binary rather than read off the page — explorer and awaiter present, the page's worker scoring zero against a positive control — and the row fires on the leg out of codex onto Pi, so a Pi session is told which roles it loses."
+        },
+        {
+          "row": "D6",
+          "column": "Claude",
+          "from": "`absent ʰ`",
+          "to": "`covered ᵗ`",
+          "why_en": "Same landed row and same measurement (P6.262 `fead83583`), firing on the leg out of codex onto claude; the mirror asymmetry — leaving claude loses its own Explore and Plan pair and no row says so — is a separate XS row and not a residue of this cell."
+        }
+      ],
+      "plan_rows": [
+        {
+          "task_en": "Add the mirror switch-cost row for the Explore and Plan agents the claude runtime ships, so leaving claude reports its own builtin loss the way leaving codex already does.",
+          "size": "XS",
+          "tags": ["claude", "host", "renderer", "doc"],
+          "note_en": "Measured at HEAD: `packages/shared/src/agent/claude-runtime-builtin-agent-env.ts` symbol `CLAUDE_DISABLE_EXPLORE_PLAN_AGENTS_ENV` gates exactly those two builtin entries and nothing else, while the words Explore and Plan appear in no row of `apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` and in no `chat.runtimeSwitch.cost*` locale key — so the table is silent on the loss in that direction. Done means one row claiming the pair on the anthropic column and not on pi or codex, copy in both locales, and a test that goes red if the row is dropped — a comment without a guard does not count; state in the row's docblock that the claim is about the turn shape where the runtime's own builtins are kept, since a turn that supplies our definitions already returns an empty builtin list. Implements QD5 option A's XS row; the two D6 cells re-stamp on `fead83583` independently of it."
+        }
+      ],
+      "flip_candidate": false,
+      "flip_reason_en": "Not a refusal: the codex roles are native, nothing needed enabling, and the host's one sentence is already merged; the mirror is host seam work of XS and is carried as the plan row above rather than as a flip."
+    },
+    {
+      "qid": "QD6",
+      "answer": "D",
+      "kind": "restamp",
+      "ledger_edits": [
+        {
+          "row": "D5",
+          "column": "Host",
+          "from": "`—`",
+          "to": "`REPORTED ᵗ`",
+          "why_en": "P6.262 (`fead83583`) put the loss into the switch report rather than into the capability itself, which is precisely what `REPORTED` means in this column, and the verdict describes only the legs the row fires on — `apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts` symbol `switchCostCertainty` never fires on a `'conditional'` SOURCE, so any row so claimed is silent on that leg by construction."
+        },
+        {
+          "row": "D6",
+          "column": "Host",
+          "from": "`—`",
+          "to": "`REPORTED ᵗ`",
+          "why_en": "The builtin-agents row landed by P6.262 (`fead83583`) tells a user leaving codex that explorer and awaiter do not exist on the target, so the switch is reported rather than uniform or honest; the same caveat applies about legs a `'conditional'` source silences, and claude's own Explore and Plan pair still has no mirror row (QD5's XS row)."
+        },
+        {
+          "row": "D7",
+          "column": "Host",
+          "from": "`—`",
+          "to": "`HONEST ᵗ`",
+          "why_en": "`HOST` would assert that a switch changes nothing, and it does change something: P6.263 (`cd1047a06`) makes the capabilities array ALWAYS present, so it goes from claude's three advertised values to the explicit empty every other backend answers — a degradation the caller can read for itself, which is this column's definition of `HONEST`, and both words score as covered so the precision costs nothing."
+        }
+      ],
+      "plan_rows": [],
+      "flip_candidate": false,
+      "flip_reason_en": "Option B — building a visible refusal on the capability itself so D5 and D6 could honestly read `HONEST` — is host product work of about M with no runtime-native mechanism behind it, and the owner took D; for D7 the word chosen changes no score (`HOST` and `HONEST` both class as covered) and D5 and D6 stay `partial` honestly."
+    }
+  ]
+}

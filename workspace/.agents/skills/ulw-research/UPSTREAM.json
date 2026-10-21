@@ -1,0 +1,16 @@
+{
+  "repository": "code-yeongyu/oh-my-openagent",
+  "revision": "657a02ef48cc6653ba845f0bb8c71b1097a64aa2",
+  "path": "packages/shared-skills/skills/ulw-research",
+  "url": "https://github.com/code-yeongyu/oh-my-openagent/tree/657a02ef48cc6653ba845f0bb8c71b1097a64aa2/packages/shared-skills/skills/ulw-research",
+  "upstreamName": "ulw-research",
+  "upstreamFrontmatter": {
+    "name": "ulw-research",
+    "description": "Runs maximum-saturation research with a cooperating team, claim-graph gating, and a cited, QA'd deliverable. Use when the user explicitly asks for research or a deep investigation, including any 'ulw' research wording."
+  },
+  "upstreamSkillSha256": "0ec1e1b47486e9334eea8d981bdefdceb2f0cab672b168a1d3a1583453003355",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

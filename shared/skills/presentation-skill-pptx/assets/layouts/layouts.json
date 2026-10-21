@@ -1,0 +1,353 @@
+{
+  "_comment": "Physical layout registry. Order matches slide order in assets/layouts/template.html. scripts/sync_layouts.py generates NN-slug.html fragments; scripts/deckkit/layouts.py derives their paths from this registry. Register new slugs in layouts.py before syncing. Edit manually only when the template layout set changes.",
+  "layouts": [
+    {
+      "slug": "title",
+      "name": "Title",
+      "structure": "Yellow background with pattern, glass panel, logo, .title-large, .subtitle-large, author at bottom",
+      "when": "First slide of presentation. Always exactly one"
+    },
+    {
+      "slug": "agenda",
+      "name": "Agenda",
+      "structure": ".background-image background, .title-agenda, list of .agenda-number + .agenda-description pairs",
+      "when": "Second slide. 3-6 items, more does not fit"
+    },
+    {
+      "slug": "cards-1",
+      "name": "One card",
+      "structure": ".slide-title, .panel with one .card.gray full width",
+      "when": "One idea to expand in detail"
+    },
+    {
+      "slug": "cards-2",
+      "name": "Two cards",
+      "structure": ".slide-title, .panel with .card.gray and .card.yellow, flex: 1 on both",
+      "when": "Contrast or two equal ideas. Yellow for accent"
+    },
+    {
+      "slug": "cards-3",
+      "name": "Three cards",
+      "structure": ".slide-title, .panel with two .card.gray and one .card.yellow",
+      "when": "Three parallel points: stages, directions, criteria"
+    },
+    {
+      "slug": "cards-4",
+      "name": "Four cards",
+      "structure": ".slide-title, .panel with three .card.gray and one .card.yellow",
+      "when": "Four short points in a row. Little text per card"
+    },
+    {
+      "slug": "bullets",
+      "name": "Bullets list",
+      "structure": ".slide-title, one .card.yellow with .bullet-list, marker is inline SVG",
+      "when": "List where items share common theme. Up to 5 items"
+    },
+    {
+      "slug": "grid-2x2",
+      "name": "Grid 2x2",
+      "structure": ".panel as grid, repeat(2, 1fr) for two rows, 4 cards, last is yellow",
+      "when": "Four points with descriptions that do not fit in one row"
+    },
+    {
+      "slug": "grid-2x3",
+      "name": "Grid 2x3",
+      "structure": ".panel as grid, repeat(3, 1fr) for two rows, 6 cards",
+      "when": "Six short points: features, roles, risks"
+    },
+    {
+      "slug": "grid-2x4",
+      "name": "Grid 2x4",
+      "structure": ".panel as grid, repeat(4, 1fr) for two rows, 8 cards",
+      "when": "Eight points. Density limit: one-line descriptions"
+    },
+    {
+      "slug": "complex",
+      "name": "Complex",
+      "structure": "grid repeat(3, 1fr) for two rows: four cards left, one tall card right via grid-row: span 2",
+      "when": "Four equal points and one main point that is more important"
+    },
+    {
+      "slug": "pyramid",
+      "name": "Pyramid",
+      "structure": "grid repeat(6, 1fr) for two rows: three cards span 2 top, two cards span 3 bottom",
+      "when": "Hierarchy or funnel: three specifics top, two conclusions bottom"
+    },
+    {
+      "slug": "metrics-3col",
+      "name": "Metrics, 3 columns",
+      "structure": ".background-black, .title-slide, .subtitle-medium, three .metric-value-large with .metric-description",
+      "when": "Three key numbers. Main results slide"
+    },
+    {
+      "slug": "metrics-6cards",
+      "name": "Metrics, 6 cards",
+      "structure": ".background-black, grid repeat(3, 1fr) for two rows, .metric-value-medium",
+      "when": "Six numbers at once: summary metrics for period"
+    },
+    {
+      "slug": "final",
+      "name": "Final",
+      "structure": "Yellow background, glass panel, logo, .title-xlarge",
+      "when": "Last slide. Always exactly one"
+    },
+    {
+      "slug": "timeline-3",
+      "name": "Timeline (3 points)",
+      "structure": ".background-timeline (PNG with discs), .slide-title, .timeline-row with 3 .timeline-point (circle + number + connector + text)",
+      "when": "Three stages with optional per-point subtitle. Decorative discs on right."
+    },
+    {
+      "slug": "timeline-4",
+      "name": "Timeline (4 points)",
+      "structure": ".background-light (CSS gradient), .slide-title, .timeline-row with 4 .timeline-point",
+      "when": "Four stages or steps in time. No decorative image."
+    },
+    {
+      "slug": "timeline-5",
+      "name": "Timeline (5 points)",
+      "structure": ".background-light (CSS gradient), .slide-title, .timeline-row with 5 .timeline-point",
+      "when": "Five stages or steps in time. No decorative image."
+    },
+    {
+      "slug": "flow-4",
+      "name": "Flow (4 steps)",
+      "structure": ".slide-title, .flow-panel (white rounded), .flow-inner centring one .flow-row of 4 .flow-step (icon circle + caption)",
+      "when": "Four-step process with icons, no closing block. The captions get the whole panel"
+    },
+    {
+      "slug": "flow-4-summary",
+      "name": "Flow (4 steps, with summary)",
+      "structure": "Same as flow-4 plus a .flow-summary block along the bottom; the captions are correspondingly shorter",
+      "when": "Four-step process that ends on a conclusion"
+    },
+    {
+      "slug": "flow-5",
+      "name": "Flow (5 steps)",
+      "structure": ".slide-title, .flow-panel, .flow-inner centring one .flow-row of 5 .flow-step",
+      "when": "Five-step process with icons, no closing block"
+    },
+    {
+      "slug": "flow-5-summary",
+      "name": "Flow (5 steps, with summary)",
+      "structure": "Same as flow-5 plus a .flow-summary block along the bottom",
+      "when": "Five-step process that ends on a conclusion"
+    },
+    {
+      "slug": "columns-3",
+      "name": "Columns dark (3 columns)",
+      "structure": ".background-columns (dark gradient), .columns-header (yellow block with title), .columns-panel (white), .columns-row with 3 .columns-col (subtitle + dot + connector + body)",
+      "when": "Three detailed points on dark background. Header title in yellow block."
+    },
+    {
+      "slug": "columns-4",
+      "name": "Columns dark (4 columns)",
+      "structure": ".background-columns, .columns-header, .columns-panel, .columns-row with 4 .columns-col",
+      "when": "Four detailed points on dark background."
+    },
+    {
+      "slug": "columns-5",
+      "name": "Columns dark (5 columns)",
+      "structure": ".background-columns, .columns-header, .columns-panel, .columns-row with 5 .columns-col",
+      "when": "Five detailed points on dark background."
+    },
+    {
+      "slug": "columns-6",
+      "name": "Columns dark (6 columns)",
+      "structure": ".background-columns, .columns-header, .columns-panel, .columns-row with 6 .columns-col",
+      "when": "Six detailed points on dark background. Maximum density."
+    },
+    {
+      "slug": "image",
+      "name": "Image",
+      "structure": ".title-large, optional .media-note-icon + .media-note-text, .media-panel (white rounded) with a full-bleed .media-image, .media-caption below",
+      "when": "One JPEG/PNG the author supplies, with a title and an optional caption"
+    },
+    {
+      "name": "Chart with points",
+      "slug": "chart-points",
+      "structure": ".background-chart, .title-chart and 1-4 .chart-point rows (selectable icon + text) anchored bottom-left, .chart-plate (white, 1192x960) on the right: .chart-head (chart title + .legend-row), .chart-body (.chart-area with the native chart + .legend-column)",
+      "when": "One chart and 1-4 short takeaways beside it. Slides 67-69"
+    },
+    {
+      "name": "Chart with cards",
+      "slug": "chart-cards",
+      "structure": "Dark slide; .chart-plate (1192x960) on the left carrying the slide title, the legend and the chart; three .card.chart-card (583x303) on the right, each a subtitle or a figure plus a description",
+      "when": "A chart with three commentary cards, one of which may be a key figure. Slide 64"
+    },
+    {
+      "name": "Two charts",
+      "slug": "chart-two",
+      "structure": ".background-chart, a large .title-chart-large and an optional .chart-note-row (icon and two lines) across the top, two .chart-plate.compact (888x714) side by side",
+      "when": "Two charts to compare. Slide 65 and «Работа с графиками»"
+    },
+    {
+      "name": "Wide chart",
+      "slug": "chart-wide",
+      "structure": ".background-chart, a large .title-chart-large and an optional .chart-note-row (icon and two lines) across the top, one .chart-plate (1844x737, the designers' long slide) the width of the slide below",
+      "when": "One chart of a long series - 6 categories or more, twelve months - across the slide. 2.3.0, the designers' review; the title row of slide 65"
+    },
+    {
+      "name": "Statement on glass",
+      "slug": "statement-glass",
+      "structure": ".background-statement-glass (the designers' glass panel over the yellow), .title-large centred on the panel",
+      "when": "A statement or a quote; `look: glass` on a statement. 2.4.0, the designers' new dividers"
+    },
+    {
+      "name": "Statement on cards",
+      "slug": "statement-cards",
+      "structure": ".background-statement-cards (two glass cards at a slant), .title-large left-aligned in the lower right card, two lines at most",
+      "when": "A short statement; `look: cards` on a statement. 2.4.0, the designers' new dividers"
+    },
+    {
+      "name": "Versus",
+      "slug": "versus",
+      "structure": "two .card.versus-card over the whole slide (yellow left, gray right) with a notch each - clip-path: path() - and .versus-badge between them; .versus-title on top, .versus-bottom (.card-subtitle, .card-description) on the bottom",
+      "when": "Contrast of two options, before and after. 2.4.0, the designers' new cards; no icons, no slide title"
+    },
+    {
+      "name": "Chart with points on plates",
+      "slug": "chart-points-plates",
+      "structure": "chart-points with the plate narrower (927x867) on a stack of two .chart-plate-back behind it",
+      "when": "`look: plates` on a chart. 2.4.0, the designers' charts_new"
+    },
+    {
+      "slug": "timeline-4-yellow",
+      "name": "Timeline (4 points, yellow)",
+      "structure": "timeline-4 on .background-timeline-yellow (PNG), the title in a text gradient",
+      "when": "`look: yellow` on a timeline of 4. 2.4.0, the designers' series"
+    },
+    {
+      "slug": "timeline-5-yellow",
+      "name": "Timeline (5 points, yellow)",
+      "structure": "timeline-5 on .background-timeline-yellow (PNG), the title in a text gradient",
+      "when": "`look: yellow` on a timeline of 5. 2.4.0, the designers' series"
+    },
+    {
+      "slug": "flow-4-zigzag",
+      "name": "Flow (4 steps, zigzag)",
+      "structure": "flow-4 with the captions above and below the icon line in turn",
+      "when": "`look: zigzag` on a flow of 4, no summary. 2.4.0, the designers' series"
+    },
+    {
+      "slug": "flow-5-zigzag",
+      "name": "Flow (5 steps, zigzag)",
+      "structure": "flow-5 with the captions above and below the icon line in turn",
+      "when": "`look: zigzag` on a flow of 5, no summary. 2.4.0, the designers' series"
+    },
+    {
+      "slug": "text-slide",
+      "name": "Dense text (draft)",
+      "structure": "Yellow panel with native inner glow, two-line headline, measured arrow, bottom-anchored prose in an explicit fit-box",
+      "when": "Gate A draft: at most two per deck, separated by other layouts"
+    },
+    {
+      "slug": "image-points-plates",
+      "name": "image-points-plates",
+      "structure": "Shared media frame; measured text",
+      "when": "Pictures with supporting conclusions"
+    },
+    {
+      "slug": "image-points-plate",
+      "name": "image-points-plate",
+      "structure": "Shared media frame; measured text",
+      "when": "Pictures with supporting conclusions"
+    },
+    {
+      "slug": "image-wide-plate",
+      "name": "image-wide-plate (draft)",
+      "structure": "Shared media frame; measured text",
+      "when": "Iteration 10 visual gate only"
+    },
+    {
+      "slug": "image-wide-plates",
+      "name": "image-wide-plates (draft)",
+      "structure": "Shared media frame; measured text",
+      "when": "Iteration 10 visual gate only"
+    },
+    {
+      "slug": "image-gallery-2",
+      "name": "image-gallery-2",
+      "structure": "Shared media frame; measured text",
+      "when": "Two or three captioned pictures"
+    },
+    {
+      "slug": "image-gallery-3",
+      "name": "image-gallery-3",
+      "structure": "Shared media frame; measured text",
+      "when": "Two or three captioned pictures"
+    },
+    {
+      "slug": "screenshot-phone-1",
+      "name": "screenshot-phone-1",
+      "structure": "Designer device scene with native fitted screen pictures, top-aligned text and optional editable arc annotations",
+      "when": "App screens in device frames with optional captions"
+    },
+    {
+      "slug": "screenshot-phone-2",
+      "name": "screenshot-phone-2",
+      "structure": "Designer device scene with native fitted screen pictures, top-aligned text and optional editable arc annotations",
+      "when": "App screens in device frames with optional captions"
+    },
+    {
+      "slug": "screenshot-phone-3",
+      "name": "screenshot-phone-3",
+      "structure": "Designer device scene with native fitted screen pictures, top-aligned text and optional editable arc annotations",
+      "when": "App screens in device frames with optional captions"
+    },
+    {
+      "slug": "screenshot-monitor",
+      "name": "screenshot-monitor",
+      "structure": "Designer device scene with native fitted screen pictures, top-aligned text and optional editable arc annotations",
+      "when": "Desktop interface with supporting observations"
+    },
+    {
+      "slug": "self-intro",
+      "name": "Self introduction",
+      "structure": "Speaker name and role, bottom-anchored triangle bullets and a rounded photograph on two translucent plates",
+      "when": "Only an explicitly requested speaker introduction"
+    },
+    {
+      "slug": "illustration-points",
+      "name": "Illustration and points",
+      "structure": "Yellow card with the supplied scene on the left, measured titled icon list on the right",
+      "when": "Iteration 14 visual gate"
+    },
+    {
+      "slug": "circle-3",
+      "name": "Circle with 3 points",
+      "structure": "Editable orbit, center title and one or two right cards",
+      "when": "Draft circular relationships gate"
+    },
+    {
+      "slug": "circle-4",
+      "name": "Circle with 4 points",
+      "structure": "Editable orbit, center title and one or two right cards",
+      "when": "Draft circular relationships gate"
+    },
+    {
+      "slug": "circle-5",
+      "name": "Circle with 5 points",
+      "structure": "Editable orbit, center title and one or two right cards",
+      "when": "Draft circular relationships gate"
+    },
+    {
+      "slug": "circle-6",
+      "name": "Circle with 6 points",
+      "structure": "Editable orbit, center title and one or two right cards",
+      "when": "Draft circular relationships gate"
+    },
+    {
+      "slug": "table",
+      "name": "Table",
+      "structure": ".background-light, a .title-chart-large in a fit-box, one .table-card (white) holding a .table-grid[data-table] written as one native a:tbl: a .table-head row and body rows of .table-cell",
+      "when": "Figures to read across rows and columns: 2-6 columns, 1-8 rows, on a fixed white card"
+    },
+    {
+      "slug": "table-compare",
+      "name": "Table comparison",
+      "structure": "A .title-chart-large in a fit-box, a .compare-panel of two .card.compare-card (yellow, grey), each a .card-subtitle over a two-column .table-grid[data-table]",
+      "when": "Exactly two tables of label and figure set side by side, each with 2-6 rows"
+    }
+  ]
+}

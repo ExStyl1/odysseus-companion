@@ -1,0 +1,47 @@
+<!--
+  CHART WITH CARDS
+
+  When to use: A chart with three commentary cards, one of which may be a key figure. Slide 64
+  Structure: Dark slide; .chart-plate (1192x960) on the left carrying the slide title, the legend and the chart; three .card.chart-card (583x303) on the right, each a subtitle or a figure plus a description
+
+  Generated from assets/layouts/template.html by scripts/sync_layouts.py.
+  Edit the template, not this file.
+-->
+  <!-- Slide 64: the plate carries the slide title, three cards beside it on a
+       dark slide. Cards ride the card ladder (tier "half"). -->
+  <div class="slide" style="background: #333333;">
+    <div class="chart-plate chart-cards" style="top: 60px; left: 60px; width: 1192px; height: 960px; padding-top: 60px; padding-left: 60px; padding-right: 55px;">
+      <!-- Two lines at 72px/110 %, as on slide 64; the ladder and the
+           OVERFLOW report work as on the single-chart slide. -->
+      <div class="fit-box" style="width: 679px; height: 159px; margin-bottom: 40px;">
+        <h1 class="title-chart">Заголовок слайда вашей презентации</h1>
+      </div>
+      <div class="chart-head">
+        <div class="legend-row">
+          <div class="legend-item"><div class="legend-swatch line" style="background: #FFDD2D;"></div><p class="legend-label">Ряд 1</p></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-area">
+          <div class="chart-canvas" data-chart='{"type": "line", "categories": ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл"], "series": [{"name": "Ряд 1", "values": [3.6, 4.7, 4.5, 3, 4.5, 3, 4.7]}, {"name": "Ряд 2", "values": [5, 5.4, 7.9, 5.5, 3.1, 1.9, 0.8]}]}'></div>
+          <div class="chart-center"><p class="chart-center-value">100 тыс</p><p class="chart-center-text">Подпись к общей цифре</p></div>
+        </div>
+        <div class="legend-column">
+          <div class="legend-item"><div class="legend-swatch" style="background: #FFDD2D;"></div><p class="legend-label">Ряд 1</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card chart-card" style="top: 60px; left: 1277px; padding: 48px; gap: 25px;">
+      <p class="card-subtitle" style="font-size: 40px;">Подзаголовок слайда</p>
+      <p class="card-description" style="font-size: 28px;">С другой стороны рамки и место обучения кадров требуют от нас анализа систем массового участия.</p>
+    </div>
+    <div class="card chart-card" style="top: 389px; left: 1277px; padding: 48px; gap: 25px;">
+      <p class="card-subtitle" style="font-size: 40px;">Подзаголовок слайда</p>
+      <p class="card-description" style="font-size: 28px;">С другой стороны рамки и место обучения кадров требуют от нас анализа систем массового участия.</p>
+    </div>
+    <div class="card chart-card" style="top: 718px; left: 1277px; padding: 48px; gap: 25px;">
+      <p class="chart-card-value">+64%</p>
+      <p class="card-description" style="font-size: 28px;">Значимость этих проблем настолько очевидна, что начало повседневной работы</p>
+    </div>
+  </div>

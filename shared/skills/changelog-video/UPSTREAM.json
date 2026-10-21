@@ -1,0 +1,19 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": ".agents/skills/changelog-video",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/.agents/skills/changelog-video",
+  "upstreamName": "changelog-video",
+  "upstreamFrontmatter": {
+    "name": "changelog-video",
+    "description": "Turn a weekly changelog .md into a finished branded changelog video (square 1080, ~45-60s, Annie VO, animated brand background, mock-UI visualizations, lowkey captions). Use when the user provides a changelog/digest markdown and wants the weekly video, or says \"changelog video\". Self-contained — fonts, background, lexicon, and scripts ship in this skill.",
+    "metadata": {
+      "internal": true
+    }
+  },
+  "upstreamSkillSha256": "5f8ca7a413e53616727408d34dcee770bda6cabe37cfe24034e2b49e041c2121",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

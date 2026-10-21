@@ -1,0 +1,407 @@
+{
+  "skill_name": "sage-metrics-analyst",
+  "evals": [
+    {
+      "id": 1,
+      "name": "check-metric-availability",
+      "prompt": "Проверь метрику http_requests_total в Sage — доступна ли она и какие лейблы есть",
+      "expected_output": "Запрос к Sage для проверки метрики, список доступных лейблов (app, method, path, status, env)"
+    },
+    {
+      "id": 2,
+      "name": "create-cpu-alert",
+      "prompt": "Создай алерт на CPU usage для сервиса payments-api в Sage, порог 80%",
+      "expected_output": "YAML-алерт с PromQL запросом для container_cpu_usage_seconds_total, консервативными порогами и временным окном 10-15m"
+    },
+    {
+      "id": 3,
+      "name": "investigate-latency-spike",
+      "prompt": "Почему растёт latency в auth-service за последние 2 часа? Посмотри метрики в Sage",
+      "expected_output": "План исследования, PromQL запросы для анализа latency (histogram_quantile для p99/p95), интерпретация результатов"
+    },
+    {
+      "id": 4,
+      "name": "create-queue-backlog-alert",
+      "prompt": "Нужен алерт на рост очереди Kafka. Фоновый лаг 100-500 сообщений, инциденты до 50000",
+      "expected_output": "YAML-алерт с baseline за 7 дней, порог >1000 и мультипликатор 3×, окно 15m для kafka_consumer_group_lag"
+    },
+    {
+      "id": 5,
+      "name": "create-error-rate-alert",
+      "prompt": "Создай алерт на процент HTTP ошибок 5xx для любого сервиса. Норма <1%, инциденты >5%",
+      "expected_output": "YAML-алерт с запросом rate(http_requests_total{status=~\"5..\"}) / rate(http_requests_total) * 100, порог >5%"
+    },
+    {
+      "id": 6,
+      "name": "investigate-memory-leak",
+      "prompt": "Подозреваю утечку памяти в pod'ах order-processor. Посмотри метрики memory usage за 3 дня",
+      "expected_output": "Запросы для container_memory_usage_bytes, анализ тренда, рекомендация по алерту на рост memory"
+    },
+    {
+      "id": 7,
+      "name": "create-pod-restart-alert",
+      "prompt": "Нужен алерт на частые рестарты pod'ов. Норма 0-1 в час, проблема >3 рестартов",
+      "expected_output": "YAML-алерт с increase(kube_pod_container_status_restarts_total[1h]) > 3"
+    },
+    {
+      "id": 8,
+      "name": "validate-query-false-positives",
+      "prompt": "Проверь этот запрос на ложные срабатывания за неделю: pql rate(error_total[5m]) > 10",
+      "expected_output": "Запрос для валидации за 168 часов, анализ количества срабатываний, рекомендации по порогам"
+    },
+    {
+      "id": 9,
+      "name": "create-guidewire-error-alert",
+      "prompt": "Создай алерт на ошибки Guidewire Message Transport. Норма 5-30 ошибок/мин, были спайки до 237",
+      "expected_output": "YAML-алерт с rate(guidewire_message_transport_total{status=~\"ERROR|RETRYABLE_ERROR\"}[5m]) * 60 > 50, окно 10m"
+    },
+    {
+      "id": 10,
+      "name": "create-db-connection-alert",
+      "prompt": "Нужен алерт на заполнение пула соединений PostgreSQL. Критично >80%",
+      "expected_output": "YAML-алерт с pg_stat_activity_count / max_connections > 0.8"
+    },
+    {
+      "id": 11,
+      "name": "create-anomaly-detection-alert",
+      "prompt": "Создай алерт на аномалии трафика — отклонение от baseline в 3 раза",
+      "expected_output": "YAML-алерт с avg_over_time за 7 дней и текущим значением, мультипликатор 3×"
+    },
+    {
+      "id": 12,
+      "name": "create-business-hours-alert",
+      "prompt": "Алерт на падение трафика, но только в рабочее время (9-18 часов)",
+      "expected_output": "PQL с hour() >= 9 and hour() < 18 фильтром"
+    },
+    {
+      "id": 13,
+      "name": "create-multi-level-alert",
+      "prompt": "Нужны Warning и Critical алерты на ошибки. Warning >20%, Critical >50%",
+      "expected_output": "Два YAML-алерта с разными порогами и for (15m и 5m)"
+    },
+    {
+      "id": 14,
+      "name": "create-histogram-latency-alert",
+      "prompt": "Создай алерт на p99 latency >500ms для HTTP запросов",
+      "expected_output": "histogram_quantile(0.99, rate(http_request_duration_seconds_bucket[5m])) > 0.5"
+    },
+    {
+      "id": 15,
+      "name": "create-cooldown-alert",
+      "prompt": "Алерт с cooldown 20 минут для группировки инцидентов",
+      "expected_output": "YAML с cooldown_key и cooldown_duration: 1200"
+    },
+    {
+      "id": 16,
+      "name": "create-min-over-time-alert",
+      "prompt": "Алерт на устойчивые ошибки — только если превышение 5 минут подряд",
+      "expected_output": "min_over_time((rate(error[5m]) > 10)[5m]) >= 1"
+    },
+    {
+      "id": 17,
+      "name": "create-dry-filters-alert",
+      "prompt": "Используй WITH clause для общих фильтров в алерте на error rate",
+      "expected_output": "PQL с commonFilters = {env=\"prod\", service=\"api\"}"
+    },
+    {
+      "id": 18,
+      "name": "create-small-sample-protection",
+      "prompt": "Защити алерт от ложных срабатываний при малом трафике",
+      "expected_output": "Двойное условие: процент ошибок >20% AND increase(errors[5m]) > 10"
+    },
+    {
+      "id": 19,
+      "name": "create-night-alert",
+      "prompt": "Алерт на аномалии только ночью (вне рабочего времени 20:00-08:00)",
+      "expected_output": "PQL с (hour() >= 20) or (hour() < 8)"
+    },
+    {
+      "id": 20,
+      "name": "create-counter-rate-alert",
+      "prompt": "Посчитай скорость роста counter-метрики messages_processed_total в сообщениях/мин",
+      "expected_output": "rate(messages_processed_total[5m]) * 60"
+    },
+    {
+      "id": 21,
+      "name": "create-disk-space-alert",
+      "prompt": "Создай алерт на свободное место на диске <5% с проверкой тренда за 15 минут",
+      "expected_output": "PQL с node_filesystem_avail_bytes / node_filesystem_size_bytes * 100 и проверкой тренда offset 15m"
+    },
+    {
+      "id": 22,
+      "name": "create-certificate-expiry-alert",
+      "prompt": "Алерт на истечение SSL сертификата меньше чем через 2 недели",
+      "expected_output": "probe_ssl_earliest_cert_expiry < 1209600 (секунд)"
+    },
+    {
+      "id": 23,
+      "name": "create-api-error-rate-alert",
+      "prompt": "Алерт на процент ошибок Kubernetes API >5% по ресурсам и verb",
+      "expected_output": "sum(increase(apiserver_request_count{code=~\"5.*\"}[5m])) / sum(increase(apiserver_request_count[5m])) * 100"
+    },
+    {
+      "id": 24,
+      "name": "create-node-restart-alert",
+      "prompt": "Алерт на рестарт ноды Kubernetes",
+      "expected_output": "kube_node_created или node_boot_time с резким изменением"
+    },
+    {
+      "id": 25,
+      "name": "create-pod-not-ready-alert",
+      "prompt": "Алерт на pod в состоянии NotReady больше 5 минут",
+      "expected_output": "kube_pod_status_ready{condition=\"false\"} или up{job=\"kube-pod\"} == 0"
+    },
+    {
+      "id": 26,
+      "name": "create-memory-usage-alert",
+      "prompt": "Алерт на использование памяти нодой >85% с фильтрацией по инстансам",
+      "expected_output": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100 > 85"
+    },
+    {
+      "id": 27,
+      "name": "create-blackbox-probe-alert",
+      "prompt": "Алерт на неудачные blackbox пробы для HTTP endpoints",
+      "expected_output": "probe_success == 0 или probe_http_status_code != 200"
+    },
+    {
+      "id": 28,
+      "name": "create-etcd-member-down-alert",
+      "prompt": "Алерт на недоступность etcd member",
+      "expected_output": "up{job=\"etcd\"} == 0 или etcd_server_has_leader == 0"
+    },
+    {
+      "id": 29,
+      "name": "create-prometheus-target-down-alert",
+      "prompt": "Алерт на упавшие target'ы Prometheus",
+      "expected_output": "up{job=~\".*\"} == 0 lag[7d] для обнаружения новых"
+    },
+    {
+      "id": 30,
+      "name": "create-ingress-certificate-alert",
+      "prompt": "Алерт на истечение ingress сертификатов меньше 30 дней",
+      "expected_output": "probe_ssl_earliest_cert_expiry{job=\"blackbox-ingress\"} < 2592000"
+    },
+    {
+      "id": 31,
+      "name": "create-gpu-temperature-alert",
+      "prompt": "Алерт на перегрев GPU >85°C",
+      "expected_output": "DCGM_FI_DEV_GPU_TEMP{gpu_uuid=~\".*\"} > 85"
+    },
+    {
+      "id": 32,
+      "name": "create-gpu-memory-alert",
+      "prompt": "Алерт на использование памяти GPU >90%",
+      "expected_output": "DCGM_FI_DEV_MEM_COPY_UTIL или DCGM_FI_DEV_FB_USED > 90"
+    },
+    {
+      "id": 33,
+      "name": "create-calico-bgp-alert",
+      "prompt": "Алерт на падение BGP сессии Calico",
+      "expected_output": "bird_peer_state != 6 (established) или calico_bgp_sessions{state!=\"established\"}"
+    },
+    {
+      "id": 34,
+      "name": "create-velero-backup-failed-alert",
+      "prompt": "Алерт на неудачные бэкапы Velero",
+      "expected_output": "velero_backup_failure_total или velero_backup_last_status{phase=\"Failed\"}"
+    },
+    {
+      "id": 35,
+      "name": "create-argocd-app-sync-failed-alert",
+      "prompt": "Алерт на failed sync ArgoCD приложений",
+      "expected_output": "argocd_app_info{sync_status=\"Unknown\", health_status!=\"Healthy\"}"
+    },
+    {
+      "id": 36,
+      "name": "create-csi-driver-alert",
+      "prompt": "Алерт на ошибки CSI драйвера storage",
+      "expected_output": "csi_operations_total{status=\"error\"} или csi_storage_capacity_bytes"
+    },
+    {
+      "id": 37,
+      "name": "create-filebeat-down-alert",
+      "prompt": "Алерт на падение filebeat экспортера",
+      "expected_output": "up{job=\"filebeat\"} == 0 или filebeat_events_total с проверкой rate"
+    },
+    {
+      "id": 38,
+      "name": "create-dhcp-server-alert",
+      "prompt": "Алерт на недоступность DHCP сервера",
+      "expected_output": "dhcp_leases или probe_success{job=\"dhcp\"} == 0"
+    },
+    {
+      "id": 39,
+      "name": "create-lxcps-memory-alert",
+      "prompt": "Алерт на использование памяти в LXC контейнерах",
+      "expected_output": "node_memory_MemAvailable_bytes{lxc=\".*\"} / node_memory_MemTotal_bytes{lxc=\".*\"} < 0.1"
+    },
+    {
+      "id": 40,
+      "name": "create-vmagent-remote-write-alert",
+      "prompt": "Алерт на ошибки remote write в vmagent",
+      "expected_output": "rate(vmagent_remoteremotewrite_errors_total[5m]) > 0 или vmagent_remoteremotewrite_sent_series_rate"
+    },
+    {
+      "id": 41,
+      "name": "create-kube-dns-alert",
+      "prompt": "Алерт на ошибки CoreDNS/KubeDNS",
+      "expected_output": "rate(coredns_dns_responses_total{rcode=\"SERVFAIL\"}[5m]) / rate(coredns_dns_responses_total[5m]) > 0.05"
+    },
+    {
+      "id": 42,
+      "name": "create-kube-scheduler-alert",
+      "prompt": "Алерт на недоступность kube-scheduler",
+      "expected_output": "up{job=\"kube-scheduler\"} == 0 или scheduler_schedule_attempts_total{result=\"error\"}"
+    },
+    {
+      "id": 43,
+      "name": "create-kube-controller-manager-alert",
+      "prompt": "Алерт на падение kube-controller-manager",
+      "expected_output": "up{job=\"kube-controller-manager\"} == 0"
+    },
+    {
+      "id": 44,
+      "name": "create-workload-replica-alert",
+      "prompt": "Алерт на недостаточное количество реплик deployment'а",
+      "expected_output": "kube_deployment_status_replicas_available < kube_deployment_spec_replicas"
+    },
+    {
+      "id": 45,
+      "name": "create-hpa-scaling-alert",
+      "prompt": "Алерт на HPA, который уперся в максимум реплик",
+      "expected_output": "kube_horizontalpodautoscaler_status_current_replicas == kube_horizontalpodautoscaler_spec_max_replicas"
+    },
+    {
+      "id": 46,
+      "name": "create-pvc-usage-alert",
+      "prompt": "Алерт на заполнение PersistentVolumeClaim >85%",
+      "expected_output": "kubelet_volume_stats_used_bytes / kubelet_volume_stats_capacity_bytes > 0.85"
+    },
+    {
+      "id": 47,
+      "name": "create-network-packet-loss-alert",
+      "prompt": "Алерт на потерю пакетов в сети",
+      "expected_output": "rate(node_network_receive_drop_total[5m]) / rate(node_network_receive_packets_total[5m]) > 0.01"
+    },
+    {
+      "id": 48,
+      "name": "create-oom-kill-alert",
+      "prompt": "Алерт на OOM kills в pod'ах",
+      "expected_output": "increase(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\"}[1h]) > 0"
+    },
+    {
+      "id": 49,
+      "name": "create-crashloop-backoff-alert",
+      "prompt": "Алерт на pod в состоянии CrashLoopBackOff",
+      "expected_output": "kube_pod_container_status_waiting_reason{reason=\"CrashLoopBackOff\"} == 1"
+    },
+    {
+      "id": 50,
+      "name": "create-service-endpoints-alert",
+      "prompt": "Алерт на сервис без endpoints",
+      "expected_output": "kube_endpoint_address_available{endpoint=\"service-name\"} == 0"
+    },
+    {
+      "id": 51,
+      "name": "create-job-failed-alert",
+      "prompt": "Алерт на неудачные Kubernetes Jobs",
+      "expected_output": "kube_job_failed{job_name=~\".*\"} == 1 или kube_job_status_failed > 0"
+    },
+    {
+      "id": 52,
+      "name": "create-cronjob-suspend-alert",
+      "prompt": "Алерт на приостановленные CronJob больше 7 дней",
+      "expected_output": "kube_cronjob_spec_suspend == 1"
+    },
+    {
+      "id": 53,
+      "name": "create-chart-query",
+      "prompt": "Построй график количества запросов по инстансам за последний час",
+      "expected_output": "chart count over inst или timechart span=5m count by inst для временного ряда"
+    },
+    {
+      "id": 54,
+      "name": "create-timechart-with-legend",
+      "prompt": "Создай timechart с кастомным легендом env-system для метрики http_requests_total",
+      "expected_output": "timechart span=5m legend=\"\\{{env}}-\\{{system}}\" count by env, system"
+    },
+    {
+      "id": 55,
+      "name": "get-label-names",
+      "prompt": "Какие лейблы есть у метрики http_requests_total?",
+      "expected_output": "labels(http_requests_total) — возвращает список имён лейблов"
+    },
+    {
+      "id": 56,
+      "name": "get-label-values",
+      "prompt": "Какие значения принимает лейбл app у метрики http_requests_total?",
+      "expected_output": "label_values(http_requests_total, app) — возвращает значения лейбла"
+    },
+    {
+      "id": 57,
+      "name": "time-shift-comparison",
+      "prompt": "Сравни трафик сегодня с прошлой неделей (7 дней назад)",
+      "expected_output": "PQL с offset 7d или timeshift(7d) для сравнения с прошлым периодом"
+    },
+    {
+      "id": 58,
+      "name": "create-javascript-alert",
+      "prompt": "Создай сложный алерт на JS с проверкой тренда и отправкой в Slack",
+      "expected_output": "JavaScript алерт с mage({start, end, query}), sendAlert({address, message, cooldownKey}) и groupConfig()"
+    },
+    {
+      "id": 59,
+      "name": "create-errorhub-alert",
+      "prompt": "Алерт на ошибки с группировкой по типу ошибки и app",
+      "expected_output": "YAML/JS алерт с group_fields: [error_type, app] для ErrorHub группировки"
+    },
+    {
+      "id": 60,
+      "name": "handle-mage-request-limit",
+      "prompt": "Получил ошибку MageRequestLimit — слишком много запросов к Sage. Что делать?",
+      "expected_output": "Объяснение лимита 7 запросов, рекомендация объединить запросы или увеличить интервал"
+    },
+    {
+      "id": 61,
+      "name": "handle-mage-rows-limit",
+      "prompt": "Ошибка MageRowsFetchedLimit — запрошено больше 1000 точек. Как исправить?",
+      "expected_output": "Уменьшить временной интервал, увеличить шаг агрегации (span), добавить фильтрацию"
+    },
+    {
+      "id": 62,
+      "name": "create-regex-filter-alert",
+      "prompt": "Алерт на HTTP 5xx ошибки с использованием regex фильтра",
+      "expected_output": "PQL с status=~\"5..\" для фильтрации 5xx ошибок"
+    },
+    {
+      "id": 63,
+      "name": "create-wildcard-label-alert",
+      "prompt": "Алерт на все сервисы с префиксом payments-",
+      "expected_output": "PQL с app=~\"payments-.*\" или app=\"payments-*\" wildcard"
+    },
+    {
+      "id": 64,
+      "name": "create-join-query",
+      "prompt": "Объедини метрики CPU usage с memory usage по pod и namespace",
+      "expected_output": "PQL join по лейблам или WITH clause для общих фильтров"
+    },
+    {
+      "id": 65,
+      "name": "create-date-add-query",
+      "prompt": "Посчитай метрику с добавлением 1 дня к timestamp",
+      "expected_output": "PQL с date_add(timestamp, 1d) для сдвига времени"
+    },
+    {
+      "id": 66,
+      "name": "create-anomaly-ml-alert",
+      "prompt": "Создай ML алерт на аномалии трафика с авто-обучением baseline",
+      "expected_output": "Anomaly alert с historical data за 7-30 дней, threshold в стандартных отклонениях"
+    },
+    {
+      "id": 67,
+      "name": "create-mageql-ui-alert",
+      "prompt": "Создай алерт через Sage UI с MageQL запросом",
+      "expected_output": "MageQL query для UI alert builder с группировкой и агрегацией"
+    }
+  ]
+}

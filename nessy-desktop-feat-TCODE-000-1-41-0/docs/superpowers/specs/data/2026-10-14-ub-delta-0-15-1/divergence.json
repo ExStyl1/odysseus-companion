@@ -1,0 +1,6137 @@
+[
+ {
+  "path": "apps/cli/package.json",
+  "ours": "apps/cli/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 25,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "apps/electron/eslint.config.mjs",
+  "ours": "apps/electron/eslint.config.mjs",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 243,
+  "div_vs_134": 44,
+  "div_vs_141": 44
+ },
+ {
+  "path": "apps/electron/package.json",
+  "ours": "apps/electron/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 85,
+  "div_vs_134": 31,
+  "div_vs_141": 31
+ },
+ {
+  "path": "apps/electron/resources/docs/automations.md",
+  "ours": "apps/electron/resources/docs/automations.md",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 896,
+  "div_vs_134": 170,
+  "div_vs_141": 197
+ },
+ {
+  "path": "apps/electron/resources/docs/browser-tools.md",
+  "ours": "apps/electron/resources/docs/browser-tools.md",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 11,
+  "lines_ours": 289,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "apps/electron/resources/docs/labels.md",
+  "ours": "apps/electron/resources/docs/labels.md",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 12,
+  "lines_ours": 353,
+  "div_vs_134": 25,
+  "div_vs_141": 53
+ },
+ {
+  "path": "apps/electron/resources/docs/pages.md",
+  "ours": "apps/electron/resources/docs/pages.md",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 403,
+  "div_vs_134": 438,
+  "div_vs_141": 438
+ },
+ {
+  "path": "apps/electron/resources/docs/sources.md",
+  "ours": "apps/electron/resources/docs/sources.md",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 913,
+  "div_vs_134": 104,
+  "div_vs_141": 109
+ },
+ {
+  "path": "apps/electron/resources/release-notes/0.14.1.md",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "apps/electron/resources/release-notes/0.15.0.md",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/resources/release-notes/0.15.1.md",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/resources/themes/craft.json",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/resources/themes/default.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 28
+ },
+ {
+  "path": "apps/electron/resources/themes/paper.json",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/resources/themes/solarized.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4
+ },
+ {
+  "path": "apps/electron/src/main/__tests__/browser-cdp.test.ts",
+  "ours": "apps/electron/src/main/__tests__/browser-cdp.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 324,
+  "lines_ours": 545,
+  "div_vs_134": 58,
+  "div_vs_141": 58
+ },
+ {
+  "path": "apps/electron/src/main/__tests__/browser-pane-manager.test.ts",
+  "ours": "apps/electron/src/main/__tests__/browser-pane-manager.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 348,
+  "lines_ours": 1432,
+  "div_vs_134": 220,
+  "div_vs_141": 307
+ },
+ {
+  "path": "apps/electron/src/main/__tests__/security-challenge.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/main/browser-cdp.ts",
+  "ours": "apps/electron/src/main/browser-cdp.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 894,
+  "lines_ours": 1076,
+  "div_vs_134": 17,
+  "div_vs_141": 17
+ },
+ {
+  "path": "apps/electron/src/main/browser-pane-manager.ts",
+  "ours": "apps/electron/src/main/browser-pane-manager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 429,
+  "lines_ours": 3906,
+  "div_vs_134": 357,
+  "div_vs_141": 426
+ },
+ {
+  "path": "apps/electron/src/main/security-challenge.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/main/window-manager.ts",
+  "ours": "apps/electron/src/main/window-manager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 28,
+  "lines_ours": 918,
+  "div_vs_134": 207,
+  "div_vs_141": 207
+ },
+ {
+  "path": "apps/electron/src/preload/bootstrap.ts",
+  "ours": "apps/electron/src/preload/bootstrap.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 75,
+  "lines_ours": 510,
+  "div_vs_134": 313,
+  "div_vs_141": 313
+ },
+ {
+  "path": "apps/electron/src/renderer/App.tsx",
+  "ours": "apps/electron/src/renderer/App.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 50,
+  "lines_ours": 2412,
+  "div_vs_134": 819,
+  "div_vs_141": 827
+ },
+ {
+  "path": "apps/electron/src/renderer/atoms/label-value-edit.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/atoms/sessions.ts",
+  "ours": "apps/electron/src/renderer/atoms/sessions.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 908,
+  "div_vs_134": 380,
+  "div_vs_141": 380
+ },
+ {
+  "path": "apps/electron/src/renderer/components/KeyboardShortcutsDialog.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 35
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ResetConfirmationDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/ResetConfirmationDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 18,
+  "lines_ours": 121,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/RtkUpdateDialog.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 12
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ServerDirectoryBrowser.tsx",
+  "ours": "apps/electron/src/renderer/components/ServerDirectoryBrowser.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 39,
+  "lines_ours": 347,
+  "div_vs_134": 84,
+  "div_vs_141": 84
+ },
+ {
+  "path": "apps/electron/src/renderer/components/apisetup/ApiKeyInput.tsx",
+  "ours": "apps/electron/src/renderer/components/apisetup/ApiKeyInput.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 105,
+  "lines_ours": 1117,
+  "div_vs_134": 369,
+  "div_vs_141": 373
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-menu/DesktopAppMenu.tsx",
+  "ours": "apps/electron/src/renderer/components/app-menu/DesktopAppMenu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 307,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/ActiveOptionBadges.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/ActiveOptionBadges.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 548,
+  "lines_ours": 703,
+  "div_vs_134": 264,
+  "div_vs_141": 279
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/ActiveTasksBar.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/ActiveTasksBar.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 107,
+  "lines_ours": 237,
+  "div_vs_134": 208,
+  "div_vs_141": 208
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/AppShell.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/AppShell.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1772,
+  "lines_ours": 4282,
+  "div_vs_134": 1228,
+  "div_vs_141": 1266
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/AttachmentPreview.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/AttachmentPreview.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 68,
+  "lines_ours": 154,
+  "div_vs_134": 45,
+  "div_vs_141": 45
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/BackgroundFinishedChip.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/BackgroundFinishedChip.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 36,
+  "lines_ours": 155,
+  "div_vs_134": 22,
+  "div_vs_141": 22
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/BackgroundTaskChip.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/ChatDisplay.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/ChatDisplay.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 734,
+  "lines_ours": 3900,
+  "div_vs_134": 2264,
+  "div_vs_141": 2268
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/CompactPanelTransition.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/CompactPanelTransition.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 15,
+  "lines_ours": 77,
+  "div_vs_134": 8,
+  "div_vs_141": 8
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/CompactSessionListFilter.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/CompactSessionListFilter.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 61,
+  "lines_ours": 512,
+  "div_vs_134": 26,
+  "div_vs_141": 26
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/CompactSessionMenu.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/CompactSessionMenu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 132,
+  "lines_ours": 644,
+  "div_vs_134": 36,
+  "div_vs_141": 36
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/CompactWorkspaceSwitcher.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/CompactWorkspaceSwitcher.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 42,
+  "lines_ours": 293,
+  "div_vs_134": 105,
+  "div_vs_141": 105
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/DetailEmptyState.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/FabNewChat.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/FabNewChat.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 11,
+  "lines_ours": 47,
+  "div_vs_134": 5,
+  "div_vs_141": 5
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/LeftSidebar.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/LeftSidebar.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 374,
+  "lines_ours": 597,
+  "div_vs_134": 7,
+  "div_vs_141": 10
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/MainContentPanel.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/MainContentPanel.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 26,
+  "lines_ours": 541,
+  "div_vs_134": 188,
+  "div_vs_141": 188
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/PanelHeader.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/PanelHeader.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 155,
+  "lines_ours": 286,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/PanelSlot.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/PanelSlot.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 80,
+  "lines_ours": 152,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/PanelStackContainer.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/PanelStackContainer.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 277,
+  "lines_ours": 274,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/ProjectMultiSelectFilter.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/ProjectMultiSelectFilter.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 23,
+  "lines_ours": 123,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/ProjectsListPanel.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/ProjectsListPanel.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 174,
+  "div_vs_134": 13,
+  "div_vs_141": 13
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SendResourceToWorkspaceDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SendResourceToWorkspaceDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 76,
+  "lines_ours": 289,
+  "div_vs_134": 101,
+  "div_vs_141": 101
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SendToWorkspaceDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SendToWorkspaceDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 80,
+  "lines_ours": 277,
+  "div_vs_134": 75,
+  "div_vs_141": 75
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionBadges.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionBadges.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 169,
+  "lines_ours": 42,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionFilterMenu.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionInfoPopover.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionInfoPopover.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 68,
+  "lines_ours": 161,
+  "div_vs_134": 18,
+  "div_vs_141": 18
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionItem.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionItem.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 159,
+  "lines_ours": 329,
+  "div_vs_134": 182,
+  "div_vs_141": 182
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionList.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionList.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 40,
+  "lines_ours": 808,
+  "div_vs_134": 119,
+  "div_vs_141": 119
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionMenu.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionMenu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 293,
+  "div_vs_134": 73,
+  "div_vs_141": 73
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionMenuParts.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionMenuParts.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 197,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionProjectColorWrapper.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionProjectColorWrapper.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 46,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionSearchHeader.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionSearchHeader.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 107,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SessionStatusIcon.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SessionStatusIcon.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 92,
+  "div_vs_134": 31,
+  "div_vs_141": 31
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/ShellResizeHandle.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SidebarPane.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SkillsListPanel.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SkillsListPanel.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17,
+  "lines_ours": 127,
+  "div_vs_134": 184,
+  "div_vs_141": 184
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/SourcesListPanel.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/SourcesListPanel.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 57,
+  "lines_ours": 234,
+  "div_vs_134": 290,
+  "div_vs_141": 290
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/TaskActionMenu.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/TaskActionMenu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": false,
+  "up_141_151": "DELETED",
+  "lines_ours": 314,
+  "div_vs_134": 295,
+  "div_vs_141": 295
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/TopBar.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/TopBar.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 40,
+  "lines_ours": 293,
+  "div_vs_134": 25,
+  "div_vs_141": 25
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/WorkspaceSwitcher.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/WorkspaceSwitcher.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 16,
+  "lines_ours": 324,
+  "div_vs_134": 120,
+  "div_vs_141": 120
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/WorkspaceTargetList.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/__tests__/fit-labels.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/background-task-chip-state.ts",
+  "ours": "apps/electron/src/renderer/components/app-shell/background-task-chip-state.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 155,
+  "div_vs_134": 114,
+  "div_vs_141": 114
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/ErrorMessage.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/MessageBubble.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/NewChatSuggestions.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/ProcessingIndicator.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/ScrollOnMount.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/TranscriptStates.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/TurnFrame.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/__tests__/new-chat-suggestions.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/__tests__/strip-repeated-title.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/new-chat-suggestions.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-display/strip-repeated-title.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-header/ChatHeader.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-header/ChatHeaderLabels.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-header/ChatHeaderStatusButton.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-header/ChatShareMenu.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-header/__tests__/label-strip-layout.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/chat-header/label-strip-layout.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/fit-labels.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ChatInputZone.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/ChatInputZone.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 134,
+  "lines_ours": 277,
+  "div_vs_134": 242,
+  "div_vs_141": 242
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/CompactModelSelector.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/CompactModelSelector.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 113,
+  "lines_ours": 584,
+  "div_vs_134": 337,
+  "div_vs_141": 337
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/CompactPermissionModeSelector.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/CompactPermissionModeSelector.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 86,
+  "lines_ours": 209,
+  "div_vs_134": 153,
+  "div_vs_141": 156
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ComposerHintLine.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ComposerModeChip.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ComposerModelMenu.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ComposerSourcesChip.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ContextUsageChip.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/FollowUpChips.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/FreeFormInput.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/FreeFormInput.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1010,
+  "lines_ours": 3275,
+  "div_vs_134": 2203,
+  "div_vs_141": 2211
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/FreeFormInputContextBadge.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/FreeFormInputContextBadge.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 46,
+  "lines_ours": 133,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ImageSupportWarningBanner.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/ImageSupportWarningBanner.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 75,
+  "div_vs_134": 58,
+  "div_vs_141": 58
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/InputContainer.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/InputContainer.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 41,
+  "lines_ours": 338,
+  "div_vs_134": 91,
+  "div_vs_141": 91
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/InputErrorBoundary.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/InputErrorBoundary.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 16,
+  "lines_ours": 104,
+  "div_vs_134": 13,
+  "div_vs_141": 13
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/SendButton.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/ToolbarStatusSlot.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/ToolbarStatusSlot.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 52,
+  "lines_ours": 206,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/WorkingDirectorySelector.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 37
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/action-hotkey.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/composer-styles.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/structured/AdminApprovalRequest.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/structured/AdminApprovalRequest.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 70,
+  "lines_ours": 164,
+  "div_vs_134": 86,
+  "div_vs_141": 86
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/structured/CredentialRequest.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/structured/CredentialRequest.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 114,
+  "lines_ours": 312,
+  "div_vs_134": 16,
+  "div_vs_141": 16
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/structured/DecisionCard.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/structured/PermissionRequest.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/input/structured/PermissionRequest.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 112,
+  "lines_ours": 897,
+  "div_vs_134": 829,
+  "div_vs_141": 842
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/input/structured/decision-tone.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/BoardListToggle.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/BoardListToggle.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 37,
+  "lines_ours": 68,
+  "div_vs_134": 7,
+  "div_vs_141": 7
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/KanbanBoard.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/KanbanBoard.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 199,
+  "lines_ours": 274,
+  "div_vs_134": 71,
+  "div_vs_141": 71
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/KanbanBoardContainer.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/KanbanBoardContainer.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 40,
+  "lines_ours": 639,
+  "div_vs_134": 456,
+  "div_vs_141": 456
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/KanbanColumn.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/KanbanColumn.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 324,
+  "lines_ours": 378,
+  "div_vs_134": 70,
+  "div_vs_141": 70
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/ModelChip.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/ModelChip.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 74,
+  "div_vs_134": 53,
+  "div_vs_141": 53
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/NewTaskComposer.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/NewTaskComposer.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 46,
+  "lines_ours": 84,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/StatusBadge.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/StatusBadge.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 36,
+  "lines_ours": 50,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/SubtaskProgress.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/SubtaskProgress.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 43,
+  "lines_ours": 71,
+  "div_vs_134": 3,
+  "div_vs_141": 3
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/SubtaskRow.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/SubtaskRow.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 38,
+  "lines_ours": 122,
+  "div_vs_134": 38,
+  "div_vs_141": 38
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/TaskChatPreview.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/TaskChatPreview.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 36,
+  "lines_ours": 125,
+  "div_vs_134": 23,
+  "div_vs_141": 23
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/TaskEditor.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/TaskEditor.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 364,
+  "lines_ours": 1650,
+  "div_vs_134": 716,
+  "div_vs_141": 721
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/TaskTile.tsx",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/TaskTile.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 199,
+  "lines_ours": 641,
+  "div_vs_134": 158,
+  "div_vs_141": 158
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/__tests__/board-collision.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/__tests__/node-state-pill.test.ts",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/__tests__/node-state-pill.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 13,
+  "lines_ours": 54,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/board-collision.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/kanban/node-state-pill.ts",
+  "ours": "apps/electron/src/renderer/components/app-shell/kanban/node-state-pill.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 11,
+  "lines_ours": 39,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/app-shell/panel-constants.ts",
+  "ours": "apps/electron/src/renderer/components/app-shell/panel-constants.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 38,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/ActionTypeIcon.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/ActionTypeIcon.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 7,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationActionPreview.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationActionPreview.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 38,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationActionRow.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationActionRow.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 52,
+  "lines_ours": 223,
+  "div_vs_134": 96,
+  "div_vs_141": 96
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationAvatar.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationAvatar.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 26,
+  "lines_ours": 84,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationCard.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationCard.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 32,
+  "lines_ours": 116,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationEventTimeline.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationEventTimeline.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 79,
+  "lines_ours": 207,
+  "div_vs_134": 28,
+  "div_vs_141": 31
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationInfoPage.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationInfoPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 67,
+  "lines_ours": 252,
+  "div_vs_134": 58,
+  "div_vs_141": 58
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationTestPanel.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationTestPanel.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 15,
+  "lines_ours": 64,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/AutomationsListPanel.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/AutomationsListPanel.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 52,
+  "lines_ours": 365,
+  "div_vs_134": 27,
+  "div_vs_141": 27
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/BatchAutomationMenu.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/BatchAutomationMenu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 115,
+  "div_vs_134": 11,
+  "div_vs_141": 11
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/CronBuilder.tsx",
+  "ours": "apps/electron/src/renderer/components/automations/CronBuilder.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 47,
+  "lines_ours": 293,
+  "div_vs_134": 47,
+  "div_vs_141": 47
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/__tests__/types.test.ts",
+  "ours": "apps/electron/src/renderer/components/automations/__tests__/types.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 255,
+  "div_vs_134": 44,
+  "div_vs_141": 44
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/types.ts",
+  "ours": "apps/electron/src/renderer/components/automations/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 557,
+  "div_vs_134": 106,
+  "div_vs_141": 111
+ },
+ {
+  "path": "apps/electron/src/renderer/components/automations/utils.ts",
+  "ours": "apps/electron/src/renderer/components/automations/utils.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 131,
+  "div_vs_134": 84,
+  "div_vs_141": 84
+ },
+ {
+  "path": "apps/electron/src/renderer/components/chat/AuthRequestCard.tsx",
+  "ours": "apps/electron/src/renderer/components/chat/AuthRequestCard.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 485,
+  "lines_ours": 1096,
+  "div_vs_134": 521,
+  "div_vs_141": 521
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/AutoRulesDataTable.tsx",
+  "ours": "apps/electron/src/renderer/components/info/AutoRulesDataTable.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 57,
+  "lines_ours": 249,
+  "div_vs_134": 0,
+  "div_vs_141": 50
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_Alert.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_Alert.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 36,
+  "lines_ours": 68,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_Badge.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_Badge.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 65,
+  "lines_ours": 87,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_DataTable.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_DataTable.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 15,
+  "lines_ours": 160,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_FullscreenButton.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_GroupedList.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_GroupedList.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 138,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_HeaderMenu.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_Markdown.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_Markdown.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 108,
+  "div_vs_134": 25,
+  "div_vs_141": 25
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_Page.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_Page.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 65,
+  "lines_ours": 165,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_Section.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_Section.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 48,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_StatePill.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_StatusBadge.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_StatusBadge.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 47,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_Table.tsx",
+  "ours": "apps/electron/src/renderer/components/info/Info_Table.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 21,
+  "lines_ours": 68,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/Info_TechnicalDetails.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/LabelsDataTable.tsx",
+  "ours": "apps/electron/src/renderer/components/info/LabelsDataTable.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 38,
+  "lines_ours": 197,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/PermissionsDataTable.tsx",
+  "ours": "apps/electron/src/renderer/components/info/PermissionsDataTable.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 42,
+  "lines_ours": 309,
+  "div_vs_134": 123,
+  "div_vs_141": 123
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/ToolsDataTable.tsx",
+  "ours": "apps/electron/src/renderer/components/info/ToolsDataTable.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 39,
+  "lines_ours": 95,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/info/index.ts",
+  "ours": "apps/electron/src/renderer/components/info/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 100,
+  "div_vs_134": 54,
+  "div_vs_141": 54
+ },
+ {
+  "path": "apps/electron/src/renderer/components/messaging/LarkConnectDialog.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 64
+ },
+ {
+  "path": "apps/electron/src/renderer/components/messaging/PairingCodeDialog.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 38
+ },
+ {
+  "path": "apps/electron/src/renderer/components/messaging/TelegramConnectDialog.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 19
+ },
+ {
+  "path": "apps/electron/src/renderer/components/messaging/TelegramSupergroupPairingDialog.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 34
+ },
+ {
+  "path": "apps/electron/src/renderer/components/messaging/WhatsAppConnectDialog.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 14
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/APISetupStep.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/APISetupStep.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 38,
+  "lines_ours": 281,
+  "div_vs_134": 20,
+  "div_vs_141": 20
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/CompletionStep.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/CompletionStep.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 56,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/CredentialsStep.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/CredentialsStep.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 211,
+  "div_vs_134": 117,
+  "div_vs_141": 117
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/GitBashWarning.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/GitBashWarning.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 149,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/LocalModelStep.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/LocalModelStep.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 14,
+  "lines_ours": 150,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/OnboardingWizard.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/OnboardingWizard.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 3,
+  "lines_ours": 251,
+  "div_vs_134": 79,
+  "div_vs_141": 79
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/ProviderMark.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/ProviderSelectStep.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/ProviderSelectStep.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 53,
+  "lines_ours": 232,
+  "div_vs_134": 149,
+  "div_vs_141": 149
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/ReauthScreen.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/ReauthScreen.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17,
+  "lines_ours": 102,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/onboarding/primitives.tsx",
+  "ours": "apps/electron/src/renderer/components/onboarding/primitives.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 72,
+  "lines_ours": 282,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/DeletePageDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/DeletePageDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 49,
+  "div_vs_134": 3,
+  "div_vs_141": 3
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/PageFrame.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/PageFrame.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 504,
+  "div_vs_134": 305,
+  "div_vs_141": 305
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/PageGrantRequestDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/PageGrantRequestDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 119,
+  "div_vs_134": 113,
+  "div_vs_141": 113
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/PageGrantsDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/PageGrantsDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 26,
+  "lines_ours": 113,
+  "div_vs_134": 54,
+  "div_vs_141": 54
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/PageSourceAuthBanner.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/PageSourceAuthBanner.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 26,
+  "lines_ours": 224,
+  "div_vs_134": 356,
+  "div_vs_141": 356
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/PageTile.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/PageTile.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 118,
+  "lines_ours": 188,
+  "div_vs_134": 25,
+  "div_vs_141": 25
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/PageView.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/PageView.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 180,
+  "lines_ours": 520,
+  "div_vs_134": 112,
+  "div_vs_141": 112
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/PagesHome.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/PagesHome.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 57,
+  "lines_ours": 207,
+  "div_vs_134": 19,
+  "div_vs_141": 19
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/SharePageDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/SharePageDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 95,
+  "lines_ours": 350,
+  "div_vs_134": 436,
+  "div_vs_141": 436
+ },
+ {
+  "path": "apps/electron/src/renderer/components/pages/page-visuals.tsx",
+  "ours": "apps/electron/src/renderer/components/pages/page-visuals.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 57,
+  "lines_ours": 78,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/components/projects/CreateProjectDialog.tsx",
+  "ours": "apps/electron/src/renderer/components/projects/CreateProjectDialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 35,
+  "lines_ours": 90,
+  "div_vs_134": 5,
+  "div_vs_141": 5
+ },
+ {
+  "path": "apps/electron/src/renderer/components/right-sidebar/SessionFilesSection.tsx",
+  "ours": "apps/electron/src/renderer/components/right-sidebar/SessionFilesSection.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 248,
+  "div_vs_134": 689,
+  "div_vs_141": 689
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SearchableModelInput.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SearchableModelInput.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 35,
+  "lines_ours": 170,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsCard.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsCard.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 21,
+  "lines_ours": 86,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsEditRow.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsInput.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsInput.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 88,
+  "lines_ours": 304,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsMenuSelect.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsMenuSelect.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 57,
+  "lines_ours": 272,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsPage.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsRadioGroup.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsRadioGroup.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 89,
+  "lines_ours": 300,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsRow.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsRow.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 197,
+  "div_vs_134": 147,
+  "div_vs_141": 147
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsSection.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsSection.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 23,
+  "lines_ours": 117,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsSegmentedControl.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsSegmentedControl.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 62,
+  "lines_ours": 181,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsSelect.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsSelect.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 179,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsTextarea.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsTextarea.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17,
+  "lines_ours": 127,
+  "div_vs_134": 10,
+  "div_vs_141": 10
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsToggle.tsx",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsToggle.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 80,
+  "div_vs_134": 0,
+  "div_vs_141": 32
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/SettingsUIConstants.ts",
+  "ours": "apps/electron/src/renderer/components/settings/SettingsUIConstants.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 32,
+  "lines_ours": 22,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/ThemeGrid.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/settings/index.ts",
+  "ours": "apps/electron/src/renderer/components/settings/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 99,
+  "div_vs_134": 7,
+  "div_vs_141": 7
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/CompactWorkingDirectorySelector.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/CompactWorkingDirectorySelector.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 236,
+  "div_vs_134": 38,
+  "div_vs_141": 38
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/EditPopover.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/EditPopover.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 1218,
+  "div_vs_134": 488,
+  "div_vs_141": 494
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/HeaderIconButton.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/HeaderIconButton.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 16,
+  "lines_ours": 53,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/HeaderMenu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/HeaderMenu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 73,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/PanelHeaderCenterButton.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/PanelHeaderCenterButton.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 16,
+  "lines_ours": 40,
+  "div_vs_134": 11,
+  "div_vs_141": 11
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/TopBarButton.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/TopBarButton.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 19,
+  "lines_ours": 42,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/__tests__/source-connection-status.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/__tests__/workspace-avatar-color.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/avatar.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/avatar.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 183,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/button.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/button.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 121,
+  "lines_ours": 57,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/collapsible.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/collapsible.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 55,
+  "lines_ours": 58,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/color-picker.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/color-picker.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 139,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/command.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/command.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 56,
+  "lines_ours": 155,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/context-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/context-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 20,
+  "lines_ours": 331,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/dialog.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/dialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 38,
+  "lines_ours": 143,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/dropdown-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/dropdown-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 20,
+  "lines_ours": 311,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/empty.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/empty.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 104,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/entity-list-empty.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/entity-list-empty.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 62,
+  "div_vs_134": 7,
+  "div_vs_141": 7
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/entity-list-label-badge.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/entity-list-label-badge.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 76,
+  "lines_ours": 83,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/entity-list.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/entity-list.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 35,
+  "lines_ours": 241,
+  "div_vs_134": 24,
+  "div_vs_141": 24
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/entity-panel.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/entity-panel.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 12,
+  "lines_ours": 105,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/entity-row.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/entity-row.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 285,
+  "lines_ours": 528,
+  "div_vs_134": 32,
+  "div_vs_141": 32
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/hotkey-keycaps.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/inline-color-picker-row.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/inline-color-picker-row.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 108,
+  "div_vs_134": 7,
+  "div_vs_141": 7
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/inline-menu-styles.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/input.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/input.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 3,
+  "lines_ours": 22,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/kbd.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/kbd.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 28,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/label-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/label-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 48,
+  "lines_ours": 460,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/label-value-popover.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/label-value-popover.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 66,
+  "lines_ours": 329,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/mention-badge.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/mention-badge.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 136,
+  "div_vs_134": 10,
+  "div_vs_141": 10
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/mention-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/mention-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 37,
+  "lines_ours": 1172,
+  "div_vs_134": 701,
+  "div_vs_141": 701
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/metadata-badge.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/metadata-badge.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 11,
+  "lines_ours": 102,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/popover.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/popover.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 48,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/rename-dialog.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/rename-dialog.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 31,
+  "lines_ours": 86,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/rich-text-input.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/rich-text-input.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 44,
+  "lines_ours": 811,
+  "div_vs_134": 126,
+  "div_vs_141": 126
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/scroll-area.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/scroll-area.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 70,
+  "div_vs_134": 14,
+  "div_vs_141": 14
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/select.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/select.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 12,
+  "lines_ours": 173,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/session-status-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/session-status-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 42,
+  "lines_ours": 169,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/skeleton.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/skill-mention-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/skill-mention-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17,
+  "lines_ours": 279,
+  "div_vs_134": 33,
+  "div_vs_141": 33
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/slash-command-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/slash-command-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 95,
+  "lines_ours": 1255,
+  "div_vs_134": 662,
+  "div_vs_141": 670
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/sonner.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/sonner.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 75,
+  "lines_ours": 40,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/source-avatar.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/source-avatar.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 14,
+  "lines_ours": 101,
+  "div_vs_134": 233,
+  "div_vs_141": 233
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/source-connection-status.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/source-status-indicator.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/source-status-indicator.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 50,
+  "lines_ours": 322,
+  "div_vs_134": 277,
+  "div_vs_141": 277
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/styled-context-menu.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/styled-context-menu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 21,
+  "lines_ours": 131,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/switch.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/switch.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 13,
+  "lines_ours": 31,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/tabs.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/tabs.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 55,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/textarea.tsx",
+  "ours": "apps/electron/src/renderer/components/ui/textarea.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 3,
+  "lines_ours": 18,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/workspace-avatar-color.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/components/ui/workspace-avatar.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 3
+ },
+ {
+  "path": "apps/electron/src/renderer/context/AppShellContext.tsx",
+  "ours": "apps/electron/src/renderer/context/AppShellContext.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 3,
+  "lines_ours": 343,
+  "div_vs_134": 102,
+  "div_vs_141": 102
+ },
+ {
+  "path": "apps/electron/src/renderer/context/ThemeContext.tsx",
+  "ours": "apps/electron/src/renderer/context/ThemeContext.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 115,
+  "lines_ours": 535,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/contexts/NavigationContext.tsx",
+  "ours": "apps/electron/src/renderer/contexts/NavigationContext.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 1499,
+  "div_vs_134": 403,
+  "div_vs_141": 408
+ },
+ {
+  "path": "apps/electron/src/renderer/event-processor/handlers/__tests__/tool-result-input.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/event-processor/handlers/tool.ts",
+  "ours": "apps/electron/src/renderer/event-processor/handlers/tool.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 287,
+  "div_vs_134": 23,
+  "div_vs_141": 23
+ },
+ {
+  "path": "apps/electron/src/renderer/event-processor/processor.ts",
+  "ours": "apps/electron/src/renderer/event-processor/processor.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 366,
+  "div_vs_134": 156,
+  "div_vs_141": 156
+ },
+ {
+  "path": "apps/electron/src/renderer/event-processor/types.ts",
+  "ours": "apps/electron/src/renderer/event-processor/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 18,
+  "lines_ours": 759,
+  "div_vs_134": 283,
+  "div_vs_141": 283
+ },
+ {
+  "path": "apps/electron/src/renderer/hooks/useBackgroundTasks.ts",
+  "ours": "apps/electron/src/renderer/hooks/useBackgroundTasks.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 65,
+  "lines_ours": 250,
+  "div_vs_134": 201,
+  "div_vs_141": 201
+ },
+ {
+  "path": "apps/electron/src/renderer/hooks/useContainerWidth.ts",
+  "ours": "apps/electron/src/renderer/hooks/useContainerWidth.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 15,
+  "lines_ours": 27,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/hooks/useDelayedLoading.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/hooks/useDynamicStack.ts",
+  "ours": "apps/electron/src/renderer/hooks/useDynamicStack.ts",
+  "in134": true,
+  "in141": true,
+  "in151": false,
+  "up_141_151": "DELETED",
+  "lines_ours": 185,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/hooks/useListReorderFlip.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/hooks/useResizeGradient.ts",
+  "ours": "apps/electron/src/renderer/hooks/useResizeGradient.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 120,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/hooks/useTheme.ts",
+  "ours": "apps/electron/src/renderer/hooks/useTheme.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 42,
+  "lines_ours": 76,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/index.css",
+  "ours": "apps/electron/src/renderer/index.css",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1168,
+  "lines_ours": 1535,
+  "div_vs_134": 52,
+  "div_vs_141": 52
+ },
+ {
+  "path": "apps/electron/src/renderer/index.html",
+  "ours": "apps/electron/src/renderer/index.html",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 36,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/electron/src/renderer/lib/__tests__/run-command-message.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/lib/provider-icons.ts",
+  "ours": "apps/electron/src/renderer/lib/provider-icons.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 223,
+  "div_vs_134": 81,
+  "div_vs_141": 81
+ },
+ {
+  "path": "apps/electron/src/renderer/lib/run-command-message.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/lib/utils.ts",
+  "ours": "apps/electron/src/renderer/lib/utils.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 6,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/ChatPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/ChatPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 556,
+  "lines_ours": 1124,
+  "div_vs_134": 466,
+  "div_vs_141": 468
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/ProjectInfoPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/ProjectInfoPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 108,
+  "lines_ours": 540,
+  "div_vs_134": 175,
+  "div_vs_141": 175
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/ShortcutsPage.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 19
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/SkillInfoPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/SkillInfoPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 71,
+  "lines_ours": 98,
+  "div_vs_134": 329,
+  "div_vs_141": 336
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/SourceInfoPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/SourceInfoPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 100,
+  "lines_ours": 154,
+  "div_vs_134": 632,
+  "div_vs_141": 632
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/AiSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/AiSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1051,
+  "lines_ours": 2037,
+  "div_vs_134": 874,
+  "div_vs_141": 1304
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/AppSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/AppSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 301,
+  "lines_ours": 1075,
+  "div_vs_134": 749,
+  "div_vs_141": 749
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/AppearanceSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/AppearanceSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 540,
+  "lines_ours": 535,
+  "div_vs_134": 163,
+  "div_vs_141": 163
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/InputSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/InputSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 84,
+  "lines_ours": 131,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/LabelsSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/LabelsSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 209,
+  "lines_ours": 148,
+  "div_vs_134": 44,
+  "div_vs_141": 44
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/MessagingSettingsPage.tsx",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 205
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/PermissionsSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/PermissionsSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 239,
+  "lines_ours": 631,
+  "div_vs_134": 414,
+  "div_vs_141": 414
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/PreferencesPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/PreferencesPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 172,
+  "lines_ours": 269,
+  "div_vs_134": 19,
+  "div_vs_141": 19
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/ServerSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/ServerSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 238,
+  "lines_ours": 315,
+  "div_vs_134": 29,
+  "div_vs_141": 29
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/SettingsNavigator.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/SettingsNavigator.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 100,
+  "lines_ours": 184,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/ShortcutsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/ShortcutsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 77,
+  "lines_ours": 479,
+  "div_vs_134": 363,
+  "div_vs_141": 363
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/WorkspaceSettingsPage.tsx",
+  "ours": "apps/electron/src/renderer/pages/settings/WorkspaceSettingsPage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 413,
+  "lines_ours": 691,
+  "div_vs_134": 271,
+  "div_vs_141": 285
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/__tests__/ai-settings-loader.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/pages/settings/ai-settings-loader.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/playground.html",
+  "ours": "apps/electron/src/renderer/playground.html",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 24,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/ComponentPreview.tsx",
+  "ours": "apps/electron/src/renderer/playground/ComponentPreview.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 67,
+  "lines_ours": 213,
+  "div_vs_134": 62,
+  "div_vs_141": 62
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/PlaygroundApp.tsx",
+  "ours": "apps/electron/src/renderer/playground/PlaygroundApp.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 18,
+  "lines_ours": 258,
+  "div_vs_134": 14,
+  "div_vs_141": 14
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/PlaygroundAppShellProvider.tsx",
+  "ours": "apps/electron/src/renderer/playground/PlaygroundAppShellProvider.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 95,
+  "div_vs_134": 35,
+  "div_vs_141": 35
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/PlaygroundPreviewProviders.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/Sidebar.tsx",
+  "ours": "apps/electron/src/renderer/playground/Sidebar.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 100,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/demos/mobile-webui/ChatDisplayMobilePreview.tsx",
+  "ours": "apps/electron/src/renderer/playground/demos/mobile-webui/ChatDisplayMobilePreview.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 3,
+  "lines_ours": 132,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/mock-utils.ts",
+  "ours": "apps/electron/src/renderer/playground/mock-utils.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 51,
+  "lines_ours": 613,
+  "div_vs_134": 820,
+  "div_vs_141": 822
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/chat-header.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/chat.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/chat.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 135,
+  "lines_ours": 1897,
+  "div_vs_134": 493,
+  "div_vs_141": 493
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/custom-shadows.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/custom-shadows.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 298,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/edit-popover.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/edit-popover.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 506,
+  "div_vs_134": 65,
+  "div_vs_141": 65
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/entity-lists.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/entity-lists.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 28,
+  "lines_ours": 1060,
+  "div_vs_134": 156,
+  "div_vs_141": 156
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/index.ts",
+  "ours": "apps/electron/src/renderer/playground/registry/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 189,
+  "div_vs_134": 117,
+  "div_vs_141": 117
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/label-badges.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/label-badges.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 148,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/markdown.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/markdown.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 47,
+  "lines_ours": 746,
+  "div_vs_134": 64,
+  "div_vs_141": 64
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/primitives.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/toasts.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/toasts.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 69,
+  "lines_ours": 143,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/turn-card.tsx",
+  "ours": "apps/electron/src/renderer/playground/registry/turn-card.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 2686,
+  "div_vs_134": 333,
+  "div_vs_141": 333
+ },
+ {
+  "path": "apps/electron/src/renderer/playground/registry/types.ts",
+  "ours": "apps/electron/src/renderer/playground/registry/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 46,
+  "div_vs_134": 3,
+  "div_vs_141": 3
+ },
+ {
+  "path": "apps/electron/src/shared/__tests__/ipc-channels.test.ts",
+  "ours": "apps/electron/src/shared/__tests__/ipc-channels.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 481,
+  "div_vs_134": 222,
+  "div_vs_141": 228
+ },
+ {
+  "path": "apps/electron/src/shared/types.ts",
+  "ours": "apps/electron/src/shared/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 27,
+  "lines_ours": 1881,
+  "div_vs_134": 1281,
+  "div_vs_141": 1304
+ },
+ {
+  "path": "apps/electron/src/transport/__tests__/channel-map-parity.test.ts",
+  "ours": "apps/electron/src/transport/__tests__/channel-map-parity.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 114,
+  "div_vs_134": 56,
+  "div_vs_141": 56
+ },
+ {
+  "path": "apps/electron/src/transport/__tests__/source-oauth.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/electron/src/transport/channel-map.ts",
+  "ours": "apps/electron/src/transport/channel-map.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 590,
+  "div_vs_134": 329,
+  "div_vs_141": 337
+ },
+ {
+  "path": "apps/electron/src/transport/source-oauth.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/viewer/package.json",
+  "ours": "apps/viewer/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 38,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/viewer/src/App.tsx",
+  "ours": "apps/viewer/src/App.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 331,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/viewer/src/index.css",
+  "ours": "apps/viewer/src/index.css",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 14,
+  "lines_ours": 39,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/viewer/src/main.tsx",
+  "ours": "apps/viewer/src/main.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 18,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/webui/package.json",
+  "ours": "apps/webui/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 24,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "apps/webui/src/App.tsx",
+  "ours": "apps/webui/src/App.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 149,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "apps/webui/src/adapter/web-api.ts",
+  "ours": "apps/webui/src/adapter/web-api.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 53,
+  "lines_ours": 345,
+  "div_vs_134": 129,
+  "div_vs_141": 129
+ },
+ {
+  "path": "apps/webui/src/index.css",
+  "ours": "apps/webui/src/index.css",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 25,
+  "lines_ours": 52,
+  "div_vs_134": 34,
+  "div_vs_141": 34
+ },
+ {
+  "path": "apps/webui/src/index.html",
+  "ours": "apps/webui/src/index.html",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 30,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/webui/src/login.css",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "apps/webui/src/login.html",
+  "ours": "apps/webui/src/login.html",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 229,
+  "lines_ours": 286,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "apps/webui/vite.config.ts",
+  "ours": "apps/webui/vite.config.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 107,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "bun.lock",
+  "ours": "bun.lock",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 124,
+  "lines_ours": 3734,
+  "div_vs_134": 4248,
+  "div_vs_141": 4214
+ },
+ {
+  "path": "package.json",
+  "ours": "package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 267,
+  "div_vs_134": 137,
+  "div_vs_141": 134
+ },
+ {
+  "path": "packages/core/package.json",
+  "ours": "packages/core/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 21,
+  "div_vs_134": 12,
+  "div_vs_141": 10
+ },
+ {
+  "path": "packages/core/src/types/index.ts",
+  "ours": "packages/core/src/types/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 171,
+  "div_vs_134": 100,
+  "div_vs_141": 101
+ },
+ {
+  "path": "packages/core/src/types/message.ts",
+  "ours": "packages/core/src/types/message.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 1979,
+  "div_vs_134": 1464,
+  "div_vs_141": 1471
+ },
+ {
+  "path": "packages/core/src/types/page.ts",
+  "ours": "packages/core/src/types/page.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 309,
+  "div_vs_134": 83,
+  "div_vs_141": 83
+ },
+ {
+  "path": "packages/messaging-gateway/package.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2
+ },
+ {
+  "path": "packages/messaging-whatsapp-worker/package.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2
+ },
+ {
+  "path": "packages/pi-agent-server/package.json",
+  "ours": "packages/pi-agent-server/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8,
+  "lines_ours": 34,
+  "div_vs_134": 18,
+  "div_vs_141": 14
+ },
+ {
+  "path": "packages/pi-agent-server/src/agent-dir.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/pi-agent-server/src/agent-dir.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/pi-agent-server/src/index.ts",
+  "ours": "packages/pi-agent-server/src/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 117,
+  "lines_ours": 5685,
+  "div_vs_134": 5274,
+  "div_vs_141": 5412
+ },
+ {
+  "path": "packages/pi-agent-server/src/large-result-gate.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/pi-agent-server/src/large-result-gate.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/pi-agent-server/src/model-resolution.test.ts",
+  "ours": "packages/pi-agent-server/src/model-resolution.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 351,
+  "div_vs_134": 103,
+  "div_vs_141": 103
+ },
+ {
+  "path": "packages/pi-agent-server/src/model-resolution.ts",
+  "ours": "packages/pi-agent-server/src/model-resolution.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 132,
+  "div_vs_134": 65,
+  "div_vs_141": 65
+ },
+ {
+  "path": "packages/pi-agent-server/src/pick-mini-model.test.ts",
+  "ours": "packages/pi-agent-server/src/pick-mini-model.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 411,
+  "div_vs_134": 358,
+  "div_vs_141": 358
+ },
+ {
+  "path": "packages/pi-agent-server/src/pick-mini-model.ts",
+  "ours": "packages/pi-agent-server/src/pick-mini-model.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 13,
+  "lines_ours": 140,
+  "div_vs_134": 115,
+  "div_vs_141": 115
+ },
+ {
+  "path": "packages/pi-agent-server/src/provider-endpoint-env.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/pi-agent-server/src/provider-endpoint-env.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/pi-agent-server/src/session-settings.test.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 15
+ },
+ {
+  "path": "packages/pi-agent-server/src/session-settings.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 20
+ },
+ {
+  "path": "packages/pi-agent-server/src/system-prompt-override.test.ts",
+  "ours": "packages/pi-agent-server/src/system-prompt-override.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 48,
+  "lines_ours": 40,
+  "div_vs_134": 83,
+  "div_vs_141": 122
+ },
+ {
+  "path": "packages/pi-agent-server/src/system-prompt-override.ts",
+  "ours": "packages/pi-agent-server/src/system-prompt-override.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 11,
+  "div_vs_134": 35,
+  "div_vs_141": 70
+ },
+ {
+  "path": "packages/pi-agent-server/src/tools/search/create-search-tool.test.ts",
+  "ours": "packages/pi-agent-server/src/tools/search/create-search-tool.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 251,
+  "div_vs_134": 192,
+  "div_vs_141": 192
+ },
+ {
+  "path": "packages/pi-agent-server/src/tools/search/create-search-tool.ts",
+  "ours": "packages/pi-agent-server/src/tools/search/create-search-tool.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 204,
+  "div_vs_134": 102,
+  "div_vs_141": 102
+ },
+ {
+  "path": "packages/pi-agent-server/src/tools/web-fetch.ts",
+  "ours": "packages/pi-agent-server/src/tools/web-fetch.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 767,
+  "div_vs_134": 436,
+  "div_vs_141": 436
+ },
+ {
+  "path": "packages/server-core/package.json",
+  "ours": "packages/server-core/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 42,
+  "div_vs_134": 11,
+  "div_vs_141": 9
+ },
+ {
+  "path": "packages/server-core/src/decisions/__fixtures__/adaptive-thinking.cases.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/__fixtures__/large-results.cases.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/adaptive-thinking.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/adaptive-thinking.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/decision-outcomes.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/decision-point.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/decision-point.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/guarded-mode.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/large-results.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/large-results.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/relevance.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/relevance.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/decisions/semantic-labels.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 20
+ },
+ {
+  "path": "packages/server-core/src/decisions/semantic-labels.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9
+ },
+ {
+  "path": "packages/server-core/src/domain/connection-setup-logic.ts",
+  "ours": "packages/server-core/src/domain/connection-setup-logic.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 412,
+  "div_vs_134": 150,
+  "div_vs_141": 205
+ },
+ {
+  "path": "packages/server-core/src/handlers/browser-pane-manager-interface.ts",
+  "ours": "packages/server-core/src/handlers/browser-pane-manager-interface.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 15,
+  "lines_ours": 259,
+  "div_vs_134": 15,
+  "div_vs_141": 15
+ },
+ {
+  "path": "packages/server-core/src/handlers/oauth-flow-store-interface.ts",
+  "ours": "packages/server-core/src/handlers/oauth-flow-store-interface.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 26,
+  "div_vs_134": 14,
+  "div_vs_141": 14
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/decisions.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/oauth.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/oauth.ts",
+  "ours": "packages/server-core/src/handlers/rpc/oauth.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 203,
+  "lines_ours": 818,
+  "div_vs_134": 774,
+  "div_vs_141": 776
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/pages.ts",
+  "ours": "packages/server-core/src/handlers/rpc/pages.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 34,
+  "lines_ours": 772,
+  "div_vs_134": 829,
+  "div_vs_141": 829
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/sessions.ts",
+  "ours": "packages/server-core/src/handlers/rpc/sessions.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 25,
+  "lines_ours": 1380,
+  "div_vs_134": 1080,
+  "div_vs_141": 1083
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/tasks-generate-wait.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/tasks.ts",
+  "ours": "packages/server-core/src/handlers/rpc/tasks.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 90,
+  "lines_ours": 757,
+  "div_vs_134": 749,
+  "div_vs_141": 765
+ },
+ {
+  "path": "packages/server-core/src/handlers/rpc/workspace.ts",
+  "ours": "packages/server-core/src/handlers/rpc/workspace.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 420,
+  "div_vs_134": 167,
+  "div_vs_141": 167
+ },
+ {
+  "path": "packages/server-core/src/handlers/session-manager-interface.ts",
+  "ours": "packages/server-core/src/handlers/session-manager-interface.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 23,
+  "lines_ours": 856,
+  "div_vs_134": 771,
+  "div_vs_141": 785
+ },
+ {
+  "path": "packages/server-core/src/runtime/inherited-app-env.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/runtime/inherited-app-env.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/runtime/null-browser-pane-manager.ts",
+  "ours": "packages/server-core/src/runtime/null-browser-pane-manager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 100,
+  "div_vs_134": 10,
+  "div_vs_141": 10
+ },
+ {
+  "path": "packages/server-core/src/runtime/platform-headless.ts",
+  "ours": "packages/server-core/src/runtime/platform-headless.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 30,
+  "lines_ours": 119,
+  "div_vs_134": 35,
+  "div_vs_141": 35
+ },
+ {
+  "path": "packages/server-core/src/sessions/RemoteBrowserPaneManager.ts",
+  "ours": "packages/server-core/src/sessions/RemoteBrowserPaneManager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 346,
+  "div_vs_134": 16,
+  "div_vs_141": 16
+ },
+ {
+  "path": "packages/server-core/src/sessions/SessionManager.ts",
+  "ours": "packages/server-core/src/sessions/SessionManager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 483,
+  "lines_ours": 42156,
+  "div_vs_134": 47410,
+  "div_vs_141": 47840
+ },
+ {
+  "path": "packages/server-core/src/sessions/auth-request-fanout.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/sessions/automation-loop-and-retry.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17
+ },
+ {
+  "path": "packages/server-core/src/sessions/background-task-output.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/sessions/background-task-output.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/sessions/background-task-stop.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/sessions/background-task-surface.test.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4
+ },
+ {
+  "path": "packages/server-core/src/sessions/browser-password-redaction.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/sessions/pi-retry-streaming.test.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2
+ },
+ {
+  "path": "packages/server-core/src/sessions/session-completion.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/sources/mcp-source-tool-callbacks.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/sources/mcp-source-tool-callbacks.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/server-core/src/tasks/TaskRunner.test.ts",
+  "ours": "packages/server-core/src/tasks/TaskRunner.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 184,
+  "lines_ours": 1661,
+  "div_vs_134": 868,
+  "div_vs_141": 1165
+ },
+ {
+  "path": "packages/server-core/src/tasks/TaskRunner.ts",
+  "ours": "packages/server-core/src/tasks/TaskRunner.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 118,
+  "lines_ours": 1446,
+  "div_vs_134": 728,
+  "div_vs_141": 856
+ },
+ {
+  "path": "packages/server-core/src/transport/__tests__/server-lifecycle.test.ts",
+  "ours": "packages/server-core/src/transport/__tests__/server-lifecycle.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 15,
+  "lines_ours": 345,
+  "div_vs_134": 113,
+  "div_vs_141": 113
+ },
+ {
+  "path": "packages/server-core/src/transport/client.ts",
+  "ours": "packages/server-core/src/transport/client.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 1016,
+  "div_vs_134": 38,
+  "div_vs_141": 38
+ },
+ {
+  "path": "packages/server-core/src/transport/server.ts",
+  "ours": "packages/server-core/src/transport/server.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 12,
+  "lines_ours": 1085,
+  "div_vs_134": 230,
+  "div_vs_141": 230
+ },
+ {
+  "path": "packages/server-core/src/webui/__tests__/oauth-callback.test.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 83
+ },
+ {
+  "path": "packages/server-core/src/webui/http-server.ts",
+  "ours": "packages/server-core/src/webui/http-server.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 19,
+  "lines_ours": 465,
+  "div_vs_134": 57,
+  "div_vs_141": 57
+ },
+ {
+  "path": "packages/server/package.json",
+  "ours": "packages/server/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 36,
+  "div_vs_134": 10,
+  "div_vs_141": 10
+ },
+ {
+  "path": "packages/session-tools-core/package.json",
+  "ours": "packages/session-tools-core/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 24,
+  "div_vs_134": 6,
+  "div_vs_141": 9
+ },
+ {
+  "path": "packages/session-tools-core/src/api-auth.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 21
+ },
+ {
+  "path": "packages/session-tools-core/src/api-auth.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 28
+ },
+ {
+  "path": "packages/session-tools-core/src/context.ts",
+  "ours": "packages/session-tools-core/src/context.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 103,
+  "lines_ours": 1652,
+  "div_vs_134": 1431,
+  "div_vs_141": 1512
+ },
+ {
+  "path": "packages/session-tools-core/src/handlers/index.ts",
+  "ours": "packages/session-tools-core/src/handlers/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 16,
+  "lines_ours": 154,
+  "div_vs_134": 80,
+  "div_vs_141": 84
+ },
+ {
+  "path": "packages/session-tools-core/src/handlers/mcp-sources.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/session-tools-core/src/handlers/mcp-sources.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/session-tools-core/src/handlers/project-memory.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/session-tools-core/src/handlers/project-memory.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/session-tools-core/src/handlers/source-oauth.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/session-tools-core/src/handlers/source-oauth.ts",
+  "ours": "packages/session-tools-core/src/handlers/source-oauth.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 103,
+  "lines_ours": 238,
+  "div_vs_134": 227,
+  "div_vs_141": 227
+ },
+ {
+  "path": "packages/session-tools-core/src/index.ts",
+  "ours": "packages/session-tools-core/src/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 560,
+  "div_vs_134": 361,
+  "div_vs_141": 399
+ },
+ {
+  "path": "packages/session-tools-core/src/tool-defs-filtering.test.ts",
+  "ours": "packages/session-tools-core/src/tool-defs-filtering.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 311,
+  "div_vs_134": 229,
+  "div_vs_141": 242
+ },
+ {
+  "path": "packages/session-tools-core/src/tool-defs.ts",
+  "ours": "packages/session-tools-core/src/tool-defs.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 58,
+  "lines_ours": 2803,
+  "div_vs_134": 2328,
+  "div_vs_141": 2360
+ },
+ {
+  "path": "packages/shared/CLAUDE.md",
+  "ours": "packages/shared/CLAUDE.md",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 30,
+  "lines_ours": 1,
+  "div_vs_134": 215,
+  "div_vs_141": 230
+ },
+ {
+  "path": "packages/shared/package.json",
+  "ours": "packages/shared/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 11,
+  "lines_ours": 320,
+  "div_vs_134": 255,
+  "div_vs_141": 251
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/browser-tool-redaction.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/browser-tools.test.ts",
+  "ours": "packages/shared/src/agent/__tests__/browser-tools.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 325,
+  "lines_ours": 1064,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/claude-background-message-routing.test.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 23
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/claude-event-adapter-tasks.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 8
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/claude-event-adapter.test.ts",
+  "ours": "packages/shared/src/agent/__tests__/claude-event-adapter.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 21,
+  "lines_ours": 2889,
+  "div_vs_134": 2032,
+  "div_vs_141": 2056
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/claude-keepalive-stop.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 80
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/claude-thinking-config.test.ts",
+  "ours": "packages/shared/src/agent/__tests__/claude-thinking-config.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 12,
+  "lines_ours": 187,
+  "div_vs_134": 33,
+  "div_vs_141": 105
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/pdf-inline.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/prompt-builder-context-split.test.ts",
+  "ours": "packages/shared/src/agent/__tests__/prompt-builder-context-split.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 23,
+  "lines_ours": 558,
+  "div_vs_134": 489,
+  "div_vs_141": 489
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/session-self-management-bindings.test.ts",
+  "ours": "packages/shared/src/agent/__tests__/session-self-management-bindings.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 28,
+  "lines_ours": 355,
+  "div_vs_134": 111,
+  "div_vs_141": 111
+ },
+ {
+  "path": "packages/shared/src/agent/__tests__/text-completion-options.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/agent/backend/claude/event-adapter.ts",
+  "ours": "packages/shared/src/agent/backend/claude/event-adapter.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 34,
+  "lines_ours": 3110,
+  "div_vs_134": 2739,
+  "div_vs_141": 2787
+ },
+ {
+  "path": "packages/shared/src/agent/backend/claude/task-notification.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 37
+ },
+ {
+  "path": "packages/shared/src/agent/backend/pi/protocol.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/shared/src/agent/backend/types.ts",
+  "ours": "packages/shared/src/agent/backend/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 14,
+  "lines_ours": 2215,
+  "div_vs_134": 1577,
+  "div_vs_141": 1629
+ },
+ {
+  "path": "packages/shared/src/agent/base-agent.ts",
+  "ours": "packages/shared/src/agent/base-agent.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 7751,
+  "div_vs_134": 7783,
+  "div_vs_141": 7734
+ },
+ {
+  "path": "packages/shared/src/agent/browser-tool-redaction.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/agent/browser-tool-runtime.ts",
+  "ours": "packages/shared/src/agent/browser-tool-runtime.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 321,
+  "lines_ours": 1601,
+  "div_vs_134": 137,
+  "div_vs_141": 137
+ },
+ {
+  "path": "packages/shared/src/agent/browser-tools.ts",
+  "ours": "packages/shared/src/agent/browser-tools.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 13,
+  "lines_ours": 298,
+  "div_vs_134": 49,
+  "div_vs_141": 49
+ },
+ {
+  "path": "packages/shared/src/agent/claude-agent.ts",
+  "ours": "packages/shared/src/agent/claude-agent.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 148,
+  "lines_ours": 15013,
+  "div_vs_134": 16214,
+  "div_vs_141": 16364
+ },
+ {
+  "path": "packages/shared/src/agent/core/__tests__/guarded-mode.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2
+ },
+ {
+  "path": "packages/shared/src/agent/core/__tests__/pre-tool-use-checks.isolated.ts",
+  "ours": "packages/shared/src/agent/core/__tests__/pre-tool-use-checks.isolated.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 41,
+  "lines_ours": 3784,
+  "div_vs_134": 2940,
+  "div_vs_141": 3074
+ },
+ {
+  "path": "packages/shared/src/agent/core/__tests__/prerequisite-manager.isolated.ts",
+  "ours": "packages/shared/src/agent/core/__tests__/prerequisite-manager.isolated.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 237,
+  "lines_ours": 357,
+  "div_vs_134": 111,
+  "div_vs_141": 111
+ },
+ {
+  "path": "packages/shared/src/agent/core/__tests__/source-manager.test.ts",
+  "ours": "packages/shared/src/agent/core/__tests__/source-manager.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 83,
+  "lines_ours": 469,
+  "div_vs_134": 230,
+  "div_vs_141": 230
+ },
+ {
+  "path": "packages/shared/src/agent/core/guarded-mode.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/shared/src/agent/core/pre-tool-use.ts",
+  "ours": "packages/shared/src/agent/core/pre-tool-use.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 18,
+  "lines_ours": 5887,
+  "div_vs_134": 5825,
+  "div_vs_141": 5863
+ },
+ {
+  "path": "packages/shared/src/agent/core/prerequisite-manager.ts",
+  "ours": "packages/shared/src/agent/core/prerequisite-manager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 249,
+  "lines_ours": 694,
+  "div_vs_134": 546,
+  "div_vs_141": 542
+ },
+ {
+  "path": "packages/shared/src/agent/core/source-manager.ts",
+  "ours": "packages/shared/src/agent/core/source-manager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 71,
+  "lines_ours": 520,
+  "div_vs_134": 180,
+  "div_vs_141": 180
+ },
+ {
+  "path": "packages/shared/src/agent/core/types.ts",
+  "ours": "packages/shared/src/agent/core/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 191,
+  "div_vs_134": 53,
+  "div_vs_141": 53
+ },
+ {
+  "path": "packages/shared/src/agent/index.ts",
+  "ours": "packages/shared/src/agent/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 265,
+  "div_vs_134": 117,
+  "div_vs_141": 127
+ },
+ {
+  "path": "packages/shared/src/agent/mode-types.ts",
+  "ours": "packages/shared/src/agent/mode-types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0,
+  "lines_ours": 832,
+  "div_vs_134": 612,
+  "div_vs_141": 642
+ },
+ {
+  "path": "packages/shared/src/agent/options.ts",
+  "ours": "packages/shared/src/agent/options.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 20,
+  "lines_ours": 2465,
+  "div_vs_134": 2254,
+  "div_vs_141": 2258
+ },
+ {
+  "path": "packages/shared/src/agent/pdf-inline.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/agent/pi-agent.ts",
+  "ours": "packages/shared/src/agent/pi-agent.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0,
+  "lines_ours": 12718,
+  "div_vs_134": 11699,
+  "div_vs_141": 11728
+ },
+ {
+  "path": "packages/shared/src/agent/session-scoped-tool-callback-registry.ts",
+  "ours": "packages/shared/src/agent/session-scoped-tool-callback-registry.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 10,
+  "lines_ours": 400,
+  "div_vs_134": 323,
+  "div_vs_141": 325
+ },
+ {
+  "path": "packages/shared/src/agent/session-self-management-bindings.ts",
+  "ours": "packages/shared/src/agent/session-self-management-bindings.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 21,
+  "lines_ours": 239,
+  "div_vs_134": 156,
+  "div_vs_141": 154
+ },
+ {
+  "path": "packages/shared/src/auth/__tests__/oauth-flow-store.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/auth/oauth-flow-store.ts",
+  "ours": "packages/shared/src/auth/oauth-flow-store.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 114,
+  "lines_ours": 249,
+  "div_vs_134": 151,
+  "div_vs_141": 153
+ },
+ {
+  "path": "packages/shared/src/config/__tests__/llm-connections.test.ts",
+  "ours": "packages/shared/src/config/__tests__/llm-connections.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 51,
+  "lines_ours": 739,
+  "div_vs_134": 568,
+  "div_vs_141": 626
+ },
+ {
+  "path": "packages/shared/src/config/__tests__/theme-roles.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/config/cloudflare-gateway.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/config/llm-connections.ts",
+  "ours": "packages/shared/src/config/llm-connections.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 141,
+  "lines_ours": 2582,
+  "div_vs_134": 2021,
+  "div_vs_141": 2037
+ },
+ {
+  "path": "packages/shared/src/config/llm-validation.ts",
+  "ours": "packages/shared/src/config/llm-validation.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 161,
+  "div_vs_134": 11,
+  "div_vs_141": 11
+ },
+ {
+  "path": "packages/shared/src/config/models-pi.ts",
+  "ours": "packages/shared/src/config/models-pi.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 235,
+  "div_vs_134": 31,
+  "div_vs_141": 31
+ },
+ {
+  "path": "packages/shared/src/config/models.ts",
+  "ours": "packages/shared/src/config/models.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 43,
+  "lines_ours": 546,
+  "div_vs_134": 342,
+  "div_vs_141": 370
+ },
+ {
+  "path": "packages/shared/src/config/pi-provider-ids.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/config/theme-roles.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/config/theme.ts",
+  "ours": "packages/shared/src/config/theme.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 164,
+  "lines_ours": 317,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "packages/shared/src/config/validators.ts",
+  "ours": "packages/shared/src/config/validators.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 36,
+  "lines_ours": 2371,
+  "div_vs_134": 499,
+  "div_vs_141": 561
+ },
+ {
+  "path": "packages/shared/src/decisions/records.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/shared/src/decisions/usage.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/shared/src/decisions/usage.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/shared/src/i18n/locales/de.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 132
+ },
+ {
+  "path": "packages/shared/src/i18n/locales/en.json",
+  "ours": "packages/shared/src/i18n/locales/en.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 132,
+  "lines_ours": 3537,
+  "div_vs_134": 2495,
+  "div_vs_141": 2608
+ },
+ {
+  "path": "packages/shared/src/i18n/locales/es.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 132
+ },
+ {
+  "path": "packages/shared/src/i18n/locales/hu.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 132
+ },
+ {
+  "path": "packages/shared/src/i18n/locales/ja.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 132
+ },
+ {
+  "path": "packages/shared/src/i18n/locales/pl.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 142
+ },
+ {
+  "path": "packages/shared/src/i18n/locales/zh-Hans.json",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 132
+ },
+ {
+  "path": "packages/shared/src/labels/__tests__/canonical.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/labels/__tests__/chips.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/labels/__tests__/values.test.ts",
+  "ours": "packages/shared/src/labels/__tests__/values.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 40,
+  "lines_ours": 94,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/shared/src/labels/auto/evaluator.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 102
+ },
+ {
+  "path": "packages/shared/src/labels/auto/evaluator.ts",
+  "ours": "packages/shared/src/labels/auto/evaluator.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 116,
+  "lines_ours": 148,
+  "div_vs_134": 0,
+  "div_vs_141": 149
+ },
+ {
+  "path": "packages/shared/src/labels/auto/index.ts",
+  "ours": "packages/shared/src/labels/auto/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 4,
+  "div_vs_134": 0,
+  "div_vs_141": 15
+ },
+ {
+  "path": "packages/shared/src/labels/auto/semantic-rules-config.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 33
+ },
+ {
+  "path": "packages/shared/src/labels/auto/validation.ts",
+  "ours": "packages/shared/src/labels/auto/validation.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 40,
+  "lines_ours": 76,
+  "div_vs_134": 0,
+  "div_vs_141": 34
+ },
+ {
+  "path": "packages/shared/src/labels/canonical.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/labels/chips.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/labels/index.ts",
+  "ours": "packages/shared/src/labels/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 28,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "packages/shared/src/labels/types.ts",
+  "ours": "packages/shared/src/labels/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17,
+  "lines_ours": 127,
+  "div_vs_134": 0,
+  "div_vs_141": 42
+ },
+ {
+  "path": "packages/shared/src/labels/values.ts",
+  "ours": "packages/shared/src/labels/values.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 46,
+  "lines_ours": 233,
+  "div_vs_134": 19,
+  "div_vs_141": 19
+ },
+ {
+  "path": "packages/shared/src/mcp/__tests__/api-source-intent.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/shared/src/mcp/__tests__/fixtures/mcp-server-resources.mjs",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/mcp/__tests__/mcp-pool-resources.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/mcp/api-source-pool-client.ts",
+  "ours": "packages/shared/src/mcp/api-source-pool-client.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0,
+  "lines_ours": 86,
+  "div_vs_134": 43,
+  "div_vs_141": 46
+ },
+ {
+  "path": "packages/shared/src/mcp/client.ts",
+  "ours": "packages/shared/src/mcp/client.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 79,
+  "lines_ours": 1262,
+  "div_vs_134": 1200,
+  "div_vs_141": 1202
+ },
+ {
+  "path": "packages/shared/src/mcp/mcp-pool.ts",
+  "ours": "packages/shared/src/mcp/mcp-pool.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 365,
+  "lines_ours": 4470,
+  "div_vs_134": 4461,
+  "div_vs_141": 4500
+ },
+ {
+  "path": "packages/shared/src/pages/claude-artifact.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/pages/claude-artifact.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/pages/index.ts",
+  "ours": "packages/shared/src/pages/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 192,
+  "div_vs_134": 88,
+  "div_vs_141": 88
+ },
+ {
+  "path": "packages/shared/src/pages/storage.ts",
+  "ours": "packages/shared/src/pages/storage.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 34,
+  "lines_ours": 698,
+  "div_vs_134": 248,
+  "div_vs_141": 248
+ },
+ {
+  "path": "packages/shared/src/pages/types.ts",
+  "ours": "packages/shared/src/pages/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 152,
+  "div_vs_134": 60,
+  "div_vs_141": 60
+ },
+ {
+  "path": "packages/shared/src/pages/validation.ts",
+  "ours": "packages/shared/src/pages/validation.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 230,
+  "div_vs_134": 31,
+  "div_vs_141": 31
+ },
+ {
+  "path": "packages/shared/src/projects/__tests__/storage.test.ts",
+  "ours": null,
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 42
+ },
+ {
+  "path": "packages/shared/src/projects/index.ts",
+  "ours": "packages/shared/src/projects/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 71,
+  "div_vs_134": 27,
+  "div_vs_141": 27
+ },
+ {
+  "path": "packages/shared/src/projects/storage.ts",
+  "ours": "packages/shared/src/projects/storage.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 49,
+  "lines_ours": 738,
+  "div_vs_134": 310,
+  "div_vs_141": 310
+ },
+ {
+  "path": "packages/shared/src/prompts/__tests__/system.test.ts",
+  "ours": "packages/shared/src/prompts/__tests__/system.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17,
+  "lines_ours": 779,
+  "div_vs_134": 818,
+  "div_vs_141": 826
+ },
+ {
+  "path": "packages/shared/src/prompts/system.ts",
+  "ours": "packages/shared/src/prompts/system.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 1473,
+  "div_vs_134": 1462,
+  "div_vs_141": 1482
+ },
+ {
+  "path": "packages/shared/src/protocol/__tests__/message-limits.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/protocol/channels.ts",
+  "ours": "packages/shared/src/protocol/channels.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 1062,
+  "div_vs_134": 759,
+  "div_vs_141": 767
+ },
+ {
+  "path": "packages/shared/src/protocol/dto.ts",
+  "ours": "packages/shared/src/protocol/dto.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 55,
+  "lines_ours": 2613,
+  "div_vs_134": 2315,
+  "div_vs_141": 2334
+ },
+ {
+  "path": "packages/shared/src/protocol/events.ts",
+  "ours": "packages/shared/src/protocol/events.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 99,
+  "div_vs_134": 46,
+  "div_vs_141": 46
+ },
+ {
+  "path": "packages/shared/src/protocol/index.ts",
+  "ours": "packages/shared/src/protocol/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 11,
+  "div_vs_134": 6,
+  "div_vs_141": 6
+ },
+ {
+  "path": "packages/shared/src/protocol/message-limits.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/protocol/routing.ts",
+  "ours": "packages/shared/src/protocol/routing.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 6,
+  "lines_ours": 949,
+  "div_vs_134": 632,
+  "div_vs_141": 643
+ },
+ {
+  "path": "packages/shared/src/protocol/types.ts",
+  "ours": "packages/shared/src/protocol/types.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 289,
+  "div_vs_134": 119,
+  "div_vs_141": 119
+ },
+ {
+  "path": "packages/shared/src/sources/__tests__/credential-manager-refresh-dedupe.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/shared/src/sources/credential-manager.ts",
+  "ours": "packages/shared/src/sources/credential-manager.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 1256,
+  "div_vs_134": 554,
+  "div_vs_141": 655
+ },
+ {
+  "path": "packages/shared/src/tasks/generator-prompt.ts",
+  "ours": "packages/shared/src/tasks/generator-prompt.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 86,
+  "div_vs_134": 15,
+  "div_vs_141": 15
+ },
+ {
+  "path": "packages/shared/src/tasks/schema.test.ts",
+  "ours": "packages/shared/src/tasks/schema.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 430,
+  "div_vs_134": 106,
+  "div_vs_141": 106
+ },
+ {
+  "path": "packages/shared/src/tasks/storage.ts",
+  "ours": "packages/shared/src/tasks/storage.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 13,
+  "lines_ours": 293,
+  "div_vs_134": 94,
+  "div_vs_141": 106
+ },
+ {
+  "path": "packages/shared/src/utils/__tests__/large-result-filter.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0
+ },
+ {
+  "path": "packages/shared/src/utils/__tests__/large-result-summary-gate.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": false,
+  "up_141_151": "DELETED"
+ },
+ {
+  "path": "packages/shared/src/utils/large-response.ts",
+  "ours": "packages/shared/src/utils/large-response.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 0,
+  "lines_ours": 835,
+  "div_vs_134": 185,
+  "div_vs_141": 265
+ },
+ {
+  "path": "packages/shared/src/validation/url-validator.ts",
+  "ours": "packages/shared/src/validation/url-validator.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 5,
+  "lines_ours": 132,
+  "div_vs_134": 31,
+  "div_vs_141": 31
+ },
+ {
+  "path": "packages/shared/tests/models-pi.test.ts",
+  "ours": "packages/shared/tests/models-pi.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 24,
+  "lines_ours": 42,
+  "div_vs_134": 50,
+  "div_vs_141": 53
+ },
+ {
+  "path": "packages/shared/tests/models.test.ts",
+  "ours": "packages/shared/tests/models.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 22,
+  "lines_ours": 229,
+  "div_vs_134": 102,
+  "div_vs_141": 150
+ },
+ {
+  "path": "packages/ui/eslint-rules/__tests__/design-guardrails.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/eslint-rules/no-motion-antipatterns.cjs",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/eslint-rules/no-raw-palette-colors.cjs",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/eslint.config.mjs",
+  "ours": "packages/ui/eslint.config.mjs",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 13,
+  "lines_ours": 114,
+  "div_vs_134": 14,
+  "div_vs_141": 14
+ },
+ {
+  "path": "packages/ui/package.json",
+  "ours": "packages/ui/package.json",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 85,
+  "div_vs_134": 12,
+  "div_vs_141": 12
+ },
+ {
+  "path": "packages/ui/src/components/annotations/annotation-style-tokens.ts",
+  "ours": "packages/ui/src/components/annotations/annotation-style-tokens.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 58,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/chat/AcceptPlanDropdown.tsx",
+  "ours": "packages/ui/src/components/chat/AcceptPlanDropdown.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 19,
+  "lines_ours": 92,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/chat/CompactAcceptPlanDrawer.tsx",
+  "ours": "packages/ui/src/components/chat/CompactAcceptPlanDrawer.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 23,
+  "lines_ours": 110,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/chat/InlineExecution.tsx",
+  "ours": "packages/ui/src/components/chat/InlineExecution.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 34,
+  "lines_ours": 208,
+  "div_vs_134": 42,
+  "div_vs_141": 42
+ },
+ {
+  "path": "packages/ui/src/components/chat/SessionViewer.tsx",
+  "ours": "packages/ui/src/components/chat/SessionViewer.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 244,
+  "div_vs_134": 17,
+  "div_vs_141": 17
+ },
+ {
+  "path": "packages/ui/src/components/chat/SystemMessage.tsx",
+  "ours": "packages/ui/src/components/chat/SystemMessage.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 60,
+  "lines_ours": 84,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/chat/TurnCard.tsx",
+  "ours": "packages/ui/src/components/chat/TurnCard.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1791,
+  "lines_ours": 3222,
+  "div_vs_134": 454,
+  "div_vs_141": 457
+ },
+ {
+  "path": "packages/ui/src/components/chat/TurnCardActionsMenu.tsx",
+  "ours": "packages/ui/src/components/chat/TurnCardActionsMenu.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 31,
+  "lines_ours": 84,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/chat/UserMessageBubble.tsx",
+  "ours": "packages/ui/src/components/chat/UserMessageBubble.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 81,
+  "lines_ours": 521,
+  "div_vs_134": 18,
+  "div_vs_141": 18
+ },
+ {
+  "path": "packages/ui/src/components/chat/__tests__/turn-utils-grouping.test.ts",
+  "ours": "packages/ui/src/components/chat/__tests__/turn-utils-grouping.test.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 42,
+  "lines_ours": 679,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn-utils.ts",
+  "ours": "packages/ui/src/components/chat/turn-utils.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 134,
+  "lines_ours": 1268,
+  "div_vs_134": 161,
+  "div_vs_141": 161
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/ActivityGroupRow.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/ActivityIcons.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/ActivityRow.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/ResponseFooter.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/ThinkingRow.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/TodoList.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/TurnIconButton.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/WorkLog.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/tool-display.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/turn-classes.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/use-row-reveal.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/chat/turn/work-log-summary.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/markdown/CodeBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/CodeBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 64,
+  "lines_ours": 236,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/CollapsibleSection.tsx",
+  "ours": "packages/ui/src/components/markdown/CollapsibleSection.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 35,
+  "lines_ours": 103,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/ImageCardStack.tsx",
+  "ours": "packages/ui/src/components/markdown/ImageCardStack.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 29,
+  "lines_ours": 219,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/Markdown.tsx",
+  "ours": "packages/ui/src/components/markdown/Markdown.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 42,
+  "lines_ours": 664,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownDatatableBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownDatatableBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 164,
+  "lines_ours": 720,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownDiffBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownDiffBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 70,
+  "lines_ours": 128,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownDocBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownDocBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 112,
+  "lines_ours": 210,
+  "div_vs_134": 25,
+  "div_vs_141": 25
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownHtmlBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownHtmlBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 76,
+  "lines_ours": 286,
+  "div_vs_134": 25,
+  "div_vs_141": 25
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownImageBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownImageBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 46,
+  "lines_ours": 283,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownJsonBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownJsonBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 32,
+  "lines_ours": 207,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownMermaidBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownMermaidBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 44,
+  "lines_ours": 263,
+  "div_vs_134": 2,
+  "div_vs_141": 2
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownPdfBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownPdfBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 77,
+  "lines_ours": 252,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/MarkdownSpreadsheetBlock.tsx",
+  "ours": "packages/ui/src/components/markdown/MarkdownSpreadsheetBlock.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 94,
+  "lines_ours": 319,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/PreviewBlockChrome.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/markdown/RunCommandContext.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/markdown/TableExportDropdown.tsx",
+  "ours": "packages/ui/src/components/markdown/TableExportDropdown.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 14,
+  "lines_ours": 77,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/__tests__/diff-summary.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/markdown/__tests__/shell-command.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/markdown/diff-summary.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/markdown/index.ts",
+  "ours": "packages/ui/src/components/markdown/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 21,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/markdown/shell-command.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/overlay/FullscreenOverlayBaseHeader.tsx",
+  "ours": "packages/ui/src/components/overlay/FullscreenOverlayBaseHeader.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 12,
+  "lines_ours": 256,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/overlay/MultiDiffPreviewOverlay.tsx",
+  "ours": "packages/ui/src/components/overlay/MultiDiffPreviewOverlay.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 2,
+  "lines_ours": 577,
+  "div_vs_134": 196,
+  "div_vs_141": 196
+ },
+ {
+  "path": "packages/ui/src/components/overlay/OverlayErrorBanner.tsx",
+  "ours": "packages/ui/src/components/overlay/OverlayErrorBanner.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 33,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/overlay/ZoomControls.tsx",
+  "ours": "packages/ui/src/components/overlay/ZoomControls.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 180,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/tooltip.tsx",
+  "ours": "packages/ui/src/components/tooltip.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 17,
+  "lines_ours": 44,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/ui/AnimatedCollapsibleContent.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/components/ui/BrowserControls.tsx",
+  "ours": "packages/ui/src/components/ui/BrowserControls.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 7,
+  "lines_ours": 354,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/ui/BrowserShader.tsx",
+  "ours": "packages/ui/src/components/ui/BrowserShader.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 14,
+  "lines_ours": 96,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/ui/SimpleDropdown.tsx",
+  "ours": "packages/ui/src/components/ui/SimpleDropdown.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 4,
+  "lines_ours": 334,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/ui/StyledDropdown.tsx",
+  "ours": "packages/ui/src/components/ui/StyledDropdown.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 50,
+  "lines_ours": 243,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/ui/drawer.tsx",
+  "ours": "packages/ui/src/components/ui/drawer.tsx",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 50,
+  "lines_ours": 136,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/components/ui/index.ts",
+  "ours": "packages/ui/src/components/ui/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 1,
+  "lines_ours": 63,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/index.ts",
+  "ours": "packages/ui/src/index.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 9,
+  "lines_ours": 311,
+  "div_vs_134": 28,
+  "div_vs_141": 28
+ },
+ {
+  "path": "packages/ui/src/lib/__tests__/utils.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/lib/layout.ts",
+  "ours": "packages/ui/src/lib/layout.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 32,
+  "lines_ours": 109,
+  "div_vs_134": 12,
+  "div_vs_141": 12
+ },
+ {
+  "path": "packages/ui/src/lib/utils.ts",
+  "ours": "packages/ui/src/lib/utils.ts",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 31,
+  "lines_ours": 13,
+  "div_vs_134": 0,
+  "div_vs_141": 0
+ },
+ {
+  "path": "packages/ui/src/motion/FlipOnChange.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/motion/MotionPreference.tsx",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/motion/__tests__/flip.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/motion/__tests__/presets.test.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/motion/flip.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/motion/index.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/motion/presets.ts",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/styles/base.css",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ },
+ {
+  "path": "packages/ui/src/styles/index.css",
+  "ours": "packages/ui/src/styles/index.css",
+  "in134": true,
+  "in141": true,
+  "in151": true,
+  "up_141_151": 547,
+  "lines_ours": 549,
+  "div_vs_134": 4,
+  "div_vs_141": 4
+ },
+ {
+  "path": "packages/ui/src/styles/tokens.css",
+  "ours": null,
+  "in134": false,
+  "in141": false,
+  "in151": true,
+  "up_141_151": "ADDED"
+ }
+]

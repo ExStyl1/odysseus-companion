@@ -1,0 +1,21 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "n8n-workflow-agent/SKILL.md",
+  "upstreamName": "n8n-workflow-agent",
+  "upstreamFrontmatter": {
+    "name": "n8n-workflow-agent",
+    "description": "MUST load before any n8n-related task, especially before using or inspecting n8n MCP tools. Use this skill whenever the user asks about n8n workflows, n8n-mcp setup, n8n MCP tools, n8n API access, workflow creation, workflow editing, workflow validation, or troubleshooting n8n automation."
+  },
+  "upstreamSkillSha256": "2ff2e8ec1564741d4175ff86aace8ed6295b5ac32caa40eac44544b7a57e8602",
+  "adaptations": [
+    "Corrected references/SETUP.md to the supplied references/SETUP_GUIDE.md.",
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": [
+    "The n8n MCP server and the companion n8n skills listed by the upstream instructions are runtime prerequisites; they were not installed by this import."
+  ]
+}

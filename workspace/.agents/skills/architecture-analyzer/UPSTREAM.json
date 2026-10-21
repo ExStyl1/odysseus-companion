@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "architecture-analyzer/SKILL.md",
+  "upstreamName": "architecture-analyzer",
+  "upstreamFrontmatter": {
+    "name": "architecture-analyzer",
+    "description": "LikeC4-диаграмма + ARCHITECTURE_SUMMARY.md для Go-сервиса нашей команды. Use when user asks to document, draw, or review architecture of an existing service. Триггеры: «нарисуй архитектуру», «построй C4», «architecture summary», «LikeC4», «проанализируй сервис», «C4 diagram», «draw architecture». Для C3-уровня (components внутри одного контейнера — handlers/usecases): «покажи компоненты», «components», «уровень C3», «внутренности сервиса», «как устроена бизнес-логика». Default scope: C1 Context + C2 Container + focused views; C3 — только по явному запросу; C4 не делаем."
+  },
+  "upstreamSkillSha256": "75077bb7c1a1ce108a732c3fe878c8cfcd657f612cce951140374b742d8e0ebe",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

@@ -1,0 +1,17 @@
+{
+  "slides": [
+    {"layout": "title", "text": "Неподдерживаемая формула"},
+    {
+      "layout": "cards",
+      "title": "Матрица вне MVP",
+      "cards": [
+        {
+          "title": "Ошибка должна быть явной",
+          "icon": "калькулятор",
+          "items": ["Значение \\(\\begin{matrix}1&2\\end{matrix}\\)"]
+        }
+      ]
+    },
+    {"layout": "final"}
+  ]
+}

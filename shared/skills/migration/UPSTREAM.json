@@ -1,0 +1,16 @@
+{
+  "repository": "JuliusBrussee/caveman",
+  "revision": "bad48a0e1df55e05e3f52249afa35ecc1909ee76",
+  "path": "skills/migration",
+  "url": "https://github.com/JuliusBrussee/caveman/tree/bad48a0e1df55e05e3f52249afa35ecc1909ee76/skills/migration",
+  "upstreamName": "migration",
+  "upstreamFrontmatter": {
+    "name": "migration",
+    "description": "Implement reversible compatibility-safe transitions. Use for schema, data, API, protocol, configuration, or dependency migrations requiring rollback and preservation proof."
+  },
+  "upstreamSkillSha256": "fe7cf96a58b0521130fbb886dab2a326869d6ed0001e0306fd244014ba7a9662",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

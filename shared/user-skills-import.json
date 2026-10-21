@@ -1,0 +1,416 @@
+{
+  "schemaVersion": 1,
+  "id": "user-supplied-skills-2026-10-20",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "topLevelPackages": 54,
+  "sourceDefinitions": 57,
+  "addedSkills": 55,
+  "deduplicatedDefinitions": 2,
+  "externalExceptionsAuthorized": true,
+  "items": [
+    {
+      "sourcePath": "agent-browser/SKILL.md",
+      "name": "agent-browser",
+      "upstreamName": "agent-browser",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "agterm/SKILL.md",
+      "name": "agterm",
+      "upstreamName": "agterm",
+      "action": "added",
+      "packageDependencies": [
+        "The supplied folder does not contain scripts/show-image.sh; that optional inline-image helper needs to be supplied separately."
+      ]
+    },
+    {
+      "sourcePath": "ai-doc-generator/SKILL.md",
+      "name": "ai-doc-generator",
+      "upstreamName": "ai-doc-generator",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "allure-testops/SKILL.md",
+      "name": "allure-testops",
+      "upstreamName": "allure-testops",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "analytics-sql/SKILL.md",
+      "name": "analytics-sql",
+      "upstreamName": "analytics-sql",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "architecture-analyzer/SKILL.md",
+      "name": "architecture-analyzer",
+      "upstreamName": "architecture-analyzer",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "artifact-publish/SKILL.md",
+      "name": "artifact-publish",
+      "upstreamName": "artifact-publish",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "auto-skill-pgsme-coverage-matrix/SKILL.md",
+      "name": "pgsme-coverage-matrix",
+      "upstreamName": "pgsme-coverage-matrix",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "auto-skill-skills-market-install/SKILL.md",
+      "name": "skills-market-install",
+      "upstreamName": "skills-market-install",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "brainstorm/SKILL.md",
+      "name": "brainstorm",
+      "upstreamName": "brainstorm",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "brainstorming/SKILL.md",
+      "name": "user-brainstorming",
+      "upstreamName": "brainstorming",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "camunda-modeler-editor/SKILL.md",
+      "name": "camunda-modeler-editor",
+      "upstreamName": "camunda-modeler-editor",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "caveman/SKILL.md",
+      "name": "user-caveman",
+      "upstreamName": "caveman",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "clarify/SKILL.md",
+      "name": "clarify",
+      "upstreamName": "clarify",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "create-skill/SKILL.md",
+      "name": "create-skill",
+      "upstreamName": "create-skill",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "dialectic/SKILL.md",
+      "name": "dialectic",
+      "upstreamName": "dialectic",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "dp-sage/SKILL.md",
+      "name": "dp-sage",
+      "upstreamName": "dp-sage",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "finedog-tma/SKILL.md",
+      "name": "finedog-tma",
+      "upstreamName": "finedog-tma",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "generate-tests/SKILL.md",
+      "name": "generate-tests",
+      "upstreamName": "generate-tests",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "gitlab/SKILL.md",
+      "name": "gitlab-cli",
+      "upstreamName": "GitLab CLI",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "humanizer-ru-1/SKILL.md",
+      "name": "humanizer-ru",
+      "upstreamName": "humanizer-ru",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "init-qa/SKILL.md",
+      "name": "init-qa",
+      "upstreamName": "init-qa",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "jira/SKILL.md",
+      "name": "jira-cli",
+      "upstreamName": "Jira CLI",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "jira-1/SKILL.md",
+      "name": "jira",
+      "upstreamName": "jira",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "learn/SKILL.md",
+      "name": "learn",
+      "upstreamName": "learn",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "mermaid/SKILL.md",
+      "name": "mermaid",
+      "upstreamName": "mermaid",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "mermaid-diagrams/SKILL.md",
+      "name": "mermaid-diagrams",
+      "upstreamName": "mermaid-diagrams",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "n8n-cli/SKILL.md",
+      "name": "n8n-cli",
+      "upstreamName": "n8n-cli",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "n8n-workflow-agent/SKILL.md",
+      "name": "n8n-workflow-agent",
+      "upstreamName": "n8n-workflow-agent",
+      "action": "added",
+      "packageDependencies": [
+        "The n8n MCP server and the companion n8n skills listed by the upstream instructions are runtime prerequisites; they were not installed by this import."
+      ]
+    },
+    {
+      "sourcePath": "pdf-processing/SKILL.md",
+      "name": "pdf-processing",
+      "upstreamName": "pdf-processing",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "planning-exec/SKILL.md",
+      "name": "planning-exec",
+      "upstreamName": "planning-exec",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "planning-task/SKILL.md",
+      "name": "planning-task",
+      "upstreamName": "planning-task",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "presentation-skill-pptx/SKILL.md",
+      "name": "presentation-skill-pptx",
+      "upstreamName": "presentation-skill-pptx",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "repo-analysis/SKILL.md",
+      "name": "repo-analysis",
+      "upstreamName": "repo-analysis",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "revdiff/SKILL.md",
+      "name": "revdiff",
+      "upstreamName": "revdiff",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "review/SKILL.md",
+      "name": "review",
+      "upstreamName": "review",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "sage-metrics-analyst-1/SKILL.md",
+      "name": "sage-metrics-analyst",
+      "upstreamName": "sage-metrics-analyst",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "search-all/SKILL.md",
+      "name": "search-all",
+      "upstreamName": "Search All",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "spec-create/SKILL.md",
+      "name": "spec-create",
+      "upstreamName": "spec-create",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "spec-import/SKILL.md",
+      "name": "spec-import",
+      "upstreamName": "spec-import",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "spec-review/SKILL.md",
+      "name": "spec-review",
+      "upstreamName": "spec-review",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "sql-postgres-optimization/SKILL.md",
+      "name": "sql-postgres-optimization",
+      "upstreamName": "sql-postgres-optimization",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "tbank-performance-review/SKILL.md",
+      "name": "tbank-performance-review",
+      "upstreamName": "tbank-performance-review",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "tech-doc-editor/SKILL.md",
+      "name": "tech-doc-editor",
+      "upstreamName": "tech-doc-editor",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "tech-docs/SKILL.md",
+      "name": "tech-docs",
+      "upstreamName": "tech-docs",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "three-amigo/SKILL.md",
+      "name": "three-amigo",
+      "upstreamName": "three-amigo",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "time-cli/SKILL.md",
+      "name": "time-cli",
+      "upstreamName": "time-cli",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "time-messenger/SKILL.md",
+      "name": "time-messenger",
+      "upstreamName": "time-messenger",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "time-to-jira/SKILL.md",
+      "name": "time-to-jira",
+      "upstreamName": "time-to-jira",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "tperf-report-analyzer/SKILL.md",
+      "name": "tperf-report-analyzer",
+      "upstreamName": "tperf-report-analyzer",
+      "action": "added",
+      "packageDependencies": [
+        "The supplied folder does not include the sibling tperf-common/references/{auth,run-identifiers,endpoint-patterns}.md; these shared references must be supplied for those steps."
+      ]
+    },
+    {
+      "sourcePath": "using-superpowers/SKILL.md",
+      "name": "user-using-superpowers",
+      "upstreamName": "using-superpowers",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "validate-tests-1/SKILL.md",
+      "name": "validate-tests",
+      "upstreamName": "validate-tests",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "whiteboard/SKILL.md",
+      "name": "whiteboard",
+      "upstreamName": "whiteboard",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "whiteboard-roadmap-creator/SKILL.md",
+      "name": "whiteboard-roadmap-creator",
+      "upstreamName": "whiteboard-roadmap-creator",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "search-all/wixie/SKILL.md",
+      "name": "wixie-cli",
+      "upstreamName": "Wixie CLI",
+      "action": "added",
+      "packageDependencies": []
+    },
+    {
+      "sourcePath": "search-all/jira/SKILL.md",
+      "name": "jira-cli",
+      "action": "identical-duplicate",
+      "preservedInside": "search-all"
+    },
+    {
+      "sourcePath": "search-all/gitlab/SKILL.md",
+      "name": "gitlab-cli",
+      "action": "identical-duplicate",
+      "preservedInside": "search-all"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "brainstorming: выдать структурированный брейншторм",
+  "skill": "strategy:brainstorming",
+  "plugin_dir": "plugins/t-skills-dev-workflow",
+  "prompt": "Мне нужно придумать фичу для повышения удержания пользователей. Предложи 2-3 подхода с трейд-оффами и рекомендацию, какой выбрать.",
+  "fixture": "brainstorming",
+  "activation": "must",
+  "runs": 3,
+  "why": "Прямой запрос обязан запустить скилл brainstorming и выдать структурированный брейншторм: 2-3 подхода с трейд-оффами и рекомендацией — формат, который baseline (простой список идей) не выдаёт. Single-shot режим: без диалога и лишних tool-вызовов.",
+  "checks": [
+    {
+      "type": "answer_contains",
+      "pattern": "(?i)подход|вариант"
+    },
+    {
+      "type": "answer_contains",
+      "pattern": "(?i)рекомендац|трейд|trade-off|за и против"
+    }
+  ],
+  "constraints": [
+    {
+      "type": "no_write_outside_fixture"
+    },
+    {
+      "type": "no_tool",
+      "tool": "WebFetch"
+    }
+  ]
+}

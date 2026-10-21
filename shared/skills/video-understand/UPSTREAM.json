@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/video-understand",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/video-understand",
+  "upstreamName": "video-understand",
+  "upstreamFrontmatter": {
+    "name": "video-understand",
+    "description": "Understand video content locally using ffmpeg frame extraction and Whisper transcription. No API keys needed.\nUse when: (1) Understanding what a video contains, (2) Transcribing video audio locally,\n(3) Extracting key frames for visual analysis, (4) Getting video content without API keys."
+  },
+  "upstreamSkillSha256": "3ae2a42d7eaec84b8f80c9b3f4b5a35c6e583c3d462d3cabdda585c55dba97f2",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

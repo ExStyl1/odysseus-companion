@@ -1,0 +1,13 @@
+// Bun Snapshot v1, https://bun.sh/docs/test/snapshots
+
+exports[`create-skill macro prompt matches the creator prompt snapshot 1`] = `
+"Help me create a new skill. Use the bundled skill-creator skill as your guide for the authoring conventions and steps.
+
+First interview me to ground the skill in a real need: what should the skill do, when should it trigger (the description is what the agent matches on, so make it specific and action-oriented), and what instructions or examples does it need to be useful? Ask clarifying questions before writing anything; do not invent a purpose I did not ask for.
+
+A skill is a folder ~/.nessy-agent/skills/<slug>/ containing a SKILL.md file. SKILL.md has YAML frontmatter with two required fields — name and description — followed by markdown instructions. Choose a short, lowercase, hyphenated slug that matches the name. Follow the patterns in ~/.nessy-agent/docs/skills.md.
+
+Scaffold the skill into ~/.nessy-agent/skills/<slug>/SKILL.md through your normal file-writing tool so it goes through the usual approval. Keep the instructions concise, direct, and specific to the task; add any supporting asset files the skill genuinely needs, and nothing more.
+
+After writing the skill, call skill_validate with the skill slug to confirm the SKILL.md file is valid, and fix anything it reports. Confirm clearly when the skill is created and validated."
+`;

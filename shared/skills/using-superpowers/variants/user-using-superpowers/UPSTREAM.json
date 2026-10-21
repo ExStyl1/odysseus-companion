@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "using-superpowers/SKILL.md",
+  "upstreamName": "using-superpowers",
+  "upstreamFrontmatter": {
+    "name": "using-superpowers",
+    "description": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions"
+  },
+  "upstreamSkillSha256": "316e29381219adf0cac62190c67aeabf427d6e6e5f2735541d502b3d339be7aa",
+  "adaptations": [
+    "Normalized/namespaced skill name: using-superpowers -> user-using-superpowers",
+    "Registered as an explicit user-approved exception to the local-only base profile."
+  ],
+  "packageDependencies": []
+}

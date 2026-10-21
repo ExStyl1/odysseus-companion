@@ -1,0 +1,207 @@
+{
+  "repository": "obra/superpowers",
+  "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "path": "skills/systematic-debugging",
+  "url": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/systematic-debugging",
+  "upstreamName": "systematic-debugging",
+  "upstreamFrontmatter": {
+    "name": "systematic-debugging",
+    "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes"
+  },
+  "upstreamSkillSha256": "51c6435d98c83c42c96ba7c35725a0b2c376cd487fb1a4e6bd0ddbe7e33ef202",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "diagnosing-bugs",
+      "guide": "variants/diagnosing-bugs/GUIDE.md",
+      "resourceRoot": "variants/diagnosing-bugs",
+      "repository": "mattpocock/skills",
+      "path": "skills/engineering/diagnosing-bugs",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "704661b0f6d3a53bb3d6ab4fa572da653caa5012180cd80762090d4b45bd0680",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "0e7ac423bf2c6e223b7c5b156f8cf72da49d748e56a1641402c31f22ad07dbb5",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "38ea7daf4fc9d4531fe89db5f400047b925a3ae56d038a22908a622ea47e569e",
+          "executable": false
+        },
+        "agents/openai.yaml": {
+          "sha256": "3e430dbe4334a87597488c060cb3dc3786bb00c9182877d6f5ec41f62490e90b",
+          "executable": false
+        },
+        "scripts/hitl-loop.template.sh": {
+          "sha256": "35103539fc36873eea36074769ad454f9379d6fc8b2dc0e26ce987fd3bfe5503",
+          "executable": false
+        }
+      },
+      "when": "Диагностика сложных ошибок и регрессий производительности"
+    },
+    {
+      "name": "debugging",
+      "guide": "variants/debugging/GUIDE.md",
+      "resourceRoot": "variants/debugging",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "path": "packages/shared-skills/skills/debugging",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "b7ba9aa1d5612a4bd2834e7e440d2cc52d47047014276662fb85863808f45b22",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE.md": {
+          "sha256": "b61ac928f152d13517328263e6bee9175b928f9ab696a2d2ca2b6cfd961ddc32",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "3032be0585eb3fb644cc3b8ec5d290b6c54e94243ca47e69d63014f3e660f88d",
+          "executable": false
+        },
+        "references/methodology/00-setup.md": {
+          "sha256": "23cbdd92490642226019535ce6b583411acc3939da2373adf12ecbff81065ee4",
+          "executable": false
+        },
+        "references/methodology/02-investigate.md": {
+          "sha256": "b2d6236f201b532495ed650f7ec2ab001f092ba945f0edbacdb2d18c40b24464",
+          "executable": false
+        },
+        "references/methodology/03-flaky-triage.md": {
+          "sha256": "1d2585fe7ea51ff13204a9eb635ed328ef23da5142d376ccf8d90d494943b9d2",
+          "executable": false
+        },
+        "references/methodology/04-oracle-triple.md": {
+          "sha256": "dff93abea2c0ed61bc49bfc944d6e43ed6e624671322ed890f42934f04b10493",
+          "executable": false
+        },
+        "references/methodology/05-escalate.md": {
+          "sha256": "33e2eb6af5e33e2b19df0cdee97abc71dca50c82a7e401181d91795e54718b39",
+          "executable": false
+        },
+        "references/methodology/06-fix.md": {
+          "sha256": "1184b7f6956c6591e7937f360d4bd4dc73e276a400e1e7522f1d96162940e9fb",
+          "executable": false
+        },
+        "references/methodology/08-qa.md": {
+          "sha256": "d7769943291b53eababa878dc7d4d68e9913aa2f25479a5544d3f06a9e5a519d",
+          "executable": false
+        },
+        "references/methodology/09-cleanup.md": {
+          "sha256": "5675b3e72c38b9d0c87ab1b473f9f303aaea24047c8ef8d96e069539c8125679",
+          "executable": false
+        },
+        "references/methodology/partial-runtime-evidence.md": {
+          "sha256": "820c1ce061a9cbef3145d3ede253e4e21c3fa384935ac2e76008b391945feb2a",
+          "executable": false
+        },
+        "references/runtimes/bundled-js-binary.md": {
+          "sha256": "f7f01bc4d95c24bd28d24a3ae240a037b0ded00d690d18a6900ddf63025fe4ec",
+          "executable": false
+        },
+        "references/runtimes/go.md": {
+          "sha256": "345a31c1598953ddd29f0f122b4c8065433061e5feff042a86180a2b7c22b909",
+          "executable": false
+        },
+        "references/runtimes/native-binary.md": {
+          "sha256": "d861dc07845ec69765867962a9f51b166b9c6485d5cb20b8f02e36ab457916a8",
+          "executable": false
+        },
+        "references/runtimes/node.md": {
+          "sha256": "565334f962091c607911e31ff4efaa79fb59574011e1e995793af4b82600f766",
+          "executable": false
+        },
+        "references/runtimes/python.md": {
+          "sha256": "203abfdbe16898987d4765a1e77dc25ae3c845e88d12e3e57e18ba42d38e0688",
+          "executable": false
+        },
+        "references/runtimes/rust.md": {
+          "sha256": "13230b8b8bfadbf2279a8b8de7e50e6a067da01733e933da3a86e2fca586f8b5",
+          "executable": false
+        },
+        "references/scripts/dap.mjs": {
+          "sha256": "a193138d06865575662095e3bce585dcf11685144d72fb884f2b3519e0f2072a",
+          "executable": false
+        },
+        "references/scripts/dap.test.ts": {
+          "sha256": "99ab12aa36802bc208922f134007bc0e9fcee4da13815897381031d4664b4aac",
+          "executable": false
+        },
+        "references/scripts/fixture-adapter.mjs": {
+          "sha256": "8d6393bf7a8b6a1817990198969d8af2bed8bf60604ca0eb75f94ae9cec71288",
+          "executable": false
+        },
+        "references/tools/browser-qa.md": {
+          "sha256": "abe3cb2de19eaad43b08676413c630935bc9e711cd924dcce4ef60dcbf824bd9",
+          "executable": false
+        },
+        "references/tools/dap.md": {
+          "sha256": "141462331a47672a1bd965876eac2d1d2d2f30e692ee8edb16f4a3249feab2c8",
+          "executable": false
+        },
+        "references/tools/frida.md": {
+          "sha256": "f13c911c6ee988090246f6d4eb76e97d5a2e04985870e3e98c3437b92afb7a5f",
+          "executable": false
+        },
+        "references/tools/ghidra.md": {
+          "sha256": "8d50534340eef3cd664458cade9d11d18cabff804979128d7107a5fdd36dbbf0",
+          "executable": false
+        },
+        "references/tools/pwndbg.md": {
+          "sha256": "11bd4dbe9f8d08816ddc4d169eb84fdd21cbded3721c63d5fb0346e40b875030",
+          "executable": false
+        },
+        "references/tools/pwntools.md": {
+          "sha256": "0123de928e1e88186487adfee0b69d7a886c596fdd0c5132256cf9319fea466e",
+          "executable": false
+        }
+      },
+      "when": "Отладка с проверяемыми гипотезами для разных языков и бинарных программ"
+    },
+    {
+      "name": "investigate-first",
+      "guide": "variants/investigate-first/GUIDE.md",
+      "resourceRoot": "variants/investigate-first",
+      "repository": "JuliusBrussee/caveman",
+      "path": "skills/investigate-first",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "b322d8fb1d08f92e6cc6f766c39d2bb6ea00a756e7c4707de9aca640223c17f8",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE-MIT": {
+          "sha256": "5eb826cd03151bcc7cce3f80d40e87733237fedfc6c36d6908aca5fd650a0bdb",
+          "executable": false
+        },
+        "UPSTREAM-NOTICE": {
+          "sha256": "20112dc6e62e91da4f03c29fd10cfa41743a9c526389fdf1396c3649c18216fc",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "46d76bf34107a8f431b71bf7327f0d281f0bb05f9aa4cc605892b6bc61c1dc60",
+          "executable": false
+        },
+        "agents/openai.yaml": {
+          "sha256": "9836c3e7e71564810abb1eeb66341e8ef180c457d4e121fe772cbf53e41a9268",
+          "executable": false
+        }
+      },
+      "when": "Исследование неоднозначного сбоя до изменения кода"
+    }
+  ]
+}

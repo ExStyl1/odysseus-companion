@@ -1,0 +1,50 @@
+{
+  "name": "formula-enforcement",
+  "description": "Inline formulas are explicit, body-only, editable OMML. Executed by scripts/selftest.py.",
+  "cases": [
+    {
+      "name": "formula_authoring",
+      "file": "files/formula-authoring.json",
+      "expect_error": false,
+      "expect_math": true,
+      "math_tokens": ["log", "𝜌", "𝜇", "𝜎"]
+    },
+    {
+      "name": "formula_quantitative",
+      "file": "files/formula-quantitative.json",
+      "expect_error": false,
+      "expect_math": true,
+      "math_tokens": ["log", "ℝ", "ℕ"]
+    },
+    {
+      "name": "formula_plain_currency",
+      "file": "files/formula-plain.json",
+      "expect_error": false,
+      "expect_math": false
+    },
+    {
+      "name": "formula_bad_title",
+      "file": "files/formula-bad-title.json",
+      "expect_error": true,
+      "error_contains": "formulas are not allowed in field \"text\""
+    },
+    {
+      "name": "formula_bad_metric_value",
+      "file": "files/formula-bad-metric.json",
+      "expect_error": true,
+      "error_contains": "formulas are not allowed in field \"metrics[].value\""
+    },
+    {
+      "name": "formula_unsupported",
+      "file": "files/formula-unsupported.json",
+      "expect_error": true,
+      "error_contains": "not inline math"
+    },
+    {
+      "name": "formula_reword_only",
+      "file": "files/formula-reword-only.json",
+      "expect_error": true,
+      "error_contains": "Cyrillic cannot be set inside a formula"
+    }
+  ]
+}

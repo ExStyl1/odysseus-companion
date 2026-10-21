@@ -1,0 +1,16 @@
+{
+  "repository": "obra/superpowers",
+  "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "path": "skills/executing-plans",
+  "url": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/executing-plans",
+  "upstreamName": "executing-plans",
+  "upstreamFrontmatter": {
+    "name": "executing-plans",
+    "description": "Use when executing an implementation plan in the current session as the implementer yourself — your human partner chose inline execution, or no subagent tool is available"
+  },
+  "upstreamSkillSha256": "f38e8f2ddcf079f65493adc713c1fed78421dfaf5f4dbf6b3a6b2b1d95466e71",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

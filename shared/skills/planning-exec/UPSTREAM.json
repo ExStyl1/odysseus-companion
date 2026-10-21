@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "planning-exec/SKILL.md",
+  "upstreamName": "planning-exec",
+  "upstreamFrontmatter": {
+    "name": "planning-exec",
+    "description": "Последовательное выполнение задач из файла плана, каждая в изолированном субагенте."
+  },
+  "upstreamSkillSha256": "f1633ecc463fdac705dd738641741dd3fc9cf63a1867dd5a53707ab51fb2d56f",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

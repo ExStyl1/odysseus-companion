@@ -1,0 +1,8 @@
+
+apiVersion: devplatform.tcsbank.ru/v1alpha1
+kind: QualityGateProfile
+metadata:
+  name: QualityGate
+spec:
+  project:
+    nature: JavaScript

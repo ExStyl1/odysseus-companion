@@ -1,0 +1,13 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/superpowers/specs/2026-07-29-b1-audit.md",
+  "type": "SPEC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "B1 audit — the nine plugin-completion items, measured",
+  "summary": "Audit of nine plugin-completion items measured 2026-07-29, with per-item verdicts, refutation results, and a closed-worklist notice.",
+  "scope": ["plugin completion items", "Claude MCP adapter timeout", "bin/ on PATH", "hook trust gate", "McpClientPool", "visibility-state"],
+  "cross_refs": [],
+  "locked": false,
+  "precedence": null,
+  "notes": ""
+}

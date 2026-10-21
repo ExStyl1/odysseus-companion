@@ -1,0 +1,27 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "dp-sage/SKILL.md",
+  "upstreamName": "dp-sage",
+  "upstreamFrontmatter": {
+    "name": "dp-sage",
+    "description": "Используй ВСЕГДА когда нужно работать с логами сервисов через DP Sage (Spirit CLI). Умеет: получать сырые логи через mageQL, анализировать ошибки с помощью AI, генерировать запросы из естественного языка, перечислять группы и системы. Триггеры: \"покажи логи\", \"что происходит в сервисе\", \"ошибки в auditory-platform\", \"логи target\", \"dp sage\", \"mageQL\", \"loyalty-platforms\", \"проверь логи\", \"есть ли ошибки\", \"что в логах\", \"sage\", \"посмотри логи за\".\n",
+    "tags": [
+      "dp",
+      "sage",
+      "logs",
+      "mageql",
+      "monitoring",
+      "spirit-cli",
+      "loyalty-platforms"
+    ]
+  },
+  "upstreamSkillSha256": "690f5c37dd47f8680b99ad74d8cbd89c9d141ac188038ec037226e94021b0c80",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

@@ -1,0 +1,16 @@
+{
+  "repository": "code-yeongyu/oh-my-openagent",
+  "revision": "657a02ef48cc6653ba845f0bb8c71b1097a64aa2",
+  "path": "packages/shared-skills/skills/git-master",
+  "url": "https://github.com/code-yeongyu/oh-my-openagent/tree/657a02ef48cc6653ba845f0bb8c71b1097a64aa2/packages/shared-skills/skills/git-master",
+  "upstreamName": "git-master",
+  "upstreamFrontmatter": {
+    "name": "git-master",
+    "description": "MUST USE for ANY git operations: atomic commits, rebase/squash/fixup, and history search (blame, bisect, log -S, reflog). Load it before running git yourself, or pass load_skills=['git-master'] to the task that commits. Triggers: 'commit', 'rebase', 'squash', 'who wrote', 'when was X added', 'find the commit that'."
+  },
+  "upstreamSkillSha256": "d2b0149469ddeea2507c2518153259dcceb64c9cf4956398dfcd337824db7662",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

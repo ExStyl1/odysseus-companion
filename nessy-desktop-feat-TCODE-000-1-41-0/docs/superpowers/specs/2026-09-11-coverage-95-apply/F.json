@@ -1,0 +1,666 @@
+{
+ "family": "F",
+ "items": [
+  {
+   "qid": "QF1",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "F1",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.851 `b63b4f6ba` enables the SDK's own producer behind the host setting (`packages/shared/src/agent/claude-agent.ts` passing `enableFileCheckpointing: getFileCheckpointingEnabled()`), so checkpoints are now produced on claude while `Query.rewindFiles` still has zero call sites and the restore stays unwired."
+    },
+    {
+     "row": "F33",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.278 `714b297f1 + a3c780781 + fb547b972` shipped the working-tree diff and the per-turn patch in the existing viewer, and `packages/shared/src/agent/base-agent.ts` symbol `producesPerTurnFileSnapshots` derives from `RUNTIME_FILE_CHECKPOINT_PRODUCERS`, where pi is a producer."
+    },
+    {
+     "row": "F33",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.278 `714b297f1 + fb547b972` makes `/diff` summarize and open the working tree on every runtime and state the per-turn half honestly, so only the per-turn edits are missing here, for F1's reason."
+    },
+    {
+     "row": "F33",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.278 `714b297f1 + fb547b972` gives codex the same working-tree diff and the honest per-turn statement, leaving only the per-turn edits, which wait on the producer this question builds."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Build a real file-checkpoint producer for the codex runtime: call `createFileCheckpoint` on the codex dispatch path, flip the codex entry of `RUNTIME_FILE_CHECKPOINT_PRODUCERS` with its reason, and wire restore plus the per-turn diff through the paths Pi already uses.",
+     "size": "M",
+     "tags": [
+      "codex",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements option A of QF1 (owner 2026-09-11) and rejects the original mechanism explicitly: two booleans are not a switch, a real call site is. Done means a codex session's rewind restores the files the turn edited and `/diff` offers that turn's edits, reporting the same six reasons as the Pi arm (`packages/shared/src/sessions/file-checkpoints.ts` symbol `FileCheckpointSkipReason`); the direction is codex's own contract, `packages/codex-protocol/generated/v2/ThreadRollbackParams.ts` saying clients are responsible for reverting file changes. Controls: `packages/shared/src/sessions/__tests__/file-checkpoint-producers.test.ts` pins the record against the real call sites, and `fileCheckpointsTracked` must stop reading false on codex only once the producer really writes. Re-stamps F1/codex and F33/codex to covered when it lands. Claude's restore (`Query.rewindFiles`, zero call sites) stays the sitting case P6.851 named, and F12/F41/F42 stay the 1.36.0 sitting case P6.281."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is a build, not a refusal; codex publishes no checkpoint store of its own and its protocol hands the job to the client, so there is no native mechanism to enable instead."
+  },
+  {
+   "qid": "QF2",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "F11",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.268 `895c117e1 + e443e83b4` makes a rewind name the bash-made and background-subagent edits it could not have restored (`apps/electron/src/renderer/utils/rewind-report.ts` symbol `uncoveredRewindCategories`), host-side and identical on all three, while the third category stays deliberately unstated and is recorded as structural by P6.610 `2b5d581fd + f50f90b40`."
+    },
+    {
+     "row": "F11",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.268 `895c117e1 + e443e83b4` makes a rewind name the bash-made and background-subagent edits it could not have restored (`apps/electron/src/renderer/utils/rewind-report.ts` symbol `uncoveredRewindCategories`), host-side and identical on all three, while the third category stays deliberately unstated and is recorded as structural by P6.610 `2b5d581fd + f50f90b40`."
+    },
+    {
+     "row": "F11",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.268 `895c117e1 + e443e83b4` makes a rewind name the bash-made and background-subagent edits it could not have restored (`apps/electron/src/renderer/utils/rewind-report.ts` symbol `uncoveredRewindCategories`), host-side and identical on all three, while the third category stays deliberately unstated and is recorded as structural by P6.610 `2b5d581fd + f50f90b40`."
+    },
+    {
+     "row": "F34",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.106 `786754cc2` built the seam on all three runtimes — `/clear` reads and names the runtime session anchor and `/resume` adopts only that id (`packages/shared/src/agent/base-agent.ts` symbol `runtimeSessionAnchor`) — while the permanent rewind-menu row was deliberately not built, the offer being made at the one moment the id is known."
+    },
+    {
+     "row": "F34",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.106 `786754cc2` built the seam on all three runtimes — `/clear` reads and names the runtime session anchor and `/resume` adopts only that id (`packages/shared/src/agent/base-agent.ts` symbol `runtimeSessionAnchor`) — while the permanent rewind-menu row was deliberately not built, the offer being made at the one moment the id is known."
+    },
+    {
+     "row": "F34",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.106 `786754cc2` built the seam on all three runtimes — `/clear` reads and names the runtime session anchor and `/resume` adopts only that id (`packages/shared/src/agent/base-agent.ts` symbol `runtimeSessionAnchor`) — while the permanent rewind-menu row was deliberately not built, the offer being made at the one moment the id is known."
+    },
+    {
+     "row": "F35",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.279 `f5b053499` added a rewind verb to the CLI's `session` subcommand table that lists checkpoints with no id and reverts with one, reporting the same skip vocabulary the UI renders (`packages/shared/src/sessions/file-checkpoints.ts` symbol `SKIP_REASON_TEXT`)."
+    },
+    {
+     "row": "F35",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.279 `f5b053499` gives the headless entry point on every runtime and makes it NAME a runtime with no checkpoint producer instead of reporting a rewind that restored nothing, so the entry exists here and only the producer is missing, for F1's reason."
+    },
+    {
+     "row": "F35",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.279 `f5b053499` gives the headless entry point on every runtime and makes it NAME a runtime with no checkpoint producer instead of reporting a rewind that restored nothing, so the entry exists here and only the producer is missing, for F1's reason."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Build typed summary instructions on the highlighted Summarize row of the rewind menu, host-side for all three runtimes.",
+     "size": "S",
+     "tags": [
+      "host",
+      "renderer",
+      "doc",
+      "test"
+     ],
+     "note_en": "Implements option A of QF2 (owner 2026-09-11) for ledger F37, the one real absence left in this cluster: `summaryInstruction` and `addContext` score zero across packages and apps. Done means typing on the Summarize row carries the text through the same instruction channel `/compact [instructions]` already uses (`COMPACT_INSTRUCTIONS_SECTION_TITLE`), cited to `checkpointing.md#guide-a-summary`, with a control that an empty instruction behaves exactly as today. It has no anchor unless the Summarize action itself exists — F2 records that only 2 of the page's 6 rewind actions are built — so the row must deliver that anchor or sequence behind it. Re-stamps F37 on all three when it lands; F2/claude and F2/codex stay the 1.36.0 sitting case P6.107."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is a build, and no runtime offers a targeted mid-transcript summarize instruction to enable instead; the channel is ours."
+  },
+  {
+   "qid": "QF3",
+   "answer": "B",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "F7",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Covered by a recorded decision the owner confirmed on 2026-09-11 (QF3 = B): P6.58 `4be7e7bab` states at the site — `packages/codex-responses-adapter/src/server.ts` symbol `pipeAnthropicPassthrough`, 'NO idle abort here, and that is deliberate' — that the bound on this route is the SDK's own transport timeout, measured by P6.114 `1e9f78425` at 544907 ms, and the shared `readWithIdleTimeout` is wired only if the route ever serves a client other than the Claude Agent SDK."
+    },
+    {
+     "row": "F22",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.273 `4a747608a` + `684121b59` gave the frozen Pi retry profile an operator variable through one shared reader (`packages/shared/src/config/api-retry-env.ts` symbol `resolveMaxApiRetries`), so the attempt ceiling and the stream idle deadline are tunable while the unattended capacity watchdog claude has still has no counterpart."
+    },
+    {
+     "row": "F22",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.273 `4a747608a` + `684121b59` emits codex's own `request_max_retries`, `stream_max_retries` and `stream_idle_timeout_ms` into the provider block from the same reader, read in `packages/shared/src/agent/codex-agent.ts` through `resolveMaxApiRetries`/`resolveStreamIdleTimeoutMs`, leaving only the unattended watchdog unmatched."
+    },
+    {
+     "row": "F23",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.274 `099265322` plus P6.916/P6.942 `c2df1bed5` ship a retry chip carrying the attempt, the runtime's own cause word and a real countdown (`apps/electron/src/renderer/event-processor/retry-status.ts` symbol `retryCountdownSeconds`), fed on Pi from `auto_retry_start`/`auto_retry_end`."
+    },
+    {
+     "row": "F23",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "The same chip is fed on claude from `api_retry` through `buildRetryFacts`, with P6.917 `20c68524c` adding the clear the SDK publishes no event for, so a claude retry shows attempt, cause and countdown instead of a bare spinner."
+    },
+    {
+     "row": "F23",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.274 `2458cdc29` gives codex the same chip with an attempt this host counted for the turn in flight, and deliberately no countdown or maximum, because `ErrorNotification` publishes neither and a number nobody published is one the user could check and find wrong."
+    },
+    {
+     "row": "F24",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.274 `2458cdc29` reads `willRetry` from codex's `ErrorNotification` (`packages/shared/src/agent/codex-agent.ts` symbol `codexRetryFacts`) and shows the shared retry chip, so a retrying codex turn is no longer mislabelled as a plain error."
+    }
+   ],
+   "plan_rows": [],
+   "flip_candidate": true,
+   "flip_reason_en": "The host already owns the mechanism — `packages/shared/src/llm/stream-idle.ts` symbol `readWithIdleTimeout`, a re-armed per-chunk timer already wrapping three relays — and wrapping the claude loopback SSE in it is the S-sized option A; the runtime's own byte watchdog is measured unreachable on this route (it arms only for an `api.anthropic.com` base URL), so the claude arm is the one where a stall costs about nine minutes. The answer stays B."
+  },
+  {
+   "qid": "QF4",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "F9",
+     "column": "Pi",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF4 on 2026-09-11 (option A): `desktopSessionCleanupPeriodDays` has no reader anywhere — re-measured at HEAD on bundle 2.1.247, zero occurrences in `sdk.mjs` and in the vendored `claude` binary against `cleanupPeriodDays` at five as the control — and `settings-reference.md#desktopsessioncleanupperioddays` says a managed `cleanupPeriodDays` is applied instead, which is the only tier this fork carries, so carrying the key would look honest and do nothing."
+    },
+    {
+     "row": "F9",
+     "column": "Claude",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF4 on 2026-09-11 (option A): `desktopSessionCleanupPeriodDays` has no reader anywhere — re-measured at HEAD on bundle 2.1.247, zero occurrences in `sdk.mjs` and in the vendored `claude` binary against `cleanupPeriodDays` at five as the control — and `settings-reference.md#desktopsessioncleanupperioddays` says a managed `cleanupPeriodDays` is applied instead, which is the only tier this fork carries, so carrying the key would look honest and do nothing."
+    },
+    {
+     "row": "F9",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF4 on 2026-09-11 (option A): `desktopSessionCleanupPeriodDays` has no reader anywhere — re-measured at HEAD on bundle 2.1.247, zero occurrences in `sdk.mjs` and in the vendored `claude` binary against `cleanupPeriodDays` at five as the control — and `settings-reference.md#desktopsessioncleanupperioddays` says a managed `cleanupPeriodDays` is applied instead, which is the only tier this fork carries, so carrying the key would look honest and do nothing."
+    },
+    {
+     "row": "F10",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.267 (b) `f72fee185 + 6e0ef8cf5` subscribes `sessionPersistenceQueue.onWriteFailure` in `packages/server-core/src/sessions/SessionManager.ts` and sends a warning naming the errno, once per code per session, on a channel that reaches a user with no debug flag; the transcript is the host's, so the cell is identical on all three."
+    },
+    {
+     "row": "F10",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.267 (b) `f72fee185 + 6e0ef8cf5` subscribes `sessionPersistenceQueue.onWriteFailure` in `packages/server-core/src/sessions/SessionManager.ts` and sends a warning naming the errno, once per code per session, on a channel that reaches a user with no debug flag; the transcript is the host's, so the cell is identical on all three."
+    },
+    {
+     "row": "F10",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.267 (b) `f72fee185 + 6e0ef8cf5` subscribes `sessionPersistenceQueue.onWriteFailure` in `packages/server-core/src/sessions/SessionManager.ts` and sends a warning naming the errno, once per code per session, on a channel that reaches a user with no debug flag; the transcript is the host's, so the cell is identical on all three."
+    },
+    {
+     "row": "F17",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.501 `322285a90 + 1486fb981` added a project purge that runs without the app over `WorkspaceService.delete` and names the one thing it did not delete — codex's own `~/.codex` history — which is option (a) of the row's own question, host-side and identical on all three."
+    },
+    {
+     "row": "F17",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.501 `322285a90 + 1486fb981` added a project purge that runs without the app over `WorkspaceService.delete` and names the one thing it did not delete — codex's own `~/.codex` history — which is option (a) of the row's own question, host-side and identical on all three."
+    },
+    {
+     "row": "F17",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.501 `322285a90 + 1486fb981` added a project purge that runs without the app over `WorkspaceService.delete` and names the one thing it did not delete — codex's own `~/.codex` history — which is option (a) of the row's own question, host-side and identical on all three."
+    },
+    {
+     "row": "F49",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.267 `6e0ef8cf5` gave the documented env spellings a reader in the desktop at the session-create choke point (`packages/server-core/src/sessions/SessionManager.ts` symbol `ephemeral`), and P6.502 `7d776ddb7 + 1edc61c84` made never-persist a first-class setting, so the host writes no transcript in either mode."
+    },
+    {
+     "row": "F49",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same readers landed on claude (`6e0ef8cf5`, `1edc61c84`), but `ephemeral` gates OUR writes only and the vendored binary still writes its own jsonl under the per-workspace `CLAUDE_CONFIG_DIR`, which is what the `persistSession: false` row of this answer closes."
+    },
+    {
+     "row": "F49",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host readers (`6e0ef8cf5`, `1edc61c84`), and codex leaves nothing equivalent behind because its `CODEX_HOME` dies with the session (`packages/shared/src/agent/codex-agent.ts` symbol `cleanupRuntimeResources`)."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Pass the SDK's own `persistSession: false` on the claude ephemeral path, so a never-persist claude session stops leaving the vendor's own transcript jsonl behind.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements option A of QF4 (owner 2026-09-11), tier-1 native rather than a host sweep: `node_modules/@anthropic-ai/claude-agent-sdk/sdk.d.ts` declares `persistSession` ('When false, disables session persistence to disk') and we pass it nowhere. Done means that with never-persist on (`packages/shared/src/config/storage.ts` symbol `getNeverPersistSessions`) or either documented env spelling set, a claude session writes neither our transcript nor the vendor's `<projectKey>/<sdkSessionId>.jsonl`, measured by listing the per-workspace `CLAUDE_CONFIG_DIR` tree before and after a turn, with the setting-off control showing the file appears. A host sweep of that tree is explicitly NOT the mechanism: it would delete the input `packages/shared/src/agent/claude-transcript-rebuild.ts` reads to carry real history across a runtime switch. Re-stamps F18/claude and F49/claude to covered when it lands."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer already takes the native key; the refused half (F9) has no native reader to wire — the documented key is absent from the 2.1.247 bundle and the page says managed settings override it in exactly our configuration."
+  },
+  {
+   "qid": "QF5",
+   "answer": "B",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "F27",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF5 on 2026-09-11 (option B): Nessy Desktop does not become a multi-session dispatch console, the divergence from `agent-view.md` is named rather than treated as a parity hole, and the two honest pieces of it shipped — P6.270 `6a8fbb55f + c2f8463ff` and P6.589 `1e63054ec + 770098404 + 7dda6c1d9`."
+    },
+    {
+     "row": "F27",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF5 on 2026-09-11 (option B): Nessy Desktop does not become a multi-session dispatch console, the divergence from `agent-view.md` is named rather than treated as a parity hole, and the two honest pieces of it shipped — P6.270 `6a8fbb55f + c2f8463ff` and P6.589 `1e63054ec + 770098404 + 7dda6c1d9`."
+    },
+    {
+     "row": "F27",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF5 on 2026-09-11 (option B): Nessy Desktop does not become a multi-session dispatch console, the divergence from `agent-view.md` is named rather than treated as a parity hole, and the two honest pieces of it shipped — P6.270 `6a8fbb55f + c2f8463ff` and P6.589 `1e63054ec + 770098404 + 7dda6c1d9`."
+    },
+    {
+     "row": "F14",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.270 `6a8fbb55f + c2f8463ff` labels what a session is waiting on and P6.589 `1e63054ec + 770098404 + 7dda6c1d9` mounts the one-shot answer on the blocked row (`apps/electron/src/renderer/components/app-shell/SessionRowPermissionAnswer.tsx`), so a blocked session can be read and answered without opening it, host-side for all three."
+    },
+    {
+     "row": "F14",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.270 `6a8fbb55f + c2f8463ff` labels what a session is waiting on and P6.589 `1e63054ec + 770098404 + 7dda6c1d9` mounts the one-shot answer on the blocked row (`apps/electron/src/renderer/components/app-shell/SessionRowPermissionAnswer.tsx`), so a blocked session can be read and answered without opening it, host-side for all three."
+    },
+    {
+     "row": "F14",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.270 `6a8fbb55f + c2f8463ff` labels what a session is waiting on and P6.589 `1e63054ec + 770098404 + 7dda6c1d9` mounts the one-shot answer on the blocked row (`apps/electron/src/renderer/components/app-shell/SessionRowPermissionAnswer.tsx`), so a blocked session can be read and answered without opening it, host-side for all three."
+    },
+    {
+     "row": "F28",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.270 `c2f8463ff` names the running, waiting and unread states once in `apps/electron/src/renderer/atoms/sessions.ts` symbol `sessionAttentionState`, with the tooltip and accessible name minted from that one classifier, so the cross-session list carries live states and not only the unread bucket."
+    },
+    {
+     "row": "F28",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.270 `c2f8463ff` names the running, waiting and unread states once in `apps/electron/src/renderer/atoms/sessions.ts` symbol `sessionAttentionState`, with the tooltip and accessible name minted from that one classifier, so the cross-session list carries live states and not only the unread bucket."
+    },
+    {
+     "row": "F28",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.270 `c2f8463ff` names the running, waiting and unread states once in `apps/electron/src/renderer/atoms/sessions.ts` symbol `sessionAttentionState`, with the tooltip and accessible name minted from that one classifier, so the cross-session list carries live states and not only the unread bucket."
+    },
+    {
+     "row": "F29",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.504 `b0b2a118f + 92bdf323c + 58c5d3606` gives every row a one-line summary derived from the session's own output (`packages/shared/src/sessions` symbol `summarizeSessionOutput`), which is the owner's Q-den 22 = A answer and costs no model turn, host-side for all three."
+    },
+    {
+     "row": "F29",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.504 `b0b2a118f + 92bdf323c + 58c5d3606` gives every row a one-line summary derived from the session's own output (`packages/shared/src/sessions` symbol `summarizeSessionOutput`), which is the owner's Q-den 22 = A answer and costs no model turn, host-side for all three."
+    },
+    {
+     "row": "F29",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.504 `b0b2a118f + 92bdf323c + 58c5d3606` gives every row a one-line summary derived from the session's own output (`packages/shared/src/sessions` symbol `summarizeSessionOutput`), which is the owner's Q-den 22 = A answer and costs no model turn, host-side for all three."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the refusal of a multi-session dispatch console as a named divergence from `agent-view.md`, and state what ships instead.",
+     "size": "M",
+     "tags": [
+      "doc",
+      "product",
+      "host"
+     ],
+     "note_en": "Implements option B of QF5 (owner 2026-09-11) for ledger F27. Done means the divergence register `docs/superpowers/specs/2026-08-02-claude-doc-sweep-divergences.md`, whose row 52 already names `claude agents` as having no counterpart in this fork, carries the decision with its date; F27's three cells read n/a with that reason; and the pieces that DID ship are named beside it so the refusal is not read as an unmeasured gap — the attention state (`apps/electron/src/renderer/atoms/sessions.ts` symbol `sessionAttentionState`) and answering a blocked session from the list. No new screen and no per-runtime panel, which is also what the DR-1 decision on the Pi-only inspector already forbids."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Claude's own supervisor (`claude agents`, `CLAUDE_JOB_DIR`) is a CLI-process feature of the shipped binary and not an SDK surface a host can drive, codex has none, and Pi's inspector is Pi-shaped by construction, so there is no native mechanism to wire at any size."
+  },
+  {
+   "qid": "QF6",
+   "answer": "B",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "F31",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF6 on 2026-09-11 (option B): a user-typed background shell job outside any session runs past the host permission gate every tool call goes through, and that is a security trade to name rather than a parity hole to close."
+    },
+    {
+     "row": "F31",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF6 on 2026-09-11 (option B): a user-typed background shell job outside any session runs past the host permission gate every tool call goes through, and that is a security trade to name rather than a parity hole to close."
+    },
+    {
+     "row": "F31",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF6 on 2026-09-11 (option B): a user-typed background shell job outside any session runs past the host permission gate every tool call goes through, and that is a security trade to name rather than a parity hole to close."
+    },
+    {
+     "row": "F25",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.275 `5c046abd7` added the aggregate the row was about: one gesture enumerates the session's running background items and stops each through the same route a single stop uses, refusing an empty session by name, host-side for all three."
+    },
+    {
+     "row": "F25",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.275 `5c046abd7` added the aggregate the row was about: one gesture enumerates the session's running background items and stops each through the same route a single stop uses, refusing an empty session by name, host-side for all three."
+    },
+    {
+     "row": "F25",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.275 `5c046abd7` added the aggregate the row was about: one gesture enumerates the session's running background items and stops each through the same route a single stop uses, refusing an empty session by name, host-side for all three."
+    },
+    {
+     "row": "F5",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.116 `027d678dc` made the harness-control gate per ACTION, so a claude session can read AND stop its own supervised process, closing the stop half this cell held open; `killShell` routes a non-Pi handle to `AgentInstance.stopBackgroundTask`."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the refusal of a user-typed background shell job outside a session, naming the permission gate it would bypass.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "product"
+     ],
+     "note_en": "Implements option B of QF6 (owner 2026-09-11) for ledger F31. Done means F31's three cells read n/a with the reason — the job never reaches the host tool gate — and the divergence from `agent-view.md#run-a-shell-command` is in the divergence register with its date, beside the already-recorded absence of `claude --exec`. The neighbours stay where the owner put them: F6 in the follow-up plan as D1.14 (the `/tasks` and `/workflows` parser rows carried from P6.110) and F8 gated on the R7 live day; neither is re-opened here, and F25 and F5/claude are re-stamped from landed work instead."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "No runtime offers this natively — codex and the claude SDK expose shell execution only as an agent tool call inside a session, and the only process-row machinery in the tree is the Pi supervisor — so the refusal is not a native mechanism left unwired."
+  },
+  {
+   "qid": "QF7",
+   "answer": "A",
+   "kind": "measure",
+   "ledger_edits": [
+    {
+     "row": "F32",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.277 `2a506a6d4 + 23dc76e3f` shipped the in-place branch and the spelling a person can type, and `packages/shared/src/agent/runtime-agent-support.ts` symbol `SESSION_BRANCHING_SUPPORT` now answers true for pi, anthropic and codex-runtime, the codex arm having been built by P6.102 `2ea351566` and switched off by a stale flag until then."
+    },
+    {
+     "row": "F32",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.277 `2a506a6d4 + 23dc76e3f` shipped the in-place branch and the spelling a person can type, and `packages/shared/src/agent/runtime-agent-support.ts` symbol `SESSION_BRANCHING_SUPPORT` now answers true for pi, anthropic and codex-runtime, the codex arm having been built by P6.102 `2ea351566` and switched off by a stale flag until then."
+    },
+    {
+     "row": "F32",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.277 `2a506a6d4 + 23dc76e3f` shipped the in-place branch and the spelling a person can type, and `packages/shared/src/agent/runtime-agent-support.ts` symbol `SESSION_BRANCHING_SUPPORT` now answers true for pi, anthropic and codex-runtime, the codex arm having been built by P6.102 `2ea351566` and switched off by a stale flag until then."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Run one rig measuring what a branch INHERITS on each runtime — the session's allow-for-this-session grants and background work already in flight — and fill F39 and F40 from it.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "claude",
+      "codex",
+      "test"
+     ],
+     "note_en": "Implements option A of QF7 (owner 2026-09-11), pulled back from the follow-up plan's D1.38 as a named exception under point 1 of the 2026-09-10 ruling, because the expected answer leans toward LOOSENING security (grants live in the host mode manager and probably survive regardless of process) and a refusal cannot be recorded without the measurement. Oracle: the inheritance table of `sessions.md#branch-a-session`. Arms: grant an always-allow, branch, re-issue the same call; and start one long background command, branch mid-flight, read which session receives the completion. It runs on all three now that branching is live everywhere. Fills F39 and F40, which are `—` on every arm today, and re-stamps F3/codex; a grant that survives a codex `thread/fork` is a SILENT-LOOSER finding to record beside A7, not a pass."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is a measurement, not a refusal; the mechanism under test is ours (the host mode manager) and the rig is what decides whether anything needs wiring at all."
+  },
+  {
+   "qid": "QF8",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "F4",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF8 on 2026-09-11 (option A): codex publishes the whole browse surface, but the containment is OURS — the `CODEX_HOME` is created per session and removed with it (`packages/shared/src/agent/codex-agent.ts` symbol `cleanupRuntimeResources`) and `thread/read` answers `turns: []` for threads we populate by injection — and P6.105 `4d049b1d5 8eeb0b070` already says so once per session on the switch onto codex."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Correct the stale claude-coverage-map line claiming our bundle predates cross-directory session resume.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude"
+     ],
+     "note_en": "Part of option A of QF8 (owner 2026-09-11). The claim sits in row 141 of `docs/superpowers/specs/2026-07-31-claude-coverage-map.md` and rests on a bundle at 0.3.223; at HEAD both self-reports say 2.1.247 (`node_modules/@anthropic-ai/claude-agent-sdk/package.json` field `claudeCodeVersion`, and the vendored binary's own `--version`), so the premise is false. Name the superseded claim in WORDS rather than in the path-and-line form the citation guards match, or the correction re-creates the finding it repairs. The measurement itself stays where the ruling put it, D1.39 (carried from P6.286), and F43's three cells stay unfilled until it runs."
+    },
+    {
+     "task_en": "Measure the claude arm of past-session browsing: what the SDK's own session store holds, and what this repo already reads out of it.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "test"
+     ],
+     "note_en": "Part of option A of QF8: F4/claude is a `—`, not a refusal, because the SDK keeps its own store and writes `<projectKey>/<sdkSessionId>.jsonl` under the per-workspace `CLAUDE_CONFIG_DIR`, which this repo already reads in `packages/shared/src/agent/claude-transcript-rebuild.ts` and sweeps by age in `packages/shared/src/sessions/retention-sweep.ts`. Done means the F4/claude cell is filled from a run — list, read and re-open one such session by id — rather than propagated from the codex refusal, with a control that a session created in this build appears there."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Codex DOES publish the mechanism natively — `thread/list`, `thread/read`, `thread/archive`, `thread/unarchive` and `thread/delete` on `ClientRequest` in `packages/codex-protocol` — but making it non-empty means reversing the per-session `CODEX_HOME` containment ruled in Dev-11, a security posture change well above S, so this is a refusal with a named cost rather than an unwired native lever."
+  },
+  {
+   "qid": "QF9",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "F13",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "`de3f2e147` wires `child.on('exit', …)` to `failPendingOnExit` in `packages/codex-agent-server/src/app-server-client.ts`, so a codex app-server that dies before answering ends the turn with a named error instead of a session waiting forever."
+    },
+    {
+     "row": "F21",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P7.13 `c89e96f52` hands the resume-vs-stop answer to the runtime's own setting after P6.503 `01760ba7c` made the sentence name it, so a claude session waits out the limit and continues on the reset the SDK's `rate_limit_event` publishes."
+    },
+    {
+     "row": "F21",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.503 `01760ba7c` implements the owner's Q-den 20 = A answer of 2026-09-05 — wait only where the server publishes a reset and say so honestly where it does not — and the Nessy gateway publishes none, so Pi states the limit rather than waiting."
+    },
+    {
+     "row": "F21",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same Q-den 20 = A answer landed in P6.503 `01760ba7c`: codex's `RateLimitWindow.resetsAt` arrives on `account/rateLimits/updated`, which is on the deliberate unread list (`packages/shared/src/agent/codex-notification-families.ts` symbol `CODEX_UNREAD_NOTIFICATION_METHODS`), so the limit is surfaced honestly and no wait is promised."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Turn the host's turn counter on for codex by overriding `countsAgentTurnsInSharedLoop` in `CodexAgent`.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements option A of QF9 (owner 2026-09-11). The counter is built and opt-in: `packages/shared/src/agent/base-agent.ts` symbol `countsAgentTurnsInSharedLoop` is declared protected and false and no backend sets it, while its own docblock names codex as the arm that needs it, `packages/codex-protocol/schema/config-schema.json` carrying zero `max_turn` keys. Done means a non-zero `workspaceDefaults.maxAgentTurns` ends a codex session with `max_agent_turns`, counted as model round-trips as that docblock defines them, with controls that the default 0 changes nothing and that Pi and claude keep their native enforcement (P6.276 `fdba06e01 + 56c8385f2`) rather than being counted twice under one setting name. Re-stamps F26/codex to covered. Option B is explicitly not taken: it contradicts the owner's Q-den 20 answer. F16 stays the sitting case P6.282 and F30 stays with the owner's 2026-09-05 sitting answer, section 1.7 = B."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer is a build, and it was chosen precisely because codex has no native key to enable — the host ceiling is the only seam, which is what the native-first ordering asks to be shown before building."
+  },
+  {
+   "qid": "QF10",
+   "answer": "B",
+   "kind": "defer",
+   "ledger_edits": [],
+   "plan_rows": [
+    {
+     "task_en": "Write the verified premise correction into the follow-up plan's D1.40 note: the claude warm-start API is in the bundle and imported nowhere.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude"
+     ],
+     "note_en": "Implements option B of QF10 (owner 2026-09-11), which is the ruling of 2026-09-10 left standing: the two rows were split deliberately, F46 being the 1.36.0 sitting case P6.287 (which connection and model actually answer the title request, live on the built app and not lane work) and F48 the D1.40 row carried from P6.288. Measured for the note at HEAD: `startup()` returning a `WarmQuery` is declared in `node_modules/@anthropic-ai/claude-agent-sdk/sdk.d.ts` on bundle 2.1.247, and `WarmQuery` scores zero files across packages and apps, so the honest phrasing is 'present in the bundle, imported nowhere' rather than 'absent from the SDK'. No ledger cell moves: F46 and F48 stay unfilled until their own runs."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Deferral, not refusal: both cells keep a named owner already — a sitting case and a follow-up row — and the only new fact is a premise correction that costs nothing to record."
+  },
+  {
+   "qid": "QF11",
+   "answer": "B",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "F36",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF11 on 2026-09-11 (option B): prompt history stays in memory and within one session, because a prompt typed in one conversation must not surface in another, and the composer's history ref is cleared on every session switch by design (`apps/electron/src/renderer/components/app-shell/input/double-escape.ts`)."
+    },
+    {
+     "row": "F36",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF11 on 2026-09-11 (option B): prompt history stays in memory and within one session, because a prompt typed in one conversation must not surface in another, and the composer's history ref is cleared on every session switch by design (`apps/electron/src/renderer/components/app-shell/input/double-escape.ts`)."
+    },
+    {
+     "row": "F36",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ʰ`",
+     "why_en": "Refused by the owner's answer to QF11 on 2026-09-11 (option B): prompt history stays in memory and within one session, because a prompt typed in one conversation must not surface in another, and the composer's history ref is cleared on every session switch by design (`apps/electron/src/renderer/components/app-shell/input/double-escape.ts`)."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Name the prompt-history divergence and its reason on the surface, keeping recall in memory and within one session.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "product",
+      "renderer"
+     ],
+     "note_en": "Implements option B of QF11 (owner 2026-09-11) for ledger F36, the family's last uncovered row. Done means the divergence from `interactive-mode.md#reverse-search-with-ctrl+r` is recorded with its date and its cost stated honestly — in fullscreen the documented feature cycles the scope through this session, this project and all projects, so refusing it refuses the whole feature and not a corner — and the reason sits where the behaviour is decided, in the composer module whose in-memory history is dropped on a session switch. No prompt text reaches disk, and the never-persist env spellings keep their existing meaning."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "No runtime publishes a cross-session prompt store a host could read: the composer is ours, and the vendor's own prompt history belongs to its CLI REPL rather than to a hosted SDK session, so the refusal leaves no native lever unwired."
+  }
+ ]
+}

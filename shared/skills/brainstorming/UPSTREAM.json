@@ -1,0 +1,99 @@
+{
+  "repository": "obra/superpowers",
+  "revision": "bb92a77741419a4ab5f06e711a283343f1ada0c3",
+  "path": "skills/brainstorming",
+  "url": "https://github.com/obra/superpowers/tree/bb92a77741419a4ab5f06e711a283343f1ada0c3/skills/brainstorming",
+  "upstreamName": "brainstorming",
+  "upstreamFrontmatter": {
+    "name": "brainstorming",
+    "description": "You MUST use this before any creative work - creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a talk, a business, a renovation)."
+  },
+  "upstreamSkillSha256": "6ee10d1481b8a2580d5336ff66c5c08acc9d4b251b13bbc3bfd31be99c261d43",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "user-brainstorming",
+      "guide": "variants/user-brainstorming/GUIDE.md",
+      "resourceRoot": "variants/user-brainstorming",
+      "repository": "user-supplied/skills",
+      "path": "brainstorming/SKILL.md",
+      "executionProfile": "user-approved-exception",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "files": {
+        "SKILL.md": {
+          "sha256": "ac3c7c95525dfb771ef0b30beca13f349b17857978bef7483c2ff5db9e9a754e",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "e0c58e7aa68df6376e0d4a95fa84fc776c985c2e7f2a2af16b95482b82f4cf84",
+          "executable": false
+        },
+        "fixtures/brainstorming/build.sh": {
+          "sha256": "a6c625d35d5905b27d52ff81d17665ac5d770ec50fe24bd70b1d41004e390730",
+          "executable": true
+        },
+        "scripts/frame-template.html": {
+          "sha256": "fb22ba9d47f3b83b56e0a95d52a3c2727db03b0d4365078d92c850293a62457b",
+          "executable": false
+        },
+        "scripts/helper.js": {
+          "sha256": "e763d82f32b4ebb320be2f0d08449d3e5a0585778edf5c407c1fdab3f39976a5",
+          "executable": false
+        },
+        "scripts/server.cjs": {
+          "sha256": "ea81185f581897c67d4b417eeb9bc7a158c50e0932c73047054fe53efc2683ef",
+          "executable": false
+        },
+        "scripts/start-server.sh": {
+          "sha256": "3442a54b5ee5511637d27bf696e092b72f94c2324f40b5ba4410da4dd0c23bc8",
+          "executable": true
+        },
+        "scripts/stop-server.sh": {
+          "sha256": "f65b7634a27343eab2086bdb6c59ba78695685f471b5a577b08a8817f7c50600",
+          "executable": true
+        },
+        "spec-document-reviewer-prompt.md": {
+          "sha256": "12cb5ed58aef41b8da6fbb505547c71ca3f5658c83b66ca6e556c936308b3189",
+          "executable": false
+        },
+        "suites/case-01-must.json": {
+          "sha256": "2a2ce823f581e29178406a8890b76c659cf3373c85117399c704a294bb470234",
+          "executable": false
+        },
+        "suites/case-02-must-not.json": {
+          "sha256": "ec243f4218abe08fd41e7a38cefe19937ceeb5d404d9c31b76a91328c6df5514",
+          "executable": false
+        },
+        "visual-companion.md": {
+          "sha256": "a2bc6fc47d0df1df981d02f707a16225b147f462e7059175ad2bc5e6dd29fcae",
+          "executable": false
+        }
+      },
+      "when": "Вариант из пользовательской подборки: обсуждение требований и вариантов дизайна"
+    },
+    {
+      "name": "brainstorm",
+      "guide": "variants/brainstorm/GUIDE.md",
+      "resourceRoot": "variants/brainstorm",
+      "repository": "user-supplied/skills",
+      "path": "brainstorm/SKILL.md",
+      "executionProfile": "user-approved-exception",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "files": {
+        "SKILL.md": {
+          "sha256": "9f3a031bbc11a2fceed3e44a8ee1d5f8f765381e42cac52c4b31cc4aaf1ac470",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "7109b869265019ebd3ebabc503da518e5017afde6e386e67cd620a949266d7cb",
+          "executable": false
+        }
+      },
+      "when": "Корпоративный контекст Nessy: ссылки Jira, Wiki и GitLab, если они указаны в задаче"
+    }
+  ]
+}

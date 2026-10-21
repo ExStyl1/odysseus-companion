@@ -1,0 +1,17 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "mermaid-diagrams/SKILL.md",
+  "upstreamName": "mermaid-diagrams",
+  "upstreamFrontmatter": {
+    "name": "mermaid-diagrams",
+    "description": "Практическое руководство по созданию читаемых человеком и разбираемых агентом диаграмм используя Mermaid. Включает консервативные, совместимые с рендерерами шаблоны и руководство когда что использовать."
+  },
+  "upstreamSkillSha256": "b9c15757bdd69c1e876bd207bf73c9718500cfc61350147409734498e49b0b78",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile."
+  ],
+  "packageDependencies": []
+}

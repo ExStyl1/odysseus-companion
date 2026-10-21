@@ -1,0 +1,13 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/architecture/codex-like-workspace-storage.md",
+  "type": "ADR",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Codex-like Workspace Storage Architecture",
+  "summary": "Final architecture record establishing storage v2 as the single supported runtime layout under CONFIG_DIR for Nessy Desktop.",
+  "scope": ["storage v2", "CONFIG_DIR", "workspaces", "sessions", "plugins", "credentials", "capability resolver"],
+  "cross_refs": [],
+  "locked": true,
+  "precedence": null,
+  "notes": ""
+}

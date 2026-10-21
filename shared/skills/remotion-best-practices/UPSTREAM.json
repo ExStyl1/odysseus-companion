@@ -1,0 +1,19 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/remotion-best-practices",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/remotion-best-practices",
+  "upstreamName": "remotion-best-practices",
+  "upstreamFrontmatter": {
+    "name": "remotion-best-practices",
+    "description": "Best practices for Remotion - Video creation in React",
+    "metadata": {
+      "tags": "remotion, video, react, animation, composition"
+    }
+  },
+  "upstreamSkillSha256": "2f9be561c1c3659aea1b4c777a9b57733dcd466b6e85231316d2841d947584bf",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

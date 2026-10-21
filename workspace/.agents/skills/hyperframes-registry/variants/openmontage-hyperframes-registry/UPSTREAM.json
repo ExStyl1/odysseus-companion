@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/hyperframes-registry",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/hyperframes-registry",
+  "upstreamName": "hyperframes-registry",
+  "upstreamFrontmatter": {
+    "name": "hyperframes-registry",
+    "description": "Install and wire registry blocks and components into HyperFrames compositions. Use when running hyperframes add, installing a block or component, wiring an installed item into index.html, or working with hyperframes.json. Covers the add command, install locations, block sub-composition wiring, component snippet merging, registry discovery, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR)."
+  },
+  "upstreamSkillSha256": "1abaa095aae1b680b5b6e80032e66694fc401ccbfea9526aabcf727c841c9012",
+  "adaptations": [
+    "Namespaced colliding or host-specific skill: hyperframes-registry -> openmontage-hyperframes-registry",
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled."
+  ]
+}

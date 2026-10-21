@@ -1,0 +1,41 @@
+<!--
+  METRICS, 3 COLUMNS
+
+  When to use: Three key numbers. Main results slide
+  Structure: .background-black, .title-slide, .subtitle-medium, three .metric-value-large with .metric-description
+
+  Generated from assets/layouts/template.html by scripts/sync_layouts.py.
+  Edit the template, not this file.
+-->
+  <div class="slide">
+    <div class="background-black"></div>
+    
+    <!-- Заголовок и подзаголовок стоят на своих местах и никуда не едут: у
+         каждого свой .fit-box известной высоты. 104px — это ровно одна строка
+         112px/90%, поэтому заголовок в две строки становится ошибкой сборки, а
+         не наезжает на подзаголовок. Подзаголовку отведено 192px (4 строки
+         43.2px) до ряда метрик на 500px. -->
+    <div class="fit-box" style="position: absolute; top: 120px; left: 110px; right: 110px; height: 104px; z-index: 10;">
+      <h1 class="title-slide" style="color: #FFFFFF;">Результаты года</h1>
+    </div>
+    <div class="fit-box" style="position: absolute; top: 260px; left: 110px; right: 110px; height: 192px; z-index: 10;">
+      <p class="subtitle-medium" style="color: #FFFFFF;">Длинный или короткий заголовок, расположение не меняется</p>
+    </div>
+
+    <div style="position: absolute; top: 500px; left: 110px; right: 110px; display: flex; justify-content: space-between; gap: 20px; z-index: 10;">
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
+        <div class="metric-value-large">45M</div>
+        <div class="metric-description">Подзаголовок с коротким описанием</div>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
+        <div class="metric-value-large">+38%</div>
+        <div class="metric-description">Подзаголовок с коротким описанием</div>
+      </div>
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 32px;">
+        <div class="metric-value-large">72</div>
+        <div class="metric-description">Подзаголовок с коротким описанием</div>
+      </div>
+    </div>
+  </div>
+
+  

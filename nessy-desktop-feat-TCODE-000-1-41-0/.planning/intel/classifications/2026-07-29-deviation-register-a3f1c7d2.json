@@ -1,0 +1,24 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/superpowers/specs/2026-07-29-deviation-register.md",
+  "type": "SPEC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "2026-07-29-deviation-register.md",
+  "summary": "Generated register of 352 deviations grouped by source doc/plan, each tagged not implemented, impossible, or inapplicable.",
+  "scope": ["deviation register", "file checkpoint rewind", "fork subagents", "managed MCP access", "Codex adapter spec", "policy enforcement", "auto mode", "plugin normalization"],
+  "cross_refs": [
+    "docs/architecture/file-checkpoint-rewind.md",
+    "docs/architecture/fork-subagents.md",
+    "docs/architecture/managed-mcp-access.md",
+    "plans/2026-07-29-codex-adapter-spec.md",
+    "plans/2026-07-29-delivered-policy-enforcement.md",
+    "plans/2026-07-29-deviation-unit-1.md",
+    "plans/2026-07-29-deviation-unit-2.md",
+    "plans/2026-07-29-deviation-unit-3.md",
+    "plans/2026-07-29-deviation-unit-4.md",
+    "plans/2026-07-29-deviation-unit-5.md"
+  ],
+  "locked": false,
+  "precedence": null,
+  "notes": ""
+}

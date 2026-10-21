@@ -1,0 +1,19 @@
+[
+  {
+    "skillId": "sample-skill",
+    "name": "Sample Skill",
+    "description": "Authored synthetic internal-marketplace skill entry used only for fixture parsing tests.",
+    "artifactDelivery": {
+      "type": "npm-package",
+      "packageName": "@example-invalid/sample-skill",
+      "version": "1.0.0"
+    },
+    "sourceLocator": {
+      "type": "gitlab",
+      "url": "https://example.invalid/skills/sample",
+      "ref": "main",
+      "path": "skills/sample"
+    },
+    "command": "nessy skill install sample-skill"
+  }
+]

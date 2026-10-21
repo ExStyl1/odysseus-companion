@@ -1,0 +1,11 @@
+{
+  "format": "claude",
+  "state": "supported",
+  "supportedKinds": [
+    "skill",
+    "output-style",
+    "hook"
+  ],
+  "deferred": [],
+  "blocked": []
+}

@@ -1,0 +1,20 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "auto-skill-skills-market-install/SKILL.md",
+  "upstreamName": "skills-market-install",
+  "upstreamFrontmatter": {
+    "name": "skills-market-install",
+    "description": "Установка корпоративных скилов через Skills Market (dp skills install) — когда нужно добавить скилы из внутреннего GitLab-репозитория (например tacp/nessy-skills), а прямой git clone недоступен",
+    "source": "auto-skill",
+    "extracted_at": "2026-10-20T09:39:28.278Z"
+  },
+  "upstreamSkillSha256": "745d4bac7dde0d735fd0bbf9859452b66aec016ec7de515940cce2da4a644202",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

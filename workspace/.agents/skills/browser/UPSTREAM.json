@@ -1,0 +1,39 @@
+{
+  "repository": "code-yeongyu/oh-my-openagent",
+  "revision": "657a02ef48cc6653ba845f0bb8c71b1097a64aa2",
+  "path": "packages/shared-skills/skills/browser",
+  "url": "https://github.com/code-yeongyu/oh-my-openagent/tree/657a02ef48cc6653ba845f0bb8c71b1097a64aa2/packages/shared-skills/skills/browser",
+  "upstreamName": "browser",
+  "upstreamFrontmatter": {
+    "name": "browser",
+    "description": "Drives a real browser through the omowright library from the js eval kernel: sites the user is already signed into, forms and clicks, JS-rendered pages, screenshots, web QA, extension popups, a human handoff for login, CAPTCHA or OTP, and a browser you own for scraping, bot-scored targets, network capture and QA traces. Use for any interactive browser task; not for a plain search or an unblocked static fetch."
+  },
+  "upstreamSkillSha256": "76d063d0a112cd61f635baa95bfad85ab0a7d3f15ba4612a689dd43f0b1917c3",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "agent-browser",
+      "guide": "variants/agent-browser/GUIDE.md",
+      "resourceRoot": "variants/agent-browser",
+      "repository": "user-supplied/skills",
+      "path": "agent-browser/SKILL.md",
+      "executionProfile": "user-approved-exception",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "files": {
+        "SKILL.md": {
+          "sha256": "1d981853a823917c16182e631198a36b1f7b03b688af3602542a05d04d575b6c",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "f067d5f0c335f69b68e15a6a4b4463bce8ded05a9c76291d4a710c9fed085a2f",
+          "executable": false
+        }
+      },
+      "when": "Управление Chrome через agent-browser CLI и CDP при наличии этого CLI"
+    }
+  ]
+}

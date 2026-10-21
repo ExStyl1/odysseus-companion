@@ -1,0 +1,13 @@
+{
+  "title": "Test list without icon",
+  "slides": [
+    {"layout": "title", "text": "Test"},
+    {"layout": "cards", "title": "List without icon", "cards": [
+      {"title": "Points", "items": [
+        "First point",
+        "Second point"
+      ]}
+    ]},
+    {"layout": "final"}
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "replace": "config/replacements.json",
+  "mentionsBaseline": "nessy-mentions.json",
+  "preserve": "config/exceptions.json",
+  "patches": "config/patches.json",
+  "assets": "config/assets.json",
+  "remoteImages": "config/remote-media.json",
+  "replaceBeforePreserve": "config/urls.json"
+}

@@ -1,0 +1,13 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/architecture/runtime-capability-gaps.md",
+  "type": "ADR",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Runtime capability gaps — what is unavailable, per runtime, and why",
+  "summary": "Per-runtime enumeration of unavailable capabilities for Pi, Claude and Codex, each tagged STRUCTURAL, DECISION, PLANNED or UNVERIFIED.",
+  "scope": ["Pi runtime", "Claude Agent SDK runtime", "Codex app-server runtime", "permissions", "MCP", "skills", "plugins", "compaction", "network interceptor"],
+  "cross_refs": ["runtime-control-boundary.md", "docs/superpowers/plans/2026-08-16-clean-runtime-usage.md", "user-input.md"],
+  "locked": false,
+  "precedence": null,
+  "notes": "Type taken from MANIFEST_TYPE (ADR). Document has no Status field; it is a decision-consequence record with DECISION/STRUCTURAL reason tags, so locked stays false."
+}

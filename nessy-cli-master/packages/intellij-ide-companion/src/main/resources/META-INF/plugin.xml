@@ -1,0 +1,36 @@
+<idea-plugin>
+  <id>org.nessy.intellij</id>
+  <name>Nessy CLI</name>
+  <vendor email="support@nestor.com" url="https://gitlab.tcsbank.ru/nestor/nessy">PSD Tech</vendor>
+
+  <description>
+    Nessy CLI integration for JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, etc.).
+  </description>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <notificationGroup id="nessy" displayType="BALLOON" isLogByDefault="false" />
+    <applicationInitializedListener
+      implementation="org.nessy.intellij.NessyPluginRepositoryRegistrar"
+    />
+    <toolWindow
+      id="Nessy CLI"
+      anchor="right"
+      factoryClass="org.nessy.intellij.NessyToolWindowFactory"
+      canCloseContents="true"
+      icon="/icons/askAgent.svg"
+    />
+    <applicationConfigurable
+      id="org.nessy.intellij.settings"
+      displayName="Nessy CLI"
+      instance="org.nessy.intellij.settings.NessySettingsConfigurable"
+    />
+    <postStartupActivity
+      implementation="org.nessy.intellij.ide.IdeStartupActivity"
+    />
+    <fileEditorProvider
+      implementation="org.nessy.intellij.ide.NessyDiffEditorProvider"
+    />
+  </extensions>
+</idea-plugin>

@@ -1,0 +1,110 @@
+/**
+ * Source: v0.15.1:apps/electron/src/renderer/components/app-shell/input/InputErrorBoundary.tsx (UB14.22; taken, Apache-2.0).
+ * Re-applied: no Sentry. Upstream reports the crash with `Sentry.captureException` (tag
+ * `errorSource: chat-input`); this build ships no crash reporter, so `componentDidCatch` keeps the
+ * session id and the component stack on the one `console.error` line instead.
+ */
+import * as React from 'react'
+import { useTranslation } from 'react-i18next'
+import { AlertCircle, RefreshCw, Trash2 } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+
+interface InputErrorBoundaryProps {
+  sessionId?: string
+  resetKey: string
+  onClearDraft?: () => void
+  children: React.ReactNode
+}
+
+interface InputErrorBoundaryState {
+  hasError: boolean
+}
+
+/**
+ * Keeps chat input failures local to the composer area so the rest of the chat
+ * page remains usable. This is intentionally narrower than the root error
+ * boundary because malformed drafts or future composer bugs should not blank the
+ * entire app.
+ */
+export class InputErrorBoundary extends React.Component<
+  InputErrorBoundaryProps,
+  InputErrorBoundaryState
+> {
+  state: InputErrorBoundaryState = { hasError: false }
+
+  static getDerivedStateFromError(): InputErrorBoundaryState {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error('[InputErrorBoundary] Composer crashed:', error, {
+      sessionId: this.props.sessionId,
+      componentStack: info.componentStack,
+    })
+  }
+
+  componentDidUpdate(prevProps: InputErrorBoundaryProps) {
+    if (prevProps.resetKey !== this.props.resetKey && this.state.hasError) {
+      this.setState({ hasError: false })
+    }
+  }
+
+  private retry = () => {
+    this.setState({ hasError: false })
+  }
+
+  private clearDraftAndRetry = () => {
+    this.props.onClearDraft?.()
+    this.setState({ hasError: false })
+  }
+
+  render() {
+    if (!this.state.hasError) return this.props.children
+
+    return (
+      <InputErrorFallback
+        onRetry={this.retry}
+        onClearDraft={this.clearDraftAndRetry}
+      />
+    )
+  }
+}
+
+function InputErrorFallback({
+  onRetry,
+  onClearDraft,
+}: {
+  onRetry: () => void
+  onClearDraft: () => void
+}) {
+  const { t } = useTranslation()
+
+  return (
+    <div className="rounded-xl bg-raised p-3.5 shadow-elev-2 ring-1 ring-[color:var(--destructive-border)]">
+      <div className="flex items-start gap-2.5">
+        <div className="grid size-control shrink-0 place-items-center rounded-md bg-destructive-tint text-destructive">
+          <AlertCircle className="h-4 w-4" />
+        </div>
+        <div className="min-w-0 flex-1">
+          <p className="text-label-lg font-semibold text-foreground">{t('chat.inputFailedTitle')}</p>
+          <p className="mt-1 text-label text-secondary">
+            {t('chat.inputFailedDescription')}
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Button type="button" size="lg" variant="secondary" onClick={onRetry}>
+              <RefreshCw className="h-4 w-4" />
+              {t('common.retry')}
+            </Button>
+            <Button type="button" size="lg" variant="secondary" onClick={onClearDraft}>
+              <Trash2 className="h-4 w-4" />
+              {t('chat.clearDraft')}
+            </Button>
+            <Button type="button" size="lg" variant="ghost" onClick={() => window.location.reload()}>
+              {t('common.reload')}
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

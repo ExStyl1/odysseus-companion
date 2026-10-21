@@ -1,0 +1,1513 @@
+{
+  "schemaVersion": 1,
+  "profile": "local-browser-obsidian",
+  "selectedAt": "2026-10-20",
+  "allowed": [
+    "host-agent-model",
+    "local-files",
+    "local-cli-and-libraries",
+    "browser",
+    "obsidian",
+    "local-language-server-adapter"
+  ],
+  "excludedModes": [
+    "third-party-ai-apis",
+    "cloud-rendering",
+    "additional-service-accounts",
+    "foreign-agent-runtimes"
+  ],
+  "removed": [
+    {
+      "name": "claude-handoff",
+      "repository": "mattpocock/skills",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "git-guardrails-claude-code",
+      "repository": "mattpocock/skills",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "academy-guide",
+      "repository": "anthropics/skills",
+      "reason": "Dedicated external-service/network workflow outside browser interaction."
+    },
+    {
+      "name": "claude-api",
+      "repository": "anthropics/skills",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "caveman-compress",
+      "repository": "JuliusBrussee/caveman",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "caveman-discover",
+      "repository": "JuliusBrussee/caveman",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "caveman-evidence-review",
+      "repository": "JuliusBrussee/caveman",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "caveman-manage",
+      "repository": "JuliusBrussee/caveman",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "caveman-optimize",
+      "repository": "JuliusBrussee/caveman",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "caveman-setup",
+      "repository": "JuliusBrussee/caveman",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "caveman-stats",
+      "repository": "JuliusBrussee/caveman",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "omo-codex-comment-checker",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-codex-lcx-contribute-bug-fix",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-codex-lcx-doctor",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-codex-lcx-report-bug",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-codex-rules",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-codex-teammode",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-codex-ulw-plan",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-codex-ulw-loop",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-dag-library",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-give-me-tips",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-hyperplan",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-init-deep",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-mass-ulw",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-onboarding",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-ultrawork",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-ulw-loop",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-ulw-plan",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-ulw-research",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "omo-senpi-visualize",
+      "repository": "code-yeongyu/oh-my-openagent",
+      "reason": "Requires another agent runtime or its plugin-specific workflow."
+    },
+    {
+      "name": "last30days",
+      "repository": "mvanhorn/last30days-skill",
+      "reason": "Dedicated external-service/network workflow outside browser interaction."
+    },
+    {
+      "name": "figma",
+      "repository": "heygen-com/hyperframes",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "3d-asset-generation",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Separate application/integration outside the requested browser, Obsidian and local-tool set."
+    },
+    {
+      "name": "acestep",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "agents",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "ai-video-gen",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "atlas-cloud",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "avatar-video",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "azure-speech-to-text",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "azure-text-to-speech",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "bfl-api",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "comfyui",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Separate application/integration outside the requested browser, Obsidian and local-tool set."
+    },
+    {
+      "name": "create-video",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "dashscope",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "doubao-tts",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "elevenlabs",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "faceswap",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "fish-audio-tts",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "flux-best-practices",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "gemini-omni",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "grok-media",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "heygen",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "kling-official",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "lottie-bodymovin",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Separate application/integration outside the requested browser, Obsidian and local-tool set."
+    },
+    {
+      "name": "ltx2",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "lyria",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "minimax-h3",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "music",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "provider-model-refresh",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "seedance-2-0",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "seedance-2-5",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "setup-api-key",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "sound-effects",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "speech-to-text",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "text-to-speech",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "video-download",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Dedicated external-service/network workflow outside browser interaction."
+    },
+    {
+      "name": "video-toolkit",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "video-translate",
+      "repository": "calesthio/OpenMontage",
+      "reason": "Cloud provider, additional credentials or hosted processing workflow."
+    },
+    {
+      "name": "tldraw-offline",
+      "repository": "NousResearch/hermes-agent",
+      "reason": "Separate application/integration outside the requested browser, Obsidian and local-tool set."
+    },
+    {
+      "name": "ab-testing",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "ad-creative",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "ads",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "ai-seo",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "analytics",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "aso",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "attribution",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "churn-prevention",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "co-marketing",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "cold-email",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "community-marketing",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "competitor-profiling",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "competitors",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "content-strategy",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "conversion-tracking",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "copy-editing",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "copywriting",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "cro",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "customer-research",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "directory-submissions",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "emails",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "events",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "free-tools",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "image",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "influencer-marketing",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "launch",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "lead-magnets",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "link-building",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "marketing-council",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "marketing-ideas",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "marketing-loops",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "marketing-plan",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "marketing-psychology",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "offers",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "onboarding",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "paywalls",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "popups",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "pricing",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "product-marketing",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "programmatic-seo",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "prospecting",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "public-relations",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "referrals",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "revops",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "sales-enablement",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "schema",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "seo-audit",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "signup",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "site-architecture",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "sms",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "social",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "video",
+      "repository": "coreyhaines31/marketingskills",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    },
+    {
+      "name": "product-launch-video",
+      "repository": "heygen-com/hyperframes",
+      "reason": "Реклама и маркетинг исключены по запросу пользователя."
+    }
+  ],
+  "localOnlySkills": [
+    "diagnosing-superpowers",
+    "dispatching-parallel-agents",
+    "executing-plans",
+    "finishing-a-development-branch",
+    "receiving-code-review",
+    "requesting-code-review",
+    "subagent-driven-development",
+    "systematic-debugging",
+    "test-driven-development",
+    "using-git-worktrees",
+    "verification-before-completion",
+    "writing-plans",
+    "writing-skills",
+    "ask-matt",
+    "code-review",
+    "codebase-design",
+    "domain-modeling",
+    "grill-with-docs",
+    "implement",
+    "implement-spec",
+    "improve-codebase-architecture",
+    "pr",
+    "prototype",
+    "research",
+    "retro",
+    "setup-matt-pocock-skills",
+    "to-spec",
+    "to-tickets",
+    "triage",
+    "wayfinder",
+    "wizard",
+    "chief-of-staff",
+    "loop-me",
+    "setup-ts-deep-modules",
+    "writing-beats",
+    "writing-fragments",
+    "writing-shape",
+    "migrate-to-shoehorn",
+    "scaffold-exercises",
+    "setup-pre-commit",
+    "grill-me",
+    "handoff",
+    "teach",
+    "to-questionnaire",
+    "wait-what",
+    "writing-for-agents",
+    "algorithmic-art",
+    "brand-guidelines",
+    "canvas-design",
+    "discernment-nudge",
+    "doc-coauthoring",
+    "docx",
+    "frontend-design",
+    "internal-comms",
+    "mcp-builder",
+    "pptx",
+    "slack-gif-creator",
+    "theme-factory",
+    "web-artifacts-builder",
+    "webapp-testing",
+    "xlsx",
+    "karpathy-guidelines",
+    "cavecrew",
+    "caveman-commit",
+    "caveman-explore",
+    "caveman-help",
+    "caveman-learn",
+    "caveman-review",
+    "lean-build",
+    "megacave",
+    "migration",
+    "safe-refactor",
+    "surgical-patch",
+    "ultracave",
+    "verify-and-stop",
+    "pohuy",
+    "ast-grep",
+    "coding-agent-sessions",
+    "data-scientist",
+    "frontend",
+    "git-master",
+    "init-deep",
+    "lsp-setup",
+    "programming",
+    "remove-ai-slops",
+    "review-work",
+    "ultimate-browsing",
+    "ulw-execute",
+    "ulw-plan",
+    "ulw-research",
+    "visual-qa",
+    "omo-codex-lsp",
+    "design-taste-frontend",
+    "graphify",
+    "defuddle",
+    "json-canvas",
+    "knap",
+    "obsidian-bases",
+    "obsidian-cli",
+    "obsidian-markdown",
+    "captions-overlay",
+    "changelog-video",
+    "cut-the-curve",
+    "motion-doctrine",
+    "oversized-cursor",
+    "seam-craft",
+    "embedded-captions",
+    "faceless-explainer",
+    "general-video",
+    "hyperframes",
+    "hyperframes-animation",
+    "hyperframes-audio",
+    "hyperframes-cli",
+    "hyperframes-core",
+    "hyperframes-creative",
+    "hyperframes-keyframes",
+    "hyperframes-registry",
+    "hyperframes-studio",
+    "media-use",
+    "motion-graphics",
+    "music-to-video",
+    "pr-to-video",
+    "remotion-to-hyperframes",
+    "slideshow",
+    "talking-head-recut",
+    "canvas-procedural-animation",
+    "character-animation-qa",
+    "character-rigging",
+    "d3-viz",
+    "ffmpeg",
+    "framer-motion",
+    "gsap-core",
+    "gsap-frameworks",
+    "gsap-performance",
+    "gsap-plugins",
+    "gsap-react",
+    "gsap-scrolltrigger",
+    "gsap-timeline",
+    "gsap-utils",
+    "hyperframes-media",
+    "manim-composer",
+    "manimce-best-practices",
+    "manimgl-best-practices",
+    "playwright-recording",
+    "pose-library-design",
+    "remotion",
+    "remotion-best-practices",
+    "svg-character-animation",
+    "synthetic-screen-recording",
+    "tailwind-design-system",
+    "threejs-animation",
+    "threejs-fundamentals",
+    "threejs-geometry",
+    "threejs-interaction",
+    "threejs-lighting",
+    "threejs-loaders",
+    "threejs-materials",
+    "threejs-postprocessing",
+    "threejs-shaders",
+    "threejs-textures",
+    "threejs-world-generation",
+    "vercel-composition-patterns",
+    "vercel-react-best-practices",
+    "video-edit",
+    "video-understand",
+    "visual-style",
+    "web-design-guidelines",
+    "website-to-video"
+  ],
+  "explicitExceptions": [
+    {
+      "name": "agterm",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "ai-doc-generator",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "allure-testops",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "analytics-sql",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "architecture-analyzer",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "artifact-publish",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "pgsme-coverage-matrix",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "skills-market-install",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "camunda-modeler-editor",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "clarify",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "dialectic",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "dp-sage",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "finedog-tma",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "generate-tests",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "gitlab-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "init-qa",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "jira",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "learn",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "mermaid",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "n8n-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "n8n-workflow-agent",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "planning-exec",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "planning-task",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "presentation-skill-pptx",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "repo-analysis",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "revdiff",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "review",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "sage-metrics-analyst",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "search-all",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "spec-create",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "spec-import",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "spec-review",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "sql-postgres-optimization",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tbank-performance-review",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tech-doc-editor",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tech-docs",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "three-amigo",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "time-messenger",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "time-to-jira",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tperf-report-analyzer",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "validate-tests",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "whiteboard",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "whiteboard-roadmap-creator",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "wixie-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    }
+  ],
+  "scopedSkills": [
+    {
+      "name": "brainstorming",
+      "primaryProfile": "local-browser-obsidian",
+      "variants": [
+        {
+          "name": "user-brainstorming",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        },
+        {
+          "name": "brainstorm",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        }
+      ]
+    },
+    {
+      "name": "using-superpowers",
+      "primaryProfile": "local-browser-obsidian",
+      "variants": [
+        {
+          "name": "user-using-superpowers",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        }
+      ]
+    },
+    {
+      "name": "pdf",
+      "primaryProfile": "local-browser-obsidian",
+      "variants": [
+        {
+          "name": "pdf-processing",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        }
+      ]
+    },
+    {
+      "name": "skill-creator",
+      "primaryProfile": "local-browser-obsidian",
+      "variants": [
+        {
+          "name": "create-skill",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        }
+      ]
+    },
+    {
+      "name": "caveman",
+      "primaryProfile": "local-browser-obsidian",
+      "variants": [
+        {
+          "name": "user-caveman",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        }
+      ]
+    },
+    {
+      "name": "browser",
+      "primaryProfile": "local-browser-obsidian",
+      "variants": [
+        {
+          "name": "agent-browser",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        }
+      ]
+    },
+    {
+      "name": "humanizer",
+      "primaryProfile": "local-browser-obsidian",
+      "variants": [
+        {
+          "name": "humanizer-ru",
+          "executionProfile": "user-approved-exception",
+          "importBatch": "user-supplied-skills-2026-10-20"
+        }
+      ]
+    }
+  ],
+  "originalExplicitExceptions": [
+    {
+      "name": "agent-browser",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "agterm",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "ai-doc-generator",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "allure-testops",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "analytics-sql",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "architecture-analyzer",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "artifact-publish",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "pgsme-coverage-matrix",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "skills-market-install",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "brainstorm",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "user-brainstorming",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "camunda-modeler-editor",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "user-caveman",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "clarify",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "create-skill",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "dialectic",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "dp-sage",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "finedog-tma",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "generate-tests",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "gitlab-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "humanizer-ru",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "init-qa",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "jira-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "jira",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "learn",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "mermaid",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "mermaid-diagrams",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "n8n-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "n8n-workflow-agent",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "pdf-processing",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "planning-exec",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "planning-task",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "presentation-skill-pptx",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "repo-analysis",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "revdiff",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "review",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "sage-metrics-analyst",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "search-all",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "spec-create",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "spec-import",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "spec-review",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "sql-postgres-optimization",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tbank-performance-review",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tech-doc-editor",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tech-docs",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "three-amigo",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "time-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "time-messenger",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "time-to-jira",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "tperf-report-analyzer",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "user-using-superpowers",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "validate-tests",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "whiteboard",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "whiteboard-roadmap-creator",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    },
+    {
+      "name": "wixie-cli",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "source": "user-supplied/skills",
+      "reason": "User explicitly authorized every supplied skill, including external integrations."
+    }
+  ],
+  "aliases": {
+    "user-brainstorming": "brainstorming",
+    "brainstorm": "brainstorming",
+    "user-using-superpowers": "using-superpowers",
+    "user-caveman": "caveman",
+    "grilling": "grill-me",
+    "diagnosing-bugs": "systematic-debugging",
+    "debugging": "systematic-debugging",
+    "investigate-first": "systematic-debugging",
+    "tdd": "test-driven-development",
+    "refactor": "safe-refactor",
+    "pdf-processing": "pdf",
+    "humanizer-ru": "humanizer",
+    "create-skill": "skill-creator",
+    "mermaid-diagrams": "mermaid",
+    "beautiful-mermaid": "mermaid",
+    "agent-browser": "browser",
+    "jira-cli": "jira",
+    "time-cli": "time-messenger",
+    "openmontage-hyperframes": "hyperframes",
+    "openmontage-hyperframes-animation": "hyperframes-animation",
+    "openmontage-hyperframes-cli": "hyperframes-cli",
+    "openmontage-hyperframes-core": "hyperframes-core",
+    "openmontage-hyperframes-creative": "hyperframes-creative",
+    "openmontage-hyperframes-registry": "hyperframes-registry",
+    "openmontage-media-use": "media-use",
+    "openmontage-motion-graphics": "motion-graphics",
+    "openmontage-music-to-video": "music-to-video",
+    "openmontage-remotion-to-hyperframes": "remotion-to-hyperframes"
+  }
+}

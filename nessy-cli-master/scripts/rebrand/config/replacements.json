@@ -1,0 +1,86 @@
+[
+  {
+    "from": "Qwen Code CLI",
+    "to": "Nessy CLI"
+  },
+  {
+    "from": "qwen-(?:code-)?",
+    "to": "nessy-(?:cli-)?"
+  },
+  {
+    "from": "qwen(?:-code)?",
+    "to": "nessy(?:-cli)?"
+  },
+  {
+    "from": "Qwen_Code",
+    "to": "Nessy_Cli"
+  },
+  {
+    "from": "qwen_code",
+    "to": "nessy_cli"
+  },
+  {
+    "from": "qwenCode",
+    "to": "nessyCli"
+  },
+  {
+    "from": "QWEN-CODE",
+    "to": "NESSY-CLI"
+  },
+  {
+    "from": "Qwen-code",
+    "to": "Nessy-cli"
+  },
+  {
+    "from": "@qwen-code\\/qwen-code-core",
+    "to": "@nestor\\/nessy-cli-core"
+  },
+  {
+    "from": "@qwen-code\\/qwen-code",
+    "to": "@nestor\\/nessy-cli"
+  },
+  {
+    "from": "@qwen-code\\/",
+    "to": "@nestor\\/nessy-cli-"
+  },
+  {
+    "from": "@qwen-code/qwen-code-core",
+    "to": "@nestor/nessy-cli-core"
+  },
+  {
+    "from": "@qwen-code/qwen-code",
+    "to": "@nestor/nessy-cli"
+  },
+  {
+    "from": "@qwen-code/",
+    "to": "@nestor/nessy-cli-"
+  },
+  {
+    "from": "Qwen Code",
+    "to": "Nessy CLI"
+  },
+  {
+    "from": "QwenCode",
+    "to": "NessyCli"
+  },
+  {
+    "from": "qwen-code",
+    "to": "nessy-cli"
+  },
+  {
+    "from": "QWEN_CODE",
+    "to": "NESSY_CLI"
+  },
+  {
+    "from": "QWEN",
+    "to": "NESSY"
+  },
+  {
+    "from": "Qwen",
+    "to": "Nessy"
+  },
+  {
+    "from": "qwen",
+    "to": "nessy"
+  }
+]

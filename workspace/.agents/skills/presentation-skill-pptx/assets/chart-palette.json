@@ -1,0 +1,170 @@
+{
+  "_comment": "Every design value a chart uses. Read by scripts/deckkit/html2pptx/chartgeom.py; nothing here may be duplicated in Python - the same rule as assets/typography.json. Colours are RRGGBB without '#', as in theme-colors.json.",
+
+  "_source": "Colour: the designers' palette update of 2026-09-25 (tmp_files/plots_new/designers_update), which supersedes the colour statements of the 2026-09-23 guide pages and example slides. Type and axes: the guide pages and the seven example slides of 2026-09-23. Hexes are the ones printed on the swatches; the screenshots are ICC-tagged and sample shifted, so no value here was read off a pixel.",
+
+  "master": {
+    "_comment": "The one colour order. First = bottom of a stack. Every stacked table below is a subsequence of this list - a smaller count drops colours, it never reorders them («Порядок цветов, но разные палитры»).",
+    "order": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "B5B1EF",
+              "C2DEFD", "A2C6F9", "EDEDED", "E1E1E1", "C4C4C4", "898989",
+              "6C6C6C", "333333"]
+  },
+
+  "stacked": {
+    "_comment": "Default series colours for bar charts: vertical bar, stacked and horizontal bar_h unless its count has an override below. Series 1 at the bottom of a stack, first in a group. Grouped bar and bar_h stop at the categorical table's 8 series. Keyed by series count. 'designers' rows are copied from the update's examples (6: 2.png, 8: 5.png, 12: 6.png; the 8-row is also slide 67 and «Работа с графиками» right); 'example' rows come from the 2026-09-23 example slides and agree with the master order; 'derived' rows fill the counts they did not draw and are to be confirmed - the rule used: up to 6, yellow, light yellow, then the greys E1E1E1, C4C4C4, 898989, 333333; from 7 to 12, yellow, light yellow, min(6, n-4) secondaries in master order, then the same greys; 13 adds EDEDED, 14 is the whole master order.",
+    "by_count": {
+      "1":  {"_status": "derived",   "colors": ["FFDD2D"]},
+      "2":  {"_status": "derived",   "colors": ["FFDD2D", "FFEE96"]},
+      "3":  {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "E1E1E1"]},
+      "4":  {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "E1E1E1", "C4C4C4"]},
+      "5":  {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "E1E1E1", "C4C4C4", "898989"]},
+      "6":  {"_status": "designers", "colors": ["FFDD2D", "FFEE96", "E1E1E1", "C4C4C4", "898989", "333333"]},
+      "7":  {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "E1E1E1", "C4C4C4"]},
+      "8":  {"_status": "designers", "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "B5B1EF", "E1E1E1", "C4C4C4"]},
+      "9":  {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "B5B1EF", "C2DEFD", "E1E1E1", "C4C4C4"]},
+      "10": {"_status": "example",   "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "C2DEFD", "A2C6F9", "E1E1E1", "C4C4C4", "898989", "333333"], "_source": "«Работа с графиками», left chart (legend Ряд1..Ряд10 bottom up) - a subsequence of the master order that skips the violets; drawn before the update, taken over the derived rule"},
+      "11": {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "B5B1EF", "C2DEFD", "A2C6F9", "E1E1E1", "C4C4C4", "898989"]},
+      "12": {"_status": "designers", "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "B5B1EF", "C2DEFD", "A2C6F9", "E1E1E1", "C4C4C4", "898989", "333333"]},
+      "13": {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "B5B1EF", "C2DEFD", "A2C6F9", "EDEDED", "E1E1E1", "C4C4C4", "898989", "333333"]},
+      "14": {"_status": "derived",   "colors": ["FFDD2D", "FFEE96", "B0E1E5", "D2F2F5", "D6D2FA", "B5B1EF", "C2DEFD", "A2C6F9", "EDEDED", "E1E1E1", "C4C4C4", "898989", "6C6C6C", "333333"]}
+    },
+    "legend_order": "reversed",
+    "_legend_order": "The legend lists the top segment first, so its first row is the LAST series (2.png, 5.png)."
+  },
+
+  "bar_h": {
+    "_comment": "P12 accepted: horizontal grouped bars with 2–4 series use the Figma yellow-to-grey order, regardless of axis-category count. One series and 5+ series fall back to stacked. Vertical bars and stacked keep their existing palettes; value mode still colours points by sign.",
+    "by_count": {
+      "2": {"_status": "accepted", "colors": ["FFDD2D", "E1E1E1"]},
+      "3": {"_status": "accepted", "colors": ["FFDD2D", "E1E1E1", "C4C4C4"]},
+      "4": {"_status": "accepted", "colors": ["FFDD2D", "E1E1E1", "C4C4C4", "898989"]}
+    }
+  },
+
+  "categorical": {
+    "_comment": "Doughnut slices clockwise from 12 o'clock, and line series (2.3.0: bars moved to the stacked table). NOT the stacked order - yellow first, then greys dark to light (3.png: doughnut of 4, grouped bars of 3; 4.png: doughnut of 8). Derived rows: up to 4, yellow then 898989, E1E1E1, EDEDED; 5 to 7, the 8-row with secondaries dropped from its end.",
+    "by_count": {
+      "1": {"_status": "derived",   "colors": ["FFDD2D"]},
+      "2": {"_status": "derived",   "colors": ["FFDD2D", "898989"]},
+      "3": {"_status": "designers", "colors": ["FFDD2D", "898989", "E1E1E1"]},
+      "4": {"_status": "designers", "colors": ["FFDD2D", "898989", "E1E1E1", "EDEDED"]},
+      "5": {"_status": "derived",   "colors": ["FFDD2D", "C4C4C4", "E1E1E1", "B0E1E5", "FFEE96"]},
+      "6": {"_status": "derived",   "colors": ["FFDD2D", "C4C4C4", "E1E1E1", "B0E1E5", "D2F2F5", "FFEE96"]},
+      "7": {"_status": "derived",   "colors": ["FFDD2D", "C4C4C4", "E1E1E1", "B0E1E5", "D2F2F5", "B5B1EF", "FFEE96"]},
+      "8": {"_status": "designers", "colors": ["FFDD2D", "C4C4C4", "E1E1E1", "B0E1E5", "D2F2F5", "B5B1EF", "D6D2FA", "FFEE96"]}
+    },
+    "_open": "4.png's legend reads FFDD2D, FFEE96, C4C4C4, E1E1E1, ... while its ring reads FFDD2D, C4C4C4, E1E1E1, ..., FFEE96. The ring is taken; the question is with the designers."
+  },
+
+  "line": {
+    "_comment": "No line-specific order was given. The update's only line example (Frame 2136142387, slide 64's chart recoloured) uses C4C4C4, FFDD2D, B0E1E5, E1E1E1 across four series - a secondary colour at a count where the categorical table stays in yellow and greys. Until the designers say otherwise lines use the categorical table.",
+    "uses": "categorical",
+    "stroke_pt": 4,
+    "_stroke_pt": "Series line weight in PowerPoint points (2.3.0, the designers' review: 4 pt = 5.33 px of the 1920 canvas, set outright). Until 2.3.0 it was the grid weight x 3 = 3.75 px = 2.8 pt, and the yellow line was hard to see.",
+    "marker_px": 14,
+    "halo_px": 36,
+    "halo_alpha": 0.3,
+    "_marker": "The linear-graphs guide (tmp_files/plots_new/linear/7. Linear graphs.png): a dot in the line's colour inside a halo of the same colour at 30 % opacity, the halo reaching 3X past the dot, X the line weight. Measured on its marker sample (4 px line): dot 14 px, halo 35 px; on our 3.75 px line that is 14 and 36 px - 10.5 and 27 pt, rounded up to the whole points c:marker/c:size takes (11 and 27). A dot goes on every labelled point and only there, as on the guide's charts 1 and 2."
+  },
+
+  "features": {
+    "_comment": "Switches for what the code can draw but the skill does not offer. line_fill: a line chart's \"fill\" (areas), hidden in 2.3.0 by the designers' review - the code stays; true lets the spec take it again.",
+    "line_fill": false,
+    "native_center": true,
+    "_native_center": "2.3.0: a doughnut's centre figure is the chart title, linked to a cell of the embedded workbook, so an edit in Excel changes it with the slices. false puts it back into the layout's HTML box (chart-center), which Excel cannot reach."
+  },
+
+  "gradient": {
+    "_comment": "2.4.0, the designers' charts_new: the first yellow is a gradient on columns and on the doughnut, nowhere else (a line, a legend swatch and value mode stay solid). Any fill of 'color' on those charts takes it. Stops are [percent, RRGGBB]. 'bar' runs along the column from its end to the axis (charts_new slide 1, a:lin 90 degrees on upright columns); 'doughnut' is slide 3's slice, at 'angle' degrees clockwise from left to right, over the slice's box.",
+    "color": "FFDD2D",
+    "bar": {"stops": [[16, "FFDD2C"], [100, "FFCB2C"]]},
+    "doughnut": {"stops": [[0, "FFDD2C"], [88, "FFCB2C"]], "angle": 45}
+  },
+  "doughnut": {
+    "max_categories": 8,
+    "_max_categories": "«Более 8 категорий не может быть, круговая должна превращаться в столбчатую» - past 8 the designers' replacement is a single 100% stacked column (6.png). The «Прочие» merge of the guide pages is withdrawn.",
+    "hole_percent": 60,
+    "_hole_percent": "Slide 68, the only full-size production doughnut: hole 419-420 px in a 701 px ring = 0.598. The palette update's thumbnails (3.png, 4.png) measure 0.50, but that update is about colour and its doughnuts are illustrations; the production frame is taken. With the designers. python-pptx writes 50 by default, so this is an attribute edit on c:holeSize.",
+    "first_slice_angle": 0
+  },
+
+  "value": {
+    "_comment": "Positive/negative and traffic-light charts. Exempt from the must-carry-yellow check.",
+    "positive": "DAECBD",
+    "negative": "FFBFA3"
+  },
+
+  "palette_mode": {
+    "_comment": "Named colour mode (D14/Q13, author: add in 2.0.0). 2.0.0 ships only 'value' (pos/neg); a future traffic-light mode adds named stops here. value mode is exempt from the must-carry-yellow check and fills = value.positive/negative.",
+    "value": {
+      "positive": "DAECBD",
+      "negative": "FFBFA3"
+    }
+  },
+
+  "must_carry": "FFDD2D",
+
+  "text": {
+    "_comment": "Label colour on a fill: dark_fills take light text.",
+    "on_light": "333333",
+    "on_dark": "FFFFFF",
+    "dark_fills": ["333333", "6C6C6C", "898989"]
+  },
+
+  "typography": {
+    "_comment": "T-Sans throughout. weight: 400 Regular, 500 Medium, 700 Bold. Sizes in px at 1920x1080. Where the example slides wobble the value used is marked.",
+    "chart_title":     {"size": 48, "weight": 500, "line_height": "120%", "_source": "48 on the wide plates (66: 1800, 67/69: 1192)"},
+    "chart_title_compact": {"size": 40, "weight": 500, "line_height": "120%", "_source": "40 on the half-width plates (65 and «Работа с графиками»: 888) - a rule by plate size, not wobble"},
+    "chart_text":      {"size_pt": 22, "_source": "2.3.0, the designers' review: axis names, value labels and the legend are one size, on a full-width chart and in chart-two alike; 21 pt at first, 22 pt after the author saw it (2026-10-01). In PowerPoint points: 22 pt = 29.33 px, which no px value says exactly. Smaller only where a chart does not fit, and then the whole chart at once (chart_text_dense); never larger. The roles below carry weight and colour, and take their size from here (chartgeom.Palette); base.css .legend-label mirrors it"},
+    "chart_text_dense":{"size_pt": 16.5, "_source": "2.5.0 P08 gate: 22 pt on ordinary slides, 16.5 pt (22 canvas px) on dense values or a long legend; all charts and legends on that slide step together, with one warning per slide"},
+    "axis_tick":       {"weight": 400, "color": "333333", "_source": "guide: one size for both axes"},
+    "axis_tick_dense": {"weight": 400, "color": "333333"},
+    "data_label":      {"weight": 500, "color": "333333"},
+    "data_label_dense": {"weight": 500, "color": "333333"},
+    "data_label_dense_threshold": 10,
+    "_data_label_dense_threshold": "Series count (a doughnut: slice count) from which a chart is drawn dense from the start - every text at chart_text_dense, the legend compact, in a column. 10 = the reference «Работа с графиками» chart.",
+    "legend_row_max": 4,
+    "_legend_row_max": "Most entries a line/bar legend keeps in the head row; past it the legend is the right column, as a stack's is. Eight ran 680 px off the slide (slides 46/47/66/67 of v2.1.0). A row that still does not fit at chart_text makes the chart dense (autofit).",
+    "legend":          {"weight": 400, "color": "333333"},
+    "legend_dense":    {"weight": 400, "color": "333333"},
+    "doughnut_percent":{"size": 53.333333333333336, "weight": 700, "_source": "P10 accepted: one doughnut per slide, 40 pt Bold; no fit fallback"},
+    "doughnut_percent_multiple":{"size": 37.333333333333336, "weight": 500, "_source": "P10 accepted: two doughnuts per slide, 28 pt Medium; no fit fallback"},
+    "doughnut_center": {"size": 72, "weight": 700},
+    "doughnut_center_multiple": {"size": 58.666666666666664, "weight": 700, "_source": "P10 center gate B, variant 44 pt accepted; single-ring center remains 54 pt"},
+    "doughnut_caption":{"size": 32, "weight": 400}
+  },
+
+  "axes": {
+    "grid_color": "333333",
+    "grid_alpha": 0.10,
+    "baseline_alpha": 1.0,
+    "grid_weight_px": 1.25,
+    "_grid_weight_px": "The example slides (1.25 at 28 px ticks). The guide's formula, 0.055 x tick size, gives 1.54; the update's line frame is slide 64 scaled and keeps 1.25. Examples taken.",
+    "from_zero": true,
+    "bar_gap_px": 16,
+    "_bar_gap_px": "2.3.0, the designers' review: one gap between columns (or clusters of a grouped bar) on every column chart - bar, stacked, bar_h - in canvas px, whatever the frame; the columns take the rest of the band, so a wider frame gives wider columns. 16 is the smallest gap the 2.2.0 gate showed between vertical columns (8 single bars, 8 stacked columns: 16 px); 2.2.0 had per-variant c:gapWidth percentages (stacked 20, grouped 100, single 14, bar_h 6), i.e. 2 to 100 px. The writer turns it into c:gapWidth per chart (chartgeom.gap_width); never more than half a band.",
+    "cluster_gap_width": 80,
+    "_cluster_gap_width": "2.4.0, the designers' charts_new slide 1: between the clusters of a grouped bar or bar_h, c:gapWidth 80 - 80 % of one bar, about 42 px at their size - so the groups read apart while the bars of one group nearly touch (overlap). bar_gap_px stays for one column per category (a single series, a stack).",
+    "overlap": {"bar": -5, "bar_h": -5},
+    "_overlap": "c:overlap, negative = a gap between bars of one cluster as a percentage of the bar width. Slide 69: 5 px between 90 px bars = -5.6. Inside a cluster only; bar_gap_px is the gap between clusters.",
+    "tick_label_gap": 47,
+    "_tick_label_gap": "Right edge of the value-axis labels to the plot's left edge, slide 64 (ink 121-134, plot from 181). PowerPoint places native tick labels itself, so in the PPTX this is only the reserve left for them; the preview draws them at exactly this gap. Calibrated in stage 4.",
+    "category_label_gap": 32,
+    "_category_label_gap": "Baseline to the top of the category label's text box, slide 64 (baseline 876, ink top 916 at 28 px, less the face's ascender-over-cap). Same caveat as tick_label_gap.",
+    "category_label_spacing": 12,
+    "_category_label_spacing": "Least room between the names of neighbouring categories on a column or line chart; a name wraps at spaces to its column less this. Not from a design frame: without it «Q1 24» filled its 64 px column and printed as «Q1 24Q2 24», while PowerPoint wrapped the same names to «Q1 / 24» (v2.1.0 stress test, slide 76). Taken equal to value_label_gap.",
+    "value_label_gap": 12,
+    "bar_h_name_share": 0.43,
+    "_bar_h_name_share": "Widest category name a bar_h chart may have, as a share of the chart's width. Not a design value: PowerPoint caps the room it gives the names itself and cuts a longer one to «Контекстная реклама в поисковых…», whatever the plot area leaves (v2.2.0 stress test, slide 61: on a 1032 px chart names of 444 px and less printed whole, 473 px and more were cut). Measured on one width only - taken as a share, the least that printed.",
+    "labels_inside": ["bar_single", "bar_h"],
+    "_labels_inside": "Where a column's value label sits: inside the bar at its far end for one series (slide 65, both charts), above the bar for grouped bars (slide 69). A bar too short for its label gets it outside.",
+    "separator": {"color": "C4C4C4", "dash": true},
+    "_separator": "The dashed rule between year groups on a two-level category axis (slide 66). Open: slide 66 also keeps a baseline under its stacked columns, 67 and «Работа с графиками» do not - no baseline is taken for stacked.",
+    "_value_label_gap": "Bar end to the edge of its value label's ink: slide 69, 12-13 px above grouped bars. Used for horizontal bars too, which no example shows."
+  },
+
+  "bar": {
+    "corner_radius_ratio": 0.15,
+    "_corner_radius_ratio": "Recorded, NOT applied: an OOXML chart has no radius property for a series or a data point (c:ser/c:dPt carry only c:spPr). The guide says 0.15 of the short side on the outer edge; the update's stacked columns show about 0.045 of the width on the top segment only; the example slides round nothing. With the designers."
+  }
+}

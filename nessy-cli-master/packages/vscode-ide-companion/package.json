@@ -1,0 +1,287 @@
+{
+  "name": "nessy-cli-vscode-ide-companion",
+  "displayName": "Nessy CLI Companion",
+  "description": "Enable Nessy CLI with direct access to your VS Code workspace.",
+  "version": "0.13.17-beta.1",
+  "publisher": "nessylm",
+  "icon": "assets/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.tcsbank.ru/nestor/nessy-cli.git",
+    "directory": "packages/vscode-ide-companion"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "extensionKind": [
+    "ui"
+  ],
+  "license": "LICENSE",
+  "preview": true,
+  "categories": [
+    "AI"
+  ],
+  "keywords": [
+    "nessy",
+    "nessy cli",
+    "nessy",
+    "nessy cli",
+    "cli",
+    "ide integration",
+    "ide companion"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onView:nessy-cli.chatView.sidebar",
+    "onCommand:nessy-cli.openChat",
+    "onCommand:nessy-cli.focusChat",
+    "onCommand:nessy-cli.newConversation",
+    "onCommand:nessy-cli.showLogs"
+  ],
+  "contributes": {
+    "jsonValidation": [
+      {
+        "fileMatch": "**/.nessy/settings.json",
+        "url": "./schemas/settings.schema.json"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "nessy-cli-sidebar",
+          "title": "Nessy CLI",
+          "icon": "assets/sidebar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "nessy-cli-sidebar": [
+        {
+          "type": "webview",
+          "id": "nessy-cli.chatView.sidebar",
+          "name": "Nessy CLI",
+          "icon": "assets/sidebar-icon.svg"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "id": "nessy-diff-editable"
+      }
+    ],
+    "commands": [
+      {
+        "command": "nessy-cli.diff.accept",
+        "title": "Nessy CLI: Accept Current Diff",
+        "icon": "$(check)"
+      },
+      {
+        "command": "nessy-cli.diff.cancel",
+        "title": "Nessy CLI: Close Diff Editor",
+        "icon": "$(close)"
+      },
+      {
+        "command": "nessy-cli.runNessyCLI",
+        "title": "Nessy CLI: Run"
+      },
+      {
+        "command": "nessy-cli.showNotices",
+        "title": "Nessy CLI: View Third-Party Notices"
+      },
+      {
+        "command": "nessy-cli.openChat",
+        "title": "Nessy CLI: Open",
+        "icon": "./assets/icon.png"
+      },
+      {
+        "command": "nessy-cli.auth",
+        "title": "Nessy CLI: Auth"
+      },
+      {
+        "command": "nessy-cli.focusChat",
+        "title": "Nessy CLI: Focus Chat View"
+      },
+      {
+        "command": "nessy-cli.newConversation",
+        "title": "Nessy CLI: New Conversation"
+      },
+      {
+        "command": "nessy-cli.showLogs",
+        "title": "Nessy CLI: Show Logs"
+      },
+      {
+        "command": "nessy-cli.copyMessage",
+        "title": "%nessy-cli.copyMessage.title%"
+      },
+      {
+        "command": "nessy-cli.copyAllMessages",
+        "title": "%nessy-cli.copyAllMessages.title%"
+      },
+      {
+        "command": "nessy-cli.copyLastReply",
+        "title": "%nessy-cli.copyLastReply.title%"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "nessy-cli.diff.accept",
+          "when": "nessy-cli.diff.isVisible"
+        },
+        {
+          "command": "nessy-cli.diff.cancel",
+          "when": "nessy-cli.diff.isVisible"
+        },
+        {
+          "command": "nessy-cli.auth"
+        },
+        {
+          "command": "nessy-cli.copyMessage",
+          "when": "false"
+        },
+        {
+          "command": "nessy-cli.copyAllMessages",
+          "when": "false"
+        },
+        {
+          "command": "nessy-cli.copyLastReply",
+          "when": "false"
+        }
+      ],
+      "webview/context": [
+        {
+          "command": "nessy-cli.copyMessage",
+          "when": "webviewSection == 'chat-messages'",
+          "group": "9_cutcopypaste@1"
+        },
+        {
+          "command": "nessy-cli.copyAllMessages",
+          "when": "webviewSection == 'chat-messages'",
+          "group": "9_cutcopypaste@2"
+        },
+        {
+          "command": "nessy-cli.copyLastReply",
+          "when": "webviewSection == 'chat-messages'",
+          "group": "9_cutcopypaste@3"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "nessy-cli.diff.accept",
+          "when": "nessy-cli.diff.isVisible",
+          "group": "navigation"
+        },
+        {
+          "command": "nessy-cli.diff.cancel",
+          "when": "nessy-cli.diff.isVisible",
+          "group": "navigation"
+        },
+        {
+          "command": "nessy-cli.openChat",
+          "group": "navigation"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Nessy CLI",
+      "properties": {
+        "nessy-cli.dotIndicator": {
+          "order": 0,
+          "type": "boolean",
+          "default": true,
+          "description": "Show a colored dot on the tab icon when a task completes (orange) or needs your attention (blue) while the tab is hidden."
+        },
+        "nessy-cli.notifications": {
+          "order": 1,
+          "type": "boolean",
+          "default": true,
+          "description": "Show notifications with sound when a task completes (at least 20 seconds) or needs your attention, while you are not actively viewing the Nessy CLI panel."
+        },
+        "nessy-cli.autoUpdate": {
+          "order": 2,
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically install Nessy CLI Companion updates from the internal storage. When disabled, the extension asks for confirmation before updating."
+        },
+        "nessy-cli.betaUpdates": {
+          "order": 3,
+          "type": "boolean",
+          "default": false,
+          "description": "Receive beta versions when checking for Nessy CLI Companion updates."
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "nessy-cli.diff.accept",
+        "key": "ctrl+s",
+        "when": "nessy-cli.diff.isVisible"
+      },
+      {
+        "command": "nessy-cli.diff.accept",
+        "key": "cmd+s",
+        "when": "nessy-cli.diff.isVisible"
+      },
+      {
+        "command": "nessy-cli.focusChat",
+        "key": "ctrl+shift+l",
+        "mac": "cmd+shift+l"
+      }
+    ]
+  },
+  "main": "./dist/extension.cjs",
+  "type": "module",
+  "scripts": {
+    "prepackage": "node ./scripts/prepackage.js",
+    "build": "npm run build:dev",
+    "build:dev": "npm run check-types && npm run lint && node esbuild.js",
+    "build:prod": "node esbuild.js --production",
+    "generate:notices": "node ./scripts/generate-notices.js",
+    "prepare": "npm run generate:notices",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "watch": "npm-run-all2 -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "vsce package --no-dependencies",
+    "test": "vitest run",
+    "test:ci": "vitest run --coverage",
+    "validate:notices": "node ./scripts/validate-notices.js"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "20.x",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "@types/semver": "^7.7.1",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "@vscode/vsce": "^3.9.2",
+    "autoprefixer": "^10.4.22",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "npm-run-all2": "^8.0.2",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.18",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@agentclientprotocol/sdk": "^0.21.0",
+    "@nestor/nessy-cli-sdk": "*",
+    "@nestor/nessy-cli-webui": "*",
+    "@modelcontextprotocol/sdk": "^1.25.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.1.0",
+    "express": "^5.1.0",
+    "markdown-it": "^14.1.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "semver": "^7.7.2",
+    "zod": "^3.25.76"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://example.invalid/schemas/codex-marketplace.json",
+  "name": "sample-codex-catalog",
+  "description": "Authored synthetic Codex marketplace catalog snapshot pinned for fixture parsing tests.",
+  "plugins": [
+    {
+      "id": "sample-plugin",
+      "name": "sample-plugin",
+      "displayName": "Sample Local Plugin",
+      "description": "Authored synthetic plugin entry sourced from a relative local path inside this fixture.",
+      "source": {
+        "type": "local",
+        "path": "./local-plugins/sample-plugin"
+      }
+    }
+  ]
+}

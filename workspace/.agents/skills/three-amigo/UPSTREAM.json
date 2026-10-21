@@ -1,0 +1,22 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "three-amigo/SKILL.md",
+  "upstreamName": "three-amigo",
+  "upstreamFrontmatter": {
+    "name": "three-amigo",
+    "description": "Use this skill when you need to analyze a Jira task for Three Amigos meeting preparation.\n",
+    "tags": [
+      "workflow",
+      "stage-verify"
+    ]
+  },
+  "upstreamSkillSha256": "3caf2655b81fdb4f0219d71c555391d6b7e5c48b9f0616ae83fe51de2c48cd39",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "caveman/SKILL.md",
+  "upstreamName": "caveman",
+  "upstreamFrontmatter": {
+    "name": "caveman",
+    "description": "Ultra-compressed communication mode. Cuts token usage ~75% by speaking like caveman while keeping full technical accuracy. Supports intensity levels: lite, full (default), ultra, wenyan-lite, wenyan-full, wenyan-ultra. Use when user says \"caveman mode\", \"talk like caveman\", \"use caveman\", \"less tokens\", \"be brief\", or invokes /caveman. Also auto-triggers when token efficiency is requested."
+  },
+  "upstreamSkillSha256": "f9c83a2b20fc3b3503af9d1ae1cf2098c9f8c3d326c203c236b160ebe81ac8f0",
+  "adaptations": [
+    "Normalized/namespaced skill name: caveman -> user-caveman",
+    "Registered as an explicit user-approved exception to the local-only base profile."
+  ],
+  "packageDependencies": []
+}

@@ -1,0 +1,10 @@
+{
+  "interface": {
+    "display_name": "Настройка Husky и lint-staged для форматирования, проверки типов и тестов перед коммитом.",
+    "short_description": "Настройка Husky и lint-staged для форматирования, проверки типо…",
+    "default_prompt": "Используй $setup-pre-commit. Примени $setup-pre-commit к задаче и текущему репозиторию. Цель: Настройка Husky и lint-staged для форматирования, проверки типов и тестов перед коммитом."
+  },
+  "policy": {
+    "allow_implicit_invocation": false
+  }
+}

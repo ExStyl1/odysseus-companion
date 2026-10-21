@@ -1,0 +1,23 @@
+---
+# Fastlane match template for Developer ID signing.
+# Keep app_identifiers aligned with package.json build.appId.
+apple_developer_portal_teams:
+  - team: ru.tfinance
+    match_configs:
+      - type: developer_id
+        git_branch: 'ru.tfinance/distribution'
+        platform: 'macos'
+        app_identifiers:
+          - ru.tfinance.nessy-desktop.NessyDesktop
+
+  # iOS lives in a different Apple account than the desktop (reviewer
+  # instruction 2026-08-12: ph.princess.frog-2, the shared internal iOS
+  # account). WIP: the adhoc profile can only issue after
+  # apple-portal-services MR !867 merges (registers this bundle id) and at
+  # least one device is registered in CodeSign under THIS account.
+  - team: ph.princess.frog-2
+    match_configs:
+      - type: adhoc
+        git_branch: 'ph.princess.frog-2/distribution'
+        app_identifiers:
+          - ph.princess.frog-2.nessy-desktop.NessyMobile

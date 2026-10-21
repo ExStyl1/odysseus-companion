@@ -1,0 +1,25 @@
+{
+  "manifest_version": "0.3",
+  "name": "mcpb-node",
+  "display_name": "MCPB Node",
+  "version": "1.0.0",
+  "description": "Node MCPB fixture",
+  "author": { "name": "Nessy Tests" },
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "REGION": "${user_config.region}",
+        "API_KEY": "${user_config.api_key}"
+      }
+    }
+  },
+  "user_config": {
+    "region": { "type": "string", "required": true, "default": "eu" },
+    "api_key": { "type": "string", "sensitive": true, "required": true }
+  },
+  "compatibility": { "platforms": ["darwin", "win32", "linux"] }
+}

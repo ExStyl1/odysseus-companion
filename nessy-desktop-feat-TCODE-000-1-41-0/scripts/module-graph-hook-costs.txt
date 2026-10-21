@@ -1,0 +1,178 @@
+# check-module-graph-hooks COST LEDGER — what each member's module graph was
+# MEASURED to cost, beside the budget it declares (P6.1000, 2026-09-10).
+#
+# ## Why this file exists
+#
+# The guard beside it answers one question — does this hook declare a budget
+# from the shared module — and its own docblock says what that CANNOT tell you:
+# whether the budget is big enough. A member on `MODULE_GRAPH_HOOK_BUDGET_MS`
+# whose graph outgrows 600 000 ms passes silently until the day it is a red, and
+# nothing in the tree recorded what any member's graph actually costs. The
+# readings existed; they were scattered across four lane reports and two
+# docblocks, so the second lane to need one re-spent it.
+#
+# ## The format — one line per READING, not per member
+#
+#   <file> <ms> <date> <load> [<cpu> <instrument>]
+#
+# A lane APPENDS its reading; it never edits somebody else's. The guard takes
+# the LARGEST recorded reading per file and prints it beside that file's budget
+# with the ratio, and WARNS when the ratio passes 0.5. The warning does not
+# change the exit code: an outgrown budget is a row to schedule, not a red to
+# hand the next lane that runs `lint:chain`.
+#
+# `<load>` is the 1-minute load average when the reading was taken, or `-` when
+# the lane that took it did not record one. `-` is deliberate: an invented load
+# is worse than a missing one, and this tree has measured the same bytes 22x
+# apart at loads that ran BACKWARDS against the wall time.
+#
+# ## D1.100 — `<cpu>` and `<instrument>`, the two fields the load could not be
+#
+# `<cpu>` is `(user + sys) / real` for that run — one `/usr/bin/time -p` — and it
+# is the field the LOAD average cannot substitute for. The reading eight lines
+# below records `plugin-info-diagnostics.test.tsx` at 354 410 ms at load 7.59;
+# W11-r ran the SAME BYTES end to end in 1 089 ms at load 8.84. A 325x spread
+# with the load essentially unchanged, and what moved was the cpu share: about
+# 0.02 then, 1.4 now. This family's wall time is I/O WAIT and a 1-minute load
+# average does not report I/O wait. Under ~0.02 means STARVED; over ~1 means the
+# machine was working, and the two readings stop looking like a contradiction.
+# It may exceed 1 — many cores.
+#
+# `<instrument>` is `cold-total` or `zero-case`, and without it the two kinds of
+# reading this header already admits were written as the same bare `<ms>`. They
+# are not the same quantity: on that same file the full arms cost 3.4x the
+# zero-case arms on identical bytes, because the heavy graph is loaded by an
+# `await import(...)` INSIDE `beforeAll` and a run with no case selected SKIPS
+# the hook. So a zero-case number is a LOWER bound on the file and a total is an
+# upper one — and the guard's `largest wins` rule cannot tell which two numbers
+# it just compared.
+#
+# BOTH ARE OPTIONAL, and that is not a softening. The ten readings below predate
+# them and a cpu share is not recoverable from a number somebody wrote down;
+# making the fields mandatory would mean inventing ten values or deleting ten
+# measurements. A line is four fields or six, never five, and a field that IS
+# present and malformed refuses exactly like the four before it.
+#
+# ## What belongs here, and what does NOT
+#
+# A ZERO-CASE control (`bun test <file> -t '<a name nothing matches>'`, which
+# prices the graph with the tests subtracted) or a COLD run total. Never a warm
+# reading. The same file measured 2.19 s straight after a typecheck had warmed
+# the page cache and 354.41 s cold — 162x on identical bytes (W7-ag) — and
+# P6.997 met the same trap at 100x: 2.5 s under `bun test` taken straight after
+# two cold runs of 222.8 s and 252.2 s. A warm number recorded here would read
+# as evidence and would size the next budget 240x too small.
+
+packages/pi-agent-server/src/__tests__/index-import-guard.test.ts 252200 2026-09-10 11.40
+packages/pi-agent-server/src/__tests__/index-import-guard.test.ts 222800 2026-09-10 7.67
+packages/shared/src/__tests__/unified-network-interceptor.sse.test.ts 15160 2026-09-10 -
+packages/server-core/src/sessions/__tests__/create-session-managed-mode.test.ts 58710 2026-09-10 -
+apps/electron/src/renderer/playground/__tests__/marketplace-registry.test.ts 15470 2026-09-10 -
+packages/server-core/src/sessions/__tests__/runtime-switch-session.test.ts 161900 2026-09-10 7.78
+packages/server-core/src/sessions/__tests__/claude-cron-port-binding.test.ts 82190 2026-09-10 10.30
+apps/electron/src/renderer/pages/__tests__/plugin-info-diagnostics.test.tsx 354410 2026-09-07 7.59
+# P6.1008. The two below are `scripts/cdp/harness.test.ts`, and P6.1025 taught the
+# guard to print them under `OUTSIDE the scan` rather than under the STALE-line
+# branch they shared until 2026-09-10. Both facts that put them there still hold:
+# the file DECLARES `setDefaultTimeout(MODULE_GRAPH_CASE_BUDGET_MS)`, which the
+# scanner says in its own words it "does not read", and it lives under `scripts/`
+# which the scanner does not walk at all — so widening the walk would not have
+# moved it either (measured: the file has no before-hook of any kind). The
+# readings are W10-i's, 2026-09-10 — a cold run TOTAL (19 pass / 1 fail, the
+# `case wiring` timeout) and the zero-case control beside it (`real 56.86 /
+# user 0.60 / sys 0.19`, ~1.4 % cpu). The total's load was reported as a 15-16
+# RANGE rather than a reading, so it is written `-`.
+scripts/cdp/harness.test.ts 71850 2026-09-10 -
+scripts/cdp/harness.test.ts 55530 2026-09-10 15.67
+
+# ==========================================================================
+# P6.1001 / P6.1002, 2026-09-10 (W11-r) — SIX READINGS DELIBERATELY NOT ADDED
+# AS DATA LINES, and the reason is the finding.
+#
+# The two rows asked for a fresh zero-case control on a COLD tree: one for
+# `plugin-info-diagnostics.test.tsx` (which sits at 0.59 of its budget on the
+# 2026-09-07 reading the budget was itself sized from) and one per cluster the
+# baseline preamble names. Every reading this rig could give today is WARM, and
+# the header above forbids a warm line for a measured reason. So the numbers are
+# recorded here as prose, where the next lane looks, and the guard's join is left
+# alone.
+#
+# ## What was measured (each `/usr/bin/time -p`, `real / user / sys`)
+#
+#   zero-case `bun test ./<file> -t 'zzz-nothing-matches-zzz'`, load 7.93-8.58:
+#     unified-network-interceptor.sse.test.ts   0.36 / 0.39 / 0.12   (ledger: 15 160 ms)
+#     create-session-managed-mode.test.ts       0.84 / 0.85 / 0.37   (ledger: 58 710 ms)
+#     marketplace-registry.test.ts              0.39 / 0.38 / 0.13   (ledger: 15 470 ms)
+#     plugin-info-diagnostics.test.tsx          0.46 / 0.43 / 0.13   (W7-ag: 53.87 s)
+#
+#   paired alternating arms on `plugin-info-diagnostics.test.tsx`, load 8.74-8.84,
+#   6 pass / 0 fail / 1 file on both full arms:
+#     ZERO-CASE A 0.36 / 0.38 / 0.10      FULL A 1.11 / 1.04 / 0.62
+#     ZERO-CASE B 0.31 / 0.36 / 0.10      FULL B 1.21 / 1.14 / 0.52
+#
+# ## Finding 1 — the LOAD field cannot see what separates these readings
+#
+# The file's ledger line is 354 410 ms at load 7.59. Today the SAME bytes run
+# end to end in 1 089 ms at load 8.84 — a 325x spread with the load average
+# essentially unchanged. What did change is the CPU SHARE: `(user+sys)/real` was
+# about 0.02 on the 2026-09-07 runs (every one under 2 % cpu) and is 1.4 today.
+# This family's wall time is I/O WAIT, and a 1-minute load average does not
+# report I/O wait — AGENTS.md says so in general and this is the sharpest
+# instance measured. The fourth field of this file is therefore the wrong
+# instrument for the question it was added to answer; a cpu-share field would
+# separate a starved reading from a fast one and the load field cannot.
+#
+# ## Finding 2 — a zero-case control does NOT price a hook's DYNAMIC import
+#
+# The baseline file beside this one says a zero-case control is "an UPPER bound
+# on the hook's own dynamic import". For this shape it is not: the heavy graph is
+# loaded by `await import(...)` INSIDE `beforeAll`, and a run with no case
+# selected skips the hook — bun's own message says `skipping 6 tests`. So the
+# control prices the STATIC top-level graph only, which is a LOWER bound on the
+# file. Measured above: the full arms cost 3.4x the zero-case arms on identical
+# bytes. Three of the four members probed here load their subject dynamically in
+# the hook (`unified-network-interceptor.ts`, `../registry/marketplace`,
+# `PluginInfoPage`); `create-session-managed-mode.test.ts` is the exception whose
+# static `./test-session-manager.ts` does reach the SessionManager graph.
+#
+# This does not make any budget wrong — every cluster was sized far UP from its
+# control, and a lower bound only makes that safer — but it changes what the next
+# lane should believe the instrument measured.
+#
+# ## Finding 3 — the 0.59 ratio is a rig-state reading, not graph growth
+#
+# `MODULE_GRAPH_HOOK_BUDGET_MS` is NOT re-sized. The reading it is sized from and
+# the reading it is warned about are the same 354.41 s, and today the same file
+# totals 1.09 s. The head the constant carries is margin against the starvation
+# regime, which is real (it produced 354.41 s here and 127.25 s at a HIGHER load)
+# and is simply not present tonight. Sizing UP would buy nothing and would cost
+# the honesty of the ceiling — the baseline's own rule that a hung hook has to be
+# heard about.
+# ==========================================================================
+apps/electron/src/renderer/playground/__tests__/registry-render.test.ts 200490 2026-09-23 9.09
+packages/shared/src/agent/__tests__/bash-validator-argv-inspectors.test.ts 95540 2026-10-09 6.47 0.02 zero-case
+# TFP1 P6.346 (830683104, 2026-10-10) — SILENT-reaped case fired bun 5000ms default in the 48-file directory chunk (613 tests / 25.43 s), zero assertion failures, passes alone in ~0.2 s; per-case MODULE_GRAPH_CASE_BUDGET_MS applied to the four real-child cases
+packages/server-core/src/pi-harness/process-supervisor.test.ts 5002 2026-10-10 -
+# UB12.31 (2026-10-16, L-GATE2) — the three child-bun members UB12.26 exposed. A
+# zero-case control skips their `beforeAll`, so each is a WHOLE-FILE total
+# (`/usr/bin/time -p bun test ./<file>` under bun-test-lock) with a fresh
+# BUN_RUNTIME_TRANSPILER_CACHE_PATH directory the child inherits, so the
+# transpile was cold; the OS page cache cannot be dropped without root. cpu
+# 0.07-0.10 is the family's I/O signature, not a warm run's (~1.4, P6.1001).
+packages/shared/src/sources/__tests__/api-tools-catch-path-scrub.test.ts 16960 2026-10-16 7.95 0.10 cold-total
+packages/shared/src/sources/__tests__/api-tools-debug-redaction.test.ts 19020 2026-10-16 8.20 0.09 cold-total
+packages/shared/src/sources/__tests__/credential-manager-parse-failure-log.test.ts 30870 2026-10-16 8.39 0.07 cold-total
+# UB12.31, the same instrument (fresh transpiler cache) re-taken 2026-10-17 at
+# loads 10.02-14.20, cpu 0.03-0.04: each file 1.5-3.9x its first reading on
+# the same bytes, which is why the budget is sized against the largest total.
+packages/shared/src/sources/__tests__/api-tools-catch-path-scrub.test.ts 66110 2026-10-17 10.02 0.03 cold-total
+packages/shared/src/sources/__tests__/api-tools-debug-redaction.test.ts 51470 2026-10-17 11.79 0.04 cold-total
+packages/shared/src/sources/__tests__/credential-manager-parse-failure-log.test.ts 45960 2026-10-17 14.20 0.04 cold-total
+# UB12.31 — the LARGEST of these seven totals: the converted file's own run
+# straight after its 2026-10-16 fresh-cache arm, on bun's DEFAULT transpiler cache
+# rather than a fresh one, 16 pass / 0 fail. Recorded although its cache was not
+# fresh, because the header's objection to a warm reading is that it UNDERSTATES:
+# this one is 5.2x the fresh-cache arm at cpu 0.02, the starved regime, and the
+# sizing rule sizes against the largest total. It is 0.74 of the hand-written
+# 120 000 the hook carried until UB12.31, past this ledger's 0.5 warning.
+packages/shared/src/sources/__tests__/api-tools-catch-path-scrub.test.ts 88410 2026-10-16 8.25 0.02 cold-total

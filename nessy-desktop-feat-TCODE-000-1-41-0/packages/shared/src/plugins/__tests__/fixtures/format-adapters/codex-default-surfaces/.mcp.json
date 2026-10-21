@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "demo": {
+      "type": "http",
+      "url": "https://example.invalid/mcp",
+      "oauth_resource": "https://example.invalid"
+    }
+  }
+}

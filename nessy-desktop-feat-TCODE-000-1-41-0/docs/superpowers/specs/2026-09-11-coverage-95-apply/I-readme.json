@@ -1,0 +1,37 @@
+{
+ "problems": [
+  "QI6/I17 claude: the prior probe was REFUTED by the 2026-09-10 SDK lift and is corrected in the file — at `0.3.247` the vendored `sdk.d.ts` publishes `SDKControlRegisterRepoRootRequest` (`subtype: 'register_repo_root'`), a mid-session directory control the old `add_directory`/`addDirectory` needles cannot see; the verdict still stands (`absent ʰ`) because the control's own declaration bounds it to a strict subdirectory of cwd or of a launch-passed directory and registers a working-directory root, not a sandbox read grant.",
+  "QI2/I18: the owner sheet's stated REASON is half stale and the cell text was rewritten rather than copied — claude's PowerShell tool is not 'ungated', it is pinned to the vendor's off value by P6.530 `44aee805e` with the `settings.json` door closed by P6.688 `f7ded8bb2`; what keeps the row `absent` rather than `n/a` is the plugin-hook runner spawning `powershell.exe`/`pwsh` and codex's `powershell.exe -Command` wrapper. The ANSWER is unchanged; the orchestrator should know the sheet's rationale line no longer reads true.",
+  "QI6/I17 codex: the codex runtime binaries are not installed in this workspace, so `sandbox-add-read-dir` 2/0/0 with its controls is attributed to the P6.189 sweep in the cell rather than re-measured here.",
+  "QI5/I14 codex: the classifier reading is `rust-v0.148.0` while `scripts/fetch-codex.mjs` now pins `rust-v0.150.1` (2026-09-11 lift) — flagged inside the cell as predating the lift rather than re-taken; `packages/codex-protocol/package.json` still spells `rust-v0.148.0`, so the two pins disagree in the tree.",
+  "Two quoted counts had moved and were replaced: `setupCommand` (13 -> 14 occurrences; replaced by the durable 'resolved, realpath-verified, never spawned') and the codex-protocol control `preToolUse` (3 -> 8 files, re-measured against the index). The load-bearing zero, `worktree` -> 0 files in `packages/codex-protocol`, reproduces.",
+  "The working tree carries five uncommitted sibling-lane edits (including `backend/internal/runtime-resolver.ts`), so every count that mattered was taken with `git grep --cached` against the index rather than from disk."
+ ],
+ "flip_candidates": [
+  {
+   "qid": "QI2",
+   "mechanism_en": "claude's shipped binary applies the documented isolation check to PowerShell commands as the WORKING-DIRECTORY field alone, and our own gate already carries that cwd vector — `packages/shared/src/agent/core/pre-tool-use.ts` says it verbatim: \"the documented PowerShell check is the working-directory field alone and needs no AST\".",
+   "wiring_size": "S",
+   "reason_en": "The wiring is genuinely small (bind the existing cwd vector to a PowerShell tool name, no parser), but it is GATED, not cheap: the subject on claude is refused by name — P6.530 `44aee805e` pins `CLAUDE_CODE_USE_POWERSHELL_TOOL` to the vendor's documented off value in every claude child and P6.688 `f7ded8bb2` closed the `settings.json` door — so wiring it today would guard a tool this product cannot construct, the ledger's own ADVERTISED anti-pattern; the one arm with a real subject is codex on Windows (`powershell.exe -Command` wrapper), where no isolation check runs at all because `runPreToolUseChecks` has zero call sites in `codex-agent.ts`, which is I7/codex's deferred `D1.86` posture rather than an S job. Answer unchanged."
+  },
+  {
+   "qid": "QI5",
+   "mechanism_en": "Two native mechanisms, both measured: (1) macOS containment — codex contains natively with `(deny default)` and our own strict Seatbelt branch is built and measured, held open only by the constant `SEATBELT_TESTING_WILDCARD = true` in `packages/shared/src/agent/core/bash-seatbelt.ts`; (2) `sandbox.failIfUnavailable` — the vendored binary's own restrictive managed-settings filter copies the key, so it works the moment our mapper carries it.",
+   "wiring_size": "XS (the one seatbelt constant) / S (`failIfUnavailable`: one key in `SANDBOX_SETTING_KEYS` plus the mapper)",
+   "reason_en": "Both are POSTURE refusals rather than cost refusals, which is exactly the case rule (1) asks to surface — but this precise flip was already put to the owner as sitting §1.1 and refused, the third reaffirmation of isolation-off (2026-08-12/13, 2026-09-05, and again 2026-09-11), and a fail-closed switch over a boundary that is off guards nothing. Answer unchanged; the residue the answer does buy is the one honest sentence in the gaps document that on macOS an approved Bash command is contained on codex and is not on Pi."
+  },
+  {
+   "qid": "QI8",
+   "mechanism_en": "claude's `Options.spawnClaudeCodeProcess` — the SDK publishes it for exactly this (\"Use to run Claude Code in VMs, containers, or remote environments\") and we pass it nowhere; the other two runtimes are spawned by the host itself, so their seam is ours.",
+   "wiring_size": "S for the claude-only hook; L for the honest host-spawner form",
+   "reason_en": "D7 (2026-09-05, option c) refused containers on DIVERGENCE grounds, not cost: a container boundary on one runtime and not the other two manufactures exactly the silent divergence native-first exists to prevent, so the cheap claude-only flip is the wrong shape and the honest one (a host-spawner container seam for all three) is L. Not flipped beside it: I32's `elevated` Windows mode, whose native mechanism is a binary we already ship and never spawn (`codex-windows-sandbox-setup.exe`), because it is M and cannot be measured without the Windows rig (`D1.35`, `D1.96`). Answer unchanged."
+  }
+ ],
+ "counts": {
+  "restamp": 4,
+  "refuse": 2,
+  "build": 1,
+  "measure": 0,
+  "defer": 1
+ }
+}

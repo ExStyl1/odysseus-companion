@@ -1,0 +1,1063 @@
+{
+  "schemaVersion": 1,
+  "capabilityContractVersion": 2,
+  "priorityWeights": {
+    "P0": 5,
+    "P1": 3,
+    "P2": 1
+  },
+  "cases": [
+    {
+      "id": "pi-version-compatibility",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "One exact installed Pi family is rejected unless its public surface matches.",
+      "currentStatus": "implemented",
+      "owner": "Pi runtime adapter",
+      "targetPhase": "X0",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#pi-version-compatibility",
+        "historical://package.json/package metadata"
+      ],
+      "observable": {
+        "outcomes": [
+          "One exact installed Pi family is rejected unless its public surface matches."
+        ]
+      }
+    },
+    {
+      "id": "system-prompt",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Prompt composition uses public lifecycle seams and one descriptor-derived feature inventory.",
+      "currentStatus": "implemented",
+      "owner": "Prompt composer",
+      "targetPhase": "X8/X10",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#system-prompt",
+        "repo://packages/shared/src/agent/pi-harness/prompt-composer.ts#composePiHarnessPrompt",
+        "repo://packages/shared/src/agent/pi-harness/prompt-composer.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Prompt composition uses public lifecycle seams and one descriptor-derived feature inventory."
+        ]
+      }
+    },
+    {
+      "id": "tool-registry",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "One guarded extension host consumes the canonical manifest without a second registry.",
+      "currentStatus": "implemented",
+      "owner": "Harness manifest",
+      "targetPhase": "X2",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#tool-registry",
+        "repo://packages/pi-agent-server/src/compat/pi-runtime-adapter.ts#createPiRuntimeAdapter",
+        "repo://packages/shared/src/agent/pi-harness/harness-manifest.ts#PiExecutionManifestV2",
+        "repo://packages/pi-agent-server/src/extensions/closed-host.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "One guarded extension host consumes the canonical manifest without a second registry."
+        ]
+      }
+    },
+    {
+      "id": "scheduling",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Tool effects run under descriptor scheduling classes and cancellation.",
+      "currentStatus": "implemented",
+      "owner": "Tool scheduler",
+      "targetPhase": "X3",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#scheduling",
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.ts#createToolExecutor",
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Tool effects run under descriptor scheduling classes and cancellation."
+        ]
+      }
+    },
+    {
+      "id": "file-edits",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "File mutations are serialized, checkpointed and reported with exact outcomes.",
+      "currentStatus": "implemented",
+      "owner": "Tool executor",
+      "targetPhase": "X3/X8",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#file-edits",
+        "repo://packages/shared/src/agent/local-tools/runtime.ts#LocalToolRuntime",
+        "repo://packages/shared/src/agent/local-tools/__tests__/runtime.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "File mutations are serialized, checkpointed and reported with exact outcomes."
+        ]
+      }
+    },
+    {
+      "id": "foreground-shell",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Foreground commands have one owner, streamed progress, cancellation and final status.",
+      "currentStatus": "implemented",
+      "owner": "Process supervisor",
+      "targetPhase": "X4A",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#foreground-shell",
+        "repo://packages/server-core/src/pi-harness/process-supervisor.ts#ProcessSupervisor",
+        "repo://packages/server-core/src/pi-harness/process-supervisor.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Foreground commands have one owner, streamed progress, cancellation and final status."
+        ]
+      }
+    },
+    {
+      "id": "background-shell",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Background commands survive tool return under a durable supervisor and bounded output store.",
+      "currentStatus": "implemented",
+      "owner": "Process supervisor",
+      "targetPhase": "X4A",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#background-shell",
+        "repo://packages/server-core/src/pi-harness/process-supervisor.ts#ProcessSupervisor",
+        "repo://packages/server-core/src/pi-harness/process-supervisor.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Background commands survive tool return under a durable supervisor and bounded output store."
+        ]
+      }
+    },
+    {
+      "id": "tool-cancellation",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Every executable tool observes one cancellation signal and terminal outcome.",
+      "currentStatus": "implemented",
+      "owner": "Tool scheduler",
+      "targetPhase": "X3/X4A",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#tool-cancellation",
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.test.ts",
+        "repo://packages/pi-agent-server/src/__tests__/pi-runtime-protocol.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Every executable tool observes one cancellation signal and terminal outcome."
+        ]
+      }
+    },
+    {
+      "id": "permission-policy",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "One Nessy policy decision governs each tool execution.",
+      "currentStatus": "implemented",
+      "owner": "Nessy policy service",
+      "targetPhase": "X5",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#permission-policy",
+        "historical://mode/pre-tool paths"
+      ],
+      "observable": {
+        "outcomes": [
+          "One Nessy policy decision governs each tool execution."
+        ]
+      }
+    },
+    {
+      "id": "approval-count",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "One execution consumes at most one approval receipt.",
+      "currentStatus": "implemented",
+      "owner": "Nessy policy service",
+      "targetPhase": "X5",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#approval-count",
+        "historical://proxy wrapper plus host executor"
+      ],
+      "observable": {
+        "outcomes": [
+          "One execution consumes at most one approval receipt."
+        ]
+      }
+    },
+    {
+      "id": "headless-approval",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Headless approval-required work fails closed without a UI callback.",
+      "currentStatus": "implemented",
+      "owner": "Nessy policy service",
+      "targetPhase": "X5/X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#headless-approval",
+        "repo://packages/server-core/src/pi-harness/permission-service.test.ts",
+        "repo://packages/server-core/src/pi-harness/ask-user-service.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Headless approval-required work fails closed without a UI callback."
+        ]
+      }
+    },
+    {
+      "id": "auto-accept-edits",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "All six modes map deterministically to edit, shell, network and external-mutation decisions.",
+      "currentStatus": "implemented",
+      "owner": "Nessy policy service",
+      "targetPhase": "X5",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#auto-accept-edits",
+        "historical://six current modes"
+      ],
+      "observable": {
+        "outcomes": [
+          "All six modes map deterministically to edit, shell, network and external-mutation decisions."
+        ]
+      }
+    },
+    {
+      "id": "shell-sandbox",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Shell launch requires an explicit platform isolation disposition and receipt.",
+      "currentStatus": "implemented",
+      "owner": "Isolation service",
+      "targetPhase": "X4A",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#shell-sandbox",
+        "repo://packages/server-core/src/pi-harness/isolation.ts",
+        "repo://packages/server-core/src/pi-harness/isolation.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Shell launch requires an explicit platform isolation disposition and receipt."
+        ]
+      }
+    },
+    {
+      "id": "arbitrary-code-tools",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Arbitrary code tools run only through the host isolation boundary.",
+      "currentStatus": "implemented",
+      "owner": "Isolation service",
+      "targetPhase": "X4A",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#arbitrary-code-tools",
+        "repo://packages/session-tools-core/src/handlers/script-sandbox.ts",
+        "repo://packages/session-tools-core/src/handlers/script-sandbox.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Arbitrary code tools run only through the host isolation boundary."
+        ]
+      }
+    },
+    {
+      "id": "workflow-evaluator",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Workflow evaluation cannot block the Pi subprocess or escape host limits.",
+      "currentStatus": "implemented",
+      "owner": "Isolation and orchestration services",
+      "targetPhase": "X4A/X7",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#workflow-evaluator",
+        "repo://packages/pi-agent-server/src/orchestrator/sandbox.ts#compileWorkflowScript",
+        "repo://packages/pi-agent-server/src/orchestrator/workflow-tool.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Workflow evaluation cannot block the Pi subprocess or escape host limits."
+        ]
+      }
+    },
+    {
+      "id": "hooks-semantics",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Every documented hook has ordered input, decision and terminal delivery semantics.",
+      "currentStatus": "implemented",
+      "owner": "Hook lifecycle bridge",
+      "targetPhase": "X5/X6/X7/X8",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#hooks-semantics",
+        "repo://packages/pi-agent-server/src/extensions/lifecycle-bridge.test.ts",
+        "repo://packages/shared/src/automations/types.ts#AgentEvent",
+        "fixture://runtime-behavior.json#official-claude-docs"
+      ],
+      "observable": {
+        "outcomes": [
+          "Every documented hook has ordered input, decision and terminal delivery semantics."
+        ]
+      }
+    },
+    {
+      "id": "child-execution",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Child work has durable identity, budget, mailbox and terminal ownership.",
+      "currentStatus": "implemented",
+      "owner": "Child-session supervisor",
+      "targetPhase": "X7",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#child-execution",
+        "historical://orchestrator/subagent-tool.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Child work has durable identity, budget, mailbox and terminal ownership."
+        ]
+      }
+    },
+    {
+      "id": "extension-runtime",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Only reviewed closed extensions load through guarded resources and public Pi APIs.",
+      "currentStatus": "implemented",
+      "owner": "Curated extension host",
+      "targetPhase": "X2",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#extension-runtime",
+        "repo://packages/pi-agent-server/src/extensions/registry.ts#composeCuratedPiExtensionFactories",
+        "repo://packages/pi-agent-server/src/extensions/closed-host.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Only reviewed closed extensions load through guarded resources and public Pi APIs."
+        ]
+      }
+    },
+    {
+      "id": "trust-injection",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Resolved resources remain generation-bound and trust-classified through execution.",
+      "currentStatus": "implemented",
+      "owner": "Capability resolver and Nessy policy",
+      "targetPhase": "X2/X5",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#trust-injection",
+        "historical://capability snapshot plus current policy paths"
+      ],
+      "observable": {
+        "outcomes": [
+          "Resolved resources remain generation-bound and trust-classified through execution."
+        ]
+      }
+    },
+    {
+      "id": "headless-sdk-parity",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Desktop and headless share core decisions while unavailable interactions fail closed.",
+      "currentStatus": "implemented",
+      "owner": "Server projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#headless-sdk-parity",
+        "repo://packages/server-core/src/sessions/SessionManager.pi-runtime-snapshot.test.ts",
+        "repo://packages/server-core/src/pi-harness/permission-service.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Desktop and headless share core decisions while unavailable interactions fail closed."
+        ]
+      }
+    },
+    {
+      "id": "desktop-runtime-supervision",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Desktop rehydrates process, task and child state from durable server owners.",
+      "currentStatus": "implemented",
+      "owner": "Desktop projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#desktop-runtime-supervision",
+        "repo://packages/server-core/src/sessions/SessionManager.pi-runtime-snapshot.test.ts",
+        "repo://apps/electron/src/renderer/hooks/__tests__/useAgentPanel.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Desktop rehydrates process, task and child state from durable server owners."
+        ]
+      }
+    },
+    {
+      "id": "desktop-permission-prompt",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Permission and question prompts preserve request ownership across reload.",
+      "currentStatus": "implemented",
+      "owner": "Desktop projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#desktop-permission-prompt",
+        "repo://packages/server-core/src/sessions/SessionManager.pi-runtime-snapshot.test.ts",
+        "repo://apps/electron/src/renderer/hooks/__tests__/useAgentPanel.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Permission and question prompts preserve request ownership across reload."
+        ]
+      }
+    },
+    {
+      "id": "desktop-sandbox-status",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Desktop renders the effective isolation disposition without inferring safety.",
+      "currentStatus": "implemented",
+      "owner": "Desktop projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#desktop-sandbox-status",
+        "repo://packages/core/src/types/pi-harness-runtime.ts",
+        "repo://apps/electron/src/renderer/hooks/__tests__/useAgentPanel.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Desktop renders the effective isolation disposition without inferring safety."
+        ]
+      }
+    },
+    {
+      "id": "desktop-background-processes",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Background process cards replay durable state and terminal results.",
+      "currentStatus": "implemented",
+      "owner": "Desktop projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#desktop-background-processes",
+        "repo://packages/server-core/src/pi-harness/process-supervisor.test.ts",
+        "repo://apps/electron/src/renderer/hooks/__tests__/useAgentPanel.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Background process cards replay durable state and terminal results."
+        ]
+      }
+    },
+    {
+      "id": "desktop-subagent-cards",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Child cards replay durable identity, progress, messages and completion.",
+      "currentStatus": "implemented",
+      "owner": "Desktop projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#desktop-subagent-cards",
+        "repo://packages/server-core/src/pi-harness/child-session-service.test.ts",
+        "repo://apps/electron/src/renderer/hooks/__tests__/useAgentPanel.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Child cards replay durable identity, progress, messages and completion."
+        ]
+      }
+    },
+    {
+      "id": "desktop-crash-reload-recovery",
+      "priority": "P0",
+      "weight": 5,
+      "targetObservable": "Crash and reload reconstruct pending interactions and supervised work without duplication.",
+      "currentStatus": "implemented",
+      "owner": "Desktop projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "fixture://p0-defects.json#desktop-crash-reload-recovery",
+        "repo://apps/electron/src/renderer/lib/__tests__/reconnect-recovery.test.ts",
+        "repo://packages/server-core/src/sessions/SessionManager.pi-runtime-snapshot.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "Crash and reload reconstruct pending interactions and supervised work without duplication."
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-init",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-init emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Harness and runtime adapter",
+      "targetPhase": "X2",
+      "sourceAnchors": [
+        "repo://packages/pi-agent-server/src/compat/pi-runtime-adapter.test.ts",
+        "repo://packages/pi-agent-server/src/extensions/lifecycle-bridge.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "snapshot_resolved",
+          "resources_verified",
+          "manifest_validated",
+          "runtime_ready"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-turn",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-turn emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Harness runtime",
+      "targetPhase": "X5",
+      "sourceAnchors": [
+        "historical://nessy-agent-harness-parity plan, phase X1 — docs/current-plans/ deleted at the 1.1.0 close-out (1d46918f8)"
+      ],
+      "observable": {
+        "sequence": [
+          "turn_opened",
+          "prompt_materialized",
+          "events_streamed",
+          "turn_closed"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-tool",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-tool emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Tool executor",
+      "targetPhase": "X3",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.test.ts",
+        "repo://packages/shared/src/agent/__tests__/pi-agent-lifecycle-hooks.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "tool_requested",
+          "policy_decided",
+          "execution_started",
+          "result_recorded"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-permission",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-permission emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Nessy policy service",
+      "targetPhase": "X5",
+      "sourceAnchors": [
+        "historical://nessy-agent-harness-parity plan, phase X1 — docs/current-plans/ deleted at the 1.1.0 close-out (1d46918f8)"
+      ],
+      "observable": {
+        "sequence": [
+          "subject_classified",
+          "decision_requested",
+          "receipt_issued",
+          "receipt_consumed"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-compaction",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-compaction emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Context and hook services",
+      "targetPhase": "X8",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/__tests__/pi-event-adapter.test.ts",
+        "repo://packages/shared/src/agent/pi-harness/prompt-composer.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "pre_compact",
+          "compaction_started",
+          "context_replaced",
+          "post_compact"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-task",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-task emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Task service",
+      "targetPhase": "X6",
+      "sourceAnchors": [
+        "repo://packages/server-core/src/pi-harness/task-service.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "task_created",
+          "task_started",
+          "task_progressed",
+          "task_completed"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-child",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-child emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Child-session supervisor",
+      "targetPhase": "X7",
+      "sourceAnchors": [
+        "repo://packages/server-core/src/pi-harness/child-session-service.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "child_reserved",
+          "child_started",
+          "mailbox_available",
+          "child_completed"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-process",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-process emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Process supervisor",
+      "targetPhase": "X4A",
+      "sourceAnchors": [
+        "repo://packages/server-core/src/pi-harness/process-supervisor.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "process_reserved",
+          "process_started",
+          "output_recorded",
+          "process_completed"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-checkpoint",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-checkpoint emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Checkpoint service",
+      "targetPhase": "X8",
+      "sourceAnchors": [
+        "repo://packages/shared/src/sessions/file-checkpoints.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "checkpoint_previewed",
+          "checkpoint_created",
+          "mutation_applied",
+          "checkpoint_restored"
+        ]
+      }
+    },
+    {
+      "id": "lifecycle-shutdown",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "lifecycle-shutdown emits one ordered provider-neutral observable sequence.",
+      "currentStatus": "implemented",
+      "owner": "Runtime and server projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/__tests__/pi-agent-lifecycle-hooks.test.ts",
+        "repo://packages/server-core/src/sessions/SessionManager.pi-runtime-snapshot.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "new_work_blocked",
+          "pending_work_resolved",
+          "runtime_disposed",
+          "session_end_emitted"
+        ]
+      }
+    },
+    {
+      "id": "interaction-approval-question",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "pending interaction is durable; headless absence fails closed",
+      "currentStatus": "implemented",
+      "owner": "Interaction and Desktop projection",
+      "targetPhase": "X6/X11",
+      "sourceAnchors": [
+        "repo://packages/server-core/src/pi-harness/ask-user-service.test.ts",
+        "repo://apps/electron/src/renderer/hooks/__tests__/useAgentPanel.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "pending interaction is durable",
+          "headless absence fails closed"
+        ]
+      }
+    },
+    {
+      "id": "interaction-cancellation",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "cancellation reaches current owner; one terminal result is emitted",
+      "currentStatus": "implemented",
+      "owner": "Scheduler and supervisors",
+      "targetPhase": "X3/X7",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.test.ts",
+        "repo://packages/server-core/src/pi-harness/child-session-service.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "cancellation reaches current owner",
+          "one terminal result is emitted"
+        ]
+      }
+    },
+    {
+      "id": "interaction-detach-resume",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "detach preserves ownership; resume replays without duplicate execution",
+      "currentStatus": "implemented",
+      "owner": "Child and process supervisors",
+      "targetPhase": "X7/X11",
+      "sourceAnchors": [
+        "repo://packages/server-core/src/pi-harness/child-session-service.test.ts",
+        "repo://apps/electron/src/renderer/lib/__tests__/reconnect-recovery.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "detach preserves ownership",
+          "resume replays without duplicate execution"
+        ]
+      }
+    },
+    {
+      "id": "interaction-crash-restart",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "restart reconstructs pending state; stale responses are rejected",
+      "currentStatus": "implemented",
+      "owner": "Server and Desktop projection",
+      "targetPhase": "X11",
+      "sourceAnchors": [
+        "repo://packages/server-core/src/pi-harness/ask-user-service.test.ts",
+        "repo://apps/electron/src/renderer/lib/__tests__/reconnect-recovery.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "restart reconstructs pending state",
+          "stale responses are rejected"
+        ]
+      }
+    },
+    {
+      "id": "interaction-unavailable-capability",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "unavailable capability is not advertised; direct invocation fails closed",
+      "currentStatus": "implemented",
+      "owner": "Capability resolver and projections",
+      "targetPhase": "X2/X11",
+      "sourceAnchors": [
+        "repo://packages/pi-agent-server/src/extensions/closed-host.test.ts",
+        "repo://packages/server-core/src/sessions/SessionManager.pi-runtime-snapshot.test.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "unavailable capability is not advertised",
+          "direct invocation fails closed"
+        ]
+      }
+    },
+    {
+      "id": "tool-strict-schema-scheduling",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "Canonical bindings expose strict schema versions and descriptor scheduling without a duplicate registry.",
+      "currentStatus": "implemented",
+      "owner": "Harness manifest and tool scheduler",
+      "targetPhase": "X2/X3",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/pi-harness/harness-tool-descriptor.ts",
+        "repo://packages/shared/src/agent/pi-harness/harness-manifest.ts",
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.test.ts",
+        "fixture://runtime-behavior.json#official-claude-docs"
+      ],
+      "observable": {
+        "outcomes": [
+          "unknown schema fields fail closed",
+          "model binding and handler schema versions are explicit",
+          "parallel serial-by-scope and exclusive scheduling remain descriptor-derived"
+        ]
+      }
+    },
+    {
+      "id": "tool-result-progress-envelope",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "Tool results and progress retain one provider-neutral typed envelope and terminal owner.",
+      "currentStatus": "implemented",
+      "owner": "Tool executor and supervisors",
+      "targetPhase": "X3/X4A",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/local-tools/types.ts#LocalToolExecutionResult",
+        "repo://packages/core/src/types/message.ts#AgentEvent",
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.test.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "execution started",
+          "typed progress emitted",
+          "content and structured result recorded",
+          "one terminal outcome emitted"
+        ]
+      }
+    },
+    {
+      "id": "tool-permission-subject",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "Every executable tool derives one permission subject before side effects.",
+      "currentStatus": "implemented",
+      "owner": "Tool executor and Nessy policy service",
+      "targetPhase": "X3/X5",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/local-tools/types.ts#LocalToolPermissionSubject",
+        "repo://packages/shared/src/agent/pi-harness/harness-tool-descriptor.ts"
+      ],
+      "observable": {
+        "sequence": [
+          "tool input normalized",
+          "permission subject derived",
+          "policy decision recorded",
+          "authorized execution begins"
+        ]
+      }
+    },
+    {
+      "id": "call-llm-speculative-prefetch",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "One policy receipt authorizes one call_llm execution; speculative host dispatch is absent.",
+      "currentStatus": "implemented",
+      "owner": "Tool executor",
+      "targetPhase": "X3",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/pi-harness/tool-executor.ts#createToolExecutor",
+        "repo://packages/pi-agent-server/src/index.ts#buildProxyTools",
+        "repo://packages/pi-agent-server/src/local-tools/tool-wrapper.ts#createPiSdkToolAdapter"
+      ],
+      "observable": {
+        "sequence": [
+          "input canonicalized",
+          "one executor permission decision",
+          "scheduled single proxy dispatch",
+          "receipt and result returned"
+        ]
+      }
+    },
+    {
+      "id": "hooks-complete-inventory",
+      "priority": "P1",
+      "weight": 3,
+      "targetObservable": "Every documented lifecycle hook is represented with stable ordering and ownership.",
+      "currentStatus": "implemented",
+      "owner": "Hook lifecycle bridge",
+      "targetPhase": "X5/X7",
+      "sourceAnchors": [
+        "repo://packages/shared/src/automations/types.ts",
+        "repo://packages/pi-agent-server/src/extensions/lifecycle-bridge.test.ts",
+        "fixture://runtime-behavior.json#official-claude-docs"
+      ],
+      "observable": {
+        "outcomes": [
+          "SessionStart",
+          "UserPromptSubmit",
+          "PreToolUse",
+          "PermissionRequest",
+          "PermissionDenied",
+          "PostToolUse",
+          "PostToolUseFailure",
+          "Notification",
+          "SubagentStart",
+          "SubagentStop",
+          "TaskCreated",
+          "TaskCompleted",
+          "Stop",
+          "CwdChanged",
+          "FileChanged",
+          "WorktreeCreate",
+          "WorktreeRemove",
+          "PreCompact",
+          "PostCompact",
+          "McpElicitation",
+          "McpResult",
+          "SessionEnd"
+        ]
+      }
+    },
+    {
+      "id": "provider-pi-qwen-dialect",
+      "priority": "P2",
+      "weight": 1,
+      "targetObservable": "Pi/Qwen event spelling remains inside the Pi dialect adapter.",
+      "currentStatus": "accepted-difference",
+      "owner": "Pi dialect adapter",
+      "targetPhase": "X9",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/backend/pi/event-adapter.ts",
+        "fixture://runtime-behavior.json#official-claude-docs"
+      ],
+      "observable": {
+        "outcomes": [
+          "provider spelling normalized to AgentEvent"
+        ]
+      }
+    },
+    {
+      "id": "provider-nestor-a2a-dialect",
+      "priority": "P2",
+      "weight": 1,
+      "targetObservable": "Nestor A2A tool spelling remains inside the Nestor adapter.",
+      "currentStatus": "accepted-difference",
+      "owner": "Nestor A2A adapter",
+      "targetPhase": "X9",
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/backend/nestor-cloud/event-adapter.ts"
+      ],
+      "observable": {
+        "outcomes": [
+          "A2A spelling normalized to AgentEvent and local tool call"
+        ]
+      }
+    }
+  ],
+  "hookInventory": [
+    "SessionStart",
+    "UserPromptSubmit",
+    "PreToolUse",
+    "PermissionRequest",
+    "PermissionDenied",
+    "PostToolUse",
+    "PostToolUseFailure",
+    "Notification",
+    "SubagentStart",
+    "SubagentStop",
+    "TaskCreated",
+    "TaskCompleted",
+    "Stop",
+    "CwdChanged",
+    "FileChanged",
+    "WorktreeCreate",
+    "WorktreeRemove",
+    "PreCompact",
+    "PostCompact",
+    "McpElicitation",
+    "McpResult",
+    "SessionEnd"
+  ],
+  "providerFixtures": [
+    {
+      "id": "pi-qwen-tool-cycle",
+      "dialect": "pi-qwen",
+      "sanitizedInput": {
+        "events": [
+          {
+            "type": "turn_start"
+          },
+          {
+            "type": "tool_execution_start",
+            "tool": "read"
+          },
+          {
+            "type": "tool_execution_end",
+            "error": false
+          },
+          {
+            "type": "agent_end"
+          }
+        ]
+      },
+      "expectedOutcome": {
+        "sequence": [
+          "turn_started",
+          "tool_started",
+          "tool_completed",
+          "complete"
+        ]
+      },
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/backend/pi/event-adapter.ts#adaptEvent"
+      ]
+    },
+    {
+      "id": "nestor-a2a-tool-cycle",
+      "dialect": "nestor-a2a",
+      "sanitizedInput": {
+        "stream": [
+          {
+            "kind": "tool_call",
+            "name": "read",
+            "arguments": "{\"path\":\"README.md\"}"
+          },
+          {
+            "kind": "task_state",
+            "state": "completed"
+          }
+        ]
+      },
+      "expectedOutcome": {
+        "sequence": [
+          "tool_call_normalized",
+          "local_tool_result",
+          "task_completed"
+        ]
+      },
+      "sourceAnchors": [
+        "repo://packages/shared/src/agent/backend/nestor-cloud/event-adapter.ts",
+        "repo://packages/shared/src/agent/backend/nestor-cloud/tool-schema.ts"
+      ]
+    }
+  ],
+  "expectedScore": {
+    "totals": {
+      "implemented": 46,
+      "partial": 0,
+      "missing": 0,
+      "blocked": 0,
+      "accepted-difference": 2
+    },
+    "weightedTotal": 192,
+    "implementedWeight": 190,
+    "acceptedDifferenceWeight": 2,
+    "implementedPercentage": 98.96,
+    "acceptedContractPercentage": 100.0
+  }
+}

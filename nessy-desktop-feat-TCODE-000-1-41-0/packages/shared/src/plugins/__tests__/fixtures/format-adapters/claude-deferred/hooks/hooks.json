@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Authored placeholder prompt-type hook body, not a command."
+          }
+        ]
+      }
+    ]
+  }
+}

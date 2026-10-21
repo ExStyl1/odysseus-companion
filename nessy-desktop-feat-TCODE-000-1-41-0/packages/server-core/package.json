@@ -1,0 +1,42 @@
+{
+  "name": "@nessy-agent/server-core",
+  "version": "1.0.2",
+  "license": "Apache-2.0",
+  "description": "Reusable headless server infrastructure for Nessy Desktop",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./transport": "./src/transport/index.ts",
+    "./runtime": "./src/runtime/index.ts",
+    "./handlers": "./src/handlers/index.ts",
+    "./bootstrap": "./src/bootstrap/index.ts",
+    "./bootstrap/managed-policy-resolution": "./src/bootstrap/managed-policy-resolution.ts",
+    "./model-fetchers": "./src/model-fetchers/index.ts",
+    "./model-fetchers/nestor": "./src/model-fetchers/nestor.ts",
+    "./domain": "./src/domain/index.ts",
+    "./services": "./src/services/index.ts",
+    "./handlers/rpc": "./src/handlers/rpc/index.ts",
+    "./handlers/rpc/*": "./src/handlers/rpc/*.ts",
+    "./sessions": "./src/sessions/index.ts",
+    "./webui": "./src/webui/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@nessy-agent/codex-protocol": "workspace:*",
+    "@nessy-agent/core": "workspace:*",
+    "@nessy-agent/session-tools-core": "workspace:*",
+    "@nessy-agent/shared": "workspace:*",
+    "jose": "^6.0.0",
+    "ws": "^8.19.0",
+    "sharp": "0.34.5",
+    "@earendil-works/pi-ai": "0.87.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.2",
+    "@types/node": "^22.0.0"
+  }
+}

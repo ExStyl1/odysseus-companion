@@ -1,0 +1,33 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "whiteboard/SKILL.md",
+  "upstreamName": "whiteboard",
+  "upstreamFrontmatter": {
+    "name": "whiteboard",
+    "description": "Генерация диаграмм и схем по промпту в whiteboard — архитектура, связи, компоненты, UI mockups",
+    "trigger": "Когда нужно создать визуальную диаграмму, схему архитектуры, roadmap, UI-мокап или любую другую визуализацию",
+    "when": [
+      "Нужно нарисовать архитектурную диаграмму по описанию",
+      "Требуется визуализировать связи между компонентами",
+      "Нужно создать UI-мокап или wireframe",
+      "Требуется экспортировать диаграмму в PNG для презентации",
+      "Нужно быстро набросать схему по текстовому описанию"
+    ],
+    "tags": [
+      "whiteboard",
+      "diagram",
+      "architecture",
+      "visualization",
+      "unidraw"
+    ]
+  },
+  "upstreamSkillSha256": "c4a7a9b3e741f8b284b6d57ec37ae4361c1cdcb7edef20dc3f7bf4ddaf3375c5",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

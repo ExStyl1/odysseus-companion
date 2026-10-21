@@ -1,0 +1,13 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/superpowers/specs/2026-07-29-weekly-changelog-findings.md",
+  "type": "SPEC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Phase 4, section B — what the weekly changelog pages contained",
+  "summary": "Findings from reading 17 weekly Claude changelog pages, filtered for renames, changed defaults, and new component types.",
+  "scope": ["Bash permission rules", "deny/ask/allow matching", "sudo/env/watch wrappers", "claude-bash-rule", "weekly changelog pages"],
+  "cross_refs": ["2026-07-29-unread-doc-pages.md", "whats-new/2026-w16.md", "permissions.md", "AGENTS.md"],
+  "locked": false,
+  "precedence": null,
+  "notes": "Type taken from MANIFEST_TYPE (SPEC); content is findings/behavior contracts with measured before/after tables and gate results."
+}

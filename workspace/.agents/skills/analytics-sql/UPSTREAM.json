@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "analytics-sql/SKILL.md",
+  "upstreamName": "analytics-sql",
+  "upstreamFrontmatter": {
+    "name": "analytics-sql",
+    "description": "Use when writing analytical SQL for business metrics, reports, window functions, CTEs, aggregations, ROLLUP, CUBE, GROUPING SETS, cohort analysis, or retention."
+  },
+  "upstreamSkillSha256": "4d06d3a76a67039b0db7016b80b40fa0a633faf4c0df233e229c795c1b28a71b",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

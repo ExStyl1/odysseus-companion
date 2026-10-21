@@ -1,0 +1,17 @@
+{
+  "repository": "mattpocock/skills",
+  "revision": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+  "path": "skills/productivity/wait-what",
+  "url": "https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/productivity/wait-what",
+  "upstreamName": "wait-what",
+  "upstreamFrontmatter": {
+    "name": "wait-what",
+    "description": "Stop. That last message did not land: re-pitch it.",
+    "disable-model-invocation": true
+  },
+  "upstreamSkillSha256": "d961bb37defd975c539427edb8f450cdbccdcdd552e213c1ece46676a7970905",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

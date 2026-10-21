@@ -1,0 +1,18 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/architecture/fork-subagents.md",
+  "type": "ADR",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Conversation forks (the `fork` subagent type)",
+  "summary": "Architecture record for the fork subagent type: session web-search budget, fork-mode resolution, and its interaction with background tasks.",
+  "scope": ["fork subagent", "NESSY_FORK_SUBAGENT", "NESSY_MAX_WEB_SEARCHES_PER_SESSION", "web_search budget", "background tasks", "modelContractHash", "/subtask"],
+  "cross_refs": [
+    "docs/superpowers/plans/2026-07-29-fork-surface.md",
+    "docs/superpowers/plans/2026-07-30-session-command-seam.md",
+    "docs/superpowers/plans/2026-07-30-fork-panel-registration.md",
+    "docs/testing/cdp-live-checklist.md"
+  ],
+  "locked": false,
+  "precedence": null,
+  "notes": "Type taken from MANIFEST_TYPE (authoritative). No frontmatter status field present, so locked is false. Document contains decision rationale ('Unset means OFF', host-side fork-mode resolution) consistent with ADR."
+}

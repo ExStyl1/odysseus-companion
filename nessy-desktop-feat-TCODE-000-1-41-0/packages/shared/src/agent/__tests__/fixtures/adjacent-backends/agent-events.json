@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 2,
+  "owner": "@nessy-agent/core AgentEvent and shared EventQueue",
+  "variants": [
+    {
+      "type": "status",
+      "requiredFields": [
+        "message"
+      ],
+      "optionalFields": [
+        "retry",
+        "phase"
+      ]
+    },
+    {
+      "type": "info",
+      "requiredFields": [
+        "message"
+      ],
+      "optionalFields": [
+        "level",
+        "answersSessionCommand",
+        "compactionTrigger"
+      ]
+    },
+    {
+      "type": "text_delta",
+      "requiredFields": [
+        "text"
+      ],
+      "optionalFields": [
+        "turnId",
+        "parentToolUseId"
+      ]
+    },
+    {
+      "type": "text_discard",
+      "requiredFields": [
+        "turnId"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "text_complete",
+      "requiredFields": [
+        "text"
+      ],
+      "optionalFields": [
+        "isIntermediate",
+        "isThinking",
+        "thinkingSignature",
+        "turnId",
+        "parentToolUseId",
+        "sdkMessageId",
+        "runtimeTurnId"
+      ]
+    },
+    {
+      "type": "pi_turn_anchor",
+      "requiredFields": [
+        "sdkMessageId",
+        "sdkTurnAnchor"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "tool_start",
+      "requiredFields": [
+        "toolName",
+        "toolUseId",
+        "input"
+      ],
+      "optionalFields": [
+        "intent",
+        "displayName",
+        "turnId",
+        "parentToolUseId",
+        "toolDisplayMeta"
+      ]
+    },
+    {
+      "type": "tool_result",
+      "requiredFields": [
+        "toolUseId",
+        "result",
+        "isError"
+      ],
+      "optionalFields": [
+        "toolName",
+        "structuredContent",
+        "input",
+        "turnId",
+        "parentToolUseId"
+      ]
+    },
+    {
+      "type": "permission_request",
+      "requiredFields": [
+        "requestId",
+        "toolName",
+        "description"
+      ],
+      "optionalFields": [
+        "command",
+        "permissionType",
+        "appName",
+        "reason",
+        "impact",
+        "requiresSystemPrompt",
+        "rememberForMinutes",
+        "commandHash",
+        "approvalTtlSeconds",
+        "origin"
+      ]
+    },
+    {
+      "type": "permission_request_cancelled",
+      "requiredFields": [
+        "requestId"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "error",
+      "requiredFields": [
+        "message"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "typed_error",
+      "requiredFields": [
+        "error"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "complete",
+      "requiredFields": [],
+      "optionalFields": [
+        "usage",
+        "terminalReason",
+        "deferredToolUse",
+        "terminalIsError",
+        "structuredOutput",
+        "structuredOutputSubtype",
+        "structuredOutputErrors"
+      ]
+    },
+    {
+      "type": "working_directory_changed",
+      "requiredFields": [
+        "workingDirectory"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "task_backgrounded",
+      "requiredFields": [
+        "toolUseId",
+        "taskId"
+      ],
+      "optionalFields": [
+        "kind",
+        "intent",
+        "turnId"
+      ]
+    },
+    {
+      "type": "shell_backgrounded",
+      "requiredFields": [
+        "toolUseId",
+        "shellId"
+      ],
+      "optionalFields": [
+        "intent",
+        "command",
+        "turnId"
+      ]
+    },
+    {
+      "type": "task_progress",
+      "requiredFields": [
+        "toolUseId"
+      ],
+      "optionalFields": [
+        "elapsedSeconds",
+        "orchestrationProgress",
+        "turnId"
+      ]
+    },
+    {
+      "type": "task_activity",
+      "requiredFields": [
+        "taskId"
+      ],
+      "optionalFields": [
+        "toolUseId",
+        "summary",
+        "lastToolName",
+        "toolUses",
+        "turnId"
+      ]
+    },
+    {
+      "type": "background_tasks_replaced",
+      "requiredFields": [
+        "tasks"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "task_completed",
+      "requiredFields": [
+        "taskId",
+        "status"
+      ],
+      "optionalFields": [
+        "outputFile",
+        "summary",
+        "turnId"
+      ]
+    },
+    {
+      "type": "task_notification",
+      "requiredFields": [
+        "taskId",
+        "text"
+      ],
+      "optionalFields": [
+        "turnId"
+      ]
+    },
+    {
+      "type": "shell_killed",
+      "requiredFields": [
+        "shellId"
+      ],
+      "optionalFields": [
+        "turnId"
+      ]
+    },
+    {
+      "type": "source_activated",
+      "requiredFields": [
+        "sourceSlug",
+        "originalMessage"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "usage_update",
+      "requiredFields": [
+        "usage"
+      ],
+      "optionalFields": []
+    },
+    {
+      "type": "steer_undelivered",
+      "requiredFields": [
+        "message"
+      ],
+      "optionalFields": [
+        "messageId",
+        "origin"
+      ]
+    }
+  ],
+  "lifecycleEvents": [
+    {
+      "type": "status",
+      "message": "starting"
+    },
+    {
+      "type": "text_delta",
+      "text": "hello",
+      "turnId": "turn-1"
+    },
+    {
+      "type": "tool_start",
+      "toolName": "read",
+      "toolUseId": "tool-1",
+      "input": {
+        "path": "README.md"
+      },
+      "turnId": "turn-1"
+    },
+    {
+      "type": "permission_request",
+      "requestId": "permission-1",
+      "toolName": "read",
+      "description": "Read README"
+    },
+    {
+      "type": "tool_result",
+      "toolUseId": "tool-1",
+      "toolName": "read",
+      "result": "contents",
+      "isError": false,
+      "turnId": "turn-1"
+    },
+    {
+      "type": "usage_update",
+      "usage": {
+        "inputTokens": 12,
+        "contextWindow": 4096
+      }
+    },
+    {
+      "type": "text_complete",
+      "text": "hello",
+      "turnId": "turn-1"
+    },
+    {
+      "type": "complete",
+      "usage": {
+        "inputTokens": 12,
+        "outputTokens": 3
+      }
+    }
+  ],
+  "lifecycleOrder": [
+    "status",
+    "text_delta",
+    "tool_start",
+    "permission_request",
+    "tool_result",
+    "usage_update",
+    "text_complete",
+    "complete"
+  ],
+  "variantIsolation": [
+    {
+      "type": "complete",
+      "fieldsOwnedByOtherVariants": [
+        "message",
+        "toolUseId"
+      ]
+    },
+    {
+      "type": "permission_request_cancelled",
+      "fieldsOwnedByOtherVariants": [
+        "toolName",
+        "description"
+      ]
+    }
+  ]
+}

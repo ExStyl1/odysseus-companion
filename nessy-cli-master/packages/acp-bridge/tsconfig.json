@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "baseUrl": ".",
+    "lib": ["ES2023"],
+    "composite": true,
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "@nestor/nessy-cli-core": ["../core/src/index.ts"],
+      "@nestor/nessy-cli-core/*": ["../core/src/*"]
+    }
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"],
+  "references": [{ "path": "../core" }]
+}

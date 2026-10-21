@@ -1,0 +1,11 @@
+# Build artifacts for DMG packaging
+vendor/*
+!vendor/bun/
+!vendor/bun/**
+vendor/bun/bun
+vendor/bun/bun.exe
+packages/
+release/
+node_modules/@anthropic-ai/
+
+# Platform-specific runtime binaries are vendored and verified before packaging.

@@ -1,0 +1,20 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "validate-tests-1/SKILL.md",
+  "upstreamName": "validate-tests",
+  "upstreamFrontmatter": {
+    "name": "validate-tests",
+    "description": "Senior QA Engineer — полная валидация тестов: статический анализ (review по 7 категориям), динамический анализ (запуск + mutation testing), итоговый report. Используй когда нужно проверить качество тестов.",
+    "argument-hint": "[код тестов + исходный код]",
+    "allowed-tools": "Read Grep Glob Bash(npm *) Bash(npx *) Bash(pytest *) Bash(git *) Write Edit"
+  },
+  "upstreamSkillSha256": "98123b3c1846c1ff10644941b2508787f4069644e8e02348fa193bac226a56be",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

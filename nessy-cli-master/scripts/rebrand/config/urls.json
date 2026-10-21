@@ -1,0 +1,137 @@
+[
+  {
+    "from": "https://qwenlm.github.io/qwen-code-docs/en/users/support/tos-privacy/",
+    "to": "https://nestor.pages.devplatform.tcsbank.ru/assistant/docs/main/nessy-cli/users/work/support/tos-privacy/",
+    "paths": "^packages/(?:cli/src/ui/auth/AuthDialog|web-shell/client/components/messages/AuthMessage)\\.tsx$"
+  },
+  {
+    "from": "github.com/QwenLM/qwen-code",
+    "to": "gitlab.tcsbank.ru/nestor/nessy-cli",
+    "paths": "^packages/web-templates/src/insight/src/ShareCard\\.tsx$"
+  },
+  {
+    "from": "https://example.com/.qwen/page",
+    "to": "https://example.com/.nessy/page",
+    "paths": "^packages/core/src/extension/variables\\.test\\.ts$"
+  },
+  {
+    "from": "ghcr.io/qwenlm/qwen-code:0.18.3",
+    "to": "ghcr.io/example/nessy-cli:0.18.3",
+    "paths": "^packages/cli/src/utils/sandbox\\.test\\.ts$"
+  },
+  {
+    "from": "https://qwenlm.github.io/qwen-code-docs/",
+    "to": "https://nestor.pages.devplatform.tcsbank.ru/assistant/docs/nessy-cli/",
+    "paths": "^packages/cli/src/ui/components/Help\\.tsx$"
+  },
+  {
+    "from": "https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/#modelproviders",
+    "to": "https://nestor.pages.devplatform.tcsbank.ru/assistant/docs/nessy-cli/",
+    "paths": "^packages/cli/src/ui/components/arena/ArenaStartDialog\\.tsx$"
+  },
+  {
+    "from": "https://qwenlm.github.io/qwen-code-docs/en/users/configuration/settings/#permissions",
+    "to": "https://nestor.pages.devplatform.tcsbank.ru/assistant/docs/nessy-cli/",
+    "paths": "^packages/desktop/apps/electron/src/renderer/pages/settings/PermissionsSettingsPage\\.tsx$"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code.git",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli.git",
+    "paths": "(^package\\.json$|/package\\.json$|/pyproject\\.toml$|/extension\\.toml$|^packages/core/src/providers/(?:__tests__/)?presets/(?:openrouter|requesty)(?:\\.test)?\\.ts$)"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code/issues",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli/-/issues",
+    "paths": "(^package\\.json$|/package\\.json$|/pyproject\\.toml$|/extension\\.toml$|^packages/core/src/providers/(?:__tests__/)?presets/(?:openrouter|requesty)(?:\\.test)?\\.ts$)"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli",
+    "paths": "(^package\\.json$|/package\\.json$|/pyproject\\.toml$|/extension\\.toml$|^packages/core/src/providers/(?:__tests__/)?presets/(?:openrouter|requesty)(?:\\.test)?\\.ts$)"
+  },
+  {
+    "from": "https://qwenlm.github.io/qwen-code-docs/",
+    "to": "https://nestor.pages.devplatform.tcsbank.ru/assistant/docs/nessy-cli/",
+    "paths": "(^package\\.json$|/package\\.json$|/pyproject\\.toml$|/extension\\.toml$|^packages/core/src/providers/(?:__tests__/)?presets/(?:openrouter|requesty)(?:\\.test)?\\.ts$)"
+  },
+  {
+    "from": "com.alibaba.qwen-code",
+    "to": "ru.tfinance.nessy-cli.desktop",
+    "paths": "^packages/desktop/"
+  },
+  {
+    "from": "qwenlm.qwen-code-vscode-ide-companion",
+    "to": "nessylm.nessy-cli-vscode-ide-companion",
+    "paths": "^packages/(?:core/src/ide/|vscode-ide-companion/)"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code.git",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli.git",
+    "paths": "/pom\\.xml$"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli",
+    "paths": "/pom\\.xml$"
+  },
+  {
+    "from": "curl -fsSL https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen-standalone.sh | bash",
+    "to": "npm install --global ./nestor-nessy-cli-0.19.1.tgz",
+    "paths": "^(docs/|README|scripts/installation/)"
+  },
+  {
+    "from": "irm https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/install-qwen-standalone.ps1 | iex",
+    "to": "npm install --global ./nestor-nessy-cli-0.19.1.tgz",
+    "paths": "^(docs/|README|scripts/installation/)"
+  },
+  {
+    "from": "curl -fsSL https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/uninstall-qwen-standalone.sh | bash",
+    "to": "bash ./scripts/installation/uninstall-nessy-standalone.sh",
+    "paths": "^(docs/|README|scripts/installation/)"
+  },
+  {
+    "from": "irm https://qwen-code-assets.oss-cn-hangzhou.aliyuncs.com/installation/uninstall-qwen-standalone.ps1 | iex",
+    "to": "powershell -File ./scripts/installation/uninstall-nessy-standalone.ps1",
+    "paths": "^(docs/|README|scripts/installation/)"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code/releases/tag/desktop-latest",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli/-/pipelines",
+    "paths": "^(docs/|README|scripts/installation/)"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code-zed-extension/issues",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli/-/issues",
+    "paths": "^packages/(?:sdk-typescript|zed-extension)/README\\.md$"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code/issues",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli/-/issues",
+    "paths": "^packages/(?:sdk-typescript|zed-extension)/README\\.md$"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code/discussions",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli/-/issues",
+    "paths": "^packages/(?:sdk-typescript|zed-extension)/README\\.md$"
+  },
+  {
+    "from": "https://github.com/QwenLM/qwen-code",
+    "to": "https://gitlab.tcsbank.ru/nestor/nessy-cli",
+    "paths": "^packages/(?:sdk-typescript|zed-extension)/README\\.md$"
+  },
+  {
+    "from": "https://qwenlm.github.io/qwen-code-docs/",
+    "to": "https://nestor.pages.devplatform.tcsbank.ru/assistant/docs/nessy-cli/",
+    "paths": "^packages/(?:sdk-typescript|zed-extension)/README\\.md$"
+  },
+  {
+    "from": "https://unpkg.com/@qwen-code/webui@0.1.0-beta.2/dist/",
+    "to": "../dist/",
+    "paths": "^packages/webui/examples/(?:cdn-usage-demo|complex-chat-demo)\\.html$"
+  },
+  {
+    "from": "https://unpkg.com/@qwen-code/webui@0.1.0-beta.2/dist/",
+    "to": "./dist/",
+    "paths": "^packages/webui/README\\.md$"
+  }
+]

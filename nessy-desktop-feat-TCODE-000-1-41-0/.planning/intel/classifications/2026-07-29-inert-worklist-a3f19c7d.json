@@ -1,0 +1,26 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/superpowers/specs/2026-07-29-inert-worklist.md",
+  "type": "SPEC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Inert-contract list — nessy-desktop (§2 and §5 CLOSED; §3, §4 and the addendum are live)",
+  "summary": "Re-verified list of inert code contracts: live defects, dated owner decisions, and the sweep's false positives across permissions, hooks, skills and managed delivery.",
+  "scope": [
+    "inert contracts",
+    "permission rules",
+    "hooks matchers",
+    "skill frontmatter",
+    "managed delivery",
+    "Claude/Codex format adapters",
+    "session persistence"
+  ],
+  "cross_refs": [
+    "2026-07-29-inert-contracts.md",
+    "2026-07-29-deviation-unit-4.md",
+    "AGENTS.md",
+    "hooks.md"
+  ],
+  "locked": false,
+  "precedence": null,
+  "notes": "Type taken from MANIFEST_TYPE (SPEC). Content is a verified defect/decision register over code contracts, consistent with SPEC."
+}

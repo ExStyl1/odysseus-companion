@@ -1,0 +1,17 @@
+{
+  "repository": "mattpocock/skills",
+  "revision": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+  "path": "skills/in-progress/writing-shape",
+  "url": "https://github.com/mattpocock/skills/tree/5beb35b040e3de97e54fa9e386d7e42d15c295c2/skills/in-progress/writing-shape",
+  "upstreamName": "writing-shape",
+  "upstreamFrontmatter": {
+    "name": "writing-shape",
+    "description": "Writing, exploit: shape raw material into an article, paragraph by paragraph.",
+    "disable-model-invocation": true
+  },
+  "upstreamSkillSha256": "f5e6c57bdd85178ace4a260c92f46da6b64ddee18215b461d875739c68976f72",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

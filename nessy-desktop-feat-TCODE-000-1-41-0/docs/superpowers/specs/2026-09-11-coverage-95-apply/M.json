@@ -1,0 +1,923 @@
+{
+ "family": "M",
+ "items": [
+  {
+   "qid": "QM1",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "M29",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.732 (`08393fecd` + `a3865e9b5`) gives every runtime the host's own root turn span through `packages/shared/src/telemetry/host-tracer.ts` symbol `beginTurnSpan`, and Pi's eight declared per-step span kinds stay refused by decision (owner QM1=A, 2026-09-11) until an SDK lift forwards a `TelemetryContext` through `createAgentSession`."
+    },
+    {
+     "row": "M29",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.459 ✅ (`a474b11e7`) closed the cluster with the child's own span path configured at `4a5486a54`, and P6.889 ✅ (`c4af575e5`) parents those spans on the host turn span so one run is one trace."
+    },
+    {
+     "row": "M29",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.459 ✅ (`a474b11e7`) writes codex's own `[otel] trace_exporter` into the CODEX_HOME the host creates, so codex's per-turn and per-tool spans reach the operator's collector through codex's own exporter."
+    },
+    {
+     "row": "M30",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "The host mints the turn span and its W3C id (`packages/shared/src/telemetry/host-tracer.ts` symbol `currentTraceparent`, P6.732 `08393fecd` + `a3865e9b5`); nothing forwards `TRACEPARENT` into the shell commands a Pi turn runs, and that is the named residue."
+    },
+    {
+     "row": "M30",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.459/P6.889 set `CLAUDE_CODE_PROPAGATE_TRACEPARENT` for the child in `packages/shared/src/agent/options.ts` symbol `buildClaudeSubprocessEnv` and make the host turn span the propagated parent (`c4af575e5`), which is what the documented auto-propagation needed."
+    },
+    {
+     "row": "M30",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "`packages/codex-agent-server/src/app-server-client.ts` symbol `resolveTraceparent` puts the host span's `trace.traceparent` on every app-server JSON-RPC request (P6.732, `08393fecd` + `a3865e9b5`)."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M29 and M30 in the capability ledger and its denominator-gaps twin to the measured verdict — claude and codex covered on their own mechanisms, Pi partial on the host root turn span.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM1 option A. Done means the six cells named in this item's edits read as stated in both files, each Why cell quoting P6.459 (`a474b11e7`), P6.732 (`08393fecd` + `a3865e9b5`) or P6.889 (`c4af575e5`); zero code."
+    },
+    {
+     "task_en": "Record the Pi per-step-span refusal with its date and its reopen condition at the host-tracer seam.",
+     "size": "XS",
+     "tags": [
+      "pi",
+      "doc"
+     ],
+     "note_en": "Implements QM1 option A's second half. Done means `packages/shared/src/telemetry/host-tracer.ts` carries, beside the measurement it already records, the owner's 2026-09-11 refusal-with-a-date — Pi's declared span vocabulary stays unexported because `createAgentSession`'s options carry no telemetry context and `AgentHarness.create` has a private constructor — and states that the refusal reopens at the next Pi SDK lift. Re-stamps nothing on its own; it is what makes M29/M30 Pi read as decided rather than defective."
+    },
+    {
+     "task_en": "Give M41 an owner: re-check the export intervals and the exit flush now that the host exports a batching span stream.",
+     "size": "S",
+     "tags": [
+      "host",
+      "test"
+     ],
+     "note_en": "M41 reads `covered ʰ` on Pi and claude on the premise that nothing batches — its own Why cell says so ('it becomes one the moment the traces candidate is built, since a span stream does batch'). Done means the span path's interval and shutdown drain are measured the way `OTEL_METRIC_EXPORT_INTERVAL` and the metrics drain already are in `packages/shared/src/telemetry/usage-metrics.ts`, and M41's three cells are re-stamped on that measurement. This is the rider QM1 names and QM12's orphan audit confirms no cluster and no plan row owns."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The only refused half is Pi's per-step vocabulary, and Pi has no native seam on the path this fork uses — `createAgentSession`'s sixteen options carry no telemetry context and `AgentHarness.create` has a private constructor with zero call sites here — so the wiring is an upstream SDK lift, not a host change of size S or less."
+  },
+  {
+   "qid": "QM2",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "M32",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.538 (`295d097cc`) made the Pi event exporter read `OTEL_SERVICE_NAME` and parse the operator's `OTEL_RESOURCE_ATTRIBUTES` (`packages/server-core/src/pi-harness/otlp-telemetry.ts`), pinned by `packages/server-core/src/pi-harness/otlp-exporter-controls.test.ts` including the `service.name=sneaky` override case."
+    },
+    {
+     "row": "M32",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "The claude child honoured both names natively and the host's own stream now carries them too — P6.538 (`295d097cc`), `packages/shared/src/telemetry/usage-metrics.ts` symbol `otlpResourceAttributes`, with the coverage marker appended last and deliberately not overridable."
+    },
+    {
+     "row": "M32",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "codex honours the two names natively (measured end to end in P2.450, `29901637b`) and the host exporter that carries a codex session's cost and token records now carries the operator's tag as well — P6.538 (`295d097cc`)."
+    },
+    {
+     "row": "M33",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Owner decision D13 = option B (identity behind the documented toggles, DEFAULT OFF), built as P6.538 (`295d097cc`) on the Pi path — recorded at `docs/superpowers/specs/2026-09-05-denominator-questions-triage.md` as 'D13 B'."
+    },
+    {
+     "row": "M33",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same owner decision D13=B built on the claude path by P6.538 (`295d097cc`), which also corrected this fork's own privacy sentence — the child had been exporting `session.id`/`user.account_uuid` by vendor default."
+    },
+    {
+     "row": "M33",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner D13=B (2026-09-05), re-affirmed by QM2=A (2026-09-11): codex's `[otel]` block carries no identity switch at all in the pinned schema, so the capability as stated has no surface on this runtime and the span-attribute arm is the authorization plan's subject (P6.538's own deferral note, row D1.83)."
+    },
+    {
+     "row": "M34",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner D14 = option A (2026-09-05), re-affirmed by QM2=A (2026-09-11) and built as P6.539 (`c5e4f1f50`): the content channels are refused uniformly, and Pi's exporter implements none of the five `OTEL_LOG_*` names by construction."
+    },
+    {
+     "row": "M34",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same owner decision D14=A: codex is pinned off unconditionally (`log_user_prompt = false` written into every `[otel]` table by `packages/codex-responses-adapter/src/config-writer.ts`), so conversation content is refused rather than missing."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M32, M33 and M34 in the ledger and its twin — M32 ×3 covered on landed work, M33 Pi and claude covered under D13=B with codex n/a, M34 Pi and codex n/a under D14=A.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM2 option A's zero-code half. Done means the eight cells read as this item's edits state, each Why cell naming P6.538 (`295d097cc`) or P6.539 (`c5e4f1f50`) and the owner decision id with its date."
+    },
+    {
+     "task_en": "Mint one opaque per-turn prompt id in the host and carry it on both OTLP exporters' records and on the hook input.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "pi",
+      "claude",
+      "codex"
+     ],
+     "note_en": "Implements QM2 option A — the one piece of the cluster the owner took here, blessed under either arm of D13 because an opaque id names nobody. Done means a hook run, an export record and a transcript line for the same prompt carry the same id; the Pi exporter's privacy table (`exact(input, EVENT_KEYS)` in `packages/server-core/src/pi-harness/otlp-telemetry.ts`) is widened by a deliberate edit carrying its reason, not as a side effect; M31 ×3 re-stamps to covered when it lands, and row D1.79 of `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` is pointed at this row so it is not built twice."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "M33's codex cell is being recorded as a refusal while codex does carry a native channel for it — `[otel].span_attributes` in the pinned config schema, which `packages/codex-responses-adapter/src/config-writer.ts` already writes now that P6.459 (`a474b11e7`) turned on codex's trace exporter — so the identity attributes could ride the same D13 default-off toggle with roughly S of host wiring; the answer stands as the owner gave it, and this is flagged only because the reason recorded for the refusal (nothing to carry it) is weaker than it was before the trace exporter landed."
+  },
+  {
+   "qid": "QM3",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "M1",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.178 ✅ (`1d9201509`) made our own telemetry spelling reach the claude child, whose vendored exporter carries the whole audit-event path, and P6.483 ✅ (`b44af523f`) made `DO_NOT_TRACK`/`DISABLE_TELEMETRY` silence it — the two halves this cell was absent for."
+    },
+    {
+     "row": "M1",
+     "column": "Codex",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P2.450 ✅ (`29901637b`) drove the bundled binary live — two OTLP/HTTP JSON POSTs to `/v1/logs` under the same host opt-out — and P6.488 ✅ (`2602bb0a6`) opened a header-authenticated collector to it; the residue is now the DIALECT, which the honest session line in this question's build closes rather than a missing signal."
+    },
+    {
+     "row": "M37",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.463 ✅ (`c7870b6f1`) makes an adopted managed policy dispatch `ConfigChange` on the host delivery path, which is the only place this event can be minted — the page's own clause says nothing native fires for server-managed arrivals."
+    },
+    {
+     "row": "M37",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host seam and same landed row P6.463 (`c7870b6f1`): the delivered policy never reaches a runtime as an event, so the host dispatch is the capability on every column."
+    },
+    {
+     "row": "M37",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host seam and same landed row P6.463 (`c7870b6f1`); the 'from which value to which' half stays refused for the stated security reason and is recorded as a decided refusal in the Why cell."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M1 and M37 in the ledger and its twin to covered on the landed rows P6.178, P6.483, P6.488, P2.450 and P6.463.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM3 option A's zero-code half. Done means the five cells read as this item's edits state and each Why cell quotes the closing sha."
+    },
+    {
+     "task_en": "Say in one session line which event dialect this session exports — the host's `nessy.*` names, codex's own fourteen, or none.",
+     "size": "S",
+     "tags": [
+      "host",
+      "product"
+     ],
+     "note_en": "Implements QM3 option A's build. It closes the finding the M1 Switch cell records — three runtimes now export three vocabularies and nothing tells an operator which one a session produces, a silence created by closing the gap in one column. Done means the line names the dialect where a user or operator reads it and states the `claude_code.*` → `nessy.*` rename, so a dashboard built from the vendor page is not queried against names we do not emit; M1's Switch cell is re-stamped off `SILENT` in the same change."
+    },
+    {
+     "task_en": "Record this cluster's two standing refusals by name in the ledger — the `claude_code.*` → `nessy.*` rename and M37's refusal to print the old and new policy values.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM3 option A's 'record as decisions' half. Done means both refusals read as decisions with their reasons (the rename is ours by design; the value diff was refused for a stated security reason at P6.463) rather than as unexplained divergences."
+    },
+    {
+     "task_en": "Record M35's three refused adoption metrics by name in its Why cell so the row's `partial` reads as a decided partial.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "M35 was re-stamped to `partial ᵗ` ×3 on 2026-09-11 by P6.1087 (`a4e1a6e79`) from the emitters at HEAD: three of the six documented metrics are on the wire and `lines_of_code.count`, `commit.count` and `pull_request.count` are refused with a reason at the site. Done means those three are named as refusals in the row, so the cell counts as decided under the owner's 95 % rule without overwriting a same-day measurement with `covered`."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The refused option B is a host-minted uniform vocabulary over three working native exporters — the opposite of a native mechanism left unwired — and the three refused adoption metrics need observers (a per-edit diff, a git observer, intent classification) that no runtime publishes."
+  },
+  {
+   "qid": "QM4",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "M21",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.452 ✅ (`9b1e571d8`) drops a `console` value from the claude child's environment with one diagnostic, so an operator's `OTEL_LOGS_EXPORTER=console` can no longer corrupt the stdout this host parses as its message channel."
+    },
+    {
+     "row": "M28",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.452 ✅ (`44aca1ccf`) replaced the Pi exporter's bare `catch {}` and its treat-every-non-429-as-success branch with a named diagnostic and a dropped-batch counter (`packages/server-core/src/pi-harness/otlp-telemetry.ts`)."
+    },
+    {
+     "row": "M28",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.452 (`44aca1ccf`): the host exporter that carries a claude session's cost and token records now reports a failing export instead of a silent drop."
+    },
+    {
+     "row": "M28",
+     "column": "Codex",
+     "from": "—",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.452 (`44aca1ccf`) covers the two HOST exporters, which carry codex sessions too; codex's own `[otel]` exporter's export-time failures were never probed — the row's own verdict list records `unknown` — so the honest word is partial with that residue named."
+    },
+    {
+     "row": "M38",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.452 ✅ (`44aca1ccf`) removes a developer's per-signal `OTEL_EXPORTER_OTLP_*` names at startup when the managed source set the generic endpoint, and logs the removal — the destination pin the page asks for."
+    },
+    {
+     "row": "M38",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.452 (`44aca1ccf`); the pin is host-side and uniform because both exporters are ours."
+    },
+    {
+     "row": "M38",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.452 (`44aca1ccf`); the pin applies to every runtime's records because it is applied where the host exporters read their endpoint."
+    },
+    {
+     "row": "M39",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.452 ✅ (`44aca1ccf` `9b1e571d8`) built the mTLS half — `packages/server-core/src/pi-harness/otlp-telemetry.ts` reads the operator's client certificate off disk, pinned by `packages/server-core/src/pi-harness/otlp-exporter-controls.test.ts`; the `otelHeadersHelper` half stays refused under the standing 2026-08-08 no-admin-executable ruling."
+    },
+    {
+     "row": "M39",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.452: `packages/shared/src/telemetry/usage-metrics.ts` reads `CLAUDE_CODE_CLIENT_CERT`/`CLAUDE_CODE_CLIENT_KEY` — the names the page gives the http/json protocol our exporters speak — and emits a named error when only one is set."
+    },
+    {
+     "row": "M39",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.452; the client certificate is presented by the host exporters, which carry codex sessions' records, and the earlier absence reading used the page's grpc name rather than the http/json names."
+    },
+    {
+     "row": "M40",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.524 ✅ (`f1073e835`) implemented `console` in the metrics exporter selector, announced unknown values and refused `prometheus` BY NAME as the owner decided on 2026-09-05 — no socket is opened."
+    },
+    {
+     "row": "M40",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.524 (`f1073e835`); the selector is the host's, so one implementation answers for every runtime."
+    },
+    {
+     "row": "M40",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.524 (`f1073e835`); codex's own `[otel]` writer emits the log signal only, so the selector that matters for codex records is the host's."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M21, M28, M38, M39 and M40 in the ledger and its twin on the landed rows P6.452 and P6.524 — no code.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM4 option A. Done means the thirteen cells read as this item's edits state, M28's codex residue is named (codex's own exporter's failures unprobed), and every Why cell quotes `44aca1ccf`, `9b1e571d8` or `f1073e835`."
+    },
+    {
+     "task_en": "Record `otelHeadersHelper` and `prometheus` in the ledger as already-taken refusals with their own citations, not as new ones.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM4 option A's second half. Done means M39's Why cell cites the standing owner ruling of 2026-08-08 (no admin-supplied executable as a settings source, the ruling that also dropped `policyHelper`, pinned by `packages/shared/src/config/__tests__/managed-env-credential-paired-routing.test.ts`) and M40's cites the 2026-09-05 decision built as P6.524 (`f1073e835`), so neither reads as an open gap."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "`otelHeadersHelper` is a real settings key of the vendored claude binary, so the mechanism is native and the host wiring would be about XS — passing the key through instead of refusing it. The refusal is a security POSTURE, not a cost: the standing owner ruling of 2026-08-08 declines any admin-supplied executable as a settings source. Flagged so the owner can decline it again knowingly; the answer is unchanged. `prometheus` is not a flip candidate — no runtime supplies it, the exporter is ours, and the refusal is about opening a listening socket in a desktop app."
+  },
+  {
+   "qid": "QM5",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "M7",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.445 ✅ (`d678e4388` `f92dce49f`) brought `modelUsage` to a renderer and named the model beside the figure, and P6.537 ✅ (`c40a8f736`) prices a Pi session from the operator's managed table through `packages/shared/src/agent/base-agent.ts` symbol `managedBudgetPriceUsd`, which every backend inherits."
+    },
+    {
+     "row": "M7",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same two landed rows: the per-model split was already differenced and persisted on this runtime, and P6.445 (`d678e4388`) gave it the readout it had never reached."
+    },
+    {
+     "row": "M7",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.537 (`c40a8f736`) prices a codex session from the operator's table on the same inherited seam even though codex reports tokens and never USD; its native `account/usage/read` readback stays the ruled explicit null (owner 2026-09-05), carried as row D1.77 of `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md`."
+    },
+    {
+     "row": "M8",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.445 ✅ (`d678e4388` `f92dce49f`) added the estimate caveat beside the cost figure with its i18n keys in both locales, which is the whole of this capability and is host-side for all three runtimes."
+    },
+    {
+     "row": "M8",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.445 (`d678e4388` `f92dce49f`) — the caveat is rendered where the cost is shown, so it is uniform across runtimes."
+    },
+    {
+     "row": "M8",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.445 (`d678e4388` `f92dce49f`); the caveat is host chrome and does not depend on which runtime produced the figure."
+    },
+    {
+     "row": "M9",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.537 ✅ (`c40a8f736`) built the operator-supplied table decided as D11=A, and P7.16 ✅ (`31f88bd67`) measured at the vendored 2.1.247 that the vendor's own `modelPricing` is UNREACHABLE from this host — managed-source only, absent from the restrictive filter's copy list, and its env gate also strips an administrator's model pins — so the host table is the channel on this runtime too."
+    },
+    {
+     "row": "M10",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.445 ✅ (`d678e4388` `f92dce49f`) added our own price-basis label — `costBasis` now lives in `packages/core/src/types/message.ts`, `apps/electron/src/renderer/components/app-shell/ChatDisplay.usage-format.ts` and both locale files (4 tracked files at HEAD) — so an unpriced model is distinguishable from a free one."
+    },
+    {
+     "row": "M10",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.445; the vendor's own `costBasis` scores 0 in the bundle at 2.1.247, so the label a claude session shows is ours and it is present."
+    },
+    {
+     "row": "M10",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.445; the basis label is host-minted and rides every runtime's figure, including a codex session priced from the managed table."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M7, M8, M9 and M10 in the ledger and its twin to covered on the landed rows P6.445 and P6.537 — no code.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM5 option A. Done means the ten cells read as this item's edits state and each Why cell quotes `d678e4388`, `f92dce49f` or `c40a8f736`."
+    },
+    {
+     "task_en": "Correct the recorded REASON for the host price table in M9 and M10 from 'the bundle lags the contract' to unreachability at the vendored 2.1.247.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude"
+     ],
+     "note_en": "Implements QM5 option A's correction. The bundle caught up — `modelPricing` is in the vendored 2.1.247 — and P7.16 ✅ (`31f88bd67`) records the real reason on `packages/shared/src/agent/claude-managed-settings.ts`: the key is honoured only from managed settings, the restrictive filter's copy list does not carry it, and the env gate that would reach it also strips an administrator's model pins. Done means neither row states a bundle-absence reason that AGENTS.md's native-first rule forbids, and the codex USD arm is cited as the ruled explicit null (row D1.77) rather than re-asked."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "codex publishes the cost readback natively — `account/usage/read` returning `ThreadUsage.estimatedUsageUsdMicros`, present in the shipped binary with zero callers here — and the wiring is one RPC, size S. It stays refused as the owner's ruled explicit null (2026-09-05) because it would show an OpenAI-side estimate for Nestor-billed traffic and needs delta accounting against a cumulative source; row D1.77 of the integrations plan says in terms not to take the codex USD arm here."
+  },
+  {
+   "qid": "QM6",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "M11",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.446 ✅ (`a182ba688`) taught our reader codex's own `TokenUsageBreakdown { cachedInputTokens, cacheWriteInputTokens }` in codex's convention — its `inputTokens` is the whole input, so the subtraction is part of the fix — and P6.616 ✅ (`1657914ce`) rendered the breakdown in `/usage`."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M11's codex cell to covered on the landed rows P6.446 and P6.616.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM6 option A's zero-code half; done means the cell quotes `a182ba688` and `1657914ce` and the reader's convention trap (codex's `inputTokens` already contains the cached half) stays recorded."
+    },
+    {
+     "task_en": "Build the derivable half of the cache readout — warm, hit ratio, misses and tokens re-cached — from the counters all three adapters already read.",
+     "size": "S",
+     "tags": [
+      "host",
+      "pi",
+      "claude",
+      "codex",
+      "product"
+     ],
+     "note_en": "Implements QM6 option A. `hit_ratio`/`hitRatio` score 0 tracked files at HEAD, so nothing computes it today while a toggle already exists with no readout. Done means `/usage` answers whether the cache is working on all three runtimes from counters already present (`packages/shared/src/agent/core/usage-tracker.ts`), and `cache_ttl`, `estimated_cache_write_usd` and `pricing` are refused BY NAME at the site with the reason — they need vendor rates we do not have and a 0 would be a false cost report. Re-stamps M12 ×3 when it lands, the three refused fields recorded as n/a by decision."
+    },
+    {
+     "task_en": "Declare the two model-switch cost fields in `redactedPayload` for both model-switch events.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "doc"
+     ],
+     "note_en": "This is the residue P6.968's own correction names: in `packages/shared/src/automations/types.ts` the `PreModelSwitch` and `PostModelSwitch` entries still list only the four identity fields while `context_tokens` and `prompt_cache_warm` are emitted into both payloads. It replaces the comment repair QM6 originally scoped, which P6.968 ✅ (`1e4d6950a`) already did on 2026-09-10. Done means the declaration matches what `updateSessionModel` actually spreads."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The three refused fields have no native producer on any of the three runtimes — they need vendor cache rates, which is the same invention D11 was answered to avoid — so there is no native mechanism left unwired here."
+  },
+  {
+   "qid": "QM7",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "M4",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.443 ✅ (`a2c7e60d5 + 2b3ba324d + 989462a9d`) gave a Pi turn that ends on a limit or on the provider's own finish reason a named terminal reason, consumed end to end in the renderer copy."
+    },
+    {
+     "row": "M4",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.443 (`2b3ba324d`): a codex turn that ends on a limit, an error or a refusal now names its reason instead of ending silently."
+    },
+    {
+     "row": "M5",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.443 ✅ (`a2c7e60d5`) maps the OpenAI-wire `finish_reason` a Pi provider returns into a stated reason — the wire has no `refusal` member, so the honest surface is the provider's own reason, which is what a user now reads."
+    },
+    {
+     "row": "M5",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.443 ✅ (`2b3ba324d`) reads codex's own refusal codes — `CodexErrorInfo`'s `cyberPolicy` and `misalignmentPolicyViolation`, which are refusals named after the policy rather than the act, refuting the row's earlier 'searched and found none'."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M4 and M5 in the ledger and its twin to covered on the landed row P6.443.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM7 option A's first half; done means the four cells quote `a2c7e60d5 + 2b3ba324d + 989462a9d` and the codex refutation (the policy-named refusal codes) is recorded in the Why cell."
+    },
+    {
+     "task_en": "Record M6's disposition in its Why cell — deferred to the integrations plan with a two-ended measurement as the first step and an honest null as an acceptable outcome.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM7 option A's second half. M6 stays row D1.77 of `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md`; done means the ledger says so and names the measurement both ends need before any build — `x-ratelimit-*` on one real gateway chat-completions response for Pi (control: a header it does send) and `account/rateLimits/read` for codex, whose upstream is our own loopback adapter and emits none of the credit headers the binary parses — so a null closes the cell honestly instead of being inferred."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "codex publishes the usage window natively on three RPCs and one notification — `account/rateLimits/read`, `account/usage/read` and the `account/rateLimits/updated` notification carrying `RateLimitWindow { usedPercent, windowDurationMins, resetsAt }` — and the host seam that would show it already exists (`packages/shared/src/agent/base-agent.ts` symbol `describeQuota`, which answers `/quota`), so the wiring is about S. It is deferred rather than refused, gated on the measurement named above, because the upstream that would populate those methods is our own loopback adapter."
+  },
+  {
+   "qid": "QM8",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "M13",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.168 ✅ (`0f214125e` `e78f4093c`) landed the settings-provenance view and the desktop entry point now exists — `apps/electron/src/renderer/pages/settings/SettingsConfigDoctorSection.tsx` with its consumer in `packages/server-core/src/handlers/rpc/settings.ts` (P6.775, P6.787 `1aaee02ec + 2e9294d84`) — over a composed policy built once for all three runtimes."
+    },
+    {
+     "row": "M13",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed surface: claude's own `/doctor` is unreachable through the SDK query surface, so the host doctor is the mechanism, and it reads the same composed policy (`packages/shared/src/config/managed-composition.ts` symbol `composeManagedPolicySources`)."
+    },
+    {
+     "row": "M13",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed surface; codex publishes no config command in its client-request table, so one host doctor answers for this column too."
+    },
+    {
+     "row": "M14",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D12 = option A (2026-09-05, against the questions doc's own recommendation of B), re-affirmed by QM8=A (2026-09-11): the configuration checkup stays read-only, and the invariant is quoted back at itself in `apps/cli/src/doctor.ts`."
+    },
+    {
+     "row": "M14",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same owner decision D12=A (2026-09-05, re-affirmed 2026-09-11): no confirm-then-fix surface is built on any runtime, so the checkup never edits the user's files."
+    },
+    {
+     "row": "M14",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same owner decision D12=A (2026-09-05, re-affirmed 2026-09-11); the refusal is uniform because the checkup is host-side and runtime-independent."
+    },
+    {
+     "row": "M16",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.447 ✅ (`feb8bde1d + 5665f35f0 + eb6d17d15 + b5311197a`) made the app say which base URL, credential source, provider and proxy the session is using, and put `/status` in the menu."
+    },
+    {
+     "row": "M16",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.447; claude's own `/status` lives inside the closed binary and is unreachable from an SDK-hosted session, so the host read-back is the mechanism."
+    },
+    {
+     "row": "M16",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.447; codex publishes no equivalent, and the seam deliberately does not re-derive the connection facts."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M13, M14 and M16 — M13 and M16 covered on the landed rows P6.168, P6.447, P6.775 and P6.787, M14 ×3 n/a by decision D12=A.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM8 option A. Done means the nine cells read as this item's edits state, M14's three cells carry the owner's decision id and both dates, and no new mutation surface is implied anywhere."
+    },
+    {
+     "task_en": "Say once, where a user reads it, that the configuration checkup never repairs anything.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "renderer",
+      "doc"
+     ],
+     "note_en": "Implements QM8 option A's transparency half — a refusal nobody can see is indistinguishable from a defect. Done means the sentence is in the CLI help for `nessy-general-agent doctor` and in the settings doctor section, matching the invariant already stated in `apps/cli/src/doctor.ts`, so an operator knows every finding is theirs to fix by hand."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The confirm-then-fix half has no native mechanism to wire: claude's interactive `/doctor` proposes fixes only inside the closed binary's TUI, which an SDK-hosted session cannot reach (measured), codex has no config command at all, and Pi is ours — so option B is construction, and it is the posture the owner declined in D12."
+  },
+  {
+   "qid": "QM9",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "M18",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.449 ✅ (`7e5b538e6 + 14d1e11a5 + 90ace307b`) reports what a hook run DID through one shared `reportHookRun` path — the Pi arm included, where a hook killed on its budget had said so nowhere — and P6.643 ✅ (`66b1d0388 + a8b118ba2`) added the per-session run store `/hooks` reads."
+    },
+    {
+     "row": "M18",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed rows; the claude arm was fixed on the way (three defects named in P6.449) and its successful runs now reach the same sink."
+    },
+    {
+     "row": "M18",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed rows, and native-first held: codex's own typed `hook/started`/`hook/completed` notifications with their run summary are the seam read, rather than scraping a log file."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M18 ×3 to covered on the landed rows P6.449 and P6.643.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM9's zero-code half; done means the three cells quote `7e5b538e6 + 14d1e11a5 + 90ace307b` and `66b1d0388 + a8b118ba2` and name codex's typed notifications as the seam."
+    },
+    {
+     "task_en": "Write codex's own `log_dir` into the CODEX_HOME the host owns, and add one host affordance to collect the file before teardown deletes it.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "host"
+     ],
+     "note_en": "Implements QM9 option A under the owner's 2026-09-11 boundary ruling: a diagnostic log is NOT session persistence, so it is outside Dev-11. Done means `log_dir` points inside the 0700 directory the host creates, a user can take the file before `cleanupRuntimeResources` removes the home, and the Dev-11 bullet in the parity-closure plan records the boundary so the next lane does not stop at the same question; re-stamps M17's codex cell to covered."
+    },
+    {
+     "task_en": "Give the claude and Pi arms the same per-session diagnostic file, using claude's own `--debug-file` and the debug path the host already opens.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "pi",
+      "host"
+     ],
+     "note_en": "Implements the rest of QM9's coverage line (M17 ×3). claude is native here — `--debug-file` and `CLAUDE_CODE_DEBUG_LOG_LEVEL` are both in the shipped binary and the host already opens `~/.claude/debug/<sessionId>.txt` in `packages/shared/src/agent/claude-agent.ts` symbol `parseApiErrorFromDebugLog`, but only to scrape API errors — so this names the path and the level rather than building a logger; Pi is ours and takes the same host-owned path. Done means a runtime or MCP failure is reportable on every runtime and M17 ×3 re-stamps to covered."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The answer already takes the native mechanisms on both runtimes — codex's `log_dir` plus its typed hook notifications, and claude's `--debug-file` — so nothing here is a refusal of something the runtime does natively."
+  },
+  {
+   "qid": "QM10",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "M3",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused as STRUCTURAL by owner QM10=A (2026-09-11): the loop runs in a vendor child no control request lets us snapshot, and the fork already says so at the point of use — `packages/shared/src/diagnostics/heapdump.ts` symbol `describeHeapdumpConversationCoverage` is a `Record<ModelProvider, …>`, so a new runtime breaks the build rather than inheriting a silent 'captured' (P6.44 `de21285c4` + `e21e4a46b`)."
+    },
+    {
+     "row": "M3",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal and same date: codex publishes no heap-snapshot request at all, the honest sentence is already printed before the privacy warning, and building a child-snapshot path would mean driving the child's debugger port — a new attack surface for a diagnostic."
+    },
+    {
+     "row": "M22",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.453 ✅ (`dc2509cea`) closed the row: `packages/shared/src/diagnostics/heapdump.ts` computes `activeResources` from `process.getActiveResourcesInfo()` and `unaccountedNative` as rss minus heapTotal minus external, and `packages/server-core/src/sessions/SessionManager.ts` prints both in the summary a user reads."
+    },
+    {
+     "row": "M22",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.453 (`dc2509cea`); the indicators are host diagnostics and are identical on every runtime."
+    },
+    {
+     "row": "M22",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.453 (`dc2509cea`); growth rate, open-handle count and the JS-heap-against-native line are all in the printed summary."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M3's claude and codex cells as n/a by decision and M22 ×3 as covered on the landed row P6.453 — zero code.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM10 option A. Done means M3 carries the structural refusal with its date and names `describeHeapdumpConversationCoverage` as the place the degradation is already stated honestly, and M22's three cells quote `dc2509cea` rather than describing two lines as still owed — sizing already-built work as buildable is what turns a closed row back into a lane."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Measured, not assumed: codex publishes no heap-snapshot request and the claude SDK exposes no equivalent control request, so there is no native mechanism to wire — the only build is a debugger-port path, size L and a new attack surface."
+  },
+  {
+   "qid": "QM11",
+   "answer": "A",
+   "kind": "measure",
+   "ledger_edits": [
+    {
+     "row": "M23",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.454 ✅ (`565ac10d5` `2484e4ac9` `781cff97f`) marks a model served over the translated wire where it is chosen and names what it costs, and the session model picker says which model reaches the endpoint — the host owns the two-wire router, so this is the honest surface the row asked for."
+    },
+    {
+     "row": "M36",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.462 ✅ (`56d798b94`), measured on the wire against a recording upstream rather than from a binary probe: the child sends `x-claude-code-agent-id` (and `x-claude-code-parent-agent-id` on a nested spawn), and `packages/shared/src/telemetry/gateway-headers.ts` symbol `gatewaySessionFetch` renames both to their Nessy spelling on the verified gateway prefix and deletes them everywhere else."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M23's claude cell and M36's claude cell to covered on the landed rows P6.454 and P6.462.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM11 option A's zero-code half; done means both cells quote their shas and M36's Why cell states that only the claude arm landed."
+    },
+    {
+     "task_en": "Drive the gateway header proof on the PACKAGED 1.36.0 build with its three required controls, at the release sitting.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "codex",
+      "test"
+     ],
+     "note_en": "Implements QM11 option A and is row P6.181 ⬜, which the owner's release ruling gates 1.36.0 on through P7.5. It is PROOF, not code: the mechanism landed (`gatewaySessionFetch` is the adapter's `fetchImpl` on both paths and `gatewayRequestHeaders` merges the operator's headers with the correlation id, scoped by the gateway prefix). Done means one gateway session per runtime, one turn each, with the upstream request captured at the gateway prefix carrying the real session id and every operator header name, and all three controls green — a BYO endpoint carries neither header, the loopback hop carries neither (P6.43's second mutant showed both start reaching it when the prefix scope is dropped), and the codex path is driven itself because a positive on claude does not prove codex. The run is written to `docs/testing/cdp-runs/` and its case row into `docs/testing/cdp-live-checklist.md`; M2's claude and codex cells then move onto a measured verdict, or are recorded as measured-and-negative."
+    },
+    {
+     "task_en": "Name M36's Pi and codex residue — no host producer mints an agent id for a Pi or codex subagent — as either a decided divergence in the switch report or a small host build.",
+     "size": "S",
+     "tags": [
+      "host",
+      "pi",
+      "codex"
+     ],
+     "note_en": "P6.462's own done_means allowed either outcome ('on Pi/codex by host minting — or the two-runtime state is declared HONEST with the difference named'), and only the claude arm landed: `packages/shared/src/telemetry/gateway-headers.ts` already declares `x-nessy-agent-id` and a `scope.agentId` field, and nothing populates it except an inbound claude header. Done means M36's Pi and codex cells stop reading as an unexplained `absent` — either the host mints the id from its own subagent state, or the difference is stated where a switch is reported."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "M2 is a measurement, not a refusal, and the mechanism it measures has already landed; the one native mechanism in the cluster — the claude child's own subagent headers — is already wired by P6.462, and the Pi/codex residue is host minting rather than a runtime capability left unused."
+  },
+  {
+   "qid": "QM12",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "M19",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.450 ✅ (`0c1e70628 + 0f2c97d62`) makes a session say at startup which sources may inject into it and name the one that could not register, from data the host already held (`resolveChannelPolicy`'s `{enabled, allowedSources, deniedSources}`)."
+    },
+    {
+     "row": "M19",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.450 (`0c1e70628 + 0f2c97d62`); the surface is host chrome, so it is uniform across runtimes."
+    },
+    {
+     "row": "M19",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.450 (`0c1e70628 + 0f2c97d62`); the emitting line landed after a pause pin, so the session-start sentence is present rather than only its data."
+    },
+    {
+     "row": "M24",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.455 ✅ (`0831dd1a1` `759fb1678`) asks codex's own `experimentalFeature/list` at spawn and reads `stage`, never `enabled` — P2.374 measured that a `removed` key still reports `enabled: true` — with the session-fact line, the operator notice and three drift ties (`packages/codex-agent-server/src/experimental-features.ts`)."
+    },
+    {
+     "row": "M25",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.456 ✅ (`d4629db5f`) made the win32 remediation name the path codex's own binary writes — `sandbox.<YYYY-MM-DD>.log`, 90 kept, pinned in `packages/server-core/src/pi-harness/isolation-remediation.ts` — and the residue is named: no lane here has ever exercised the win32 arm on Windows."
+    },
+    {
+     "row": "M25",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same landed row P6.456 (`d4629db5f`), where the filename was corrected FROM THE CODEX SOURCE against both the page and the row's earlier reading (`windows-sandbox.log` is only the upload attachment name); the same residue holds — one live Windows run is what closes this to covered."
+    },
+    {
+     "row": "M26",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.457 ✅ (`3df681b57` `859b54174` `91e362b3f`) reports the resolved AWS region and the step that answered, and makes the inference-profile prefix follow that same value, so an empty region field no longer means 'us' silently."
+    },
+    {
+     "row": "M27",
+     "column": "Pi",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.458 ✅ (`094648825`) measured the behaviour and it was NEITHER candidate the row proposed — `Error: EISDIR`, exit 1, the prompt discarded, firing when the stream is OPENED — and fixed it; the capability is host-CLI only and runtime-independent."
+    },
+    {
+     "row": "M27",
+     "column": "Claude",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.458 (`094648825`); the piped-stdin path is in `apps/cli/src/index.ts` and does not depend on which runtime the session uses."
+    },
+    {
+     "row": "M27",
+     "column": "Codex",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed row P6.458 (`094648825`); the byte cap was already built to the page and the unreadable-stdin branch now exists, so no column is left with a no-claim."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp M19, M24, M26 and M27 to covered and hold M25 at partial with its named residue, in the ledger and its twin.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Implements QM12 option A. Done means the ten cells read as this item's edits state; M25 keeps the filename from the BINARY (`sandbox.<YYYY-MM-DD>.log`, 90 kept) rather than the page's, and names the one thing that would close it — a live Windows run, on a rig this project does not have, which is cheaper and truer to say than to assert the arm works."
+    },
+    {
+     "task_en": "Repair M24's unresolvable citation for `experimentalFeature/list`.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "codex"
+     ],
+     "note_en": "The cited file sits under `generated/v2/`, where no `ClientRequest` module exists; the union that declares the method is `packages/codex-protocol/generated/ClientRequest.ts` symbol `ClientRequest`, and `packages/codex-protocol/generated/v2/ExperimentalFeatureStage.ts` symbol `ExperimentalFeatureStage` is the neighbour that made the slip easy to miss. Done means the row cites those two symbols, and the old anchor is described in WORDS rather than re-spelled in the path-and-line form the citation guards match — AGENTS.md records that a correction spelling the dead anchor re-creates the finding it repairs."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing in this cluster is refused: four rows are landed measurements and the fifth needs a Windows rig, which is a hardware gap rather than a native mechanism left unwired."
+  }
+ ]
+}

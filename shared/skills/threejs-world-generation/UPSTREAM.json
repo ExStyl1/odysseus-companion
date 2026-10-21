@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/threejs-world-generation",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/threejs-world-generation",
+  "upstreamName": "threejs-world-generation",
+  "upstreamFrontmatter": {
+    "name": "threejs-world-generation",
+    "description": "Build deterministic, editable, free-viewpoint Three.js worlds from text or structured briefs. Use for cinematic 3D terrain, semantic regions, procedural biomes, explicit landmarks, environmental scattering, camera fly-throughs, world diagnostics, or requests for a real 3D environment rather than generated 2D footage. Integrates OpenMontage's threejs_world tool with HyperFrames; do not use for a single isolated 3D object or a flat parallax scene."
+  },
+  "upstreamSkillSha256": "e968e59d528ef57dd361492c3e697ddbac82407b21d5d7aad62b6798a8ff8c37",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

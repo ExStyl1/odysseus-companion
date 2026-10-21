@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/hyperframes-animation",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/hyperframes-animation",
+  "upstreamName": "hyperframes-animation",
+  "upstreamFrontmatter": {
+    "name": "hyperframes-animation",
+    "description": "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). HyperFrames-native: single paused timeline, seek-safe, deterministic."
+  },
+  "upstreamSkillSha256": "785cacfa594627f4f030edda802edbfd2d08f2653811cbce7ab1da8f0e7f93b0",
+  "adaptations": [
+    "Namespaced colliding or host-specific skill: hyperframes-animation -> openmontage-hyperframes-animation",
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled."
+  ]
+}

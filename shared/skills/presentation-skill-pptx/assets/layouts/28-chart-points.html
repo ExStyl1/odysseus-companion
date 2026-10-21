@@ -1,0 +1,47 @@
+<!--
+  CHART WITH POINTS
+
+  When to use: One chart and 1-4 short takeaways beside it. Slides 67-69
+  Structure: .background-chart, .title-chart and 1-4 .chart-point rows (selectable icon + text) anchored bottom-left, .chart-plate (white, 1192x960) on the right: .chart-head (chart title + .legend-row), .chart-body (.chart-area with the native chart + .legend-column)
+
+  Generated from assets/layouts/template.html by scripts/sync_layouts.py.
+  Edit the template, not this file.
+-->
+  <!-- Slides 67-69: the frame with 1-5 points under the title. The single chart
+       always carries a points list (icons, bottom-left) — there is no note-only
+       variant (author decision 2026-09-25). The filler clones rows to the count;
+       the icon of each point is selectable, like on cards. -->
+  <div class="slide">
+    <div class="background-chart"></div>
+    <!-- The title is held in a .fit-box three lines tall at 72px/110 %, as on
+         slides 67-69. The title-chart ladder steps down until the title fits
+         the box; a title that fits at no step is an OVERFLOW error. -->
+    <div class="fit-box" style="position: absolute; top: 48px; left: 60px; width: 554px; height: 238px; z-index: 10;">
+      <h1 class="title-chart">Заголовок слайда вашей презентации</h1>
+    </div>
+
+    <div class="chart-side">
+      <div class="chart-point"><div class="chart-point-icon"><img class="icon" src="../icons/check-circle.png" alt="Иконка" /></div><p class="chart-point-text">С другой стороны рамки и место обучения кадров требуют от нас анализа</p></div>
+      <div class="chart-point"><div class="chart-point-icon"><img class="icon" src="../icons/check-circle.png" alt="Иконка" /></div><p class="chart-point-text">С другой стороны рамки и место обучения кадров требуют от нас анализа</p></div>
+      <div class="chart-point"><div class="chart-point-icon"><img class="icon" src="../icons/check-circle.png" alt="Иконка" /></div><p class="chart-point-text">С другой стороны рамки и место обучения кадров требуют от нас анализа</p></div>
+      <div class="chart-point"><div class="chart-point-icon"><img class="icon" src="../icons/check-circle.png" alt="Иконка" /></div><p class="chart-point-text">С другой стороны рамки и место обучения кадров требуют от нас анализа</p></div>
+    </div>
+
+    <div class="chart-plate" style="top: 60px; left: 668px; width: 1192px; height: 960px;">
+      <div class="chart-head">
+        <p class="chart-title">Название графика</p>
+        <div class="legend-row">
+          <div class="legend-item"><div class="legend-swatch" style="background: #FFDD2D;"></div><p class="legend-label">Ряд 1</p></div>
+        </div>
+      </div>
+      <div class="chart-body">
+        <div class="chart-area">
+          <div class="chart-canvas" data-chart='{"type": "stacked", "categories": ["Янв", "Фев", "Мар", "Апр"], "series": [{"name": "Ряд 1", "values": [4.3, 2.5, 3.5, 4.5]}, {"name": "Ряд 2", "values": [2.4, 4.4, 1.8, 2.8]}, {"name": "Ряд 3", "values": [2, 2, 3, 5]}]}'></div>
+          <div class="chart-center"><p class="chart-center-value">100 тыс</p><p class="chart-center-text">Подпись к общей цифре</p></div>
+        </div>
+        <div class="legend-column">
+          <div class="legend-item"><div class="legend-swatch" style="background: #FFDD2D;"></div><p class="legend-label">Ряд 1</p></div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "jsx": "react-jsx",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "paths": {
+      "@nessy-agent/core": ["../core/src/index.ts"],
+      "@nessy-agent/core/*": ["../core/src/*"]
+    }
+  },
+  "include": ["src/**/*", "eslint-rules/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,1815 @@
+{
+  "schemaVersion": 1,
+  "capturedOn": "2026-07-24",
+  "callPath": [
+    "sessions RPC",
+    "SessionManager.sendMessage",
+    "SessionManager.createCapabilityTurn",
+    "PiAgent.chatImpl",
+    "PiAgent.ensureSubprocess/spawnSubprocess",
+    "pi-agent-server.handleInit/handlePrompt",
+    "pi-agent-server.ensureSession/buildProxyTools"
+  ],
+  "jsonl": {
+    "inbound": [
+      "init",
+      "prompt",
+      "register_tools",
+      "tool_execute_response",
+      "process_start_response",
+      "child_session_response",
+      "pre_tool_use_response",
+      "post_tool_use_response",
+      "pre_compact_response",
+      "ask_user_response",
+      "mcp_elicitation_state",
+      "outside_root_response",
+      "denied_paths_response",
+      "abort",
+      "mini_completion",
+      "llm_query", "cancel_ephemeral_query",
+      "ensure_session_ready",
+      "set_model",
+      "set_thinking_level",
+      "get_context_usage",
+      "stop_background_task",
+      "heapdump",
+      "compact",
+      "set_auto_compaction",
+      "update_runtime_config",
+      "workflow_execute",
+      "subtask_start",
+      "skill_fork_start",
+      "working_directory_transaction",
+      "steer",
+      "token_update",
+      "shutdown"
+    ],
+    "outbound": [
+      "ready",
+      "register_tools_result",
+      "startup_error",
+      "event",
+      "pre_tool_use_request",
+      "post_tool_use_request",
+      "pre_compact_request",
+      "ask_user_request",
+      "ask_user_cancel",
+      "outside_root_request",
+      "outside_root_cancel",
+      "denied_paths_request",
+      "tool_execute_request",
+      "tool_execute_cancel", "tool_execute_detached",
+      "execution_receipt",
+      "continuation_state",
+      "process_start_request",
+      "process_cancel_request",
+      "child_session_request",
+      "session_tool_completed",
+      "mini_completion_result",
+      "llm_query_result",
+      "ensure_session_ready_result",
+      "compact_result",
+      "context_usage_result",
+      "stop_background_task_result",
+      "heapdump_result",
+      "set_auto_compaction_result",
+      "update_runtime_config_result",
+      "automation_event",
+      "working_directory_transaction_result",
+      "workflow_execute_result",
+      "subtask_start_result",
+      "skill_fork_start_result",
+      "session_id_update",
+      "web_search_usage",
+      "error"
+    ]
+  },
+  "h1aRuntimeCompatibility": {
+    "installedPiVersion": "0.87.1",
+    "adapterOwner": "packages/pi-agent-server/src/compat/pi-runtime-adapter.ts",
+    "constructionPaths": [
+      "main",
+      "ephemeral",
+      "orchestrator-child"
+    ],
+    "sessionStrategies": [
+      "memory",
+      "continue",
+      "fork-with-anchor"
+    ],
+    "promptLifecycle": "DefaultResourceLoader inline ExtensionFactory before_agent_start override; no private session prompt fields",
+    "settingsLifecycle": "SettingsManager.inMemory({}, { projectTrusted: false }); native settings/package/extension discovery and persistence cannot feed construction",
+    "sessionShape": "adapter validates every directly consumed AgentSession method and property before returning a handle",
+    "bedrockBundling": "entrypoint statically registers bedrockProviderModule through setBedrockProviderModule before runtime construction",
+    "readinessFailure": "startup_error, invalid session shape, initial auto-compaction failure, or pre-startup-settled child exit rejects shared readiness, pending RPCs, listeners and child state, then permits retry"
+  },
+  "h1bRuntimeProtocol": {
+    "toolExecution": "parallel, assigned and read back through PiRuntimeAdapter",
+    "agentDir": "server-derived from sessionPath/.pi-agent",
+    "orchestratorFields": [
+      "concurrency",
+      "depth",
+      "maxParallelTasks",
+      "maxAgents",
+      "tierModelMap",
+      "tokenBudget",
+      "contextSeed",
+      "sessionDepth",
+      "sessionIsFork",
+      "forkSubagent",
+      "availableModels"
+    ],
+    "orchestratorDisposition": "host sends the finalized V2 manifest and all eleven normalized fields; manifestless standalone ingress is rejected",
+    "selectedEvents": [
+      "agent_start",
+      "agent_end",
+      "turn_start",
+      "turn_end",
+      "message_start",
+      "message_update",
+      "message_end",
+      "tool_execution_start",
+      "tool_execution_update",
+      "tool_execution_end",
+      "queue_update",
+      "compaction_start",
+      "compaction_end",
+      "session_info_changed",
+      "thinking_level_changed",
+      "auto_retry_start",
+      "auto_retry_end",
+      "agent_settled",
+      "entry_appended",
+      "bash_execution_update",
+      "summarization_retry_scheduled",
+      "summarization_retry_attempt_start",
+      "summarization_retry_finished"
+    ],
+    "queueUpdate": "status counts only; queued prompt contents never emitted",
+    "unknownEvent": "safe Pi 0.87.1 type diagnostic plus active queue contract failure",
+    "maxAgentTurns": "raw turn_start N+1 one-shot abort before adaptation; one public-chat budget across fallback; terminal raw events dropped",
+    "callLlmExecution": "Pi SDK adapter to ToolExecutor to buildProxyTools dispatch; no speculative host dispatch or transient approval receipt"
+  },
+  "referenceSources": [
+    {
+      "id": "pi-selected-official-tag",
+      "classification": "DOC",
+      "url": "https://github.com/earendil-works/pi/tree/v0.87.1",
+      "revision": "v0.87.1/f07218c4d4bbc12bef056a7058c3dd49dfe41abe",
+      "retrievedOn": "2026-10-10",
+      "license": "MIT",
+      "runtime": "Node >=22.19.0",
+      "attribution": "Selected X0 source; retain the upstream MIT copyright/license notice if later code is adapted."
+    },
+    {
+      "id": "pi-selected-published-revision",
+      "classification": "DOC",
+      "url": "https://github.com/earendil-works/pi/commit/f07218c4d4bbc12bef056a7058c3dd49dfe41abe",
+      "revision": "f07218c4d4bbc12bef056a7058c3dd49dfe41abe",
+      "retrievedOn": "2026-10-10",
+      "license": "MIT",
+      "runtime": "Node >=22.19.0",
+      "attribution": "Reference only; the 0.87.1 package metadata gitHead reads identical f07218c4d4bbc12bef056a7058c3dd49dfe41abe across the six members whose packument snapshots are kept beside the 2026-10-01 lift plan — pi-coding-agent, pi-ai, pi-agent-core, chord, pi-telemetry, pi-tui (publish window 2026-09-22; the six installed members' mirror-served package.json files agree on version/license/engines but declare NO gitHead field, unlike 0.85.1) — and no runtime source is copied. pi-client and pi-protocol remain pi-coding-agent devDependencies at ^0.87.1 (still published in lockstep, no longer installed) but were not packument-read this lift. The upstream tag object itself was not independently fetched."
+    },
+    {
+      "id": "artifactory-pi-agent-core",
+      "classification": "DOC",
+      "url": "https://artifactory.tcsbank.ru/artifactory/api/npm/npm-registry-used-proxy/@earendil-works/pi-agent-core/-/pi-agent-core-0.87.1.tgz",
+      "revision": "0.87.1/f07218c4d4bbc12bef056a7058c3dd49dfe41abe",
+      "retrievedOn": "2026-10-10",
+      "license": "MIT (package metadata)",
+      "runtime": "Node >=22.19.0",
+      "attribution": "UA12.211 installed exact 0.87.1 through the existing configured Artifactory with no registry override (2026-10-10); WJ-lift did the same for 0.85.1 on 2026-09-24, W19-z2 for 0.84.4 on 2026-09-13 and W11-pi for 0.84.3 on 2026-09-11."
+    },
+    {
+      "id": "artifactory-pi-ai",
+      "classification": "DOC",
+      "url": "https://artifactory.tcsbank.ru/artifactory/api/npm/npm-registry-used-proxy/@earendil-works/pi-ai/-/pi-ai-0.87.1.tgz",
+      "revision": "0.87.1/f07218c4d4bbc12bef056a7058c3dd49dfe41abe",
+      "retrievedOn": "2026-10-10",
+      "license": "MIT (package metadata)",
+      "runtime": "Node >=22.19.0",
+      "attribution": "UA12.211 installed exact 0.87.1 through the existing configured Artifactory with no registry override (2026-10-10); WJ-lift did the same for 0.85.1 on 2026-09-24, W19-z2 for 0.84.4 on 2026-09-13 and W11-pi for 0.84.3 on 2026-09-11."
+    },
+    {
+      "id": "artifactory-pi-coding-agent",
+      "classification": "DOC",
+      "url": "https://artifactory.tcsbank.ru/artifactory/api/npm/npm-registry-used-proxy/@earendil-works/pi-coding-agent/-/pi-coding-agent-0.87.1.tgz",
+      "revision": "0.87.1/f07218c4d4bbc12bef056a7058c3dd49dfe41abe",
+      "retrievedOn": "2026-10-10",
+      "license": "MIT (package metadata)",
+      "runtime": "Node >=22.19.0",
+      "attribution": "UA12.211 installed exact 0.87.1 through the existing configured Artifactory with no registry override (2026-10-10); WJ-lift did the same for 0.85.1 on 2026-09-24, W19-z2 for 0.84.4 on 2026-09-13 and W11-pi for 0.84.3 on 2026-09-11."
+    },
+    {
+      "id": "pi-public-comparison",
+      "classification": "DOC",
+      "url": "https://github.com/earendil-works/pi/tree/v0.80.6",
+      "revision": "v0.80.6/2b3fda9921b5590f285165287bd442a25817f17b",
+      "retrievedOn": "2026-07-14",
+      "license": "MIT",
+      "runtime": "public comparison only; not approved for installation",
+      "attribution": "Reference only; public availability is not Artifactory approval."
+    },
+    {
+      "id": "nessy-pi-harness",
+      "classification": "NESSY",
+      "url": "repo://packages/pi-agent-server/src/index.ts",
+      "revision": "X0 phase base 37f84f9ff567c9cde4eb6443c430fb82d7dc091b",
+      "retrievedOn": "2026-10-10",
+      "license": "Nessy repository license",
+      "runtime": "Bun JSONL Pi subprocess; installed Pi 0.87.1; fail-closed PiRuntimeAdapter",
+      "attribution": "Nessy-owned current implementation; authoritative for current behavior."
+    },
+    {
+      "id": "nessy-session-tool-registry",
+      "classification": "NESSY",
+      "url": "repo://packages/session-tools-core/src/tool-defs.ts",
+      "revision": "e3357945a45ad6dd45019cc53944a9a071788503",
+      "retrievedOn": "2026-07-14",
+      "license": "Nessy repository license",
+      "runtime": "Bun shared session-tool registry",
+      "attribution": "Nessy-owned model/handler authority."
+    },
+    {
+      "id": "nessy-capability-storage",
+      "classification": "NESSY",
+      "url": "repo://packages/shared/src/capabilities/",
+      "revision": "e3357945a45ad6dd45019cc53944a9a071788503; foundations 47f28745; closeout 781144bf",
+      "retrievedOn": "2026-07-14",
+      "license": "Nessy repository license",
+      "runtime": "server-owned storage/capability resolver",
+      "attribution": "Nessy-owned shipped storage boundary."
+    },
+    {
+      "id": "nessy-adjacent-backends",
+      "classification": "NESSY",
+      "url": "repo://packages/shared/src/agent/",
+      "revision": "e3357945a45ad6dd45019cc53944a9a071788503",
+      "retrievedOn": "2026-07-14",
+      "license": "Nessy repository license",
+      "runtime": "Claude/Codex/Nestor/native backend contracts",
+      "attribution": "Frozen local contracts; R0 changes no adjacent implementation."
+    },
+    {
+      "id": "claude-code-public-tag",
+      "classification": "DOC",
+      "url": "https://github.com/anthropics/claude-code/tree/d4d8fbbb333c627d8fe2c1c583a5ccc26fdb1aed",
+      "revision": "v2.1.207/d4d8fbbb333c627d8fe2c1c583a5ccc26fdb1aed",
+      "retrievedOn": "2026-07-14",
+      "license": "SEE LICENSE IN README.md (npm package field)",
+      "runtime": "Node >=22.0.0",
+      "attribution": "Official public source/version reference only; R0 copied no Claude source or private prompt text."
+    },
+    {
+      "id": "claude-code-public-npm",
+      "classification": "DOC",
+      "url": "https://registry.npmjs.org/@anthropic-ai%2fclaude-code/2.1.207",
+      "revision": "2.1.207; shasum 9401101d42487b7e82d4632243c1a0485641c2fa; gitHead not declared",
+      "retrievedOn": "2026-07-14",
+      "license": "SEE LICENSE IN README.md",
+      "runtime": "Node >=22.0.0",
+      "attribution": "Official npm metadata reference only; no install and no package contents copied."
+    },
+    {
+      "id": "claude-code-local",
+      "classification": "LOCAL",
+      "url": "local://claude-code",
+      "revision": "2.1.197",
+      "retrievedOn": "2026-07-14",
+      "license": "vendor distribution; source license not inferred",
+      "runtime": "locally installed standalone CLI binary",
+      "attribution": "Behavior/version reference only; no binary, source, or private prompt content copied."
+    },
+    {
+      "id": "claude-desktop-local",
+      "classification": "LOCAL",
+      "url": "local://Applications/Claude.app",
+      "revision": "1.20186.1",
+      "retrievedOn": "2026-07-14",
+      "license": "vendor distribution; source license not inferred",
+      "runtime": "locally installed macOS app",
+      "attribution": "Version reference only; no binary, source, credentials, or private prompt content copied."
+    },
+    {
+      "id": "claude-desktop-native-code-bundle",
+      "classification": "LOCAL",
+      "url": "local://Library/Application Support/Claude/claude-code/2.1.205",
+      "revision": "2.1.205 (Claude Code)",
+      "retrievedOn": "2026-07-14",
+      "license": "vendor distribution; source license not inferred",
+      "runtime": "native Claude Code bundle present inside local Desktop support data",
+      "attribution": "Version/surface-presence evidence only; no private behavior or bundle content claimed."
+    },
+    {
+      "id": "claude-desktop-vm-sdk-version",
+      "classification": "LOCAL",
+      "url": "local://Library/Application Support/Claude/claude-code-vm/.sdk-version",
+      "revision": "2.1.197",
+      "retrievedOn": "2026-07-14",
+      "license": "vendor distribution; source license not inferred",
+      "runtime": "local Desktop VM SDK version marker",
+      "attribution": "Version/surface-presence evidence only; no private behavior or VM content claimed."
+    },
+    {
+      "id": "exact-dispatch-before-wrapper",
+      "classification": "INFERENCE",
+      "url": "derived://pi-v0.87.1-exact-dispatch/nessy-e3357945-wrapper",
+      "revision": "f07218c4d4bbc12bef056a7058c3dd49dfe41abe+e3357945a45ad6dd45019cc53944a9a071788503",
+      "retrievedOn": "2026-10-10",
+      "license": "not applicable; derived conclusion",
+      "runtime": "Pi AgentSession exact lookup followed by Nessy wrapped execute",
+      "attribution": "Inference derived from the two cited source revisions; no source copied."
+    }
+  ],
+  "claudeDesktopPublicArtifactDisposition": "No independently published public Claude Desktop version artifact for 1.20186.1 was verified on 2026-07-14; local version evidence is not promoted to a public-source claim.",
+  "officialReferenceGroups": [
+    {
+      "id": "official-claude-docs",
+      "classification": "DOC",
+      "retrievedOn": "2026-07-14",
+      "revision": "not applicable; public documentation pages are not source revisions",
+      "license": "not applicable to link-only behavioral documentation intake",
+      "runtime": "public web documentation; runtime requirement not applicable",
+      "attribution": "Link-only reference; no documentation prose, private prompt text, or source copied.",
+      "urls": [
+        "https://code.claude.com/docs/en/agent-sdk/agent-loop",
+        "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts",
+        "https://code.claude.com/docs/en/tools-reference",
+        "https://code.claude.com/docs/en/permissions",
+        "https://code.claude.com/docs/en/permission-modes",
+        "https://code.claude.com/docs/en/sandboxing",
+        "https://code.claude.com/docs/en/hooks",
+        "https://code.claude.com/docs/en/mcp",
+        "https://code.claude.com/docs/en/skills",
+        "https://code.claude.com/docs/en/sub-agents",
+        "https://code.claude.com/docs/en/agent-teams",
+        "https://code.claude.com/docs/en/workflows",
+        "https://code.claude.com/docs/en/memory",
+        "https://code.claude.com/docs/en/context-window",
+        "https://code.claude.com/docs/en/prompt-caching",
+        "https://code.claude.com/docs/en/sessions",
+        "https://code.claude.com/docs/en/agent-sdk/sessions",
+        "https://code.claude.com/docs/en/checkpointing",
+        "https://code.claude.com/docs/en/agent-view",
+        "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
+        "https://code.claude.com/docs/en/monitoring-usage",
+        "https://code.claude.com/docs/en/security"
+      ]
+    },
+    {
+      "id": "official-codex-docs",
+      "classification": "DOC",
+      "retrievedOn": "2026-07-14",
+      "revision": "not applicable; public documentation pages are not source revisions",
+      "license": "not applicable to link-only behavioral documentation intake",
+      "runtime": "public web documentation; runtime requirement not applicable",
+      "attribution": "Link-only open-harness comparison; no source or documentation prose copied.",
+      "urls": [
+        "https://learn.chatgpt.com/docs/app-server",
+        "https://learn.chatgpt.com/docs/open-source",
+        "https://learn.chatgpt.com/docs/agent-approvals-security",
+        "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+        "https://learn.chatgpt.com/docs/config-file/config-basic"
+      ]
+    }
+  ],
+  "reuseIntakeRequiredFields": [
+    "id",
+    "source",
+    "url",
+    "version",
+    "commit",
+    "license",
+    "runtimeRequirement",
+    "retrievedOn",
+    "attributionNotice",
+    "installDecision",
+    "artifactoryDecision",
+    "targetPhase",
+    "driftCaveat"
+  ],
+  "reuseIntake": [
+    {
+      "id": "pi-extension-api",
+      "source": "Pi Extension API and official examples",
+      "url": "https://github.com/earendil-works/pi/blob/v0.80.6/packages/coding-agent/docs/extensions.md",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT verified in official repository",
+      "runtimeRequirement": "Node >=22.19.0; official Pi packages ^0.80.6",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Reference only; retain MIT notice if a reviewed pattern is later adapted.",
+      "installDecision": "No install; primary source/API compatibility contract.",
+      "artifactoryDecision": "Public source is evidence only; install approval remains the selected common Artifactory target.",
+      "targetPhase": "X0/X2/X5/X6/X7/X8",
+      "driftCaveat": "The 2026-07-14 public 0.80.6 comparison does not replace the approved Artifactory target, which is 0.84.0 since 2026-08-20."
+    },
+    {
+      "id": "pi-anthropic-provider-adapter",
+      "source": "Official Anthropic provider adapter",
+      "url": "https://github.com/earendil-works/pi/blob/v0.80.6/packages/coding-agent/examples/extensions/custom-provider-anthropic/index.ts",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT verified in official repository",
+      "runtimeRequirement": "Node >=22.19.0; official Pi packages ^0.80.6",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Reference only; retain MIT notice if the boundary pattern is later adapted.",
+      "installDecision": "No install; adapt provider-boundary naming pattern only if required.",
+      "artifactoryDecision": "Not a package-install authorization.",
+      "targetPhase": "H1/H2/I1",
+      "driftCaveat": "Provider translation must never redefine canonical Pi names."
+    },
+    {
+      "id": "pi-native-skills",
+      "source": "Pi native Skills",
+      "url": "https://github.com/earendil-works/pi/blob/v0.80.6/packages/coding-agent/docs/skills.md",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT verified in official repository",
+      "runtimeRequirement": "Node >=22.19.0; official Pi packages ^0.80.6",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Reference only; retain MIT notice if loader behavior is later adapted.",
+      "installDecision": "No unmanaged discovery or install; reuse through Nessy capability resolution.",
+      "artifactoryDecision": "Not a package-install authorization.",
+      "targetPhase": "H2/H9/H13",
+      "driftCaveat": "Official format may evolve after the pinned revision."
+    },
+    {
+      "id": "pi-sandbox-example",
+      "source": "Official Pi sandbox example",
+      "url": "https://github.com/earendil-works/pi/tree/v0.80.6/packages/coding-agent/examples/extensions/sandbox",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT verified in official repository",
+      "runtimeRequirement": "Node >=22.19.0; example dependency is deliberately not adopted",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Routing evidence only; no code or dependency copied in R0.",
+      "installDecision": "Reference only; do not add @anthropic-ai/sandbox-runtime or any isolation dependency.",
+      "artifactoryDecision": "No install request and no Artifactory decision needed.",
+      "targetPhase": "H5",
+      "driftCaveat": "Experimental example is not a production isolation contract."
+    },
+    {
+      "id": "pi-containerization-guide",
+      "source": "Pi containerization guide",
+      "url": "https://github.com/earendil-works/pi/blob/v0.80.6/packages/coding-agent/docs/containerization.md",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT repository documentation",
+      "runtimeRequirement": "not applicable; architecture guidance",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Link-only guidance; no prose copied.",
+      "installDecision": "Reference only for H5 ADR/tests.",
+      "artifactoryDecision": "Not applicable.",
+      "targetPhase": "R0/H5",
+      "driftCaveat": "Trade-off guidance is not a commitment to ship every backend."
+    },
+    {
+      "id": "masurii-pi-permission-system",
+      "source": "MasuRii/pi-permission-system",
+      "url": "https://github.com/MasuRii/pi-permission-system",
+      "version": "0.8.0",
+      "commit": "9affcc9d1b52cd79b8bb7da2bebb761ac7e5b1d8",
+      "license": "MIT LICENSE file verified",
+      "runtimeRequirement": "Node >=20; Bun >=1.1; Pi peer ^0.74 || ^0.75 || ^0.78 || ^0.79 || ^0.80",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for any later copied algorithm or test.",
+      "installDecision": "No production dependency; reviewed adaptation only.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H2/H6",
+      "driftCaveat": "Community policy engine cannot replace Nessy policy authority."
+    },
+    {
+      "id": "gotgenes-pi-permission-system",
+      "source": "gotgenes/pi-permission-system",
+      "url": "https://github.com/gotgenes/pi-packages/tree/main/packages/pi-permission-system",
+      "version": "20.4.2",
+      "commit": "2301a0302487a67da5b27e63a75ab14f8e612773",
+      "license": "package metadata says MIT; no root license file observed",
+      "runtimeRequirement": "Node >=22; Pi coding-agent/tui >=0.79",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "No source copy until license-file provenance is resolved; metadata alone is insufficient.",
+      "installDecision": "Secondary source/tests reference only.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H2/H6",
+      "driftCaveat": "Main-branch package and missing root license require re-verification before adaptation."
+    },
+    {
+      "id": "pi-subagent-example",
+      "source": "Official Pi subagent example",
+      "url": "https://github.com/earendil-works/pi/tree/v0.80.6/packages/coding-agent/examples/extensions/subagent",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT verified in official repository",
+      "runtimeRequirement": "Node >=22.19.0; official Pi packages ^0.80.6",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Reference only; retain MIT notice for later adapted spawn/protocol code.",
+      "installDecision": "No extension install; adapt tests/patterns behind Nessy supervisor.",
+      "artifactoryDecision": "Not a package-install authorization.",
+      "targetPhase": "H9",
+      "driftCaveat": "Example process ownership is not durable Nessy supervision."
+    },
+    {
+      "id": "mjakl-pi-subagent",
+      "source": "@mjakl/pi-subagent",
+      "url": "https://github.com/mjakl/pi-subagent",
+      "version": "repo 3.0.0; registry observation 2.1.0",
+      "commit": "70248dcf7c8a5ca74497e817a699f009c55e6917",
+      "license": "MIT LICENSE file verified",
+      "runtimeRequirement": "Node not declared; Pi >=0.80.5",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution required for any later adaptation.",
+      "installDecision": "Reference only until repo/registry version provenance is resolved.",
+      "artifactoryDecision": "No approved common internal target proven; do not install.",
+      "targetPhase": "H9",
+      "driftCaveat": "Repository version 3.0.0 differs from observed registry 2.1.0."
+    },
+    {
+      "id": "tintinweb-pi-subagents",
+      "source": "tintinweb/pi-subagents",
+      "url": "https://github.com/tintinweb/pi-subagents",
+      "version": "0.14.0",
+      "commit": "6c8bfbf7ff6494994bb74730e3a6edc2ef1ff53d",
+      "license": "MIT LICENSE file verified",
+      "runtimeRequirement": "Node not declared; Pi >=0.80.0",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for adapted protocol, algorithms or tests.",
+      "installDecision": "No production dependency; reviewed adaptation into Nessy host only.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H9/D2/D4",
+      "driftCaveat": "Community supervisor remains reference, not server truth."
+    },
+    {
+      "id": "nicobailon-pi-subagents",
+      "source": "nicobailon/pi-subagents",
+      "url": "https://github.com/nicobailon/pi-subagents",
+      "version": "0.34.0",
+      "commit": "c940fe20e86d9ba429eebcac809ec79d478ef206",
+      "license": "package metadata says MIT; no license file observed",
+      "runtimeRequirement": "Node not declared; Pi peers *; dependency pi-tui 0.74.0",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "No source copy until license-file provenance is confirmed.",
+      "installDecision": "Interface/behavior reference only.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H9/D5",
+      "driftCaveat": "Wildcard peers and old pi-tui dependency are not compatibility proof."
+    },
+    {
+      "id": "tintinweb-pi-tasks",
+      "source": "@tintinweb/pi-tasks",
+      "url": "https://github.com/tintinweb/pi-tasks",
+      "version": "0.7.1",
+      "commit": "d478be2f07d56c7af126876eb0a53a36f27bbf0a",
+      "license": "MIT LICENSE file verified",
+      "runtimeRequirement": "Node not declared; Pi >=0.74",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for adapted schemas, algorithms or tests.",
+      "installDecision": "No production dependency; Nessy owns persistence and validation.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H8",
+      "driftCaveat": "Broad Pi range does not prove selected-version lifecycle parity."
+    },
+    {
+      "id": "nicobailon-pi-mcp-adapter",
+      "source": "nicobailon/pi-mcp-adapter",
+      "url": "https://github.com/nicobailon/pi-mcp-adapter",
+      "version": "2.11.0",
+      "commit": "82724dccc13a49310530898f922bafff12b7f3fe",
+      "license": "MIT LICENSE file verified",
+      "runtimeRequirement": "Node not declared; pi-ai/pi-tui ^0.74.0; development observed around Pi 0.79.x",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for any later adapted algorithm or test.",
+      "installDecision": "No package install; adapt reviewed same-turn/abort/cache/reconnect tests only.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H10A/H10B/D3",
+      "driftCaveat": "Old Pi dependencies and community auth ownership cannot replace Nessy host contracts."
+    },
+    {
+      "id": "samfoy-pi-lsp-extension",
+      "source": "samfoy/pi-lsp-extension",
+      "url": "https://github.com/samfoy/pi-lsp-extension",
+      "version": "1.3.0",
+      "commit": "f2433d19c3bb1300dfdc5f4505b062f9c9c0a1a6",
+      "license": "package metadata says MIT; no license file observed",
+      "runtimeRequirement": "Node not declared; Pi peers *",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "No source copy until license-file provenance is confirmed.",
+      "installDecision": "Interface/schema reference only; language servers remain user/managed.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H11/D3",
+      "driftCaveat": "Wildcard peer range and missing license file require re-check."
+    },
+    {
+      "id": "spences10-pi-lsp",
+      "source": "@spences10/pi-lsp",
+      "url": "https://github.com/spences10/my-pi/tree/main/packages/pi-lsp",
+      "version": "0.0.37 (root repo 0.1.109)",
+      "commit": "acf4521288a922143ed5564eecb1f6534921e421",
+      "license": "root MIT LICENSE verified",
+      "runtimeRequirement": "Node >=24.15.0; Pi peers *",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for any later adapted algorithm or test.",
+      "installDecision": "Secondary reference only; do not import package/runtime requirement.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H11/D3",
+      "driftCaveat": "Node requirement exceeds Nessy/Pi selected runtime and wildcard peers prove no compatibility."
+    },
+    {
+      "id": "pi-extension-events",
+      "source": "Pi extension event API",
+      "url": "https://github.com/earendil-works/pi/blob/v0.80.6/packages/coding-agent/docs/extensions.md",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT verified in official repository",
+      "runtimeRequirement": "Node >=22.19.0; official Pi packages ^0.80.6",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Reference only; retain MIT notice if later event adapter code is adapted.",
+      "installDecision": "No install; official events inform a Nessy-owned hook bus.",
+      "artifactoryDecision": "Not a package-install authorization.",
+      "targetPhase": "H7",
+      "driftCaveat": "Official events are source-adapter inputs, not Nessy lifecycle authority."
+    },
+    {
+      "id": "spences10-my-pi",
+      "source": "spences10/my-pi",
+      "url": "https://github.com/spences10/my-pi",
+      "version": "0.1.109",
+      "commit": "acf4521288a922143ed5564eecb1f6534921e421",
+      "license": "root MIT LICENSE verified",
+      "runtimeRequirement": "packages commonly require Node >=24.15.0; Pi compatibility varies/not declared at monorepo level",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for any later adapted protocol or test.",
+      "installDecision": "Broad monorepo is reference only; no wholesale package import.",
+      "artifactoryDecision": "No approved internal targets proven; do not install.",
+      "targetPhase": "H9/Q1/D5",
+      "driftCaveat": "Package-level versions and compatibility differ inside the monorepo."
+    },
+    {
+      "id": "spences10-pi-telemetry",
+      "source": "@spences10/pi-telemetry",
+      "url": "https://github.com/spences10/my-pi/tree/main/packages/pi-telemetry",
+      "version": "0.0.28",
+      "commit": "acf4521288a922143ed5564eecb1f6534921e421",
+      "license": "root MIT LICENSE verified",
+      "runtimeRequirement": "Node >=24.15.0; Pi peers *",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for any later adapted schema or test.",
+      "installDecision": "Reference schema/redaction ideas; Nessy builds opt-in storage/export.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "Q1/D3",
+      "driftCaveat": "Runtime requirement and wildcard peers are not compatible-target proof."
+    },
+    {
+      "id": "pi-git-checkpoint",
+      "source": "Official Pi git-checkpoint.ts",
+      "url": "https://github.com/earendil-works/pi/blob/v0.80.6/packages/coding-agent/examples/extensions/git-checkpoint.ts",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT verified in official repository",
+      "runtimeRequirement": "Node >=22.19.0; official Pi packages ^0.80.6",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Reference only; retain MIT notice if a reviewed algorithm is later adapted.",
+      "installDecision": "No extension install; compare semantics/tests with Nessy checkpoints.",
+      "artifactoryDecision": "Not a package-install authorization.",
+      "targetPhase": "H12",
+      "driftCaveat": "Nessy retains file checkpoints and owns dirty-baseline behavior."
+    },
+    {
+      "id": "arpagon-pi-rewind",
+      "source": "arpagon/pi-rewind",
+      "url": "https://github.com/arpagon/pi-rewind",
+      "version": "0.5.0",
+      "commit": "91611ad87992fb7b635a41ba68f67916ff6e6ae3",
+      "license": "MIT LICENSE file verified",
+      "runtimeRequirement": "Node not declared; Pi requirement not declared",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "MIT attribution/notice required for any later adapted pure-Git algorithm or test.",
+      "installDecision": "No production dependency; reviewed pure-Git adaptation only.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H12/D4",
+      "driftCaveat": "Missing runtime declarations require local contract tests before adaptation."
+    },
+    {
+      "id": "gotgenes-pi-subagents-worktrees",
+      "source": "pi-subagents-worktrees",
+      "url": "https://github.com/gotgenes/pi-packages/tree/main/packages/pi-subagents-worktrees",
+      "version": "0.2.3",
+      "commit": "2301a0302487a67da5b27e63a75ab14f8e612773",
+      "license": "package metadata says MIT; no root license file observed",
+      "runtimeRequirement": "Node >=22; Pi coding-agent >=0.75; gotgenes subagents >=16.4",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "No source copy until license-file provenance is resolved.",
+      "installDecision": "Lifecycle test reference only; Nessy owns worktree leases and never auto-commits.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "H9C/D4",
+      "driftCaveat": "Main-branch package and transitive community supervisor are not production approval."
+    },
+    {
+      "id": "pi-background-process-readme",
+      "source": "Pi README background-process position",
+      "url": "https://github.com/earendil-works/pi/blob/v0.80.6/packages/coding-agent/README.md",
+      "version": "v0.80.6",
+      "commit": "2b3fda9921b5590f285165287bd442a25817f17b",
+      "license": "MIT repository documentation",
+      "runtimeRequirement": "not applicable; documented product position",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Link-only reference; no prose copied.",
+      "installDecision": "Build Nessy execution supervisor; no extension dependency.",
+      "artifactoryDecision": "Not applicable.",
+      "targetPhase": "H4/D2",
+      "driftCaveat": "External terminal/tmux guidance is not a durable Desktop process registry."
+    },
+    {
+      "id": "injaneity-pi-computer-use",
+      "source": "pi-computer-use",
+      "url": "https://github.com/injaneity/pi-computer-use",
+      "version": "0.4.3",
+      "commit": "6afb88f42942a0fb0e753fb7eb085b7529147ee8",
+      "license": "MIT LICENSE file verified",
+      "runtimeRequirement": "Node >=20.6; Pi peers *; native helper, TCC and signing required",
+      "retrievedOn": "2026-07-14",
+      "attributionNotice": "Reference only; MIT attribution would be required for any later authorized adaptation.",
+      "installDecision": "Deferred reference only; separate threat-model authorization required.",
+      "artifactoryDecision": "No approved internal target proven; do not install.",
+      "targetPhase": "Deferred",
+      "driftCaveat": "Native accessibility/TCC/signing risk and wildcard Pi peers preclude R0 adoption."
+    }
+  ],
+  "thirdPartySourceCopiedInR0": false,
+  "storageContracts": [
+    {
+      "id": "materializer",
+      "exportedShape": {
+        "CapabilityMaterializationFailure": [
+          "revoked",
+          "stale",
+          "missing"
+        ],
+        "CapabilitySnapshotMaterializer": [
+          "assertActive",
+          "verifyPlugin",
+          "resolvePath",
+          "readText",
+          "readRelativeText",
+          "resolveSkillDirectory",
+          "resolveCredential"
+        ],
+        "CapabilitySnapshotMaterializerOptions": [
+          "resolveCredential",
+          "onStale",
+          "computeBundleHash"
+        ]
+      },
+      "currentBehavior": "Every read/resolve verifies the active lease; plugin bundle hash and native revision/content hash are pinned; stale calls onStale then throws; missing roots/resources throw; credential absence, revision mismatch or expiry throws revoked. A successful bundle verification is memoized for the lifetime of ONE materializer instance (= one snapshot lease = one turn), so verifyPlugin hashes a bundle once however many MCP servers and source resources reach it; assertActive still runs on every call, and stale/missing outcomes are never memoized. computeBundleHash is a test-only injection seam defaulting to computeNormalizedBundleHash.",
+      "evidence": "packages/shared/src/capabilities/materializer.ts:14-123"
+    },
+    {
+      "id": "lease",
+      "exportedShape": {
+        "EffectiveCapabilitySnapshot": [
+          "context",
+          "generation",
+          "leaseId",
+          "entries",
+          "installedPlugins",
+          "diagnostics",
+          "mcpConfigSkips"
+        ],
+        "CapabilityResolver": [
+          "resolve",
+          "releaseSnapshot",
+          "invalidate",
+          "isLeaseActive",
+          "referencedInstances",
+          "leaseCount"
+        ],
+        "LeaseRecord": [
+          "context",
+          "generation",
+          "instances",
+          "revoked",
+          "releaseInstanceLeases"
+        ]
+      },
+      "currentBehavior": "resolve acquires sorted immutable plugin-instance leases; release removes the record and releases in reverse; withCapabilityRuntime releases in finally on success, error, abort or disconnect.",
+      "evidence": "packages/shared/src/capabilities/resolver.ts:268-359,363-369,622-707; packages/server-core/src/sessions/SessionManager.ts:1428-1507"
+    },
+    {
+      "id": "agent-runtime-view",
+      "exportedShape": {
+        "AgentRuntimeView": [
+          "generation",
+          "sources",
+          "skills",
+          "mcpServers",
+          "hooks",
+          "automations",
+          "agents",
+          "promptLayers",
+          "memory",
+          "permissionLayers",
+          "commands",
+          "promptCommands",
+          "apps",
+          "lspServers",
+          "monitors",
+          "outputStyles",
+          "withheld"
+        ],
+        "RuntimeSourceHandle": [
+          "key",
+          "logicalName",
+          "resource",
+          "guideResource",
+          "credential",
+          "mcpWireName"
+        ],
+        "RuntimeSkillHandle": [
+          "key",
+          "logicalName",
+          "description",
+          "selectedAsUnqualifiedAlias",
+          "resource",
+          "disableModelInvocation",
+          "userInvocable",
+          "overrideState",
+          "allowedTools",
+          "paths",
+          "directoryQualifier",
+          "pluginRuntime",
+          "pluginUserConfig"
+        ]
+      },
+      "currentBehavior": "toAgentRuntime projects one EffectiveCapabilitySnapshot generation without rediscovery; only runnable entries enter the server-only path/resource/credential view.",
+      "evidence": "packages/shared/src/capabilities/views.ts:34-89"
+    },
+    {
+      "id": "invalidation",
+      "exportedShape": {
+        "scopes": [
+          "global",
+          "workspace",
+          "project",
+          "project-trust",
+          "session",
+          "plugin"
+        ],
+        "effects": [
+          "refresh-before-next-turn",
+          "revoke-active-snapshot"
+        ],
+        "NativeSourceInvalidation": [
+          "kind",
+          "scope",
+          "revision"
+        ],
+        "PluginRuntimeInvalidation": [
+          "kind",
+          "scope",
+          "effect",
+          "revision"
+        ],
+        "CapabilityCatalogInvalidation": [
+          "scope",
+          "reason",
+          "effect",
+          "revision"
+        ]
+      },
+      "currentBehavior": "refresh leaves the captured processing generation intact; revoke marks matching live leases revoked immediately; project-trust fans out by projectKey and plugin scope conservatively fails closed.",
+      "evidence": "packages/shared/src/capabilities/invalidation.ts:108-167; resolver.ts:673-729; packages/server-core/src/bootstrap/storage-runtime.ts:126-141"
+    },
+    {
+      "id": "safe-catalog",
+      "exportedShape": {
+        "SafeCapabilityScopeRef": [
+          "kind",
+          "workspaceId",
+          "projectKey"
+        ],
+        "SafeCapabilitySummary": [
+          "key",
+          "kind",
+          "logicalName",
+          "displayName",
+          "description",
+          "sourceType",
+          "mcpTransport",
+          "mention",
+          "iconUrl",
+          "origin",
+          "presentation",
+          "connectorOrigin",
+          "scope",
+          "state",
+          "readOnly",
+          "trustState",
+          "credentialState",
+          "selectedAsUnqualifiedAlias",
+          "unavailableReason",
+          "diagnosticCodes"
+        ],
+        "SafePluginOriginIdentity": [
+          "marketplaceId",
+          "pluginId",
+          "listingId",
+          "sourceId"
+        ],
+        "SafeInstalledPluginSummary": [
+          "pluginKey",
+          "activeInstanceId",
+          "origin",
+          "presentation",
+          "name",
+          "version",
+          "installedAt",
+          "lifecycleState",
+          "availableUpdateVersion",
+          "capabilityKinds",
+          "compatibility",
+          "authRequirements",
+          "dependencyErrors",
+          "activation",
+          "actions",
+          "components"
+        ],
+        "SafeCapabilityDiagnostic": [
+          "severity",
+          "code",
+          "messageKey",
+          "safeArgs",
+          "capabilityKey"
+        ],
+        "ComposerCatalogView": [
+          "generation",
+          "items"
+        ],
+        "UserCapabilityCatalog": [
+          "generation",
+          "installedPlugins",
+          "capabilities",
+          "diagnostics"
+        ],
+        "SafeCapabilitySummary.mention": [
+          "type",
+          "id",
+          "qualifiedId",
+          "selectedAsShortAlias",
+          "label"
+        ],
+        "SafeInstalledPluginSummary.activation": [
+          "effective",
+          "global",
+          "workspace",
+          "project",
+          "managed"
+        ],
+        "SafeInstalledPluginSummary.actions": [
+          "canEnable",
+          "canDisable",
+          "canUpdate",
+          "canRepair",
+          "canUninstall",
+          "reasonCodes"
+        ]
+      },
+      "currentBehavior": "Renderer DTOs are path/secret-free; projectKey is opaque, icons are data/app URLs and server runtime resources never cross the safe boundary.",
+      "evidence": "packages/shared/src/protocol/capabilities.ts:20-118,389-399"
+    },
+    {
+      "id": "project-trust",
+      "exportedShape": {
+        "ProjectTrustRecord": [
+          "projectKey",
+          "identityFingerprint",
+          "state",
+          "source",
+          "revision",
+          "updatedAt"
+        ],
+        "ProjectTrustDecision": [
+          "state",
+          "source",
+          "revision",
+          "persistence"
+        ],
+        "states": [
+          "none",
+          "trusted",
+          "blocked"
+        ],
+        "persistence": [
+          "stable",
+          "process-only"
+        ]
+      },
+      "currentBehavior": "Folder selection grants nothing; stable trust requires matching projectKey plus identityFingerprint; process-only decisions are memory-only; untrusted project inventory withholds repository-owned layers and emits one path-free blocked layer.",
+      "evidence": "packages/shared/src/capabilities/project-trust-store.ts:36-183; types.ts:97-134; packages/server-core/src/sessions/SessionManager.ts:1435-1463"
+    },
+    {
+      "id": "session-storage",
+      "exportedShape": {
+        "VerifiedStorageLayoutV2": [
+          "storageLayoutVersion:2",
+          "verificationId"
+        ],
+        "SessionKey": [
+          "workspaceId",
+          "sessionId"
+        ],
+        "SessionStore": [
+          "ensureWorkspaceDir",
+          "getSessionPath",
+          "getSessionFilePath",
+          "create",
+          "load",
+          "list",
+          "delete"
+        ]
+      },
+      "currentBehavior": "Runtime composition requires verified-v2 readiness; sessions are composite-keyed and stored beneath managed workspace/session roots.",
+      "evidence": "packages/shared/src/workspaces/storage-readiness.ts:20-23; session storage exports and SessionManager composite-key map at e3357945"
+    },
+    {
+      "id": "storage-runtime",
+      "exportedShape": {
+        "StorageRuntime": [
+          "sessionStore",
+          "pluginStore",
+          "pluginManagement",
+          "capabilityPolicyStore",
+          "capabilityTrustStore",
+          "credentialManager",
+          "capabilityResolver",
+          "projectHandleService",
+          "recentProjectStore",
+          "workspaceService",
+          "workspaceQuiescence",
+          "resolveRuntimeCredential",
+          "onCapabilityInvalidation",
+          "dispose"
+        ]
+      },
+      "currentBehavior": "createStorageRuntime creates one WorkspaceQuiescenceCoordinator, passes it to createWorkspaceService and exports the same instance for SessionManager.",
+      "evidence": "packages/server-core/src/bootstrap/storage-runtime.ts:60-199"
+    },
+    {
+      "id": "quiescence",
+      "exportedShape": {
+        "WorkspaceQuiescence": [
+          "acquire(workspaceId)"
+        ],
+        "WorkspaceQuiescenceLease": [
+          "release()"
+        ]
+      },
+      "currentBehavior": "Project Q0 owns the generic WorkspaceQuiescenceCoordinator in StorageRuntime; SessionManager registers the Pi runtime/process participant and H4B is done.",
+      "evidence": "packages/shared/src/workspaces/service.ts:71-78,528-565; packages/server-core/src/bootstrap/storage-runtime.ts:145-176"
+    },
+    {
+      "id": "delete-hook",
+      "exportedShape": {
+        "WorkspaceCleanupParticipant": [
+          "id",
+          "stage(workspaceId,transactionId)",
+          "commit(transactionId)",
+          "rollback(transactionId)"
+        ],
+        "WorkspaceDeleteResult": [
+          "deleted",
+          "cleanupFailures[{resource,code,message}]"
+        ],
+        "runtimeParticipants": [
+          "plugin-data",
+          "capability-policy",
+          "capability-trust",
+          "recent-projects"
+        ]
+      },
+      "currentBehavior": "Delete acquires quiescence, journals, stages participants and workspace/session roots, removes registry, commits participants, cleans credentials, compensates in reverse on rollback and releases quiescence; recovery requires exact unique participant IDs.",
+      "evidence": "packages/shared/src/workspaces/types.ts:147-164; service.ts:528-689,1069-1082; packages/server-core/src/bootstrap/storage-runtime.ts:170-175"
+    }
+  ],
+  "acceptedStorageBaseline": {
+    "w12ImplementationFoundation": "47f28745",
+    "completedCloseout": "781144bf",
+    "realProfileSmoke": "completed and accepted in storage closeout",
+    "finalCloseout": "completed and accepted",
+    "genericProductionWorkspaceQuiescence": "present; StorageRuntime owns the generic coordinator and SessionManager registers the Pi participant"
+  },
+  "scenarios": [
+    {
+      "id": "capability-turn",
+      "current": "one leased EffectiveCapabilitySnapshot is projected to AgentRuntimeView and released after the turn",
+      "evidence": "SessionManager.createCapabilityTurn/withCapabilityRuntime",
+      "futurePhase": "H2"
+    },
+    {
+      "id": "orchestrator-init",
+      "current": "PiAgent fails before spawn without a finalized V2 capability manifest; child init rejects manifestless/V1 ingress and consumes all eleven normalized orchestrator fields",
+      "evidence": "PiAgent.spawnSubprocess/buildPiInitMessage/handleInit",
+      "futurePhase": "X10"
+    },
+    {
+      "id": "prompt-override",
+      "current": "Nessy prompt uses applySystemPromptOverride against version-sensitive Pi session state",
+      "evidence": "handlePrompt/system-prompt-override.ts",
+      "futurePhase": "H1/H13"
+    },
+    {
+      "id": "normal-proxy-approval",
+      "current": "canonical subject and pre-tool checks produce one server PiPermissionService decision/receipt; the child strictly parses and replay-guards it before ToolExecutor scheduling and X4A-owned isolated dispatch",
+      "evidence": "PiAgent.handlePreToolUseRequest/createPiPermissionService/parseAndFreezePiPermissionReceipt/createToolExecutor/buildProxyTools",
+      "futurePhase": "X5"
+    },
+    {
+      "id": "call-llm-speculative-prefetch",
+      "current": "call_llm follows the Pi SDK adapter to ToolExecutor to buildProxyTools dispatch; speculative host dispatch is absent",
+      "status": "implemented",
+      "evidence": "createPiSdkToolAdapter/createToolExecutor/buildProxyTools",
+      "futurePhase": "X3"
+    },
+    {
+      "id": "abort",
+      "current": "turn abort exists; proxy/MCP/process calls lack one common signal/deadline envelope",
+      "evidence": "InboundMessage.abort and current proxy handshakes",
+      "futurePhase": "H3/H4/H10B"
+    },
+    {
+      "id": "resume-compact",
+      "current": "Pi session sidecars, branch anchors, manual/auto compact and follow-up prompting exist",
+      "evidence": "ensureSession/handlePrompt/compact handlers",
+      "futurePhase": "H1A/H7/H13"
+    },
+    {
+      "id": "checkpoints",
+      "current": "file checkpoints and rewind exist; notebook key/mode coverage remains incomplete",
+      "evidence": "shipped baseline",
+      "futurePhase": "H12"
+    },
+    {
+      "id": "subagents",
+      "current": "subagent preserves single/parallel/chain/background, adds resume/get_subagent_result/steer_subagent, and routes durable child identity, budgets, transcript, mailbox, worktree and stop ownership through SessionManager",
+      "evidence": "orchestrator/subagent-tool.ts, ChildSessionService, WorktreeLeaseService and PiChildSessionPort",
+      "futurePhase": "X7"
+    },
+    {
+      "id": "workflow",
+      "current": "workflow journal/replay/budgets and agent() child-session routing exist; the validated new Function evaluator remains a known same-process limitation",
+      "evidence": "orchestrator/workflow-tool.ts and orchestrator/sandbox.ts",
+      "futurePhase": "post-X10 separately reviewed evaluator scope"
+    },
+    {
+      "id": "background-shell",
+      "current": "host ProcessSupervisor/ProcessStore owns process state and bounded opaque-handle cursor logs",
+      "evidence": "ProcessSupervisor, ProcessStore and SESSION_TOOL_DEFS.BashOutput",
+      "futurePhase": "H4A"
+    },
+    {
+      "id": "live-cwd",
+      "current": "the SessionManager-registered Pi runtime/process participant joins the generic WorkspaceQuiescenceCoordinator; adjacent backends are not drained",
+      "evidence": "PiAgent, SessionManager and PiWorkspaceDrainParticipant",
+      "futurePhase": "H1/H4A/H7/H12"
+    },
+    {
+      "id": "mcp-elicitation",
+      "current": "existing Pi MCP elicitation callback seam is preserved",
+      "evidence": "PiAgent MCP elicitation tests/path",
+      "futurePhase": "H10B"
+    },
+    {
+      "id": "session-tools",
+      "current": "BashOutput, spawn_session, send_agent_message and script_sandbox are existing shared contracts",
+      "evidence": "SESSION_TOOL_DEFS",
+      "futurePhase": "H2/H4/H5/H9"
+    },
+    {
+      "id": "permission-modes",
+      "current": "six internal modes map to explore/plan/ask/acceptEdits/auto/execute and feed the single PiPermissionService receipt path without selecting the independent normal/bare context profile",
+      "evidence": "mode-types.ts/PiAgent.handlePreToolUseRequest/createPiPermissionService",
+      "futurePhase": "X5"
+    }
+  ],
+  "goldenBaselines": [
+    {
+      "id": "event-order",
+      "execution": "live-adapter",
+      "input": {
+        "sequence": [
+          "turn_start",
+          "message_start",
+          "message_update:text_delta",
+          "message_end",
+          "turn_end",
+          "agent_end"
+        ],
+        "delta": "Hello",
+        "final": "Hello"
+      },
+      "expected": {
+        "emittedSequence": [
+          "text_delta",
+          "text_complete",
+          "complete"
+        ],
+        "turnResetBeforeComplete": true
+      },
+      "sourceAnchors": [
+        "packages/shared/src/agent/backend/pi/event-adapter.ts#adaptEvent"
+      ]
+    },
+    {
+      "id": "prompt-sections-and-tool-availability",
+      "execution": "live-builders-plus-source-order",
+      "input": {
+        "cwd": "<fixture-repo>",
+        "includeDeveloperFeedback": false,
+        "browserEnabled": false
+      },
+      "expected": {
+        "promptSections": [
+          "## Safety and Engineering",
+          "## External Sources",
+          "## Skills",
+          "## Project Context",
+          "## Automation Management Tools",
+          "## Plugin Management",
+          "## Permission Modes",
+          "## LLM Tool (`call_llm`)",
+          "## Browser Tools",
+          "## Session Self-Management"
+        ],
+        "runtimeTools": [
+          "read",
+          "bash",
+          "edit",
+          "write",
+          "grep",
+          "find",
+          "ls",
+          "NotebookEdit"
+        ],
+        "assemblySequence": [
+          "webTools",
+          "builtinDefs",
+          "proxyTools",
+          "orchestratorTools",
+          "adaptTools",
+          "customTools",
+          "tools"
+        ],
+        "feedbackAdvertised": false,
+        "browserProjection": "filtered before register_tools",
+        "privatePromptText": "excluded"
+      },
+      "sourceAnchors": [
+        "packages/shared/src/prompts/system.ts#getSystemPrompt",
+        "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions",
+        "packages/session-tools-core/src/tool-defs.ts#getSessionToolDefs",
+        "packages/pi-agent-server/src/index.ts#ensureSession",
+        "packages/shared/src/agent/pi-agent.ts#spawnSubprocess"
+      ]
+    },
+    {
+      "id": "normal-permission-approval-order",
+      "execution": "live-authority-wrapper-plus-source-order",
+      "input": {
+        "tool": "mcp__session__remember",
+        "prefetched": false
+      },
+      "expected": {
+        "sequence": [
+          "canonical subject/check",
+          "PiPermissionService decision/receipt",
+          "child strict parse/replay guard",
+          "ToolExecutor permissionBridge",
+          "scheduler.run",
+          "X4A isolation/dispatch",
+          "buildProxyTools.execute",
+          "pendingToolExecutions.set",
+          "tool_execute_request",
+          "handleToolExecuteResponse",
+          "pending.resolve(msg.result)",
+          "bounded receipt/result"
+        ]
+      },
+      "sourceAnchors": [
+        "packages/shared/src/agent/pi-agent.ts#handlePreToolUseRequest",
+        "packages/server-core/src/pi-harness/permission-service.ts#createPiPermissionService",
+        "packages/shared/src/agent/pi-harness/permission-receipt.ts#parseAndFreezePiPermissionReceipt",
+        "packages/pi-agent-server/src/index.ts#createExecutor",
+        "packages/shared/src/agent/pi-harness/tool-executor.ts#createToolExecutor",
+        "packages/pi-agent-server/src/index.ts#buildProxyTools",
+        "packages/server-core/src/pi-harness/process-supervisor.ts#ProcessSupervisor",
+        "packages/pi-agent-server/src/index.ts#handleToolExecuteResponse"
+      ]
+    },
+    {
+      "id": "six-permission-modes",
+      "execution": "live-export",
+      "input": {
+        "modes": [
+          "dontAsk",
+          "plan",
+          "default",
+          "acceptEdits",
+          "auto",
+          "bypassPermissions"
+        ]
+      },
+      "expected": {
+        "canonical": [
+          "dontAsk",
+          "plan",
+          "default",
+          "acceptEdits",
+          "auto",
+          "bypassPermissions"
+        ]
+      },
+      "sourceAnchors": [
+        "packages/shared/src/agent/mode-types.ts#PERMISSION_MODE_CONFIG"
+      ]
+    },
+    {
+      "id": "abort",
+      "execution": "source-order",
+      "input": {
+        "message": {
+          "type": "abort"
+        }
+      },
+      "expected": {
+        "handlerSequence": [
+          "piSession.abort",
+          "block and clear pending approvals",
+          "reject pending ask_user",
+          "clear pending ask_user"
+        ],
+        "dispatchSequence": [
+          "case abort",
+          "await handleAbort"
+        ],
+        "commonProxyDeadline": false
+      },
+      "sourceAnchors": [
+        "packages/pi-agent-server/src/index.ts#clearPendingPreToolUse",
+        "packages/pi-agent-server/src/index.ts#handleAbort"
+      ]
+    },
+    {
+      "id": "resume-compact",
+      "execution": "source-order",
+      "input": {
+        "resume": true,
+        "compact": true
+      },
+      "expected": {
+        "resumeSequence": [
+          "create isolated agentDir",
+          "create .pi-sessions directory",
+          "branch via forkFrom, carry via forkFrom, or resume via continueRecent",
+          "install sessionManager through PiRuntimeAdapter",
+          "report whether the carry file was forked"
+        ],
+        "compactSequence": [
+          "ensureSession",
+          "validate active runtime handle",
+          "waitForCompaction",
+          "runtimeHandle.compact",
+          "capture lastCompaction",
+          "build context usage",
+          "compact_result",
+          "context_usage_update"
+        ]
+      },
+      "sourceAnchors": [
+        "packages/pi-agent-server/src/index.ts#ensureSession",
+        "packages/pi-agent-server/src/index.ts#handleCompact"
+      ]
+    },
+    {
+      "id": "checkpoints",
+      "execution": "live-export",
+      "input": {
+        "path": "fixture.txt",
+        "before": "a",
+        "after": "b"
+      },
+      "expected": {
+        "operations": [
+          "createFileCheckpoint",
+          "listFileCheckpoints",
+          "revertFileCheckpoint"
+        ],
+        "restored": "a",
+        "notebookParity": "future H12"
+      },
+      "sourceAnchors": [
+        "packages/shared/src/sessions/file-checkpoints.ts#createFileCheckpoint"
+      ]
+    },
+    {
+      "id": "subagents",
+      "execution": "live-host-port-and-durable-service",
+      "input": {
+        "single": {
+          "agent": "worker",
+          "task": "one"
+        },
+        "parallel": {
+          "tasks": [
+            {
+              "agent": "a",
+              "task": "one"
+            },
+            {
+              "agent": "b",
+              "task": "two"
+            }
+          ]
+        },
+        "chain": {
+          "chain": [
+            {
+              "agent": "a",
+              "task": "one"
+            },
+            {
+              "agent": "b",
+              "task": "use {previous}"
+            }
+          ]
+        },
+        "resume": {
+          "resume": "agent_id",
+          "input": "continue"
+        }
+      },
+      "expected": {
+        "modes": [
+          "single",
+          "parallel",
+          "chain",
+          "resume"
+        ],
+        "substitution": "use result",
+        "identity": {
+          "agent_id": "durable child session",
+          "task_id": "background orchestration",
+          "workflow_run_id": "workflow state",
+          "worktreeLeaseId": "owned worktree lease"
+        },
+        "hostPath": [
+          "PiChildSessionPort",
+          "SessionManager",
+          "ChildSessionService"
+        ],
+        "backgroundRegistry": "absent"
+      },
+      "sourceAnchors": [
+        "packages/pi-agent-server/src/orchestrator/subagent-tool.ts#normalizeSubagentRequest",
+        "packages/pi-agent-server/src/orchestrator/spawner.ts#spawnChildSession",
+        "packages/server-core/src/pi-harness/child-session-service.ts#ChildSessionService",
+        "packages/server-core/src/sessions/SessionManager.ts#createPiChildSessionPort"
+      ]
+    },
+    {
+      "id": "workflow",
+      "execution": "live-sandbox-plus-source-order-current-tool-import-reaches-unsafe-spawner-graph",
+      "input": {
+        "script": "phase('first'); log('fixture'); return args.value;",
+        "args": {
+          "value": "done"
+        },
+        "phases": [
+          {
+            "title": "first"
+          },
+          {
+            "title": "second"
+          }
+        ]
+      },
+      "expected": {
+        "returnValue": "done",
+        "logs": [
+          "fixture"
+        ],
+        "status": "done",
+        "sourceSequence": [
+          "normalize input",
+          "create journal",
+          "make API",
+          "compile script",
+          "build result"
+        ],
+        "isolation": "same-process current defect"
+      },
+      "sourceAnchors": [
+        "packages/pi-agent-server/src/orchestrator/workflow-tool.ts#createWorkflowTool"
+      ]
+    },
+    {
+      "id": "foreground-process",
+      "execution": "live-builder",
+      "input": {
+        "tool": "bash",
+        "command": "printf fixture",
+        "cwd": "<fixture-repo>"
+      },
+      "expected": {
+        "toolName": "bash",
+        "runCommand": {
+          "command": "printf fixture",
+          "timeout": 2000,
+          "semanticId": "bash",
+          "isolationProfile": "networked"
+        },
+        "isolationProfileNote": "Was 'workspace' when this row was captured 2026-07-26. Owner decision d214cb63 (2026-07-28) moved foreground bash to 'networked'; it updated local-tools/runtime.ts, its unit test and the bash real-server e2e pin but not this golden, which is why the row went red. 'networked' shares the identical writable root with 'workspace' (isolation/darwin.ts, isolation/linux.ts) and differs only in whether the network deny applies, so this records an egress change, not a containment one. Narrowing egress again is parity row R19, parked.",
+        "text": "fixture",
+        "background": false
+      },
+      "sourceAnchors": [
+        "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions"
+      ]
+    },
+    {
+      "id": "background-process",
+      "execution": "live-builder",
+      "input": {
+        "tool": "bash_background",
+        "command": "printf fixture"
+      },
+      "expected": {
+        "sequence": [
+          "host supervisor start",
+          "emit shell_backgrounded",
+          "return opaque process handle",
+          "host cursor logs",
+          "host owns exit state"
+        ],
+        "shellId": "process_0123456789abcdef0123456789abcdef",
+        "output": "fixture",
+        "owner": "server-core ProcessSupervisor/ProcessStore"
+      },
+      "sourceAnchors": [
+        "packages/pi-agent-server/src/tools/background-bash.ts#createBackgroundBashTool",
+        "packages/server-core/src/pi-harness/process-supervisor.ts#ProcessSupervisor"
+      ]
+    },
+    {
+      "id": "live-cwd",
+      "execution": "live-builder-plus-source-order",
+      "input": {
+        "cwd": "fixture/subdir"
+      },
+      "expected": {
+        "spawnSequence": [
+          "resolvedCwd",
+          "spawn cwd",
+          "derive workingDirectory",
+          "send init cwd",
+          "send init workingDirectory"
+        ],
+        "toolExecutionUsesResolvedCwd": true,
+        "atomicParticipation": "Pi runtime/process participant registered with the generic WorkspaceQuiescenceCoordinator; adjacent backends excluded"
+      },
+      "sourceAnchors": [
+        "packages/shared/src/agent/pi-agent.ts#spawnSubprocess",
+        "packages/pi-agent-server/src/local-tools/runtime-backed-tools.ts#buildRuntimeBackedBuiltinToolDefinitions"
+      ]
+    },
+    {
+      "id": "mcp-elicitation",
+      "execution": "live-surface-plus-source-order",
+      "input": {
+        "configured": true,
+        "signal": "AbortSignal"
+      },
+      "expected": {
+        "constructorSequence": [
+          "Client capabilities",
+          "conditional elicitation advertisement",
+          "set ElicitRequestSchema handler",
+          "forward extra.signal"
+        ],
+        "advertised": {
+          "elicitation": {
+            "form": {},
+            "url": {}
+          }
+        },
+        "handlerSignal": "extra.signal"
+      },
+      "sourceAnchors": [
+        "packages/shared/src/mcp/client.ts#NessyMcpClient"
+      ]
+    },
+    {
+      "id": "bash-output",
+      "execution": "live-handler",
+      "input": {
+        "shell_id": "shell-fixture",
+        "offset": 3
+      },
+      "expected": {
+        "text": "shell_id: shell-fixture\nstatus: running\nnext_offset: 9\noutput:\nchunk",
+        "isError": false
+      },
+      "sourceAnchors": [
+        "packages/session-tools-core/src/handlers/bash-output.ts#handleBashOutput"
+      ]
+    },
+    {
+      "id": "spawn-session",
+      "execution": "live-schema-plus-source-order",
+      "input": {
+        "prompt": "child task",
+        "name": "fixture-child",
+        "permissionMode": "plan"
+      },
+      "expected": {
+        "name": "spawn_session",
+        "executionMode": "backend",
+        "safeMode": "block",
+        "readOnlyDeclared": false,
+        "readOnlyEffective": false,
+        "handlerSequence": [
+          "resolve session-scoped callback",
+          "fail closed when unavailable",
+          "invoke callback with validated args",
+          "serialize result",
+          "normalize Error failure"
+        ]
+      },
+      "sourceAnchors": [
+        "packages/session-tools-core/src/tool-defs.ts#spawn_session",
+        "packages/shared/src/agent/spawn-session-tool.ts#createSpawnSessionTool"
+      ]
+    },
+    {
+      "id": "send-agent-message",
+      "execution": "live-handler",
+      "input": {
+        "from": "parent",
+        "fromName": "Parent",
+        "to": "child",
+        "message": "hello"
+      },
+      "expected": {
+        "wrappedMessage": "[Message from session \"parent\" (Parent)]\nUse send_agent_message with sessionId \"parent\" to reply.\n\n---\n\nhello",
+        "isError": false
+      },
+      "sourceAnchors": [
+        "packages/session-tools-core/src/handlers/send-agent-message.ts#handleSendAgentMessage"
+      ]
+    },
+    {
+      "id": "script-sandbox",
+      "execution": "live-handler-fail-closed",
+      "input": {
+        "context": {},
+        "language": "bun",
+        "script": "console.log('fixture')"
+      },
+      "expected": {
+        "error": "[ERROR] script_sandbox requires sessionPath and dataPath in context.",
+        "spawned": false
+      },
+      "sourceAnchors": [
+        "packages/session-tools-core/src/handlers/script-sandbox.ts#handleScriptSandbox"
+      ]
+    }
+  ],
+  "modeGoldenBehavior": [
+    {
+      "mode": "dontAsk",
+      "canonical": "dontAsk",
+      "description": "Never prompts. Runs pre-approved tools and denies everything else.",
+      "evidence": "i18n:mode.dontAskFullDesc"
+    },
+    {
+      "mode": "plan",
+      "canonical": "plan",
+      "description": "Create a plan before making changes.",
+      "evidence": "i18n:mode.planFullDesc"
+    },
+    {
+      "mode": "default",
+      "canonical": "default",
+      "description": "Always ask before making changes.",
+      "evidence": "i18n:mode.defaultFullDesc"
+    },
+    {
+      "mode": "acceptEdits",
+      "canonical": "acceptEdits",
+      "description": "Automatically accept all file edits.",
+      "evidence": "i18n:mode.acceptEditsFullDesc"
+    },
+    {
+      "mode": "auto",
+      "canonical": "auto",
+      "description": "Handles permission decisions for you.",
+      "evidence": "i18n:mode.autoFullDesc"
+    },
+    {
+      "mode": "bypassPermissions",
+      "canonical": "bypassPermissions",
+      "description": "Accepts all permissions; some calls are still refused.",
+      "evidence": "i18n:mode.bypassPermissionsFullDesc"
+    }
+  ],
+  "goldenCoverage": [
+    {
+      "area": "source-provenance",
+      "evidence": "referenceSources"
+    },
+    {
+      "area": "pi-version-exports",
+      "evidence": "tool-surface package baseline plus ledger metadata"
+    },
+    {
+      "area": "exact-dispatch-aliases",
+      "evidence": "tool-surface.dispatchContract"
+    },
+    {
+      "area": "tool-model-binding-handler-codecs",
+      "evidence": "toolLedgerSchema effective rows"
+    },
+    {
+      "area": "prompt-override",
+      "evidence": "h1aRuntimeCompatibility public before_agent_start lifecycle; no private prompt text"
+    },
+    {
+      "area": "hooks-permissions-transcript",
+      "evidence": "effective tool call-site fields"
+    },
+    {
+      "area": "call-llm-execution",
+      "evidence": "normal wrapper-to-executor scenario plus speculative-dispatch absence assertion"
+    },
+    {
+      "area": "browser-source-automation-projection",
+      "evidence": "session rows and browser projection disposition"
+    },
+    {
+      "area": "permission-modes",
+      "evidence": "six modeGoldenBehavior rows"
+    },
+    {
+      "area": "mcp-protocol",
+      "evidence": "mcp-capabilities protocol rows"
+    },
+    {
+      "area": "session-jsonl",
+      "evidence": "exact inbound/outbound message lists"
+    },
+    {
+      "area": "resume-compaction",
+      "evidence": "resume-compact scenario"
+    },
+    {
+      "area": "checkpoints-cwd",
+      "evidence": "checkpoints and live-cwd scenarios"
+    },
+    {
+      "area": "foreground-background-process",
+      "evidence": "abort and background-shell scenarios"
+    },
+    {
+      "area": "subagents",
+      "evidence": "subagents scenario"
+    },
+    {
+      "area": "workflow",
+      "evidence": "workflow scenario"
+    },
+    {
+      "area": "capability-storage",
+      "evidence": "storageContracts"
+    },
+    {
+      "area": "adjacent-backends",
+      "evidence": "adjacent frozen fixtures/test"
+    },
+    {
+      "area": "offline-isolation",
+      "evidence": "generic runner security test"
+    },
+    {
+      "area": "p0-defect-register",
+      "evidence": "26 p0Rows plus explicit known defect"
+    }
+  ],
+  "unstableFieldsExcluded": [
+    "credentials",
+    "private Claude prompt text",
+    "timestamps",
+    "random request/session/tool identifiers",
+    "temporary absolute paths",
+    "live provider responses"
+  ]
+}

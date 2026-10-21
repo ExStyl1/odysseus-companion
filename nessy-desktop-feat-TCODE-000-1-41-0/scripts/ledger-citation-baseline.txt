@@ -1,0 +1,522 @@
+# check-ledger-citations baseline — dead repo-file citations already in the
+# ledger when the guard landed (P6.856, 2026-09-08). The gate is red only on a
+# NEW one; fixing these is a plan row, not this guard's job.
+#
+# One path per line, `#` starts a comment.
+#
+# P6.858 (2026-09-08) SWEPT the seven: six were repaired in the ledger — each by
+# re-reading the sentence beside the citation, not by repointing the path — and
+# left this file in the same commit. Two of the six had drifted further than the
+# path: G14's plan NEVER EXISTED and its 2026-09-05 repoint was wrong too (the
+# claim itself holds and now cites our own tree), and H44's three surviving
+# `workflow-settings.ts` line numbers had each drifted. Three moved package but
+# kept every line number exactly (L105's four, H42's constant, H48's throw).
+#
+# ONE remains, and it is not a defect to fix — the cell's FINDING is that the
+# path is dead. Rewriting it would delete the evidence.
+
+packages/shared/src/config/managed-policy.ts       # DELIBERATE, cited once (L100): the cell's own evidence sentence is that this path does not exist, and it names the relocation (packages/shared/src/agent/pi-harness/managed-policy.ts) in the same sentence. Re-verified at HEAD 2026-09-08: allowedPluginKeys/deniedPluginKeys :209-210, enabledPlugins :256.
+
+# P6.861 (2026-09-08) added two documents to `LEDGERS`: the denominator-gaps
+# spec (the ledger's own SOURCE) and the codex coverage map. P6.860 repaired
+# the phantom-plan citation in both first — four times in the map, once in the
+# spec — plus five sibling cells in the spec that carried the ledger's
+# already-repaired dead paths, so NONE of that class is recorded here.
+#
+# What the denominator-gaps spec adds: NOTHING. Its two remaining dead
+# citations are both the `config/managed-policy.ts` path already above,
+# deliberate for the same reason in the same cell.
+#
+# What the codex coverage map adds: six, and they are three different things.
+# Two are BUILD ARTIFACTS the cell names as such — a probe against a bundled
+# output is legitimate evidence and the file is real, just untracked, so the
+# guard is misfiring rather than finding. Four were real defects, each a doc row
+# of its own; none was a sweep this guard should do.
+#
+# P6.869 (2026-09-08) CLOSED those four, in the coverage map, by re-reading each
+# sentence rather than repointing each path — and three of the four re-readings
+# found something the path repair alone would have left standing:
+#
+#   row 69  `docs/…/hooks.md` was a CODEX PAGE NAME wearing the repo-path form.
+#           Rewritten into the URL form the map uses everywhere else, and the
+#           count it is the positive control of was RE-RUN rather than carried:
+#           13 files (2026-08-29) → 17 (2026-09-08). The counter is
+#           self-referential — this map and this baseline are two of the 17.
+#   row 80  two prose ABBREVIATIONS, `resource-bundle.ts` and `bundle.ts` with
+#           the front of the path cut off. Both expanded under
+#           `packages/shared/src`; both `:2` lines still say what the cell
+#           claims, and the cell's probe reaches them only case-insensitively.
+#           Re-reading it also refuted the cell's core claim: a Settings > Import
+#           flow SHIPS (`e815ad274`), already recorded in the sweep triage — the
+#           map's probe token was wrong, not the tree.
+#   row 86  `codex-agent-server/src/event-mapper.ts:55,59,73,91` named a file
+#           tracked NOWHERE, so its line numbers could not even be checked. The
+#           claim was re-derived to
+#           `packages/shared/src/agent/backend/codex/event-adapter.ts:1639,1674,1802`
+#           and gained the distinction the phantom hid: the `codex exec --json`
+#           names are DOTTED, the app-server methods SLASHED, and we read the
+#           slashed ones (measured with `grep -aoF` on both shipped binaries;
+#           with `grep -ao` the dot matches the slash and the probe lies).
+#   row 128 a path that never existed — three grep ROOTS and a filename glued
+#           into one — supporting an ABSENCE claim. Re-run as roots + file: still
+#           0, and the positive control replaced with a probe that can be re-run.
+#
+# What is left below is the two misfires and the one deliberate entry above.
+# Nothing here is a suppression of a defect any more.
+
+apps/electron/resources/pi-agent-server/index.js    # MISFIRE (row 4): a bundled build artifact, present on disk and gitignored. The cell says so — "единственные хиты — внутри сборочного артефакта" — and cites it to show a hit is Pi's own discovery code, not ours. Positive control on the same probe: sandbox_mode = 70.
+apps/electron/dist/main.cjs                         # MISFIRE (row 139): the same, an electron build output the cell calls "собранном … (чужая зависимость)". Both artifacts are what the guard's `git ls-files` resolution deliberately cannot see.
+apps/electron/resources/bridge-mcp-server/index.js  # DELETED 2026-09-23 by F1.152 (`cb7333a68`, dropped from the bundle — no reader on any runtime). Cited once, by the CLOSED runtime-parity-closure row P6.553 (2026-09-06), which counted it among six sites constructing the deprecated MCP `Server` class when it still existed; the row is history, so the citation stays and is recorded here rather than rewritten.
+
+# P6.887 (2026-09-08) taught the guard a SECOND question — does a cited `:line`
+# still exist and hold anything — and the 49 entries below are what one run
+# found, recorded rather than repaired. The run: 91 dead line citations over 49
+# distinct citations, out of 1 696 line-tailed citations checked; 89 of the 91
+# land on a BLANK line, 2 are a range ending past EOF (the same
+# `TurnStartParams.ts:13-46`, cited by two documents, in a 45-line file), 0 have
+# a start past EOF.
+#
+# WHY THIS IS A BACKLOG AND NOT A SWEEP: repairing an anchor means re-reading
+# the sentence beside it and finding where the thing MOVED, which is the work
+# P6.858 and P6.869 did by hand for the dead-path class — six and four cells,
+# each its own re-derivation. Doing 49 of those inside the commit that adds the
+# check would bury the check, and a repair nobody reviewed is how a citation
+# gets repointed at a plausible wrong line. The repairs are a row of their own.
+#
+# HOW TO READ AN ENTRY: it is the citation exactly as the document writes it, so
+# `git grep -aF '<entry>' -- docs/superpowers/specs` finds every cell carrying
+# it. Repair = fix the anchor in the document AND delete its line here.
+#
+# ONE OF THE 49 IS DELIBERATE and must not be repaired:
+# `docs/superpowers/specs/2026-08-28-codex-sweep-triage.md:2033` is the row that
+# BORE this check — the coverage map's row 80 cites it while saying, in the same
+# sentence, that the line is empty and that the live ones are `:2032` and
+# `:2042`. Same shape as the `managed-policy.ts` entry above: the cell's finding
+# IS that the anchor is dead, so rewriting it would delete the evidence.
+#
+# The rest are unaudited. A blank-line anchor proves the citation drifted; it
+# does not say how far, and this guard cannot see the far larger population that
+# drifted onto some other non-blank line.
+
+# P6.890 (W9-bc, 2026-09-08) is sweeping the 49 by DOCUMENT. Batch 1 — the codex
+# coverage map, 7 repairable anchors over 5 distinct citations, all deleted below.
+# Each was a re-reading, and two changed more than a number:
+#   row 21  the positive control's second hit was never the literal `manifest_version`
+#           at all — it matched `PI_EXECUTION_MANIFEST_VERSION` case-insensitively, and
+#           the cited line is now blank. The correction deliberately does NOT respell the
+#           dead anchor in `path:line` form, or the repair would itself be a finding.
+#   row 18  `browser_tool` moved three times in one sentence (definition, description,
+#           and its membership of SESSION_TOOLS_REQUIRING_HOST_CALLBACK); repointing only
+#           the blank one would have left two wrong numbers beside a right one.
+# The map's remaining three entries are the two build-artifact path misfires and the one
+# DELIBERATE line citation (row 80's `:2033`), all named above. The map is DONE.
+
+# P6.890 batches 2 and 3 (W9-bc, 2026-09-08) — the capability ledger (26 anchors) and the
+# denominator-gaps spec (25). The two documents are the SAME cells: the spec is the ledger's
+# source and carries a twin of almost every one, and an entry here is keyed by the citation
+# TEXT, so no entry could be deleted until both halves were repaired. That is why batch 2
+# touched no line of this file and batch 3 deletes 27 of them at once.
+#
+# Four cells were saying something the tree had stopped agreeing with, and each is written
+# into the cell rather than only fixed here:
+#   the archive NEGATIVE CONTROL (`grep -aci 'archiv' tool-defs.ts` recorded 0, answers 17 —
+#     P6.466 shipped `archive_session` as an agent verb);
+#   a `pi-agent.ts` sentence quoted verbatim as evidence that its own source RETRACTED (P6.257);
+#   `PLUGIN_PERIPHERAL_SUPPORT`, a constant that no longer exists (split into MONITOR + LSP);
+#   "the 21 commands read in help.ts", which are 26.
+#
+# TWO dead anchors are quoted inside those corrections and are deliberately NOT respelled in
+# `path:line` form: a dead anchor written as a citation is itself a finding of this gate. The
+# first draft of both corrections kept the citation form and the gate went on reporting them.
+#
+# SEVEN of the deletions are NOT repairs and must not be read as any: `index.ts:1469`,
+# `index.ts:1469-1509`, `SessionManager.ts:4384-4391`, `tool-defs.ts:1134`, `:1222`, `:281-282`
+# and `claude-agent.ts:3743` left this list because sibling lanes' commits shifted them onto some
+# other NON-BLANK line during the sweep. They are almost certainly still wrong — that is exactly
+# the population P6.891 sizes — and this gate simply cannot see them any more. Twenty were deleted
+# by repair; these seven by drift.
+#
+# P6.890 batches 4 and 5 (W9-bf, 2026-09-08) FINISH the sweep: the ledger's nine and the
+# denominator-gaps spec's sixteen, all re-read rather than repointed, and the SIXTEEN repairable
+# entries deleted here. What remains below is the ONE deliberate line citation. The line half of
+# this baseline is now empty of unaudited entries; the path half keeps its three (two build-artifact
+# misfires and one deliberate) above.
+#
+# Three cells said something the tree had stopped agreeing with, and each is written into the cell
+# in BOTH documents rather than only fixed here — the glyph/verdict is left for the row owner:
+#   K12 — codex `partial` was priced as "the change works, at the cost of a fork". `turn/start` has
+#     carried `model` on every turn since P6.365, `effort` beside it and `approvalPolicy` since
+#     P6.223, and the call site's own docblock records that the fork was REMOVED by that line
+#     because `codexThreadConfigSignature` had asserted "turn/start carries no model" and was wrong.
+#     The cell's own done_means is met.
+#   M31 — the otlp attribute set is no longer "closed": P6.538 widened it once, behind a documented
+#     toggle, default off (owner D13, option B). The cell recorded as an obstacle what is in fact
+#     the precedent its own RIDER would follow.
+#   L57 — its evidence had ALREADY been repaired once and had decayed again, warning off a
+#     neighbouring line by number. The warning is now in words: match the assertion text.
+#
+# THE SEVEN THAT LEFT THIS FILE BY DRIFT (batch 3's note) WERE RE-VERIFIED AT HEAD, and all seven
+# were still wrong — a citation the guard stops reporting is not a citation that got better. All
+# seven are repaired in both documents in the same commit, and two of them were refutations:
+#   `SessionManager.ts` — "there is no channel back to the original sender" is false;
+#     `notifyCrossSessionSender` answers approved, refused, denied and expired.
+#   `tool-defs.ts` cron — "RRULE scores 0" is false; the dialect parses FREQ/INTERVAL/BYDAY/
+#     BYMONTHDAY/BYMONTH. Re-running that count is itself a trap: case-sensitively the token is in
+#     4 tracked files, and `git grep -ai RRULE` answers 81 because "ove(rrule)d" matches.
+#
+# LEFT: one entry, and it must never be repaired.
+
+# recorded 2026-09-08
+docs/superpowers/specs/2026-08-28-codex-sweep-triage.md:2033
+
+# P6.891 (2026-09-08) added a THIRD key form: `path:line::identifier`, an
+# OPT-IN check on the citations whose own sentence attaches a backticked
+# identifier to them. 151 of the 1 760 line-tailed citations opt in that way and
+# 70 of those name something that is not within five lines of the line they cite.
+#
+# They are baselined rather than repaired, and the reason is the size of what was
+# found rather than a shortage of will: this is the FIRST pass anything has ever
+# made over these anchors, and the seven that were hand-checked one by one were
+# every one of them a real drift — the identifier had moved 23, 72, 162, 391,
+# 665, 1 119 and 3 014 lines from the line cited beside it, and one was absent
+# from the cited file entirely. Repairing 36 distinct citations means re-reading
+# 36 cells, which is a plan row and not a guard's job; what this file records is
+# that the gate is armed and that everything below it is a KNOWN defect rather
+# than an accepted one.
+#
+# Eight more were repaired in the same pass rather than landing here, because
+# each was cheap to re-derive and one of them was carrying a false CLAIM as well
+# as a dead number (a live-session hash said `disallowedTools` was in it; it has
+# not been since P6.221). Delete an entry below when you repair it — the gate
+# then reports the next one.
+
+# recorded 2026-09-08
+
+# P6.919 batch 1 (W9-bn, 2026-09-08) — SEVEN of the 36 left this file, and only six
+# of the seven were repairs. Each cell was RE-READ rather than repointed, and three
+# of the six changed more than a number:
+#   H46 is REFUTED. Its evidence said `parallel()`/`pipeline()` carry "no length
+#     check on either"; P6.320 (`c9e670707`) shipped `MAX_FANOUT_ITEMS = 4096` and
+#     both helpers refuse BEFORE dispatch, with six test assertions pinning 4 096
+#     accepted and 4 097 refused. The verdict moved pi `absent` -> `covered`. Its
+#     old probe was written `grep -rnaI`, where `-I` cancels the `-a` (AGENTS.md
+#     §Traps) — the probe could not have found what it claimed to have looked for.
+#   H23's anchor pointed at a rule-precedence comment; the docblock it MEANT to cite
+#     now says the opposite of the clause it supported ("They no longer cost
+#     NOTHING", P6.309 (2)), so the honest_surface half moved for codex.
+#   H22's anchor named a call site that has never been in the file it named — the
+#     only call of `withResumedSubagentSlot` is in `subagent-tool.ts`.
+# The seventh is not a repair and must not be read as one:
+# `pi-harness-runtime.ts:158-203::PiHarnessChildSummaryV1.effort` was a FALSE
+# POSITIVE — the member sits at `:201`, inside the cited range, and the check was
+# searching for a string no TypeScript file contains. The check now resolves a
+# dotted identifier by its last segment when the dotted form is absent from the
+# whole file; see `dottedMemberIsInWindow` for why that narrowing keeps the other
+# two dotted citations among the 36 as findings, both of them real.
+
+# P6.919 batch 2 (W9-bn, 2026-09-08) — SEVEN more, and two of them were refutations
+# rather than repointings:
+#   L52 — "there is no `type` field and no kind vocabulary anywhere on the write" is
+#     false. `AUTO_MEMORY_KINDS` is the page's four, imported rather than restated,
+#     the handler refuses an unknown one by name, and the write is pinned by three
+#     assertions in `remember.test.ts`. Verdict absent -> partial on all three; what
+#     keeps it partial is the capability's SECOND clause (skip what the codebase
+#     already says), which survives only as wording in the schema description.
+#   H40 — "`areTaskToolsEnabled` reads only the Nessy name" is false: P6.303 (3) made
+#     `CLAUDE_CODE_ENABLE_TASKS` a compat alias, consulted only when the Nessy name is
+#     absent, pinned by four assertions. claude's cell had NO verdict; it is `partial`
+#     now, the residue being the SDK's own settings-based gate.
+#
+# A trap paid inside this batch and worth the line: SessionManager.ts GREW BY 65 LINES
+# under the sweep (34 231 -> 34 296 in the index, a sibling lane's commit), so four
+# anchors derived twenty minutes earlier were already wrong when the gate ran, and the
+# gate reported them as NEW findings against my own repair. Re-derive from the index
+# IMMEDIATELY before the commit, and read the gate's line count as the tell.
+
+# P6.919 batch 3 (W9-bn, 2026-09-08) — SIX more, and two of them were capabilities
+# the fork had shipped since the cell was written:
+#   H28 — the cell recorded `?? false` and RECOMMENDED option (A), "Pi defaults ON
+#     interactive". Option (A) was TAKEN: `forkSubagentModeEnabled` returns
+#     `?? true`, six assertions pin it, and the residual difference is declared at
+#     the switch as the `forkSubagent` row. pi partial -> covered.
+#   H41 — "written and unreachable, only a caller and the personal branch are
+#     missing" is false: P6.318 shipped both, behind `sessions:saveWorkflowRecipe`,
+#     with the personal scope and its own symlink refusals and two suites. pi stays
+#     `partial` and the residue is now the RIGHT one: no renderer component calls
+#     the channel, which is the UI clause of the capability's own sentence.
+# A repair can CREATE a finding: rewriting H28's fork-agent evidence as
+# "`FORK_AGENT_NAME`, `<path>:411`, `isForkAgentName` `:437`" put the wrong
+# identifier next to the first citation and the gate reported it immediately. The
+# form that survives is one citation, one parenthesised identifier: `<path>:411`
+# (`FORK_AGENT_NAME`) and `:437` (`isForkAgentName`).
+#
+# And a second one, worse because it is SILENT: an unescaped `|` inside a ledger cell
+# DELETES THE ROW from `plan-status.py`'s count table. Writing a TypeScript union
+# (`'project' | 'personal'`) verbatim into H41's evidence dropped the ledger from 632
+# rows to 631 and moved four other columns; nothing failed, no gate said anything, and
+# the only tell was the row TOTAL. Escape it — every other cell in these tables already
+# does — and read the total, not just the deltas, after any verdict commit.
+
+# P6.919 batch 5 (W9-bn, 2026-09-08) — EIGHT more, one of them a refutation:
+#   L35 — "Line-only read, DELIBERATELY not byte-capped" describes a function that is
+#     still line-only, but the 4 MiB rule the row asks for SHIPPED as a separate,
+#     all-or-nothing one (P6.389): `INSTRUCTION_FILE_MAX_BYTES`, the `statSync` predicate,
+#     the `over-size-limit` record reason, the operator sentence in `config-doctor`, and
+#     three assertions including the exactly-at-the-limit boundary. absent -> covered on
+#     all three, because the reader is one host path.
+#   E11's `[features]` anchor named `codex-agent.ts` and `in_app_browser`, which at HEAD is
+#     a MANAGED-REQUIREMENT tier and not a toml write at all; the block is written by
+#     `config-writer.ts:3724`.
+#
+# THREE citations that had nothing to do with this batch went dead WHILE it ran, from a
+# sibling lane's commit to `claude-agent.ts` (10 747 -> 10 767 lines): `:5585`, `:822` and
+# `:2665-2670`, plus `apps/cli/src/index.ts:536`. All four repaired here, with their
+# in-sentence siblings (`codex-agent.ts:5208`, `pi-agent.ts:1516`) re-derived beside them
+# rather than left as wrong numbers next to right ones. The citation gate earns its keep
+# roughly once an hour in a wave this size.
+
+# P6.919 batch 6 (W9-bn, 2026-09-08) — THE LAST EIGHT, and the identifier half of this
+# baseline is now EMPTY: `0 drifted identifier citation(s) over 0 distinct, out of 151`.
+# All 36 were re-read against HEAD rather than repointed. Two of the last eight were
+# refutations, and both were rows minted for a gap that had since been closed:
+#   G11 — "HOOK_NOTIFICATION_TYPES holds eight values … missing four". P6.293 widened it
+#     to the page's TWELVE, including exactly those four, and landed the honest half with
+#     them (`HOOK_NOTIFICATION_TYPES_WITHOUT_EMITTER`). `toHaveLength(12)` pins it.
+#     absent -> covered on all three; the vocabulary is host-side.
+#   J27 — "Claude DROPS it: `convertResult` returns `{ content, isError? }`" is false;
+#     `:218` forwards `structuredContent` whenever it carries a record, two assertions pin
+#     it, and three OTHER files name the claude adapter as an honourer. claude absent ->
+#     covered; pi holds `partial` for a different, unmeasured reason (sidecar vs field).
+#
+# TALLY over the six batches: 36 distinct citations, 70 findings. 33 were repairs, ONE was
+# a false positive of the check itself (fixed in the check), and TWELVE of the 33 carried a
+# false CLAIM as well as a dead number — H46, H23, H22, L52, H40, H28, H41, L35, E11, G11,
+# J27 and the four probes rewritten alongside them. Nine verdicts moved, every one of them
+# toward what the fork could already do. The population that produced them is unchanged at
+# 151 opt-in citations, so the gate is armed and empty rather than disarmed.
+
+# recorded 2026-09-08
+# P6.948 (2026-09-09) admitted the PLAN, `docs/superpowers/plans/2026-08-22-runtime-parity-closure.md`,
+# to `LEDGERS`. These 126 entries are everything that admission lit up, and NOT ONE OF THEM WAS
+# REPAIRED, which is the honest form of the row rather than a shortcut: the plan is the controller's
+# file and read-only for every lane, so the lane that admitted it could repair nothing in it. Six of
+# the identifier findings were hand-checked before the block was written, and every one was real drift
+# — the identifier 73, 824 or about 1 200 lines from the line cited beside it — so this is a backlog,
+# not a misfiring rule. Working it down is a plan row.
+#
+# The gate is armed and empty from here: a citation that goes dead in this document TOMORROW is red.
+# Read the run's own five summary lines for today's totals; the numbers in this comment are a reading
+# with a date, and this file has watched such numbers move twice in an afternoon.
+# --- 17 dead PATHS the plan cites (39 findings over 20 distinct, three already above). Four kinds,
+# and the first two are not defects at all:
+#   DELIBERATE — the cell's own finding IS that the path does not exist, and rewriting it would delete
+#     the evidence: `scripts/.lane-guard.sh` (cited twice as the canonical example of a brief naming a
+#     file that was never in the tree), `config/permissions-config.ts`, `agent/tool-defs.ts`,
+#     `config/managed-policy.ts`, `bootstrap/config-doctor.ts`, `packages/apps/docs/AGENTS.md`.
+#   BUILD ARTEFACT — generated, gitignored, and the sentence is about the BUILT bundle:
+#     `apps/electron/dist/main.cjs`, the packaged Pi bundle, `pi-agent-server/dist/index.js`.
+#   ANOTHER REPOSITORY'S doc path, written without its host prefix, which the first-segment rule
+#     cannot tell from ours: `docs/skills.md` and `docs/slash_commands.md` are codex's own, at
+#     rust-v0.148.0. See the LEDGERS docblock — they are named here rather than guessed at.
+#   A ZONE OR PLAN PATH THAT MOVED OR NEVER LANDED — the rest. Each is a real citation to re-derive,
+#     and each belongs to the row that wrote it.
+apps/electron/src/main/browser-download-policy.ts
+docs/skills.md
+docs/slash_commands.md
+docs/superpowers/specs/2026-08-28-runtime-capability-gaps.md
+packages/apps/docs/AGENTS.md
+packages/pi-agent-server/dist/index.js
+packages/pi-agent-server/src/local-tools/runtime.ts
+packages/server-core/src/bootstrap/config-doctor.ts
+packages/server-core/src/sessions/storage.ts
+packages/shared/src/agent/tool-defs.ts
+packages/shared/src/agents/__tests__/definitions.test.ts
+packages/shared/src/config/__tests__/storage-runtime-delivered-policy.test.ts
+packages/shared/src/config/claude-managed-settings.ts
+packages/shared/src/config/permissions-config.ts
+packages/shared/src/network/unified-network-interceptor.ts
+packages/shared/src/plugins/dependency-acquisition.ts
+scripts/.lane-guard.sh
+# --- 44 dead LINE anchors (43 blank, one range ending past EOF). Every one is an evidence anchor in a
+# tracker row whose cited file has since moved under it; the blank-line check is the only arm that can
+# see them and it saw all of them at once, the day the document was admitted.
+docs/superpowers/specs/2026-09-04-owner-sitting.md:20-72
+packages/codex-protocol/generated/v2/TurnStartParams.ts:13-46
+packages/codex-responses-adapter/src/__tests__/config-writer-operator-ceilings.test.ts:60-73
+packages/pi-agent-server/src/proxy-tool-result.ts:29-31
+packages/shared/src/agent/memory/agent-memory.ts:57-61
+packages/shared/src/plugins/__tests__/format-adapters.test.ts:1264
+packages/shared/src/plugins/format-adapters/claude.ts:415-420
+# --- 65 drifted IDENTIFIER anchors, out of 97 the plan opts in — a 65 % rate against 0 % in the three
+# specs on the same day. That contrast is the finding: the specs are swept by ledger lanes and the plan
+# is swept by nobody. The rate is far from this arm's nine-tenths refusal threshold, and the six
+# hand-checks above are why it is read as a backlog rather than as a broken extractor.
+apps/electron/electron-builder.yml:146-147::extendInfo
+packages/codex-responses-adapter/src/config-writer.ts:1513-1519::CODEX_AGENTS_RESERVED_KEYS
+packages/codex-responses-adapter/src/config-writer.ts:2590::buildCodexOtelToml
+packages/codex-responses-adapter/src/config-writer.ts:643-655::granular
+packages/pi-agent-server/src/orchestrator/spawner.ts:369::withResumedSubagentSlot
+packages/pi-agent-server/src/orchestrator/workflow-tool.ts:863-871::parallel
+packages/server-core/src/handlers/rpc/marketplace.ts:685-694::toSafeMarketplaceCatalogItem
+packages/server-core/src/model-fetchers/nestor.ts:46::fetchNestorModels
+packages/server-core/src/pi-harness/worktree-lease-service.ts:556-563::dirty
+packages/session-mcp-server/src/index.ts:320-333::SESSION_TOOLS_REQUIRING_HOST_CALLBACK
+packages/session-mcp-server/src/index.ts:329-333::readOnly
+packages/session-tools-core/src/memory-index.ts:100-107::memoryIndexWriteNotice
+packages/shared/src/agent/backend/claude/event-adapter.ts:107-114::CLAUDE_RESULT_SUBTYPE_REASON
+packages/shared/src/agent/backend/claude/live-session.ts:164-168::settingSources
+packages/shared/src/agent/base-agent.ts:1316-1323::watchPaths
+packages/shared/src/agent/base-agent.ts:135-142::discoverNestedSkillRoots
+packages/shared/src/agent/base-agent.ts:2171::deliversPathScopedActivations
+packages/shared/src/agent/base-agent.ts:5731-5743::generateTitle
+packages/shared/src/agent/claude-managed-settings.ts:1115-1125::deniedDomains
+packages/shared/src/agent/claude-managed-settings.ts:437-451::extraKnownMarketplaces
+packages/shared/src/agent/claude-runtime-agents.ts:319::buildClaudeRuntimeBuiltinAgents
+packages/shared/src/agent/claude-runtime-agents.ts:845::maxTurns
+packages/shared/src/agent/options.ts:247::buildClaudeSubprocessEnv
+packages/shared/src/agent/options.ts:598::describeToolSearchAcrossRuntimes
+packages/shared/src/agent/options.ts:736::applySubagentSpawnDepth
+packages/shared/src/agent/options.ts:825-829::applyInteractiveRetryCeiling
+packages/shared/src/agent/pi-harness/managed-policy.ts:700::disableInAppBrowser
+packages/shared/src/agent/pi-harness/managed-policy.ts:782::availableModels
+packages/shared/src/agent/pi-harness/runtime-agent-definition.ts:614::SUBAGENT_MESSAGING_TOOL
+packages/shared/src/agent/runtime-agent-support.ts:163-174::PLUGIN_PERIPHERAL_SUPPORT
+packages/shared/src/agent/session-filesystem-scope.ts:135-140::realpathSync
+packages/shared/src/capabilities/views.ts:716::buildHeadlessInitView
+packages/shared/src/config/bundled-skills-settings.ts:51-58::NESSY_DISABLE_BUNDLED_SKILLS
+packages/shared/src/config/config-doctor.ts:516::buildConfigDoctorReport
+packages/shared/src/config/llm-connections.ts:1050-1062::isSmallClassModelId
+packages/shared/src/config/workflow-settings.ts:130::resolveWorkflowSettings
+packages/shared/src/i18n/locales/en.json:1098::onboarding.reauth.expired
+packages/shared/src/i18n/locales/en.json:2246-2249::usage.cost
+packages/shared/src/mcp/mcp-pool.ts:515-531::ChannelPolicy
+packages/shared/src/plugins/archive-headers.ts:156-172::marketplaceEntryHeadersHelperDiagnostic
+packages/shared/src/plugins/format-adapters/claude.ts:2265-2274::CLAUDE_UNREAD_LSP_FIELDS
+packages/shared/src/sessions/storage.ts:602::archiveSession
+packages/shared/src/slash-commands/common.ts:23::WORKFLOW_SLASH_COMMAND_ID_PREFIX
+packages/shared/src/unified-network-interceptor.ts:186-201::getClientTlsIdentity
+packages/shared/src/unified-network-interceptor.ts:401-414::stripPromptCacheTtl
+packages/shared/src/unified-network-interceptor.ts:543-548::shouldEnableFastMode
+packages/shared/src/workflows/workflow-loader.ts:321::saveWorkflowRecipe
+
+# P6.956 (2026-09-09, W9-bw) — THE BARE FILENAME, admitted by uniqueness, and the
+# debt that admission made visible on its first run. A citation written with no
+# directory segment (`storage.ts:602`) was not a citation of this repo at all
+# until this commit; the census that sized the hole is in the guard's header
+# (10 282 such tokens, 3 852 line-tailed, against 2 629 checked). Admitting the
+# uniquely-resolving ones in the THREE SPECS added 1 153 checked citations and
+# the 40 entries below, from a clean tree.
+#
+# They are recorded rather than repaired for the reason the gate itself gives:
+# each is a line anchor into a live file, most of them blank-line drift, and
+# re-deriving 40 anchors is a ledger sitting of its own (P6.953's instrument,
+# batch by batch). They have an OWNER — the ledger lane — which is why the plan
+# is not admitted to this arm at all.
+#
+# Two residues, stated rather than discovered later: a key here is the RESOLVED
+# `path:line`, so a bare citation and a full-path one naming the same anchor
+# share an entry — the same dead anchor, one entry, which is the intent — and an
+# entry keyed `path:line::identifier` is the +-5 identifier arm's, not the line
+# arm's.
+apps/electron/src/renderer/components/app-shell/WorkflowPanel.tsx:171-174
+packages/codex-agent-server/src/app-server-client.ts:44
+packages/codex-responses-adapter/src/config-writer.ts:1393-1396::view_image
+packages/pi-agent-server/src/orchestrator/workflow-tool.ts:757::SubagentCard
+packages/session-tools-core/src/tool-defs.ts:280-291::CronCreateSchema
+packages/shared/src/agent/base-agent.ts:2251-2252::nestedInstructionProbe
+packages/shared/src/agent/claude-auto-mode-policy.ts:254::$defaults
+packages/shared/src/agent/codex-agent.ts:6368-6377::setPermissionMode
+packages/shared/src/agent/pi-agent.ts:1634::autoClassifierBlocks
+packages/shared/src/agent/pi-harness/claude-permission-rules.ts:410
+packages/shared/src/agent/pi-harness/managed-policy.ts:841::AUTO_MODE_KEYS
+packages/shared/src/config/config-doctor.ts:125::sandboxNetwork
+packages/shared/src/plugins/data-paths.ts:122-127
+
+# recorded 2026-09-10
+docs/superpowers/specs/data/phase2-verdicts/f013.json:438
+docs/superpowers/specs/data/phase2-verdicts/f233.json:435
+packages/codex-responses-adapter/src/__tests__/image-refusal-legibility.test.ts:79-91
+packages/server-core/src/pi-harness/process-supervisor.ts:7272
+packages/session-tools-core/src/tool-defs.ts:1168-1169
+packages/session-tools-core/src/tool-defs.ts:901
+packages/shared/src/agent/__tests__/codex-permission-rules.test.ts:418
+packages/shared/src/agent/__tests__/detached-automation-event.test.ts:132
+packages/shared/src/agent/pi-harness/permission-dsl.ts:9
+packages/shared/src/agent/spawn-session-tool.ts:40-62
+apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts:917::autoCompactionOff
+apps/electron/src/renderer/components/marketplace/MarketplaceBrowseCard.tsx:133-138::spinnerTips
+apps/electron/src/renderer/pages/plugin-marketplace-filter.ts:118-133::pinSuggestedItems
+packages/codex-protocol/generated/v2/ThreadUsage.ts:6::costBasis
+packages/codex-responses-adapter/src/config-writer.ts:1495::isolation
+packages/codex-responses-adapter/src/config-writer.ts:1674-1677::AgentRoleToml
+packages/codex-responses-adapter/src/config-writer.ts:2258::buildCodexHooksToml
+packages/pi-agent-server/src/orchestrator/review-tool.ts:200::tool_start
+packages/server-core/src/bootstrap/managed-policy-resolution.ts:471-522::collectConfigDoctorInput
+packages/server-core/src/pi-harness/managed-policy-loader.ts:85-88::assertPosixOwnerAndMode
+packages/session-tools-core/src/handlers/remember.ts:32-43::formatMemoryFile
+packages/session-tools-core/src/tool-defs.ts:366::SessionCronRecord.paused
+packages/shared/src/agent/base-agent.ts:2461-2471::pathGatedSkillIsInScope
+packages/shared/src/agent/claude-managed-settings.ts:878-897::disableInAppBrowser
+packages/shared/src/agent/memory/memory-store.ts:287::splitPatternList
+packages/shared/src/agent/memory/memory-store.ts:83-87::readMemoryFile
+packages/shared/src/agent/nestor-cloud-agent.ts:293::user_stop
+packages/shared/src/agent/options.ts:736-739::applySubagentSpawnDepth
+packages/shared/src/agent/pi-harness/runtime-agent-definition.ts:629::parseTools
+packages/shared/src/config/managed-system-paths.ts:93::isHostOwnedManagedFile
+packages/shared/src/config/mcp-output-settings.ts:59-60::MAX_MCP_OUTPUT_TOKENS
+packages/shared/src/i18n/locales/en.json:1311::plugins.suggestedForDirectory
+packages/shared/src/i18n/locales/en.json:1520::settings.ai.guardian.scopeNote
+packages/shared/src/i18n/locales/ru.json:336::chat.permissionModeRuntimeNote.codex
+packages/shared/src/i18n/locales/ru.json:692::context.suggestion.deferMcpTools
+packages/shared/src/marketplace/registry-source.ts:1682::refreshAutoUpdateMarketplaces
+packages/shared/src/marketplace/registry-source.ts:528-533::ensureDeliveredMarketplaces
+packages/shared/src/mcp/mcp-pool.ts:1361-1366::isChannelPermitted
+packages/shared/src/mcp/server-config-values.ts:344-348::NESSY_MCP_CONNECTION_NONBLOCKING
+packages/shared/src/sessions/file-checkpoints.ts:701-703::restoredCheckpoints
+
+# F1.470 (3) (2026-09-24, WJ-bq) — SEVEN entries left this file in the commit
+# that converted their citations to the symbol form (path, the word `symbol`,
+# the identifier): the identifier findings of ledger rows A14, A17, A42, A54
+# and G22 and of the plan's P6.354 and P6.138. A citation with no line tail has
+# no window for its identifier to drift out of, so each finding no longer
+# exists, and the symbol arm now existence-checks the identifier instead.
+
+# F1.580 (2026-09-24, WJ-bq) — FIVE more entries into the same two files left
+# this file: SessionManager's executeDirectShellCommand and turnEndDoorTickets
+# identifier entries and claude-agent's resolveMaxAgentTurns,
+# buildClaudeTurnShapeOptions and bare-range entries. They were orphans BEFORE
+# F1.470 (3): none of the five documents cites any of their anchors any more
+# (a git grep over the five, positive control F48's claude-agent line-2 entry
+# at 1 per spec), and a probe --update-baseline listed all five as no longer
+# found. The same probe listed 57 OTHER orphans, not this row's.
+
+# F1.616 (2026-09-28, DN-209) — the remaining 58 entries a probe --update-baseline
+# listed as no longer found (57 when the row was written, plus the options.ts
+# applyToolSearchOffSwitch identifier entry that 74e4684a6's conversion
+# orphaned) left this file, dropped by that command with 0 added. They were
+# sorted into two classes first, by reading every citation the gate collects
+# from the five documents (full-path and bare-name alike) and comparing its
+# text with the entry:
+#
+#   REMOVED, 22 (15 dead lines, 7 identifier entries): the citation is in none
+#   of the five documents any more (a raw basename grep also finds 0 of each,
+#   positive control PermissionsSettingsPage.tsx:317-325 found 2). Nothing can
+#   bring these back; they were pure orphans.
+#
+#   DRIFTED, 36 (all dead-line entries): the citation IS still written, but its
+#   first cited line is no longer blank, so the dead-line arm no longer fires.
+#   That is drift onto some other line, NOT a repair — the anchor is still
+#   wrong, and the gate never checks what a non-blank line says. Kept entries
+#   would do nothing today and would silently absorb the next time the same
+#   anchor lands on a blank line, so they are dropped too:
+#     29 are cited only in the parity-closure plan, whose findings the plan
+#     ratchet (PINNED_PLAN_FINDINGS) counts baselined or not — a blank landing
+#     reddens it either way, so no entry here ever protected them;
+#     7 are cited in the specs, and a blank landing of one will now be reported
+#     as NEW, which is the gate working: repair that cell (by symbol) rather
+#     than re-adding it here. They are PermissionsSettingsPage.tsx:317-325,
+#     hotkey-overrides.ts:354-362, ChatDisplay.tsx:1702-1727,
+#     session-manager-interface.ts:502, worktree-git-plan.ts:122-143,
+#     validators.ts:117-118 and usage-metrics.ts:467-469.
+#
+# No pin moves: an entry is not part of any census.

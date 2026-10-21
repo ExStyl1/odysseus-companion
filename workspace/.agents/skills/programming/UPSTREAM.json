@@ -1,0 +1,16 @@
+{
+  "repository": "code-yeongyu/oh-my-openagent",
+  "revision": "657a02ef48cc6653ba845f0bb8c71b1097a64aa2",
+  "path": "packages/shared-skills/skills/programming",
+  "url": "https://github.com/code-yeongyu/oh-my-openagent/tree/657a02ef48cc6653ba845f0bb8c71b1097a64aa2/packages/shared-skills/skills/programming",
+  "upstreamName": "programming",
+  "upstreamFrontmatter": {
+    "name": "programming",
+    "description": "Applies strict, modern language practice (typed errors, exhaustive match, tests that can fail) for Python, Rust, TypeScript, and Go. Use for work on .py, .rs, .ts, or .go files."
+  },
+  "upstreamSkillSha256": "3cd471c76187629f4dd0a45890a847eafa5cd5ffec3bd71425d97c71ac90b5e4",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

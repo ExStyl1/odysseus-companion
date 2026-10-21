@@ -1,0 +1,79 @@
+{
+  "repository": "heygen-com/hyperframes",
+  "revision": "b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d",
+  "path": "skills/hyperframes-registry",
+  "url": "https://github.com/heygen-com/hyperframes/tree/b7fa007bf3cfb03a62bbb5460009c7e628e3bb2d/skills/hyperframes-registry",
+  "upstreamName": "hyperframes-registry",
+  "upstreamFrontmatter": {
+    "name": "hyperframes-registry",
+    "description": "Search, install, and wire registry blocks and components into HyperFrames compositions. Use BEFORE hand-building any named visual — whenever a brief, a user, or a storyboard names a look, effect, treatment, or transition such as CRT scanlines, glitch, chromatic aberration, film grain, a shimmer sweep, a chart, a code or terminal window, a map, or a confetti burst — because roughly 400 hosted items already cover many of them and the search ranks all of them with nothing installed, no project, and no account. Also use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR)."
+  },
+  "upstreamSkillSha256": "f1925b202cabd125b509658b11db593b55340b1926ecb056fc31aa4233a2b4f6",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "openmontage-hyperframes-registry",
+      "guide": "variants/openmontage-hyperframes-registry/GUIDE.md",
+      "resourceRoot": "variants/openmontage-hyperframes-registry",
+      "repository": "calesthio/OpenMontage",
+      "path": ".agents/skills/hyperframes-registry",
+      "executionProfile": "local-browser-obsidian",
+      "importBatch": null,
+      "files": {
+        "SKILL.md": {
+          "sha256": "592be5908b8664d805291c9686fda245226a841138059331566a6fa0dc497d4b",
+          "executable": false
+        },
+        "UPSTREAM-LICENSE": {
+          "sha256": "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "e1bc1a1b65c014fc50b90c1d81a23da693835312813a7572f0e1c24d034a81dc",
+          "executable": false
+        },
+        "examples/add-block.md": {
+          "sha256": "0e3353755c4ef55e53570d1266a4a43b2c5aef9bbe41276430e38cfa6580b83a",
+          "executable": false
+        },
+        "examples/add-component.md": {
+          "sha256": "d06992d31eec617a91f5c34630c9274c52dd07898bd24f10a869d0d1cab5af29",
+          "executable": false
+        },
+        "references/contributing.md": {
+          "sha256": "c9863f2c6ff2350837f9bf07fca5ccda17756161a4f4584c892ccd927100e789",
+          "executable": false
+        },
+        "references/demo-html-pattern.md": {
+          "sha256": "dfc50cd33eff2c2be75437786fc3e851ab0085f7d453fb35b3380ecf9a6e9f04",
+          "executable": false
+        },
+        "references/discovery.md": {
+          "sha256": "ed2fbabb2cf53352d54d57dbfb9afcafc6e73047c6e7298a7ec48246699513ba",
+          "executable": false
+        },
+        "references/install-locations.md": {
+          "sha256": "83793e7d6aeea9a751755e4bd23ea48182ff9af082287b98a1192343d2571dd1",
+          "executable": false
+        },
+        "references/templates.md": {
+          "sha256": "c1cd5f9328dd2fb02ab8103a814255f8d3fed4ce62d5da17cacf06fe2cec6696",
+          "executable": false
+        },
+        "references/wiring-blocks.md": {
+          "sha256": "397f9ad5a9244d173b97bb5a5dfe76ea3cbccfb8dde16cba8b3dabc6044b011a",
+          "executable": false
+        },
+        "references/wiring-components.md": {
+          "sha256": "6c8341c29fdae6de4f9fd1560a668d11cf34731b81fe5a06c9aeb4a000047b2a",
+          "executable": false
+        }
+      },
+      "when": "Вариант OpenMontage для того же процесса; применять к проекту из этого набора"
+    }
+  ]
+}

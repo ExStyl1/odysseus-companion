@@ -1,0 +1,28 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/superpowers/specs/2026-07-31-doc-sweep-phase1.md",
+  "type": "SPEC",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Полный проход по документации Claude Code — фаза 1",
+  "summary": "Phase-1 raw sweep of 174 Claude Code doc pages: 245 findings (36 bug, 209 gap) comparing documented contracts against our implementation.",
+  "scope": [
+    "Claude Code documentation parity",
+    "hooks",
+    "permissions",
+    "settings/sandbox",
+    "MCP config",
+    "skills",
+    "channels",
+    "deep links",
+    "fast mode",
+    "network proxy",
+    "memory imports"
+  ],
+  "cross_refs": [
+    "data/2026-07-31-doc-sweep-phase1.json",
+    "claude-doc-sweep-phase23.js"
+  ],
+  "locked": false,
+  "precedence": null,
+  "notes": "MANIFEST_TYPE=SPEC applied as authoritative. Document self-declares as raw un-opposed material ('это сырьё, а не вердикт') — findings are not yet adjudicated and must not be treated as settled requirements."
+}

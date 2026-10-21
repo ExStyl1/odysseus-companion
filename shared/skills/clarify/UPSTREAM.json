@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "clarify/SKILL.md",
+  "upstreamName": "clarify",
+  "upstreamFrontmatter": {
+    "name": "clarify",
+    "description": "Разбор пользовательской путаницы — проверка намерений, объяснение реального поведения и определение наличия реальной проблемы."
+  },
+  "upstreamSkillSha256": "0e9e9de79c3762e02c34e8612f30be037e37f67e16edeb867e21bd20b73805e4",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

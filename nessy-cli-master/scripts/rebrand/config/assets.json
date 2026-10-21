@@ -1,0 +1,151 @@
+[
+  {
+    "path": "packages/desktop/apps/electron/resources/brands/qwen-code/dock.png",
+    "sha256": "f13710cd7a74d8ee01b9edcd0b02c2853e56bad922184de8fa693d7dc1750684",
+    "replaceWith": "assets/dock.png"
+  },
+  {
+    "path": "packages/desktop/apps/electron/resources/brands/qwen-code/icon.icns",
+    "sha256": "1c12d2c3c727dbfef92144ce01551d27f4ea2057614ae02f247f66a0827533e0",
+    "replaceWith": "assets/icon.icns"
+  },
+  {
+    "path": "packages/desktop/apps/electron/resources/brands/qwen-code/icon.ico",
+    "sha256": "aa61285bff7aee4b7996fa9cc7ba784a050f89c70e7e9bdb6b41920acc152750",
+    "replaceWith": "assets/icon.ico"
+  },
+  {
+    "path": "packages/desktop/apps/electron/resources/brands/qwen-code/icon.icon/Assets/icon.svg",
+    "sha256": "ab8eaf1ceaf7a9765a0da7030ea985f8cf2aca702e9ac26d8456639bae8724c6",
+    "replaceWith": "assets/macos-icon.svg"
+  },
+  {
+    "path": "packages/desktop/apps/electron/resources/brands/qwen-code/icon.png",
+    "sha256": "02dac7ae657ddd32793b55cb63c00497807d1b6cf55343cea2b97120d048839a",
+    "replaceWith": "assets/icon.png"
+  },
+  {
+    "path": "packages/desktop/apps/electron/resources/brands/qwen-code/icon.svg",
+    "sha256": "ab8eaf1ceaf7a9765a0da7030ea985f8cf2aca702e9ac26d8456639bae8724c6",
+    "replaceWith": "assets/icon.svg"
+  },
+  {
+    "path": "packages/desktop/apps/electron/resources/source.png",
+    "sha256": "c78db846ee146ed3260f9ca63a587a7441a28288a079bd66cf7e68d148c8b22c",
+    "replaceWith": "assets/icon.png"
+  },
+  {
+    "path": "packages/desktop/apps/electron/src/renderer/assets/pets/qwen-spritesheet.webp",
+    "sha256": "65396232ccc299bd26b6dab18d95beb0a3494186b7bd006d19a7052baca0be32",
+    "replaceWith": "assets/pet.webp"
+  },
+  {
+    "path": "packages/desktop/apps/webui/src/public/apple-touch-icon.png",
+    "sha256": "abc79b8400f1f2e7da50fc470cd2496ba7e7fab76558ff77ffcace31d48a692a",
+    "replaceWith": "assets/dock.png"
+  },
+  {
+    "path": "packages/desktop/apps/webui/src/public/favicon.ico",
+    "sha256": "ed8991b581e748dd0b47078687045cdf97cb6ef77452914262315f9f19271645",
+    "replaceWith": "assets/icon.ico"
+  },
+  {
+    "path": "packages/desktop/apps/webui/src/public/favicon.svg",
+    "sha256": "ab8eaf1ceaf7a9765a0da7030ea985f8cf2aca702e9ac26d8456639bae8724c6",
+    "replaceWith": "assets/export-favicon.svg"
+  },
+  {
+    "path": "packages/desktop/apps/webui/src/public/icon-192.png",
+    "sha256": "f35c45a12032c02b7ea554fc1bd9809c11b57499d9a455b4145dbdc3c7221414",
+    "replaceWith": "assets/dock.png"
+  },
+  {
+    "path": "packages/desktop/apps/webui/src/public/icon-512.png",
+    "sha256": "02dac7ae657ddd32793b55cb63c00497807d1b6cf55343cea2b97120d048839a",
+    "replaceWith": "assets/dock.png"
+  },
+  {
+    "path": "packages/vscode-ide-companion/assets/icon-blue.png",
+    "sha256": "04a91862b3a6e7fc892af4409ec99583a733a654c73c188a86789bba466a3644",
+    "replaceWith": "assets/icon-blue.png"
+  },
+  {
+    "path": "packages/vscode-ide-companion/assets/icon-orange.png",
+    "sha256": "a662187f98b6e60dc4ebcf253a68b5d79f2c4395af3cc579c6f07120373450bd",
+    "replaceWith": "assets/icon-orange.png"
+  },
+  {
+    "path": "packages/vscode-ide-companion/assets/icon.png",
+    "sha256": "cfffe852673860d8ff15f72e5e517c1bf7bc0e6956d4ed55619ec85d53658fda",
+    "replaceWith": "assets/vscode-icon.png"
+  },
+  {
+    "path": "packages/vscode-ide-companion/assets/sidebar-icon.svg",
+    "sha256": "7c7b987b0dba797addc54f59c16c1a74085b68c837f863f312c2521a4e165a03",
+    "replaceWith": "assets/sidebar-icon.svg"
+  },
+  {
+    "path": "packages/web-templates/src/export-html/src/favicon.svg",
+    "sha256": "645b877e17e1a3ad6257c0fc999aede725ccb23b8b8b3988f56b737d6794f864",
+    "replaceWith": "assets/export-favicon.svg"
+  },
+  {
+    "path": "packages/zed-extension/qwen-code.svg",
+    "sha256": "181afc72472a122670d5d891c768c848937de07653b321b8c91bedf16dcae322",
+    "replaceWith": "assets/zed-icon.svg"
+  },
+  {
+    "path": "README.md",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "9b0008be1076e6ad54eb2365443bb76b23c6ada8beeb02e66212378c16431d63",
+    "replaceWith": "assets/product-readme.md"
+  },
+  {
+    "path": "scripts/installation/INSTALLATION_GUIDE.md",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "b56a65413578956578400294bf5fb5f4466006dc8f2ef400dfdcfdcbb0154f7e",
+    "replaceWith": "assets/installation-guide.md"
+  },
+  {
+    "path": "scripts/installation/install-qwen-standalone.sh",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "275b559aa4293c80ec6a6621fcfc7590f7192eb754eaf2e72f3e7382f08aeb37",
+    "replaceWith": "assets/install-unconfigured.sh"
+  },
+  {
+    "path": "scripts/installation/install-qwen-with-source.sh",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "c8f2bbcb7cb375c272973e0602c7ad39eae543db012bcc205bf3d970250c7f2b",
+    "replaceWith": "assets/install-unconfigured.sh"
+  },
+  {
+    "path": "scripts/installation/install-qwen-standalone.bat",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "6022fe292512016e7da9710bfe7f6a4bfa39afe81b0268a42a398f379e7115a8",
+    "replaceWith": "assets/install-unconfigured-crlf.bat"
+  },
+  {
+    "path": "scripts/installation/install-qwen-with-source.bat",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "4839de2b4f0644912a988dec797947a6a1be067281b785cd851405ffa236a148",
+    "replaceWith": "assets/install-unconfigured.bat"
+  },
+  {
+    "path": "scripts/installation/install-qwen-standalone.ps1",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "901f2974d849a7366dcdbfe0fb23a6e85a97a563570e1e7aa5415a5f634da1c8",
+    "replaceWith": "assets/install-unconfigured.ps1"
+  },
+  {
+    "path": "packages/cli/src/ui/utils/updateCheck.test.ts",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "7fadc95cc4f4bc0443174401e058c7d037d54ceb5c0c439f4d07dcbcd5053517",
+    "replaceWith": "assets/policy-update-check.test.ts"
+  },
+  {
+    "path": "packages/core/src/ide/ide-installer.test.ts",
+    "_comment": "Заглушка. Вернуться к этому после анализа fork-патчей.",
+    "sha256": "86741d92138e8ffc77f1e042a32011a28e292299d8c413ce3363adb6b490deaa",
+    "replaceWith": "assets/policy-ide-installer.test.ts"
+  }
+]

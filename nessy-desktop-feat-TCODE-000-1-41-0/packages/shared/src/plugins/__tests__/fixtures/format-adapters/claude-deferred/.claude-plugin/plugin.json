@@ -1,0 +1,9 @@
+{
+  "name": "sample-claude-deferred",
+  "version": "1.0.0",
+  "description": "Authored synthetic fixture proving Claude peripheral components (output styles, non-command hook types) are imported but reported as deferred, never dropped.",
+  "author": {
+    "name": "Fixture Author"
+  },
+  "outputStyles": ["./output-styles/sample-style.md"]
+}

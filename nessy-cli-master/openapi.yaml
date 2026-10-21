@@ -1,0 +1,2153 @@
+openapi: 3.0.0
+paths:
+  /health/liveness:
+    get:
+      operationId: HealthController_liveness
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Liveness probe
+      tags:
+        - health
+  /health/readiness:
+    get:
+      operationId: HealthController_readiness
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      summary: Readiness probe
+      tags:
+        - health
+  /v1/skills:
+    get:
+      operationId: SkillsController_list_v1
+      parameters:
+        - name: domain
+          required: false
+          in: query
+          description: Filter by persisted taxonomy domain
+          schema:
+            type: string
+        - name: subdomain
+          required: false
+          in: query
+          description: Filter by persisted taxonomy subdomain
+          schema:
+            type: string
+        - name: q
+          required: false
+          in: query
+          description: Full-text search across name, description, author
+          schema:
+            type: string
+        - name: page
+          required: false
+          in: query
+          description: Page number, starting from 1.
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: pageSize
+          required: false
+          in: query
+          description: Skills per page. The backend caps the value at 100.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: sort
+          required: false
+          in: query
+          description: Sort order for skills.
+          schema:
+            type: string
+            enum:
+              - installs
+              - name
+              - tenant
+            default: installs
+        - name: withDescription
+          required: false
+          in: query
+          description: Only skills with a non-empty description
+          schema: {}
+        - name: profession
+          required: false
+          in: query
+          description: Filter by approved profession
+          schema:
+            type: array
+            items:
+              type: string
+        - name: phase
+          required: false
+          in: query
+          description: Filter by lifecycle phase
+          schema:
+            type: array
+            items:
+              type: string
+        - name: tenant
+          required: false
+          in: query
+          description: Filter by tenant slug
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          headers:
+            X-Total-Count:
+              description: Total matching skills
+              schema:
+                type: integer
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SkillDto'
+      summary: List skills (filter via query)
+      tags:
+        - skills
+  /v1/skills/facets:
+    get:
+      operationId: SkillsController_facets_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillFacetsResponseDto'
+      summary: Catalog filter options for skills
+      tags:
+        - skills
+  /v1/skills/{id}/files:
+    get:
+      operationId: SkillsController_files_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: include
+          required: false
+          in: query
+          description: 'Comma-separated content classes: text,binary,script,asset,manifest.'
+          schema:
+            type: string
+        - name: path
+          required: false
+          in: query
+          description: Optional canonical relative path prefix.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Skill file inventory
+        '404':
+          description: Skill or content not found
+        '503':
+          description: Skill source unavailable
+      summary: List files available in one Skill package
+      tags:
+        - skills
+  /v1/skills/{id}/content:
+    get:
+      operationId: SkillsController_contentFile_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: path
+          required: false
+          in: query
+          description: Canonical relative file path. Defaults to SKILL.md.
+          schema:
+            type: string
+            default: SKILL.md
+      responses:
+        '200':
+          description: Raw Skill file bytes
+        '400':
+          description: Invalid path
+        '404':
+          description: Skill or file not found
+        '503':
+          description: Skill source unavailable
+      summary: Get one file from a Skill package. Defaults to SKILL.md.
+      tags:
+        - skills
+  /v1/skills/{id}/archive.zip:
+    get:
+      operationId: SkillsController_archiveZip_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Zip archive with the full Skill tree
+        '404':
+          description: Skill or content not found
+        '503':
+          description: Skill source unavailable
+      summary: Download one Skill package as a zip archive
+      tags:
+        - skills
+  /v1/skills/{id}:
+    get:
+      operationId: SkillsController_byId_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDto'
+        '404':
+          description: Skill not found
+      summary: Get one skill by slug
+      tags:
+        - skills
+  /v1/skills/{id}/variants:
+    get:
+      operationId: SkillCanonicalSourceController_variants_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SkillVariantDto'
+        '404':
+          description: Skill not found
+      summary: List source variants for a collapsed Skill cluster
+      tags:
+        - skills
+  /v1/skills/{id}/canonical-source:
+    post:
+      operationId: SkillCanonicalSourceController_setCanonicalSource_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CanonicalSourceRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDto'
+        '403':
+          description: Canonical source management access is required
+        '404':
+          description: Skill or source variant not found
+        '409':
+          description: Canonical source lock already exists
+      summary: Choose canonical source variant for a collapsed Skill cluster
+      tags:
+        - skills
+    delete:
+      operationId: SkillCanonicalSourceController_resetCanonicalSource_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDto'
+        '403':
+          description: Skill Market admin access is required
+        '404':
+          description: Skill not found
+      summary: Reset canonical source lock for a collapsed Skill cluster
+      tags:
+        - skills
+  /v1/catalog:
+    get:
+      operationId: CatalogController_full_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogDto'
+      summary: Full baked snapshot
+      tags:
+        - catalog
+  /v1/meta:
+    get:
+      operationId: CatalogController_meta_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogMetaDto'
+      summary: Catalog meta
+      tags:
+        - catalog
+  /v1/plugins:
+    get:
+      operationId: CatalogController_plugins_v1
+      parameters:
+        - name: page
+          required: false
+          in: query
+          description: >-
+            Page number, starting from 1. Use Try it out with the default value
+            to fetch current extensions.
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          examples:
+            First page:
+              value: 1
+              summary: Current catalog first page
+            Second page:
+              value: 2
+              summary: Next page
+        - name: pageSize
+          required: false
+          in: query
+          description: Extensions per page. The backend caps the value at 100.
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+          examples:
+            Default page size:
+              value: 20
+              summary: Default
+            Compact page:
+              value: 5
+              summary: Small page for quick inspection
+            Max page:
+              value: 100
+              summary: Maximum accepted value
+        - name: kind
+          required: false
+          in: query
+          description: Plugin kind. Current catalog supports Nessy extensions.
+          schema:
+            type: string
+            enum:
+              - nessy-extension
+            default: nessy-extension
+        - name: q
+          required: false
+          in: query
+          description: >-
+            Full-text search across plugin name, description, path, and
+            capabilities.
+          schema:
+            type: string
+        - name: capabilities
+          required: false
+          in: query
+          description: >-
+            Comma-separated exact capability set: context, commands, skills,
+            agents, settings, channels, hooks, lsp, mcp.
+          schema:
+            type: string
+        - name: sort
+          required: false
+          in: query
+          description: Sort order for the current kind.
+          schema:
+            type: string
+            enum:
+              - installs
+              - name
+              - tenant
+              - path
+            default: installs
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginsResponseDto'
+              examples:
+                Current catalog page:
+                  summary: Real Nessy extension shape from the marketplace catalog
+                  value:
+                    total: 1
+                    page: 1
+                    pageSize: 20
+                    plugins:
+                      - id: >-
+                          ai-office-devplatform-skills-devplatform-skills-b86ebb83
+                        kind: nessy-extension
+                        name: devplatform-skills
+                        description: Nessy CLI extension with Commands, Skills, MCP
+                        version: 1.4.0
+                        path: https://gitlab.tcsbank.ru/ai-office/devplatform-skills
+                        marketUrl: >-
+                          https://skills-market.t-tech.team/plugin/ai-office-devplatform-skills-devplatform-skills-b86ebb83
+                        metrics:
+                          install_count: 0
+                        install:
+                          command: >-
+                            nessy extensions install
+                            @ai-office/nessy-extension-ai-office-devplatform-skills
+                            --registry=https://artifactory.tcsbank.ru/artifactory/api/npm/npm-all
+                            --auto-update
+                        capabilities:
+                          commands:
+                            - commands
+                          skills:
+                            - skills
+                          mcpServers:
+                            - devplatform
+          description: ''
+      summary: Nessy extensions for IDE plugin marketplace
+      tags:
+        - catalog
+  /v1/plugins/{id}:
+    get:
+      operationId: CatalogController_pluginById_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluginDetailsDto'
+              examples:
+                Current catalog details:
+                  summary: Full extension details with manifest-derived metadata
+                  value:
+                    id: ai-office-devplatform-skills-devplatform-skills-b86ebb83
+                    kind: nessy-extension
+                    name: devplatform-skills
+                    description: Nessy CLI extension with Commands, Skills, MCP
+                    version: 1.4.0
+                    path: https://gitlab.tcsbank.ru/ai-office/devplatform-skills
+                    marketUrl: >-
+                      https://skills-market.t-tech.team/plugin/ai-office-devplatform-skills-devplatform-skills-b86ebb83
+                    metrics:
+                      install_count: 0
+                    install:
+                      command: >-
+                        nessy extensions install
+                        @ai-office/nessy-extension-ai-office-devplatform-skills
+                        --registry=https://artifactory.tcsbank.ru/artifactory/api/npm/npm-all
+                        --auto-update
+                    capabilities:
+                      commands:
+                        - commands
+                      skills:
+                        - skills
+                      mcpServers:
+                        - devplatform
+                    summary: >-
+                      Nessy extension v1.4.0 · Commands: commands · Skills:
+                      skills · MCP: devplatform
+                    manifestUrl: >-
+                      https://gitlab.tcsbank.ru/ai-office/devplatform-skills/-/blob/master/nessy-extension.json
+                    manifestPath: nessy-extension.json
+                    manifest:
+                      name: devplatform-skills
+                      version: 1.4.0
+                      commands:
+                        - commands
+                      skills:
+                        - skills
+                      mcpServers:
+                        - devplatform
+          description: ''
+        '404':
+          description: Plugin not found
+      summary: Nessy extension details for one marketplace plugin
+      tags:
+        - catalog
+  /v1/tihon/skills:
+    get:
+      operationId: TihonController_skills_v1
+      parameters: []
+      responses:
+        '200':
+          description: Raw JSON from acq-tihon upstream
+        '502':
+          description: Upstream unreachable or returned error
+      summary: Passthrough proxy to acq-tihon public /skills
+      tags:
+        - tihon
+    post:
+      operationId: TihonController_createSkill_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              example:
+                name: FRY-3amigo
+                description: Описание Skill
+                prompt: Промпт Skill
+                projectId: 2339
+                public: false
+      responses:
+        '200':
+          description: Raw JSON from acq-tihon upstream
+        '201':
+          description: Raw JSON from acq-tihon upstream
+        '502':
+          description: Upstream unreachable or returned error
+      summary: Passthrough create request to acq-tihon /skills
+      tags:
+        - tihon
+  /v1/tihon/test/skills:
+    post:
+      operationId: TihonController_createTestSkill_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              example:
+                name: skills-market-twork-token-test
+                description: Тестовый Skill
+                prompt: Промпт Skill
+                projectId: 2339
+                public: false
+      responses:
+        '200':
+          description: Raw JSON from acq-tihon upstream
+        '201':
+          description: Raw JSON from acq-tihon upstream
+        '401':
+          description: Missing session or expired TWork access token
+        '403':
+          description: Skill Market admin access is required
+        '502':
+          description: Upstream unreachable or returned error
+      summary: Admin-only create request to acq-tihon test /skills with TWork bearer
+      tags:
+        - tihon
+  /v1/skill-packs:
+    get:
+      operationId: SkillPacksController_list_v1
+      parameters:
+        - name: type
+          required: false
+          in: query
+          schema:
+            enum:
+              - profession
+              - platform
+              - business
+              - personal
+            type: string
+        - name: q
+          required: false
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackListResponseDto'
+      summary: List Skill Packs
+      tags:
+        - skill-packs
+    post:
+      operationId: SkillPacksController_create_v1
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSkillPackRequestDto'
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackDetailsDto'
+      summary: Create a personal Skill Pack
+      tags:
+        - skill-packs
+  /v1/skill-packs/{id}/install-sources:
+    get:
+      operationId: SkillPacksController_installSources_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackInstallSourcesResponseDto'
+        '404':
+          description: Skill Pack not found
+      summary: Ordered install sources for a Skill Pack
+      tags:
+        - skill-packs
+  /v1/skill-packs/{id}:
+    get:
+      operationId: SkillPacksController_details_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackDetailsDto'
+        '404':
+          description: Skill Pack not found
+      summary: Skill Pack details
+      tags:
+        - skill-packs
+    patch:
+      operationId: SkillPacksController_update_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateSkillPackRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackDetailsDto'
+        '403':
+          description: Skill Pack edit access is required
+      summary: Update Skill Pack metadata
+      tags:
+        - skill-packs
+    delete:
+      operationId: SkillPacksController_archive_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '204':
+          description: ''
+      summary: Archive a Skill Pack
+      tags:
+        - skill-packs
+  /v1/skill-packs/{id}/items:
+    post:
+      operationId: SkillPacksController_addItem_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSkillPackItemRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackDetailsDto'
+      summary: Add or update a Skill in a Skill Pack
+      tags:
+        - skill-packs
+  /v1/skill-packs/{id}/items/{itemId}:
+    delete:
+      operationId: SkillPacksController_removeItem_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: itemId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackDetailsDto'
+      summary: Remove a Skill from a Skill Pack
+      tags:
+        - skill-packs
+  /v1/skill-packs/{id}/editors:
+    post:
+      operationId: SkillPacksController_addEditor_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillPackEditorRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackDetailsDto'
+      summary: Add a Skill Pack editor
+      tags:
+        - skill-packs
+  /v1/skill-packs/{id}/editors/{subject}:
+    delete:
+      operationId: SkillPacksController_removeEditor_v1
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: subject
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillPackDetailsDto'
+      summary: Remove a Skill Pack editor
+      tags:
+        - skill-packs
+  /v1/profession-recommendations/{professionKey}:
+    get:
+      operationId: ProfessionRecommendationsController_details_v1
+      parameters:
+        - name: professionKey
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfessionRecommendationDetailsDto'
+        '404':
+          description: Profession not found
+      summary: Profession recommended Skills
+      tags:
+        - profession-recommendations
+  /v1/profession-recommendations/{professionKey}/items:
+    post:
+      operationId: ProfessionRecommendationsController_addItem_v1
+      parameters:
+        - name: professionKey
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddProfessionRecommendationItemRequestDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfessionRecommendationDetailsDto'
+        '403':
+          description: Profession recommendation edit access is required
+      summary: Add a Skill to profession recommendations
+      tags:
+        - profession-recommendations
+  /v1/profession-recommendations/{professionKey}/items/{itemId}:
+    patch:
+      operationId: ProfessionRecommendationsController_updateItem_v1
+      parameters:
+        - name: professionKey
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: itemId
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/UpdateProfessionRecommendationItemRequestDto
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfessionRecommendationDetailsDto'
+        '403':
+          description: Profession recommendation edit access is required
+      summary: Update a profession recommended Skill
+      tags:
+        - profession-recommendations
+    delete:
+      operationId: ProfessionRecommendationsController_removeItem_v1
+      parameters:
+        - name: professionKey
+          required: true
+          in: path
+          schema:
+            type: string
+        - name: itemId
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfessionRecommendationDetailsDto'
+        '403':
+          description: Profession recommendation edit access is required
+      summary: Remove a Skill from profession recommendations
+      tags:
+        - profession-recommendations
+  /v1/professions:
+    get:
+      operationId: ProfessionsController_list_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfessionDto'
+      summary: List all professions known to Skills Market
+      tags:
+        - professions
+  /v1/professions/{key}:
+    get:
+      operationId: ProfessionsController_details_v1
+      parameters:
+        - name: key
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfessionDetailsDto'
+        '404':
+          description: Profession not found
+      summary: Profession details and permissions
+      tags:
+        - professions
+  /v1/me:
+    get:
+      operationId: AuthController_me_v1
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+      tags:
+        - Auth
+  /auth/login:
+    get:
+      operationId: AuthController_login
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
+  /auth/callback:
+    get:
+      operationId: AuthController_callbackGet
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
+    post:
+      operationId: AuthController_callbackPost
+      parameters: []
+      responses:
+        '201':
+          description: ''
+      tags:
+        - Auth
+  /auth/logout:
+    get:
+      operationId: AuthController_logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags:
+        - Auth
+info:
+  title: nessy-marketplace-api
+  description: Skills Market API
+  version: '1.0'
+  contact: {}
+tags: []
+servers:
+  - url: /api
+    description: Production (ingress strips /api prefix before forwarding to this service)
+components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
+  schemas:
+    CanonicalSourceLockDto:
+      type: object
+      properties:
+        cluster_id:
+          type: string
+        canonical_skill_url:
+          type: string
+        locked_by_type:
+          type: string
+          enum:
+            - admin
+            - profession
+        locked_by:
+          type: string
+        locked_at:
+          type: string
+        updated_by:
+          type: string
+        invalid_reason:
+          type: string
+      required:
+        - cluster_id
+        - canonical_skill_url
+        - locked_by_type
+        - locked_by
+        - locked_at
+    MetricsDto:
+      type: object
+      properties:
+        installs_count:
+          type: number
+        updated_at:
+          type: string
+    SkillReleaseSourceDto:
+      type: object
+      properties:
+        repo_path:
+          type: string
+        skill_path:
+          type: string
+        skill_url:
+          type: string
+        commit:
+          type: string
+        committed_at:
+          type: string
+      required:
+        - commit
+        - committed_at
+    SkillReleaseArtifactDto:
+      type: object
+      properties:
+        package:
+          type: string
+        version:
+          type: string
+        registry:
+          type: string
+        tarball:
+          type: string
+        integrity:
+          type: string
+        shasum:
+          type: string
+      required:
+        - package
+        - version
+        - registry
+    SkillReleaseDto:
+      type: object
+      properties:
+        id:
+          type: string
+        lineage_key:
+          type: string
+        source:
+          $ref: '#/components/schemas/SkillReleaseSourceDto'
+        artifact:
+          $ref: '#/components/schemas/SkillReleaseArtifactDto'
+        created_at:
+          type: string
+      required:
+        - id
+        - lineage_key
+        - source
+        - artifact
+    SkillInstallCommandsDto:
+      type: object
+      properties:
+        user:
+          type: string
+        workspace:
+          type: string
+      required:
+        - user
+        - workspace
+    InstallSourceDto:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - gitlab
+            - url
+            - npm
+        url:
+          type: string
+        ref:
+          type: string
+        path:
+          type: string
+        package:
+          type: string
+        version:
+          type: string
+        registry:
+          type: string
+      required:
+        - type
+    SkillInstallFallbackDto:
+      type: object
+      properties:
+        command:
+          type: string
+        commands:
+          $ref: '#/components/schemas/SkillInstallCommandsDto'
+        source:
+          $ref: '#/components/schemas/InstallSourceDto'
+      required:
+        - command
+        - commands
+        - source
+    SkillInstallDto:
+      type: object
+      properties:
+        command:
+          type: string
+        commands:
+          $ref: '#/components/schemas/SkillInstallCommandsDto'
+        source:
+          $ref: '#/components/schemas/InstallSourceDto'
+        fallback:
+          $ref: '#/components/schemas/SkillInstallFallbackDto'
+      required:
+        - command
+        - commands
+    NpmPackageArtifactDto:
+      type: object
+      properties:
+        fileCount:
+          type: number
+        byteCount:
+          type: number
+        sha256:
+          type: string
+    NpmPackageDto:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        registry:
+          type: string
+        publish_status:
+          type: string
+          enum:
+            - published
+            - already_published
+            - dry_run
+            - failed
+            - version_collision
+        source_commit:
+          type: string
+        source_commit_at:
+          type: string
+        source_path:
+          type: string
+        lineage_key:
+          type: string
+        release_id:
+          type: string
+        artifact_created_at:
+          type: string
+        tarball:
+          type: string
+        integrity:
+          type: string
+        shasum:
+          type: string
+        updated_at:
+          type: string
+        error:
+          oneOf:
+            - type: string
+            - type: object
+        artifact:
+          $ref: '#/components/schemas/NpmPackageArtifactDto'
+      required:
+        - name
+        - version
+        - registry
+        - publish_status
+    SkillVariantDto:
+      type: object
+      properties:
+        id:
+          type: string
+        tenant:
+          type: string
+        repo_path:
+          type: string
+        repo_display:
+          type: string
+        repo_url:
+          type: string
+        folder_name:
+          type: string
+        skill_path:
+          type: string
+        skill_url:
+          type: string
+        phase:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        author:
+          type: string
+        security_block:
+          type: string
+        last_commit_sha:
+          type: string
+        first_commit_at:
+          type: string
+        last_commit_at:
+          type: string
+        ghost_since:
+          type: string
+        relation:
+          type: string
+          enum:
+            - owner
+            - copy
+            - fork
+        metrics:
+          $ref: '#/components/schemas/MetricsDto'
+        release:
+          $ref: '#/components/schemas/SkillReleaseDto'
+        install:
+          $ref: '#/components/schemas/SkillInstallDto'
+        npmPackage:
+          $ref: '#/components/schemas/NpmPackageDto'
+        npmPublishError:
+          oneOf:
+            - type: string
+            - type: object
+        taxonomy:
+          type: object
+        quality:
+          type: object
+        promotion:
+          type: object
+        signals:
+          type: object
+      required:
+        - id
+        - skill_url
+    SkillClusterSourceDto:
+      type: object
+      properties:
+        tenant:
+          type: string
+        repo_path:
+          type: string
+        repo_url:
+          type: string
+        skill_url:
+          type: string
+        first_commit_at:
+          type: string
+        last_commit_at:
+          type: string
+        author:
+          type: string
+        relation:
+          type: string
+          enum:
+            - owner
+            - copy
+            - fork
+      required:
+        - tenant
+        - repo_path
+        - repo_url
+        - skill_url
+        - last_commit_at
+        - author
+    SkillClusterAggregatedDto:
+      type: object
+      properties:
+        installs:
+          type: number
+        first_commit_at:
+          type: string
+        authors:
+          type: array
+          items:
+            type: string
+      required:
+        - installs
+        - first_commit_at
+        - authors
+    SkillClusterDto:
+      type: object
+      properties:
+        id:
+          type: string
+        size:
+          type: number
+        canonical_skill_url:
+          type: string
+        canonical_source:
+          $ref: '#/components/schemas/CanonicalSourceLockDto'
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillVariantDto'
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillClusterSourceDto'
+        sources_by_tenant:
+          type: object
+        source_search_text:
+          type: string
+        aggregated:
+          $ref: '#/components/schemas/SkillClusterAggregatedDto'
+      required:
+        - id
+        - size
+        - sources
+        - sources_by_tenant
+        - aggregated
+    CanonicalSourceRequestDto:
+      type: object
+      properties:
+        skill_url:
+          type: string
+        profession_key:
+          type: string
+      required:
+        - skill_url
+    SkillEnrichmentSecurityDto:
+      type: object
+      properties:
+        verdict:
+          type: string
+          enum:
+            - allow
+            - block
+            - unknown
+        description:
+          type: string
+      required:
+        - verdict
+    SkillEnrichmentDto:
+      type: object
+      properties:
+        source:
+          type: string
+          enum:
+            - diameter
+        status:
+          type: string
+          enum:
+            - pending
+            - current
+            - stale
+            - unavailable
+        category:
+          type: string
+        business_profile:
+          type: string
+        security:
+          $ref: '#/components/schemas/SkillEnrichmentSecurityDto'
+        updated_at:
+          type: string
+      required:
+        - source
+        - status
+        - security
+    SkillDto:
+      type: object
+      properties:
+        tenant:
+          type: string
+        repo_path:
+          type: string
+        repo_display:
+          type: string
+        repo_url:
+          type: string
+        folder_name:
+          type: string
+        skill_path:
+          type: string
+        skill_url:
+          type: string
+        phase:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        author:
+          type: string
+        security_block:
+          type: string
+        last_commit_sha:
+          type: string
+        first_commit_at:
+          type: string
+        last_commit_at:
+          type: string
+        ghost_since:
+          type: string
+        professions:
+          type: array
+          items:
+            type: string
+        metrics:
+          $ref: '#/components/schemas/MetricsDto'
+        release:
+          $ref: '#/components/schemas/SkillReleaseDto'
+        install:
+          $ref: '#/components/schemas/SkillInstallDto'
+        npmPackage:
+          $ref: '#/components/schemas/NpmPackageDto'
+        npmPublishError:
+          oneOf:
+            - type: string
+            - type: object
+        taxonomy:
+          type: object
+        quality:
+          type: object
+        promotion:
+          type: object
+        signals:
+          type: object
+        cluster:
+          $ref: '#/components/schemas/SkillClusterDto'
+        enrichment:
+          $ref: '#/components/schemas/SkillEnrichmentDto'
+    SkillFacetOptionDto:
+      type: object
+      properties:
+        value:
+          type: string
+        title:
+          type: string
+        count:
+          type: number
+      required:
+        - value
+        - title
+        - count
+    SkillFacetsResponseDto:
+      type: object
+      properties:
+        tenants:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillFacetOptionDto'
+        phases:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillFacetOptionDto'
+        professions:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillFacetOptionDto'
+      required:
+        - tenants
+        - phases
+        - professions
+    PluginMetricsDto:
+      type: object
+      properties:
+        install_count:
+          type: number
+      required:
+        - install_count
+    PluginInstallDto:
+      type: object
+      properties:
+        command:
+          type: string
+      required:
+        - command
+    PluginDto:
+      type: object
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+          enum:
+            - nessy-extension
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        path:
+          type: string
+        marketUrl:
+          type: string
+        metrics:
+          $ref: '#/components/schemas/PluginMetricsDto'
+        install:
+          $ref: '#/components/schemas/PluginInstallDto'
+        capabilities:
+          type: object
+      required:
+        - id
+        - kind
+        - name
+        - description
+        - version
+        - path
+        - marketUrl
+        - metrics
+        - install
+    PluginsResponseDto:
+      type: object
+      properties:
+        total:
+          type: number
+        page:
+          type: number
+        pageSize:
+          type: number
+        plugins:
+          type: array
+          items:
+            $ref: '#/components/schemas/PluginDto'
+      required:
+        - total
+        - page
+        - pageSize
+        - plugins
+    PluginDetailsDto:
+      type: object
+      properties:
+        id:
+          type: string
+        kind:
+          type: string
+          enum:
+            - nessy-extension
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        path:
+          type: string
+        marketUrl:
+          type: string
+        metrics:
+          $ref: '#/components/schemas/PluginMetricsDto'
+        install:
+          $ref: '#/components/schemas/PluginInstallDto'
+        capabilities:
+          type: object
+        manifestUrl:
+          type: string
+        manifestPath:
+          type: string
+        summary:
+          type: string
+        manifest:
+          type: object
+      required:
+        - id
+        - kind
+        - name
+        - description
+        - version
+        - path
+        - marketUrl
+        - metrics
+        - install
+    ProfessionDto:
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type: string
+        skills_count:
+          type: number
+        editable:
+          type: boolean
+        admins:
+          type: array
+          items:
+            type: string
+      required:
+        - key
+        - title
+        - skills_count
+        - editable
+        - admins
+    ProfessionPermissionsDto:
+      type: object
+      properties:
+        canManageCanonical:
+          type: boolean
+        canManageRecommendations:
+          type: boolean
+        canManageSkillPacks:
+          type: boolean
+      required:
+        - canManageCanonical
+        - canManageRecommendations
+        - canManageSkillPacks
+    ProfessionDetailsDto:
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type: string
+        skills_count:
+          type: number
+        editable:
+          type: boolean
+        admins:
+          type: array
+          items:
+            type: string
+        permissions:
+          $ref: '#/components/schemas/ProfessionPermissionsDto'
+      required:
+        - key
+        - title
+        - skills_count
+        - editable
+        - admins
+        - permissions
+    ExtensionDto:
+      type: object
+      properties:
+        tenant:
+          type: string
+        repo_path:
+          type: string
+        repo_display:
+          type: string
+        repo_url:
+          type: string
+        name:
+          type: string
+        ext_url:
+          type: string
+        phase:
+          type: string
+        description:
+          type: string
+        author:
+          type: string
+        security_block:
+          type: string
+        last_commit_sha:
+          type: string
+        last_commit_at:
+          type: string
+        version:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        repository:
+          type: string
+        manifestUrl:
+          type: string
+        manifest_path:
+          type: string
+        summary:
+          type: string
+        capabilities:
+          type: object
+        manifest:
+          type: object
+        npmPackage:
+          $ref: '#/components/schemas/NpmPackageDto'
+    CatalogDto:
+      type: object
+      properties:
+        generated_at:
+          type: string
+        skills:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillDto'
+        extensions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtensionDto'
+        archived_repos:
+          type: array
+          items:
+            type: string
+        taxonomy_stats:
+          type: object
+    CatalogMetaDto:
+      type: object
+      properties:
+        generated_at:
+          type: string
+        skills_count:
+          type: number
+        extensions_count:
+          type: number
+        etag:
+          type: string
+        enrichment:
+          type: object
+      required:
+        - generated_at
+        - skills_count
+        - extensions_count
+        - etag
+    SkillPackAccessSourceDto:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - yaml
+            - personal
+        label:
+          type: string
+        filePath:
+          type: string
+        docsUrl:
+          type: string
+        repositoryUrl:
+          type: string
+      required:
+        - type
+        - label
+    SkillPackPrincipalDto:
+      type: object
+      properties:
+        subject:
+          type: string
+        role:
+          type: string
+          enum:
+            - owner
+            - admin
+            - editor
+        displayName:
+          type: string
+        profileUrl:
+          type: string
+      required:
+        - subject
+        - role
+    SkillPackSummaryDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - profession
+            - platform
+            - business
+            - personal
+        key:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        ownerSubject:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - archived
+        editable:
+          type: boolean
+        permissions:
+          type: object
+        accessSource:
+          $ref: '#/components/schemas/SkillPackAccessSourceDto'
+        principals:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillPackPrincipalDto'
+        skillCount:
+          type: number
+        updatedAt:
+          type: string
+      required:
+        - id
+        - type
+        - title
+        - status
+        - editable
+        - skillCount
+        - updatedAt
+    SkillPackListResponseDto:
+      type: object
+      properties:
+        packs:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillPackSummaryDto'
+      required:
+        - packs
+    CreateSkillPackRequestDto:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        items:
+          type: array
+          items:
+            type: string
+      required:
+        - title
+    SkillPackItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+        skill_url:
+          type: string
+        position:
+          type: number
+        sourceStatus:
+          type: string
+          enum:
+            - active
+            - unsupported_source
+            - missing
+        unavailableReason:
+          type: string
+        skill:
+          $ref: '#/components/schemas/SkillDto'
+      required:
+        - id
+        - skill_url
+        - position
+        - sourceStatus
+    SkillPackDetailsDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - profession
+            - platform
+            - business
+            - personal
+        key:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        ownerSubject:
+          type: string
+        status:
+          type: string
+          enum:
+            - active
+            - archived
+        editable:
+          type: boolean
+        permissions:
+          type: object
+        accessSource:
+          $ref: '#/components/schemas/SkillPackAccessSourceDto'
+        principals:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillPackPrincipalDto'
+        skillCount:
+          type: number
+        updatedAt:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillPackItemDto'
+        editors:
+          type: array
+          items:
+            type: string
+      required:
+        - id
+        - type
+        - title
+        - status
+        - editable
+        - skillCount
+        - updatedAt
+        - items
+        - editors
+    SkillPackRefDto:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - profession
+            - platform
+            - business
+            - personal
+        key:
+          type: string
+        title:
+          type: string
+      required:
+        - id
+        - type
+        - title
+    SkillPackInstallSourceItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        skill_url:
+          type: string
+        install:
+          $ref: '#/components/schemas/SkillInstallDto'
+      required:
+        - id
+        - name
+        - skill_url
+    SkillPackUnavailableItemDto:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        skill_url:
+          type: string
+        sourceStatus:
+          type: string
+          enum:
+            - active
+            - unsupported_source
+            - missing
+        reason:
+          type: string
+      required:
+        - id
+        - skill_url
+        - sourceStatus
+        - reason
+    SkillPackInstallSourcesResponseDto:
+      type: object
+      properties:
+        pack:
+          $ref: '#/components/schemas/SkillPackRefDto'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillPackInstallSourceItemDto'
+        unavailable:
+          type: array
+          items:
+            $ref: '#/components/schemas/SkillPackUnavailableItemDto'
+      required:
+        - pack
+        - items
+        - unavailable
+    UpdateSkillPackRequestDto:
+      type: object
+      properties:
+        description:
+          type: string
+    AddSkillPackItemRequestDto:
+      type: object
+      properties:
+        skill_url:
+          type: string
+        position:
+          type: number
+      required:
+        - skill_url
+    SkillPackEditorRequestDto:
+      type: object
+      properties:
+        subject:
+          type: string
+      required:
+        - subject
+    ProfessionRecommendationPermissionsDto:
+      type: object
+      properties:
+        canEdit:
+          type: boolean
+      required:
+        - canEdit
+    ProfessionSkillRecommendationDto:
+      type: object
+      properties:
+        id:
+          type: string
+        professionKey:
+          type: string
+        profession:
+          type: string
+        artifact_type:
+          type: string
+          enum:
+            - skill
+            - extension
+            - tihon
+        artifact_url:
+          type: string
+        skill_url:
+          type: string
+        position:
+          type: number
+        sourceStatus:
+          type: string
+          enum:
+            - active
+            - unsupported_source
+            - missing
+        unavailableReason:
+          type: string
+        skill:
+          $ref: '#/components/schemas/SkillDto'
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - professionKey
+        - profession
+        - artifact_type
+        - artifact_url
+        - skill_url
+        - position
+        - sourceStatus
+        - createdAt
+        - updatedAt
+    ProfessionRecommendationDetailsDto:
+      type: object
+      properties:
+        professionKey:
+          type: string
+        profession:
+          type: string
+        editable:
+          type: boolean
+        permissions:
+          $ref: '#/components/schemas/ProfessionRecommendationPermissionsDto'
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProfessionSkillRecommendationDto'
+        updatedAt:
+          type: string
+      required:
+        - professionKey
+        - profession
+        - editable
+        - permissions
+        - items
+    AddProfessionRecommendationItemRequestDto:
+      type: object
+      properties:
+        artifact_type:
+          type: string
+          enum:
+            - skill
+            - extension
+            - tihon
+        artifact_url:
+          type: string
+        skill_url:
+          type: string
+        position:
+          type: number
+    UpdateProfessionRecommendationItemRequestDto:
+      type: object
+      properties:
+        artifact_type:
+          type: string
+          enum:
+            - skill
+            - extension
+            - tihon
+        artifact_url:
+          type: string
+        skill_url:
+          type: string
+        position:
+          type: number

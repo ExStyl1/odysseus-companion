@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "sharedDirectory": "shared",
+  "components": {
+    "cli": { "source": "nessy-cli-master", "command": ["nessy"] },
+    "desktop": {
+      "source": "nessy-desktop-feat-TCODE-000-1-41-0",
+      "command": ["open", "-a", "Nessy Desktop"]
+    }
+  }
+}

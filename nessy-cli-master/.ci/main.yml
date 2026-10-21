@@ -1,0 +1,1862 @@
+include:
+  - project: 'mobile-dev-platform/pipelines'
+    file:
+      - 'ios/match.yml'
+      - 'ios/ios.yml'
+  - project: unic/autodoc
+    ref: 3.x
+    file:
+      - /autodoc.yml
+  - project: 'ai-platform/public-ci-templates'
+    file: '/templates/.base-docker.yml'
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $MASTER_BRANCH
+
+stages:
+  - init
+  - lint
+  - build
+  - test
+  - pre-publish
+  - publish
+  - release
+  - post-publish
+  - deploy
+
+default:
+  tags:
+    - dp-build-k8s
+    - medium
+
+variables:
+  GRADLE_IMAGE: docker-hosted.artifactory.tcsbank.ru/cicd-images/gradle-9-jdk-17:latest
+  JAVA_IMAGE: docker-hosted.artifactory.tcsbank.ru/cicd-images/jdk-17:latest
+  NODE_IMAGE: docker-hosted.artifactory.tcsbank.ru/cicd-images/nodejs-22
+  PYTHON_IMAGE: docker-hosted.artifactory.tcsbank.ru/cicd-images/python-3.11:latest
+  JAVA_TOOL_OPTIONS: '-Dhttp.proxyHost=proxy.tcsbank.ru -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxy.tcsbank.ru -Dhttps.proxyPort=8080 -Dhttp.nonProxyHosts="localhost|127.0.0.1|*.local|docker|*.tinkoff.cloud|*.tcsbank.ru|*.tinkoff.ru|*.tb.test|storage.yandexcloud.net"'
+  S3_TOOLS_IMAGE: docker-hosted.artifactory.tcsbank.ru/s3/s3-tools:latest
+  AWS_BUCKET_DIR: nestor-companion
+  IDEA_ARCHIVE: 'ideaIC-2023.3.tar.gz'
+  IDEA_BUILD_NUMBER: 'idea-IC-233.11799.241'
+  NODE_VERSION: '22.22.2'
+  NODE_ARCH: 'linux-x64'
+  NODE_ARCHIVES: 'node-v${NODE_VERSION}-darwin-arm64.tar.gz node-v${NODE_VERSION}-darwin-x64.tar.gz node-v${NODE_VERSION}-linux-arm64.tar.xz node-v${NODE_VERSION}-linux-x64.tar.xz node-v${NODE_VERSION}-win-x64.zip'
+  AUDIO_CAPTURE_PREBUILDS_DIR: 'packages/audio-capture/prebuilds'
+  MACOS_EXPECTED_TEAM_ID: '35CMT9F8X3'
+  MACOS_EXPECTED_BUNDLE_ID: 'ru.tfinance.nessy-cli.desktop'
+  GRADLE_CACHE_VERSION: '0.0.2'
+  GRADLE_USER_HOME: $CI_PROJECT_DIR/.gradle
+  MASTER_BRANCH: 'master'
+  RELEASE_TYPE:
+    value: 'beta'
+    options:
+      - 'beta'
+      - 'stable'
+    description: 'Release channel type'
+  COMPONENT_TYPE:
+    value: 'cli'
+    options:
+      - 'cli'
+      - 'desktop'
+      - 'sdk-typescript'
+      - 'sdk-python'
+      - 'sdk-java'
+    description: 'Component to release'
+  MR_ASSIGNEE_ID: '8870' # v.n.gusev. See Gitlab profile for userId
+
+.s3_creds:
+  variables:
+    S3_VERSIONS_BUCKET_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    S3_VERSIONS_BUCKET_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+    S3_VERSIONS_BUCKET_ENDPOINT: https://s3-msk.tinkoff.ru
+
+.install-cert: &install-cert
+  - echo "deb http://repo-linux.tcsbank.ru/ubuntu/ jammy restricted multiverse main universe" > /etc/apt/sources.list
+  - echo "deb http://repo-linux.tcsbank.ru/ubuntu/ jammy-backports restricted multiverse main universe" >> /etc/apt/sources.list
+  - echo "deb http://repo-linux.tcsbank.ru/ubuntu/ jammy-proposed restricted multiverse main universe" >> /etc/apt/sources.list
+  - echo "deb http://repo-linux.tcsbank.ru/ubuntu/ jammy-security restricted multiverse main universe" >> /etc/apt/sources.list
+  - echo "deb http://repo-linux.tcsbank.ru/ubuntu/ jammy-updates restricted multiverse main universe" >> /etc/apt/sources.list
+  - curl -sL https://ca-certs.tcsbank.ru/v0/tinkoff-bundle.crt -o /etc/ssl/certs/tinkoff-bundle.crt
+  # [nessy-fork] statist-trusted-ca
+  - curl -sL https://ca-certs.tcsbank.ru/v0/russian-root-ca.crt -o /etc/ssl/certs/russian-root-ca.crt
+  - apt-get update && apt-get install -y ca-certificates
+  - update-ca-certificates
+  - export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/tinkoff-bundle.crt
+
+.release_rules: &release_rules
+  - if: $CI_COMMIT_TAG =~ /^release-(cli|sdk-typescript|sdk-python|sdk-java)-[0-9]+\.[0-9]+\.[0-9]+/
+  - if: $CI_COMMIT_TAG =~ /^release-desktop-[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?$/
+
+.release_stable_rules: &release_stable_rules
+  - if: $CI_COMMIT_TAG =~ /^release-(cli|sdk-typescript|sdk-python|sdk-java)-[0-9]+\.[0-9]+\.[0-9]+$/
+
+.release_cli_stable_rules: &release_cli_stable_rules
+  - if: $CI_COMMIT_TAG =~ /^release-cli-[0-9]+\.[0-9]+\.[0-9]+$/
+
+.release_desktop_rules: &release_desktop_rules
+  - if: $CI_COMMIT_TAG =~ /^release-desktop-[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?$/
+    when: on_success
+
+.build_desktop_rules: &build_desktop_rules
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    when: never
+  - if: $CI_PIPELINE_SOURCE == "schedule"
+    when: never
+  - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "desktop"
+    when: never
+  - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-desktop-/
+    when: never
+  - when: on_success
+
+# --- Init stage ---
+
+# Validates that the version in the tag matches the version in package.json and gradle.properties.
+# Extracts COMPONENT_TYPE and VERSION from the tag name (release-<component>-<version>).
+# Only 'cli' component is currently supported - other components will fail the check.
+# TODO - extract version check into script
+version_check:
+  stage: init
+  image: ${NODE_IMAGE}
+  script:
+    - node scripts/version-check.js "$CI_COMMIT_TAG"
+  # CLI and sdk-java use committed versions, so the check is meaningful.
+  # sdk-typescript/sdk-python compute version dynamically via get-release-version.js,
+  # so committed version intentionally doesn't match the tag - skip the check.
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-(cli|sdk-java)-[0-9]+\.[0-9]+\.[0-9]+/
+
+# Strips prerelease suffix from version files for stable releases.
+# Downstream jobs (test, build) pick up the updated files via artifacts.
+set_stable_version:
+  stage: init
+  image: ${NODE_IMAGE}
+  needs:
+    - job: version_check
+  script:
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - STABLE_VERSION=$(node -p "require('./package.json').version.replace(/-.*/, '')")
+    - echo "Setting stable version - ${STABLE_VERSION}"
+    - npm run release:version "$STABLE_VERSION"
+  artifacts:
+    paths:
+      - package.json
+      - package-lock.json
+      - packages/*/package.json
+      - packages/intellij-ide-companion/gradle.properties
+  rules: *release_cli_stable_rules
+
+# --- Test stage ---
+
+test:
+  stage: test
+  image: ${NODE_IMAGE}
+#  tags:
+#    - large
+  interruptible: true
+  variables:
+    NESSY_TEST_COVERAGE: 'false'
+  script:
+#    - apt-get update && apt-get install -y zip unzip
+#    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+#    # Rollup and esbuild need platform-specific native binaries for bundling
+#    - npm ci --ignore-scripts
+#    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+#    - npm run prepare
+#    - npm run test:ci
+    - echo "skip test"
+  artifacts:
+    when: always
+    expire_in: 1 week
+    reports:
+      junit:
+        - packages/*/junit.xml
+  # MR-only: the suite is the gate for merging, and release pipelines run off a
+  # commit that already passed it on its MR. Tags/web/master would only repeat
+  # the same run and delay publishing.
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: on_success
+    - when: never
+
+.test_integration_base:
+  stage: test
+  image: ${NODE_IMAGE}
+  allow_failure: true
+  variables:
+    KEEP_OUTPUT: 'true'
+    VERBOSE: 'true'
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: manual
+
+test_integration:
+  extends: .test_integration_base
+  script:
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - npm run prepare
+    - . ./.ci/bootstrap_nestor_openai_env.sh
+    - npm run test:integration:sandbox:none
+
+test_sdk_typescript:
+  stage: test
+  image: ${NODE_IMAGE}
+  needs:
+    - job: build_sdk_typescript
+      artifacts: true
+  script:
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - npm run prepare
+    - cd packages/sdk-typescript
+    - npm run test:ci
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-typescript/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-typescript"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-typescript-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-typescript/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+plugin_intellij_lint:
+  stage: lint
+  image: ${GRADLE_IMAGE}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/intellij-ide-companion/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: on_success
+  script:
+    - echo "fix me make lint"
+
+# Just creates artifacts for builds
+download_idea:
+  stage: init
+  image: ${S3_TOOLS_IMAGE}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/intellij-ide-companion/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: on_success
+  cache:
+    key: ${IDEA_BUILD_NUMBER}
+    paths:
+      - binary/${IDEA_ARCHIVE}
+  script:
+    - mkdir -p binary
+    - s3cmd get --skip-existing s3://${AWS_BUCKET_DIR}/intellij-idea-releases/${IDEA_ARCHIVE} ./binary/${IDEA_ARCHIVE}
+  artifacts:
+    paths:
+      - binary/${IDEA_ARCHIVE}
+
+download_node:
+  stage: init
+  image: ${S3_TOOLS_IMAGE}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-(cli|sdk-python|audio-capture)-/
+      when: never
+    - when: on_success
+  cache:
+    key: node-${NODE_VERSION}
+    paths:
+      - binary/node-dists
+  script:
+    - mkdir -p binary/node-dists
+    - |
+      for archive in ${NODE_ARCHIVES}; do
+        echo "Downloading ${archive} from S3..."
+        s3cmd get --skip-existing s3://${AWS_BUCKET_DIR}/nodejs-releases/${archive} binary/node-dists/${archive}
+      done
+    - echo "Downloading SHASUMS256.txt..."
+    - s3cmd get --skip-existing s3://${AWS_BUCKET_DIR}/nodejs-releases/SHASUMS256.txt binary/node-dists/SHASUMS256.txt
+    - ls -la binary/node-dists/
+  artifacts:
+    paths:
+      - binary/node-dists
+
+download_audio_capture_prebuilds:
+  stage: init
+  image: ${S3_TOOLS_IMAGE}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: on_success
+  script:
+    - mkdir -p "${AUDIO_CAPTURE_PREBUILDS_DIR}"
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        AUDIO_CAPTURE_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-cli-//')
+      else
+        AUDIO_CAPTURE_VERSION=$(grep -o '"version": *"[^"]*"' package.json | cut -d'"' -f4)
+      fi
+      VERSIONED_PATH="s3://${AWS_BUCKET_DIR}/nessy-cli/audio-capture/${AUDIO_CAPTURE_VERSION}/prebuilds/"
+      LATEST_PATH="s3://${AWS_BUCKET_DIR}/nessy-cli/audio-capture/latest/prebuilds/"
+      echo "Downloading audio-capture prebuilds from ${VERSIONED_PATH}"
+      s3cmd sync "${VERSIONED_PATH}" "${AUDIO_CAPTURE_PREBUILDS_DIR}/" || true
+      for prebuild in darwin-arm64 darwin-x64 linux-arm64 linux-x64 win32-x64; do
+        if [ -z "$(find "${AUDIO_CAPTURE_PREBUILDS_DIR}/${prebuild}" -maxdepth 1 -name '*.node' -print -quit 2>/dev/null)" ]; then
+          echo "audio-capture ${prebuild} not found in versioned prefix; trying latest"
+          mkdir -p "${AUDIO_CAPTURE_PREBUILDS_DIR}/${prebuild}"
+          s3cmd sync "${LATEST_PATH}${prebuild}/" "${AUDIO_CAPTURE_PREBUILDS_DIR}/${prebuild}/" || true
+        fi
+      done
+      if [ -z "$(find "${AUDIO_CAPTURE_PREBUILDS_DIR}" -name '*.node' -print -quit)" ]; then
+        echo "No audio-capture prebuilds found in S3; standalone will package without native audio where missing."
+      fi
+    - find "${AUDIO_CAPTURE_PREBUILDS_DIR}" -maxdepth 3 -type f -print
+    - touch "${AUDIO_CAPTURE_PREBUILDS_DIR}/.gitkeep"
+  artifacts:
+    paths:
+      - packages/audio-capture/prebuilds
+
+# --- Build stage ---
+# pulls upstream into "main" branch on scheduled basis
+sync-upstream-main:
+  stage: build
+  image: ${NODE_IMAGE}
+  variables:
+    GIT_STRATEGY: none
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  script:
+    - dp auth service-acc --key-file $GITLAB_NESTOR_DEVELOPER
+    - GITLAB_TOKEN=$(dp auth print-token)
+    - git init
+    - git remote add upstream https://github.com/QwenLM/qwen-code.git
+    - git fetch upstream main
+    - git push "https://oauth2:${GITLAB_TOKEN}@gitlab.tcsbank.ru/nestor/nessy-cli.git" FETCH_HEAD:refs/heads/main --force
+
+# builds ts packages
+# Also produces dist/cli.js used by SDK publish jobs (e.g., sdk-python tests/smoke).
+build:
+  stage: build
+  image: ${NODE_IMAGE}
+  needs:
+    - job: set_stable_version
+      optional: true
+      artifacts: true
+  script:
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - npm run prepare
+  artifacts:
+    paths:
+      - dist
+      - certs
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-(cli|sdk-python)-/
+      when: never
+    - when: on_success
+
+build_standalone:
+  stage: build
+  image: ${NODE_IMAGE}
+  needs:
+    - job: set_stable_version
+      optional: true
+      artifacts: true
+    - job: build
+      artifacts: true
+    - job: download_node
+      artifacts: true
+    - job: download_audio_capture_prebuilds
+      artifacts: true
+  script:
+    - apt-get update && apt-get install -y zip tar
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        EXPECTED_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-[^-]*-//')
+        ACTUAL_VERSION=$(node -p "require('./package.json').version")
+        test "$ACTUAL_VERSION" = "$EXPECTED_VERSION"
+      fi
+    - npm run prepare
+    - |
+      # Extract Node.js from S3 archive (required)
+      echo "Extracting Node.js from S3 archive..."
+      if [ ! -d "binary/node-dists" ]; then
+        echo "ERROR: Node.js distributions not found at binary/node-dists"
+        echo "This directory should be downloaded from S3 by the download_node job."
+        exit 1
+      fi
+      export NODEJS_DIST_PATH="binary/node-dists"
+      echo "Using Node.js from: ${NODEJS_DIST_PATH}"
+      ls -la "${NODEJS_DIST_PATH}"
+    - |
+      echo "Using audio-capture prebuilds from: ${AUDIO_CAPTURE_PREBUILDS_DIR}"
+      find "${AUDIO_CAPTURE_PREBUILDS_DIR}" -maxdepth 3 -type f -print || true
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-[^-]*-//')
+      else
+        VERSION=$(node -p "require('./package.json').version")
+      fi
+    - 'echo "Building standalone for version: $VERSION"'
+    - npm run package:standalone:release -- --version "$VERSION" --out-dir dist/standalone --node-dist-path "${NODEJS_DIST_PATH}" --node-version "${NODE_VERSION}"
+    - |
+      VERIFY_DIR=$(mktemp -d)
+      tar -xzf dist/standalone/nessy-cli-linux-x64.tar.gz -C "$VERIFY_DIR"
+      ACTUAL_VERSION=$("$VERIFY_DIR/nessy-cli/bin/nessy" --version)
+      test "$ACTUAL_VERSION" = "$VERSION"
+  artifacts:
+    paths:
+      - dist/standalone
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: on_success
+
+build_audio_capture_prebuilds:
+  stage: build
+  image: ${NODE_IMAGE}
+  needs:
+    - job: set_stable_version
+      optional: true
+      artifacts: true
+    - job: download_node
+      artifacts: true
+  script:
+    - apt-get update && apt-get install -y python3 make g++ tar xz-utils
+    - npm ci --ignore-scripts
+    - npm run build:ts --workspace=packages/audio-capture
+    - |
+      NODE_PREBUILD_ARCH=$(node -p "process.arch")
+      NODE_ARCHIVE="binary/node-dists/node-v${NODE_VERSION}-linux-${NODE_PREBUILD_ARCH}.tar.xz"
+      NODE_EXTRACT_DIR="/tmp/node-gyp-node-${NODE_VERSION}"
+      if [ ! -f "${NODE_ARCHIVE}" ]; then
+        echo "ERROR: Node.js archive not found: ${NODE_ARCHIVE}"
+        echo "The download_node job should download Node.js distributions from S3."
+        exit 1
+      fi
+      mkdir -p "${NODE_EXTRACT_DIR}"
+      tar -xf "${NODE_ARCHIVE}" -C "${NODE_EXTRACT_DIR}"
+      export npm_config_nodedir="${NODE_EXTRACT_DIR}/node-v${NODE_VERSION}-linux-${NODE_PREBUILD_ARCH}"
+      test -d "${npm_config_nodedir}/include/node"
+      echo "Using Node.js headers from ${npm_config_nodedir}"
+      npm run prebuildify --workspace=packages/audio-capture -- --target "${NODE_VERSION}"
+    - find "${AUDIO_CAPTURE_PREBUILDS_DIR}" -maxdepth 3 -type f -print
+    - test -n "$(find "${AUDIO_CAPTURE_PREBUILDS_DIR}" -name '*.node' -print -quit)"
+  artifacts:
+    paths:
+      - packages/audio-capture/prebuilds
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-audio-capture-[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?$/
+      when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+
+build_desktop_linux:
+  stage: build
+  image: ${NODE_IMAGE}
+  rules: *build_desktop_rules
+  before_script:
+    - node --version
+    - npm --version
+    - npm install -g bun
+    - bun --version
+    - |
+      # [nessy-fork] desktop-linux-update-signing
+      if [ -n "$CI_COMMIT_TAG" ] && ! command -v gpg >/dev/null 2>&1; then
+        apt-get update
+        apt-get install -y --no-install-recommends gnupg
+      fi
+    - mkdir -p certs
+    - curl -sL https://ca-certs.tcsbank.ru/v0/tinkoff-bundle.crt -o certs/tinkoff-bundle.crt
+    - curl -sL https://ca-certs.tcsbank.ru/v0/russian-root-ca.crt -o certs/russian-root-ca.crt
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        DESKTOP_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-desktop-//')
+      else
+        DESKTOP_VERSION=$(node -p "require('./packages/desktop/package.json').version")
+      fi
+      echo "Building desktop for version: $DESKTOP_VERSION"
+    - |
+      npm ci --ignore-scripts
+      npm i --no-save @esbuild/linux-x64 @rollup/rollup-linux-x64-gnu
+    - cd packages/desktop
+    - bun install --frozen-lockfile
+    - bun run bump-desktop-version "$DESKTOP_VERSION"
+  script:
+    - |
+      echo "📦 Building Linux..."
+      bun run electron:dist:linux:no-publish
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        "$CI_PROJECT_DIR/packages/desktop/scripts/sign-linux-release.sh"
+      fi
+  artifacts:
+    paths:
+      - packages/desktop/apps/electron/release
+
+build_desktop_windows:
+  stage: build
+  tags: [macos]
+  timeout: 2h
+  dependencies: []
+  inherit:
+    default: false
+  variables:
+    NODE_VERSION: '22'
+    NODE_OPTIONS: '--max-old-space-size=2048'
+    ELECTRON_GET_USE_PROXY: '0'
+  rules: *build_desktop_rules
+  before_script:
+    - |
+      export NVM_DIR="$HOME/.nvm"
+      if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+      fi
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      nvm install ${NODE_VERSION}
+      nvm use ${NODE_VERSION}
+      npm install -g bun
+  script:
+    - node --version
+    - npm --version
+    - bun --version
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        DESKTOP_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-desktop-//')
+      else
+        DESKTOP_VERSION=$(node -p "require('./packages/desktop/package.json').version")
+      fi
+      echo "Building desktop for version: $DESKTOP_VERSION"
+    - |
+      mkdir -p certs
+      curl -sL https://ca-certs.tcsbank.ru/v0/tinkoff-bundle.crt -o certs/tinkoff-bundle.crt
+      curl -sL https://ca-certs.tcsbank.ru/v0/russian-root-ca.crt -o certs/russian-root-ca.crt
+      npm ci --ignore-scripts
+      cd packages/desktop
+      bun install --frozen-lockfile
+      bun run bump-desktop-version "$DESKTOP_VERSION"
+    - |
+      echo "📦 Building Windows on macOS..."
+      # [nessy-fork] desktop-windows-signing
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        if [ -z "$WIN_CSC_LINK" ] || [ -z "$WIN_CSC_KEY_PASSWORD" ]; then
+          echo "WIN_CSC_LINK and WIN_CSC_KEY_PASSWORD are required for Windows releases."
+          exit 1
+        fi
+        WIN_CSC_FILE="$CI_PROJECT_DIR/.windows-signing.pfx"
+        sed 's#^data:application/x-pkcs12;base64,##' "$WIN_CSC_LINK" | base64 -D > "$WIN_CSC_FILE"
+        chmod 600 "$WIN_CSC_FILE"
+        export WIN_CSC_LINK="$WIN_CSC_FILE"
+        bun run electron:dist:win:no-publish -- --config.forceCodeSigning=true
+        "$CI_PROJECT_DIR/packages/desktop/scripts/verify-windows-release.sh"
+      else
+        unset WIN_CSC_LINK WIN_CSC_KEY_PASSWORD CSC_LINK CSC_KEY_PASSWORD
+        bun run electron:dist:win:no-publish
+      fi
+  artifacts:
+    paths:
+      - packages/desktop/apps/electron/release
+
+.build_desktop_macos:
+  stage: build
+  tags: [macos]
+  timeout: 2h
+  dependencies: []
+  inherit:
+    default: false
+  extends:
+    - .fastlane
+  rules: *build_desktop_rules
+  variables:
+    NODE_VERSION: '22'
+    # Explicitly disable proxy for electron-builder/Node
+    ELECTRON_GET_USE_PROXY: '0'
+  before_script:
+    - |
+      # Install Node.js via nvm
+      export NVM_DIR="$HOME/.nvm"
+      if [ ! -s "$NVM_DIR/nvm.sh" ]; then
+        echo "Installing nvm..."
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      else
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+      fi
+      nvm install ${NODE_VERSION}
+      nvm use ${NODE_VERSION}
+    - |
+      # Install Bun
+      if ! command -v bun &> /dev/null; then
+        echo "Installing Bun..."
+        npm install -g bun
+      fi
+    - |
+      # Bundle install
+      echo "Bundle install..."
+      bundle install --path vendor/bundle
+    - |
+      mkdir -p certs
+      curl -fsSL https://ca-certs.tcsbank.ru/v0/tinkoff-bundle.crt -o certs/tinkoff-bundle.crt
+      curl -fsSL https://ca-certs.tcsbank.ru/v0/russian-root-ca.crt -o certs/russian-root-ca.crt
+      export NODE_EXTRA_CA_CERTS="$CI_PROJECT_DIR/certs/tinkoff-bundle.crt"
+  script:
+    - |
+      # Use version from desktop tag (release-desktop-X.Y.Z)
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        DESKTOP_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-desktop-//')
+      else
+        DESKTOP_VERSION=$(node -p "require('./packages/desktop/package.json').version")
+      fi
+      echo "Building desktop for version: $DESKTOP_VERSION"
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        echo "🔐 Setting up code signing with match..."
+        bundle exec fastlane setup_codesign
+      else
+        echo "Skipping code signing outside tag pipeline"
+      fi
+    - |
+      npm ci --ignore-scripts
+      cd packages/desktop
+      bun install --frozen-lockfile
+      bun run bump-desktop-version "$DESKTOP_VERSION"
+    - |
+      echo "📦 Building macOS $MACOS_ARCH..."
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        bun run electron:dist:mac:no-publish -- --config.forceCodeSigning=true "--$MACOS_ARCH"
+      else
+        CSC_IDENTITY_AUTO_DISCOVERY=false bun run electron:dist:mac:no-publish -- "--$MACOS_ARCH"
+      fi
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        echo "🚀 Notarizing macOS ZIP and DMG artifacts..."
+        cd "$CI_PROJECT_DIR"
+        bundle exec fastlane notarize_app
+        rm -f packages/desktop/apps/electron/release/*.dmg.blockmap
+        echo "🔍 Verifying signed and notarized macOS artifacts..."
+        packages/desktop/scripts/verify-macos-release.sh
+      else
+        echo "Skipping release verification outside tag pipeline"
+      fi
+    - |
+      cd "$CI_PROJECT_DIR"
+      shopt -s nullglob
+      mac_manifests=(packages/desktop/apps/electron/release/*-mac.yml)
+      if [ "${#mac_manifests[@]}" -ne 1 ]; then
+        echo "Expected one macOS update manifest for $MACOS_ARCH"
+        exit 1
+      fi
+      mv "${mac_manifests[0]}" "${mac_manifests[0]%.yml}-$MACOS_ARCH.yml"
+  artifacts:
+    paths:
+      - packages/desktop/apps/electron/release/Nessy-CLI-Desktop-*.zip
+      - packages/desktop/apps/electron/release/Nessy-CLI-Desktop-*.dmg
+      - packages/desktop/apps/electron/release/Nessy-CLI-Desktop-*.blockmap
+      - packages/desktop/apps/electron/release/*-mac-*.yml
+
+build_desktop_macos_arm64:
+  extends: .build_desktop_macos
+  variables:
+    MACOS_ARCH: arm64
+
+build_desktop_macos_x64:
+  extends: .build_desktop_macos
+  variables:
+    MACOS_ARCH: x64
+
+# --- SDK Build Jobs ---
+
+build_sdk_typescript:
+  stage: build
+  image: ${NODE_IMAGE}
+  needs:
+    - job: build
+      optional: true
+  script:
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    # Build CLI workspace dependencies before bundling (channels, web-templates, etc.)
+    - npm run build -- --cli-only
+    # Ensure root dist/cli.js exists (needed for SDK integration tests)
+    - npm run bundle
+    - cd packages/sdk-typescript
+    - npm run build
+    # Bundle root CLI into SDK dist (mirrors github bundle-cli.js step)
+    - node scripts/bundle-cli.js
+    # Record bundled CLI version (mirrors github "Record bundled CLI version")
+    - CLI_VERSION=$(node -p "require('../../packages/cli/package.json').version")
+    - echo "${CLI_VERSION}" > dist/BUNDLED_CLI_VERSION
+    - echo "Bundled CLI version - ${CLI_VERSION}"
+  artifacts:
+    paths:
+      - dist
+      - certs
+      - packages/sdk-typescript/dist
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-typescript/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-typescript"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-typescript-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-typescript/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+build_sdk_python:
+  stage: build
+  image: ${PYTHON_IMAGE}
+  before_script:
+    - python -m pip install --upgrade pip
+    - python -m pip install build
+  script:
+    - cd packages/sdk-python
+    - python -m build
+  artifacts:
+    paths:
+      - packages/sdk-python/dist
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-python/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-python"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-python-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-python/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+lint_sdk_python:
+  stage: lint
+  image: ${PYTHON_IMAGE}
+  before_script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -e 'packages/sdk-python[dev]'
+  script:
+    # Quality gates (mirrors github "Run Python quality gates")
+    - python -m ruff check --config packages/sdk-python/pyproject.toml packages/sdk-python
+    - python -m ruff format --check --config packages/sdk-python/pyproject.toml packages/sdk-python
+    - python -m mypy --config-file packages/sdk-python/pyproject.toml packages/sdk-python/src
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-python/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-python"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-python-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-python/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+test_sdk_python:
+  stage: test
+  image: ${PYTHON_IMAGE}
+  needs:
+    - job: build
+      optional: true
+      artifacts: true
+    - job: download_node
+      optional: true
+      artifacts: true
+    - job: build_sdk_python
+      artifacts: true
+  before_script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -e 'packages/sdk-python[dev]'
+    - apt-get update && apt-get install -y --no-install-recommends xz-utils >/dev/null 2>&1 || true
+  script:
+    - python -m pytest -c packages/sdk-python/pyproject.toml packages/sdk-python/tests -q
+    # Smoke test against built CLI (mirrors gitlab "Run real smoke test"):
+    # Use the node binary downloaded by `download_node` from S3 (PYTHON_IMAGE has no node).
+  # TODO: подключить бэк и реализовать корректную проверку (предлагаю LLM-PROXY и ключик от тенанта из-за того что нет dp auth в CI)
+  #    - |
+  #      if [ -f "dist/cli.js" ] && [ -d "binary/node-dists" ]; then
+  #        NODE_ARCHIVE="binary/node-dists/node-v${NODE_VERSION}-linux-x64.tar.xz"
+  #        if [ -f "$NODE_ARCHIVE" ]; then
+  #          tar -xJf "$NODE_ARCHIVE" -C /tmp
+  #          export PATH="/tmp/node-v${NODE_VERSION}-linux-x64/bin:$PATH"
+  #          echo "Using node from $NODE_ARCHIVE - $(node --version)"
+  #          python packages/sdk-python/scripts/smoke_real.py --nessy "$(pwd)/dist/cli.js" --cwd "$(pwd)" --json-only
+  #        else
+  #          echo "Skipping smoke test - node archive not found at $NODE_ARCHIVE"
+  #        fi
+  #      else
+  #        echo "Skipping smoke test - dist/cli.js or binary/node-dists missing (CLI build artifact unavailable)"
+  #      fi
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-python/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-python"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-python-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-python/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+build_sdk_java:
+  stage: build
+  image: ${JAVA_IMAGE}
+  script:
+    # Build nessy-cli-sdk module (main Java SDK for Nessy CLI)
+    # Note: client module (Alibaba ACP SDK) is not built as it requires external dependencies
+    - cd packages/sdk-java/nessycli
+    - mvn clean package -DskipTests
+  artifacts:
+    paths:
+      - packages/sdk-java/nessycli/target/*.jar
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-java/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-java"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-java-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-java/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+lint_sdk_java:
+  stage: lint
+  image: ${JAVA_IMAGE}
+  script:
+    - cd packages/sdk-java/nessycli
+    - mvn checkstyle:check
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-java/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-java"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-java-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-java/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+test_sdk_java:
+  stage: test
+  image: ${JAVA_IMAGE}
+  script:
+    - cd packages/sdk-java/nessycli
+    - mvn test
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/sdk-java/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-java"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-sdk-java-/
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      changes:
+        - packages/sdk-java/**/*
+    - if: $CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - when: on_success
+
+publish_standalone:
+  stage: publish
+  image: ${S3_TOOLS_IMAGE}
+  needs:
+    - job: build_standalone
+      artifacts: true
+  script:
+    - |
+      # Extract version from tag or package.json using bash
+      if [[ $CI_COMMIT_TAG =~ ^release-cli-(.+)$ ]]; then
+        RELEASE_VERSION="${BASH_REMATCH[1]}"
+      else
+        RELEASE_VERSION=$(grep -o '"version": *"[^"]*"' package.json | cut -d'"' -f4)
+      fi
+    - 'echo "Publishing standalone version: $RELEASE_VERSION"'
+    - ls -la dist/standalone/
+    - s3cmd put dist/standalone/* s3://${AWS_BUCKET_DIR}/nessy-cli/standalone/${RELEASE_VERSION}/
+    - |
+      cat > manifest.json << EOF
+      {
+        "version": "${RELEASE_VERSION}",
+        "publishedAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+        "commit": "${CI_COMMIT_SHORT_SHA:-unknown}",
+        "tag": "${CI_COMMIT_TAG:-manual}"
+      }
+      EOF
+    - |
+      if [[ ! "$RELEASE_VERSION" =~ -beta\. ]]; then
+        s3cmd put dist/standalone/* s3://${AWS_BUCKET_DIR}/nessy-cli/standalone/latest/
+        s3cmd put manifest.json s3://${AWS_BUCKET_DIR}/nessy-cli/standalone/latest.json
+      fi
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-cli-[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?$/
+      when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+
+publish_desktop:
+  stage: publish
+  image: ${NODE_IMAGE}
+  extends: .s3_creds
+  needs:
+    - job: build_desktop_macos_arm64
+      artifacts: true
+    - job: build_desktop_macos_x64
+      artifacts: true
+    - job: build_desktop_linux
+      artifacts: true
+    - job: build_desktop_windows
+      artifacts: true
+  before_script:
+    - npm install -g bun
+    - cd packages/desktop
+    - bun install --frozen-lockfile --ignore-scripts
+    - cd ../..
+  script:
+    - |
+      if [ -n "$CI_COMMIT_TAG" ]; then
+        RELEASE_VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-desktop-//')
+      else
+        RELEASE_VERSION=$(node -p "require('./packages/desktop/package.json').version")
+      fi
+    - 'echo "Publishing desktop version: $RELEASE_VERSION"'
+    - ls -la packages/desktop/apps/electron/release/
+    - |
+      cd packages/desktop
+      bun run scripts/merge-macos-release-manifests.ts apps/electron/release
+      if [[ "$RELEASE_VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+        sed -E \
+          -e "s#__MACOS_EXPECTED_TEAM_ID__#$MACOS_EXPECTED_TEAM_ID#g" \
+          -e "s#__MACOS_EXPECTED_BUNDLE_ID__#$MACOS_EXPECTED_BUNDLE_ID#g" \
+          scripts/install-app.sh > scripts/install-app.rendered.sh
+        mv scripts/install-app.rendered.sh scripts/install-app.sh
+        bun run scripts/upload.ts --electron --version "$RELEASE_VERSION" --latest --script
+      else
+        bun run scripts/upload.ts --electron --version "$RELEASE_VERSION"
+      fi
+  rules: *release_desktop_rules
+
+publish_audio_capture_prebuilds:
+  stage: publish
+  image: ${S3_TOOLS_IMAGE}
+  needs:
+    - job: build_audio_capture_prebuilds
+      artifacts: true
+  script:
+    - |
+      if [[ $CI_COMMIT_TAG =~ ^release-audio-capture-(.+)$ ]]; then
+        RELEASE_VERSION="${BASH_REMATCH[1]}"
+      else
+        RELEASE_VERSION=$(grep -o '"version": *"[^"]*"' package.json | cut -d'"' -f4)
+      fi
+    - 'echo "Publishing audio-capture prebuilds version: $RELEASE_VERSION"'
+    - find "${AUDIO_CAPTURE_PREBUILDS_DIR}" -maxdepth 3 -type f -print
+    - test -n "$(find "${AUDIO_CAPTURE_PREBUILDS_DIR}" -name '*.node' -print -quit)"
+    - s3cmd put --recursive "${AUDIO_CAPTURE_PREBUILDS_DIR}/" s3://${AWS_BUCKET_DIR}/nessy-cli/audio-capture/${RELEASE_VERSION}/prebuilds/
+    - |
+      cat > audio-capture-manifest.json << EOF
+      {
+        "version": "${RELEASE_VERSION}",
+        "publishedAt": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+        "commit": "${CI_COMMIT_SHORT_SHA:-unknown}",
+        "tag": "${CI_COMMIT_TAG:-manual}"
+      }
+      EOF
+    - |
+      if [[ ! "$RELEASE_VERSION" =~ -beta\. ]]; then
+        s3cmd put --recursive "${AUDIO_CAPTURE_PREBUILDS_DIR}/" s3://${AWS_BUCKET_DIR}/nessy-cli/audio-capture/latest/prebuilds/
+        s3cmd put audio-capture-manifest.json s3://${AWS_BUCKET_DIR}/nessy-cli/audio-capture/latest.json
+      fi
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-audio-capture-[0-9]+\.[0-9]+\.[0-9]+(-beta\.[0-9]+)?$/
+      when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+
+prepare_async_build_args:
+  stage: build
+  image: ${NODE_IMAGE}
+  script:
+    - VERSION=$(echo "$CI_COMMIT_TAG" | sed 's/^release-[^-]*-//')
+    - echo "NESSY_CLI_VERSION=${VERSION}" >> async_build.env
+  artifacts:
+    reports:
+      dotenv: async_build.env
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-cli-/
+      when: on_success
+
+build_async_image:
+  extends: .build_and_push_docker
+  stage: build
+  needs:
+    - job: set_stable_version
+      optional: true
+      artifacts: true
+    - job: prepare_async_build_args
+      optional: true
+      artifacts: true
+  variables:
+    PROPAGATE_IMAGE_REFS: 'true'
+    IMAGE_NAME: nessy-async
+    DOCKERFILE_PATH: async.Dockerfile
+    CONTEXT_PATH: .
+    IMAGE_TAG: $CI_COMMIT_SHORT_SHA
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    # Stable CLI release only - tag as latest
+    - if: $CI_COMMIT_TAG =~ /^release-cli-[0-9]+\.[0-9]+\.[0-9]+$/
+      variables:
+        IMAGE_TAG: 'latest'
+        DOCKER_BUILD_ARGS: '--build-arg NESSY_CLI_VERSION=$NESSY_CLI_VERSION'
+      when: on_success
+    - if: $CI_COMMIT_BRANCH == "master"
+      changes:
+        - async.Dockerfile
+        - deploy/async/**/*
+      variables:
+        IMAGE_TAG: 'latest'
+      when: on_success
+    - changes:
+        paths:
+          - async.Dockerfile
+          - deploy/async/**/*
+        compare_to: refs/heads/master
+      when: on_success
+
+build_vscode_extension:
+  stage: build
+  image: ${NODE_IMAGE}
+  script:
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - npm run build:vscode
+    - node -e 'const fs=require("fs");const pkg=require("./packages/vscode-ide-companion/package.json");const base="https://s3-msk.tinkoff.ru/nestor-companion/vscode";const vsix=`nessy-cli-vscode-ide-companion-${pkg.version}.vsix`;const payload={version:pkg.version,vsixUrl:`${base}/${vsix}`};fs.writeFileSync("packages/vscode-ide-companion/latest.json",JSON.stringify(payload,null,2)+"\n");fs.writeFileSync("packages/vscode-ide-companion/build-variables.sh",`VSCODE_VERSION=${pkg.version}\nVSIX_FILENAME=${vsix}\n`);'
+  artifacts:
+    paths:
+      - packages/vscode-ide-companion/*.vsix
+      - packages/vscode-ide-companion/latest.json
+      - packages/vscode-ide-companion/build-variables.sh
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/vscode-ide-companion/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: on_success
+
+plugin_intellij_webview_build:
+  stage: build
+  image: ${NODE_IMAGE}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/intellij-ide-companion/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: on_success
+  script:
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    # Build all packages first (channel packages, web-templates, etc. are required for bundling)
+    - npm run build
+    - npm run build:vscode
+  artifacts:
+    paths:
+      - packages/vscode-ide-companion/dist
+
+plugin_intellij_build:
+  stage: build
+  image: ${GRADLE_IMAGE}
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      changes:
+        - packages/intellij-ide-companion/**/*
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+    - if: $CI_COMMIT_TAG && $CI_COMMIT_TAG !~ /^release-cli-/
+      when: never
+    - when: on_success
+  needs:
+    - job: set_stable_version
+      optional: true
+      artifacts: true
+    - job: download_idea
+      artifacts: true
+    - job: plugin_intellij_webview_build
+      artifacts: true
+  before_script:
+    - mkdir -p binary/ideaIC
+    - tar -xzf binary/${IDEA_ARCHIVE} -C binary/ideaIC
+    - export INTELLIJ_PLATFORM_PATH="$(pwd)/binary/ideaIC/${IDEA_BUILD_NUMBER}"
+  script:
+    # В чистом контейнере инкрементальная компиляция бесполезна, а её снапшоты classpath
+    # IntelliJ Platform съедают heap и валят билд по OOM. Заодно компилируем внутри
+    # Gradle daemon, чтобы не держать вторую JVM (Kotlin daemon) под лимитом памяти пода.
+    - gradle -p packages/intellij-ide-companion buildPlugin --build-cache
+      -Pkotlin.incremental=false -Pkotlin.compiler.execution.strategy=in-process
+      -PintellijPlatformPath="$INTELLIJ_PLATFORM_PATH"
+    - PLUGIN_VERSION=$(grep -E '^pluginVersion=' packages/intellij-ide-companion/gradle.properties | head -1 | cut -d= -f2)
+    - PLUGIN_ARCHIVE_BASE_NAME=$(grep -E '^pluginArchiveBaseName=' packages/intellij-ide-companion/gradle.properties | head -1 | cut -d= -f2)
+    - EXTENSION_FILENAME="${PLUGIN_ARCHIVE_BASE_NAME}-${PLUGIN_VERSION}.zip"
+    - echo "PLUGIN_VERSION=$PLUGIN_VERSION" >> build_variables.sh
+    - echo "EXTENSION_FILENAME=$EXTENSION_FILENAME" >> build_variables.sh
+    - mv ./packages/intellij-ide-companion/build/distributions/$EXTENSION_FILENAME ./$EXTENSION_FILENAME
+  artifacts:
+    paths:
+      - './nessy-intellij-ide-companion*.zip'
+      - './build_variables.sh'
+  cache:
+    key: 'gradle-cache-$GRADLE_CACHE_VERSION'
+    paths:
+      - .gradle/caches/modules-2
+      - .gradle/wrapper
+    policy: pull-push
+
+# --- Pre-publish stage ---
+
+# Creates a release tag from master branch.
+# CLI/Desktop/SDK-Java: tag is formed from committed version (with prerelease suffix check for beta releases).
+# SDK-TypeScript/SDK-Python: version is computed by per-package get-release-version.js
+#   (RELEASE_TYPE=beta -> --type=preview, stable -> --type=stable). Tag uses -preview.N suffix.
+createTag:
+  stage: pre-publish
+  image: ${NODE_IMAGE}
+  variables:
+    PYPI_REGISTRY_URL: 'https://artifactory.tcsbank.ru/artifactory/api/pypi/python-all/simple/'
+    NPM_REGISTRY_URL: 'https://artifactory.tcsbank.ru/artifactory/api/npm/npm-hosted/'
+  script:
+    - dp auth service-acc --key-file $GITLAB_NESTOR_DEVELOPER
+    - GITLAB_TOKEN=$(dp auth print-token)
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # This job doesn't need build, just scripts - skip prepare
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - |
+      # Determine target version
+      if [ "$COMPONENT_TYPE" = "sdk-typescript" ] || [ "$COMPONENT_TYPE" = "sdk-python" ]; then
+        # GitHub-style: compute version via per-package script
+        if [ "$RELEASE_TYPE" = "stable" ]; then
+          VERSION_TYPE="stable"
+        else
+          VERSION_TYPE="preview"
+        fi
+        SCRIPT_PATH="packages/${COMPONENT_TYPE}/scripts/get-release-version.js"
+        VERSION_JSON=$(node "$SCRIPT_PATH" --type="$VERSION_TYPE")
+        CURRENT_VERSION=$(echo "$VERSION_JSON" | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).releaseVersion")
+        echo "Computed ${COMPONENT_TYPE} ${VERSION_TYPE} version: ${CURRENT_VERSION}"
+      elif [ "$COMPONENT_TYPE" = "cli" ] || [ "$COMPONENT_TYPE" = "desktop" ]; then
+        if [ "$COMPONENT_TYPE" = "desktop" ]; then
+          VERSION_FILE="./packages/desktop/package.json"
+        else
+          VERSION_FILE="./package.json"
+        fi
+        CURRENT_VERSION=$(node -p "require('$VERSION_FILE').version")
+        if [ "$RELEASE_TYPE" = "stable" ]; then
+          CURRENT_VERSION=$(echo "$CURRENT_VERSION" | sed 's/-.*//')
+        elif [ "$RELEASE_TYPE" = "beta" ]; then
+          if ! echo "$CURRENT_VERSION" | grep -q "beta"; then
+            echo "ERROR: RELEASE_TYPE=beta selected but committed ${COMPONENT_TYPE} version '${CURRENT_VERSION}' has no -beta suffix."
+            echo "Bump version to a beta (e.g. ${CURRENT_VERSION}-beta.0) in the source files and push to master before releasing."
+            exit 1
+          fi
+        fi
+      elif [ "$COMPONENT_TYPE" = "sdk-java" ]; then
+        ORIGINAL_VERSION=$(grep '<version>' packages/sdk-java/nessycli/pom.xml | head -1 | sed -E 's|.*<version>([^<]+)</version>.*|\1|')
+        CURRENT_VERSION="$ORIGINAL_VERSION"
+        # For Java SDK, version in master is always X.Y.Z-SNAPSHOT
+        # Stable release: strip -SNAPSHOT for tag (0.0.3-SNAPSHOT -> 0.0.3)
+        # Beta release: keep -SNAPSHOT (0.0.3-SNAPSHOT)
+        if [ "$RELEASE_TYPE" = "stable" ]; then
+          # Remove -SNAPSHOT suffix for stable tag
+          CURRENT_VERSION=$(echo "$ORIGINAL_VERSION" | sed 's/-SNAPSHOT$//')
+        elif [ "$RELEASE_TYPE" = "beta" ]; then
+          # Verify SNAPSHOT suffix exists for beta release
+          if ! echo "$ORIGINAL_VERSION" | grep -q "SNAPSHOT"; then
+            echo "ERROR: sdk-java version '${ORIGINAL_VERSION}' must have -SNAPSHOT suffix in master."
+            echo "Bump version to ${ORIGINAL_VERSION}-SNAPSHOT in pom.xml and push to master."
+            exit 1
+          fi
+        fi
+      else
+        echo "Unsupported component type: $COMPONENT_TYPE"
+        exit 1
+      fi
+    - TAG_NAME="release-${COMPONENT_TYPE}-${CURRENT_VERSION}"
+    # Check if tag already exists on remote and increment if needed
+    - |
+      FINAL_VERSION="$CURRENT_VERSION"
+      if [ "$COMPONENT_TYPE" = "sdk-python" ] || [ "$COMPONENT_TYPE" = "sdk-typescript" ]; then
+        # For SDKs, check if tag exists on remote and increment preview number
+        COUNTER=0
+        while git ls-remote --tags origin "refs/tags/release-${COMPONENT_TYPE}-${FINAL_VERSION}" | grep -q "refs/tags"; do
+          COUNTER=$((COUNTER + 1))
+          if echo "$CURRENT_VERSION" | grep -q "preview"; then
+            # Increment preview number: 0.1.0-preview.0 -> 0.1.0-preview.1
+            BASE=$(echo "$CURRENT_VERSION" | sed -E 's/-preview\.[0-9]+$//')
+            FINAL_VERSION="${BASE}-preview.${COUNTER}"
+          else
+            # For stable releases, add preview suffix
+            FINAL_VERSION="${CURRENT_VERSION}-preview.${COUNTER}"
+          fi
+          if [ $COUNTER -gt 100 ]; then
+            echo "ERROR: Too many existing tags, manual intervention required"
+            exit 1
+          fi
+        done
+      elif [ "$COMPONENT_TYPE" = "sdk-java" ]; then
+        # For Java SDK, increment SNAPSHOT index: 0.0.3-SNAPSHOT -> 0.0.3-SNAPSHOT.0 -> 0.0.3-SNAPSHOT.1
+        # Stable versions don't need index (0.0.3 stays 0.0.3)
+        if echo "$CURRENT_VERSION" | grep -q "SNAPSHOT"; then
+          COUNTER=0
+          while git ls-remote --tags origin "refs/tags/release-${COMPONENT_TYPE}-${FINAL_VERSION}" | grep -q "refs/tags"; do
+            if [ $COUNTER -eq 0 ]; then
+              # First conflict: add .0 suffix
+              FINAL_VERSION="${CURRENT_VERSION}.0"
+            else
+              # Subsequent conflicts: increment index
+              FINAL_VERSION="${CURRENT_VERSION}.${COUNTER}"
+            fi
+            COUNTER=$((COUNTER + 1))
+            if [ $COUNTER -gt 100 ]; then
+              echo "ERROR: Too many existing tags, manual intervention required"
+              exit 1
+            fi
+          done
+        fi
+        # For stable versions, no index needed - tag as-is
+      fi
+      TAG_NAME="release-${COMPONENT_TYPE}-${FINAL_VERSION}"
+      echo "Creating tag ${TAG_NAME}"
+      git tag "$TAG_NAME"
+      git push "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git" "$TAG_NAME"
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+
+# --- Publish stage ---
+
+publish_intellij_plugin_beta:
+  stage: publish
+  image: ${S3_TOOLS_IMAGE}
+  needs:
+    - job: version_check
+    - job: plugin_intellij_build
+      artifacts: true
+  script:
+    - source ./build_variables.sh
+    - s3cmd put ./"$EXTENSION_FILENAME" s3://${AWS_BUCKET_DIR}/jetbrains/nessy-intellij-ide-companion-beta-latest.zip
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-cli-[0-9]+\.[0-9]+\.[0-9]+-beta/
+
+publish_cli_beta:
+  stage: publish
+  image: ${NODE_IMAGE}
+  needs:
+    - job: version_check
+    - job: build
+      artifacts: true
+  before_script:
+    - dp auth service-acc --key-file $nessy_cli_publish_artifactory
+    - dp auth configure-npm --ci
+  script:
+    - npm run prepare:package
+    - cd dist && npm publish --tag beta --registry=https://artifactory.tcsbank.ru/artifactory/api/npm/npm-hosted/
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-cli-\d+\.\d+\.\d+-beta/
+
+publish_cli:
+  stage: publish
+  image: ${NODE_IMAGE}
+  before_script:
+    - dp auth service-acc --key-file $nessy_cli_publish_artifactory
+    - dp auth configure-npm --ci
+  script:
+    - npm run prepare:package
+    - EXPECTED_VERSION="${CI_COMMIT_TAG#release-cli-}"
+    - ACTUAL_VERSION=$(node -p "require('./dist/package.json').version")
+    - test "$ACTUAL_VERSION" = "$EXPECTED_VERSION"
+    - cd dist && npm publish --registry=https://artifactory.tcsbank.ru/artifactory/api/npm/npm-hosted/
+  needs:
+    - job: set_stable_version
+      artifacts: true
+    - job: build
+      artifacts: true
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-cli-[0-9]+\.[0-9]+\.[0-9]+$/
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+
+# --- SDK Publish Jobs ---
+
+publish_sdk_typescript:
+  stage: publish
+  image: ${NODE_IMAGE}
+  needs:
+    - job: build_sdk_typescript
+      artifacts: true
+    - job: test_sdk_typescript
+  before_script:
+    - dp auth service-acc --key-file $nessy_cli_publish_artifactory
+    - dp auth configure-npm --ci
+  script:
+    - TAG_VERSION=$(echo "$CI_COMMIT_TAG" | sed -E 's/^release-sdk-typescript-//')
+    - |
+      if echo "$TAG_VERSION" | grep -q "preview"; then
+        NPM_TAG="preview"
+      else
+        NPM_TAG="latest"
+      fi
+    - 'echo "Releasing sdk-typescript ${TAG_VERSION} (npm dist-tag: ${NPM_TAG})"'
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # Rollup and esbuild need platform-specific native binaries for bundling
+    - npm ci --ignore-scripts
+    - npm version -w @nestor/nessy-cli-sdk "$TAG_VERSION" --no-git-tag-version --allow-same-version
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - npm run build -- --cli-only
+    # Rebuild bundle with the bumped version (in case tag was pushed manually, bypassing build stage)
+    - npm run bundle
+    - cd packages/sdk-typescript
+    - npm run build
+    - node scripts/bundle-cli.js
+    # Unit tests
+    - npm run test:ci
+    # Record bundled CLI version
+    - CLI_VERSION=$(node -p "require('../../packages/cli/package.json').version")
+    - echo "${CLI_VERSION}" > dist/BUNDLED_CLI_VERSION
+    - echo "Bundled CLI version - ${CLI_VERSION}"
+    - npm publish --tag="$NPM_TAG" --registry=https://artifactory.tcsbank.ru/artifactory/api/npm/npm-hosted/
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-sdk-typescript-[0-9]+\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?$/
+    - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-typescript"
+      when: never
+
+publish_sdk_python:
+  stage: publish
+  image: ${PYTHON_IMAGE}
+  needs:
+    - job: build_sdk_python
+      artifacts: true
+  variables:
+    ARTIFACTORY_FOLDER: '${CI_PROJECT_ROOT_NAMESPACE}'
+  before_script:
+    - python -m pip install --upgrade pip
+    - python -m pip install -e 'packages/sdk-python[dev]' build
+    - dp auth service-acc --key-file $nessy_cli_publish_artifactory
+  script:
+    - TAG_VERSION=$(echo "$CI_COMMIT_TAG" | sed -E 's/^release-sdk-python-//')
+    # Convert tag version to PEP 440 package version: X.Y.Z-preview.N -> X.Y.ZrcN
+    - PACKAGE_VERSION=$(echo "$TAG_VERSION" | sed -E 's/-preview\.([0-9]+)$/rc\1/')
+    - 'echo "Releasing sdk-python ${TAG_VERSION} (PEP 440 package version: ${PACKAGE_VERSION})"'
+    - sed -i "s/^version = \".*\"/version = \"$PACKAGE_VERSION\"/" packages/sdk-python/pyproject.toml
+    # Quality gates (also run in lint/test stages; repeated here for manually-created release tags)
+    - python -m ruff check --config packages/sdk-python/pyproject.toml packages/sdk-python
+    - python -m ruff format --check --config packages/sdk-python/pyproject.toml packages/sdk-python
+    - python -m mypy --config-file packages/sdk-python/pyproject.toml packages/sdk-python/src
+    - python -m pytest -c packages/sdk-python/pyproject.toml packages/sdk-python/tests -q
+    # Note: smoke test already ran in test_sdk_python, skipping here to avoid redundant xz-utils dependency
+    - rm -rf packages/sdk-python/dist
+    - cd packages/sdk-python
+    - python -m build
+    # Version already validated by get-release-version.js in createTag job
+    # Publish to Artifactory via curl
+    - |
+      if [[ -z "${DP_SA_ACCOUNT_NAME}" ]]; then
+        echo "Ошибка: необходимо установить переменную DP_SA_ACCOUNT_NAME"
+        exit 1
+      fi
+      PACKAGE_NAME=$(python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['name'])" 2>/dev/null || python -c "import toml; print(toml.load('pyproject.toml')['tool']['poetry']['name'])")
+
+      # Check if version already exists in Artifactory (prevent accidental re-publish)
+      echo "Checking if version ${PACKAGE_VERSION} already exists in Artifactory..."
+      ARTIFACTORY_CHECK=$(curl -s -o /dev/null -w "%{http_code}" \
+        -u "$DP_SA_ACCOUNT_NAME:$(dp supporting get-artifactory-token)" \
+        "https://artifactory.tcsbank.ru/artifactory/api/storage/python-hosted/$ARTIFACTORY_FOLDER/$PACKAGE_NAME/$PACKAGE_VERSION")
+      if [ "$ARTIFACTORY_CHECK" = "200" ]; then
+        echo "ERROR: Version ${PACKAGE_VERSION} already exists in Artifactory at $ARTIFACTORY_FOLDER/$PACKAGE_NAME/$PACKAGE_VERSION"
+        echo "Cannot re-publish existing version. Please increment version number."
+        exit 1
+      fi
+
+      echo "Publishing package: $PACKAGE_NAME version: $PACKAGE_VERSION to artifactory/python-hosted/$ARTIFACTORY_FOLDER/"
+      UPLOAD_FAILED=0
+      for file in dist/*; do
+        if [ -f "$file" ]; then
+          echo "Uploading: $file"
+          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" \
+            -u "$DP_SA_ACCOUNT_NAME:$(dp supporting get-artifactory-token)" \
+            -X PUT "https://artifactory.tcsbank.ru/artifactory/python-hosted/$ARTIFACTORY_FOLDER/$PACKAGE_NAME/$PACKAGE_VERSION/$(basename "$file")" \
+            -T "$file")
+          echo "Upload response: $HTTP_CODE"
+          if [ "$HTTP_CODE" != "201" ] && [ "$HTTP_CODE" != "200" ]; then
+            echo "ERROR: Failed to upload $(basename "$file") - HTTP $HTTP_CODE"
+            UPLOAD_FAILED=1
+          fi
+        fi
+      done
+
+      if [ "$UPLOAD_FAILED" = "1" ]; then
+        echo "ERROR: Publishing failed. Check authentication and Artifactory permissions."
+        exit 1
+      fi
+
+      echo "Done publishing to Artifactory"
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-sdk-python-[0-9]+\.[0-9]+\.[0-9]+(-preview\.[0-9]+)?$/
+    - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-python"
+      when: never
+
+publish_sdk_java:
+  stage: publish
+  image: ${JAVA_IMAGE}
+  needs:
+    - job: build_sdk_java
+      artifacts: true
+    - job: test_sdk_java
+  before_script:
+    - dp auth service-acc --key-file $nessy_cli_publish_artifactory
+    - dp auth configure-maven --ci -config-path packages/sdk-java/nessycli/settings.xml
+  script:
+    # Extract version from tag
+    - TAG_VERSION=$(echo "$CI_COMMIT_TAG" | sed -E 's/^release-sdk-java-//')
+    # Determine publish version based on tag type
+    - |
+      echo "Tag version: ${TAG_VERSION}"
+      if echo "$TAG_VERSION" | grep -q "SNAPSHOT"; then
+        # SNAPSHOT release: remove index (0.0.3-SNAPSHOT.0 -> 0.0.3-SNAPSHOT)
+        PUBLISH_VERSION=$(echo "$TAG_VERSION" | sed -E 's/^(.*-SNAPSHOT)(\.[0-9]+)?$/\1/')
+      else
+        # Stable release: use version as-is (0.0.3)
+        PUBLISH_VERSION="$TAG_VERSION"
+      fi
+      echo "Publishing Java SDK version: ${PUBLISH_VERSION}"
+    # Navigate to SDK directory and set version
+    - cd packages/sdk-java/nessycli
+    - mvn versions:set -DnewVersion=${PUBLISH_VERSION} -DgenerateBackupPoms=false
+    # Publish nessy-cli-sdk module (main Java SDK for Nessy CLI)
+    - mvn deploy -s settings.xml -Dmaven.test.skip=true -DskipTests
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-sdk-java-[0-9]+\.[0-9]+\.[0-9]+(-SNAPSHOT(\.[0-9]+)?)?$/
+    - if: $CI_PIPELINE_SOURCE == "web" && $CI_COMMIT_BRANCH == $MASTER_BRANCH
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "sdk-java"
+      when: never
+publish_vscode_extension:
+  stage: publish
+  image: ${S3_TOOLS_IMAGE}
+  script:
+    - source packages/vscode-ide-companion/build-variables.sh
+    - VSIX_PATH="packages/vscode-ide-companion/${VSIX_FILENAME}"
+    - test -f "${VSIX_PATH}"
+    - s3cmd put "${VSIX_PATH}" "s3://${AWS_BUCKET_DIR}/vscode/${VSIX_FILENAME}"
+    - |
+      if [[ "${VSCODE_VERSION}" =~ -beta\. ]]; then
+        s3cmd put "${VSIX_PATH}" s3://${AWS_BUCKET_DIR}/vscode/nessy-cli-vscode-ide-companion-latest-beta.vsix
+        s3cmd put packages/vscode-ide-companion/latest.json s3://${AWS_BUCKET_DIR}/vscode/latest-beta.json
+      else
+        s3cmd put "${VSIX_PATH}" s3://${AWS_BUCKET_DIR}/vscode/nessy-cli-vscode-ide-companion-latest.vsix
+        s3cmd put packages/vscode-ide-companion/latest.json s3://${AWS_BUCKET_DIR}/vscode/latest.json
+      fi
+  needs:
+    - job: build_vscode_extension
+      artifacts: true
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-cli-/
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+
+publish_intellij_plugin:
+  stage: publish
+  image: ${S3_TOOLS_IMAGE}
+  script:
+    - source ./build_variables.sh
+    - s3cmd put ./"$EXTENSION_FILENAME" s3://${AWS_BUCKET_DIR}/jetbrains/nessy-intellij-ide-companion-latest.zip
+  rules:
+    - if: $CI_COMMIT_TAG =~ /^release-cli-[0-9]+\.[0-9]+\.[0-9]+$/
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "web" && $COMPONENT_TYPE != "cli"
+      when: never
+  needs:
+    - job: plugin_intellij_build
+      artifacts: true
+
+# --- Release stage ---
+# update jetbrains version information
+intellij_download_update_file_xml:
+  stage: release
+  image: ${S3_TOOLS_IMAGE}
+  script:
+    - s3cmd get s3://${AWS_BUCKET_DIR}/release/jetbrains/updatePlugin.xml packages/intellij-ide-companion/updatePlugin.xml || (echo '<plugins/>' > packages/intellij-ide-companion/updatePlugin.xml && echo 'Created new updatePlugin.xml (no existing file in S3).')
+  artifacts:
+    paths:
+      - 'packages/intellij-ide-companion/updatePlugin.xml'
+  rules: *release_cli_stable_rules
+
+intellij_update_plugin_xml:
+  stage: release
+  image: ${GRADLE_IMAGE}
+  needs:
+    - intellij_download_update_file_xml
+  script:
+    - ./packages/intellij-ide-companion/gradlew -p packages/intellij-ide-companion updateLocalPluginXml -PupdatePluginXmlPath=updatePlugin.xml
+  artifacts:
+    paths:
+      - 'packages/intellij-ide-companion/updatePlugin.xml'
+  rules: *release_cli_stable_rules
+
+plugin_intellij_release:
+  stage: release
+  image: ${S3_TOOLS_IMAGE}
+  needs:
+    - intellij_update_plugin_xml
+    - plugin_intellij_build
+  script:
+    - source ./build_variables.sh
+    - |
+      # Извлекаем версию из тега (например, release-cli-0.11.0 -> 0.11.0, release-jetbrains-0.11.0-beta.1 -> 0.11.0-beta.1)
+      if [[ $CI_COMMIT_TAG =~ ^release-[a-z]+-(.+)$ ]]; then
+        RELEASE_VERSION="${BASH_REMATCH[1]}"
+      fi
+      if [ $PLUGIN_VERSION != $RELEASE_VERSION ]; then
+        echo "Version of release differs from build version"
+        exit 1
+      fi
+    - RELEASE_URL="s3://${AWS_BUCKET_DIR}/release/jetbrains/"
+    - s3cmd put "./$EXTENSION_FILENAME" $RELEASE_URL
+    - s3cmd put "./$EXTENSION_FILENAME" "${RELEASE_URL}nessy-intellij-ide-companion-latest-since-233.zip"
+    - s3cmd put ./packages/intellij-ide-companion/updatePlugin.xml $RELEASE_URL
+  rules: *release_cli_stable_rules
+
+# --- Post-publish stage ---
+
+# Bumps version after a release tag pipeline.
+# For beta tags - increments the beta prerelease number (e.g. 1.2.3-beta.0 -> 1.2.3-beta.1).
+# For stable tags - bumps patch and adds beta prerelease (e.g. 1.2.3 -> 1.2.4-beta.0).
+# Creates a MR to master and auto-merges it (since approval is optional).
+commitVersion:
+  stage: post-publish
+  image: ${NODE_IMAGE}
+  variables:
+    GIT_STRATEGY: clone
+    GIT_CHECKOUT: 'true'
+  script:
+    - dp auth service-acc --key-file $GITLAB_NESTOR_DEVELOPER
+    - GITLAB_TOKEN=$(dp auth print-token)
+    - COMPONENT_TYPE=$(echo "$CI_COMMIT_TAG" | sed -E 's/^release-(cli|desktop|sdk-typescript|sdk-python|sdk-java)-.*/\1/')
+    - TAG_VERSION=$(echo "$CI_COMMIT_TAG" | sed -E "s/^release-${COMPONENT_TYPE}-//")
+    - |
+      # Determine NEXT_VERSION per component:
+      # - SDK TS/Python: bump to next snapshot/preview version after any release.
+      # - SDK Java: SNAPSHOT tags keep same base, stable tags bump to next SNAPSHOT.
+      # - CLI/Desktop: bump to next beta (prerelease for beta tags, prepatch+beta for stable tags).
+      if [ "$COMPONENT_TYPE" = "sdk-typescript" ] || [ "$COMPONENT_TYPE" = "sdk-python" ]; then
+        # Bump to next preview version for all SDK releases
+        if [ "$COMPONENT_TYPE" = "sdk-python" ]; then
+          # Python PEP 440 format: 1.0.1rc0
+          NEXT_VERSION_SEMVER=$(npx semver "$TAG_VERSION" -i prepatch --preid preview)
+          NEXT_VERSION=$(echo "$NEXT_VERSION_SEMVER" | sed -E 's/-preview\.([0-9]+)$/rc\1/')
+          echo "Release ${TAG_VERSION} -> bumping to ${NEXT_VERSION} (PEP 440) for MR"
+        else
+          # TypeScript npm format: 1.0.1-preview.0
+          NEXT_VERSION=$(npx semver "$TAG_VERSION" -i prepatch --preid preview)
+          echo "Release ${TAG_VERSION} -> bumping to ${NEXT_VERSION} for MR"
+        fi
+      elif [ "$COMPONENT_TYPE" = "sdk-java" ]; then
+        # Java SDK: SNAPSHOT tags keep same base, stable tags bump to next SNAPSHOT
+        if echo "$TAG_VERSION" | grep -q "SNAPSHOT"; then
+          # SNAPSHOT release: keep base version (0.0.3-SNAPSHOT.0 -> 0.0.3-SNAPSHOT)
+          NEXT_VERSION=$(echo "$TAG_VERSION" | sed -E 's/^(.*-SNAPSHOT)(\.[0-9]+)?$/\1/')
+          echo "SNAPSHOT release ${TAG_VERSION} -> keeping ${NEXT_VERSION} for MR"
+        else
+          # Stable release: bump to next SNAPSHOT (0.0.3 -> 0.0.4-SNAPSHOT)
+          BASE_VERSION=$(echo "$TAG_VERSION" | sed -E 's/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          NEXT_VERSION_SEMVER=$(npx semver "$BASE_VERSION" -i minor --preid SNAPSHOT)
+          # Convert npm format (0.0.4-SNAPSHOT.0) to Maven format (0.0.4-SNAPSHOT)
+          NEXT_VERSION=$(echo "$NEXT_VERSION_SEMVER" | sed -E 's/-SNAPSHOT\.[0-9]+$/-SNAPSHOT/')
+          echo "Stable release ${TAG_VERSION} -> bumping to ${NEXT_VERSION} (SNAPSHOT) for MR"
+        fi
+      else
+        # CLI/Desktop
+        if echo "$TAG_VERSION" | grep -q "beta"; then
+          NEXT_VERSION=$(npx semver "$TAG_VERSION" -i prerelease --preid beta)
+        else
+          NEXT_VERSION=$(npx semver "$TAG_VERSION" -i prepatch --preid beta)
+        fi
+      fi
+    - git config user.email "ci@gitlab.com"
+    - git config user.name "CI Bot"
+    - BRANCH_NAME="ci/bump-${COMPONENT_TYPE}-${NEXT_VERSION}"
+    - git remote set-url origin "https://oauth2:${GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git"
+    - git fetch origin ${MASTER_BRANCH}
+    - git checkout -b "$BRANCH_NAME" origin/${MASTER_BRANCH}
+    # Install native modules for Linux (npm/cli#4828 optional dependencies bug)
+    # This job doesn't need build, just scripts - skip prepare
+    - npm ci --ignore-scripts
+    - npm i --no-save @rollup/rollup-linux-x64-gnu @esbuild/linux-x64
+    - |
+      # Bump version files for the released component only
+      if [ "$COMPONENT_TYPE" = "cli" ]; then
+        npm run release:version "$NEXT_VERSION"
+        git add package.json package-lock.json packages/*/package.json packages/intellij-ide-companion/gradle.properties
+      elif [ "$COMPONENT_TYPE" = "desktop" ]; then
+        npm install -g bun
+        cd packages/desktop
+        bun run bump-desktop-version "$NEXT_VERSION"
+        cd ../..
+        git add packages/desktop/package.json packages/desktop/apps/electron/package.json packages/desktop/packages/shared/package.json
+      elif [ "$COMPONENT_TYPE" = "sdk-typescript" ]; then
+        node -e "const fs=require('fs');const p='packages/sdk-typescript/package.json';const j=JSON.parse(fs.readFileSync(p));j.version='$NEXT_VERSION';fs.writeFileSync(p,JSON.stringify(j,null,2)+'\n')"
+        git add packages/sdk-typescript/package.json
+      elif [ "$COMPONENT_TYPE" = "sdk-python" ]; then
+        sed -i "s/^version = \".*\"/version = \"$NEXT_VERSION\"/" packages/sdk-python/pyproject.toml
+        git add packages/sdk-python/pyproject.toml
+      elif [ "$COMPONENT_TYPE" = "sdk-java" ]; then
+        # Java Maven version format: 1.0.1-SNAPSHOT
+        sed -i "0,/<version>.*<\/version>/s|<version>.*</version>|<version>$NEXT_VERSION</version>|" packages/sdk-java/nessycli/pom.xml
+        git add packages/sdk-java/nessycli/pom.xml
+      else
+        echo "Unsupported component type: $COMPONENT_TYPE"
+        exit 1
+      fi
+    - git commit -m "chore - bump ${COMPONENT_TYPE} version to ${NEXT_VERSION}"
+    - git push origin "$BRANCH_NAME"
+    - |
+      ASSIGNEE_PARAM=""
+      if [ -n "$MR_ASSIGNEE_ID" ]; then
+        ASSIGNEE_PARAM="--data-urlencode assignee_id=${MR_ASSIGNEE_ID}"
+      fi
+      MR_RESPONSE=$(curl --fail --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+        --data-urlencode "source_branch=${BRANCH_NAME}" \
+        --data-urlencode "target_branch=${MASTER_BRANCH}" \
+        --data-urlencode "title=chore - bump ${COMPONENT_TYPE} version to ${NEXT_VERSION}" \
+        --data-urlencode "remove_source_branch=true" \
+        $ASSIGNEE_PARAM \
+        "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests")
+      MR_IID=$(echo "$MR_RESPONSE" | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).iid")
+      echo "Created MR !${MR_IID}"
+    - |
+      echo "Waiting for MR to become mergeable..."
+      for i in $(seq 1 60); do
+        sleep 10
+        MERGE_STATUS=$(curl --silent --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+          "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests/${MR_IID}" \
+          | node -p "JSON.parse(require('fs').readFileSync('/dev/stdin','utf8')).detailed_merge_status||'unknown'")
+        echo "Attempt ${i} - merge status - ${MERGE_STATUS}"
+        if [ "$MERGE_STATUS" = "mergeable" ] || [ "$MERGE_STATUS" = "ci_still_running" ]; then
+          curl --fail --request PUT \
+            --header "PRIVATE-TOKEN: ${GITLAB_TOKEN}" \
+            --data "merge_when_pipeline_succeeds=true" \
+            "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/merge_requests/${MR_IID}/merge"
+          echo "Auto-merge enabled for MR !${MR_IID}"
+          exit 0
+        fi
+      done
+      echo "MR not mergeable after 60 attempts"
+      exit 1
+  rules: *release_rules
+
+# --- Autodoc ---
+
+# Используем свежую версию autodoc 2
+.unic/pipelines/templates/variables/auto-docs-image-version:
+  variables:
+    AUTO_DOCS_IMAGE_VERSION: 2
+    AUTODOC_EXPERIMENTAL_NESTOR_LOCAL_SEARCH: 'true'
+    AUTODOC_IMAGE_NAME: autodoc-experimental-search
+
+.autodoc/extensions/scripts/autodoc-before-script:
+  script:
+    - rm -rf docs
+    - mv docs-ru docs
+
+pages:
+  variables:
+    AUTODOC_EXPERIMENTAL_FASTER: 'true'
+
+Checking auto documentation:
+  variables:
+    AUTODOC_EXPERIMENTAL_FASTER: 'true'
+  extends:
+    - '.autodoc/jobs/autodoc::test'

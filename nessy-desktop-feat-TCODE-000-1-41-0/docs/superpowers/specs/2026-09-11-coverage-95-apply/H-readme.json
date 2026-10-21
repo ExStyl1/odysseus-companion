@@ -1,0 +1,41 @@
+{
+ "problems": [
+  "QH3's premise is refuted at HEAD: `skills` is NOT one of the seven unexpressible codex fields — P6.309 arm (1) landed `192b700fc`, which inlines each declared skill's materialized body into the codex role descriptor's systemPrompt, so only the `skills` KEY is unexpressible while the capability is delivered. I recorded H21/codex as `covered ᵗ` instead of `n/a`, which gives MORE coverage than the question claimed but contradicts its wording — the owner's refusal set is six fields, not seven.",
+  "QH1's claimed '15 cells to covered' does not survive measurement of H17: `getLastReviewEffortLevel` / `setLastReviewEffortLevel` (`packages/shared/src/config/storage.ts`) have exactly ONE production caller, `packages/shared/src/agent/pi-agent.ts`, so the cross-session effort carry-over is announced on Pi only. H17 claude and codex are written `partial ᵗ`, not `covered`; the honest tally is 13 covered, 2 partial, 1 marker-only (H16/codex).",
+  "QH9's schema tag is stale in the question text: `packages/codex-protocol/manifest.json` now reads `rust-v0.150.1` (the lift landed) while only the package's `package.json` description still says `rust-v0.148.0`. Every codex 'dated null' I wrote cites the manifest tag; the plan row says so explicitly.",
+  "QH2's `n/a` disposition for H19 and H20 records a SCOPE routing (the Dev-4 forge/git-UI plan, DR-2, plan :1145) plus the Auto-fix/Auto-merge refusal, not runtime non-applicability. A reviewer may prefer `absent ᵗ` plus a scope note; I used `n/a ᵈ` because this round counts decided refusals as covered and the owner's B keeps every forge entry out of this ledger.",
+  "QH7's H53/claude edit to `n/a ᵈ` requires rewriting the cell's own sentence in the same commit: the Why currently argues for `absent` ('the capability cannot be had, not that we failed to build it'), which is the reason for n/a but not the word. The plan row says so; left unflagged it would read as a contradiction.",
+  "QH8 leaves H30/codex at `absent ʰ` with no row: P6.940 clause (3) — apply the session agent's instructions half through `developer_instructions` and SAY that the tool restriction and the auto-prompt are not applied — is an unanswered owner clause, so the question's claim of six covered cells is five. A second residue: the Pi session-agent pin has no composer badge where claude's does (P6.961).",
+  "H6/codex is deliberately NOT edited. The question asks for it as an explicit null and the cell already IS one — `absent ᵗ` with P2.258 (`8bfb12497`), where `CodexAgent.reportsCostUsd() === false` outranks a per-turn verdict; rewriting it as `n/a` would lose the measured-absence-with-a-refusal shape that cell holds on purpose.",
+  "Cells gated on unlanded build rows carry no ledger edit, by design: H33/codex (the `[agents] enabled` caller), H35 pi and claude (the delegation paragraph), H37's three `—` cells (the `agents` watcher arm), H51 (the MR-less batch), H2/claude and the `enableWorkflows` clause of H45/claude (the QH9 override). Each owning plan row's note_en names the cells it re-stamps when it lands.",
+  "H48 stays three `—` cells: P6.321 closed as MOVED, not done, to `D1.48` in the follow-up plan, so scoring it now would be scoring an unrun measurement (QH10's option A says exactly this).",
+  "Eight rows in this family have NO twin in `docs/superpowers/specs/2026-09-05-denominator-gaps.md` — H1, H2, H4, H6, H7, H8, H9, H53 — so edits to those apply to the capability ledger only; the other forty do have twins (verdict vocabulary there is `have` rather than `covered`)."
+ ],
+ "flip_candidates": [
+  {
+   "qid": "QH1",
+   "mechanism_en": "codex's own `review/start` app-server method with `ReviewDelivery` `detached` and a host-chosen `ReviewTarget` (uncommittedChanges / baseBranch / commit / custom), declared in `packages/codex-protocol/generated/ClientRequest.ts` and `packages/codex-protocol/generated/v2/ReviewStartParams.ts` at the pinned tag, with ZERO product callers today",
+   "wiring_size": "S",
+   "reason_en": "The owner's answer A already creates this row, and it is the flip shape exactly: native-first step 1 (configuration, not construction) — the host can compute the ReviewTarget from the review-diff scope it already owns, so codex stops merely refusing a background review by name."
+  },
+  {
+   "qid": "QH2",
+   "mechanism_en": "the already-shipped built-in `dpGitlab` MCP server (`packages/shared/src/mcp/builtin-dp-servers.ts`, subcommand `gitlab`, `defaultEnabled: false`), whose tool set covers merge requests and which is reachable by the model on all three runtimes",
+   "wiring_size": "S",
+   "reason_en": "Option A is configuration rather than construction — the refuter measured `dpGitlab` in 23 files including product code, refuting the `merge-request-watch.ts` docblock's 'zero product files'. Flagged, answer unchanged: the mechanism is host/product-native rather than runtime-native, and the refusal is a product posture (an agent that opens or merges a request) the owner has now taken twice, on 2026-09-05 and again as QH2 = B."
+  },
+  {
+   "qid": "QH9",
+   "mechanism_en": "the claude SDK's own dynamic-workflow engine — `enableWorkflows`, `disableWorkflows`, `workflowSizeGuideline`, `workflowKeywordTriggerEnabled` declared on `Settings` in the vendored `sdk.d.ts`, reached through the settings tier the host already feeds",
+   "wiring_size": "S",
+   "reason_en": "This is the owner's own override and it lands exactly on the stricter criterion: `packages/shared/src/agent/claude-auto-mode-policy.ts` symbol `buildClaudeWorkflowSettings` today sends only the RESTRICTIVE direction, so recommendation A would have left an org-wide `disableWorkflows` governing nothing on claude — the silent divergence the host is supposed to remove. Gated on P6.125's measurement (engine reachable in a gateway session, or entitlement-gated via `tengu_workflows_enabled`)."
+  }
+ ],
+ "counts": {
+  "restamp": 5,
+  "refuse": 2,
+  "build": 4,
+  "measure": 1,
+  "defer": 0
+ }
+}

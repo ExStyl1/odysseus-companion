@@ -1,0 +1,16 @@
+{
+  "repository": "calesthio/OpenMontage",
+  "revision": "c8066452325cb57c8fc1ba8c2a71b6e8842e6b65",
+  "path": ".agents/skills/video-edit",
+  "url": "https://github.com/calesthio/OpenMontage/tree/c8066452325cb57c8fc1ba8c2a71b6e8842e6b65/.agents/skills/video-edit",
+  "upstreamName": "video-edit",
+  "upstreamFrontmatter": {
+    "name": "video-edit",
+    "description": "Edit videos locally using ffmpeg. Trim, concat, resize, speed, overlay, extract audio, compress, and convert.\nUse when: (1) Trimming or cutting video segments, (2) Concatenating multiple clips, (3) Resizing video for social platforms,\n(4) Extracting or replacing audio, (5) Compressing video, (6) Converting video formats, (7) Getting video info."
+  },
+  "upstreamSkillSha256": "25a8a985c4ecc4ad4c32fe29f51d9122f02f149e641916e1709bee5dfaccb7f0",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

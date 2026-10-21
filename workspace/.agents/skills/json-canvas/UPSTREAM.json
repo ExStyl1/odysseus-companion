@@ -1,0 +1,16 @@
+{
+  "repository": "kepano/obsidian-skills",
+  "revision": "3ccff5338ea700537839b21900aa5358a0402c98",
+  "path": "skills/json-canvas",
+  "url": "https://github.com/kepano/obsidian-skills/tree/3ccff5338ea700537839b21900aa5358a0402c98/skills/json-canvas",
+  "upstreamName": "json-canvas",
+  "upstreamFrontmatter": {
+    "name": "json-canvas",
+    "description": "Create and edit JSON Canvas files (.canvas) with nodes, edges, groups, and connections. Use when working with .canvas files, creating visual canvases, mind maps, flowcharts, or when the user mentions Canvas files in Obsidian."
+  },
+  "upstreamSkillSha256": "97d1ae0728955c4203922753d5656890e5e4dd371b8306ea11884f9b510f1b85",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ]
+}

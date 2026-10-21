@@ -1,0 +1,56 @@
+workflow:
+  name: 'Nessy rebrand: $REBRAND_UPSTREAM_REF'
+  rules:
+    - if: '$CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE =~ /^(web|schedule|api|trigger)$/'
+    - when: never
+
+stages:
+  - rebrand
+  - verify
+  - publish
+
+.rebrand_job:
+  image: docker-hosted.artifactory.tcsbank.ru/cicd-images/nodejs-22
+  tags: [dp-build-k8s, medium]
+  variables:
+    GIT_DEPTH: '0'
+    GIT_STRATEGY: clone
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - .rebrand/reports/
+
+rebrand_prepare:
+  extends: .rebrand_job
+  stage: rebrand
+  script:
+    - bash scripts/rebrand/ci.sh prepare
+
+rebrand_verify:
+  extends: .rebrand_job
+  stage: verify
+  needs:
+    - job: rebrand_prepare
+      artifacts: true
+  before_script:
+    - apt-get update && apt-get install -y zip unzip
+  script:
+    - bash scripts/rebrand/ci.sh verify
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - .rebrand/reports/
+    reports:
+      junit:
+        - .rebrand/reports/*-junit.xml
+
+rebrand_publish:
+  extends: .rebrand_job
+  stage: publish
+  needs:
+    - job: rebrand_verify
+      artifacts: true
+  script:
+    - bash scripts/rebrand/ci.sh publish

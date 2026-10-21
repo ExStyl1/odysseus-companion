@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "time-to-jira/SKILL.md",
+  "upstreamName": "time-to-jira",
+  "upstreamFrontmatter": {
+    "name": "time-to-jira",
+    "description": "Создание задач в Jira на основе тредов в Time messenger. Триггеры: ссылка на тред Time (time.tbank.ru/tinkoff/pl/...) + слова \"создай задачу\", \"заведи баг\", \"Jira\". Используй когда: пользователь присылает ссылку на тред в Time и просит создать задачу, нужно автоматически извлечь проблему из обсуждения и завести баг-репорт. Этот скилл анализирует диалог через LLM и создаёт структурированную задачу в Jira."
+  },
+  "upstreamSkillSha256": "47d0f6a2057fb6c4c41353b04eb0883032bc0351b7d0144c9148738a6743e63a",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

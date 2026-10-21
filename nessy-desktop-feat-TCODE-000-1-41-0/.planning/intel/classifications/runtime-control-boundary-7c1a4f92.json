@@ -1,0 +1,29 @@
+{
+  "source_path": "/Users/i.i.gavrikov/Desktop/work/nessy-desktop/docs/architecture/runtime-control-boundary.md",
+  "type": "ADR",
+  "confidence": "high",
+  "manifest_override": true,
+  "title": "Runtime Control Boundary — Pi, Claude, Codex",
+  "summary": "Measured record of which control decisions Nessy holds versus the vendor for the Pi, Claude and Codex runtimes.",
+  "scope": [
+    "Pi runtime",
+    "Claude runtime",
+    "Codex runtime",
+    "system prompt composition",
+    "tool surface",
+    "permission gate",
+    "compaction policy",
+    "session tools over MCP",
+    "subagent definitions",
+    "codex config.toml",
+    "network interceptor"
+  ],
+  "cross_refs": [
+    "docs/testing/cdp-live-checklist.md",
+    "docs/README.md",
+    "apps/electron/resources/docs/permissions.md"
+  ],
+  "locked": false,
+  "precedence": null,
+  "notes": "Type taken from MANIFEST_TYPE (authoritative). No Status field present; record is self-described as a measured snapshot dated 2026-08-16 against feat/models-fetch, so locked is false. Section 5 lists seven explicitly open/unverified items."
+}

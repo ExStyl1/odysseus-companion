@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "description": "Default configuration values for Nessy",
+  "defaults": {
+    "notificationsEnabled": true,
+    "notificationTiming": "background",
+    "notificationPermissionAlerts": true,
+    "notificationQuestionAlerts": true,
+    "colorTheme": "default",
+    "autoCapitalisation": true,
+    "sendMessageKey": "enter",
+    "spellCheck": false,
+    "keepAwakeWhileRunning": false,
+    "richToolDescriptions": true,
+    "extendedPromptCache": false,
+    "browserToolEnabled": true,
+    "allowRemoteEvaluate": true,
+    "memoryEnabled": true,
+    "macosSeatbeltBashSandboxEnabled": false,
+    "blockReadsOutsideWorkingDirectories": false,
+    "mcpChannelPushEnabled": false,
+    "autoCompactEnabled": true,
+    "guardianEnabled": true,
+    "codexAutoReviewEnabled": false,
+    "codexAutoReviewPolicy": "",
+    "codexSubagentsEnabled": true,
+    "advisorEnabled": false,
+    "advisorModel": "",
+    "unattendedApprovalFallback": "deny",
+    "retentionDays": 30,
+    "neverPersistSessions": false
+  },
+  "workspaceDefaults": {
+    "permissionMode": "auto",
+    "cyclablePermissionModes": ["plan", "default", "acceptEdits", "auto", "bypassPermissions"],
+    "maxAgentTurns": 0,
+    "maxBudgetUsd": 0,
+    "maxBudgetTokens": 0,
+    "fallbackModel": [],
+    "deferredMcpToolLoading": true,
+    "localMcpServers": {
+      "enabled": true
+    }
+  }
+}

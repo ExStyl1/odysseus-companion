@@ -1,0 +1,40 @@
+{
+  "name": "icon-enforcement",
+  "description": "Icon rules the build must enforce: an icon on every card, no two identical icons on one slide. Executed by scripts/selftest.py, not read by hand.",
+  "cases": [
+    {
+      "name": "missing_icon_cards",
+      "description": "Card without icon field should be rejected.",
+      "file": "files/missing-icon-cards.json",
+      "expect_error": true,
+      "error_contains": "the \"icon\" field is required"
+    },
+    {
+      "name": "missing_icon_grid",
+      "description": "Grid card without icon should be rejected.",
+      "file": "files/missing-icon-grid.json",
+      "expect_error": true,
+      "error_contains": "the \"icon\" field is required"
+    },
+    {
+      "name": "missing_icon_list",
+      "description": "Full-width list card without an icon should be rejected: the field became required in 1.1, because while it was optional every list slide shipped with the same glyph baked into the reference fragment.",
+      "file": "files/missing-icon-list.json",
+      "expect_error": true,
+      "error_contains": "the \"icon\" field is required"
+    },
+    {
+      "name": "duplicate_icon_same_slide",
+      "description": "Same icon requested by two cards of one slide: the allocator must hand out different files rather than repeat or fail.",
+      "file": "files/duplicate-icon-same-slide.json",
+      "expect_error": false,
+      "expect_distinct_icons": true
+    },
+    {
+      "name": "grey_list_slide",
+      "description": "A list as the whole slide: one full-width grey card with items and its own icon.",
+      "file": "files/grey-list-slide.json",
+      "expect_error": false
+    }
+  ]
+}

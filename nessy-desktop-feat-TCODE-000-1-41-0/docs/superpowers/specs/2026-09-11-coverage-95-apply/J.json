@@ -1,0 +1,1311 @@
+{
+ "family": "J",
+ "items": [
+  {
+   "qid": "QJ1",
+   "answer": "B",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "J6",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 22 (2026-09-05, `docs/superpowers/plans/2026-08-22-runtime-parity-closure.md` decision 22) and re-affirmed by the owner's 2026-09-11 answer QJ1=B — codex drives no browser, and P6.27 measured that projecting `browser_tool` as it stands would ship arbitrary in-pane JavaScript with no mode check because `packages/shared/src/agent/codex-agent.ts` has no `runPreToolUseChecks` seam.",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J7",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 4 (2026-09-05, option A — do not build, record the absence as a deliberate posture) and the owner's 2026-09-11 answer QJ1=B; WebMCP is a codex-index page (`scripts/codex-doc-pages.tsv`, `learn.chatgpt.com/docs/webmcp.md`), the weak evidence tier, with no model in our catalogue that supports it.",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J7",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (owner decision 4, 2026-09-05, carried by the 2026-09-11 answer QJ1=B): the page cannot offer the agent anything today — `BrowserPaneFns` in `packages/shared/src/agent/browser-tools.ts` returns plain ARIA nodes from `snapshot()` with no `inputSchema` and no `annotations`.",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J7",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (owner decision 4, 2026-09-05), and doubly so on codex, which gets no pane at all under decision 22.",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J58",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.360 `9e2ebb2a7` made the download destination a deterministic session-scoped policy with its own reader, and P6.564 `c1e6b43c1 + 5e9a3e938` added the user setting and the ask-each-time control with the environment still outranking both.",
+     "twin_row": "J58",
+     "twin_to": "have"
+    },
+    {
+     "row": "J58",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host surface, same commits — the pane is one Electron surface shared by every runtime, so P6.360 `9e2ebb2a7` + P6.564 `c1e6b43c1 + 5e9a3e938` close the claude arm identically.",
+     "twin_row": "J58",
+     "twin_to": "have"
+    },
+    {
+     "row": "J60",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.536 `da9fd4a8a + 774c9c1ca + ab3f237ae + 300442501` landed owner decision D9 option 2 in full — a per-origin trust store (Allow once / Always allow / Deny, per subdomain, revocable, surviving restart) gating the first navigation to a new origin and the first debugger attach, with the classifier band and the browsing-session persistence choice explicitly reserved as option 3 and not owed by this row.",
+     "twin_row": "J12",
+     "twin_to": "have"
+    },
+    {
+     "row": "J60",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host gate and the same commits (P6.536 `da9fd4a8a + 774c9c1ca + ab3f237ae + 300442501`): `createInstance` is the single choke point every runtime's browser path lands on.",
+     "twin_row": "J12",
+     "twin_to": "have"
+    },
+    {
+     "row": "J60",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "A per-site card has nothing to gate on codex, which drives no browser at all under owner decision 22 (2026-09-05), re-affirmed by the 2026-09-11 answer QJ1=B.",
+     "twin_row": "J12",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J62",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.536 `da9fd4a8a + 774c9c1ca` made the full-CDP attach its own per-origin grant and gave the administrator a managed CDP lock separate from the pane switch, which is exactly this row's ask.",
+     "twin_row": "J14",
+     "twin_to": "have"
+    },
+    {
+     "row": "J62",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same commits (P6.536 `da9fd4a8a + 774c9c1ca`) — the debugger attach is refused without a decision on every runtime that can open the pane.",
+     "twin_row": "J14",
+     "twin_to": "have"
+    },
+    {
+     "row": "J63",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.338 `08b376e34` landed the graded managed browser controls — a navigation allowlist that refuses an off-list navigation with a named diagnostic, plus the page-tool subset and the mobile-simulator toggle — beside the all-or-nothing `disableInAppBrowser`.",
+     "twin_row": "J15",
+     "twin_to": "have"
+    },
+    {
+     "row": "J63",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same managed tier, same commit (P6.338 `08b376e34`); the 2.1.247 bundle probe also corrects this row's 'none of the three keys is in the bundle' clause — `disableMobileSimulatorTools` scores 2 in the vendored binary against `zzz_not_a_real_key` 0.",
+     "twin_row": "J15",
+     "twin_to": "have"
+    },
+    {
+     "row": "J63",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "The managed browser tier is process-wide and reaches a codex session: `recordCodexInAppBrowserRequirement` (`packages/shared/src/agent/codex-agent.ts`) feeds codex's own `[features] in_app_browser = false` requirement into the same host gate (P2.399/P2.463/P2.474, `b481d5e84 + 338f44d4c + b0a0b9088`).",
+     "twin_row": "J15",
+     "twin_to": "have"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the codex-browser and WebMCP refusals in `runtime-capability-gaps.md` and re-stamp J6/codex and J7's three cells as n/a-by-decision.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "codex",
+      "host"
+     ],
+     "note_en": "Done means: `docs/superpowers/specs/runtime-capability-gaps.md` carries both refusals by name with their dates — decision 22 (codex browser: nothing built now; if ever wanted, ONE host chokepoint gating all three runtimes) and decision 4 (WebMCP: option A, do not build) — and the ledger plus its denominator-gaps twin carry `n/a` on J6/codex and all three J7 cells. Implements option B. Zero code. Re-stamps J6, J7."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "No native mechanism to wire on either half: codex declares `browser_use_full_cdp_access` only in the vendored `packages/codex-protocol/schema/config-schema.json` and P2.373 measured that it does not act on its own `in_app_browser` flag, while P6.27 measured that projecting our `browser_tool` costs more than S because `codex-agent.ts` has no `runPreToolUseChecks` seam — the card exists but the checkpoint does not; WebMCP has no implementation on any of the three and its only contract is a weak-tier codex page."
+  },
+  {
+   "qid": "QJ2",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "J61",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "STRUCTURAL refusal taken on the owner's 2026-09-11 answer QJ2=A: Pi's only egress lever is the all-or-nothing `denyNetworkEgress` threaded through `packages/shared/src/agent/pi-harness/process-supervisor.ts` into the three platform profiles, and there is no per-host allowlist anywhere to enforce.",
+     "twin_row": "J13",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J61",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "STRUCTURAL refusal (owner answer QJ2=A, 2026-09-11): claude has no egress mechanism for the agent's shell at all — the tree's only network gate, `packages/shared/src/net/unified-network-interceptor.ts`, is not the shell — so an allowlist would mean owning a proxy for the child, a new permanent surface.",
+     "twin_row": "J13",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J61",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "STRUCTURAL refusal read from codex's own source, the strong tier: `[features] network_proxy` is gated on `network_sandbox_policy().is_enabled()` and our resolved policy is `Restricted` in every configuration this product ships, so the MITM proxy that enforces `network.domains`/`unix_sockets` never runs — recorded at `packages/codex-responses-adapter/src/config-writer.ts` symbol `request_permissions_tool`.",
+     "twin_row": "J13",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J11",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`absent ᵗ`",
+     "why_en": "Verdict unchanged, reason recorded: owner decision 23 (2026-09-05) chose option A — keep egress denied and make the denial LEGIBLE — and P6.149 `2784ffa9f` landed it, keying `formatCodexSandboxEgressDiagnostics` on the RESOLVED policy so the diagnostic fires in the shipped `danger-full-access` default instead of returning `[]`, pinned by `packages/codex-responses-adapter/src/__tests__/config-writer-sandbox-egress.test.ts`.",
+     "twin_row": null,
+     "twin_to": "absent"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record J61's three cells as a STRUCTURAL refusal with codex's own source as the reason, and drop the stale `honest_surface: PARTIAL` clause that P6.149 closed.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "codex",
+      "host"
+     ],
+     "note_en": "Done means: the ledger and its denominator-gaps twin (gaps row J13) read `n/a` on all three J61 cells with the source-tier reason, and J61's Why no longer says `formatCodexSandboxEgressDiagnostics` early-returns on `danger-full-access` — P6.149 `2784ffa9f` (2026-09-05) refuted that and is pinned by a test. Implements option A. Zero code. Re-stamps J61 and J11's Why."
+    },
+    {
+     "task_en": "After the P7.5 release sitting reports P6.150, stamp J11's Pi and claude cells from the reading rather than from an assumption.",
+     "size": "XS",
+     "tags": [
+      "pi",
+      "claude",
+      "doc"
+     ],
+     "note_en": "Done means: P6.150 ⬜ (does an approved Bash command reach the network on Pi and on claude in the shipped default) is driven at the 1.36.0 sitting and its reading, with its control, becomes J11's Pi and claude verdicts; until then the two cells stay `—` rather than being guessed. Implements option A's second half."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "codex does own the keys (`network.domains`, `unix_sockets`, `allow_local_binding`) but they are measured INERT in our shape — the enforcing proxy is gated on a policy that is `Restricted` in every configuration we ship — so switching them on is not S-sized wiring but turning on a MITM proxy that starts denying live egress, a product posture nobody asked for; Pi's native lever is all-or-nothing and claude has none."
+  },
+  {
+   "qid": "QJ3",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "J10",
+     "column": "Claude",
+     "from": "`absent ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.148 `5207120f9 + caadb12e4 + 61f7a306b + 40befa855 + 5916bcc48 + 9b64cf021` landed one host-side search serving both withholding runtimes — `packages/shared/src/tools/web-search/host-web-search.ts` offered through `hostWebSearchOffered: hostedWebSearchWithheld` — and the row's own note ends 'All three cells `true` → the row retired (P6.896)'.",
+     "twin_row": null,
+     "twin_to": "have"
+    },
+    {
+     "row": "J10",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed build (P6.148 `5207120f9 + caadb12e4 + 61f7a306b + 40befa855 + 5916bcc48 + 9b64cf021`): codex keeps `web_search = 'disabled'` for its hosted tool by a recorded native-first decision and gets the host tool instead.",
+     "twin_row": null,
+     "twin_to": "have"
+    },
+    {
+     "row": "J40",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "The cap ships with that same host search and is shared, not Pi-only: `packages/shared/src/config/web-search-budget.ts` carries `DEFAULT_MAX_WEB_SEARCHES_PER_SESSION = 200` and accepts both spellings (`NESSY_MAX_WEB_SEARCHES_PER_SESSION` and the documented `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`), consumed through `createHostWebSearchBudget` in `packages/session-tools-core/src/handlers/web-search.ts`; whether the notice reads as a continue rather than an error is D1.53's measurement.",
+     "twin_row": "J40",
+     "twin_to": "have"
+    },
+    {
+     "row": "J40",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same shared budget reached by the same handler (`createHostWebSearchBudget`, `packages/session-tools-core/src/handlers/web-search.ts`); D1.53 measures the already-built cap rather than supplying a missing subject.",
+     "twin_row": "J40",
+     "twin_to": "have"
+    },
+    {
+     "row": "J64",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.339 `92dc974c6` landed the operator domain allowlist on Pi — out-of-list results are dropped before formatting, through `resolveWebSearchAllowedDomains` / `isWebSearchUrlAllowed` in `packages/shared/src/config/web-search-allowlist.ts`.",
+     "twin_row": "J16",
+     "twin_to": "have"
+    },
+    {
+     "row": "J64",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "The host search reads the SAME allowlist readers on every runtime — `packages/shared/src/tools/web-search/host-web-search.ts` imports `isWebSearchUrlAllowed` and `resolveWebSearchAllowedDomains` and filters before formatting — so an operator's narrowing answers identically on claude (P6.148).",
+     "twin_row": "J16",
+     "twin_to": "have"
+    },
+    {
+     "row": "J64",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same reader, same filter on the codex arm (`packages/shared/src/tools/web-search/host-web-search.ts`); codex's own `tools.web_search.allowed_domains` stays unwritten because its hosted search stays disabled, and that is a stated null rather than a gap.",
+     "twin_row": "J16",
+     "twin_to": "have"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp J10, J40 and J64 against the landed web-search rows and leave the budget measurement with D1.53.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Done means: the ledger and its denominator-gaps twins (gaps J40, J16) carry `covered` on J10's claude and codex cells, J40's claude and codex cells and all three J64 cells, each citing P6.148 `5207120f9 + caadb12e4 + 61f7a306b + 40befa855 + 5916bcc48 + 9b64cf021` or P6.339 `92dc974c6`; J40's Why names D1.53 as the outstanding measurement (does the cap fire at the documented 200-equivalent, does it span subagents, is the notice a continue). Implements option A. Zero code."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing is refused here — the two runtimes' own hosted searches are withheld through their own documented mechanisms (`disallowedTools` on claude, `web_search = \"disabled\"` on codex) because they execute on a backend the loopback adapter cannot reach, and the host replacement is already built and shared."
+  },
+  {
+   "qid": "QJ4",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "J2",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the owner's 2026-09-11 answer QJ4=A: `agent-sdk/tool-search.md` says 'Tool search is on by default' and that the SDK itself disables it when `ANTHROPIC_BASE_URL` points to a non-first-party host, which our per-session loopback adapter always is, and the override would fail anyway because the translator implements no `tool_reference` blocks — the honest surface is the landed disposition report (`reportToolSearchDisposition`, P6.145 `a7d9c8ce3`).",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J2",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by decision 21 (2026-09-05 — decline and record the null) and the owner's 2026-09-11 answer QJ4=A: codex's config keys are `Stage::Removed` and the remaining route (a served `/models` catalogue) is declined rather than built.",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J26",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the same 2026-09-11 answer QJ4=A: `packages/shared/src/agent/options.ts` writes `ENABLE_TOOL_SEARCH` only as `'false'`, and P6.529 `2e980d842` already lets an operator's `true`/`auto:N` cross where the base URL IS first-party, so what remains refused is the loopback case the SDK's own fallback exists to protect.",
+     "twin_row": "J26",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J26",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by decision 21 (2026-09-05) and the 2026-09-11 answer QJ4=A; the per-runtime state is reported rather than silent — `options.ts` emits `state: 'unreachable'` for codex in the disposition report (P6.145 `a7d9c8ce3`).",
+     "twin_row": "J26",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J12",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Verdict unchanged and the residue stated: the `alwaysLoad` pin is written correctly per tool (P2.454 `ff28207ea`, both spellings `mcp.md#exempt-a-server-from-deferral` gives) and is inert by design because deferral is off on our loopback path (P6.358 drove it); D1.22 measures whether `ENABLE_TOOL_SEARCH=true` survives the loopback before anything is reconsidered.",
+     "twin_row": null,
+     "twin_to": "partial"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the tool-search refusal on claude and codex as n/a-by-decision and carry the page's two override-proof cases into the disposition report's comment.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude",
+      "codex"
+     ],
+     "note_en": "Done means: J2 and J26's claude and codex cells read `n/a` with the reason, and the comment beside `ENABLE_TOOL_SEARCH` in `packages/shared/src/agent/options.ts` quotes the page's two further cases where the variable does NOT override the default — a Microsoft Foundry deployment hosted on Azure, and Agent Platform models earlier than Claude 4.5 — so no later reader treats the switch as omnipotent; J12's claude cell keeps `partial` with the inert-by-design residue and the D1.22 pointer. Implements option A. Re-stamps J2, J26, J12."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "The codex arm is a refusal over a mechanism that is still reachable: the ledger's own J26 evidence records that codex's tool-search gate is NOT n/a-by-construction — the config keys are `Stage::Removed` but the gate is reachable through `model_catalog_json` or by serving the `/models` endpoint our adapter currently 404s (out-of-scope register O20, W1-a, `rust-v0.148.0`) — and serving that endpoint from the codex-responses adapter is S-sized host wiring; the claude arm is genuinely not flippable (our own translator would need `tool_reference` blocks, an L, and the SDK disables the beta on non-first-party hosts for exactly that reason)."
+  },
+  {
+   "qid": "QJ5",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "J20",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.510 `9376f8501 + cf0d85dbd + d775f0e48 + 06fec66c2` landed Q-den 37 option 2 — a per-SESSION arming set seeded from the persistent preference, which is the session boundary this cell was missing.",
+     "twin_row": "J20",
+     "twin_to": "have"
+    },
+    {
+     "row": "J20",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed work (P6.510 `9376f8501 + cf0d85dbd + d775f0e48 + 06fec66c2`): the arming set lives in the one host pool (`ChannelPolicy` in `packages/shared/src/mcp/mcp-pool.ts`) that every runtime consumes.",
+     "twin_row": "J20",
+     "twin_to": "have"
+    },
+    {
+     "row": "J20",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host arming set, same commits (P6.510) — the policy is resolved by `resolveChannelPolicy` in `packages/server-core/src/sessions/SessionManager.ts` regardless of runtime.",
+     "twin_row": "J20",
+     "twin_to": "have"
+    },
+    {
+     "row": "J29",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.341 `dba775d30` armed a channel on the server's own declaration on all three runtimes and un-pinned the Pi-only arming, so a pushed event now reaches a claude-runtime session through the runtime-neutral `deliverMonitorEvent` sink.",
+     "twin_row": "J29",
+     "twin_to": "have"
+    },
+    {
+     "row": "J29",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same commit (P6.341 `dba775d30`) — the sink was already ungated and runtime-neutral; only the arming was Pi-pinned.",
+     "twin_row": "J29",
+     "twin_to": "have"
+    },
+    {
+     "row": "J30",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the 2026-09-05 delegated decision in `docs/superpowers/specs/2026-09-05-denominator-owner-questions.md` §'[host] Plugin-shipped message channels' (option 1 — leave deferred, revisit if a first-party plugin needs it), answered by the owner with one sentence for that whole file and re-affirmed by the 2026-09-11 answer QJ5=A.",
+     "twin_row": "J30",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J30",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (option 1, 2026-09-05): the adapter recognises the component and records `plugin.deferred.claude_channel` through `CLAUDE_RETAINED_SURFACE_FIELDS` `{ externalKind: 'channel', field: 'channels' }` in `packages/shared/src/plugins/format-adapters/claude.ts`, and nothing consumes it on purpose.",
+     "twin_row": "J30",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J30",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (option 1, 2026-09-05) — the capability's whole value is injecting third-party text into a turn on the strength of a consent given for something else, so the trust boundary is deliberately not moved.",
+     "twin_row": "J30",
+     "twin_to": "n/a"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Surface the plugin-channel deferral by name at install so a plugin that ships `channels` says so instead of dropping the component silently.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "test"
+     ],
+     "note_en": "Done means: installing a plugin that declares `channels` shows the deferral reason `plugin.deferred.claude_channel` in words at the install surface, with one test asserting the diagnostic and a negative control for a plugin without channels; the reason code already exists in `packages/shared/src/plugins/format-adapters/claude.ts` and only the diagnostic line is missing. Implements option A's second half. Re-stamps J30 once landed."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The one runtime with a native channels implementation cannot reach it in our shape — the vendored claude CLI has channels but every MCP server arrives as an in-process proxy through `createSourceProxyServers`, so its client never connects to a channel-capable server — and building it host-side for all three was priced L and would grow the 'trusted plugin' grant into mid-turn text injection nobody was asked about."
+  },
+  {
+   "qid": "QJ6",
+   "answer": "B",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "J4",
+     "column": "Claude",
+     "from": "`partial ᵗ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.139 `82b701ea3` wired the SDK's instance seam (`McpSdkServerConfigWithInstance`) so a claude-runtime model's own `ListMcpResources`/`ReadMcpResource` receive the leased sources' real resources, with CDP case MCP-R1 arm 1 passing on a packaged build and the codex arm as its control.",
+     "twin_row": null,
+     "twin_to": "have"
+    },
+    {
+     "row": "J4",
+     "column": "Codex",
+     "from": "`partial ᵗ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Verdict unchanged: the remaining question on this row is whether a codex→claude switch owes an MCP-resources cost row at all, which is P6.147 ✅-as-moved to `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` row D1.24.",
+     "twin_row": null,
+     "twin_to": "partial"
+    },
+    {
+     "row": "J17",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.528 `177dfb079` landed Q-den 65 option 2 — `strictMcpConfig` stays unset and every MCP server the CLI connects beside ours is REPORTED to the user and the operator, with `docs/architecture/managed-mcp-access.md` corrected in the same commit.",
+     "twin_row": "J17",
+     "twin_to": "have"
+    },
+    {
+     "row": "J17",
+     "column": "Codex",
+     "from": "—",
+     "to": "`n/a ʰ`",
+     "why_en": "codex reaches MCP only through the host pool — P2.508 `b6bd28848` measured that `writeCodexConfig` emits exactly two `[mcp_servers.*]` entries (`session` and `sources`) and every operator server arrives aggregated behind `sources` — so there is no second discovery path for the question to be about, the same reason Pi's cell reads `n/a`.",
+     "twin_row": "J17",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J18",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "All three documented keys are read by the vendored binary (`enabledMcpjsonServers` 25, `disabledMcpjsonServers` 30, `enableAllProjectMcpServers` 17 against `ZZNOTAREALKEY` 0) and resolve from the tiers we pass — `settingSources: ['user','project','local']` in `packages/shared/src/agent/claude-agent.ts` — so a claude session already honours a decision recorded in a settings file.",
+     "twin_row": "J18",
+     "twin_to": "have"
+    },
+    {
+     "row": "J18",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused host-side and NAMED instead: P6.340 `831dc6c9e + cd08ca3cf` chose the switch-report arm its own done_means offers ('…or the difference is named in the switch report') and shipped the `projectMcpApproval` row (`apps/electron/src/renderer/components/app-shell/input/runtime-switch-costs.ts`, `pi: false`), because our pool has a consent model of its own and teaching it three claude-spelled keys is the larger arm.",
+     "twin_row": "J18",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J18",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal and the same named cost (`projectMcpApproval`, `'codex-runtime': false`, P6.340 `831dc6c9e + cd08ca3cf`).",
+     "twin_row": "J18",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J21",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "The inline form no longer dies at parse and the trust gate landed — `INLINE_MAPPING_LIST_KEYS` + `normalizeMcpServerList` and the `mcpServerInline` / `mcpServerInlineTrusted` pair in `packages/shared/src/agents/definitions.ts` (P6.790 `e56c90dfb + 05cd7ef2d`, P6.792 `280ac9b1a`, P6.834 `3151c6ad4`, P6.835 `48eced5ed`) — with one stated residue: the map is parsed and carried with its folder-trust verdict and is not yet forwarded to a spawned subagent.",
+     "twin_row": "J21",
+     "twin_to": "partial"
+    },
+    {
+     "row": "J21",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "The reference half's silent drop is now announced per definition exactly as `componentHooks` is (P6.342's S half, `532bdd465`), and the inline half parses and carries its trust verdict (P6.790/P6.792) while `packages/shared/src/agent/claude-runtime-agents.ts` still forwards references only — the residue is stated in that file's own comment.",
+     "twin_row": "J21",
+     "twin_to": "partial"
+    },
+    {
+     "row": "J21",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same landed parse and trust verdict (P6.790 `e56c90dfb + 05cd7ef2d`, P6.792 `280ac9b1a`); codex's `[agents.<role>]` has no MCP field at all, so the inline form can never be forwarded there and that null is stated rather than implied.",
+     "twin_row": "J21",
+     "twin_to": "partial"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp J4, J17, J18 and J21 against their landed rows and state J21's single residue.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Done means: the ledger and its denominator-gaps twins carry the verdicts above, each citing P6.139 `82b701ea3`, P6.528 `177dfb079`, P6.340 `831dc6c9e + cd08ca3cf` or P6.790/P6.792/P6.834/P6.835; J21's Why states the one residue in the field's own words — parsed and carried with a folder-trust verdict, not yet forwarded — and J4's Why names D1.24 for the codex switch-cost question. Implements option B as already built. Zero code."
+    },
+    {
+     "task_en": "Correct the `mcpServerInline` docblock in `packages/shared/src/agents/definitions.ts`: the Pi transport descriptor now HAS the key.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "pi"
+     ],
+     "note_en": "Done means: the sentence 'the Pi transport descriptor … has no key for it' no longer stands — P6.816 `280ac9b1a` added `mcpServerInline` and `mcpServerInlineTrusted` to `packages/shared/src/agent/pi-harness/runtime-agent-definition.ts` — and the docblock states the residue that survives instead (nothing consumes the map at spawn). Found while verifying QJ6 at HEAD; the stale half is the premise a later lane would build from."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The owner's option B is the already-built one, so there is no refusal to flip; the residue that remains is a forwarding step whose blocker is stated in the code (the digest-position rule and the trust verdict), not a native mechanism left unwired."
+  },
+  {
+   "qid": "QJ7",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "J43",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.351 `9ac780b46` added `scheduleReconnectAfterUnexpectedClose` to `packages/shared/src/mcp/mcp-pool.ts` so a dropped remote server reconnects with backoff without waiting for the next tool call, pinned by `packages/shared/src/mcp/__tests__/mid-session-reconnect.test.ts`.",
+     "twin_row": "J43",
+     "twin_to": "have"
+    },
+    {
+     "row": "J43",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host pool, same commit (P6.351 `9ac780b46`) — all three runtimes consume the one pool, so the mid-session reconnect arrives on every runtime at once.",
+     "twin_row": "J43",
+     "twin_to": "have"
+    },
+    {
+     "row": "J43",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host pool, same commit (P6.351 `9ac780b46`).",
+     "twin_row": "J43",
+     "twin_to": "have"
+    },
+    {
+     "row": "J44",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.351 `9ac780b46` also landed the discovery cache under its own name — the `toolDescriptorStore` in `packages/server-core/src/mcp/workspace-mcp-pool-registry.ts`, pinned by `workspace-mcp-pool-descriptor-store.test.ts` — so a remote server's tools are listable from the first message.",
+     "twin_row": "J44",
+     "twin_to": "have"
+    },
+    {
+     "row": "J44",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same commit and the same one pool (P6.351 `9ac780b46`, `toolDescriptorStore`).",
+     "twin_row": "J44",
+     "twin_to": "have"
+    },
+    {
+     "row": "J44",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same commit and the same one pool (P6.351 `9ac780b46`, `toolDescriptorStore`).",
+     "twin_row": "J44",
+     "twin_to": "have"
+    },
+    {
+     "row": "J46",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.750 `15d6e70e6 + 7a62a7103` closed the last residue — one RPC over `McpServerStatusLine` from `serverStatuses(leaserId)` and a failed / needs-auth / zero-tool badge in `McpServersPanel.tsx` — beside the reconnect verb wired by P6.711, and P6.855 `7d7dc7225` established that this row's three verdicts move together.",
+     "twin_row": "J46",
+     "twin_to": "have"
+    },
+    {
+     "row": "J46",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host surface and the same commits (P6.750 `15d6e70e6 + 7a62a7103`, P6.711); `Query.toggleMcpServer` staying uncalled is a native mechanism we deliberately do host-side rather than a gap.",
+     "twin_row": "J46",
+     "twin_to": "have"
+    },
+    {
+     "row": "J46",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host surface, same commits (P6.750 `15d6e70e6 + 7a62a7103`); codex publishes no `mcpServerStatus` observability channel of its own, which is why the panel is the seam.",
+     "twin_row": "J46",
+     "twin_to": "have"
+    },
+    {
+     "row": "J47",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.350 `1e182ac2b` landed two of the three missing named diagnostics in the one config reader all three runtimes consume and found the third already at HEAD as `capability.collision.mcp-scope-precedence`, with the whitespace case naming the field without echoing its value.",
+     "twin_row": "J47",
+     "twin_to": "have"
+    },
+    {
+     "row": "J47",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host config reader, same commit (P6.350 `1e182ac2b`).",
+     "twin_row": "J47",
+     "twin_to": "have"
+    },
+    {
+     "row": "J47",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host config reader, same commit (P6.350 `1e182ac2b`).",
+     "twin_row": "J47",
+     "twin_to": "have"
+    },
+    {
+     "row": "J5",
+     "column": "Codex",
+     "from": "`partial ᵗ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Verdict unchanged with the null now stated: P2.508 `b6bd28848` declined to write codex's `required` key because `writeCodexConfig` emits exactly two `[mcp_servers.*]` entries (`session`, `sources`), so the mark could only ever cover our own infrastructure and never an operator's failing server; the connect-default flip is P6.144 ⬜ at the P7.5 sitting.",
+     "twin_row": null,
+     "twin_to": "partial"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp J43, J44, J46 and J47 against the landed MCP-pool rows and record J5's codex `required` null.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Done means: the ledger and its denominator-gaps twins carry `covered` on all twelve cells of J43/J44/J46/J47, citing P6.351 `9ac780b46`, P6.750 `15d6e70e6 + 7a62a7103` and P6.350 `1e182ac2b`, and J5's Why carries P2.508's reason for the codex `required` null. Implements option A, whose content landed on 2026-09-09. Zero code."
+    },
+    {
+     "task_en": "After the P7.5 sitting reports P6.144, stamp J5's Pi and codex cells from the connect-default reading.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Done means: the 1.36.0 sitting drives P6.144 ⬜ (flipping the MCP connect default to claude's non-blocking one — does the sign-in flow still work) and its reading becomes J5's Pi and codex verdicts; until then both stay `partial` rather than being promoted on inference."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The owner's option A is pure accounting — its content landed as P6.750 on 2026-09-09 — and the one native setter still uncalled, `Query.toggleMcpServer`, is deliberately done host-side because driving it from the panel would make the same control behave differently per runtime unless the host wrapped it anyway."
+  },
+  {
+   "qid": "QJ8",
+   "answer": "B",
+   "kind": "defer",
+   "ledger_edits": [
+    {
+     "row": "J41",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Verdict unchanged, home named: the measurement is D1.54 in `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` (carried from P6.354), and it is the one to run first because `jsonSchemaToZodShape` in `packages/shared/src/agent/claude-agent.ts` reads only `schema.properties`, so a tool whose root combinator has no sibling properties ships argument-less — silent argument loss no user would report as a schema problem.",
+     "twin_row": "J41",
+     "twin_to": "partial"
+    },
+    {
+     "row": "J45",
+     "column": "Claude",
+     "from": "—",
+     "to": "—",
+     "why_en": "No claim, home named: D1.55 (carried from P6.355) measures whether a long-running MCP tool call backgrounds after two minutes on claude, where the bundle is now 2.1.247 — past the documented 2.1.212 — but our servers reach it as in-process proxies and `CLAUDE_CODE_MCP_AUTO_BACKGROUND_MS` appears in no agent file.",
+     "twin_row": "J45",
+     "twin_to": "unknown"
+    },
+    {
+     "row": "J49",
+     "column": "Pi",
+     "from": "—",
+     "to": "—",
+     "why_en": "No claim, home named: D1.56 (carried from P6.356) measures whether one failing command in a parallel tool batch cancels its siblings on each runtime; nothing host-side mediates it, so there is no seam to unify until the reading exists.",
+     "twin_row": "J49",
+     "twin_to": "unknown"
+    },
+    {
+     "row": "J50",
+     "column": "Pi",
+     "from": "—",
+     "to": "—",
+     "why_en": "No claim, home named: D1.57 (carried from P6.357) measures a Write over an existing unread file on each runtime, with a Write to a new path and an Edit of the unread file as its controls.",
+     "twin_row": "J50",
+     "twin_to": "unknown"
+    },
+    {
+     "row": "J51",
+     "column": "Pi",
+     "from": "—",
+     "to": "—",
+     "why_en": "No claim, home named: D1.57 (carried from P6.357) also measures a multi-KB write into an iCloud or SMB path on each runtime; no arm has ever been probed.",
+     "twin_row": "J51",
+     "twin_to": "unknown"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Raise D1.54 to the front of the follow-up plan's measurement block, with the silent-argument-loss reason written into the row.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude"
+     ],
+     "note_en": "Done means: `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` orders D1.54 ahead of D1.55–D1.57 and its note states why — on claude a root-level `anyOf`/`oneOf`/`allOf` with no sibling properties yields an empty parameter shape and the tool ships argument-less, which presents as a model mistake rather than as a schema problem. Implements option B; the 2026-09-10 disposition is not reopened."
+    },
+    {
+     "task_en": "Re-stamp J41, J45, J49, J50 and J51 as each of D1.54–D1.57 reports.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Done means: each of the fourteen cells (eleven of them outright no-claims) takes the verdict its measurement produced — covered, partial with a stated residue, or absent with a reason — and no cell is filled before its row reports; `n/a` is refused here because it would score 'nobody measured it' as 'we decided not to have it'. Implements option B."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing is refused and nothing is native-but-unwired: five measurements already have numbered homes with their own `done_means` in the plan the owner ruled they should go to, and the only substantive finding — J41's silent argument loss on claude — is a reason to run D1.54 first, not to build before measuring."
+  },
+  {
+   "qid": "QJ9",
+   "answer": "A",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "J27",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.617 `1a7da5be7` closed the Pi residue of P6.345 — `proxy-tool-result.ts` no longer drops `extraContent`/`details` — so a host tool's exact machine-readable result now reaches the model as fields on Pi as it already did on claude (`session-scoped-tools.ts`, pinned by `session-tool-result-fidelity.test.ts`) and on codex.",
+     "twin_row": "J27",
+     "twin_to": "have"
+    },
+    {
+     "row": "J28",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "The text ceiling is lifted in the shared contract itself: `packages/session-tools-core/src/types.ts` now declares `ImageContent`, `ResourceContent` and `ToolResult.extraContent` (P6.345 `5a181b9fc`), with Pi's sidecar path honouring it since P6.617 `1a7da5be7`.",
+     "twin_row": "J28",
+     "twin_to": "have"
+    },
+    {
+     "row": "J28",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed contract change (P6.345 `5a181b9fc`): a registry tool can return an image or a named resource without declaring its own result type outside the registry, which is exactly what this row asked.",
+     "twin_row": "J28",
+     "twin_to": "have"
+    },
+    {
+     "row": "J28",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same landed contract change (P6.345 `5a181b9fc`); codex accepts the blocks on the wire through `McpToolCallResult`, whose `content` is an untyped `Array<JsonValue>`.",
+     "twin_row": "J28",
+     "twin_to": "have"
+    },
+    {
+     "row": "J48",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.345 `5a181b9fc` maps the registry's `readOnly` onto `annotations.readOnlyHint` in `packages/session-mcp-server/src/index.ts`, pinned by `packages/session-mcp-server/src/read-only-hint.test.ts` with a writer tool as the negative control, so the hint the registry already carried now reaches Pi's MCP client.",
+     "twin_row": "J48",
+     "twin_to": "have"
+    },
+    {
+     "row": "J48",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same mapping, same commit (P6.345 `5a181b9fc`) — the codex cell was absent over a one-field omission in the session MCP server, not over anything codex lacks.",
+     "twin_row": "J48",
+     "twin_to": "have"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Retire the legacy local result type in `packages/shared/src/agent/browser-tools.ts` onto the registry's own `ToolResult.extraContent`.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "test"
+     ],
+     "note_en": "Done means: `browser-tools.ts` no longer declares its own `{ type: 'image', data, mimeType }` result type — it returns the registry's `ToolResult` with `extraContent` carrying `ImageContent` (`packages/session-tools-core/src/types.ts`, P6.345 `5a181b9fc`) — and the browser screenshot path keeps its existing test. This is the only residue option A leaves; it is legacy, not a sanctioned bypass, since the ceiling it bypassed is gone."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Both halves of the recommended S landed days ago (P6.345 `5a181b9fc`, P6.617 `1a7da5be7`), so there is no refusal here — the native opt-in the runtimes publish (`tool()` annotations on claude, MCP annotations for Pi and codex) is taken."
+  },
+  {
+   "qid": "QJ10",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "J36",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.348 `5b9c42dd9` inverted this row's premise and closed it: Pi's `find` skips gitignored files unconditionally (`respects .gitignore`, run with `--no-require-git`) and claude — the only one with a knob — is now converged onto the same behaviour by `applyGlobGitignoreDefault` writing `CLAUDE_CODE_GLOB_NO_IGNORE=false` unless the operator set it.",
+     "twin_row": "J36",
+     "twin_to": "have"
+    },
+    {
+     "row": "J36",
+     "column": "Codex",
+     "from": "—",
+     "to": "`covered ʰ`",
+     "why_en": "Read from codex's own source, the strong tier: `codex-rs/file-search/src/lib.rs` at `rust-v0.150.1` declares `pub respect_gitignore: bool` whose `Default` is `true`, quoted in `packages/shared/src/agent/options.ts` — so codex skips gitignored files by default and the null this cell carried is closed.",
+     "twin_row": "J36",
+     "twin_to": "have"
+    },
+    {
+     "row": "J36",
+     "column": "Claude",
+     "from": "`covered ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Marker upgrade on the same landed row: P6.348 `5b9c42dd9` made the claude child's value ours to set by default (`applyGlobGitignoreDefault`, guarded so an operator's export wins), pinned by `packages/shared/src/agent/__tests__/claude-child-env-refusal.test.ts`.",
+     "twin_row": "J36",
+     "twin_to": "have"
+    },
+    {
+     "row": "J33",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused host-side and already NAMED: P6.346 `05e9a8c46 + 188d1f76d + d98a3a291` shipped the `toolMemoryCap` switch-cost row (`pi: false`), which is the alternative this row's own done_means offers, and neither Pi nor our host has a cgroup mechanism to read `CLAUDE_CODE_TOOL_MEMORY_LIMIT` with.",
+     "twin_row": "J33",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J33",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal and the same named cost (`toolMemoryCap`, `'codex-runtime': false`, P6.346 `d98a3a291`); codex's sandbox publishes no memory-cap key at all.",
+     "twin_row": "J33",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J33",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ʰ`",
+     "why_en": "Verdict unchanged, one clause corrected: the companion `CLAUDE_CODE_TOOL_MEMORY_CGROUP_EXCLUDE` (2.1.246+) IS in the bundle we now ship — 3 occurrences in the vendored 2.1.247 binary and 1 in `sdk.mjs` — so 'exists on no runtime we ship' is stale; the cell stays `partial` because the binary gates on linux/wsl before reading either name and no Linux or WSL run has ever executed here.",
+     "twin_row": "J33",
+     "twin_to": "partial"
+    },
+    {
+     "row": "J34",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "STRUCTURAL and named: the SDK runs its own background shells, which the host does not own, so an output ceiling and a memory-pressure reaper cannot be applied to them from here — the difference is carried by the `backgroundTaskOffSwitch` and `toolMemoryCap` switch-cost rows (P6.346 `05e9a8c46 + 188d1f76d + d98a3a291`).",
+     "twin_row": "J34",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J34",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same structural reason: the codex binary runs its own background shells and publishes no ceiling key, so the reaper has nothing to attach to (P6.346).",
+     "twin_row": "J34",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J34",
+     "column": "Pi",
+     "from": "`partial ᵗ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Verdict unchanged and the residue stated: P6.346 delivered the lifetime OUTPUT ceiling on Pi (`d98a3a291`, clause (a) in `947fba8ee`) and the memory-pressure half ships OFF, so the cell stays `partial` until an operator-visible default is decided.",
+     "twin_row": "J34",
+     "twin_to": "partial"
+    },
+    {
+     "row": "J38",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the owner's less-code rule and already NAMED: Pi's `createBashToolDefinition(cwd, options)` binds the working directory once at construction, so there is no carry-over to switch off; the honest surface landed as the `Shell cwd was reset to <dir>` notice plus the `bashWorkingDir` switch-cost row (`pi: false`) — P6.690 `01692793f` with the surface half in `aaf442c5b`.",
+     "twin_row": "J38",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J38",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal and the same named cost (`bashWorkingDir`, `'codex-runtime': false`, P6.690 `01692793f`); the row's own docblock records the reason — carrying shell state between Bash calls is three runtimes' worth of state inside an SDK-owned tool.",
+     "twin_row": "J38",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J37",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the owner's 2026-09-11 answer QJ10=A — the claude-only `respectGitignore` key is named in the switch report instead of being re-implemented host-side, which is the alternative this row's own done_means offers verbatim ('…or the difference is named in the switch report').",
+     "twin_row": "J37",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J37",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (owner answer QJ10=A, 2026-09-11): codex has its own `respect_gitignore` (default `true`, `codex-rs/file-search/src/lib.rs` at `rust-v0.150.1`) and never reads the claude-spelled settings key.",
+     "twin_row": "J37",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J39",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the owner's 2026-09-11 answer QJ10=A: `defaultShell` is a claude settings key honoured by the vendored binary, and the shell Pi uses is chosen at our own spawn sites — the difference is named in the switch report rather than re-implemented, as the row's done_means allows.",
+     "twin_row": "J39",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J39",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (owner answer QJ10=A, 2026-09-11); codex's own environment key is `shell_environment_policy`, written at `packages/codex-responses-adapter/src/config-writer.ts`, and it chooses no shell.",
+     "twin_row": "J39",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J35",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Stamped when the safety build lands: the owner's 2026-09-11 answer QJ10=A funds the one clause with a correctness consequence — a read that returned less than the whole file is marked and cannot satisfy Write — on top of P6.347 `c86f70906`, which confirmed and sharpened all three clauses without building them.",
+     "twin_row": "J35",
+     "twin_to": "have"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Name the remaining claude-only Bash/Glob/Read knobs in the runtime switch report instead of re-implementing them on Pi and codex.",
+     "size": "S",
+     "tags": [
+      "host",
+      "renderer",
+      "doc",
+      "test"
+     ],
+     "note_en": "Done means: `runtime-switch-costs.ts` carries a `respectGitignore` row (J37) and a `defaultShell` row (J39) on the `webSearch` template — a per-runtime `on` map, both locales, a gaps-doc row each — and the existing `toolMemoryCap` copy gains the `CLAUDE_CODE_TOOL_MEMORY_CGROUP_EXCLUDE` companion now that the 2.1.247 bundle carries it. Each sentence is written from the measured DEFAULT, not from the key's absence: Pi's `find` and codex's `respect_gitignore` already skip gitignored files, so the cost is the knob, not the behaviour. Implements option A's first half; re-stamps J37 and J39 (Pi, codex) as n/a-by-decision when it lands."
+    },
+    {
+     "task_en": "Build the safety half of J35 on Pi: a partial read is marked and cannot satisfy Write.",
+     "size": "M",
+     "tags": [
+      "pi",
+      "test"
+     ],
+     "note_en": "Done means: a Pi read that returned less than the whole file carries a `PARTIAL view` notice saying how much arrived and how to read more, an over-large explicit range returns an error rather than an out-of-memory, and a file whose only read was partial is REFUSED by Write — with one positive and one negative test each. This is the single clause in the cluster with a correctness consequence (a partial read counted as a read is data loss); the claude arm is the binary's own (`PARTIAL view` scores 1 in the vendored binary). Implements option A's second half; re-stamps J35/Pi."
+    },
+    {
+     "task_en": "Score J1's and J35's codex cells from codex's own source, or record the null with what was searched.",
+     "size": "XS",
+     "tags": [
+      "codex",
+      "doc"
+     ],
+     "note_en": "Done means: `github.com/openai/codex` at the shipped tag is read for the exec output/timeout ceilings (J1) and the read-tool partial-view behaviour (J35), and each cell takes a verdict with the file and symbol named — or keeps `—` with the search written down, never a guess. Both cells are no-claims today and the switch report cannot describe a runtime nobody has read."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "One of the refused keys has a native counterpart on codex that the host could write: `respect_gitignore` is codex's own key (`codex-rs/file-search/src/lib.rs` at `rust-v0.150.1`, default `true`) and emitting it from `packages/codex-responses-adapter/src/config-writer.ts` — where it scores 0 today against `sandbox_mode` 21 as the control — is S-sized, so an operator who turned `respectGitignore` off could be honoured on codex rather than only told about the difference; Pi has no knob at all (`FIND_PARAMETERS` exposes `pattern`, `path`, `limit`), and `defaultShell` and the memory cap have no native counterpart on either runtime."
+  },
+  {
+   "qid": "QJ11",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "J31",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by decision Q-den 67 (2026-09-05, option 2 — refuse PowerShell by name) and re-affirmed by the owner's 2026-09-11 answer QJ11=A; Pi would need a second shell executor inside the permission floor, and Windows is not a supported deployment.",
+     "twin_row": "J31",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J31",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "The refusal is now complete on both documented routes, so the cell stops being an honest `partial`: P6.530 `44aee805e` pins the vendor's `0` rather than stripping the name (the page says the tool is ON by default on Windows with Git Bash, so a strip would re-enable what the refusal removes), and P6.688 `f7ded8bb2` closes the second route — a `settings.json` `env` block reachable through `settingSources` — through the shared floor whose one composable key is `permissions`.",
+     "twin_row": "J31",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J31",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the same decision (Q-den 67, 2026-09-05); codex has no PowerShell tool in `packages/codex-protocol/generated/v2/` for the refusal to even bite on.",
+     "twin_row": "J31",
+     "twin_to": "n/a"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp J31's three cells as refusal-by-decision and name both closed doors in the Why.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "claude"
+     ],
+     "note_en": "Done means: the ledger and gaps row J31 read `n/a` on all three cells, citing Q-den 67 (2026-09-05, option 2) with both routes — `44aee805e` (the environment name, refused by PINNING the vendor's `0`) and `f7ded8bb2` (the `settings.json` `env` block, refused through the shared floor) — and the Why records that a `Bash`-scoped deny rule does not cover PowerShell, which is why the second door mattered. Implements option A, whose content landed 2026-09-08. Zero code."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "claude HAS the tool natively — `CLAUDE_CODE_USE_POWERSHELL_TOOL` scores 13 in the vendored binary and `PowerShell` appears in `sdk.d.ts` — and enabling it is one environment value we already write, so the wiring is XS; the owner refused it for a stated reason that still holds (a second command executor inside our permission floor that a `Bash`-scoped deny rule does not cover, plus `defaultShell` and skill-frontmatter `shell:` still unbuilt), and option 3 was explicitly held back until Windows becomes a supported deployment."
+  },
+  {
+   "qid": "QJ12",
+   "answer": "B",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "J23",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.344 `a92f1ba28` bound the existing question card to codex's own bridge path, so a codex turn raises the same card Pi and claude raise instead of `item/tool/requestUserInput` being answered with `{ answers: {} }`.",
+     "twin_row": "J23",
+     "twin_to": "have"
+    },
+    {
+     "row": "J24",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.724 `3a39d0800` landed the owner's 2026-09-07 choice of the env route — `CLAUDE_TODO_TOOLS_OPT_IN_ENV_VAR = 'CLAUDE_CODE_ENABLE_TODO_TOOLS'` written by `buildClaudeSubprocessEnv` and never over a value the operator already set — so the task tools stay available on our default model, which is an exact threshold match for the binary's own gate.",
+     "twin_row": "J24",
+     "twin_to": "have"
+    },
+    {
+     "row": "J25",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Decision (B) landed — P3.366 `f6dccdf1e + 59c3701f9` deleted the unreachable native LSP fallback rather than supplying it — so Pi keeps the documented plugin route (`lsp-port.ts` plus the post-edit consumer `packages/server-core/src/pi-harness/edit-feedback.ts`) and the cell stays `partial` because that route has never been driven with an official `*-lsp` plugin.",
+     "twin_row": "J25",
+     "twin_to": "partial"
+    },
+    {
+     "row": "J25",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by decision (B) at the 2026-09-04 sitting §4.1 and re-affirmed by the owner's 2026-09-11 answer QJ12=B: claude has no native LSP mechanism to mirror (`lspServers` appears once in the vendored SDK, inside the plugin manifest schema; `languageServer` 0) and plugin components reach claude as prompt text rather than filesystem artifacts (sitting §2.3, P3.297 `df32458af`).",
+     "twin_row": "J25",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J25",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (sitting §4.1 decision (B), P3.366 `f6dccdf1e + 59c3701f9`): codex publishes no LSP vocabulary among the types in `packages/codex-protocol/generated/v2/`.",
+     "twin_row": "J25",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J57",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.359 `a246bcab1 + cd6bd1040` wired `USE_BUILTIN_RIPGREP` into the SDK child's environment through `buildClaudeSubprocessEnv` — the route the page names first — and made the resolved backend visible in `buildConfigDoctorReport`'s Search line.",
+     "twin_row": "J57",
+     "twin_to": "have"
+    },
+    {
+     "row": "J57",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same commits (P6.359 `a246bcab1 + cd6bd1040`) made the resolved binary VISIBLE on every runtime, and the switch is honoured only where the resolver already permits a system binary — `runtime-resolver.ts` keeps the deliberate posture that a packaged app uses the vendored binary only, never PATH — so the cell is `partial` with that posture as its stated reason.",
+     "twin_row": "J57",
+     "twin_to": "partial"
+    },
+    {
+     "row": "J59",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "P6.361 `04c22081c + 0c40de514 + ba6596663` landed the saved-command store, its platform resolution and the user-invocable entry point, including the disclosure that one vendor key (`disableSkillShellExecution`) gates two surfaces.",
+     "twin_row": "J59",
+     "twin_to": "have"
+    },
+    {
+     "row": "J59",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host surface and the same commits (P6.361 `04c22081c + 0c40de514 + ba6596663`) — the execution mechanism already existed on all three and only the entry point was missing.",
+     "twin_row": "J59",
+     "twin_to": "have"
+    },
+    {
+     "row": "J59",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Same host surface, same commits (P6.361 `04c22081c + 0c40de514 + ba6596663`).",
+     "twin_row": "J59",
+     "twin_to": "have"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp J23, J24, J57 and J59 against their landed commits and record J25's decision (B) in the ledger.",
+     "size": "XS",
+     "tags": [
+      "doc"
+     ],
+     "note_en": "Done means: the ledger and its denominator-gaps twins carry the verdicts above, citing P6.344 `a92f1ba28`, P6.724 `3a39d0800`, P6.359 `a246bcab1 + cd6bd1040` and P6.361 `04c22081c + 0c40de514 + ba6596663`; J24's Why names the env route the owner chose on 2026-09-07 in place of the launch option, and J25's Why names sitting §4.1 decision (B) so nobody re-orders post-edit diagnostics. Implements option B. Zero code."
+    },
+    {
+     "task_en": "Scope or record `'LSP'` in `packages/shared/src/agent/always-allowed-tools.ts`, which names a tool only Pi can have.",
+     "size": "XS",
+     "tags": [
+      "host",
+      "doc"
+     ],
+     "note_en": "Done means: the entry at `always-allowed-tools.ts` (`'LSP', // Language server (read-only)`) either becomes runtime-scoped or carries a comment naming the asymmetry decision (B) created — on claude and codex the name is permission-listed with no tool behind it, which is the advertised absence the row warned about. Confirmed at HEAD while applying QJ12; found, not assumed."
+    },
+    {
+     "task_en": "Drive Pi's LSP tool once with an official `*-lsp` plugin in a trusted project and settle J25's Pi cell.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "test"
+     ],
+     "note_en": "Done means: the positive control P3.366 asked for is run first — an official `*-lsp` plugin installed in a TRUSTED project — and the reading says whether the LSP tool and the LSP half of the post-edit payload actually reach the model on Pi; the cell moves to `covered` or to `absent` with the reason, instead of staying `partial` on inference. Without the control, three separate gates produce the same empty result for the wrong reason."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Both refusals in this cluster are blocked by more than wiring: claude's LSP tool stays inactive until a code-intelligence plugin is installed and plugin components reach claude as prompt text rather than filesystem artifacts (sitting §2.3), so it is not an S; and the ripgrep switch's native route was taken where it can be taken — the remaining Pi restriction is the deliberate packaged-app posture that the vendored binary is used and PATH never is."
+  },
+  {
+   "qid": "QJ13",
+   "answer": "A",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "J9",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused as STRUCTURAL-by-cost on the owner's 2026-09-11 answer QJ13=A: a chat terminal needs a pty binding (native module, per-Electron-ABI rebuild, signed on three platforms), a renderer emulator and a stream channel — 'not less than one plan of its own' — and the price stays parked as row D1.25 of `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` (P6.151 ✅-as-moved).",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J9",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (owner answer QJ13=A, 2026-09-11): no Claude page promises an in-chat interactive terminal and the vendored SDK exposes no pty surface — `node-pty`, `@xterm/xterm`, `openpty` and `forkpty` are 0 files at HEAD.",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J9",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (owner answer QJ13=A, 2026-09-11); codex does expose `command/exec` + `/write` + `/resize` + `/terminate`, and the `backgroundTerminals` half of it is already taken (P3.3), but the chat terminal itself is ours to build and is refused at this price.",
+     "twin_row": null,
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J32",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the 2026-09-05 decision (option 1 — leave codex's items rendered and unreachable, record the deviation) and the owner's 2026-09-11 answer QJ13=A: Pi's SDK declares `openai/gpt-image-2` only via `api: 'openrouter-images'`, an upstream this product does not have.",
+     "twin_row": "J32",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J32",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same refusal (2026-09-05 option 1, re-affirmed 2026-09-11): claude has nothing to enable — four image-generation identifiers probe 0 in the vendored `sdk.mjs` against `readOnlyHint` 1 as the control.",
+     "twin_row": "J32",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J32",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused rather than half-offered: codex has the skill and the protocol items and we render them (`packages/shared/src/agent/backend/codex/event-adapter.ts` symbols `isImageItem` and `imageGenerationFailureMessage`), but the writer pins codex's `base_url` to our loopback adapter over a gateway that serves no image model, so the items are unreachable by construction and the deviation is recorded instead.",
+     "twin_row": "J32",
+     "twin_to": "n/a"
+    },
+    {
+     "row": "J8",
+     "column": "Pi",
+     "from": "`partial ᵗ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Verdict unchanged and the stale null removed: 'Pi's arm of that pin is still unmeasured' has been false since 2026-09-03 — P3.138 `202e8558f + a0f377646` pinned all three legibility arms (`composer-capabilities.ts` symbol `modelSupportsImages` pre-send, `base-agent.ts` and `errors.ts` post-send) — and the residue that survives is the withdrawn UX half: no source publishes a modality field, so a pre-send grey-out would be our own guess.",
+     "twin_row": null,
+     "twin_to": "partial"
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the interactive-terminal and image-generation refusals with their costed reasons and drop J8's stale Pi null.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "product"
+     ],
+     "note_en": "Done means: J9's and J32's cells read `n/a` with the reason and the date (D1.25 keeps the terminal's price; the gateway serves no image model and Pi's only declared image model needs an upstream we do not have), J8's three cells stay `partial` with the residue stated as WITHDRAWN rather than deferred, and the sentence about Pi's unmeasured legibility arm is removed with P3.138 `a0f377646` named in words. Implements option A. Zero code."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "codex is the only runtime with a native mechanism in this cluster — a PTY on its app-server and an image-generation skill with protocol items we already render — but neither is S-sized wiring: the terminal needs a signed native pty module plus a renderer emulator on our side (L, and a one-runtime capability), and the image items are unreachable because no upstream we route to serves an image model, which is a gateway fact rather than a wiring one."
+  }
+ ]
+}

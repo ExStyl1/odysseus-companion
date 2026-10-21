@@ -1,0 +1,97 @@
+{
+  "model": {
+    "enableOpenAILogging": true,
+    "timeout": 60000,
+    "maxRetries": 2,
+    "name": "tgpt/qwen35-397b-a17b-fp8",
+    "chatCompression": {
+      "contextPercentageThreshold": 0.6
+    },
+    "generationConfig": {
+      "timeout": 60000,
+      "contextWindowSize": 128000,
+      "enableCacheControl": true,
+      "customHeaders": {
+        "X-Request-ID": "req-123",
+        "X-User-ID": "user-456"
+      },
+      "extra_body": {
+        "enable_thinking": true
+      }
+    }
+  },
+  "modelProviders": {
+    "openai": []
+  },
+  "ui": {
+    "footer": {
+      "hideModelInfo": false
+    },
+    "showMemoryUsage": false,
+    "showCitations": true,
+    "theme": "Default"
+  },
+  "mcpServers": {
+    "dpWiki": {
+      "command": "dp",
+      "args": ["ai", "mcp", "wixie"]
+    },
+    "docforge": {
+      "command": "npx",
+      "args": ["-y", "@system-analysis/mcp"]
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "jira": {
+      "command": "dp",
+      "args": ["ai", "mcp", "jira"]
+    },
+    "mr": {
+      "command": "dp",
+      "args": ["ai", "mcp", "mr"]
+    },
+    "gitlab": {
+      "command": "dp",
+      "args": ["ai", "mcp", "gitlab"],
+      "autoApprove": [
+        "dp_gitlab_merge-request",
+        "dp_gitlab_merge-requests",
+        "dp_gitlab_pipelines",
+        "dp_gitlab_pipeline",
+        "dp_gitlab_repos",
+        "dp_gitlab_job"
+      ]
+    }
+  },
+  "tools": {
+    "approvalMode": "default"
+  },
+  "$version": 3,
+  "ide": {
+    "hasSeenNudge": true,
+    "enabled": false
+  },
+  "general": {
+    "language": "ru",
+    "outputLanguage": "отвечай на русском, размышляй на русском"
+  },
+  "output": {
+    "format": "text"
+  },
+  "security": {
+    "auth": {
+      "selectedType": "dp-auth"
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Read(//home/node/app/**)",
+      "Bash(git checkout *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "mcp__dpGitlab__dp_gitlab_merge-requests"
+    ]
+  }
+}

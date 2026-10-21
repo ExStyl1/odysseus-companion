@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 2,
+  "capturedOn": "2026-07-24",
+  "sdkVersion": "@modelcontextprotocol/sdk@1.29.0",
+  "runtimeProtocolVersion": "2025-11-25",
+  "supportedProtocolVersions": ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05", "2024-10-07"],
+  "currentClientSurface": {
+    "PoolClient": ["listTools", "callTool", "close", "setUnexpectedCloseHandler", "setCapabilitiesChangedHandler", "setChannelHandler", "notifyRootsChanged", "listResources", "listResourceTemplates", "listPrompts", "readResource", "getPrompt", "getServerCapabilities", "getInstructions"],
+    "NessyMcpClientPublicPrototype": ["connect", "listTools", "requestTools", "getSkippedTools", "getServerInfo", "getServerCapabilities", "getInstructions", "callTool", "listResources", "listResourceTemplates", "listPrompts", "readResource", "getPrompt", "rememberElicitationId", "onElicitationComplete", "withUrlElicitationRetry", "trackCompletion", "resolveRequiredElicitations", "awaitCompletions", "setUnexpectedCloseHandler", "setCapabilitiesChangedHandler", "setChannelHandler", "notifyRootsChanged", "close"],
+    "advertisedClientCapabilities": {"elicitation": {"form": {}, "url": {}}},
+    "advertisementCondition": "elicitation is advertised only when onElicitationRequest is configured",
+    "absentPiHostMethods": ["resources/subscribe", "prompts/list", "sampling"],
+    "nonMcpBoundary": "Nessy source APIs and Codex DTOs are separate contracts and do not count as partial Pi MCP host support."
+  },
+  "requiredRowFields": [
+    "method", "capability", "protocolVersion", "current", "owner", "trustBoundary",
+    "timeoutCancel", "pagination", "reconnect", "cache", "auth", "consent",
+    "sameTurnReveal", "h10Disposition", "futurePhase"
+  ],
+  "protocolRows": [
+    {
+      "method": "tools/list", "capability": "tools", "protocolVersion": "2025-11-25", "current": "supported-first-page-only",
+      "owner": "NessyMcpClient.listTools -> PoolClient.listTools -> McpClientPool descriptor projection", "trustBoundary": "host-owned connection projected through the leased EffectiveCapabilitySnapshot",
+      "timeoutCancel": "no common timeout or AbortSignal", "pagination": "one client.listTools() call; result.tools returned; nextCursor is not followed",
+      "reconnect": "McpClientPool sync reconnects when source configuration changes", "cache": "McpClientPool owns toolCache per connected slug",
+      "auth": "transport configuration/credential owner; no credential enters the descriptor fixture", "consent": "not an interactive operation",
+      "sameTurnReveal": "list results are captured for the current build; deferred loads affect the next Pi session build",
+      "h10Disposition": {"H10A": "mandatory: implement leased same-turn reveal for deferred descriptors", "H10B": "prove complete pagination and generation-safe list lifecycle"}, "futurePhase": "H10A/H10B"
+    },
+    {
+      "method": "tools/call", "capability": "tools", "protocolVersion": "2025-11-25", "current": "supported",
+      "owner": "Pi proxy -> main process -> McpClientPool.callTool -> PoolClient.callTool", "trustBoundary": "exact snapshot-owned binding plus Nessy permission wrapper",
+      "timeoutCancel": "caller AbortSignal is forwarded; no common timeout/deadline", "pagination": "not applicable",
+      "reconnect": "a later pool resync may replace the client; an in-flight call has no common reconnect contract", "cache": "call results are not cached by the common pool",
+      "auth": "transport/credential owner outside the fixture", "consent": "Nessy approval policy precedes the normal proxy request",
+      "sameTurnReveal": "only bindings already projected into the current Pi build are callable",
+      "h10Disposition": {"H10A": "mandatory: preserve exact leased binding during same-turn reveal", "H10B": "add common signal/deadline/result lifecycle"}, "futurePhase": "H3/H10A/H10B"
+    },
+    {
+      "method": "resources/list", "capability": "resources", "protocolVersion": "2025-11-25", "current": "surfaced-via-list_mcp_resources-tool-and-listContextResources",
+      "owner": "McpClientPool.listContextResources -> PoolClient.listResources; projected to the model as list_mcp_resources when a source advertises resources", "trustBoundary": "host-owned discovery; redacted per-connection before projection", "timeoutCancel": "inherits the client's connect/call bounds", "pagination": "one client.listResources() call; nextCursor is not followed",
+      "reconnect": "McpClientPool sync reconnects when source configuration changes", "cache": "McpClientPool.contextCache per connected slug; kept on refresh failure", "auth": "transport configuration/credential owner", "consent": "list_mcp_resources is readOnly/no-permission", "sameTurnReveal": "absent",
+      "h10Disposition": {"H10A": "R5: discovery cached and projected as the list_mcp_resources tool", "H10B": "@slug:uri mention autocomplete also lists these resources"}, "futurePhase": "H10B"
+    },
+    {
+      "method": "resources/read", "capability": "resources", "protocolVersion": "2025-11-25", "current": "read-path-present-via-PoolClient.readResource",
+      "owner": "NessyMcpClient.readResource -> PoolClient.readResource -> McpClientPool.readResource(slug, uri)", "trustBoundary": "host-owned connection; routed to the preferred connection for the slug", "timeoutCancel": "inherits the client's connect/call bounds", "pagination": "not applicable",
+      "reconnect": "McpClientPool sync reconnects when source configuration changes", "cache": "not cached; read is on demand", "auth": "transport configuration/credential owner", "consent": "read_mcp_resource tool is readOnly/no-permission; @slug:uri mention is user-initiated", "sameTurnReveal": "absent",
+      "h10Disposition": {"H10A": "R5: read path landed on the pool client and pool", "H10B": "model-facing read_mcp_resource tool and @slug:uri mention surface the read"}, "futurePhase": "H10B"
+    },
+    {
+      "method": "resources/subscribe", "capability": "resources", "protocolVersion": "2025-11-25", "current": "absent-from-current-Pi-MCP-host",
+      "owner": "none", "trustBoundary": "must be explicitly host-owned before projection", "timeoutCancel": "absent", "pagination": "not applicable",
+      "reconnect": "absent", "cache": "absent", "auth": "absent", "consent": "absent", "sameTurnReveal": "absent",
+      "h10Disposition": {"H10A": "mandatory same-turn tool reveal does not imply subscriptions", "H10B": "decide and test subscription ownership before adding"}, "futurePhase": "H10B"
+    },
+    {
+      "method": "prompts/list", "capability": "prompts", "protocolVersion": "2025-11-25", "current": "absent-from-current-Pi-MCP-host",
+      "owner": "none", "trustBoundary": "must be explicitly host-owned before projection", "timeoutCancel": "absent", "pagination": "absent",
+      "reconnect": "absent", "cache": "absent", "auth": "absent", "consent": "absent", "sameTurnReveal": "absent",
+      "h10Disposition": {"H10A": "mandatory same-turn tool reveal does not imply prompt support", "H10B": "add only with a real protocol-conformant owner"}, "futurePhase": "H10B"
+    },
+    {
+      "method": "prompts/get", "capability": "prompts", "protocolVersion": "2025-11-25", "current": "get-path-present-via-PoolClient.getPrompt",
+      "owner": "NessyMcpClient.getPrompt -> PoolClient.getPrompt -> McpClientPool.getPrompt(slug, name, args)", "trustBoundary": "host-owned connection; routed to the preferred connection for the slug", "timeoutCancel": "inherits the client's connect/call bounds", "pagination": "not applicable",
+      "reconnect": "McpClientPool sync reconnects when source configuration changes", "cache": "not cached; rendered on demand", "auth": "transport configuration/credential owner", "consent": "/mcp__slug__prompt is user-initiated; args map onto declared parameters", "sameTurnReveal": "absent",
+      "h10Disposition": {"H10A": "R5: get path landed on the pool client and pool", "H10B": "/mcp__slug__prompt slash command injects the rendered messages"}, "futurePhase": "H10B"
+    },
+    {
+      "method": "elicitation/create", "capability": "elicitation", "protocolVersion": "2025-11-25", "current": "supported-when-configured",
+      "owner": "NessyMcpClient client.setRequestHandler(ElicitRequestSchema) -> onElicitationRequest", "trustBoundary": "host callback/UI consent boundary",
+      "timeoutCancel": "SDK extra.signal is forwarded to the configured handler; no additional common timeout", "pagination": "not applicable",
+      "reconnect": "handler is registered on each new client connection", "cache": "none",
+      "auth": "not a credential projection channel", "consent": "configured host handler owns accept/decline/cancel response",
+      "sameTurnReveal": "not applicable to tool advertisement",
+      "h10Disposition": {"H10A": "preserve the existing signal-bearing elicitation seam", "H10B": "prove timeout/cancel/consent lifecycle"}, "futurePhase": "H10B/D3"
+    },
+    {
+      "method": "sampling/createMessage", "capability": "sampling", "protocolVersion": "2025-11-25", "current": "absent-from-current-Pi-MCP-host",
+      "owner": "none", "trustBoundary": "would require explicit host model/consent ownership", "timeoutCancel": "absent", "pagination": "not applicable",
+      "reconnect": "absent", "cache": "absent", "auth": "absent", "consent": "absent", "sameTurnReveal": "absent",
+      "h10Disposition": {"H10A": "mandatory same-turn tool reveal must not enable sampling", "H10B": "add only with explicit model, consent and lifecycle contracts"}, "futurePhase": "H10B/D3"
+    },
+    {
+      "method": "pagination", "capability": "cross-method", "protocolVersion": "2025-11-25", "current": "tools/list-first-page-only",
+      "owner": "NessyMcpClient.listTools", "trustBoundary": "remote server result must remain host-owned until fully collected",
+      "timeoutCancel": "no common timeout or AbortSignal", "pagination": "nextCursor is currently ignored",
+      "reconnect": "pool resync is separate from cursor completion", "cache": "first page populates McpClientPool toolCache",
+      "auth": "transport owner", "consent": "not interactive", "sameTurnReveal": "no mid-turn cursor completion",
+      "h10Disposition": {"H10A": "mandatory reveal consumes only a complete leased descriptor set", "H10B": "implement and prove cursor completion"}, "futurePhase": "H10B"
+    },
+    {
+      "method": "cancellation", "capability": "cross-method", "protocolVersion": "2025-11-25", "current": "elicitation-signal-only",
+      "owner": "SDK request handler for elicitation; no common PoolClient owner", "trustBoundary": "must fail closed at the host boundary",
+      "timeoutCancel": "elicitation receives extra.signal, callTool forwards caller signal, listTools still has no common signal/deadline", "pagination": "not applicable",
+      "reconnect": "not a cancellation mechanism", "cache": "not applicable", "auth": "not applicable", "consent": "elicitation cancellation is handler-owned",
+      "sameTurnReveal": "deferred search/load has no common cancellation envelope",
+      "h10Disposition": {"H10A": "mandatory reveal must retain the active lease", "H10B": "require a common AbortSignal/deadline envelope"}, "futurePhase": "H3/H10B"
+    },
+    {
+      "method": "reconnect-cache", "capability": "cross-method", "protocolVersion": "2025-11-25", "current": "pool-owned",
+      "owner": "McpClientPool.syncConnections/toolCache", "trustBoundary": "configuration generation and leased snapshot cannot mix",
+      "timeoutCancel": "no common in-flight cancellation", "pagination": "cached tools are the first listTools page",
+      "reconnect": "configuration changes close/recreate clients", "cache": "toolCache is replaced with the newly registered client list",
+      "auth": "connection configuration owner", "consent": "not interactive", "sameTurnReveal": "changes appear on a later session build",
+      "h10Disposition": {"H10A": "mandatory reveal remains within one leased generation", "H10B": "prove reconnect/invalidation generation safety"}, "futurePhase": "H10B"
+    },
+    {
+      "method": "auth-consent", "capability": "cross-method", "protocolVersion": "2025-11-25", "current": "transport-auth-plus-elicitation-consent",
+      "owner": "MCP transport/source credential configuration and configured elicitation callback", "trustBoundary": "credentials remain outside fixtures and model-visible descriptors",
+      "timeoutCancel": "elicitation signal only; transport auth has no common interactive timeout contract", "pagination": "not applicable",
+      "reconnect": "configuration changes reconnect the client", "cache": "credentials are not cached in the fixture/tool descriptor",
+      "auth": "host configuration owns headers/env without fixture disclosure", "consent": "elicitation handler returns accept/decline/cancel",
+      "sameTurnReveal": "reveal may expose only non-secret descriptor metadata",
+      "h10Disposition": {"H10A": "mandatory reveal must not project credentials", "H10B": "prove auth/consent/cancel lifecycle"}, "futurePhase": "H6/H10B/D3"
+    },
+    {
+      "method": "same-turn-reveal", "capability": "deferred-tools", "protocolVersion": "2025-11-25", "current": "absent",
+      "owner": "future H10A owner; current deferred-mcp-tools load mutates only the next Pi session build", "trustBoundary": "same leased EffectiveCapabilitySnapshot generation",
+      "timeoutCancel": "current load has no common signal/deadline", "pagination": "must consume a complete descriptor set",
+      "reconnect": "must not cross a reconnect/generation boundary", "cache": "current loaded set is process memory for the next build",
+      "auth": "must remain descriptor-only", "consent": "normal tool approval policy remains authoritative",
+      "sameTurnReveal": "mandatory future work; current host cannot reveal a newly loaded tool in the active Pi turn",
+      "h10Disposition": {"H10A": "mandatory: implement explicit same-turn reveal; fail closed until implemented", "H10B": "consume only within the same leased generation and lifecycle envelope"}, "futurePhase": "H10A/H10B"
+    }
+  ],
+  "deferredLoading": {
+    "searchTool": "mcp__tool_search",
+    "loadTool": "mcp__tool_load",
+    "threshold": 48,
+    "candidateRule": "startsWith(mcp__) and not startsWith(mcp__session__)",
+    "currentActivation": "next Pi session build",
+    "selectedVersionDisposition": "Nessy host remains authority; native Pi extension discovery stays disabled"
+  },
+  "nestorMcpForms": [
+    {"form":"direct","wireName":"<server>|<tool>","arguments":"JSON object/string"},
+    {"form":"use_mcp_tool","wireName":"use_mcp_tool","serverFields":["serverName","server"],"toolFields":["toolName","tool"],"nestedArgumentsField":"arguments"}
+  ]
+}

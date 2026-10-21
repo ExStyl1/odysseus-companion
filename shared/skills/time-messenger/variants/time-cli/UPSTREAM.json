@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "time-cli/SKILL.md",
+  "upstreamName": "time-cli",
+  "upstreamFrontmatter": {
+    "name": "time-cli",
+    "description": "Single-file CLI для Tinkoff Time (Mattermost). Список каналов/DM, чтение постов, полнотекстовый поиск, просмотр треда, ответ в тред, профиль пользователя. Zero-deps (stdlib only). Все read-команды поддерживают --json и --format md.\n",
+    "allowed-tools": "Bash(python:*), Bash(python3:*), Bash(~/.nessy/skills/time-cli/time_cli.py:*), Bash(*/time_cli.py:*)"
+  },
+  "upstreamSkillSha256": "d52561f3aeb60691763ea6c7333601a678c2b86df3a0ff7334d873ca084dcaa7",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile."
+  ],
+  "packageDependencies": []
+}

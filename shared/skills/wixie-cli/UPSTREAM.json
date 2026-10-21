@@ -1,0 +1,32 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "search-all/wixie/SKILL.md",
+  "upstreamName": "Wixie CLI",
+  "upstreamFrontmatter": {
+    "name": "Wixie CLI",
+    "description": "Экспорт страниц из Confluence on-premise в Markdown/PDF и поиск по CQL через dp wixie CLI (Spirit CLI plugin)",
+    "when": "- Пользователь просит получить, скачать или экспортировать страницу из Confluence\n- Пользователь хочет найти страницы в Confluence по CQL-запросу\n- Пользователь упоминает Confluence, wiki или wixie\n- Пользователь даёт ссылку на wiki/Confluence-страницу и хочет получить её содержимое\n",
+    "tags": [
+      "wixie",
+      "confluence",
+      "wiki",
+      "cli",
+      "dp",
+      "spirit",
+      "export",
+      "cql",
+      "markdown",
+      "pdf"
+    ]
+  },
+  "upstreamSkillSha256": "4ceef081f8b5eb03537553356fa91bed1cc39150af3e6654f1ded110debc5296",
+  "adaptations": [
+    "Normalized/namespaced skill name: Wixie CLI -> wixie-cli",
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

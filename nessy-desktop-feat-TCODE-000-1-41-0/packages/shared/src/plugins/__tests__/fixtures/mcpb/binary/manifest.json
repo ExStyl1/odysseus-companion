@@ -1,0 +1,15 @@
+{
+  "manifest_version": "0.3",
+  "name": "mcpb-binary",
+  "version": "1.0.0",
+  "description": "Binary MCPB fixture",
+  "author": { "name": "Nessy Tests" },
+  "server": {
+    "type": "binary",
+    "entry_point": "server/test-server",
+    "mcp_config": {
+      "command": "${__dirname}/server/test-server",
+      "args": []
+    }
+  }
+}

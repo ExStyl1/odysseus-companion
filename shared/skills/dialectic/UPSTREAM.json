@@ -1,0 +1,18 @@
+{
+  "repository": "user-supplied/skills",
+  "kind": "local",
+  "revision": "e4993c2be3883b28c2dc401e34108dc93d06eaeaecc4182dec53cdff33e65a66",
+  "sourceDirectory": "/Users/mcloving/Downloads/skills",
+  "path": "dialectic/SKILL.md",
+  "upstreamName": "dialectic",
+  "upstreamFrontmatter": {
+    "name": "dialectic",
+    "description": "Объективный анализ утверждения через двух параллельных агентов с противоположными целями и синтез их выводов."
+  },
+  "upstreamSkillSha256": "7b22efdaedf58fa151b62d128b7ec8ee64043c54a478f733fc662a45e642d248",
+  "adaptations": [
+    "Registered as an explicit user-approved exception to the local-only base profile.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "packageDependencies": []
+}

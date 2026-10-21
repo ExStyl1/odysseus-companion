@@ -1,0 +1,39 @@
+{
+  "repository": "anthropics/skills",
+  "revision": "dbd4588f9e1033efb41dad4bef2f7947c8993d44",
+  "path": "skills/skill-creator",
+  "url": "https://github.com/anthropics/skills/tree/dbd4588f9e1033efb41dad4bef2f7947c8993d44/skills/skill-creator",
+  "upstreamName": "skill-creator",
+  "upstreamFrontmatter": {
+    "name": "skill-creator",
+    "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy."
+  },
+  "upstreamSkillSha256": "dcd4803e61e913e6fc27294184cd3a71f09f5e924ff20c8a9a20173e7b3c2bcf",
+  "adaptations": [
+    "Restricted to user-selected local/browser/Obsidian execution; cloud, remote-provider and foreign-runtime branches disabled.",
+    "Consolidated entry point; primary resources retained and variants namespaced without overwrites.",
+    "Russian discovery metadata and task-scoped invocation policy; original descriptions retained in upstreamFrontmatter."
+  ],
+  "mergedVariants": [
+    {
+      "name": "create-skill",
+      "guide": "variants/create-skill/GUIDE.md",
+      "resourceRoot": "variants/create-skill",
+      "repository": "user-supplied/skills",
+      "path": "create-skill/SKILL.md",
+      "executionProfile": "user-approved-exception",
+      "importBatch": "user-supplied-skills-2026-10-20",
+      "files": {
+        "SKILL.md": {
+          "sha256": "7d5e18b05de9e9c495929423b2e9736a52756631a3953f40711782fc52d7b973",
+          "executable": false
+        },
+        "UPSTREAM.json": {
+          "sha256": "768191c51208ba928e734b2192a9a2a0d467a244a9c040ae47346940f5858ac1",
+          "executable": false
+        }
+      },
+      "when": "Локальные соглашения из пользовательской подборки по структуре и проверке навыка"
+    }
+  ]
+}

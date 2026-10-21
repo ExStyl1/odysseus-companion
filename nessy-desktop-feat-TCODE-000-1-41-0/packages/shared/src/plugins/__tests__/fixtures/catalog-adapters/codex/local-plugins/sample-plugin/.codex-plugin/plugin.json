@@ -1,0 +1,8 @@
+{
+  "id": "sample-plugin",
+  "name": "sample-plugin",
+  "displayName": "Sample Local Plugin",
+  "version": "1.0.0",
+  "description": "Authored synthetic minimal local plugin referenced by the codex catalog fixture.",
+  "skills": "skills"
+}

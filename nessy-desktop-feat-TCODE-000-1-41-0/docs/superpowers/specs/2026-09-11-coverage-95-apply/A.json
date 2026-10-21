@@ -1,0 +1,1364 @@
+{
+ "family": "A",
+ "items": [
+  {
+   "qid": "QA1",
+   "answer": "C",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "A1",
+     "column": "Claude",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11), which confirms P3.139: claude keeps our deterministic PreToolUse gate and the vendor classifier stays pre-empted, so a second model-backed permission authority is not this runtime's surface here."
+    },
+    {
+     "row": "A13",
+     "column": "Claude",
+     "from": "—",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): the binary's own auto-mode rule-class drop is unobservable to us and is pre-empted by our gate's allow, so there is nothing for the host to suspend on claude."
+    },
+    {
+     "row": "A23",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11), which declines option B: the spawn and return review on claude lives inside the classifier P3.139 rules off."
+    },
+    {
+     "row": "A23",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11) plus the structural finding already in this row: codex's auto_review reviews approval requests, not subagent task text or action history, and its subagent threads return inside the app-server where no host code sits."
+    },
+    {
+     "row": "A23",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "P6.199 (`310429f1f`) closed the return half - `packages/shared/src/prompts/untrusted-text.ts` symbol `subagentReportMarkerLine` plus `scanSubagentOutput` PREPEND at all three result sites in `packages/pi-agent-server/src/orchestrator/subagent-tool.ts` - and owner answer QA1=C (2026-09-11) declines the spawn-time call site, so the residue is now a recorded decision rather than an open gap."
+    },
+    {
+     "row": "A25",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): the 3-of-20 pause is the binary's own auto-mode counter and P3.93 measured the classifier consulted zero times behind our allow, so it is not a surface we drive on claude."
+    },
+    {
+     "row": "A30",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.203 (`035cb1a65`, W8-k 2026-09-07) threads the project's own instructions into the guardian consult, bounded, untrusted and one-way, in `packages/shared/src/prompts/guardian.ts` plus the three consult contexts in `packages/shared/src/agent/pi-agent.ts`."
+    },
+    {
+     "row": "A30",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): steering the judge with project instructions on claude means the binary's classifier, which P3.139 rules off."
+    },
+    {
+     "row": "A30",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): codex keeps auto_review, whose only policy channel is the operator's `[auto_review].policy` blob, unconnected to AGENTS.md by construction."
+    },
+    {
+     "row": "A31",
+     "column": "Claude",
+     "from": "—",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): the working-tree facts would feed the binary's own classifier, ruled off by P3.139, and the host has no other judge on claude."
+    },
+    {
+     "row": "A31",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11) plus this row's own finding: codex has no judge consult of ours to splice a `git status` fact into."
+    },
+    {
+     "row": "A32",
+     "column": "Claude",
+     "from": "—",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): with no judge of ours on claude there is no pending verdict to discard on a mode switch."
+    },
+    {
+     "row": "A35",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): the binary parses `classifyAllShell` but our PreToolUse allow answers first (P3.93), so writing the managed value on claude would be a measured no-op - `packages/shared/src/agent/claude-auto-mode-policy.ts` already says it is not ours to pre-empt."
+    },
+    {
+     "row": "A35",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA1=C (2026-09-11): codex has no auto-mode band, and auto_review sees only what codex chooses to ask about."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the confirmed claude-classifier refusal on every surface a reader meets and re-stamp the nine A-rows it disposes.",
+     "size": "S",
+     "tags": [
+      "doc",
+      "claude",
+      "codex",
+      "host"
+     ],
+     "note_en": "Implements option C. Done means: `packages/shared/src/agent/claude-auto-mode-policy.ts` carries the owner's 2026-09-11 confirmation of P3.139 beside its own sentence that the classifier is consulted on approximately nothing; the switch report says claude's judge is our deterministic gate, Pi's is the Guardian and codex's is auto_review; the fourteen cells listed in ledger_edits are re-stamped in BOTH the capability ledger and the denominator-gaps twin. No code path changes."
+    },
+    {
+     "task_en": "Note that the classifierContext half of QA1 needs no work: P7.14 already wired it end to end at bundle 0.3.247.",
+     "size": "XS",
+     "tags": [
+      "claude",
+      "doc"
+     ],
+     "note_en": "Implements the second half of option C. P7.14 (`9ecf0be1f`, 2026-09-11) parses `classifierContext` nested-only, keeps it on PostToolUse alone, JOINS across hooks and forwards it FRAMED; A80's claude cell already reads covered with the 1 / 0 / 26 re-measurement recorded. Done means: the row is closed as already-delivered with the live arm named (RS-30), not re-implemented."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Claude's classifier IS native and already enabled, but no wiring of it is <= S: the only route measured to reach it is the `hookAskFloor` path plus an ask RULE (option A, sized M+), and the one S-looking route - projecting the managed `classifyAllShell` into `Options.settings` - was measured INERT because our PreToolUse allow skips the prompt before the classifier is consulted (P3.93/P3.96, `b0e6f0044`)."
+  },
+  {
+   "qid": "QA2",
+   "answer": "E",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "A33",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.493 (`df51f7132`) implements the 2026-09-05 decision C - a user-scope autoMode block whose `hard_deny`/`soft_deny` entries are ADDED to the managed ones, with `allow` and `environment` refused by name and the asymmetry stated by the doctor's `describeRefusedUserAutoModeKeys`."
+    },
+    {
+     "row": "A33",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.493 (`df51f7132`), decision C - the same narrow-only user scope on all three runtimes, with the managed-only half of the trust boundary a recorded refusal rather than a gap."
+    },
+    {
+     "row": "A33",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.493 (`df51f7132`), decision C - the turn-boundary wiring proves a user entry can only ever narrow on all three runtimes, codex included."
+    },
+    {
+     "row": "A34",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "The extend half is decided and landed (P6.493, `df51f7132`, decision C: user scope narrows only); the four tiers are already stated verbatim in `packages/shared/src/prompts/guardian.ts` with its 4000-char `trustedIntent` slot, so the residue is the MODEL's compliance with the fourth tier, which is a measurement and not a build."
+    },
+    {
+     "row": "A34",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same evidence as the Pi cell: the host-composed four-tier policy reaches the claude arm through `packages/shared/src/agent/claude-auto-mode-policy.ts` symbol `buildClaudeAutoModePolicySettings`, and P6.493 settles the extend half; the unmeasured residue is fourth-tier compliance."
+    },
+    {
+     "row": "A34",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure plus owner answer QA2=E (2026-09-11): codex's `[auto_review].policy` is one prose blob and `AutoReviewToml` declares exactly one property, so the four-list precedence vocabulary has no subject on that runtime."
+    },
+    {
+     "row": "A42",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.209 step 3 (`b520c0359`, keys `7f4255f01`) plus steps 1-2 (`46a35b169`) - the bounded denial ring, `SessionManager.getRecentAutoModeDenials`, the channel and `AutoModeDenialsSection.tsx`; the retry half is a closed posture, refused by the owner in chat on 2026-09-07."
+    },
+    {
+     "row": "A42",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure plus owner answer QA2=E (2026-09-11): the denial feed is the SDK's own PermissionDenied hook receipt (`packages/shared/src/agent/claude-agent.ts` symbol `buildClaudeAutoModeDenialReceipt`), claude-only, and P6.721 made the channel say so per runtime."
+    },
+    {
+     "row": "A42",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure plus owner answer QA2=E (2026-09-11): same claude-only receipt producer as the Pi cell, with codex's own reviewer keeping its verdicts inside the app-server."
+    },
+    {
+     "row": "A44",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA2=E (2026-09-11), which settles the question this row left to its owner: `apps/electron/src/renderer/pages/settings/AutoModeJudgeRulesSection.tsx` states in its own docblock that these are Claude Code's judge rules and that Pi's Guardian does not read them."
+    },
+    {
+     "row": "A44",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA2=E (2026-09-11) on the same docblock sentence: codex has its own reviewer and does not read these rules, so showing them under a neutral heading would be the silent divergence this fork keeps finding."
+    },
+    {
+     "row": "A45",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.209 (`286fbc1c5` + `ed3998ef5`) mounts the judge-rule and effective-configuration viewer, and P6.493 (`df51f7132`) added the doctor's asymmetry section that names the refused user-scope keys."
+    },
+    {
+     "row": "A45",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA2=E (2026-09-11): the dump's subject is the claude auto-mode judge's composed policy (`auto-mode-config` page family), which Pi's Guardian does not read."
+    },
+    {
+     "row": "A45",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA2=E (2026-09-11): the dump's subject is the claude auto-mode judge's composed policy, and codex's auto_review carries only the operator's own `[auto_review].policy` string."
+    },
+    {
+     "row": "A79",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D2=A (2026-09-05), re-confirmed by owner answer QA2=E (2026-09-11): no environment-drafting assistant ships - the autoMode allow block is written by an administrator, and reading shell history or home-directory repositories is refused under every option."
+    },
+    {
+     "row": "A79",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D2=A (2026-09-05), re-confirmed 2026-09-11: the vendor's own `/auto-mode-setup` writes `~/.claude/settings.json` rather than our config and its surface is not exposed, so the absence is uniform and deliberate."
+    },
+    {
+     "row": "A79",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D2=A (2026-09-05), re-confirmed 2026-09-11: no drafting assistant on any runtime."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp the seventeen A33/A34/A42/A44/A45/A79 cells against P6.209, P6.493 and the 2026-09-05 decisions, in both the ledger and the denominator-gaps twin.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Implements option E - no new decision. Done means: every cell listed in ledger_edits reads the new verdict with its landed commit or owner decision named; the A44 claude cell stays `partial` with its residue spelled (the UI has a viewer and no setter, while the config-level user scope landed with P6.493)."
+    },
+    {
+     "task_en": "Measure the Guardian's compliance with the fourth precedence tier before A34 can move off partial on Pi and claude.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "test"
+     ],
+     "note_en": "The residue this answer names rather than builds. Rig, already written in the row: drive the guardian with one soft_deny-matching action twice - once after a general request, once with the exact action named - and assert the verdicts differ; control: a hard_deny match must refuse in both. Done means: the reading is recorded beside A34 and the cell moves to covered or stays partial with the measurement quoted."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The two natively-present members here are CLI surfaces we do not expose and that write the vendor's own settings file: `/auto-mode-setup` (23 hits in the vendored binary) and `auto-mode config` / `critique` (131 and 15 hits), each sized L in the ledger because adopting them means a new writer of permission rules, not host wiring - so neither meets the <= S test."
+  },
+  {
+   "qid": "QA3",
+   "answer": "E",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "A27",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by measurement rather than by choice, and recorded by P6.202: clause (1) was STRUCK against three page sentences (default mode runs reads without asking, additional directories become readable without prompts, and auto mode runs file reads without a prompt including outside the working directories) - the vendor has two mechanisms, the fence (A28) and the auto-mode first-read card (A29), not three."
+    },
+    {
+     "row": "A27",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same striking as the Pi cell: P6.202 refuted the premise from `permission-modes.md` itself, so a per-read prompt outside the boundary is not a capability any runtime offers."
+    },
+    {
+     "row": "A27",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Same striking as the Pi cell, host-side and therefore uniform: P6.202 struck clause (1) and built clauses (2) and (3) instead."
+    },
+    {
+     "row": "A29",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.202 clause (3) - `e5a8452b3` (locale) plus `75ef8ef87` and the producer `5e9042ae9` with P6.865's setter - the first read outside the working directories asks once in auto mode, the answer persists for the session, `Block from now on` writes the key, and `-p`/background sessions are carved out."
+    },
+    {
+     "row": "A29",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed host-side by P6.202 clause (3) and therefore on claude too: the gate sites are `packages/shared/src/agent/core/pre-tool-use.ts` and `packages/shared/src/agent/claude-agent.ts` symbol `runPreToolUseChecks`, pinned by `outside-working-directory-read-answer.test.ts`."
+    },
+    {
+     "row": "A29",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed host-side by P6.202 clause (3) and therefore on codex too, through the same pre-tool-use seam, pinned by `read-fence-gate-sites.test.ts`."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Decide and pin which refusal wins when the bundle reaches 2.1.257 and the vendor's own blockReadsOutsideWorkingDirectories becomes real.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "test",
+      "doc"
+     ],
+     "note_en": "The one live question option E leaves. Done means: a written precedence rule - the host fence is evaluated first at `packages/shared/src/agent/mode-manager.ts` so the user meets one refusal naming one setting, and the vendor key is either passed or deliberately not passed with the reason at the site - plus a version-conditional tripwire in the shape of `claude-vendored-sdk-contract.test.ts` that fails on the lift, so the second executor cannot arrive silently. Re-stamps nothing today; it prevents A28's cells from becoming double-reported later."
+    },
+    {
+     "task_en": "Re-stamp the six A27/A29 cells against P6.202's five commits, and keep A28 at partial with its residue named.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Implements option E. Done means: A27 reads n/a with the struck clause quoted, A29 reads covered on all three, and A28 stays `partial` because the fence is a TOOL-NAME predicate over Read/Grep/Glob/Find/Ls - a Bash `cat` still rests on the deniedPaths floor beside it - with P6.809 (`c49eca77b`) recorded as the seven-gate-site half that is now closed."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing is refused here for cost: option E is a re-stamp of work already built host-side for all three runtimes, and the vendor's own key does not exist in the 2.1.247 bundle (0 occurrences against live flag controls), so there is no native mechanism to wire today."
+  },
+  {
+   "qid": "QA4",
+   "answer": "D",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "A61",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.221 (`ad325d4b0` `9020776d2`) gave `Query.applyFlagSettings()` its caller at `packages/shared/src/agent/claude-agent.ts` symbol `applyLiveSettings` and took `disallowedTools` out of the respawn-forcing hash in `packages/shared/src/agent/backend/claude/live-session.ts`, so a GROWN deny list now applies to the live session; a NARROWED one still respawns, by the comment written beside it."
+    },
+    {
+     "row": "A63",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Landed in half: P6.223 (`73f30c78b`) carries a per-turn `approvalPolicy` on codex's own `turn/start` so an approval change no longer rewrites config.toml and respawns; the `sandboxPolicy` half stays a recorded refusal, because sending it would create a second source of truth for the sandbox where an error in `networkAccess` is a silent widening."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "On claude, return PermissionUpdate addDirectories from canUseTool so a mid-turn directory grant applies to the running turn, after measuring that the SDK honours it.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements option D, the single live half. Measurement first, because a type is not a behaviour: return {type:'addDirectories', destination:'session'} from the claude canUseTool mid-turn and record whether the SDK applies it, with `projectSettings` (which Pi refuses) and a no-update turn as controls. Done means: the grant applies without respawn, or the null is recorded with the reading; re-stamps A62 claude off `absent`."
+    },
+    {
+     "task_en": "Record the codex sandboxPolicy refusal and the no-widening-mid-turn rule where a reader meets them.",
+     "size": "XS",
+     "tags": [
+      "codex",
+      "doc",
+      "host"
+     ],
+     "note_en": "Implements option D's refusal half. Done means: `packages/shared/src/agent/codex-agent.ts` states beside the turn-start builder why `sandboxPolicy` is not sent - the mode table stays the single writer of sandbox intent - and the switch report carries one line saying a mid-turn permission change tightens only. Re-stamps A61 claude and A63 codex as listed."
+    },
+    {
+     "task_en": "Fill A61's and A62's codex cells, which are explicit no-claims, from the existing host path rather than by a new build.",
+     "size": "XS",
+     "tags": [
+      "codex",
+      "doc"
+     ],
+     "note_en": "Both cells read `-` because nobody measured them. The permission DSL is host-side and evaluated per call on codex (`packages/shared/src/agent/codex-agent.ts` symbol `consultPermissionRules`), so a rule change needs no respawn there; done means the reading is taken once and written, or the cell keeps its honest no-claim with the reason."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "The refused half has a native mechanism and small wiring: codex's own `turn/start` accepts `sandboxPolicy` (`packages/codex-protocol/generated/v2/TurnStartParams.ts`, documented as overriding for this turn and subsequent turns) and we ALREADY send `approvalPolicy` on that same call since P6.223, so adding the field is S. It is refused for a measured reason - a second source of truth for the sandbox, where a wrong `networkAccess` is a silent widening - so the flip is the owner's to make, with the mode table kept as the single writer."
+  },
+  {
+   "qid": "QA5",
+   "answer": "E",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "A64",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (triage 70 = A, keep the seven fused modes), re-confirmed by owner answer QA5=E (2026-09-11): codex's `approval_policy = { granular = ... }` object variant stays unemitted because exposing per-category approvals would replace the host's seven-mode vocabulary, which is the one control that must mean the same thing after a runtime switch."
+    },
+    {
+     "row": "A65",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.225 (`51d952f63` + `3101b7a92` + `911986846`) shipped the toggle, the policy textarea in both locales and the switch-report line, which is exactly triage 69 = A (2026-09-05): Approve-for-me is a codex-only setting, named in the settings page and in the switch report."
+    },
+    {
+     "row": "A65",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (triage 69 = A), re-confirmed 2026-09-11: Approve-for-me is codex's own reviewer under a codex-only setting, so Pi has no such mode to select."
+    },
+    {
+     "row": "A65",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (triage 69 = A), re-confirmed 2026-09-11: the mode is codex-only by name, and claude's own automatic reviewer is the classifier P3.139 rules off."
+    },
+    {
+     "row": "A66",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.225 (`51d952f63` + `3101b7a92` + `911986846`) - the two controls that supply codex's already-adopted `approvals_reviewer = auto_review` and `[auto_review].policy` now exist in `AiSettingsPage.tsx` with a test, so the runtime's own reviewer is reachable without hand-editing a config file."
+    },
+    {
+     "row": "A67",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (triage 70 = A), re-confirmed by owner answer QA5=E (2026-09-11): the host keeps seven fused sandbox-and-approval modes, so an independent approvals axis is not a surface any runtime of ours exposes."
+    },
+    {
+     "row": "A67",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (triage 70 = A), re-confirmed 2026-09-11: the seven fused modes stay, and the effort goes into making their descriptions true per runtime."
+    },
+    {
+     "row": "A67",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (triage 70 = A), re-confirmed 2026-09-11: `packages/codex-responses-adapter/src/config-writer.ts` symbol `CODEX_PERMISSION_MODE_TABLE` keeps exactly seven frozen sandbox-and-approval pairs on purpose."
+    },
+    {
+     "row": "A68",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (triage 70 = A), re-confirmed 2026-09-11: we write exactly one profile, `[permissions.nessy_runtime]`, derived from the seven-mode table, and surfacing codex's named profiles would make the mode picker mean different things per runtime."
+    },
+    {
+     "row": "A69",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Decided rather than built: owner decision 2026-09-05 (triage 71 = A) leaves `glob_scan_max_depth` unset and keeps the warning, because writing it converts a loud partial failure into a silent partial success; the reason and the 43-matches-against-8192 reading are at `packages/codex-responses-adapter/src/config-writer-permissions.ts`."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Give A20 the plan row it has never had: on codex our unconditional default_permissions profile overrides a user-disabled sandbox, and the user is never told at the control they flipped.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "host",
+      "test",
+      "product"
+     ],
+     "note_en": "Implements option E's single live item. The posture is already settled by owner sitting 3.1 = A (keep the credential floor; sandbox-off on codex resolves to workspaceWrite, honestly reported), so the work is that the override is never SILENT: `resolve_permission_config_syntax` sets Profiles from `default_permissions` unconditionally, so done means the resolved sandbox that `CodexAgent.noteResolvedSandboxPolicy` and P3.315's read of ThreadStartResponse.sandbox already know is named at the surface where the user turned the sandbox off, with a test pinning that the profile wins in both master-switch positions. Re-stamps A20 codex."
+    },
+    {
+     "task_en": "Re-stamp the ten A64/A65/A66/A67/A68/A69 cells as quotes of decisions already taken, in both the ledger and the twin.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "codex"
+     ],
+     "note_en": "Implements option E's second half - no new decision. Done means: every cell names either the landed commit (P6.225) or the 2026-09-05 triage item that decided it, so a later reader can re-derive the refusal instead of re-asking it."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Codex's `granular` approvals and its named permission profiles are genuinely native and vendored in the release schema, but the wiring is not <= S: the S-sized half (teaching `validateConfigAgainstSchema`'s enumOf the oneOf object variant) buys no user-visible capability on its own, and the visible half replaces the seven fused modes that the owner kept on 2026-09-05 precisely because the mode picker must mean the same thing after a switch."
+  },
+  {
+   "qid": "QA6",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "A51",
+     "column": "Pi",
+     "from": "`covered ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Marker upgraded on landed evidence: P6.214 (`0f92d31a0`) drove the parameter-rule surface rather than probing it, confirming the rule is parsed once and evaluated in the shared DSL every runtime's gate calls."
+    },
+    {
+     "row": "A51",
+     "column": "Claude",
+     "from": "`covered ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Marker upgraded on landed evidence: P6.214 (`0f92d31a0`) - same host DSL, same measurement, claude arm included."
+    },
+    {
+     "row": "A52",
+     "column": "Pi",
+     "from": "`covered ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Marker upgraded on landed evidence: P6.214 (`0f92d31a0`) measured the tool-name glob surface and answered this row's own open question about the inert warning."
+    },
+    {
+     "row": "A52",
+     "column": "Claude",
+     "from": "`covered ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Marker upgraded on landed evidence: P6.214 (`0f92d31a0`) - the compiled program is the same on the claude path."
+    },
+    {
+     "row": "A10",
+     "column": "Codex",
+     "from": "`absent ᵗ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure, now with an owner answer behind it (QA6=A, 2026-09-11): codex's `enabled_tools`/`disabled_tools` cover MCP SERVERS rather than tools, so a partial narrowing would WIDEN by inheritance and such a role is denied whole."
+    },
+    {
+     "row": "A24",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure plus owner answer QA6=A (2026-09-11): codex's subagent threads return to the parent INSIDE the app-server, so no host code sits on that path and no scan can be spliced in; what this answer buys is that the residue is stated rather than silent."
+    },
+    {
+     "row": "A55",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure plus owner answer QA6=A (2026-09-11): the same wall A10 records - codex has no per-tool session control, only MCP-server switches - so a built-in tool allowlist has no subject there."
+    },
+    {
+     "row": "A56",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure plus owner answer QA6=A (2026-09-11): `packages/codex-responses-adapter/src/config-writer.ts` symbol `sanitizeCodexRoleName` already records that codex has no per-role tool allowlist and that declaring the role anyway would hand a read-only agent shell and apply_patch."
+    },
+    {
+     "row": "A60",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.220 (`9fc5f7614`) gave `Options.toolAliases` its callers in `packages/shared/src/agent/claude-agent.ts`, pinned by `claude-tool-aliases.test.ts`, so a built-in call runs the host's implementation and the gate and instrumentation see it."
+    },
+    {
+     "row": "A60",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure plus owner answer QA6=A (2026-09-11): no alias or tool-override key exists in `packages/codex-protocol/generated` or in the config writer, so the host cannot interpose on codex's built-ins."
+    },
+    {
+     "row": "A74",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D1=A (2026-09-05), re-confirmed by owner answer QA6=A (2026-09-11): a server's `readOnlyHint` is ADVISORY ONLY and must never become an authorization signal - the invariant is stated and test-pinned at `packages/shared/src/mcp/mcp-pool.ts`, so no per-annotation approval axis ships."
+    },
+    {
+     "row": "A74",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D1=A (2026-09-05), re-confirmed 2026-09-11: claude carries the annotation and no approval axis on it, and honouring it would reverse the same test-pinned invariant."
+    },
+    {
+     "row": "A74",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D1=A (2026-09-05), re-confirmed 2026-09-11: codex's own per-tool approval keys cannot address a user's individual server because user MCP servers reach codex as ONE aggregated `[mcp_servers.sources]` proxy."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "On codex, refuse a permission rule that has no subject there instead of accepting it silently, and say so in the switch report.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "host",
+      "test",
+      "doc"
+     ],
+     "note_en": "Implements option A - the only live half, since both claude halves landed (P6.217 `56ae4a7cd`, P6.220 `9fc5f7614`). Done means: a parameter rule naming any field other than command or file_path, every `Agent(...)` rule, and a tool-name glob binding beyond the three names `codexApprovalRuleRequests` projects are REFUSED with a named diagnostic the user can see rather than a `debug()` line, and `runtimeSwitchCosts` gains one row for it; the measured SILENT-LOOSER switch verdict on A51 and A52 (P6.214) becomes HONEST."
+    },
+    {
+     "task_en": "Tell a codex user that a spawned agent's report reaches the parent unscanned.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "host",
+      "doc"
+     ],
+     "note_en": "The honest-surface half A24 names. Done means: the codex operator notice queue carries the sentence and the switch report says subagent output scanning is claude and Pi only, so the n/a re-stamp on A24 codex rests on a visible statement rather than on silence."
+    },
+    {
+     "task_en": "Re-stamp the thirteen A7/A10/A24/A51/A52/A55/A56/A60/A74 cells in both files.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Done means: A51/A52 pi and claude carry the tracker marker from P6.214, A60 claude reads covered from P6.220, the nine codex and A74 cells read n/a with their structural reason plus the owner answer, and A7's codex cell stays partial with its own residue (bypassPermissions' two unconditional floors still never run)."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Codex's only native candidates here are its per-tool `approval_mode` and `default_tools_approval_mode` keys, and the wiring is not <= S: user MCP servers reach codex as ONE aggregated `[mcp_servers.sources]` proxy, so the per-server key cannot address a user's individual server, and the annotation route the capability describes is refused by owner decision D1=A."
+  },
+  {
+   "qid": "QA7",
+   "answer": "C",
+   "kind": "measure",
+   "ledger_edits": [
+    {
+     "row": "A9",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`absent ᵗ`",
+     "why_en": "Marker upgraded on tracker evidence: decision 1 of 2026-09-05 is A for claude - adopt `--restricted` natively once the SDK pin reaches 2.1.248 and emit nothing before it - and P6.3 (`6d2516799`) pins `claude-restricted-mode-collision.test.ts`, the tripwire that fails the day the flag becomes reachable; the flag scores 0 in the 2.1.247 bundle against five live flag controls."
+    },
+    {
+     "row": "A9",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 1 of 2026-09-05 (C for Pi and codex), re-confirmed by owner answer QA7=C (2026-09-11): a host-invented fourth safety vocabulary is refused, and the seven modes plus the deny rules plus the default cyclablePermissionModes are the intended path."
+    },
+    {
+     "row": "A9",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 1 of 2026-09-05 (C for Pi and codex), re-confirmed 2026-09-11: the uniform absence is the standing answer until an operator asks for it."
+    },
+    {
+     "row": "A71",
+     "column": "Claude",
+     "from": "—",
+     "to": "`n/a ʰ`",
+     "why_en": "Hand check, unchanged and now recorded: the SDK sandbox has no desktop-isolation concept, so `sandbox_private_desktop` has no claude surface; the Pi arm writes it explicitly at `packages/server-core/src/pi-harness/isolation/windows.ts` and codex inherits its own default."
+    },
+    {
+     "row": "A83",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner sitting 1.1 (status quo: the sandbox stays off) plus P6.233 (`5d5ff1229`), which refuses the failure-mode keys BY NAME with a diagnostic - a fail-closed switch guards nothing while the seatbelt wrapper emits allow-default."
+    },
+    {
+     "row": "A83",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the same ground: the six keys are present in the vendored bundle and unprojected by decision, with `packages/shared/src/config/sandbox-settings.ts` naming each rejected key rather than dropping it silently."
+    },
+    {
+     "row": "A84",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D6=B (2026-09-05), which refuses `sandbox.allowAppleEvents` PERMANENTLY and by name because it removes code-execution isolation on macOS; P6.233 lists it in `DOCUMENTED_UNCARRIED_SANDBOX_KEYS` so an operator who sets it is told."
+    },
+    {
+     "row": "A84",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D6=B (2026-09-05), same named refusal, re-confirmed by owner answer QA7=C (2026-09-11)."
+    },
+    {
+     "row": "A84",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D6=B (2026-09-05): the seatbelt profile is ours by construction, so the refusal is uniform across runtimes."
+    },
+    {
+     "row": "A85",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the owner's 2026-08-08 ruling that dropped R50's policyHelper class - a managed key naming an executable the app runs - recorded verbatim at `packages/shared/src/config/managed-approval.ts`, which also states that the sandbox category is provably empty for us and that a delivered value is stripped with a named drop."
+    },
+    {
+     "row": "A85",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the same 2026-08-08 ruling: the three binary-path keys are present in the vendored bundle and deliberately unprojected, with the strip pinned by `managed-approval.test.ts`."
+    },
+    {
+     "row": "A86",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the recorded ruling at `docs/superpowers/specs/2026-07-31-claude-coverage-map.md` row 106 plus owner sitting 1.1: the host's posture is the opposite one - a composed credential deny floor no settings layer can lift - and masking would need a TLS-terminating egress proxy no runtime of ours has."
+    },
+    {
+     "row": "A86",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the same ruling; the datum that the 2.1.224 additions ARE present at 0.3.233 and later updates the record without moving the decision."
+    },
+    {
+     "row": "A86",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused on the same ruling: rust-v0.148.0 has no credential-injection mechanism at all - `shell_environment_policy` is a filter, not an injector."
+    },
+    {
+     "row": "A87",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D8=A (2026-09-05): keep the Windows-native `unelevated` sandbox and record it honestly; provisioning codex's `elevated` path cannot be costed without the Windows rig P3.7 is parked for."
+    },
+    {
+     "row": "A87",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D8=A (2026-09-05): no WSL agent-mode selector exists and none is owed until a deployment justifies it."
+    },
+    {
+     "row": "A87",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision D8=A (2026-09-05): the selector is the ChatGPT desktop app's own, not a config key we can write."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "At the SDK lift to 2.1.248 or later, measure the claimed --restricted collision with our three settingSources and then adopt the flag on claude or record the refusal with the reading.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "host",
+      "test"
+     ],
+     "note_en": "Implements option C's first half, and the measurement comes BEFORE the adoption because the recorded reason - that `--restricted` ignores user, project and local settings files and so collides with settingSources ['user','project','local'] - describes a collision with no subject on the version we ship. Done means: one packaged arm with the flag and one without, the resolved setting sources read back per arm, and either `--restricted`/CLAUDE_CODE_RESTRICTED passed on claude (A9 claude to covered) or the collision recorded and the cell left as a decided refusal; `claude-restricted-mode-collision.test.ts` (P6.3, `6d2516799`) is the tripwire that fires on the lift."
+    },
+    {
+     "task_en": "Decide, beside D1.35's reading, whether to pin sandbox_private_desktop for codex the way the Pi harness does.",
+     "size": "S",
+     "tags": [
+      "codex",
+      "host",
+      "doc"
+     ],
+     "note_en": "Implements option C's second half. The measurement is already ordered as row D1.35 of `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` (moved there from P6.227, verdicts intact) and its done_means requires a decision written beside the reading. Done means: the effective value is read back under our managed CODEX_HOME in each of the seven permission modes and a `[windows]` block is either written by the codex config writer or deliberately not written, with the reason at the site; re-stamps A71 codex from an inherited default to a host decision."
+    },
+    {
+     "task_en": "Re-stamp the seventeen A9/A71/A83/A84/A85/A86/A87 cells as decided refusals with their owner decision named.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host",
+      "claude",
+      "codex"
+     ],
+     "note_en": "Done means: every sandbox-family cell reads n/a with the decision that refused it (sitting 1.1, D6=B, D8=A, the 2026-08-08 policyHelper ruling) and with the operator-visible diagnostic that P6.233 built - 23 documented keys rejected by name against 14 accepted - so the refusal is verifiable rather than asserted."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Every refused member of this family is reachable only through a sandbox this product ships OFF by standing owner decision (sitting 1.1), so wiring the natively-present keys would be measurably inert rather than a capability - P6.233's own row says a fail-closed switch guards nothing while the seatbelt wrapper emits allow-default - and the one member that is NOT sandbox-gated, `--restricted`, is already taken by option C."
+  },
+  {
+   "qid": "QA8",
+   "answer": "A",
+   "kind": "build",
+   "ledger_edits": [
+    {
+     "row": "A15",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.193 (`59183f274`) narrowed the project-trust drop from whole-layer to allow-only at `packages/shared/src/agent/pi-harness/permission-dsl.ts` symbol `projectTrusted`, so an untrusted project's deny and ask rules now APPLY; the row's second residue was refuted rather than built - `additionalDirectories` has one source and it is already gated."
+    },
+    {
+     "row": "A15",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.193 (`59183f274`) - the gate is in the shared compiler and is fed on the claude path through `packages/shared/src/agent/claude-agent.ts`, so the three-way outcome reproduces there."
+    },
+    {
+     "row": "A15",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.193 (`59183f274`) - fed on the codex path through `packages/shared/src/agent/codex-agent.ts` symbol `consultPermissionRules`, one of the four sites building the same PermissionsContext."
+    },
+    {
+     "row": "A17",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.492 (`7c2dd610c`) applies the page's resume table on all three runtimes (owner decision 2026-09-05, Q-den 1 = C - bypass and auto follow the table, plan is restored) with the plan divergence stated at the site and the picker sentence landed host-wide by `dfcdf6699`."
+    },
+    {
+     "row": "A17",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.492 (`7c2dd610c`), same host-side mode manager, same decision C."
+    },
+    {
+     "row": "A17",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.492 (`7c2dd610c`), same host-side mode manager, same decision C."
+    },
+    {
+     "row": "A18",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.195 (`cb7336531`) added `.codex` to `AGENT_CONFIG_DIRS` in `packages/shared/src/agent/session-filesystem-scope.ts` and to `PROTECTED_DIRECTORIES` in `packages/shared/src/agent/pi-harness/protected-paths.ts`, which is the parity the docstring already claimed."
+    },
+    {
+     "row": "A18",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.195 (`cb7336531`) - the same two host lists are the floor on claude, with the mode dependency stated where `protectedPathOutcome` returns allow under bypassPermissions."
+    },
+    {
+     "row": "A18",
+     "column": "Codex",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.195 (`cb7336531`) - the floor reaches codex through `packages/shared/src/agent/core/pre-tool-use.ts` symbol `findNonNegotiableFloors`, called at `packages/shared/src/agent/codex-agent.ts` symbol `floorVerdict`, so the cell is no longer an unmeasured no-claim."
+    },
+    {
+     "row": "A37",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.494 (`0fe1dd641`) - owner decision 2026-09-05 (Q-den 3 = A) keeps exactly mkdir, touch, mv and cp in `packages/shared/src/agent/core/pre-tool-use.ts` symbol `ACCEPT_EDITS_FILESYSTEM_COMMANDS`, says in the mode description that rm and sed keep prompting, and settles the two records that gave opposite answers."
+    },
+    {
+     "row": "A37",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.494 (`0fe1dd641`) - one host-side set for all three runtimes, both directions pinned by a test."
+    },
+    {
+     "row": "A37",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.494 (`0fe1dd641`) - the same host-side set, so the narrowing is uniform across a switch."
+    },
+    {
+     "row": "A38",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (Q-den 4 = B) and landed as a refusal by P6.495 (`0e10cbb09`): the confirmation-suppression keys are refused BY NAME for the project and local scopes, because a repository suppressing a dangerous-mode confirmation is a safety control removed by a file."
+    },
+    {
+     "row": "A38",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the same decision and commit: `skipDangerousModePermissionPrompt` is in the vendored bundle and was reachable through the setting sources we pass, and it is now refused by name along with its sibling `skipAutoPermissionPrompt`."
+    },
+    {
+     "row": "A38",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the same decision and commit: no such key exists on codex and the confirmation is ours, so the refusal is uniform."
+    },
+    {
+     "row": "A58",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner decision 2026-09-05 (Q-den 5 = A) and landed by P6.496 (`59731c0ac`): we keep the rank clamp rather than the page's ignore-the-child rule, because conformance is not worth loosening a permission floor; the safe-direction deviation is recorded in three places and pinned by a test."
+    },
+    {
+     "row": "A58",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the same decision and commit: `packages/shared/src/agent/mode-types.ts` symbol `clampPermissionModeToParent` stays the behaviour, with the deviation from `agent-sdk/permissions.md` stated in the agent-definition docs."
+    },
+    {
+     "row": "A58",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the same decision and commit: the clamp is host-side and therefore uniform on codex too."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Make the HOST refuse a project or local settings file that sets permissions.defaultMode to auto or bypassPermissions, on all three runtimes, ahead of the vendor's 2.1.257 change.",
+     "size": "M",
+     "tags": [
+      "host",
+      "pi",
+      "claude",
+      "codex",
+      "test"
+     ],
+     "note_en": "Implements option A's single new item (A16). The direction of the error is widening and the predicate is one and shared, so it belongs in the host rather than in the claude arm alone: today `defaultMode` has no scope restriction anywhere in `packages/shared/src` and we pass settingSources ['user','project','local'] to the SDK, so a repository can widen the posture on claude and nowhere else. Done means: a project or local `defaultMode` of auto or bypassPermissions is refused with a diagnostic naming the scope, a USER-scope bypassPermissions is still honoured (the control without which the rig cannot tell a scope restriction from a dead reader), and one test pins both directions; re-stamps A16 on all three."
+    },
+    {
+     "task_en": "Run the three standing MEASURE rows at the 1.36.0 release sitting and record what each shows.",
+     "size": "S",
+     "tags": [
+      "host",
+      "claude",
+      "codex",
+      "pi",
+      "test"
+     ],
+     "note_en": "P6.194 (A16 - a repo carrying a project-file bypassPermissions, per runtime, on a packaged build, with a default-mode control), P6.196 (A19 - the `.codex/rules/` probe, RESTATED by W10-h as a forbidden rule because an allow rule is unreadable behind our own gate), and P6.198 (A22 - the two non-rule floors under a permissive allowlist, with W10-h's detector correction: `firstNonNegotiableFloor` returns prompt for both floors and bypassPermissions skips the protected-path check but not the removal breaker). All three are already tagged as gating 1.36.0 under P7.5, with RS-12 and RS-13 written. Done means: A16, A19 and A22 get their verdicts from readings rather than from inference."
+    },
+    {
+     "task_en": "Re-stamp the eighteen A15/A17/A18/A37/A38/A58 cells against their landed commits and the four 2026-09-05 decisions.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Done means: the four decisions are quoted as decisions (Q-den 1 = C, 3 = A keeping OUR four commands, 4 = B for project and local, 5 = A) rather than re-asked, A18 names P6.195, and A8 stays partial with its own residue - the cross-scope contract was driven on tool RULES and never on the settings-KEY list this row is about."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "The vendor gains this refusal natively only at 2.1.257 and the bundle is 2.1.247, so there is nothing to wire today; option A builds the host predicate ahead of the bundle precisely because the documentation is the denominator for what we must accept, and the error direction is widening."
+  },
+  {
+   "qid": "QA9",
+   "answer": "B",
+   "kind": "refuse",
+   "ledger_edits": [
+    {
+     "row": "A40",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.208 (`2974fdecd` locale + `90ec49575`) - the permission card's one-action escalation, keyed on the machine-readable prompt origin P6.709 added, with the page's three carve-outs honoured."
+    },
+    {
+     "row": "A40",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.208 (`2974fdecd` + `90ec49575`) - the card is ours on every runtime, so the affordance stands on claude too."
+    },
+    {
+     "row": "A40",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.208 (`2974fdecd` + `90ec49575`) - same host-owned card, same escalation."
+    },
+    {
+     "row": "A41",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.208 closed 2026-09-09 with both arms - the No arm (P6.951/P6.963) and the Yes arm (P6.864, `588860d72` + `6cc4390ae`), where the note is QUEUED on BaseAgent and rides the next turn's user tail in a band naming whose words they are."
+    },
+    {
+     "row": "A41",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.864 (`588860d72` + `6cc4390ae`) supplies the note ONCE on `packages/shared/src/agent/base-agent.ts` because no runtime has a channel for it, so the claude arm is served by the host queue."
+    },
+    {
+     "row": "A41",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.864 (`588860d72` + `6cc4390ae`) - same host queue; codex's approval response has nowhere to put a note, which is why native-first went to step 2."
+    },
+    {
+     "row": "A43",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Marker upgraded on landed evidence: P6.209 (`2e582e822` + `c0ca68979`) built the cross-scope half of the permissions surface, with the resolver correction that `buildMergedConfig` is ADDITIVE so a duplicate rule is shown inert rather than shadowed; the residue is in-app add and remove plus working-directory management."
+    },
+    {
+     "row": "A43",
+     "column": "Claude",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same landed evidence and the same residue; the SDK exposes no resolved-rules query, so the page is the only place the resolved set can be read."
+    },
+    {
+     "row": "A43",
+     "column": "Codex",
+     "from": "`partial ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Same landed evidence and the same residue; the `[permissions.*]` tables are written by us and readable back."
+    },
+    {
+     "row": "A46",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed as the explanation rather than the toggle: P6.210 (`fa354fe3e`) records and pins the eight refusal sites that name the rule and its layer, and the owner answered in chat on 2026-09-07 that there is no toggle - always show the rule and its layer."
+    },
+    {
+     "row": "A46",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.210 (`fa354fe3e`); the vendor key `permissionExplainerEnabled` gated a model-generated command explanation rather than rule naming and is Removed in v2.1.257, so the refusal of the SETTING is named and the capability itself is ours."
+    },
+    {
+     "row": "A46",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.210 (`fa354fe3e`) - the same eight host refusal sites serve codex, pinned by a single-seam test."
+    },
+    {
+     "row": "A47",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.211 (`2d6038204`, W7-d) - a Bash rule whose `*` precedes the deciding word now emits a named diagnostic on the same sink as `claude_rule.unmatched_form`, with a correctly-positioned `*` as the control."
+    },
+    {
+     "row": "A47",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.211 (`2d6038204`) - host-uniform, one function, same sink."
+    },
+    {
+     "row": "A47",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.211 (`2d6038204`) - host-uniform, so the warning reaches a codex session too."
+    },
+    {
+     "row": "A48",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.212 (`42ad45a22`, W7-n) at the real seam `packages/shared/src/agent/mode-manager.ts`, above the bypassPermissions early return - a pkill whose pattern would match the agent's own process is refused, an unrelated pkill still runs."
+    },
+    {
+     "row": "A48",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.212 (`42ad45a22`) - the guard is in the shared mode manager, so it binds on claude."
+    },
+    {
+     "row": "A48",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.212 (`42ad45a22`) - same shared seam on codex."
+    },
+    {
+     "row": "A49",
+     "column": "Pi",
+     "from": "—",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA9=B (2026-09-11) with a named revisit trigger: the vendor's own read and search re-check arrives at 2.1.251 and the bundle is 2.1.247, so the arm is declined until the bundle is lifted past it rather than rebuilt host-side."
+    },
+    {
+     "row": "A49",
+     "column": "Claude",
+     "from": "—",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA9=B (2026-09-11): the SDK owns tool execution here and v2.1.251 adds the read and search half, so this waits on the lift; today the bundle has at most the write-path re-check."
+    },
+    {
+     "row": "A49",
+     "column": "Codex",
+     "from": "—",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by owner answer QA9=B (2026-09-11): our gate hands an approved path to the runtime's own file tools, and a host-side re-check would be a second resolver rather than a fix."
+    },
+    {
+     "row": "A75",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the owner on 2026-09-05 and CONFIRMED by owner answer QA9=B (2026-09-11) now that the re-ask condition has fired (the bundle is 2.1.247, thirteen patches past the 2.1.234 the page pinned masking to): a channel relay would be a SECOND permission authority reachable by anyone on a sender allowlist, and `RESPOND_TO_PERMISSION` stays the only remote route."
+    },
+    {
+     "row": "A75",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the same confirmed answer: no runtime has a channel route for a tool-use prompt, and the host already has a different remote-approval route."
+    },
+    {
+     "row": "A75",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by the same confirmed answer, uniformly across runtimes."
+    },
+    {
+     "row": "A82",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.232 (`39c08cc20`, W7-j) - the packaged `apps/electron/electron-builder.yml` extendInfo now carries the folder purpose strings beside `NSLocalNetworkUsageDescription`, so macOS asks with a named prompt rather than a blank one."
+    },
+    {
+     "row": "A82",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.232 (`39c08cc20`) - the responsible bundle is ours, so the strings serve every runtime."
+    },
+    {
+     "row": "A82",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.232 (`39c08cc20`) - same packaged Info.plist."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Record the three named refusals and REMOVE the A75 re-ask trigger, which has fired and changed nothing.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host",
+      "claude"
+     ],
+     "note_en": "Implements option B. Done means: A46's refused half is the TOGGLE and says so (the vendor key is Removed in v2.1.257 and gated a command explanation, not rule naming); A49 is declined with its revisit trigger written as a bundle version rather than a date; A75's 2026-09-05 refusal is confirmed at 2.1.247 and the re-ask condition is struck so the next reader does not re-open it, with `packages/core/src/protocol/channels.ts` symbol `RESPOND_TO_PERMISSION` named as the only remote permission authority."
+    },
+    {
+     "task_en": "Drive A57 and A70 as live cases at the 1.36.0 release sitting.",
+     "size": "S",
+     "tags": [
+      "pi",
+      "claude",
+      "codex",
+      "test"
+     ],
+     "note_en": "The two cells this answer leaves as honest no-claims. A57: spawn a background subagent that trips one ask rule on each runtime and read whether a prompt appears, whether it names the agent, and whether declining stops the agent or only the call. A70 is P6.226, already tagged as gating 1.36.0 under P7.5: one codex turn writing to an absolute path outside the workspace with the same write inside as the positive control, verbatim user-visible text recorded per runtime, repeated on Pi and claude because a different answer is itself a switch finding."
+    },
+    {
+     "task_en": "Re-stamp the twenty-seven A40/A41/A43/A46/A47/A48/A49/A75/A82 cells in both files.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Done means: the eighteen cells whose work landed (P6.208, P6.864, P6.209, P6.210, P6.211, P6.212, P6.232) read covered or partial with their commit named, the nine refusal cells read n/a with the owner answer and its date, and A70 stays an explicit no-claim rather than being guessed."
+    }
+   ],
+   "flip_candidate": true,
+   "flip_reason_en": "A49 is declined only because of the bundle version: the symlink re-check on the READ and SEARCH paths is the SDK's own mechanism, shipped at 2.1.251, and the host writes no code for it at all - the wiring is a bundle lift, which the owner's own rule (the runtime has it natively and the wiring is <= S, so wire it) covers. The owner's answer stands; the note is that the next SDK lift past 2.1.251 turns this refusal into a covered cell for free, and the lift is already the plan's close-out step."
+  },
+  {
+   "qid": "QA10",
+   "answer": "E",
+   "kind": "restamp",
+   "ledger_edits": [
+    {
+     "row": "A14",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.192 (`71ac3c628`, W7-v) - every agent-to-agent message is judged before delivery, and the judge rides `queryLlm` rather than the Pi-only child-session port precisely so all three runtimes run one prompt through one parser; the gate sits in `packages/server-core/src/sessions/SessionManager.ts` symbol `deliverAgentMessage` ahead of `deliverMonitorEvent`, pinned by `agent-message-guardian.test.ts`."
+    },
+    {
+     "row": "A14",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.192 (`71ac3c628`) - the same host judge runs on claude; the distinction from P3.139 is in the row's own copy, because this judge reviews OUR host-served tool rather than the SDK's permission path."
+    },
+    {
+     "row": "A14",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.192 (`71ac3c628`) - same host judge on codex; owner confirmed in chat 2026-09-07 that fail-open stays, so only deny refuses while unsure, timeout and unparsable deliver."
+    },
+    {
+     "row": "A21",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed in two halves: P6.197 (`7b7582387` the protected-path half - gh, glab and the git-dir glab-cli store read from each CLI's own source; `4ae6182bc` the redaction half), against a premise this row got doubly wrong, since a redactor already existed in-tree."
+    },
+    {
+     "row": "A21",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.197 (`7b7582387` `4ae6182bc`) - one host list and one host redaction mechanism, so the claude arm is served by the same floor."
+    },
+    {
+     "row": "A21",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.197 (`7b7582387` `4ae6182bc`) - same host floor on codex."
+    },
+    {
+     "row": "A77",
+     "column": "Pi",
+     "from": "`absent ʰ`",
+     "to": "`partial ᵗ`",
+     "why_en": "Landed behind an opt-in: P6.606 (`7a459959b`, P6.231 arm (a)) runs the fetched page through a small fast model (`runMiniCompletion`, corrected from the page's child-session reading) so the raw converted body need not enter the parent turn, with the per-fetch model call stated beside the setting; the cell stays partial because owner answer QA10=E (2026-09-11) keeps the setting at its current default."
+    },
+    {
+     "row": "A78",
+     "column": "Pi",
+     "from": "`partial ʰ`",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.231 arm (b) (`af589fdb5`, W8-k) - the search fallback branch is bounded and marked as unsummarized provider text on the same untrusted-text fence the transcript fences use; the unbounded premise was refuted at HEAD, the missing half was the FENCE."
+    },
+    {
+     "row": "A78",
+     "column": "Claude",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure: `web_search` does not execute on claude in this product (P6.148), so there is no search result for us to summarize or fence there."
+    },
+    {
+     "row": "A78",
+     "column": "Codex",
+     "from": "`absent ʰ`",
+     "to": "`n/a ᵗ`",
+     "why_en": "Refused by structure: `web_search` does not execute on codex either (P6.148), the same finding that makes A77's codex cell n/a."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-stamp the ten A14/A21/A77/A78 cells and record the one residue the answer names: the web_fetch summarising sub-context stays a setting at its current default.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "pi",
+      "host"
+     ],
+     "note_en": "Implements option E. Done means: A14 reads covered on all three from P6.192, A21 from P6.197, A78 covered on Pi and n/a on claude and codex, A77 Pi partial with the opt-in named and the cost sentence quoted (a model call per fetch), and A77's claude cell is LEFT as an explicit no-claim with its reason - the vendored binary is asserted by the page to do this and is closed, so `-` is the honest verdict rather than a guess."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "Nothing is refused for cost here that a runtime supplies natively: the claude arm of A77 is a closed binary we cannot observe (an honest no-claim, not a refusal), and A78's claude and codex cells are n/a because no web search executes on those runtimes at all."
+  },
+  {
+   "qid": "QA11",
+   "answer": "E",
+   "kind": "measure",
+   "ledger_edits": [
+    {
+     "row": "A59",
+     "column": "Claude",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.219 (`7632980a0`, W7-q) pins the COMPLEMENT rather than the intersection in `runtime-switch-costs-native-claude-tools.test.ts`, so a bundle-declared tool that neither our disallow list, our registry nor the switch-cost table knows about now fails a test; the note was corrected at landing to NINE such tools, not five."
+    },
+    {
+     "row": "A73",
+     "column": "Pi",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.229 (`9bd4019e2` `f44553032`, W7-e) - the two sentences its done_means named were built, so a user is warned before Full Access is enabled with the safer mode recommended; the row's own premise that no gate existed was refuted."
+    },
+    {
+     "row": "A73",
+     "column": "Claude",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.229 (`9bd4019e2` `f44553032`) - the warning is host-built once for all three runtimes, because no runtime exposes it to an embedder."
+    },
+    {
+     "row": "A73",
+     "column": "Codex",
+     "from": "—",
+     "to": "`covered ᵗ`",
+     "why_en": "Landed: P6.229 (`9bd4019e2` `f44553032`) - the same host warning; it was sequenced after sitting 3.1 so it does not warn about the wrong thing."
+    }
+   ],
+   "plan_rows": [
+    {
+     "task_en": "Re-run P6.219's complement rig against the vendored 0.3.247 / 2.1.247 bundle and record what it shows.",
+     "size": "S",
+     "tags": [
+      "claude",
+      "test",
+      "doc"
+     ],
+     "note_en": "Implements option E's first half. The reading behind A59 was taken at 0.3.233 and the bundle has moved fourteen patch versions, so the nine-tool complement is a reading with a date: `sdk-tools.d.ts` enumerates itself, and the rig is `apps/electron/src/renderer/components/app-shell/input/__tests__/runtime-switch-costs-native-claude-tools.test.ts`. Done means: the complement is re-derived at 2.1.247, any new member is named in the disallow list, the registry or the switch-cost table, and the reading is written beside A59 with its date."
+    },
+    {
+     "task_en": "Build the per-session scratch directory the owner decided on 2026-09-05 (D3=B), which has never had a plan row.",
+     "size": "S",
+     "tags": [
+      "host",
+      "pi",
+      "claude",
+      "codex",
+      "test"
+     ],
+     "note_en": "Implements the owner's standing decision D3=B for A81: one host-owned job directory per session, NAMED in the gate's own diagnostic, outside the workspace, torn down with the session. Native-first tier 1 on claude - the SDK already reads `CLAUDE_JOB_DIR` (2 hits in the vendored bundle against a live control, 0 files across packages and apps) - with a host-supplied equivalent on Pi and codex, which is a switch verdict owed to the gaps doc. Done means: writes there raise no prompt, the teardown and the never-re-read-into-context property are each pinned by a test, and A81 re-stamps to covered on all three."
+    },
+    {
+     "task_en": "Leave A5, A11, A72 and A76 as explicit no-claims and name where each one's measurement now lives.",
+     "size": "XS",
+     "tags": [
+      "doc",
+      "host"
+     ],
+     "note_en": "Implements option E's honesty half. A11's two unmeasured arms are NOT closed by P6.69: P6.70 and P6.71 were MOVED on 2026-09-10 to `docs/superpowers/plans/2026-09-10-integrations-and-authorization.md` rows D1.6 and D1.7 with verdicts intact, so the pi and claude cells stay `-` with that pointer. A5's claude cell, A72's claude and codex cells and A76's residue (on a BYO connection, does the key reach the subprocess env and can the model's own Bash read it back, with the gateway path as the control) are recorded as owed measurements rather than filled."
+    }
+   ],
+   "flip_candidate": false,
+   "flip_reason_en": "No refusal here rests on declining a native mechanism: A81 is a BUILD the owner already decided (D3=B) and its claude arm takes the runtime's own `CLAUDE_JOB_DIR` exactly as native-first prescribes, while A5, A11, A72 and A76 are unmeasured cells rather than refused ones."
+  }
+ ]
+}
