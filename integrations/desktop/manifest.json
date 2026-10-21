@@ -530,29 +530,30 @@
     }
   },
   "files": {
-    "apps/electron/src/main/odysseus-integration.ts": "odysseus-integration.ts",
-    "apps/electron/src/main/odysseus-terminal.ts": "odysseus-terminal.ts",
-    "apps/electron/src/renderer/components/plugins/RoleSkillsCatalog.tsx": "RoleSkillsCatalog.tsx",
-    "apps/electron/src/renderer/lib/odysseus-skills.ts": "odysseus-skills.ts",
-    "apps/electron/src/renderer/data/odysseus-skills.json": "odysseus-skills.json",
-    "apps/electron/src/renderer/components/icons/OdysseusPortrait.tsx": "OdysseusPortrait.tsx",
-    "apps/electron/resources/themes/odysseus.json": "odysseus-theme.json",
-    "apps/electron/src/renderer/components/knowledge/KnowledgePage.tsx": "KnowledgePage.tsx",
-    "apps/electron/src/shared/odysseus-knowledge-types.ts": "odysseus-knowledge-types.ts",
-    "apps/electron/src/renderer/components/knowledge/knowledge-pan.ts": "knowledge-pan.ts"
+    "apps/electron/src/main/odysseus-integration.ts": "main/odysseus-integration.ts",
+    "apps/electron/src/main/odysseus-terminal.ts": "main/odysseus-terminal.ts",
+    "apps/electron/src/renderer/components/plugins/RoleSkillsCatalog.tsx": "renderer/components/plugins/RoleSkillsCatalog.tsx",
+    "apps/electron/src/renderer/lib/odysseus-skills.ts": "renderer/lib/odysseus-skills.ts",
+    "apps/electron/src/renderer/data/odysseus-skills.json": "renderer/data/odysseus-skills.json",
+    "apps/electron/src/renderer/components/icons/OdysseusPortrait.tsx": "renderer/components/icons/OdysseusPortrait.tsx",
+    "apps/electron/resources/themes/odysseus.json": "assets/odysseus-theme.json",
+    "apps/electron/src/renderer/components/knowledge/KnowledgePage.tsx": "renderer/components/knowledge/KnowledgePage.tsx",
+    "apps/electron/src/shared/odysseus-knowledge-types.ts": "shared/odysseus-knowledge-types.ts",
+    "apps/electron/src/renderer/components/knowledge/knowledge-pan.ts": "renderer/components/knowledge/knowledge-pan.ts",
+    "apps/electron/src/renderer/components/knowledge/knowledge-layout.ts": "renderer/components/knowledge/knowledge-layout.ts"
   },
   "binaryFiles": {
-    "apps/electron/src/renderer/assets/odysseus-knight.jpg": "odysseus-knight.jpg",
+    "apps/electron/src/renderer/assets/odysseus-knight.jpg": "assets/odysseus-knight.jpg",
     "apps/electron/resources/icon.png": {
-      "template": "odysseus-icon.png",
+      "template": "assets/odysseus-icon.png",
       "previousSha256": "fd3155e532cdda356b31df4561aa75dbddcb60eaea988f04ef3a1eee1e86fb98"
     },
     "apps/electron/resources/icon.icns": {
-      "template": "odysseus-icon.icns",
+      "template": "assets/odysseus-icon.icns",
       "previousSha256": "f431f470ec35483ea3f635a57a3ab3138d68ae079e5aff9ebe04ed8805da60a7"
     },
     "apps/electron/resources/icon.ico": {
-      "template": "odysseus-icon.ico",
+      "template": "assets/odysseus-icon.ico",
       "previousSha256": "ba61d26185400006f00db9ac2f821c184299d632ffd45fc4f3112e65d189b095"
     }
   },

@@ -1,0 +1,538 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {
+  mkdtempSync,
+  mkdirSync,
+  writeFileSync,
+  readFileSync,
+  existsSync,
+  rmSync,
+  statSync,
+  symlinkSync,
+  realpathSync,
+} from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join, dirname } from 'node:path';
+import { syncPersonal } from '../../tools/personal-sync.mjs';
+import { PersonalTransaction, privateWrite } from '../../tools/personal/store.mjs';
+import { stableUuid, activeCliChain } from '../../tools/personal/chats.mjs';
+function fixture(t) {
+  const root = mkdtempSync(join(realpathSync(tmpdir()), 'odysseus-personal-'));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const cliHome = join(root, 'cli'),
+    desktopHome = join(root, 'desktop'),
+    privateDir = join(root, 'private');
+  for (const p of [cliHome, desktopHome]) mkdirSync(p);
+  put(join(cliHome, 'settings.json'), { extensions: { keep: true } });
+  put(join(desktopHome, 'config.json'), {
+    activeWorkspaceId: 'workspace-one',
+    workspaceRefs: [{ id: 'workspace-one', name: 'Workspace' }],
+  });
+  return {
+    root,
+    cliHome,
+    desktopHome,
+    privateDir,
+    options: {
+      cliHome,
+      desktopHome,
+      privateDir,
+      settleMs: 0,
+      defaultCwd: join(root, 'project'),
+    },
+  };
+}
+function put(p, v) {
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, typeof v === 'string' ? v : JSON.stringify(v, null, 2) + '\n');
+}
+const doc = (p) => JSON.parse(readFileSync(p, 'utf8'));
+const lines = (p) => readFileSync(p, 'utf8').trim().split('\n').map(JSON.parse);
+const date = '2026-10-01T00:00:00.000Z';
+function chat(f) {
+  const id = stableUuid('fixture-cli'),
+    cwd = join(f.root, 'project');
+  const path = join(
+    f.cliHome,
+    'projects',
+    cwd.replace(/[^a-zA-Z0-9]/g, '-'),
+    'chats',
+    id + '.jsonl',
+  );
+  const user = {
+    uuid: stableUuid('one'),
+    parentUuid: null,
+    sessionId: id,
+    timestamp: date,
+    type: 'user',
+    cwd,
+    version: 'test',
+    message: { role: 'user', parts: [{ text: 'Найди причину ошибки' }] },
+  };
+  const assistant = {
+    uuid: stableUuid('two'),
+    parentUuid: user.uuid,
+    sessionId: id,
+    timestamp: date,
+    type: 'assistant',
+    cwd,
+    version: 'test',
+    message: { role: 'model', parts: [{ text: 'Проверена причина' }] },
+  };
+  put(path, [user, assistant].map(JSON.stringify).join('\n') + '\n');
+  return { path, id, cwd, user, assistant };
+}
+
+test('preferences and compatible model definitions sync both ways without changing unknown settings', (t) => {
+  const f = fixture(t);
+  put(join(f.desktopHome, 'preferences.json'), {
+    uiLanguage: 'ru',
+    odysseusColorScheme: 'dark',
+    notes: 'keep',
+  });
+  put(join(f.cliHome, 'settings.json'), {
+    extensions: { keep: true },
+    modelProviders: {
+      openai: [
+        {
+          id: 'model-a',
+          name: 'Model A',
+          baseUrl: 'http://127.0.0.1:1234/v1',
+          envKey: 'LOCAL_KEY',
+          capabilities: { vision: true },
+        },
+      ],
+    },
+    model: { name: 'model-a', baseUrl: 'http://127.0.0.1:1234/v1' },
+    security: { auth: { selectedType: 'openai' }, important: 'keep' },
+  });
+  let r = syncPersonal(f.root, f.options);
+  assert.deepEqual(r.conflicts, []);
+  const c = doc(join(f.cliHome, 'settings.json')),
+    d = doc(join(f.desktopHome, 'config.json'));
+  assert.equal(c.general.language, 'ru');
+  assert.equal(c.ui.theme, 'Odysseus Dark');
+  assert.equal(c.security.important, 'keep');
+  assert.equal(d.llmConnections[0].models[0].supportsImages, true);
+  assert.equal(d.defaultLlmConnection, d.llmConnections[0].slug);
+  assert.equal(r.bindings[0].envKeys[0], 'LOCAL_KEY');
+  assert.equal(statSync(join(f.privateDir, 'state.json')).mode & 0o777, 0o600);
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+  d.llmConnections[0].models[0].name = 'Изменено в Desktop';
+  put(join(f.desktopHome, 'config.json'), d);
+  r = syncPersonal(f.root, f.options);
+  assert.deepEqual(r.conflicts, []);
+  assert.equal(
+    doc(join(f.cliHome, 'settings.json')).modelProviders.openai[0].name,
+    'Изменено в Desktop',
+  );
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+});
+test('different edits to the same preference are reported and neither side is overwritten', (t) => {
+  const f = fixture(t);
+  put(join(f.cliHome, 'settings.json'), { general: { language: 'en' } });
+  syncPersonal(f.root, f.options);
+  put(join(f.cliHome, 'settings.json'), { general: { language: 'ru' } });
+  put(join(f.desktopHome, 'preferences.json'), { uiLanguage: 'zh-CN' });
+  const r = syncPersonal(f.root, f.options);
+  assert.ok(r.conflicts.includes('ui-language'));
+  assert.equal(doc(join(f.cliHome, 'settings.json')).general.language, 'ru');
+  assert.equal(doc(join(f.desktopHome, 'preferences.json')).uiLanguage, 'zh-CN');
+});
+test('native subscription/OAuth providers are retained and never converted into API-key connections', (t) => {
+  const f = fixture(t);
+  const path = join(f.desktopHome, 'config.json'),
+    d = doc(path);
+  d.llmConnections = [
+    {
+      slug: 'chatgpt',
+      providerType: 'codex-runtime',
+      authType: 'oauth',
+      models: ['gpt-test'],
+    },
+  ];
+  d.defaultLlmConnection = 'chatgpt';
+  put(path, d);
+  const r = syncPersonal(f.root, f.options);
+  assert.ok(r.unsupported.includes('desktop-connection:chatgpt'));
+  assert.equal(doc(join(f.cliHome, 'settings.json')).modelProviders, undefined);
+  assert.equal(doc(path).defaultLlmConnection, 'chatgpt');
+});
+test('chat sync creates native transcripts, continues in either app and stays idempotent', (t) => {
+  const f = fixture(t),
+    c = chat(f);
+  let r = syncPersonal(f.root, f.options);
+  assert.deepEqual(r.conflicts, []);
+  assert.equal(r.updatedChats.length, 1);
+  const state = doc(join(f.privateDir, 'state.json')),
+    pair = Object.values(state.chats)[0];
+  let d = lines(pair.desktopPath);
+  assert.equal(d[0].workspaceId, 'workspace-one');
+  assert.equal(d[0].messageCount, 2);
+  assert.equal(d[1].content, 'Найди причину ошибки');
+  assert.equal(d[0].sdkSessionId, undefined);
+  assert.equal(d[0].permissionMode, 'default');
+  assert.ok(d[0].transferredSessionSummary.includes('Проверена причина'));
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+  d.push({
+    id: 'new-desktop-message',
+    type: 'user',
+    content: 'Теперь добавь проверку',
+    timestamp: Date.parse(date) + 1000,
+  });
+  d[0].messageCount++;
+  d[0].sdkSessionId = 'foreign-sdk-anchor';
+  put(pair.desktopPath, d.map(JSON.stringify).join('\n') + '\n');
+  r = syncPersonal(f.root, f.options);
+  assert.deepEqual(r.conflicts, []);
+  const cli = lines(c.path);
+  assert.equal(cli[2].message.parts[0].text, 'Теперь добавь проверку');
+  assert.equal(cli[2].parentUuid, c.assistant.uuid);
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+});
+test('simultaneous chat continuations become a conflict; original streams and raw archives survive', (t) => {
+  const f = fixture(t),
+    c = chat(f);
+  syncPersonal(f.root, f.options);
+  const pair = Object.values(doc(join(f.privateDir, 'state.json')).chats)[0];
+  const a = lines(c.path);
+  a.push({
+    ...c.user,
+    uuid: stableUuid('cli-new'),
+    parentUuid: c.assistant.uuid,
+    message: { role: 'user', parts: [{ text: 'CLI branch' }] },
+  });
+  put(c.path, a.map(JSON.stringify).join('\n') + '\n');
+  const b = lines(pair.desktopPath);
+  b.push({
+    id: 'desktop-new',
+    type: 'user',
+    content: 'Desktop branch',
+    timestamp: Date.parse(date),
+  });
+  put(pair.desktopPath, b.map(JSON.stringify).join('\n') + '\n');
+  const r = syncPersonal(f.root, f.options);
+  assert.ok(r.conflicts.some((k) => k.startsWith('chat-messages:')));
+  assert.equal(lines(c.path).at(-1).message.parts[0].text, 'CLI branch');
+  assert.equal(lines(pair.desktopPath).at(-1).content, 'Desktop branch');
+  assert.ok(existsSync(join(f.privateDir, 'conversations', pair.id, 'sources.json')));
+});
+test('active sessions and partial JSONL writes are deferred; removing a chat does not erase its counterpart', (t) => {
+  const f = fixture(t),
+    c = chat(f);
+  syncPersonal(f.root, { ...f.options, protectedCli: [c.id] });
+  let pairs = Object.values(doc(join(f.privateDir, 'state.json')).chats);
+  assert.equal(existsSync(pairs[0].desktopPath), true);
+  syncPersonal(f.root, f.options);
+  const pair = Object.values(doc(join(f.privateDir, 'state.json')).chats)[0];
+  const before = readFileSync(pair.desktopPath);
+  put(c.path, readFileSync(c.path, 'utf8') + '{"uuid":');
+  const r = syncPersonal(f.root, f.options);
+  assert.ok(r.deferred.some((s) => s.startsWith('partial-chat:')));
+  assert.deepEqual(readFileSync(pair.desktopPath), before);
+  rmSync(c.path);
+  const next = syncPersonal(f.root, f.options);
+  assert.ok(next.deferred.some((s) => s.startsWith('removed-chat-preserved:')));
+  assert.deepEqual(readFileSync(pair.desktopPath), before);
+});
+test('CLI dead branches are excluded by parent ancestry, and tool calls remain informational text', (t) => {
+  const f = fixture(t),
+    c = chat(f),
+    rows = lines(c.path);
+  rows.push({
+    ...c.assistant,
+    uuid: stableUuid('dead'),
+    parentUuid: c.assistant.uuid,
+    message: { role: 'model', parts: [{ text: 'dead' }] },
+  });
+  rows.push({
+    ...c.assistant,
+    uuid: stableUuid('active'),
+    parentUuid: c.user.uuid,
+    message: {
+      role: 'model',
+      parts: [
+        {
+          functionCall: {
+            name: 'run_shell',
+            args: { command: 'never execute' },
+          },
+        },
+      ],
+    },
+  });
+  put(c.path, rows.map(JSON.stringify).join('\n') + '\n');
+  assert.equal(activeCliChain(rows).length, 2);
+  syncPersonal(f.root, f.options);
+  const pair = Object.values(doc(join(f.privateDir, 'state.json')).chats)[0],
+    d = lines(pair.desktopPath);
+  assert.equal(d[2].type, 'assistant');
+  assert.ok(d[2].content.includes('never execute'));
+  assert.equal(d[2].toolName, undefined);
+  assert.ok(!d.some((m) => m.content === 'dead'));
+});
+test('Desktop attachments are archived losslessly and existing grants are not copied', (t) => {
+  const f = fixture(t),
+    path = join(f.desktopHome, 'sessions', 'workspace-one', 'native-chat', 'session.jsonl');
+  put(
+    path,
+    [
+      {
+        id: 'native-chat',
+        workspaceId: 'workspace-one',
+        workingDirectory: join(f.root, 'project'),
+        name: 'Files',
+        permissionMode: 'bypassPermissions',
+        createdAt: 1,
+        lastUsedAt: 2,
+      },
+      {
+        id: 'msg',
+        type: 'user',
+        content: 'File',
+        timestamp: 2,
+        attachments: [{ name: 'file.bin' }],
+      },
+    ]
+      .map(JSON.stringify)
+      .join('\n') + '\n',
+  );
+  const resource = join(dirname(path), 'attachments', 'file.bin');
+  mkdirSync(dirname(resource));
+  writeFileSync(resource, Buffer.from([0, 1, 2, 255]));
+  syncPersonal(f.root, f.options);
+  const pair = Object.values(doc(join(f.privateDir, 'state.json')).chats)[0];
+  const refs = doc(join(f.privateDir, 'conversations', pair.id, 'sources.json'));
+  assert.deepEqual(
+    readFileSync(join(f.privateDir, 'objects', refs.resources[resource])),
+    Buffer.from([0, 1, 2, 255]),
+  );
+  assert.ok(!readFileSync(pair.cliPath, 'utf8').includes('bypassPermissions'));
+  assert.equal(lines(path)[0].permissionMode, 'bypassPermissions');
+});
+test('dry run does not write native data, and concurrent changes abort before apply', (t) => {
+  const f = fixture(t);
+  put(join(f.desktopHome, 'preferences.json'), { uiLanguage: 'ru' });
+  const before = readFileSync(join(f.cliHome, 'settings.json'));
+  const r = syncPersonal(f.root, { ...f.options, check: true });
+  assert.ok(r.changes.length);
+  assert.deepEqual(readFileSync(join(f.cliHome, 'settings.json')), before);
+  assert.equal(existsSync(join(f.privateDir, 'state.json')), false);
+  const tx = new PersonalTransaction(f.privateDir);
+  tx.putJson(join(f.cliHome, 'settings.json'), { new: true });
+  put(join(f.cliHome, 'settings.json'), { concurrent: true });
+  assert.throws(() => tx.commit(), /changed during sync/);
+  assert.deepEqual(doc(join(f.cliHome, 'settings.json')), { concurrent: true });
+});
+test('invalid JSON, symlink escapes and credential-bearing endpoint URLs fail without overwriting profiles', (t) => {
+  const f = fixture(t),
+    path = join(f.cliHome, 'settings.json');
+  put(path, '{broken');
+  assert.throws(() => syncPersonal(f.root, f.options), /Invalid personal JSON/);
+  put(path, {
+    modelProviders: {
+      openai: [{ id: 'x', baseUrl: 'https://user:password@example.com/v1' }],
+    },
+  });
+  assert.throws(() => syncPersonal(f.root, f.options), /without embedded credentials/);
+  put(path, { general: { language: 'en' } });
+  symlinkSync(path, join(f.desktopHome, 'preferences.json'));
+  assert.throws(() => syncPersonal(f.root, f.options), /symbolic links/);
+});
+
+test('protected source exports without rewriting native bytes; incoming edits wait', (t) => {
+  const f = fixture(t),
+    c = chat(f),
+    original = readFileSync(c.path);
+  syncPersonal(f.root, { ...f.options, protectedCli: [c.id] });
+  const pair = Object.values(doc(join(f.privateDir, 'state.json')).chats)[0];
+  assert.deepEqual(readFileSync(c.path), original);
+  const rows = lines(pair.desktopPath);
+  rows.push({ id: 'other', type: 'user', content: 'Incoming', timestamp: 10 });
+  put(pair.desktopPath, rows.map(JSON.stringify).join('\n') + '\n');
+  const report = syncPersonal(f.root, { ...f.options, protectedCli: [c.id] });
+  assert.ok(report.deferred.includes(`active-chat:${pair.id}`));
+  assert.deepEqual(readFileSync(c.path), original);
+  syncPersonal(f.root, f.options);
+  assert.ok(readFileSync(c.path, 'utf8').includes('Incoming'));
+});
+test('Desktop portable path tokens expand once and literal token families round trip', (t) => {
+  const f = fixture(t),
+    c = chat(f),
+    rows = lines(c.path);
+  rows[0].message.parts = [{ text: 'Literal {{SESSION_PATH}} and {{SESSION_PATH~ESC}}' }];
+  put(c.path, rows.map(JSON.stringify).join('\n') + '\n');
+  syncPersonal(f.root, f.options);
+  const pair = Object.values(doc(join(f.privateDir, 'state.json')).chats)[0],
+    desktop = lines(pair.desktopPath);
+  assert.equal(desktop[1].content, 'Literal {{SESSION_PATH~ESC}} and {{SESSION_PATH~ESC~ESC}}');
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+  desktop.push({
+    id: 'path-message',
+    type: 'user',
+    timestamp: 10,
+    content: 'Actual {{SESSION_PATH}} / literal {{SESSION_PATH~ESC}}',
+  });
+  put(pair.desktopPath, desktop.map(JSON.stringify).join('\n') + '\n');
+  syncPersonal(f.root, f.options);
+  const result = lines(c.path).find((r) => r.message?.parts?.[0]?.text?.startsWith('Actual'));
+  assert.equal(
+    result.message.parts[0].text,
+    `Actual ${dirname(pair.desktopPath)} / literal {{SESSION_PATH}}`,
+  );
+});
+test('API credentials use authenticated encryption, rotate in both directions, and conflict without leaking', async (t) => {
+  const { syncCredentials, credentialEnvironment, readSecrets } =
+    await import('../../tools/personal/secrets.mjs');
+  const f = fixture(t);
+  put(join(f.cliHome, 'settings.json'), {
+    env: { EXPLICIT_KEY: 'user-secret-a' },
+  });
+  const bindings = [
+      {
+        id: 'test-api',
+        slug: 'api',
+        auth: 'openai',
+        envKeys: ['EXPLICIT_KEY'],
+      },
+    ],
+    values = new Map();
+  const manager = {
+    getLlmApiKey: async (slug) => values.get(slug) || null,
+    setLlmApiKey: async (slug, key) => {
+      values.set(slug, key);
+    },
+  };
+  assert.deepEqual((await syncCredentials(f, bindings, manager)).conflicts, []);
+  assert.equal(values.get('api'), 'user-secret-a');
+  assert.ok(!readFileSync(join(f.privateDir, 'secrets.enc'), 'utf8').includes('user-secret-a'));
+  assert.equal(statSync(join(f.privateDir, 'bridge.key')).mode & 0o777, 0o600);
+  values.set('api', 'user-secret-b');
+  await syncCredentials(f, bindings, manager);
+  assert.equal(readSecrets(f.privateDir)['test-api'], 'user-secret-b');
+  // Desktop rotation overrides an unchanged old settings value in the child environment.
+  assert.equal(credentialEnvironment(f, bindings).EXPLICIT_KEY, 'user-secret-b');
+  put(join(f.cliHome, 'settings.json'), {
+    env: { EXPLICIT_KEY: 'user-secret-c' },
+  });
+  values.set('api', 'user-secret-d');
+  const conflict = await syncCredentials(f, bindings, manager);
+  assert.equal(conflict.conflicts.length, 1);
+  assert.ok(!JSON.stringify(conflict).includes('user-secret'));
+  const encrypted = readFileSync(join(f.privateDir, 'secrets.enc'));
+  encrypted[encrypted.length - 5] ^= 1;
+  writeFileSync(join(f.privateDir, 'secrets.enc'), encrypted);
+  assert.throws(() => readSecrets(f.privateDir));
+});
+test('unsupported default connection remains selected when another API model is imported', (t) => {
+  const f = fixture(t);
+  put(join(f.desktopHome, 'config.json'), {
+    activeWorkspaceId: 'workspace-one',
+    defaultLlmConnection: 'subscription',
+    llmConnections: [
+      {
+        slug: 'subscription',
+        providerType: 'codex-runtime',
+        authType: 'oauth',
+      },
+    ],
+  });
+  put(join(f.cliHome, 'settings.json'), {
+    modelProviders: {
+      openai: [{ id: 'model-a', baseUrl: 'https://example.invalid/v1' }],
+    },
+    model: { name: 'model-a' },
+    security: { auth: { selectedType: 'openai' } },
+  });
+  syncPersonal(f.root, f.options);
+  assert.equal(doc(join(f.desktopHome, 'config.json')).defaultLlmConnection, 'subscription');
+});
+test('system appearance has an explicitly absent CLI counterpart and remains idempotent', (t) => {
+  const f = fixture(t);
+  put(join(f.desktopHome, 'preferences.json'), {
+    uiLanguage: 'ru',
+    odysseusColorScheme: 'system',
+  });
+  syncPersonal(f.root, f.options);
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+  assert.equal(doc(join(f.cliHome, 'settings.json')).ui.theme, 'Odysseus Dark');
+  assert.equal(doc(join(f.desktopHome, 'preferences.json')).odysseusColorScheme, 'system');
+});
+test('environment credentials keep the native variable name; ambiguous accounts are never collapsed', (t) => {
+  const f = fixture(t);
+  put(join(f.desktopHome, 'config.json'), {
+    activeWorkspaceId: 'workspace-one',
+    llmConnections: [
+      {
+        slug: 'environment',
+        providerType: 'pi',
+        piAuthProvider: 'openai',
+        authType: 'environment',
+        models: ['model-one'],
+      },
+    ],
+  });
+  syncPersonal(f.root, f.options);
+  assert.equal(
+    doc(join(f.cliHome, 'settings.json')).modelProviders.openai[0].envKey,
+    'OPENAI_API_KEY',
+  );
+  const settings = doc(join(f.cliHome, 'settings.json'));
+  settings.modelProviders.openai.push({
+    id: 'second-account',
+    envKey: 'OTHER_ACCOUNT',
+  });
+  put(join(f.cliHome, 'settings.json'), settings);
+  const before = readFileSync(join(f.desktopHome, 'config.json'));
+  const result = syncPersonal(f.root, f.options);
+  assert.ok(result.conflicts.some((c) => c.startsWith('ambiguous-cli-credentials:')));
+  assert.deepEqual(readFileSync(join(f.desktopHome, 'config.json')), before);
+});
+test('native CLI snake_case runtime sidecar protects a living session from incoming writes', (t) => {
+  const f = fixture(t),
+    c = chat(f);
+  syncPersonal(f.root, f.options);
+  const pair = Object.values(doc(join(f.privateDir, 'state.json')).chats)[0],
+    rows = lines(pair.desktopPath),
+    before = readFileSync(c.path);
+  rows.push({
+    id: 'incoming',
+    type: 'user',
+    content: 'Wait for CLI release',
+    timestamp: 10,
+  });
+  put(pair.desktopPath, rows.map(JSON.stringify).join('\n') + '\n');
+  put(c.path.replace(/\.jsonl$/, '.runtime.json'), {
+    schema_version: 1,
+    pid: process.pid,
+    session_id: c.id,
+    work_dir: c.cwd,
+    state: { phase: 'idle' },
+  });
+  const r = syncPersonal(f.root, f.options);
+  assert.ok(r.deferred.includes(`active-chat:${pair.id}`));
+  assert.deepEqual(readFileSync(c.path), before);
+});
+test('CLI and Desktop exchange Odysseus light/dark without restoring legacy colors', (t) => {
+  const f = fixture(t);
+  syncPersonal(f.root, f.options);
+  let prefs = doc(join(f.desktopHome, 'preferences.json'));
+  prefs.odysseusColorScheme = 'light';
+  put(join(f.desktopHome, 'preferences.json'), prefs);
+  syncPersonal(f.root, f.options);
+  let cli = doc(join(f.cliHome, 'settings.json'));
+  assert.equal(cli.ui.theme, 'Odysseus Light');
+  cli.ui.theme = 'Odysseus Dark';
+  put(join(f.cliHome, 'settings.json'), cli);
+  syncPersonal(f.root, f.options);
+  assert.equal(doc(join(f.desktopHome, 'preferences.json')).odysseusColorScheme, 'dark');
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+  cli = doc(join(f.cliHome, 'settings.json'));
+  cli.ui.theme = 'Ayu';
+  put(join(f.cliHome, 'settings.json'), cli);
+  syncPersonal(f.root, f.options);
+  syncPersonal(f.root, f.options);
+  assert.equal(doc(join(f.cliHome, 'settings.json')).ui.theme, 'Ayu');
+  assert.equal(syncPersonal(f.root, f.options).changes.length, 0);
+});

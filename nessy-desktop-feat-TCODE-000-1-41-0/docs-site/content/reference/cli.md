@@ -373,3 +373,7 @@ The optional Odysseus source build adds **Open in CLI** and **Synchronize CLI �
 The local bridge synchronizes compatible transcript text, model catalogs and API credentials, UI language, and light/dark appearance every five seconds. Shared project skills and MCP configuration use Odysseus's existing profile synchronizer. Conflicting branches remain separate; incoming edits to a session with a live agent wait until release or restart. Attachments and original transcripts are retained in the private archive, while tool history is informational text. Native permissions, SDK sessions, OAuth subscriptions and unsupported settings remain native.
 
 Private data and backups live outside both applications in `~/.odysseus` (override: `ODYSSEUS_DATA_DIR`). Desktop API keys are read and written through the verified native credential manager; a private AES-GCM bridge cache supplies only the child CLI environment. Independent source updates retain these files. Reapply the parent `tools/install-desktop-bridge.mjs` integration and rebuild Desktop after replacing its source snapshot; a stock installed-app update does not carry these source modifications.
+
+## Local Odysseus launchers
+
+From the project folder, open `Запустить Odysseus CLI.command` or `Запустить Odysseus Desktop.command`. These macOS launchers locate an installed Node.js 22+ and resolve the component relative to the current project folder. The `tools/run-component.mjs` and `tools/odysseus.mjs` command entry points remain available.

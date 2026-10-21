@@ -1,6 +1,6 @@
 {
   "name": "nessy-desktop",
-  "version": "1.42.1-odysseus.9",
+  "version": "1.42.1-odysseus.10",
   "license": "Apache-2.0",
   "description": "Desktop AI agent client for T-Bank workflows",
   "type": "module",

@@ -356,3 +356,7 @@ Server-side переменные задокументированы в [Headless
 | `Send timeout — no completion event received` | turn шёл дольше `--send-timeout` | поднимите `--send-timeout` |
 
 См. также task-oriented [гайд CLI client](../server/cli) и страницу настройки [Headless Server](../server/headless).
+
+## Локальный запуск Odysseus
+
+В папке проекта используйте «Запустить Odysseus CLI.command» или «Запустить Odysseus Desktop.command». На macOS эти файлы находят установленный Node.js 22+ и запускают компонент из текущего расположения проекта. Путь к конкретному пользовательскому профилю Node.js задавать не требуется. Команды `tools/run-component.mjs` и `tools/odysseus.mjs` сохраняются для запуска из терминала.
