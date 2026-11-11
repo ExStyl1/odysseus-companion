@@ -1,3 +1,4 @@
+import { findNessy } from './nessy-command.mjs';
 import {customScenarios} from './custom-scenarios.mjs';
 import {jobQueue} from './job-queue.mjs';
 import {regressionReport} from './regression-report.mjs';
@@ -162,7 +163,7 @@ export async function createPlatform(paths,{runtimeFactory=paths.localN8n === fa
         skills:list.length,plugins:plugins(paths).length,mcp:mcp.length,enabledMcp:mcp.filter(m=>m.enabled).length,
         graphNodes:graphData(paths.knowledge).graph.nodes.length,graphLinks:graphData(paths.knowledge).graph.links.length,
         projects:Object.values(registry.projects),automation:config,rag:ragIndexes(paths),
-        dependencies:{graphify:existsSync(paths.knowledge.python),nessy:existsSync(join(paths.root,'nessy-cli-master/dist/cli.js')),dp:existsSync(join(paths.profile,'dp_latest/dp'))}};
+        dependencies:{graphify:existsSync(paths.knowledge.python),nessy:Boolean(findNessy(paths.env)),dp:existsSync(join(paths.profile,'dp_latest/dp'))}};
     }
     if(mode==='workflowLibrary')return transfer.status();
     if(mode==='workflowImport')return transfer.ingest(input);

@@ -304,19 +304,20 @@ export function InstalledTools() {
           <Panel title="Ваши инструменты — в Nessy">
             <p>
               Навыки, роли субагентов и MCP устанавливаются одним действием. Модели, авторизация и
-              разрешения сохраняются.
+              разрешения сохраняются. Перед установкой закройте Nessy.
             </p>
             <div className="toolbar">
               <Action
                 id="install-managed"
                 className="primary"
+                disabled={!install.activeProfile || install.activeProfile === install.managedProfile}
                 onClick={async () => {
-                  const r = await call('installExtension');
+                  const r = await call('installExtension', { profile: install.activeProfile, integrationOnly: true });
                   app.refresh();
                   app.detail('Расширение установлено', r);
                 }}
               >
-                Установить в Nessy Companion
+                Установить в обнаруженный профиль Nessy
               </Action>
               <Action
                 id="install-existing"

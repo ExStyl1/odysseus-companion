@@ -17,33 +17,23 @@ function isProfile(path) {
   }
 }
 
-export function preferredNessyProfile(paths) {
+function discoverProfile(paths, userDirectory = homedir()) {
   const connection = json(join(paths.home, 'nessy-connection.json'));
-  const attached = json(join(paths.home, 'attached-profiles.json')).profiles || [];
-  const path = connection.profile;
-  return path && attached.some(row => row.path === path) && isProfile(path) ? path : paths.profile;
+  const explicit = paths.env.NESSY_HOME;
+  return [isAbsolute(explicit || '') ? explicit : undefined, connection.profile,
+    join(userDirectory, '.nessy'), join(userDirectory, '.nessy-agent')]
+    .filter(Boolean).map(path => resolve(path))
+    .find(path => path !== paths.profile && isProfile(path));
 }
 
-export function connectDiscoveredNessy(paths, installer, userDirectory = homedir()) {
-  const stateFile = join(paths.home, 'nessy-connection.json');
-  const previous = json(stateFile);
-  const explicit = paths.env.NESSY_HOME;
-  const candidates = [
-    previous.profile,
-    isAbsolute(explicit || '') ? explicit : undefined,
-    join(userDirectory, '.nessy'),
-    join(userDirectory, '.nessy-agent'),
-  ];
-  const profile = candidates.filter(Boolean).map(path => resolve(path))
-    .find(path => path !== paths.profile && isProfile(path));
-  if (!profile) return null;
-  const current = installer.status().profiles.find(row => row.path === profile);
-  if (current && previous.profile === profile && previous.root === paths.root && previous.version === current.version &&
-    json(join(profile, 'settings.json')).mcpServers?.['odysseus-companion']?.args?.[0] === join(paths.root, 'tools/companion/mcp.mjs') &&
-    current.version === json(join(paths.root, 'companion-release.json')).version) return previous;
+export function preferredNessyProfile(paths) {
+  return discoverProfile(paths) || paths.profile;
+}
 
-  const installed = installer.install({ profile, integrationOnly: true });
-  const connection = { profile, root: paths.root, version: json(join(paths.root, 'companion-release.json')).version, connectedAt: new Date().toISOString() };
-  privateWrite(stateFile, JSON.stringify(connection));
-  return { ...connection, restartNessy: installed.restartNessy };
+export function connectDiscoveredNessy(paths, userDirectory = homedir()) {
+  const profile = discoverProfile(paths, userDirectory);
+  if (!profile) return null;
+  const attached = json(join(paths.home, 'attached-profiles.json')).profiles || [];
+  privateWrite(join(paths.home, 'nessy-connection.json'), JSON.stringify({ profile }));
+  return { profile, extensionInstalled: attached.some(row => row.path === profile) };
 }

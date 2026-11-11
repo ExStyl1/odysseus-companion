@@ -14,12 +14,12 @@ export function installationManager(paths,{node=process.execPath,onAttach=()=>{}
  const registry=join(paths.home,'attached-profiles.json');
  const version=json(join(paths.root,'companion-release.json')).version||json(join(paths.root,'companion/package.json')).version||'unknown';
  const read=()=>json(registry,{profiles:[]});
- function status(){return {managedProfile:paths.profile,activeProfile:preferredNessyProfile(paths),profiles:read().profiles,bundled:true};}
+ function status(){return {managedProfile:paths.profile,activeProfile:preferredNessyProfile(paths),profiles:read().profiles,bundled:false};}
  function install(input={}) {
   const target=resolve(input.profile||paths.profile);noLinks(target);
   if(!existsSync(target)||!lstatSync(target).isDirectory()||!existsSync(join(target,'settings.json')))throw Error('Выберите папку профиля Nessy с settings.json');
   if(realpathSync(target)!==target)throw Error('Профиль должен быть обычной папкой');
-  const ext=join(target,'extensions',owned),file=join(target,'settings.json');noLinks(ext);noLinks(file);const settings=json(file),prior=json(join(ext,'companion-owned.json'));
+  const ext=join(target,'extensions',owned),file=join(target,'settings.json');noLinks(ext);noLinks(file);const originalSettings=readFileSync(file,'utf8'),settings=JSON.parse(originalSettings),prior=json(join(ext,'companion-owned.json'));
   if(existsSync(ext)&&prior.owner!==owned)throw Error('Имя расширения уже занято; существующие файлы сохранены');
   if(settings.mcpServers?.[owned]&&!prior.owner&&!JSON.stringify(settings.mcpServers[owned]).includes('tools/companion/mcp.mjs'))throw Error('MCP odysseus-companion уже принадлежит другой установке');
   if(prior.hashes)for(const [rel,h]of Object.entries(prior.hashes))if(rel.startsWith('/')||rel.split('/').includes('..')||!existsSync(join(ext,rel))||ownedHash(join(ext,rel))!==h)throw Error('Файлы расширения изменены вручную: '+rel+'. Сохраните изменения перед обновлением.');
@@ -74,11 +74,11 @@ export function installationManager(paths,{node=process.execPath,onAttach=()=>{}
     settings.hooks[event]=(settings.hooks[event]||[]).filter(g=>!JSON.stringify(g).includes('--companion-extension'));
     settings.hooks[event].push({hooks:[{type:'command',command:hook+' '+mode+' --companion-extension',timeout:10000}]});
    }
-   const backup=join(paths.home,'install-backups',digest(target).slice(0,12)+'-'+Date.now()+'.json');privateWrite(backup,readFileSync(file,'utf8'));
+   const backup=join(paths.home,'install-backups',digest(target).slice(0,12)+'-'+Date.now()+'.json');privateWrite(backup,originalSettings);
    const old=ext+'.previous';if(existsSync(old))rmSync(old,{recursive:true});if(existsSync(ext))renameSync(ext,old);
-   try{renameSync(stage,ext);privateWrite(file,JSON.stringify(settings,null,2));}catch(e){rmSync(ext,{recursive:true,force:true});if(existsSync(old))renameSync(old,ext);throw e;}
+   try{renameSync(stage,ext);if(readFileSync(file,'utf8')!==originalSettings)throw Error('Настройки Nessy изменились во время установки. Закройте Nessy и повторите.');privateWrite(file,JSON.stringify(settings,null,2));}catch(e){rmSync(ext,{recursive:true,force:true});if(existsSync(old))renameSync(old,ext);throw e;}
    rmSync(old,{recursive:true,force:true});
-   const state=read();state.profiles=state.profiles.filter(p=>p.path!==target);state.profiles.push({path:target,installedAt:new Date().toISOString(),version,skills:count,addedMcp,backup});privateWrite(registry,JSON.stringify(state));onAttach(target);
+   const state=read();state.profiles=state.profiles.filter(p=>p.path!==target);state.profiles.push({path:target,installedAt:new Date().toISOString(),version,skills:count,addedMcp,backup});privateWrite(registry,JSON.stringify(state));if(target!==paths.profile)privateWrite(join(paths.home,'nessy-connection.json'),JSON.stringify({profile:target}));onAttach(target);
    return {installed:true,profile:target,skills:count,addedMcp,restartNessy:true,backup};
   }finally{rmSync(stage,{recursive:true,force:true});}
  }

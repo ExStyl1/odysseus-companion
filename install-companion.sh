@@ -3,9 +3,11 @@ set -eu
 
 fail() { printf '%s\n' "$*" >&2; exit 1; }
 
-repo=ExStyl1/WORK
-version=0.8.7
+repo=ExStyl1/odysseus-companion
+version=0.8.8
 archive=
+require_trust=no
+local_build=no
 checksum=
 destination="$HOME/Applications"
 launch=yes
@@ -21,9 +23,10 @@ while [ "$#" -gt 0 ]; do
         --destination) destination=$2 ;;
       esac
       shift 2 ;;
+    --local-build) local_build=yes; shift ;;
     --no-open) launch=no; shift ;;
     -h|--help)
-      printf '%s\n' 'sh install-companion.sh [--version 0.8.7] [--repo owner/repo] [--no-open]' \
+      printf '%s\n' 'sh install-companion.sh [--version 0.8.8] [--repo owner/repo] [--local-build] [--no-open]' \
         'Для файла на диске: --archive /путь/к/архиву.zip [--checksum /путь/к/архиву.zip.sha256]'
       exit 0 ;;
     *) fail "Неизвестный аргумент: $1" ;;
@@ -65,6 +68,11 @@ work=$(mktemp -d "$destination/.companion-install.XXXXXX")
 
 asset="Odysseus-Companion-$version-macos-arm64.zip"
 if [ -z "$archive" ]; then
+  if [ "$local_build" = yes ]; then
+    asset="Odysseus-Companion-$version-macos-arm64-local.zip"
+  else
+    require_trust=yes
+  fi
   tag="companion-v$version"
   if command -v gh >/dev/null 2>&1 && gh auth status --hostname github.com >/dev/null 2>&1; then
     gh release download "$tag" --repo "$repo" --dir "$work" --pattern "$asset" --pattern "$asset.sha256"
@@ -98,6 +106,10 @@ plist="$candidate/Contents/Info.plist"
 /usr/bin/file -b "$candidate/Contents/MacOS/Electron" | /usr/bin/grep -q arm64 ||
   fail 'Архитектура приложения не подходит.'
 /usr/bin/codesign --verify --deep --strict "$candidate" || fail 'Подпись приложения не прошла проверку.'
+if [ "$require_trust" = yes ]; then
+  /usr/sbin/spctl --assess --type execute "$candidate" ||
+    fail 'Gatekeeper не подтвердил доверие к сборке. Установка остановлена.'
+fi
 
 if [ -e "$target" ]; then
   [ -d "$target" ] || fail 'Путь установки занят.'

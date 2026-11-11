@@ -30,7 +30,7 @@ test('fresh standalone app initializes without the development folder and retain
  }finally{rmSync(base,{recursive:true,force:true})}
 });
 
-test('standalone connects an existing .nessy once and preserves its settings and history', () => {
+test('standalone discovers an existing .nessy without writing its settings or history', () => {
  const base=mkdtempSync(join(realpathSync(tmpdir()),'companion-discovery-'));
  const root=join(base,'platform'), profile=join(base,'.nessy');
  const paths=companionPaths(root,{ODYSSEUS_COMPANION_HOME:join(base,'companion'),ODYSSEUS_COMPANION_STANDALONE:'1'});
@@ -50,7 +50,8 @@ test('standalone connects an existing .nessy once and preserves its settings and
   assert.deepEqual(after.permissions,settings.permissions);
   assert.deepEqual(after.mcpServers.existing,settings.mcpServers.existing);
   assert.equal(after.mcpServers.unrelated,undefined);
-  assert.equal(after.hooks.Stop.length,2);
+  assert.deepEqual(after,settings);
+  assert.equal(first.nessyConnection.extensionInstalled,false);
   assert.equal(readFileSync(join(profile,'projects/example/chats/history.jsonl'),'utf8'),'existing history');
   prepareStandalone(paths,{userDirectory:base});
   assert.equal(readFileSync(join(profile,'settings.json'),'utf8'),current);

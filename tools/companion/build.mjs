@@ -14,7 +14,7 @@ const output=join(root,'dist/companion');mkdirSync(output,{recursive:true});
 const source=join(root,'companion/node_modules/electron/dist/Electron.app');
 const target=join(output,'Odysseus Companion.app'),prepared=join(root,'.odysseus/companion-runtime/payload');
 if(!existsSync(source))throw Error('Установите Electron: npm install --prefix companion');
-if(!existsSync(join(prepared,'python/run'))||!existsSync(join(prepared,'cli/dist/cli.js')))prepareRuntime(root, prepared);
+if(!existsSync(join(prepared,'python/run')))prepareRuntime(root, prepared);
 const stage=join(output,'companion-stage-'+randomUUID()+'.app');
 console.log('Сборка самостоятельного приложения…');
 cpSync(source,stage,{recursive:true,dereference:false,verbatimSymlinks:true});
@@ -33,14 +33,13 @@ copyDataTree(join(root,'integrations/n8n'),join(payload,'integrations/n8n'));
 for(const name of ['skills','agents','tool-icons'])copyDataTree(join(root,'companion',name),join(payload,'companion',name));
 for(const name of ['catalog-ru.json','skill-purposes-ru.json','agent-presets.json','learning-guide.json'])cpSync(join(root,'companion',name),join(payload,'companion',name));
 writeFileSync(join(payload,'odysseus.json'),JSON.stringify({schemaVersion:1,sharedDirectory:'shared',components:{cli:{source:'nessy-cli-master',command:['nessy']}}}));
-writeFileSync(join(payload,'companion-release.json'),JSON.stringify({name:'Odysseus Companion',version,standalone:true,localN8n:false}));
+writeFileSync(join(payload,'companion-release.json'),JSON.stringify({name:'Odysseus Companion',version,standalone:true,localN8n:false,bundledNessy:false}));
 console.log('Копирование зависимостей MCP…');
 copyMcpRuntime(join(root,'nessy-cli-master'),join(payload,'mcp'));
-console.log('Копирование автономных Python, Graphify и Nessy…');
+console.log('Копирование автономных Python и Graphify…');
 copyDataTree(join(prepared,'python'),join(payload,'python'));
 writeFileSync(join(payload,'python/run'),'#!/bin/sh\nunset PYTHONHOME PYTHONPATH\nexport PYTHONNOUSERSITE=1\nexec "$(dirname "$0")/bin/python3" -I -B "$@"\n');
 chmodSync(join(payload,'python/run'),0o755);
-copyDataTree(join(prepared,'cli'),join(payload,'nessy-cli-master'));
 const npmRoot=resolve(dirname(process.execPath),'../lib/node_modules/npm');
 copyDataTree(npmRoot,join(payload,'npm'));rmSync(join(payload,'npm/npmrc'),{force:true});
 mkdirSync(join(payload,'bin'),{recursive:true});
@@ -54,11 +53,11 @@ mkdirSync(seed,{recursive:true});
 writeFileSync(join(seed,'settings.json'),JSON.stringify({permissions:{allow:[]}},null,2));
 cpSync(join(root,'companion/companion.icns'),join(resources,'companion.icns'));
 const plist=join(stage,'Contents/Info.plist');
-for(const [key,value]of Object.entries({CFBundleIdentifier:'app.odysseus.companion',CFBundleName:'Odysseus Companion',CFBundleDisplayName:'Odysseus Companion',CFBundleShortVersionString:version,CFBundleVersion:'41',CFBundleIconFile:'companion.icns'})){
+for(const [key,value]of Object.entries({CFBundleIdentifier:'app.odysseus.companion',CFBundleName:'Odysseus Companion',CFBundleDisplayName:'Odysseus Companion',CFBundleShortVersionString:version,CFBundleVersion:'42',CFBundleIconFile:'companion.icns'})){
  const r=spawnSync('/usr/bin/plutil',['-replace',key,'-string',value,plist],{encoding:'utf8'});if(r.status!==0)throw Error(r.stderr);
 }
 console.log('Проверка автономных движков…');
-for(const [command,args]of [[join(resources,'node'),[join(payload,'nessy-cli-master/dist/cli.js'),'--version']],[join(payload,'python/run'),['-c','import graphify,mcp,ssl,sqlite3; print("Python/Graphify OK")']]]){
+for(const [command,args]of [[join(payload,'python/run'),['-c','import graphify,mcp,ssl,sqlite3; print("Python/Graphify OK")']]]){
  const r=spawnSync(command,args,{encoding:'utf8',timeout:90000,env:{HOME:process.env.HOME,PATH:join(resources,'..')+':/usr/bin:/bin',TMPDIR:process.env.TMPDIR||'/tmp'}});if(r.status!==0)throw Error(r.stderr||r.error?.message||'Runtime check failed');console.log(r.stdout.trim());
 }
 console.log('Локальная подпись приложения…');

@@ -69,7 +69,7 @@ export function prepareStandalone(paths,{legacyHome,previousRoot,node=process.ex
  }else migrationWarnings.push(...(prior.migrationWarnings||[]).filter(message=>!message.startsWith('Подключение Nessy:')));
  let nessyConnection=null;
  try {
-   nessyConnection=connectDiscoveredNessy(paths,installationManager(paths,{node}),userDirectory);
+   nessyConnection=connectDiscoveredNessy(paths,userDirectory);
  } catch (error) {
    migrationWarnings.push('Подключение Nessy: '+error.message);
  }
