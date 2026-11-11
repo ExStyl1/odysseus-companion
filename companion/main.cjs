@@ -17,6 +17,19 @@ function request(mode,input={}) {
   return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{pending.delete(id);reject(Error('Операция ещё не завершена; проверьте состояние'))},240000);pending.set(id,{resolve,reject,timer});child.send({id,mode,input});});
 }
 function trusted(event){if(!window||event.sender!==window.webContents||event.senderFrame!==window.webContents.mainFrame)throw Error('Недоверенное окно');}
+const { checkForUpdate, installedVersion, releaseUrl } = require('./updates.cjs');
+ipcMain.handle('companion:version', event => {
+  trusted(event);
+  return installedVersion;
+});
+ipcMain.handle('companion:check-update', event => {
+  trusted(event);
+  return checkForUpdate();
+});
+ipcMain.handle('companion:open-release', async (event, version) => {
+  trusted(event);
+  await shell.openExternal(releaseUrl(version));
+});
 ipcMain.handle('companion:call',async(event,mode,input)=>{trusted(event);if(!modes.has(mode))throw Error('Недоступная операция');return request(mode,input)});
 ipcMain.handle('companion:copy-result',async(event,input)=>{trusted(event);const formatted=require('./result-format.cjs').formatResult(input);require('electron').clipboard.write(formatted);return {copied:true,format:input.format};});
 ipcMain.handle('companion:task-run',async(event,input)=>{trusted(event);const prepared=await request('taskPreview',input);const selected=await dialog.showOpenDialog(window,{title:'Рабочий проект для выбранного набора',properties:['openDirectory']});if(selected.canceled)return {cancelled:true};const script=require('./native-launch.cjs').scenarioCommand({root:config.root,node:config.node,home,cwd:selected.filePaths[0],standalone:config.standalone,prompt:prepared.preparedPrompt,allowedMcpNames:prepared.allowedMcpNames,skillIds:prepared.skills.map(s=>s.id),readOnly:true});const folder=join(home,'launches');mkdirSync(folder,{recursive:true,mode:0o700});const file=join(folder,'Task-'+require('node:crypto').randomUUID()+'.command');require('node:fs').writeFileSync(file,script,{mode:0o700});const error=await shell.openPath(file);if(error)throw Error(error);return {opened:true,executionVerified:false};});

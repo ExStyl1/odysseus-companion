@@ -36,6 +36,7 @@ import { AutomationPage } from './pages/AutomationPage';
 import { RagPage } from './pages/RagPage';
 import { AppearancePage } from './pages/AppearancePage';
 import { Learning } from './pages/LearningPage';
+import { UpdatesPage } from './pages/UpdatesPage';
 import { ToolIcons } from './pages/ToolIcons';
 import { themes, useAppearance, useSpotlight } from './theme';
 import './ui.css';
@@ -49,6 +50,7 @@ const pages = {
   mcp: 'MCP и плагины',
   agents: 'Субагенты',
   appearance: 'Оформление',
+  updates: 'Обновления',
 };
 const tabs: Record<string, [string, string][]> = {
   overview: [
@@ -95,6 +97,7 @@ const headings: Record<string, [string, string]> = {
   skills: ['Библиотека навыков', 'Инструкции для ваших рабочих задач.'],
   mcp: ['MCP и плагины', 'Инструменты, которые расширяют возможности Nessy.'],
   agents: ['Команда субагентов', 'От исследования до проверки — у каждого этапа своя роль.'],
+  updates: ['Обновления', 'Проверьте, доступен ли новый выпуск Companion.'],
   appearance: ['Ваше пространство', 'Настройте оформление под свой рабочий ритм.'],
   learning: ['Как работать с Companion', 'Выберите урок и попробуйте действие в приложении.'],
 };
@@ -223,6 +226,8 @@ function Route() {
       return <AgentsPage />;
     case 'n8n':
       return <AutomationPage />;
+    case 'updates':
+      return <UpdatesPage />;
     case 'appearance':
       return <Appearance />;
     default:

@@ -29,6 +29,7 @@ const navIcons: Record<string, ReactNode> = {
       <path d="M3 20v-2a6 6 0 0 1 12 0v2m2-16a3 3 0 0 1 0 6m2 4a5 5 0 0 1 2 4v2" />
     </>
   ),
+  updates: <path d="M20 11a8 8 0 0 0-14-5L3 9m0-5v5h5m-4 4a8 8 0 0 0 14 5l3-3m0 5v-5h-5" />,
   appearance: (
     <>
       <circle cx="8" cy="8" r=".8" />

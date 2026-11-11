@@ -13,5 +13,8 @@ contextBridge.exposeInMainWorld('companion',{
   runChat:input=>ipcRenderer.invoke('companion:chat-run',input),
   openNessy:()=>ipcRenderer.invoke('companion:nessy'),
   openCorporateN8n:id=>ipcRenderer.invoke('companion:corporate-n8n',id),
+  version:()=>ipcRenderer.invoke('companion:version'),
+  checkUpdate:()=>ipcRenderer.invoke('companion:check-update'),
+  openRelease:version=>ipcRenderer.invoke('companion:open-release',version),
   openN8n:()=>ipcRenderer.invoke('companion:n8n'),
 });

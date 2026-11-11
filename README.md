@@ -2,13 +2,13 @@
 
 Companion объединяет локальную базу знаний, сценарии и задачи. Приложение подключается к Nessy через MCP и открывает рабочие процессы корпоративного n8n.
 
-На Mac с Apple Silicon установите [выпуск 0.8.8](https://github.com/ExStyl1/odysseus-companion/releases/tag/companion-v0.8.8):
+На Mac с Apple Silicon установите [выпуск 0.8.9](https://github.com/ExStyl1/odysseus-companion/releases/tag/companion-v0.8.9):
 
 ```sh
-( d=$(mktemp -d) && curl -fsSL https://github.com/ExStyl1/odysseus-companion/releases/download/companion-v0.8.8/install-companion.sh -o "$d/install-companion.sh" && sh "$d/install-companion.sh" --local-build )
+( d=$(mktemp -d) && curl -fsSL https://github.com/ExStyl1/odysseus-companion/releases/download/companion-v0.8.9/install-companion.sh -o "$d/install-companion.sh" && sh "$d/install-companion.sh" --local-build )
 ```
 
-Nessy устанавливается отдельно. Проверьте, что команда `nessy --version` работает в Терминале. Сборка Companion 0.8.8 подписана локально, macOS может заблокировать первый запуск.
+Nessy устанавливается отдельно. Проверьте, что команда `nessy --version` работает в Терминале. Сборка Companion 0.8.9 подписана локально, macOS может заблокировать первый запуск.
 
 Для сборки на macOS нужны Node.js 22+, npm и uv. Установите зависимости Nessy CLI, Electron и интерфейса Companion:
 
