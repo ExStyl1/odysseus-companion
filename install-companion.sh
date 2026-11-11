@@ -4,7 +4,7 @@ set -eu
 fail() { printf '%s\n' "$*" >&2; exit 1; }
 
 repo=ExStyl1/odysseus-companion
-version=0.8.9
+version=0.8.8
 archive=
 require_trust=no
 local_build=no
@@ -26,7 +26,7 @@ while [ "$#" -gt 0 ]; do
     --local-build) local_build=yes; shift ;;
     --no-open) launch=no; shift ;;
     -h|--help)
-      printf '%s\n' 'sh install-companion.sh [--version 0.8.9] [--repo owner/repo] [--local-build] [--no-open]' \
+      printf '%s\n' 'sh install-companion.sh [--version 0.8.8] [--repo owner/repo] [--local-build] [--no-open]' \
         'Для файла на диске: --archive /путь/к/архиву.zip [--checksum /путь/к/архиву.zip.sha256]'
       exit 0 ;;
     *) fail "Неизвестный аргумент: $1" ;;
@@ -74,28 +74,37 @@ if [ -z "$archive" ]; then
     require_trust=yes
   fi
   tag="companion-v$version"
-  if command -v gh >/dev/null 2>&1 && gh auth status --hostname github.com >/dev/null 2>&1; then
+  base="https://github.com/$repo/releases/download/$tag"
+  printf '%s\n' '[1/5] Загрузка Companion с GitHub…' >&2
+  if /usr/bin/curl --fail --silent --show-error --location --retry 2 --proto '=https' --proto-redir '=https' --output "$work/$asset.sha256" "$base/$asset.sha256" 2>"$work/download-error"; then
+    # curl's terminal meter shows percent, speed, and estimated time left.
+    if [ -t 2 ]; then set -- --show-error; else set -- --silent --show-error; fi
+    /usr/bin/curl "$@" --fail --location --retry 2 --proto '=https' --proto-redir '=https' --output "$work/$asset" "$base/$asset" ||
+      fail 'Не удалось скачать архив Companion.'
+  elif command -v gh >/dev/null 2>&1 && gh auth status --hostname github.com >/dev/null 2>&1; then
+    printf '%s\n' 'Загрузка через GitHub CLI…' >&2
     gh release download "$tag" --repo "$repo" --dir "$work" --pattern "$asset" --pattern "$asset.sha256"
   else
-    base="https://github.com/$repo/releases/download/$tag"
-    for item in "$asset" "$asset.sha256"; do
-      /usr/bin/curl --fail --silent --show-error --location --retry 2 --proto '=https' --proto-redir '=https' --output "$work/$item" "$base/$item" ||
-        fail 'Выпуск недоступен. Для приватного репозитория войдите через gh auth login или скачайте архив и SHA256 на GitHub.'
-    done
+    cat "$work/download-error" >&2
+    fail 'Выпуск недоступен. Для приватного репозитория войдите через gh auth login или скачайте архив и SHA256 на GitHub.'
   fi
   archive="$work/$asset"
   checksum="$work/$asset.sha256"
 else
   checksum=${checksum:-"$archive.sha256"}
+  printf '%s\n' '[1/5] Используем локальный архив.' >&2
 fi
 
+printf '%s\n' '[2/5] Проверка контрольной суммы…' >&2
 [ -f "$archive" ] && [ -f "$checksum" ] || fail 'Не найден архив или файл SHA256.'
 expected=$(/usr/bin/awk 'NR==1 {print tolower($1)}' "$checksum")
 printf '%s\n' "$expected" | /usr/bin/grep -Eq '^[0-9a-f]{64}$' || fail 'Некорректный SHA256.'
 actual=$(/usr/bin/shasum -a 256 < "$archive" | /usr/bin/awk '{print $1}')
 [ "$actual" = "$expected" ] || fail 'Контрольная сумма архива не совпала.'
 
+printf '%s\n' '[3/5] Распаковка приложения…' >&2
 /usr/bin/ditto -x -k "$archive" "$work/extracted"
+printf '%s\n' '[4/5] Проверка версии и подписи…' >&2
 candidate="$work/extracted/Odysseus Companion.app"
 [ -d "$candidate" ] && [ ! -L "$candidate" ] || fail 'В архиве нет Odysseus Companion.app.'
 plist="$candidate/Contents/Info.plist"
@@ -111,6 +120,7 @@ if [ "$require_trust" = yes ]; then
     fail 'Gatekeeper не подтвердил доверие к сборке. Установка остановлена.'
 fi
 
+printf '%s\n' '[5/5] Установка приложения…' >&2
 if [ -e "$target" ]; then
   [ -d "$target" ] || fail 'Путь установки занят.'
   [ "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$target/Contents/Info.plist")" = app.odysseus.companion ] ||
@@ -124,5 +134,6 @@ fi
 mv "$candidate" "$target"
 printf 'Установлен Companion %s в %s\n' "$version" "$target"
 if [ "$launch" = yes ]; then
+  printf '%s\n' 'Открываем Companion…' >&2
   /usr/bin/open "$target"
 fi
