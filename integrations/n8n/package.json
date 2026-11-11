@@ -1,0 +1,8 @@
+{
+  "name": "odysseus-local-n8n",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "n8n": "2.35.7"
+  }
+}

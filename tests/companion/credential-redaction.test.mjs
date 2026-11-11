@@ -1,0 +1,13 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {scrubText} from '../../tools/personal/redact-text.mjs';
+import {mkdtempSync,writeFileSync,rmSync,realpathSync} from 'node:fs';import {join} from 'node:path';import {tmpdir} from 'node:os';
+import {companionPaths} from '../../tools/companion/paths.mjs';import {memoryService} from '../../tools/companion/memory.mjs';import {indexKnowledge,searchKnowledge} from '../../tools/automations/knowledge.mjs';
+test('quoted JSON credentials, environment tokens and URLs are masked without masking usage counters',()=>{
+ const input=JSON.stringify({api_key:'json-secret',password:"a'b\"c",accessToken:'access-secret',totalTokens:123,tokenCount:7});const result=scrubText(input);const parsed=JSON.parse(result);assert.equal(parsed.api_key,'[скрыто]');assert.equal(parsed.password,'[скрыто]');assert.equal(parsed.totalTokens,123);assert.equal(parsed.tokenCount,7);assert.equal(scrubText(result),result);
+ const text=scrubText('NESSY_CLI_DP_AUTH_TOKEN=env-secret\nhttps://user:pass@host/path?api_key=url-secret&x=1\nAuthorization: Bearer bearer-secret');for(const secret of ['env-secret','url-secret','bearer-secret','user:pass'])assert.ok(!text.includes(secret));assert.equal(scrubText(text),text);
+ const jwt=Buffer.from('{"alg":"HS256"}').toString('base64url')+'.'+Buffer.from('{"sub":"fixture-user"}').toString('base64url')+'.fixtureSignature';assert.equal(scrubText('Token in log: '+jwt),'Token in log: [скрыто]');
+});
+test('source credentials are masked before chunking and optional embeddings, including long values crossing chunk boundaries',async()=>{
+ const root=mkdtempSync(join(realpathSync(tmpdir()),'rag-redaction-')),paths=companionPaths(root,{ODYSSEUS_COMPANION_HOME:join(root,'state'),ODYSSEUS_COMPANION_STANDALONE:'1'});
+ try{const memory=memoryService(paths),entry=memory.capture({title:'Source',text:'Initial document'}),published=memory.edit({id:entry.id,action:'approve'});const secret='private-value-'+('z'.repeat(3000));writeFileSync(published.publishedSource,'safe_context_42\n'+JSON.stringify({api_key:secret})+'\nsafe_context_42');const embedded=[];await indexKnowledge(paths.automation,{embeddingModel:'fixture'},async texts=>{embedded.push(...texts);return texts.map(()=>[1,0]);});assert.ok(embedded.some(t=>t.includes('[скрыто]')));assert.ok(embedded.every(t=>!t.includes('private-value-')&&!t.includes('zzzzzzzzzz')));const result=await searchKnowledge(paths.automation,{query:'safe_context_42'});assert.ok(result.matches.length);assert.ok(result.matches.every(m=>!m.text.includes('zzzzzzzzzz')));
+ }finally{rmSync(root,{recursive:true,force:true});}
+});

@@ -20,6 +20,14 @@
     "knowledge:status": "node tools/graphify.mjs doctor",
     "knowledge:sync": "node tools/knowledge-obsidian-sync.mjs",
     "setup": "node tools/first-run.mjs",
-    "build:mac": "node tools/distribution/build-macos.mjs"
+    "build:mac": "node tools/distribution/build-macos.mjs",
+    "n8n:setup": "node tools/install-automation-runtime.mjs",
+    "n8n:start": "node tools/automation-service.mjs start",
+    "companion:setup": "node tools/companion/setup.mjs",
+    "companion:build": "node tools/companion/build.mjs",
+    "companion:package": "node tools/companion/package-release.mjs",
+    "companion:ui": "npm run build --prefix companion/frontend",
+    "companion:ui:watch": "npm run dev --prefix companion/frontend",
+    "companion:test": "node --test tests/companion/*.test.mjs"
   }
 }

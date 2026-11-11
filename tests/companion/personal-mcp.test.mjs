@@ -1,0 +1,23 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {mkdtempSync,mkdirSync,writeFileSync,readFileSync,rmSync,realpathSync} from 'node:fs';import {join,resolve} from 'node:path';import {spawn} from 'node:child_process';import {tmpdir} from 'node:os';import {companionPaths} from '../../tools/companion/paths.mjs';
+test('personal workspace full request cycle over real MCP preserves chat logs and rejects stale writes',async()=>{
+ const root=mkdtempSync(join(realpathSync(tmpdir()),'personal-mcp-')),p=companionPaths(root),file=join(p.profile,'projects/p/chats/session.jsonl');mkdirSync(join(file,'..'),{recursive:true});mkdirSync(join(root,'.odysseus'),{recursive:true});writeFileSync(join(root,'.odysseus/bundled-runtime.json'),JSON.stringify({n8n:resolve('.odysseus/n8n-runtime')}));writeFileSync(join(p.profile,'settings.json'),'{}');
+ const original=JSON.stringify({type:'user',sessionId:'12345678-1234-1234-1234-123456789abc',timestamp:new Date().toISOString(),message:{parts:[{text:'Проверить API'}]}})+'\n';writeFileSync(file,original);
+ const child=spawn(process.execPath,['tools/companion/mcp.mjs'],{env:{...process.env,ODYSSEUS_ROOT:root,ODYSSEUS_COMPANION_HOME:p.home},stdio:['pipe','pipe','pipe']});let buf='',id=0;const pending=new Map();child.stderr.resume();child.stdout.on('data',b=>{buf+=b;let n;while((n=buf.indexOf('\n'))>=0){const s=JSON.parse(buf.slice(0,n));buf=buf.slice(n+1);pending.get(s.id)?.(s);}});
+ const request=(method,params)=>new Promise((resolve,reject)=>{const key=++id,t=setTimeout(()=>reject(Error('timeout')),15000);pending.set(key,r=>{clearTimeout(t);pending.delete(key);resolve(r)});child.stdin.write(JSON.stringify({jsonrpc:'2.0',id:key,method,params})+'\n');});
+ const call=async(name,args={})=>{const r=(await request('tools/call',{name,arguments:args})).result;if(!r||r.isError)throw Error(r?.content?.[0]?.text||'MCP error');return JSON.parse(r.content[0].text);};
+ try{
+ await request('initialize',{protocolVersion:'2024-11-05',capabilities:{},clientInfo:{name:'test',version:'1'}});child.stdin.write(JSON.stringify({jsonrpc:'2.0',method:'notifications/initialized'})+'\n');
+ const b=(await call('companion_boards')).boards[0];const chat=(await call('companion_chat_list')).data[0];assert.ok(chat);
+ const task=await call('companion_task_save',{boardId:b.id,title:'Моя задача',description:'Сохранить',chatIds:[chat.id]});assert.equal(task.columnId,b.columns[0].id);
+ const changed=await call('companion_task_save',{boardId:b.id,id:task.id,expectedUpdatedAt:task.updatedAt,title:'Новое имя'});assert.equal(changed.description,'Сохранить');assert.deepEqual(changed.chatIds,[chat.id]);
+ await assert.rejects(call('companion_task_save',{boardId:b.id,id:task.id,expectedUpdatedAt:'stale',title:'Потерять правку'}));
+ let moved=await call('companion_task_action',{boardId:b.id,id:task.id,expectedUpdatedAt:changed.updatedAt,action:'move',columnId:b.columns[1].id});assert.equal(moved.columnId,b.columns[1].id);
+ moved=await call('companion_task_action',{boardId:b.id,id:task.id,expectedUpdatedAt:moved.updatedAt,action:'archive'});assert.equal(moved.archived,true);
+ await call('companion_task_action',{boardId:b.id,id:task.id,expectedUpdatedAt:moved.updatedAt,action:'restore'});
+ await call('companion_chat_rate',{id:chat.id,rating:5});assert.equal((await call('companion_chat_read',{id:chat.id})).rating,5);await assert.rejects(call('companion_chat_rate',{id:chat.id,rating:6}));
+ const folder=await call('companion_chat_organize',{action:'create',name:'Работа'});await call('companion_chat_organize',{action:'move',id:chat.id,folderId:folder.id});assert.equal((await call('companion_chat_list',{folder:folder.id})).total,1);
+ await call('companion_chat_organize',{action:'rename',folderId:folder.id,name:'Проект'});await call('companion_chat_organize',{action:'mode',mode:'project'});await assert.rejects(call('companion_chat_organize',{action:'move',id:chat.id}));
+ await call('companion_chat_organize',{action:'delete',folderId:folder.id});await call('companion_chat_rate',{id:chat.id,rating:0});assert.equal((await call('companion_chat_list')).total,1);assert.equal(readFileSync(file,'utf8'),original);
+ const latest=(await call('companion_boards')).boards[0];await assert.rejects(call('companion_board_save',{id:b.id,name:'Old',columns:b.columns,expectedRevision:b.revision}));await call('companion_board_save',{id:b.id,name:'Рабочая доска',columns:b.columns,expectedRevision:latest.revision});
+ }finally{if(child.exitCode===null){child.kill();await new Promise(r=>child.once('exit',r));}rmSync(root,{recursive:true,force:true});}
+});

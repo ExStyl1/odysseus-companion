@@ -13,6 +13,7 @@ import {
 import { join, resolve, relative, dirname } from 'node:path';
 import { homedir } from 'node:os';
 import { randomUUID } from 'node:crypto';
+import { restorePluginBundles } from './plugin-cache.mjs';
 import { discoverNessy } from './discovery.mjs';
 import { managedProfiles } from './paths.mjs';
 import { bundleData } from './bundle.mjs';
@@ -170,6 +171,15 @@ export function ensureFirstRun(root, options = {}) {
         rmSync(installLock, { recursive: true });
       }
     }
+    const recoveryMarker = join(privateDir, 'profiles/plugin-cache-recovery-v1.json');
+    if (!options.check && (options.repairPlugins || !existsSync(recoveryMarker))) {
+      const recoveryLock = join(privateDir, 'install.lock');
+      acquire(recoveryLock);
+      try {
+        const result = restorePluginBundles(existing.desktopHome, existing.state.sources?.desktop || []);
+        privateWrite(recoveryMarker, JSON.stringify({ completedAt: new Date().toISOString(), ...result }));
+      } finally { rmSync(recoveryLock, { recursive: true }); }
+    }
     return {
       ...existing.state,
       alreadyInstalled: true,
@@ -303,6 +313,8 @@ export function ensureFirstRun(root, options = {}) {
     for (const plan of inventories)
       for (const entry of plan.entries)
         copyFile(entry, join(stagePath(plan.destination), entry.path), mappings, report);
+    const pluginRecovery = restorePluginBundles(join(stage, 'desktop'), discovery.profiles.desktop.slice(0, 1));
+    privateWrite(join(stage, 'plugin-cache-recovery-v1.json'), JSON.stringify({ completedAt: new Date().toISOString(), ...pluginRecovery }));
     const workspaceBase = join(stage, 'desktop/workspaces');
     const skillDestinations = [join(stage, 'cli/skills'), join(stage, 'imported/global-skills')];
     if (existsSync(workspaceBase))

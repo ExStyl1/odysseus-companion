@@ -1,0 +1,48 @@
+{
+  "name": "Сохранение результата в знания",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual",
+      "name": "Запустить вручную",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "save",
+        "collection": "projects",
+        "title": "Результат работы",
+        "text": "Замените этот текст фактическим результатом и ссылками на источники"
+      },
+      "id": "knowledge",
+      "name": "Odysseus — база знаний",
+      "type": "CUSTOM.odysseus",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Запустить вручную": {
+      "main": [
+        [
+          {
+            "node": "Odysseus — база знаний",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

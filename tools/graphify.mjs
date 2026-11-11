@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { writeProjectMarkdown } from './knowledge/markdown.mjs';
 import {
   existsSync,
   readFileSync,
@@ -51,7 +52,9 @@ export function processIsAlive(pid, probe = process.kill) {
   }
 }
 export function runtimePaths(root = projectRoot, env = process.env) {
-  const runtime = join(root, '.odysseus', 'graphify');
+  const runtime = env.ODYSSEUS_GRAPH_RUNTIME_DIR
+    ? resolve(env.ODYSSEUS_GRAPH_RUNTIME_DIR)
+    : join(root, '.odysseus', 'graphify');
   return {
     root,
     runtime,
@@ -60,11 +63,10 @@ export function runtimePaths(root = projectRoot, env = process.env) {
     output: env.ODYSSEUS_KNOWLEDGE_DIR
       ? resolve(root, env.ODYSSEUS_KNOWLEDGE_DIR)
       : join(runtime, 'knowledge'),
-    python: join(
-      runtime,
-      'venv',
-      process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python',
-    ),
+    python:
+      env.ODYSSEUS_PYTHON ||
+      read(join(root, '.odysseus/bundled-runtime.json')).python ||
+      join(runtime, 'venv', process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python'),
     cli: join(
       runtime,
       'venv',
@@ -119,11 +121,15 @@ export function findVault({
   };
 }
 export function ensureVault(paths) {
-  const selection = findVault({
-    root: paths.root,
-    env: paths.env,
-    config: read(paths.config),
-  });
+  const config = read(paths.config);
+  const cached = read(join(paths.runtime, 'vault-selection.json'));
+  // Discovery touches another app's protected registry. Do it once, not every worker pass.
+  const savedVault = !paths.env.ODYSSEUS_OBSIDIAN_VAULT && !config.vault && cached.path;
+  if (savedVault && !isDir(savedVault))
+    throw Error('Сохранённое хранилище Obsidian недоступно. Укажите vault в настройках базы знаний.');
+  const selection = savedVault
+    ? { path: realpathSync(savedVault), reason: 'saved-vault', created: false }
+    : findVault({ root: paths.root, env: paths.env, config });
   if (selection.created) {
     mkdirSync(join(selection.path, '.obsidian'), { recursive: true });
     writeFileSync(
@@ -264,19 +270,25 @@ export function setup(paths) {
   );
   return refresh(paths);
 }
+export function isBroadProjectRoot(path) {
+  if (typeof path !== 'string') return true;
+  const home = homedir();
+  return ['/', '/Users', '/System', '/Library', '/Applications', home, ...['Library', 'Desktop', 'Documents', 'Downloads'].map(name => join(home, name))].includes(resolve(path));
+}
 export function readRegistry(paths) {
   const projects = {};
   if (existsSync(paths.registry))
     for (const file of readdirSync(paths.registry))
       if (file.endsWith('.json')) {
         const p = read(join(paths.registry, file));
-        if (p.id) projects[p.id] = p;
+        if (p.id && !isBroadProjectRoot(p.path)) projects[p.id] = p;
       }
   return { projects };
 }
 export function registerProject(paths, path, name) {
   path = realpathSync(resolve(path));
   if (!isDir(path)) throw Error('Project folder unavailable');
+  if (isBroadProjectRoot(path)) throw Error('Выберите конкретную папку проекта вместо домашнего или общего системного каталога');
   const registry = readRegistry(paths),
     id = createHash('sha256').update(path).digest('hex').slice(0, 16);
   registry.projects[id] = {
@@ -306,7 +318,7 @@ function discoverProjects(paths) {
     }
   }
 }
-export function refresh(paths, { projects = false, quiet = false } = {}) {
+export function refresh(paths, { projects = false, quiet = false, projectPath } = {}) {
   if (!existsSync(paths.python))
     throw Error('Graphify engine is not installed. Run: node tools/graphify.mjs setup');
   mkdirSync(paths.runtime, { recursive: true });
@@ -340,8 +352,9 @@ export function refresh(paths, { projects = false, quiet = false } = {}) {
     );
     if (projects) {
       connectDesktopSources(paths);
-      discoverProjects(paths);
-      for (const p of Object.values(readRegistry(paths).projects)) {
+      if (!projectPath) discoverProjects(paths);
+      const selectedProjects = projectPath ? [registerProject(paths, projectPath)] : Object.values(readRegistry(paths).projects);
+      for (const p of selectedProjects) {
         try {
           run(
             paths.python,
@@ -376,7 +389,7 @@ export function refresh(paths, { projects = false, quiet = false } = {}) {
         ],
         { capture: quiet },
       );
-      for (const p of Object.values(readRegistry(paths).projects)) {
+      for (const p of selectedProjects) {
         try {
           run(
             paths.python,
@@ -401,6 +414,10 @@ export function refresh(paths, { projects = false, quiet = false } = {}) {
             at: new Date().toISOString(),
           });
         }
+      }
+      for (const p of selectedProjects) {
+        try { writeProjectMarkdown(paths, p); }
+        catch (error) { console.error('Project Markdown deferred:', p.name, error.message); }
       }
     }
     run(

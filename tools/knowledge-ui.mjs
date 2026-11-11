@@ -23,7 +23,7 @@ const read = (path, fallback) =>
   existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')) : fallback;
 export function snapshot(paths, options = {}) {
   const file = join(paths.output, 'graph.json');
-  if (!existsSync(file))
+  if (!existsSync(file) && !existsSync(join(paths.output, 'overlay.json')))
     return {
       ready: false,
       projects: [],

@@ -1,0 +1,17 @@
+const {contextBridge,ipcRenderer}=require('electron');
+contextBridge.exposeInMainWorld('companion',{
+  copyResult:input=>ipcRenderer.invoke('companion:copy-result',input),
+  runTask:input=>ipcRenderer.invoke('companion:task-run',input),
+  runScenario:input=>ipcRenderer.invoke('companion:scenario-run',input),
+  importRegression:()=>ipcRenderer.invoke('companion:regression-import'),
+  importSkill:kind=>ipcRenderer.invoke('companion:skill-import',kind),
+  call:(mode,input={})=>ipcRenderer.invoke('companion:call',mode,input),
+  importWorkflows:()=>ipcRenderer.invoke('companion:import-workflows'),
+  exportWorkflows:()=>ipcRenderer.invoke('companion:export-workflows'),
+  chooseFolder:()=>ipcRenderer.invoke('companion:folder'),
+  showProfile:()=>ipcRenderer.invoke('companion:profile'),
+  runChat:input=>ipcRenderer.invoke('companion:chat-run',input),
+  openNessy:()=>ipcRenderer.invoke('companion:nessy'),
+  openCorporateN8n:id=>ipcRenderer.invoke('companion:corporate-n8n',id),
+  openN8n:()=>ipcRenderer.invoke('companion:n8n'),
+});

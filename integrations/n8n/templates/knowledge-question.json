@@ -1,0 +1,47 @@
+{
+  "name": "Вопрос к базе знаний",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual",
+      "name": "Запустить вручную",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        240,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "answer",
+        "collection": "projects",
+        "query": "Объясни устройство проекта и укажи источники"
+      },
+      "id": "knowledge",
+      "name": "Odysseus — база знаний",
+      "type": "CUSTOM.odysseus",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Запустить вручную": {
+      "main": [
+        [
+          {
+            "node": "Odysseus — база знаний",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

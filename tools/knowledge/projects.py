@@ -14,6 +14,23 @@ EXCLUDED = {'node_modules', 'dist', 'build', 'coverage', 'target', 'vendor', '__
 EXTENSIONS = {'.py', '.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.go', '.rs', '.java', '.kt', '.cs', '.rb', '.swift', '.c', '.h', '.cpp', '.php', '.sql', '.graphql', '.proto', '.md', '.toml', '.yaml', '.yml', '.json'}
 
 
+def broad_project_root(project):
+    home = Path.home()
+    return Path(project).resolve() in {Path('/'), Path('/Users'), Path('/System'), Path('/Library'), Path('/Applications'), home, *(home / name for name in ('Library', 'Desktop', 'Documents', 'Downloads'))}
+
+
+def knowledge_documents(state):
+    if not state.get('path'):
+        return []
+    project = Path(state['path'])
+    if broad_project_root(project):
+        return []
+    folder = project / '.odysseus' / 'knowledge'
+    if (project / '.odysseus').is_symlink() or folder.is_symlink():
+        return []
+    return [doc for doc in sorted(folder.glob('*.md')) if not doc.is_symlink() and doc.stat().st_size <= 2 * 1024 * 1024]
+
+
 def scan(project):
     files = []
     for base, dirs, names in os.walk(project, followlinks=False):
@@ -30,6 +47,8 @@ def scan(project):
 
 
 def index_project(project, name, project_id, output, metadata_only=False):
+    if broad_project_root(project):
+        raise ValueError('Choose a specific project folder, not a home or system root')
     cache = output / 'projects' / project_id
     cache.mkdir(parents=True, exist_ok=True)
     files = scan(project)
@@ -112,9 +131,14 @@ def merge(output, vault):
     fingerprint = hashlib.sha256(Path(__file__).read_bytes())
     for state_file in sorted((output / 'projects').glob('*/state.json')):
         fingerprint.update(state_file.read_bytes())
-        for extra in [state_file.parent/'engine/graphify-out/graph.json', state_file.parent/'decisions.json', state_file.parent/'error.json']:
+        for extra in [state_file.parent/'engine/graphify-out/graph.json', state_file.parent/'decisions.json', state_file.parent/'error.json', *sorted((state_file.parent/'workflow-results').glob('*.json'))]:
             if extra.exists():
                 stat=extra.stat(); fingerprint.update(str((str(extra),stat.st_size,stat.st_mtime_ns)).encode())
+    for state_file in sorted((output / 'projects').glob('*/state.json')):
+        state = json.loads(state_file.read_text())
+        for doc in knowledge_documents(state):
+            if not doc.is_symlink():
+                info = doc.stat(); fingerprint.update(str((str(doc), info.st_size, info.st_mtime_ns)).encode())
     overlay_path=output/'overlay.json'
     if overlay_path.exists(): fingerprint.update(overlay_path.read_bytes())
     notes_path=output/'notes/graph.json'
@@ -130,6 +154,8 @@ def merge(output, vault):
     providers, files_by_hash = {}, {}
     for path in sorted((output / 'projects').glob('*/state.json')):
         state = json.loads(path.read_text())
+        if broad_project_root(state['path']):
+            continue
         graph_path = path.parent / 'engine/graphify-out/graph.json'
         project_node = 'project:' + state['id']
         state['stale'] = (path.parent / 'error.json').exists() or state.get('pending',False) or not graph_path.exists()
@@ -205,6 +231,22 @@ def merge(output, vault):
                 node = project_node + ':decision:' + str(i)
                 G.add_node(node, label=decision['text'][:100], description=decision['text'], type='decision', source_file=str(decisions), project_id=state['id'])
                 G.add_edge(project_node, node, relation='recorded_decision', confidence='EXTRACTED', source_file=str(decisions))
+        for doc in knowledge_documents(state):
+            if doc.is_symlink() or doc.stat().st_size > 2 * 1024 * 1024:
+                continue
+            node = project_node + ':knowledge-md:' + doc.name
+            G.add_node(node, label=doc.name, description=doc.read_text(errors='replace')[:4000], type='document', source_file=str(doc), project_id=state['id'])
+            G.add_edge(project_node, node, relation='knowledge_document', confidence='EXTRACTED', source_file=str(doc))
+        for receipt in sorted((path.parent / 'workflow-results').glob('*.json')):
+            try:
+                result = json.loads(receipt.read_text())
+                text = str(result['text'])
+                sources = result.get('sources', [])
+                node = project_node + ':result:' + receipt.stem
+                G.add_node(node, label=text[:100], description=text, type='decision', source_file=str(receipt), project_id=state['id'], provenance='agent_reported', evidence_files=sources)
+                G.add_edge(project_node, node, relation='recorded_result', confidence='AGENT_RECORDED', source_file=str(receipt))
+            except (ValueError, KeyError, OSError):
+                continue
     for node, owner_id, source, link in doc_refs:
         parsed = urlparse(unquote(link['target'].split('#',1)[0]))
         if parsed.scheme and parsed.scheme != 'file':

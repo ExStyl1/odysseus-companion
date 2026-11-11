@@ -120,3 +120,26 @@ test('worker liveness treats a denied probe as alive and only ESRCH as dead', ()
   assert.equal(processIsAlive(0), false);
   assert.equal(processIsAlive(process.pid), true);
 });
+
+test('background vault refresh reuses its own selection and never probes the Obsidian registry again', async t => {
+  const root = fixture(t), vault = join(root, 'vault'); mkdirSync(vault);
+  const { ensureVault } = await import('../../tools/graphify.mjs');
+  const paths = runtimePaths(root, {});
+  put(join(paths.runtime, 'vault-selection.json'), { path: vault, reason: 'open-vault' });
+  assert.equal(ensureVault(paths).reason, 'saved-vault');
+  rmSync(vault, { recursive: true });
+  assert.throws(() => ensureVault(paths), /Сохранённое хранилище/);
+  mkdirSync(vault);
+  assert.equal(ensureVault({ ...paths, env: { ODYSSEUS_OBSIDIAN_VAULT: vault } }).reason, 'explicit');
+});
+
+test('home and system roots cannot become projects, including previously registered roots', async t => {
+  const root = fixture(t), paths = runtimePaths(root, {});
+  const { homedir } = await import('node:os');
+  assert.throws(() => registerProject(paths, homedir()), /конкретную папку/);
+  assert.throws(() => registerProject(paths, '/'), /конкретную папку/);
+  put(join(paths.registry, 'old.json'), { id: 'old', path: homedir() });
+  assert.deepEqual(readRegistry(paths).projects, {});
+  const project = join(root, 'project'); mkdirSync(project);
+  assert.ok(registerProject(paths, project).id);
+});

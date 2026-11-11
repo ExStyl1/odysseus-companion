@@ -202,3 +202,5 @@ test('one live worker sees edits immediately and keeps notes inside their projec
     false,
   );
 });
+
+test('manual knowledge is visible before the first generated graph exists',()=>{const root=mkdtempSync(join(tmpdir(),'overlay-first-'));try{editKnowledge(root,{type:'add-note',label:'Первая заметка',description:'Проверенное правило',collection:'projects'});const result=snapshot({output:root,runtime:root,root},{collection:'projects'});assert.equal(result.ready,true);assert.equal(result.nodes.length,1);assert.equal(result.nodes[0].label,'Первая заметка');}finally{rmSync(root,{recursive:true,force:true});}});

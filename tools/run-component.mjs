@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { registerAutomationSources } from './automations/sources.mjs';
+import { installKnowledgeHooks } from './setup/knowledge-hooks.mjs';
 import { cliColorEnvironment } from './cli/appearance.mjs';
 import { ensureFirstRun } from './setup/first-run.mjs';
 import { dirname, join, resolve, isAbsolute } from 'node:path';
@@ -30,6 +32,8 @@ if (!helpOnly && process.env.ODYSSEUS_SKIP_FIRST_RUN !== '1') {
     );
 }
 const paths = personalPaths(root);
+if (!helpOnly) installKnowledgeHooks(root, { cliHome: paths.cliHome, desktopHome: paths.desktopHome }, process.execPath);
+if (!helpOnly && existsSync(join(root, '.odysseus/n8n-runtime/node_modules/n8n/package.json'))) registerAutomationSources(root, { cliHome: paths.cliHome, desktopHome: paths.desktopHome }, process.execPath);
 const env = {
   ...process.env,
   ODYSSEUS_ROOT: root,
@@ -55,14 +59,15 @@ if (args[0] === '--request') {
   cliArgs = [...(request.cliId ? ['--resume', request.cliId] : []), ...args.slice(2)];
 }
 let report;
-try {
-  if (!readDesktopLease(paths).pid) {
-    syncProfile(root);
-    report = syncPersonal(root);
-  } else report = { bindings: launchBindings(paths) };
-} catch {
-  console.error('Синхронизация отложена: профиль занят или требует проверки.');
-}
+if (!helpOnly)
+  try {
+    if (!readDesktopLease(paths).pid) {
+      syncProfile(root);
+      report = syncPersonal(root);
+    } else report = { bindings: launchBindings(paths) };
+  } catch {
+    console.error('Синхронизация отложена: профиль занят или требует проверки.');
+  }
 const component = config.components[mode];
 if (!component) throw Error('Expected cli or desktop');
 const source = resolve(root, component.source);
@@ -98,27 +103,30 @@ if (mode === 'cli' && !env.ODYSSEUS_KNOWLEDGE_COLLECTION)
   env.ODYSSEUS_KNOWLEDGE_COLLECTION = collectionForPath(knowledgePaths(root, env), cwd);
 const childEnv = mode === 'cli' ? cliColorEnvironment(env, Boolean(process.stdout.isTTY)) : env;
 const child = spawn(command, childArgs, { cwd, env: childEnv, stdio: 'inherit' });
-try {
-  const knowledge = knowledgePaths(root, env);
-  if (existsSync(knowledge.python)) {
-    registerProject(knowledge, mode === 'cli' ? cwd : source);
-    startWatcher(knowledge, child.pid);
+if (!helpOnly)
+  try {
+    const knowledge = knowledgePaths(root, env);
+    if (existsSync(knowledge.python)) {
+      registerProject(knowledge, mode === 'cli' ? cwd : source);
+      startWatcher(knowledge, child.pid);
+    }
+  } catch (error) {
+    console.error('База знаний: ' + error.message);
   }
-} catch (error) {
-  console.error('База знаний: ' + error.message);
-}
 if (mode === 'cli' && receiptPath)
   child.once('spawn', () =>
     privateWrite(receiptPath, JSON.stringify({ pid: child.pid, startedAt: Date.now() })),
   );
-const knowledgeTimer = setInterval(() => {
-  try {
-    startWatcher(knowledgePaths(root, env), child.pid);
-  } catch {}
-}, 15000);
+const knowledgeTimer = helpOnly
+  ? undefined
+  : setInterval(() => {
+      try {
+        startWatcher(knowledgePaths(root, env), child.pid);
+      } catch {}
+    }, 15000);
 let syncing = false;
 const timer =
-  mode === 'cli'
+  mode === 'cli' && !helpOnly
     ? setInterval(() => {
         if (syncing || readDesktopLease(paths).pid) return;
         syncing = true;
@@ -142,7 +150,7 @@ child.on('exit', (code) => {
   clearInterval(timer);
   clearInterval(knowledgeTimer);
   try {
-    if (!readDesktopLease(paths).pid) syncPersonal(root);
+    if (!helpOnly && !readDesktopLease(paths).pid) syncPersonal(root);
   } catch {}
   process.exitCode = code ?? 1;
 });

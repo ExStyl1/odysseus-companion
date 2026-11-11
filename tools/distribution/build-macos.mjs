@@ -1,15 +1,18 @@
 #!/usr/bin/env node
 /** Reproducible local packaging: no credential synchronization, publishing or source-profile inclusion. */
 import { resolve, join, dirname } from 'node:path';
+import { copyApplication, copyDataTree, copyDependencyTree, verifyDiskImage } from './bundle.mjs';
+import { releaseMode, verifySignature, verifyTrustedApplication } from './signing.mjs';
+import { stagePython } from './python.mjs';
 import {
   existsSync,
   mkdirSync,
   readFileSync,
   writeFileSync,
-  cpSync,
   rmSync,
   chmodSync,
   symlinkSync,
+  realpathSync,
 } from 'node:fs';
 import { createRequire } from 'node:module';
 import { spawnSync } from 'node:child_process';
@@ -18,7 +21,7 @@ const root = resolve(import.meta.dirname, '../..'),
   args = new Set(process.argv.slice(2));
 if (args.has('--help')) {
   console.log(
-    'npm run build:mac [-- --skip-build] [--signed]\nBuilds a self-contained Odysseus.app and DMG for the current Mac architecture. --signed requires CSC_NAME and Apple notarization credentials.',
+    'npm run build:mac [-- --skip-build] [--signed | --unsigned | --manual-approval]\nDefault: signed and notarized release DMG; requires Developer ID and Apple credentials. --unsigned: local .app only. --manual-approval: ad hoc signed DMG requiring macOS Open Anyway.',
   );
   process.exit(0);
 }
@@ -49,13 +52,8 @@ function run(command, argv, cwd) {
       'Build step failed: ' + (argv[0] === 'notarytool' ? 'notarytool submit' : argv.join(' ')),
     );
 }
-if (args.has('--signed') && !env.CSC_NAME) throw Error('Set CSC_NAME for a signed release');
-if (
-  args.has('--signed') &&
-  !(env.APPLE_API_KEY && env.APPLE_API_KEY_ID && env.APPLE_API_ISSUER) &&
-  !(env.APPLE_ID && env.APPLE_APP_SPECIFIC_PASSWORD && env.APPLE_TEAM_ID)
-)
-  throw Error('Set Apple notarization credentials for a signed release');
+const signed = releaseMode(args, env);
+const manual = args.has('--manual-approval');
 if (!existsSync(bun)) throw Error('Install Bun or set ODYSSEUS_BUN');
 if (!args.has('--skip-build')) {
   run(process.execPath, [join(root, 'tools/install-desktop-bridge.mjs')], root);
@@ -71,7 +69,7 @@ mkdirSync(output, { recursive: true });
 function copy(source, target) {
   if (!existsSync(source)) throw Error('Missing release input: ' + source);
   mkdirSync(dirname(target), { recursive: true });
-  cpSync(source, target, { recursive: true, dereference: true });
+  copyDataTree(source, target);
 }
 copy(join(electron, 'dist'), join(app, 'dist'));
 copy(join(electron, 'resources/pi-agent-server'), join(app, 'resources/pi-agent-server'));
@@ -100,6 +98,17 @@ writeFileSync(
 );
 for (const name of ['tools', 'integrations', 'shared', 'docs'])
   copy(join(root, name), join(payload, name));
+if (!existsSync(join(root, '.odysseus/n8n-runtime/node_modules/n8n/package.json'))) throw Error('Install pinned n8n before building');
+copyDependencyTree(join(root, '.odysseus/n8n-runtime'), join(payload, 'n8n'));
+const npmRoot = process.env.ODYSSEUS_NPM_DIR || resolve(dirname(process.execPath), '../lib/node_modules/npm');
+if (!existsSync(join(npmRoot, 'bin/npm-cli.js'))) throw Error('Set ODYSSEUS_NPM_DIR to the npm package directory');
+copy(npmRoot, join(payload, 'npm'));
+// Never ship a build machine's npm registry configuration.
+rmSync(join(payload, 'npm/npmrc'), { force: true });
+mkdirSync(join(payload, 'bin'), { recursive: true });
+writeFileSync(join(payload, 'bin/npm'), '#!/bin/sh\nprefix=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)\nexec "$prefix/node" "$prefix/npm/bin/npm-cli.js" "$@"\n');
+chmodSync(join(payload, 'bin/npm'), 0o755);
+
 copy(process.execPath, join(payload, 'node'));
 chmodSync(join(payload, 'node'), 0o755);
 copy(bun, join(payload, 'bun'));
@@ -133,6 +142,8 @@ writeFileSync(
   JSON.stringify({
     version: native.version,
     buildId: randomUUID(),
+    dataSchemaVersion: 1,
+    updateMode: 'manual-dmg',
     arch: process.arch,
     builtAt: new Date().toISOString(),
   }),
@@ -163,6 +174,7 @@ copy(
   join(electron, `resources/bin/darwin-${process.arch}/uv`),
   join(payload, `desktop/apps/electron/resources/bin/darwin-${process.arch}/uv`),
 );
+stagePython({ root, electron, payload, copy, run });
 const extraResources = [
   { from: payload, to: 'odysseus' },
   { from: bun, to: 'vendor/bun/bun' },
@@ -187,7 +199,7 @@ const builderConfig = {
   appId: 'app.odysseus.desktop',
   productName: 'Odysseus',
   directories: { app, output, buildResources: join(electron, 'resources') },
-  electronVersion: '39.2.7',
+  electronVersion: require('electron/package.json').version,
   electronDist: join(desktop, 'node_modules/electron/dist'),
   asar: false,
   npmRebuild: false,
@@ -206,6 +218,7 @@ const builderConfig = {
       'Contents',
     );
     copy(join(electron, 'resources/icon.icns'), join(contents, 'Resources/odysseus.icns'));
+    chmodSync(join(contents, 'Resources/icon.icns'), 0o644);
     run(
       '/usr/bin/plutil',
       ['-replace', 'CFBundleIconFile', '-string', 'odysseus.icns', join(contents, 'Info.plist')],
@@ -217,14 +230,16 @@ const builderConfig = {
   mac: {
     category: 'public.app-category.productivity',
     icon: join(electron, 'resources/icon.icns'),
-    identity: args.has('--signed') ? env.CSC_NAME : null,
-    hardenedRuntime: args.has('--signed'),
-    notarize: args.has('--signed'),
+    identity: signed ? env.CSC_NAME : null,
+    hardenedRuntime: signed,
+    notarize: signed,
     entitlements: join(electron, 'build/entitlements.mac.plist'),
     entitlementsInherit: join(electron, 'build/entitlements.mac.plist'),
     signIgnore: ['resources/bin/codex/'],
     artifactName: 'Odysseus-${version}-${arch}.${ext}',
     extendInfo: {
+      NSAppDataUsageDescription:
+        'Odysseus обращается к данным Nessy для переноса или восстановления ваших плагинов и к настройкам Obsidian для выбора хранилища заметок.',
       NSAppleEventsUsageDescription:
         'Odysseus opens Terminal to run od and continue your selected chat.',
       NSLocalNetworkUsageDescription:
@@ -242,24 +257,43 @@ const builderConfig = {
     window: { width: 560, height: 360 },
   },
 };
-if (!args.has('--signed')) env.CSC_IDENTITY_AUTO_DISCOVERY = 'false';
+if (!signed) env.CSC_IDENTITY_AUTO_DISCOVERY = 'false';
 Object.assign(process.env, env);
 const artifacts = await build({
   targets: Platform.MAC.createTarget(['dir'], process.arch === 'arm64' ? Arch.arm64 : Arch.x64),
   config: builderConfig,
 });
+const outputApp = join(output, process.arch === 'arm64' ? 'mac-arm64' : 'mac', 'Odysseus.app');
+if (!signed && !manual) {
+  console.log('LOCAL DEVELOPMENT ONLY: ' + outputApp + '\nNo DMG produced. This app is not approved for distribution to other Macs.');
+  process.exit(0);
+}
+if (manual) {
+  const { sign } = await import(require.resolve('@electron/osx-sign'));
+  await sign({
+    app: outputApp, platform: 'darwin', identity: '-', identityValidation: false,
+    preAutoEntitlements: false, preEmbedProvisioningProfile: false,
+    ignore: file => file.includes('/resources/bin/codex/'),
+    optionsForFile: () => ({
+      entitlements: join(electron, 'build/entitlements.mac.plist'),
+      hardenedRuntime: false, timestamp: 'none',
+    }),
+  });
+  verifySignature(outputApp);
+} else verifyTrustedApplication(outputApp);
 const image = join(stage, 'image');
 mkdirSync(image, { recursive: true });
-copy(
+copyApplication(
   join(output, process.arch === 'arm64' ? 'mac-arm64' : 'mac', 'Odysseus.app'),
   join(image, 'Odysseus.app'),
 );
 symlinkSync('/Applications', join(image, 'Applications'));
 writeFileSync(
   join(image, 'Установка.txt'),
+  (manual ? 'Эта сборка имеет локальную подпись, без проверки Apple.\nПосле попытки запуска откройте Системные настройки → Конфиденциальность и безопасность → Всё равно открыть и подтвердите запуск Odysseus.\n\n' : '') +
   'Перетащите Odysseus.app в Applications и откройте приложение.\nКоманда od будет доступна в новом окне терминала после первого открытия.\n',
 );
-const dmg = join(output, `Odysseus-${native.version}-${process.arch}.dmg`);
+const dmg = join(output, `Odysseus-${native.version}-${process.arch}${manual ? "-manual" : ""}.dmg`);
 run(
   '/usr/bin/hdiutil',
   [
@@ -277,9 +311,10 @@ run(
   ],
   root,
 );
-if (args.has('--signed')) {
+verifyDiskImage(dmg, { trusted: signed });
+if (signed) {
   run('/usr/bin/codesign', ['--sign', env.CSC_NAME, '--timestamp', dmg], root);
-  const auth = env.APPLE_API_KEY
+  const auth = env.APPLE_API_KEY && env.APPLE_API_KEY_ID && env.APPLE_API_ISSUER
     ? [
         '--key',
         env.APPLE_API_KEY,
@@ -298,6 +333,8 @@ if (args.has('--signed')) {
       ];
   run('/usr/bin/xcrun', ['notarytool', 'submit', dmg, '--wait', ...auth], root);
   run('/usr/bin/xcrun', ['stapler', 'staple', dmg], root);
+  run('/usr/bin/xcrun', ['stapler', 'validate', dmg], root);
+  run('/usr/sbin/spctl', ['--assess', '--type', 'open', '--context', 'context:primary-signature', '--verbose=2', dmg], root);
 }
 for (const file of [dmg]) {
   const digest = createHash('sha256').update(readFileSync(file)).digest('hex');

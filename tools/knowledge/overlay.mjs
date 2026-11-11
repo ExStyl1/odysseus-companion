@@ -8,8 +8,10 @@ import {
   openSync,
   closeSync,
   unlinkSync,
+  realpathSync,
 } from 'node:fs';
-import { join } from 'node:path';
+import { join, relative, isAbsolute } from 'node:path';
+import { noLinks } from '../personal/store.mjs';
 import { randomUUID } from 'node:crypto';
 import { collectionState, filterCollection } from './collections.mjs';
 import { runtimePaths } from '../graphify.mjs';
@@ -55,6 +57,13 @@ export function editKnowledge(output, operation) {
         ...(operation.collection ? { collection: operation.collection } : {}),
         createdAt: new Date().toISOString(),
       };
+      if (operation.documentPath) {
+        noLinks(operation.documentPath);
+        const source = realpathSync(operation.documentPath);
+        const rel = relative(join(output, 'manual-documents'), source);
+        if (isAbsolute(rel) || rel === '..' || rel.startsWith('../')) throw Error('Источник ручной заметки вне папки документов');
+        node.source_file = source;
+      }
       if (operation.parent) {
         const graph = applyOverlay(
             read(join(output, 'graph.json'), { nodes: [], links: [] }),

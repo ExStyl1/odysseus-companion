@@ -8,16 +8,13 @@ const defaults = [
   { id: 'odysseus', name: 'Odysseus' },
   { id: 'notes', name: 'Заметки Obsidian' },
 ];
+function systemPathsFor(paths){const roots=[paths.root];if(paths.env?.ODYSSEUS_COMPANION_STANDALONE==='1'&&paths.env.COMPANION_PREVIOUS_ROOT)roots.push(resolve(paths.env.COMPANION_PREVIOUS_ROOT));return new Set(roots.flatMap(root=>{const config=read(join(root,'odysseus.json'));return [resolve(root,'workspace'),...Object.values(config.components||{}).map(c=>resolve(root,c.source))];}));}
 export function collectionState(paths, graph) {
   const stored = read(join(paths.output, 'collections.json'), {
       collections: defaults,
       assignments: {},
     }),
-    config = read(join(paths.root, 'odysseus.json'));
-  const systemPaths = new Set([
-    resolve(paths.root, 'workspace'),
-    ...Object.values(config.components || {}).map((c) => resolve(paths.root, c.source)),
-  ]);
+    systemPaths = systemPathsFor(paths);
   const collections = stored.collections || defaults,
     valid = new Set(collections.map((c) => c.id)),
     assignments = {};
@@ -31,13 +28,10 @@ export function collectionState(paths, graph) {
 }
 export function collectionForPath(paths, path) {
   const stored = read(join(paths.output, 'collections.json')),
-    config = read(join(paths.root, 'odysseus.json')),
+    systemPaths = systemPathsFor(paths),
     id = 'project:' + createHash('sha256').update(resolve(path)).digest('hex').slice(0, 16);
   if (stored.assignments?.[id]) return stored.assignments[id];
-  return path === resolve(paths.root, 'workspace') ||
-    Object.values(config.components || {}).some(
-      (c) => resolve(paths.root, c.source) === resolve(path),
-    )
+  return systemPaths.has(resolve(path))
     ? 'odysseus'
     : 'projects';
 }

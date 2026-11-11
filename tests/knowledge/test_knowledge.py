@@ -23,6 +23,26 @@ class KnowledgeTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'user edits'):bridge.refresh(vault,out)
             self.assertEqual(edited.read_text(),'Мои правки')
 
+    def test_markdown_and_reported_results_enter_graph_and_invalidate_snapshot(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); project=root/'service'; vault=root/'vault'; out=root/'out'
+            project.mkdir();vault.mkdir();(project/'api.py').write_text('def health(): return True')
+            bridge.refresh(vault,out/'notes')
+            knowledge.index_project(project,'Service','service',out,metadata_only=True)
+            docs=project/'.odysseus/knowledge';docs.mkdir(parents=True)
+            (docs/'RULES.md').write_text('# Rules\nUse pytest')
+            results=out/'projects/service/workflow-results';results.mkdir()
+            (results/'one.json').write_text(json.dumps({'text':'Added health test','sources':['api.py'],'provenance':'agent_reported'}))
+            knowledge.merge(out,vault)
+            graph=knowledge.load_graph(out/'graph.json')
+            self.assertEqual(graph.nodes['project:service:knowledge-md:RULES.md']['source_file'],str(docs/'RULES.md'))
+            self.assertEqual(graph.nodes['project:service:result:one']['provenance'],'agent_reported')
+            self.assertTrue(any(data.get('confidence')=='AGENT_RECORDED' for _,_,data in graph.edges(data=True)))
+            (docs/'RULES.md').write_text('# Rules\nUse Playwright for UI tests')
+            knowledge.merge(out,vault)
+            graph=knowledge.load_graph(out/'graph.json')
+            self.assertIn('Playwright',graph.nodes['project:service:knowledge-md:RULES.md']['description'])
+
     def test_real_cross_project_graph_and_incremental_rebuild(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp); a=root/'a'; b=root/'b'; vault=root/'vault'; out=root/'knowledge'
