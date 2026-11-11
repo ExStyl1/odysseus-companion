@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "sample-stdio-tools": {
-      "command": "node",
-      "args": ["./scripts/mcp-server.js"]
-    }
-  }
-}

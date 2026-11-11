@@ -1,7 +1,0 @@
-{
-  "format": "claude",
-  "state": "supported",
-  "supportedKinds": ["skill", "command", "agent", "mcp", "hook"],
-  "deferred": [],
-  "blocked": []
-}

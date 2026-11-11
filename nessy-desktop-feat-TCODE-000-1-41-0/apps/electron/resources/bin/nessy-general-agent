@@ -1,4 +1,0 @@
-#!/bin/sh
-ENTRY="${NESSY_COMMANDS_ENTRY:-$NESSY_CLI_ENTRY}"
-export NESSY_CLI_JSON_ONLY="${NESSY_CLI_JSON_ONLY:-1}"
-exec "${NESSY_BUN:-bun}" run "$ENTRY" "$@"

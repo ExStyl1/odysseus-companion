@@ -12,3 +12,8 @@ __pycache__/
 
 # Installable release artifacts
 dist/
+
+companion/frontend/node_modules/
+
+/companion/node_modules
+/companion/frontend/node_modules

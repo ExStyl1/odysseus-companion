@@ -1,6 +1,0 @@
-#!/bin/sh
-if [ -z "${NESSY_BUN:-}" ] || [ ! -x "$NESSY_BUN" ]; then
-  printf '%s\n' 'nessy-managed-node-runtime-unavailable' >&2
-  exit 127
-fi
-exec "$NESSY_BUN" "$@"

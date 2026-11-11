@@ -1,7 +1,0 @@
-source 'https://artifactory.tcsbank.ru/artifactory/rubygems-all'
-
-plugins_path = File.join(File.dirname(__FILE__), 'Pluginfile')
-eval_gemfile(plugins_path) if File.exist?(plugins_path)
-
-gem 'fastlane'
-gem 'multi_json'

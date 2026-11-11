@@ -2,6 +2,7 @@ import { cpSync, mkdirSync, writeFileSync, renameSync, existsSync, rmSync, readF
 import { join, resolve, dirname } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { randomUUID } from 'node:crypto';
+import { prepareRuntime } from './prepare-runtime.mjs';
 import { copyMcpRuntime } from './copy-mcp-runtime.mjs';
 import { copyDataTree, validateBundle } from '../distribution/bundle.mjs';
 const root=resolve(import.meta.dirname,'../..');
@@ -10,10 +11,10 @@ console.log('Сборка React-интерфейса…');
 const frontend=spawnSync('npm',['run','build','--prefix',join(root,'companion/frontend')],{stdio:'inherit'});
 if(frontend.status!==0)throw Error('Не удалось собрать React-интерфейс Companion');
 const output=join(root,'dist/companion');mkdirSync(output,{recursive:true});
-const source=join(root,'nessy-desktop-feat-TCODE-000-1-41-0/node_modules/electron/dist/Electron.app');
-const target=join(output,'Odysseus Companion.app'),prepared=join(root,'.odysseus/distribution-stage/payload');
-if(!existsSync(source))throw Error('Не найден установленный Electron runtime');
-if(!existsSync(join(prepared,'python/run'))||!existsSync(join(prepared,'cli/dist/cli.js')))throw Error('Не найдены подготовленные автономные Python и Nessy runtime');
+const source=join(root,'companion/node_modules/electron/dist/Electron.app');
+const target=join(output,'Odysseus Companion.app'),prepared=join(root,'.odysseus/companion-runtime/payload');
+if(!existsSync(source))throw Error('Установите Electron: npm install --prefix companion');
+if(!existsSync(join(prepared,'python/run'))||!existsSync(join(prepared,'cli/dist/cli.js')))prepareRuntime(root, prepared);
 const stage=join(output,'companion-stage-'+randomUUID()+'.app');
 console.log('Сборка самостоятельного приложения…');
 cpSync(source,stage,{recursive:true,dereference:false,verbatimSymlinks:true});
@@ -22,7 +23,7 @@ rmSync(join(resources,'default_app.asar'),{force:true});
 mkdirSync(join(resources,'app'),{recursive:true});
 for(const name of readdirSync(join(root,'companion'))){
   // Ship only the compiled renderer; no development dependencies or Vite server.
-  if(['frontend','node_modules','.DS_Store'].includes(name))continue;
+  if(['frontend','node_modules','package-lock.json','companion.icns','.DS_Store'].includes(name))continue;
   copyDataTree(join(root,'companion',name),join(resources,'app',name));
 }
 cpSync(process.execPath,join(resources,'node'));
@@ -51,7 +52,7 @@ for(const name of ['npm','npx']){
 const seed=join(payload,'seed/profile');
 mkdirSync(seed,{recursive:true});
 writeFileSync(join(seed,'settings.json'),JSON.stringify({permissions:{allow:[]}},null,2));
-cpSync(join(root,'integrations/desktop/assets/odysseus-icon.icns'),join(resources,'companion.icns'));
+cpSync(join(root,'companion/companion.icns'),join(resources,'companion.icns'));
 const plist=join(stage,'Contents/Info.plist');
 for(const [key,value]of Object.entries({CFBundleIdentifier:'app.odysseus.companion',CFBundleName:'Odysseus Companion',CFBundleDisplayName:'Odysseus Companion',CFBundleShortVersionString:version,CFBundleVersion:'41',CFBundleIconFile:'companion.icns'})){
  const r=spawnSync('/usr/bin/plutil',['-replace',key,'-string',value,plist],{encoding:'utf8'});if(r.status!==0)throw Error(r.stderr);

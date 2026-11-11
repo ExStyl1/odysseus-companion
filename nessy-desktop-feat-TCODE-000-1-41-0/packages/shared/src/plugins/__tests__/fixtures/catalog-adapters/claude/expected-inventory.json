@@ -1,7 +1,0 @@
-{
-  "format": "claude",
-  "state": "supported",
-  "supportedKinds": ["skill"],
-  "deferred": [],
-  "blocked": []
-}

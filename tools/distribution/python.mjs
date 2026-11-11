@@ -8,9 +8,8 @@ import {
   realpathSync,
 } from 'node:fs';
 import { join } from 'node:path';
-export function stagePython({ root, electron, payload, copy, run }) {
-  const uv = join(electron, `resources/bin/darwin-${process.arch}/uv`),
-    cache = join(root, '.odysseus/runtime/python');
+export function stagePython({ root, electron, payload, copy, run, uv = join(electron, `resources/bin/darwin-${process.arch}/uv`) }) {
+  const cache = join(root, '.odysseus/runtime/python');
   mkdirSync(cache, { recursive: true });
   let candidates = () =>
     readdirSync(cache)

@@ -3,5 +3,8 @@
   "productName": "Odysseus Companion",
   "version": "0.8.7",
   "main": "main.cjs",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "electron": "39.8.10"
+  }
 }

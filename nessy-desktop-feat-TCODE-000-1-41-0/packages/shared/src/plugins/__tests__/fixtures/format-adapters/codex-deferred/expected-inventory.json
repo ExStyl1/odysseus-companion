@@ -1,7 +1,0 @@
-{
-  "format": "codex",
-  "state": "supported",
-  "supportedKinds": ["skill", "app", "connector"],
-  "deferred": [],
-  "blocked": []
-}

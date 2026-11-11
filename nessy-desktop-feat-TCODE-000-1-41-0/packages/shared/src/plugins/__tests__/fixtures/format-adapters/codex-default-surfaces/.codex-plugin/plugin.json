@@ -1,9 +1,0 @@
-{
-  "name": "codex-default-surfaces",
-  "version": "1.0.0",
-  "interface": {
-    "displayName": "Codex Default Surfaces",
-    "composerIcon": "./assets/icon.svg",
-    "logo": "./assets/logo.svg"
-  }
-}
