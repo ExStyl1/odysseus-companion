@@ -53,7 +53,7 @@ mkdirSync(seed,{recursive:true});
 writeFileSync(join(seed,'settings.json'),JSON.stringify({permissions:{allow:[]}},null,2));
 cpSync(join(root,'companion/companion.icns'),join(resources,'companion.icns'));
 const plist=join(stage,'Contents/Info.plist');
-for(const [key,value]of Object.entries({CFBundleIdentifier:'app.odysseus.companion',CFBundleName:'Odysseus Companion',CFBundleDisplayName:'Odysseus Companion',CFBundleShortVersionString:version,CFBundleVersion:'43',CFBundleIconFile:'companion.icns'})){
+for(const [key,value]of Object.entries({CFBundleIdentifier:'app.odysseus.companion',CFBundleName:'Odysseus Companion',CFBundleDisplayName:'Odysseus Companion',CFBundleShortVersionString:version,CFBundleVersion:'44',CFBundleIconFile:'companion.icns'})){
  const r=spawnSync('/usr/bin/plutil',['-replace',key,'-string',value,plist],{encoding:'utf8'});if(r.status!==0)throw Error(r.stderr);
 }
 console.log('Проверка автономных движков…');

@@ -11,26 +11,41 @@ function releaseUrl(version) {
   return `${releases}/tag/companion-v${version}`;
 }
 
-async function checkForUpdate({ fetchRelease = fetch, currentVersion = installedVersion } = {}) {
+async function latestReleaseVersion(fetchRelease) {
+  const signal = AbortSignal.timeout(10000);
+  const options = { headers: { 'User-Agent': 'Odysseus-Companion' }, redirect: 'manual', signal };
   let response;
   try {
     response = await fetchRelease(`https://api.github.com/repos/${repository}/releases/latest`, {
-      headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'Odysseus-Companion' },
-      redirect: 'error',
-      signal: AbortSignal.timeout(10000),
+      ...options, headers: { ...options.headers, Accept: 'application/vnd.github+json' },
     });
+    if (response.ok) {
+      const release = await response.json();
+      if (release.draft === false && release.prerelease === false && typeof release.tag_name === 'string') {
+        const match = /^companion-v(.+)$/.exec(release.tag_name);
+        if (match && stableVersion.test(match[1])) return match[1];
+      }
+    }
   } catch {
-    throw Error('Не удалось связаться с GitHub. Проверьте подключение и повторите.');
+    // The public release page also works when the API is blocked or rate limited.
   }
-  if (!response.ok) throw Error(`GitHub не вернул данные релиза (HTTP ${response.status}). Повторите позже.`);
+  try {
+    const page = await fetchRelease(`${releases}/latest`, { ...options, method: 'HEAD', signal: AbortSignal.timeout(10000) });
+    const location = page.headers.get('location');
+    if (page.status >= 300 && page.status < 400 && location) {
+      const url = new URL(location, releases);
+      const prefix = `${releases}/tag/companion-v`;
+      if (url.href.startsWith(prefix)) {
+        const version = url.href.slice(prefix.length);
+        if (stableVersion.test(version)) return version;
+      }
+    }
+  } catch {}
+  throw Error('Не удалось проверить обновления. Откройте страницу релизов GitHub или повторите позже.');
+}
 
-  const release = await response.json().catch(() => null);
-  const latestVersion = typeof release?.tag_name === 'string' && release.tag_name.startsWith('companion-v')
-    ? release.tag_name.slice('companion-v'.length)
-    : '';
-  if (!stableVersion.test(latestVersion) || release.draft !== false || release.prerelease !== false) {
-    throw Error('GitHub вернул данные о неподдерживаемом выпуске Companion.');
-  }
+async function checkForUpdate({ fetchRelease = fetch, currentVersion = installedVersion } = {}) {
+  const latestVersion = await latestReleaseVersion(fetchRelease);
   if (!stableVersion.test(currentVersion)) throw Error('Не удалось определить установленную версию Companion.');
 
   const latest = latestVersion.split('.').map(Number);
@@ -40,4 +55,4 @@ async function checkForUpdate({ fetchRelease = fetch, currentVersion = installed
   return { currentVersion, latestVersion, available };
 }
 
-module.exports = { checkForUpdate, installedVersion, releaseUrl };
+module.exports = { checkForUpdate, installedVersion, releaseUrl, releases };

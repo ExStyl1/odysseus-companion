@@ -1,3 +1,4 @@
+import { preferredNessyProfile } from './nessy-discovery.mjs';
 import { findNessy } from './nessy-command.mjs';
 import {customScenarios} from './custom-scenarios.mjs';
 import {jobQueue} from './job-queue.mjs';
@@ -75,12 +76,18 @@ export async function createPlatform(paths,{runtimeFactory=paths.localN8n === fa
   initializeConfig(paths);
   const runtime=await runtimeFactory(paths.automation);
   const corporate=corporateN8n(paths);
-  const preferences=personal(paths),icons=toolIcons(paths),skillStore=skillLibrary(paths);
-  const memory=memoryService(paths),boards=boardService(paths),agents=agentRuns(paths),chats=chatHistory(paths),audit=searchAudit(paths),profilesTools=toolProfiles(paths),inventory=inventoryService(paths);
+  const toolPaths = {
+    ...paths,
+    get profile() {
+      return paths.env.ODYSSEUS_COMPANION_STANDALONE === '1' ? preferredNessyProfile(paths) : paths.profile;
+    },
+  };
+  const preferences=personal(paths),icons=toolIcons(paths),skillStore=skillLibrary(toolPaths);
+  const memory=memoryService(paths),boards=boardService(paths),agents=agentRuns(paths),chats=chatHistory(paths),audit=searchAudit(paths),profilesTools=toolProfiles(toolPaths),inventory=inventoryService(toolPaths);
   const queue=jobQueue(paths);queue.recover();
   const definitions=agentDefinitions(paths);definitions.ensure();
   const transfer=workflowTransfer(paths,runtime);
-  const profiles=()=>[...new Set([paths.profile,...(json(join(paths.home,'attached-profiles.json')).profiles||[]).map(p=>p.path)])];
+  const profiles=()=>[...new Set([paths.profile,toolPaths.profile,...(json(join(paths.home,'attached-profiles.json')).profiles||[]).map(p=>p.path)])];
   const observer=createObserver(paths,{profiles});
   const installer=installationManager(paths,{onAttach:profile=>observer.attach(profile)});
   const observerTimer=setInterval(()=>observer.scan(),10000);observerTimer.unref();observer.scan();
@@ -131,9 +138,9 @@ export async function createPlatform(paths,{runtimeFactory=paths.localN8n === fa
     if(mode==='customScenarioSave')return customScenarios(paths).save(input);
     if(mode==='customScenarioDelete')return customScenarios(paths).remove(input);
     if(mode==='customScenarioDraft')return customScenarios(paths).draft(input);
-    if(mode==='scenarioState')return scenarios(paths).state();
-    if(mode==='scenarioSave')return scenarios(paths).save(input);
-    if(mode==='scenarioPrompt')return scenarios(paths).prompt(input);
+    if(mode==='scenarioState')return scenarios(toolPaths).state();
+    if(mode==='scenarioSave')return scenarios(toolPaths).save(input);
+    if(mode==='scenarioPrompt')return scenarios(toolPaths).prompt(input);
     if(mode==='sourceHealth')return sourceHealth(paths).state(input);
     if(mode==='sourceReview')return sourceHealth(paths).review(input);
     if(mode==='projectPassports')return projectPassports(paths).state();
@@ -144,8 +151,8 @@ export async function createPlatform(paths,{runtimeFactory=paths.localN8n === fa
     if(mode==='systemPackageHistory'){const service=systemPackageService(paths);return [...service.history(),...service.pending().map(e=>({...e,status:'needs-recovery'}))];}
     if(mode==='systemPackageRecoveryPreview')return systemPackageService(paths).recoveryPreview(input);
     if(mode==='systemPackageRecover')return systemPackageService(paths).recover(input);
-    if(mode==='taskCatalog')return taskCatalog(paths).state();
-    if(mode==='taskPreview')return taskCatalog(paths).preview(input);
+    if(mode==='taskCatalog')return taskCatalog(toolPaths).state();
+    if(mode==='taskPreview')return taskCatalog(toolPaths).preview(input);
     if(mode==='inventory')return inventory.state();
     if(mode==='mcpProbe')return inventory.probe(input);
     if(mode==='mcpResources')return inventory.probe({name:input.name,resources:true});
@@ -157,10 +164,10 @@ export async function createPlatform(paths,{runtimeFactory=paths.localN8n === fa
     if(mode==='answer'){const skip=audit.excluded(input);const result=await runtime.dispatch('answer',{...input,excludedSources:skip.map(e=>e.source),excludedNodeIds:skip.map(e=>e.nodeId)});if(result.retrieval){result.auditId=audit.record({...input,...result.retrieval,origin:'answer'}).id;result.retrieval.auditId=result.auditId;}return result;}
     if(automationModes.includes(mode)) return runtime.dispatch(mode,input);
     if(mode==='overview') {
-      const config=runtime.status(), list=skills(paths), mcp=mcpCatalog(paths), registry=readRegistry(paths.knowledge);
-      return {name:'Odysseus Companion',version:json(join(paths.root,'companion-release.json')).version||'0.4.4',profile:paths.profile,root:paths.root,installation:json(paths.installation),
+      const config=runtime.status(), list=skills(toolPaths), mcp=mcpCatalog(toolPaths), registry=readRegistry(paths.knowledge);
+      return {name:'Odysseus Companion',version:json(join(paths.root,'companion-release.json')).version||'0.4.4',profile:toolPaths.profile,root:paths.root,installation:json(paths.installation),
         automaticSkills:list.filter(s=>s.automatic).length,
-        skills:list.length,plugins:plugins(paths).length,mcp:mcp.length,enabledMcp:mcp.filter(m=>m.enabled).length,
+        skills:list.length,plugins:plugins(toolPaths).length,mcp:mcp.length,enabledMcp:mcp.filter(m=>m.enabled).length,
         graphNodes:graphData(paths.knowledge).graph.nodes.length,graphLinks:graphData(paths.knowledge).graph.links.length,
         projects:Object.values(registry.projects),automation:config,rag:ragIndexes(paths),
         dependencies:{graphify:existsSync(paths.knowledge.python),nessy:Boolean(findNessy(paths.env)),dp:existsSync(join(paths.profile,'dp_latest/dp'))}};
@@ -178,10 +185,10 @@ export async function createPlatform(paths,{runtimeFactory=paths.localN8n === fa
     if(mode==='observerConfigure')return observer.setEnabled(input.enabled);
     if(mode==='installationStatus')return installer.status();
     if(mode==='installExtension')return installer.install(input);
-    if(mode==='skills') return skills(paths);
-    if(mode==='skill') return readSkill(paths,input.id);
-    if(mode==='mcp') return mcpCatalog(paths);
-    if(mode==='plugins') return plugins(paths);
+    if(mode==='skills') return skills(toolPaths);
+    if(mode==='skill') return readSkill(toolPaths,input.id);
+    if(mode==='mcp') return mcpCatalog(toolPaths);
+    if(mode==='plugins') return plugins(toolPaths);
     if(mode==='rag') return ragIndexes(paths);
     if(mode==='corporateStatus')return corporate.status();
     if(mode==='corporateConfigure')return corporate.configure(input);
@@ -216,11 +223,11 @@ export async function createPlatform(paths,{runtimeFactory=paths.localN8n === fa
     }
     if(mode==='mcpToggle') {
       if(typeof input.enabled!=='boolean') throw Error('Укажите состояние MCP');
-      const file=join(paths.profile,'settings.json'),settings=json(file);
+      const file=join(toolPaths.profile,'settings.json'),settings=json(file);
       if(!Object.hasOwn(settings.mcpServers||{},input.name)) throw Error('Сервер не найден');
       const excluded=new Set(settings.mcp?.excluded||[]);if(input.enabled)excluded.delete(input.name);else excluded.add(input.name);
       settings.mcp={...settings.mcp,excluded:[...excluded]};privateWrite(file,JSON.stringify(settings,null,2));
-      return {restartNessy:true,servers:mcpCatalog(paths)};
+      return {restartNessy:true,servers:mcpCatalog(toolPaths)};
     }
     throw Error('Неизвестная операция Companion');
   }

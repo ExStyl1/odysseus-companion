@@ -17,7 +17,7 @@ function isProfile(path) {
   }
 }
 
-function discoverProfile(paths, userDirectory = homedir()) {
+function discoverProfile(paths, userDirectory = paths.env.HOME || homedir()) {
   const connection = json(join(paths.home, 'nessy-connection.json'));
   const explicit = paths.env.NESSY_HOME;
   return [isAbsolute(explicit || '') ? explicit : undefined, connection.profile,
@@ -30,7 +30,7 @@ export function preferredNessyProfile(paths) {
   return discoverProfile(paths) || paths.profile;
 }
 
-export function connectDiscoveredNessy(paths, userDirectory = homedir()) {
+export function connectDiscoveredNessy(paths, userDirectory = paths.env.HOME || homedir()) {
   const profile = discoverProfile(paths, userDirectory);
   if (!profile) return null;
   const attached = json(join(paths.home, 'attached-profiles.json')).profiles || [];

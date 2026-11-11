@@ -38,9 +38,8 @@ export function UpdatesPage() {
   }
 
   async function openRelease() {
-    if (!result) return;
     try {
-      await api.openRelease(result.latestVersion);
+      await api.openRelease(result?.latestVersion);
     } catch {
       setError('Не удалось открыть страницу релиза.');
     }
@@ -60,8 +59,8 @@ export function UpdatesPage() {
         <button type="button" className="primary" disabled={checking} onClick={() => void check()}>
           Проверить обновления
         </button>
-        {result?.available && (
-          <button type="button" onClick={() => void openRelease()}>Открыть релиз ↗</button>
+        {(result?.available || error) && (
+          <button type="button" onClick={() => void openRelease()}>{result?.available ? 'Открыть релиз ↗' : 'Открыть релизы ↗'}</button>
         )}
       </div>
     </section>

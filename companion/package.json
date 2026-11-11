@@ -1,7 +1,7 @@
 {
   "name": "odysseus-companion",
   "productName": "Odysseus Companion",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "main": "main.cjs",
   "private": true,
   "devDependencies": {
