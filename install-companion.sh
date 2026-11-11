@@ -103,7 +103,8 @@ if [ -e "$target" ]; then
   [ -d "$target" ] || fail 'Путь установки занят.'
   [ "$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$target/Contents/Info.plist")" = app.odysseus.companion ] ||
     fail 'Путь установки занят другим приложением.'
-  if /bin/ps -axo command= | /usr/bin/awk -v path="$target/Contents/MacOS/" 'index($0,path)==1 {found=1} END {exit !found}'; then
+  processes=$(/bin/ps -axo command=) || fail 'Не удалось проверить, закрыто ли приложение.'
+  if printf '%s\n' "$processes" | /usr/bin/awk -v path="$target/Contents/MacOS/" 'index($0,path)==1 {found=1} END {exit !found}'; then
     fail 'Закройте Odysseus Companion и повторите установку.'
   fi
   mv "$target" "$work/previous"
