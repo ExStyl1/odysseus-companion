@@ -4,7 +4,7 @@ set -eu
 fail() { printf '%s\n' "$*" >&2; exit 1; }
 
 repo=ExStyl1/odysseus-companion
-version=0.8.8
+version=0.8.9
 archive=
 require_trust=no
 local_build=no
@@ -26,7 +26,7 @@ while [ "$#" -gt 0 ]; do
     --local-build) local_build=yes; shift ;;
     --no-open) launch=no; shift ;;
     -h|--help)
-      printf '%s\n' 'sh install-companion.sh [--version 0.8.8] [--repo owner/repo] [--local-build] [--no-open]' \
+      printf '%s\n' 'sh install-companion.sh [--version 0.8.9] [--repo owner/repo] [--local-build] [--no-open]' \
         'Для файла на диске: --archive /путь/к/архиву.zip [--checksum /путь/к/архиву.zip.sha256]'
       exit 0 ;;
     *) fail "Неизвестный аргумент: $1" ;;
